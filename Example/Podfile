@@ -1,0 +1,14 @@
+use_frameworks!
+
+target 'ProjectBase_Example' do
+  pod 'ProjectBase', :path => '../'
+
+  target 'ProjectBase_Tests' do
+    inherit! :search_paths
+
+    pod 'Quick', '~> 0.8'
+  pod 'Nimble', '~> 3.0'
+  pod 'FBSnapshotTestCase'
+  pod 'Nimble-Snapshots'
+  end
+end
