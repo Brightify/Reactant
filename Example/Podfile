@@ -10,5 +10,7 @@ target 'ProjectBase_Example' do
   pod 'Nimble', '~> 3.0'
   pod 'FBSnapshotTestCase'
   pod 'Nimble-Snapshots'
+  pod 'SwiftKit', :git => 'https://github.com/SwiftKit/SwiftKit.git', :commit => '02114540b50838cc5b4f9504bb302d8eb4df5d88'
+  pod 'Lipstick', :git => 'https://github.com/SwiftKit/Lipstick.git'
   end
 end
