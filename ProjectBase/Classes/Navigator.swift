@@ -23,13 +23,13 @@ struct Navigator {
         }
 
         let replay = ReplaySubject<Void>.create(bufferSize: 1)
-        self.owner?.presentViewController(target, animated: animated, completion: replay.onLast)
+        self.owner?.presentViewController(target, animated: animated, completion: { replay.onLast() })
         return replay.rewrite(controller)
     }
 
     func dismiss(animated: Bool) -> Observable<Void> {
         let replay = ReplaySubject<Void>.create(bufferSize: 1)
-        self.owner?.dismissViewControllerAnimated(animated, completion: replay.onLast)
+        self.owner?.dismissViewControllerAnimated(animated, completion: { replay.onLast() })
         return replay
     }
 
