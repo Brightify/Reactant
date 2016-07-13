@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'UIKit'
   s.dependency 'RxSwift'
   s.dependency 'RxCocoa'
-  s.dependency 'SwiftKit'
+  s.dependency 'SwiftKit', '0.9.0'
   s.dependency 'RxDataSources'
   s.dependency 'RxOptional'
   s.dependency 'Lipstick'
