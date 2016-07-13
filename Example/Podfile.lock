@@ -14,6 +14,7 @@ PODS:
     - Nimble
     - Quick
   - ProjectBase (0.1.0):
+    - HTTPStatusCodes
     - Lipstick
     - RxCocoa
     - RxDataSources
@@ -80,7 +81,7 @@ SPEC CHECKSUMS:
   Lipstick: 86fdf79d3406f69dbf02a185b0a6a2e2f0791974
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
   Nimble-Snapshots: 2da4d2ec829b458d6886c06812c52493fce284c9
-  ProjectBase: b137a94d4b9b6014300d16185465813234eddda0
+  ProjectBase: 42d4e37ba72061b181024a874ce3b43610adbdb7
   Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
   RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
   RxDataSources: e169bba94a7be584df7c1e1487fa56edc8753ae6

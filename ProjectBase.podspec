@@ -38,4 +38,5 @@ Pod::Spec.new do |s|
   s.dependency 'Lipstick'
   s.dependency 'TZStackView'
   s.dependency 'SnapKit'
+  s.dependency 'HTTPStatusCodes'
 end
