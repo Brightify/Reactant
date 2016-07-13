@@ -1,3 +1,6 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'http://source.tmspark.com/scm/base/private-specs.git'
+
 use_frameworks!
 
 target 'ProjectBase_Example' do
@@ -7,10 +10,8 @@ target 'ProjectBase_Example' do
     inherit! :search_paths
 
     pod 'Quick', '~> 0.8'
-  pod 'Nimble', '~> 3.0'
-  pod 'FBSnapshotTestCase'
-  pod 'Nimble-Snapshots'
-  pod 'SwiftKit', :git => 'https://github.com/SwiftKit/SwiftKit.git', :commit => '02114540b50838cc5b4f9504bb302d8eb4df5d88'
-  pod 'Lipstick', :git => 'https://github.com/SwiftKit/Lipstick.git'
+    pod 'Nimble', '~> 3.0'
+    pod 'FBSnapshotTestCase'
+    pod 'Nimble-Snapshots'
   end
 end
