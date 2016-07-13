@@ -18,12 +18,12 @@ Pod::Spec.new do |s|
   s.homepage         = 'http://source.tmspark.com/scm/base/private-specs.git'
   #s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Tadeas Kriz' => 'tadeas@brightify.org' }
-  s.source           = { :git => 'http://source.tmspark.com/scm/base/private-specs.git', :tag => s.version.to_s }
+  s.source           = { :git => 'http://source.tmspark.com/scm/base/projectbase-ios.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'ProjectBase/Classes/**/*'
-  
+
   # s.resource_bundles = {
   #   'ProjectBase' => ['ProjectBase/Assets/*.png']
   # }
