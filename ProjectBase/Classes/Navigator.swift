@@ -7,7 +7,7 @@
 import UIKit
 import RxSwift
 
-struct RxNavigator {
+struct Navigator {
     private weak var owner: UIViewController?
 
     init(on owner: UIViewController) {
@@ -76,14 +76,14 @@ struct RxNavigator {
 }
 
 // MARK:- `dismiss` convenience methods with default values
-extension RxNavigator {
+extension Navigator {
     func dismiss() -> Observable<Void> {
         return dismiss(true)
     }
 }
 
 // MARK:- `present` convenience methods with default values
-extension RxNavigator {
+extension Navigator {
     func present<C: UIViewController>(controller: C) -> Observable<C> {
         return present(controller, branchNavigation: false)
     }
@@ -94,28 +94,22 @@ extension RxNavigator {
 }
 
 // MARK:- `push` convenience methods with default values
-extension RxNavigator {
+extension Navigator {
     func push(controller: UIViewController) {
         push(controller, animated: true)
     }
 }
 
 // MARK:- `replaceAll` convenience methods with default values
-extension RxNavigator {
+extension Navigator {
     func replaceAll(with controller: UIViewController) -> [UIViewController] {
         return replaceAll(with: controller, animated: true)
     }
 }
 
-extension ControllerBase {
-    var navigator: RxNavigator {
-        return RxNavigator(on: self)
-    }
-}
-
 extension UIViewController {
     /// Made for bridging between new and old code
-    var rxNavigator: RxNavigator {
-        return RxNavigator(on: self)
+    var navigator: Navigator {
+        return Navigator(on: self)
     }
 }
