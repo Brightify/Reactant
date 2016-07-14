@@ -18,7 +18,7 @@ public extension Scrollable {
     }
 }
 
-public extension UIScrollView: Scrollable {
+extension UIScrollView: Scrollable {
     public func scrollToTop(animated: Bool) {
         let inset = contentInset
         setContentOffset(CGPointMake(-inset.left, -inset.top), animated: animated)

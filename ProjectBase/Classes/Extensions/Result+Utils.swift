@@ -13,26 +13,26 @@ public protocol ResultType {
     associatedtype ValueType
     associatedtype FailureType: ErrorType
 
-    public var isSuccess: Bool { get }
+    var isSuccess: Bool { get }
 
-    public var isFailure: Bool { get }
+    var isFailure: Bool { get }
 
-    public var value: ValueType? { get }
+    var value: ValueType? { get }
 
-    public var error: FailureType? { get }
+    var error: FailureType? { get }
 
-    public func mapValue<T>(transform: ValueType -> T) -> Result<T, FailureType>
+    func mapValue<T>(transform: ValueType -> T) -> Result<T, FailureType>
 
-    public func mapError<T: ErrorType>(transform: FailureType -> T) -> Result<ValueType, T>
+    func mapError<T: ErrorType>(transform: FailureType -> T) -> Result<ValueType, T>
 
-    public func map<T, U: ErrorType>(transformValue transformValue: ValueType -> T, transformError: FailureType -> U) -> Result<T, U>
+    func map<T, U: ErrorType>(transformValue transformValue: ValueType -> T, transformError: FailureType -> U) -> Result<T, U>
 
-    public func emptied() -> Result<Void, FailureType>
+    func emptied() -> Result<Void, FailureType>
 }
 
-public extension Result: ResultType {
-    typealias ValueType = Value
-    typealias FailureType = Error
+extension Result: ResultType {
+    public typealias ValueType = Value
+    public typealias FailureType = Error
 
     public func mapValue<T>(transform: Value -> T) -> Result<T, Error> {
         switch self {

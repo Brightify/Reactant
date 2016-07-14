@@ -18,7 +18,7 @@ public protocol ViewEventReceiver {
     optional func didDisappear(animated: Bool)
 }
 
-public extension UIView: ViewEventReceiver {
+extension UIView: ViewEventReceiver {
     public var edgesForExtendedLayout: UIRectEdge {
         return .None
     }

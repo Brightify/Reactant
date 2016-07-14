@@ -27,7 +27,7 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
 
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
     private let refreshControl = UIRefreshControl()
-    private let emptyLabel = UILabel()
+    private let emptyLabel = UILabel().styled(using: ProjectBaseConfiguration.global.emptyListLabelStyle)
     private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 
     private let tableView: UITableView
@@ -181,7 +181,7 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
     }
 }
 
-public extension SimulatedSeparatorTableView: Scrollable {
+extension SimulatedSeparatorTableView: Scrollable {
     public func scrollToTop(animated: Bool) {
         tableView.scrollToTop(animated)
     }

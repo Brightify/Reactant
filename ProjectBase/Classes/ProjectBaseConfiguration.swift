@@ -14,5 +14,5 @@ public struct ProjectBaseConfiguration {
 
     public var layoutMargins: UIEdgeInsets = UIEdgeInsetsZero
     public var controllerRootStyle: (ControllerRootView) -> Void = { _ in }
-    public var emptyListLabelStyle = (UILable) -> Void = { _ in }
+    public var emptyListLabelStyle: (UILabel) -> Void = { _ in }
 }
