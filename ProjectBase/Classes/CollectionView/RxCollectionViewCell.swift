@@ -4,10 +4,11 @@
 //  Created by Maros Seleng on 10/05/16.
 //
 import SwiftKit
-final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
+
+public final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
     private var content: CONTENT?
     
-    func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
+    public func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
         if let content = content {
             return content
         } else {
@@ -19,7 +20,7 @@ final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
         }
     }
     
-    override func updateConstraints() {
+    public override func updateConstraints() {
         super.updateConstraints()
         
         content?.snp_updateConstraints { make in
@@ -27,7 +28,7 @@ final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
         }
     }
     
-    override class func requiresConstraintBasedLayout() -> Bool {
+    public override class func requiresConstraintBasedLayout() -> Bool {
         return true
     }
 }

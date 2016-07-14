@@ -31,7 +31,7 @@ public class ViewBase<STATE>: UIView, Component {
     }
     private var stateStorage: STATE?
 
-    init(initialState: STATE? = nil) {
+    public init(initialState: STATE? = nil) {
         super.init(frame: CGRectZero)
 
         layoutMargins = ProjectBaseConfiguration.global.layoutMargins

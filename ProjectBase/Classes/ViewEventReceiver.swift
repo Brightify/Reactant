@@ -9,7 +9,7 @@
 import UIKit
 
 @objc
-protocol ViewEventReceiver {
+public protocol ViewEventReceiver {
     // FIXME edgesForExtendedLayout should be in a different protocol
     optional var edgesForExtendedLayout: UIRectEdge { get }
     optional func willAppear(animated: Bool)
@@ -18,32 +18,30 @@ protocol ViewEventReceiver {
     optional func didDisappear(animated: Bool)
 }
 
-extension UIView: ViewEventReceiver {
-    typealias Model = Void
-
-    var edgesForExtendedLayout: UIRectEdge {
+public extension UIView: ViewEventReceiver {
+    public var edgesForExtendedLayout: UIRectEdge {
         return .None
     }
 
-    func willAppear(animated: Bool) {
+    public func willAppear(animated: Bool) {
         subviews.forEach {
             $0.willAppear(animated)
         }
     }
 
-    func didAppear(animated: Bool) {
+    public func didAppear(animated: Bool) {
         subviews.forEach {
             $0.didAppear(animated)
         }
     }
 
-    func willDisappear(animated: Bool) {
+    public func willDisappear(animated: Bool) {
         subviews.forEach {
             $0.willDisappear(animated)
         }
     }
 
-    func didDisappear(animated: Bool) {
+    public func didDisappear(animated: Bool) {
         subviews.forEach {
             $0.didDisappear(animated)
         }

@@ -6,8 +6,8 @@
 
 import TZStackView
 
-extension TZStackView {
-    func arrangedChildren(children: UIView...) -> TZStackView {
+public extension TZStackView {
+    public func arrangedChildren(children: UIView...) -> TZStackView {
         children.forEach(addArrangedSubview)
         return self
     }

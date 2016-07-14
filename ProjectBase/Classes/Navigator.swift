@@ -7,14 +7,14 @@
 import UIKit
 import RxSwift
 
-struct Navigator {
+public struct Navigator {
     private weak var owner: UIViewController?
 
-    init(on owner: UIViewController) {
+    public init(on owner: UIViewController) {
         self.owner = owner
     }
 
-    func present<C: UIViewController>(controller: C, branchNavigation: Bool, animated: Bool) -> Observable<C> {
+    public func present<C: UIViewController>(controller: C, branchNavigation: Bool, animated: Bool) -> Observable<C> {
         let target: UIViewController
         if branchNavigation {
             target = UINavigationController(rootViewController: controller)
@@ -27,21 +27,21 @@ struct Navigator {
         return replay.rewrite(controller)
     }
 
-    func dismiss(animated: Bool) -> Observable<Void> {
+    public func dismiss(animated: Bool) -> Observable<Void> {
         let replay = ReplaySubject<Void>.create(bufferSize: 1)
         self.owner?.dismissViewControllerAnimated(animated, completion: { replay.onLast() })
         return replay
     }
 
-    func push(controller: UIViewController, animated: Bool) {
+    public func push(controller: UIViewController, animated: Bool) {
         owner?.navigationController?.pushViewController(controller, animated: animated)
     }
 
-    func pop(animated animated: Bool = true) -> UIViewController? {
+    public func pop(animated animated: Bool = true) -> UIViewController? {
         return owner?.navigationController?.popViewControllerAnimated(animated)
     }
 
-    func replace(with controller: UIViewController, animated: Bool = true) -> UIViewController? {
+    public func replace(with controller: UIViewController, animated: Bool = true) -> UIViewController? {
         var controllers = owner?.navigationController?.viewControllers ?? []
         let current = controllers.popLast()
         controllers.append(controller)
@@ -51,7 +51,7 @@ struct Navigator {
         return current
     }
 
-    func popAllAndReplace(with controller: UIViewController) -> [UIViewController] {
+    public func popAllAndReplace(with controller: UIViewController) -> [UIViewController] {
         guard let navigationController = owner?.navigationController else { return [] }
 
         let transition = CATransition()
@@ -66,7 +66,7 @@ struct Navigator {
         return replaced
     }
 
-    func replaceAll(with controller: UIViewController, animated: Bool) -> [UIViewController] {
+    public func replaceAll(with controller: UIViewController, animated: Bool) -> [UIViewController] {
         let currentControllers = owner?.navigationController?.viewControllers ?? []
 
         owner?.navigationController?.setViewControllers([controller], animated: animated)
@@ -76,40 +76,40 @@ struct Navigator {
 }
 
 // MARK:- `dismiss` convenience methods with default values
-extension Navigator {
-    func dismiss() -> Observable<Void> {
+public extension Navigator {
+    public func dismiss() -> Observable<Void> {
         return dismiss(true)
     }
 }
 
 // MARK:- `present` convenience methods with default values
-extension Navigator {
-    func present<C: UIViewController>(controller: C) -> Observable<C> {
+public extension Navigator {
+    public func present<C: UIViewController>(controller: C) -> Observable<C> {
         return present(controller, branchNavigation: false)
     }
 
-    func present<C: UIViewController>(controller: C, branchNavigation: Bool) -> Observable<C> {
+    public func present<C: UIViewController>(controller: C, branchNavigation: Bool) -> Observable<C> {
         return present(controller, branchNavigation: branchNavigation, animated: true)
     }
 }
 
 // MARK:- `push` convenience methods with default values
-extension Navigator {
-    func push(controller: UIViewController) {
+public extension Navigator {
+    public func push(controller: UIViewController) {
         push(controller, animated: true)
     }
 }
 
 // MARK:- `replaceAll` convenience methods with default values
-extension Navigator {
-    func replaceAll(with controller: UIViewController) -> [UIViewController] {
+public extension Navigator {
+    public func replaceAll(with controller: UIViewController) -> [UIViewController] {
         return replaceAll(with: controller, animated: true)
     }
 }
 
-extension UIViewController {
+public extension UIViewController {
     /// Made for bridging between new and old code
-    var navigator: Navigator {
+    public var navigator: Navigator {
         return Navigator(on: self)
     }
 }

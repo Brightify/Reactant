@@ -6,16 +6,16 @@
 
 import SwiftKit
 
-final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
+public final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
     private var content: CONTENT?
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         loadView()
     }
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         loadView()
@@ -25,7 +25,7 @@ final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
         backgroundColor = nil
     }
 
-    func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
+    public func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
         if let content = content {
             return content
         } else {
@@ -37,7 +37,7 @@ final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
         }
     }
 
-    override func updateConstraints() {
+    public override func updateConstraints() {
         super.updateConstraints()
 
         content?.snp_updateConstraints { make in
@@ -45,7 +45,7 @@ final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
         }
     }
 
-    override class func requiresConstraintBasedLayout() -> Bool {
+    public override class func requiresConstraintBasedLayout() -> Bool {
         return true
     }
 }

@@ -6,10 +6,10 @@
 
 import SwiftKit
 
-final class RxCollectionReusableView<CONTENT: UIView>: UICollectionReusableView {
+public final class RxCollectionReusableView<CONTENT: UIView>: UICollectionReusableView {
     private var content: CONTENT?
     
-    func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
+    public func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
         if let content = content {
             return content
         } else {
@@ -21,7 +21,7 @@ final class RxCollectionReusableView<CONTENT: UIView>: UICollectionReusableView 
         }
     }
     
-    override func updateConstraints() {
+    public override func updateConstraints() {
         super.updateConstraints()
         
         content?.snp_updateConstraints { make in
@@ -29,7 +29,7 @@ final class RxCollectionReusableView<CONTENT: UIView>: UICollectionReusableView 
         }
     }
     
-    override class func requiresConstraintBasedLayout() -> Bool {
+    public override class func requiresConstraintBasedLayout() -> Bool {
         return true
     }
 }

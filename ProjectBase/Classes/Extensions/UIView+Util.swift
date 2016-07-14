@@ -6,8 +6,8 @@
 
 import UIKit
 
-extension UIView {
-    func children(children: UIView...) -> UIView {
+public extension UIView {
+    public func children(children: UIView...) -> UIView {
         children.forEach(addSubview)
         return self
     }

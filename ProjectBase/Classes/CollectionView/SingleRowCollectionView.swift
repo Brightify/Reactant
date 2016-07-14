@@ -8,14 +8,14 @@ import Lipstick
 import RxCocoa
 import RxSwift
 
-class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBase<TableViewState<CELL.StateType>> {
+public class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBase<TableViewState<CELL.StateType>> {
     private typealias MODEL = CELL.StateType
     
-    var modelSelected: ControlEvent<MODEL> {
+    public var modelSelected: ControlEvent<MODEL> {
         return collectionView.rx_modelSelected(MODEL)
     }
     
-    override var edgesForExtendedLayout: UIRectEdge {
+    public override var edgesForExtendedLayout: UIRectEdge {
         return .All
     }
     
@@ -26,7 +26,7 @@ class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBase<Tabl
     
     private let cellFactory: () -> CELL
     
-    init(
+    public init(
         cellFactory: () -> CELL,
         itemSize: CGSize = CGSizeZero,
         estimatedItemSize: CGSize = CGSizeZero,
@@ -49,7 +49,7 @@ class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBase<Tabl
         collectionView.registerClass(RxCollectionViewCell<CELL>.self, forCellWithReuseIdentifier: "Cell")
     }
     
-    override func loadView() {
+    public override func loadView() {
         children(
             collectionView,
             emptyLabel,
@@ -59,7 +59,7 @@ class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBase<Tabl
         loadingIndicator.hidesWhenStopped = true
     }
     
-    override func render() {
+    public override func render() {
         var items: [MODEL] = []
         var loading: Bool = false
         var emptyMessage: String = ""
@@ -96,7 +96,7 @@ class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBase<Tabl
         setNeedsLayout()
     }
     
-    override func updateConstraints() {
+    public override func updateConstraints() {
         super.updateConstraints()
         
         collectionView.snp_remakeConstraints { make in

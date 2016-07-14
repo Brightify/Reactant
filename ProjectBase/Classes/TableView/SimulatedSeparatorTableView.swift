@@ -9,19 +9,19 @@ import RxCocoa
 import RxDataSources
 import UIKit
 
-class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: ViewBase<TableViewState<CELL.StateType>> {
+public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: ViewBase<TableViewState<CELL.StateType>> {
     typealias MODEL = CELL.StateType
     typealias SECTION = SectionModel<Void, CELL.StateType>
 
-    var refresh: ControlEvent<Void> {
+    public var refresh: ControlEvent<Void> {
         return refreshControl.rx_controlEvent(.ValueChanged)
     }
 
-    var modelSelected: ControlEvent<MODEL> {
+    public var modelSelected: ControlEvent<MODEL> {
         return tableView.rx_modelSelected(MODEL)
     }
 
-    override var edgesForExtendedLayout: UIRectEdge {
+    public override var edgesForExtendedLayout: UIRectEdge {
         return .All
     }
 
@@ -34,7 +34,7 @@ class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: ViewBase<
     private let tableViewDelegate: SimulatedSeparatorTableViewDelegate
     private let reloadable: Bool
 
-    init(
+    public init(
         cellFactory: () -> CELL,
         separatorColor: UIColor? = nil,
         separatorHeight: CGFloat = 1,
@@ -87,7 +87,7 @@ class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: ViewBase<
             .addDisposableTo(lifecycleDisposeBag)
     }
 
-    override func loadView() {
+    public override func loadView() {
         children(
             tableView,
             emptyLabel,
@@ -103,7 +103,7 @@ class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: ViewBase<
         loadingIndicator.hidesWhenStopped = true
     }
 
-    override func render() {
+    public override func render() {
         var items: [SECTION] = []
         var loading: Bool = false
         var emptyMessage: String = ""
@@ -145,7 +145,7 @@ class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: ViewBase<
         setNeedsLayout()
     }
 
-    override func updateConstraints() {
+    public override func updateConstraints() {
         super.updateConstraints()
 
         tableView.snp_remakeConstraints { make in
@@ -161,7 +161,7 @@ class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: ViewBase<
         }
     }
 
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
 
         if let tableViewHeader = tableView.tableHeaderView {
@@ -181,8 +181,8 @@ class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: ViewBase<
     }
 }
 
-extension SimulatedSeparatorTableView: Scrollable {
-    func scrollToTop(animated: Bool) {
+public extension SimulatedSeparatorTableView: Scrollable {
+    public func scrollToTop(animated: Bool) {
         tableView.scrollToTop(animated)
     }
 }

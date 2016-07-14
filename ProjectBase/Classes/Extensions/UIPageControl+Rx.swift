@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-extension UIPageControl {
+public extension UIPageControl {
 
     /**
      Bindable sink for `currentPage` property.

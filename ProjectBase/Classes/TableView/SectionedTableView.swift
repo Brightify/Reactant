@@ -8,19 +8,19 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView where HEADER: Component, CELL: Component, FOOTER: Component>: ViewBase<TableViewState<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>>> {
-    typealias MODEL = CELL.StateType
-    typealias SECTION = SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>
+public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView where HEADER: Component, CELL: Component, FOOTER: Component>: ViewBase<TableViewState<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>>> {
+    private typealias MODEL = CELL.StateType
+    private typealias SECTION = SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>
     
-    var refresh: ControlEvent<Void> {
+    public var refresh: ControlEvent<Void> {
         return refreshControl.rx_controlEvent(.ValueChanged)
     }
     
-    var modelSelected: ControlEvent<MODEL> {
+    public var modelSelected: ControlEvent<MODEL> {
         return tableView.rx_modelSelected(MODEL)
     }
     
-    override var edgesForExtendedLayout: UIRectEdge {
+    public override var edgesForExtendedLayout: UIRectEdge {
         return .All
     }
     
@@ -33,7 +33,7 @@ class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView where HEAD
     private let tableViewDelegate: SectionedTableViewDelegate
     private let reloadable: Bool
     
-    init(
+    public init(
         cellFactory: () -> CELL,
         headerFactory: () -> HEADER,
         footerFactory: () -> FOOTER,
@@ -104,7 +104,7 @@ class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView where HEAD
             .addDisposableTo(lifecycleDisposeBag)
     }
     
-    override func loadView() {
+    public override func loadView() {
         children(
             tableView,
             emptyLabel,
@@ -120,7 +120,7 @@ class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView where HEAD
         loadingIndicator.hidesWhenStopped = true
     }
     
-    override func render() {
+    public override func render() {
         var items: [SECTION] = []
         var loading: Bool = false
         var emptyMessage: String = ""
@@ -162,7 +162,7 @@ class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView where HEAD
         setNeedsLayout()
     }
     
-    override func updateConstraints() {
+    public override func updateConstraints() {
         super.updateConstraints()
         
         tableView.snp_remakeConstraints { make in
@@ -178,7 +178,7 @@ class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView where HEAD
         }
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         if let tableViewHeader = tableView.tableHeaderView {
@@ -198,8 +198,8 @@ class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView where HEAD
     }
 }
 
-extension SectionedTableView: Scrollable {
-    func scrollToTop(animated: Bool) {
+public extension SectionedTableView: Scrollable {
+    public func scrollToTop(animated: Bool) {
         tableView.scrollToTop(animated)
     }
 }

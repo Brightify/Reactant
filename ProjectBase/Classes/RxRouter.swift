@@ -10,8 +10,8 @@ import SwiftKitStaging
 import SwiftyJSON
 import Alamofire
 
-typealias Result = Alamofire.Result
-typealias Response = SwiftKit.Response
+public typealias Result = Alamofire.Result
+public typealias Response = SwiftKit.Response
 
 public enum RouterError: ErrorType {
     case InvalidStatusCode(EmptyResponse)
@@ -21,7 +21,7 @@ public enum RouterError: ErrorType {
 }
 
 /// Extension that adds support basic types - for requests with no input and output and no output
-extension Router {
+public extension Router {
     private func observeRequest<T>(block: (Response<T> -> Void) -> Cancellable) -> Observable<Result<T, RouterError>> {
         return Observable.create { observer in
             let cancelable = block { response in
@@ -107,7 +107,7 @@ extension Router {
 }
 
 /// Extension that adds support for Serializable input and Deserializable output parameters
-extension Router {
+public extension Router {
 
     /**
      Performs request with Serializable input and no output
@@ -259,7 +259,7 @@ extension Router {
 }
 
 /// Extension of Router tha adds JSON support
-extension Router {
+public extension Router {
 
     /**
      Performs request with input of JSON and output of JSON

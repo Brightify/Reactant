@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Component: class {
+public protocol Component: class {
     associatedtype StateType
 
     var componentState: StateType { get set }
@@ -16,12 +16,12 @@ protocol Component: class {
     func render()
 }
 
-extension Component {
-    func setComponentState(state: StateType) {
+public extension Component {
+    public func setComponentState(state: StateType) {
         componentState = state
     }
     
-    func withState(state: StateType) -> Self {
+    public func withState(state: StateType) -> Self {
         setComponentState(state)
         return self
     }

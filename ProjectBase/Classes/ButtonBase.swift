@@ -8,7 +8,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ButtonBase<STATE>: UIButton, Component {
+public class ButtonBase<STATE>: UIButton, Component {
     
     // MARK: Dispose bags
     public let lifecycleDisposeBag = DisposeBag()
@@ -30,7 +30,7 @@ class ButtonBase<STATE>: UIButton, Component {
     }
     private var stateStorage: STATE?
     
-    init(initialState: STATE? = nil) {
+    public init(initialState: STATE? = nil) {
         super.init(frame: CGRectZero)
         
         layoutMargins = ProjectBaseConfiguration.global.layoutMargins
@@ -46,19 +46,19 @@ class ButtonBase<STATE>: UIButton, Component {
         }
     }
     
-    func render() { }
+    public func render() { }
     
-    func loadView() { }
+    public func loadView() { }
     
-    func setupConstraints() { }
+    public func setupConstraints() { }
     
-    override func addSubview(view: UIView) {
+    public override func addSubview(view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         super.addSubview(view)
     }
     
-    override class func requiresConstraintBasedLayout() -> Bool {
+    public override class func requiresConstraintBasedLayout() -> Bool {
         return true
     }
 }

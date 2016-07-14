@@ -17,8 +17,8 @@ enum ModelState {
     case NotSet
 }
 
-class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalListener, Component {
-    let rootView: ROOT
+public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalListener, Component {
+    public let rootView: ROOT
     
     public var componentState: STATE {
         get {
@@ -47,14 +47,14 @@ class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalList
         }
     }
     
-    var navigationBarHidden: Bool {
+    public var navigationBarHidden: Bool {
         return false
     }
 
     public let lifecycleDisposeBag = DisposeBag()
     public var stateDisposeBag = DisposeBag()
 
-    init(title: String = "") {
+    public init(title: String = "") {
         rootView = self.dynamicType.initializeRootView()
 
         super.init(nibName: nil, bundle: nil)
@@ -68,11 +68,11 @@ class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalList
         }
     }
 
-    class func initializeRootView() -> ROOT {
+    public class func initializeRootView() -> ROOT {
         return ROOT()
     }
     
-    func renderIfPossible() {
+    public func renderIfPossible() {
         guard canRender else { return }
         guard stateStorage != nil else {
             #if DEBUG
@@ -87,9 +87,9 @@ class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalList
         render()
     }
 
-    func render() { }
+    public func render() { }
 
-    func updateRootViewConstraints() {
+    public func updateRootViewConstraints() {
         rootView.snp_updateConstraints { make in
             make.leading.equalTo(view)
             if rootView.edgesForExtendedLayout.contains(.Top) {
@@ -106,26 +106,26 @@ class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalList
         }
     }
     
-    override func loadView() {
+    public override func loadView() {
         // FIXME Add common styles and style rootview
         view = ControllerRootView().styled(using: ProjectBaseConfiguration.global.controllerRootStyle)
 
         view.addSubview(rootView)
     }
 
-    override func updateViewConstraints() {
+    public override func updateViewConstraints() {
         updateRootViewConstraints()
 
         super.updateViewConstraints()
     }
 
-    func dialogWillDismiss() {
+    public func dialogWillDismiss() {
         renderIfPossible()
     }
 
-    func dialogDidDismiss() { }
+    public func dialogDidDismiss() { }
 
-    override func viewWillAppear(animated: Bool) {
+    public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
         navigationController?.setNavigationBarHidden(navigationBarHidden, animated: animated)
@@ -135,19 +135,19 @@ class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalList
         rootView.willAppear(animated)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
         rootView.didAppear(animated)
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 
         rootView.willDisappear(animated)
     }
 
-    override func viewDidDisappear(animated: Bool) {
+    public override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         
         canRender = false
@@ -158,7 +158,7 @@ class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalList
     }
 }
 
-protocol DialogDismissalListener {
+public protocol DialogDismissalListener {
     func dialogWillDismiss()
     
     func dialogDidDismiss()
