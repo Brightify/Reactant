@@ -29,19 +29,37 @@ public class ButtonBase<STATE>: UIButton, Component {
         }
     }
     private var stateStorage: STATE?
-    
-    public init(initialState: STATE? = nil) {
+
+    public init() {
         super.init(frame: CGRectZero)
-        
-        layoutMargins = ProjectBaseConfiguration.global.layoutMargins
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        loadView()
-        setupConstraints()
+
+        prepareView()
+
+        setVoidStateIfPossible()
+    }
+
+    public init(initialState: STATE?) {
+        super.init(frame: CGRectZero)
+
+        prepareView()
         
         if let state = initialState {
             componentState = state
-        } else if let voidState = Void() as? STATE {
+        } else {
+            setVoidStateIfPossible()
+        }
+    }
+
+    private func prepareView() {
+        layoutMargins = ProjectBaseConfiguration.global.layoutMargins
+        translatesAutoresizingMaskIntoConstraints = false
+
+        loadView()
+        setupConstraints()
+    }
+
+    private func setVoidStateIfPossible() {
+        if let voidState = Void() as? STATE {
             componentState = voidState
         }
     }

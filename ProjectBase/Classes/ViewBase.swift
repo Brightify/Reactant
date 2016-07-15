@@ -31,18 +31,36 @@ public class ViewBase<STATE>: UIView, Component {
     }
     private var stateStorage: STATE?
 
-    public init(initialState: STATE? = nil) {
+    public init() {
         super.init(frame: CGRectZero)
 
+        prepareView()
+
+        setVoidStateIfPossible()
+    }
+
+    public init(initialState: STATE?) {
+        super.init(frame: CGRectZero)
+
+        prepareView()
+
+        if let state = initialState {
+            componentState = state
+        } else {
+            setVoidStateIfPossible()
+        }
+    }
+
+    private func prepareView() {
         layoutMargins = ProjectBaseConfiguration.global.layoutMargins
         translatesAutoresizingMaskIntoConstraints = false
 
         loadView()
         setupConstraints()
+    }
 
-        if let state = initialState {
-            componentState = state
-        } else if let voidState = Void() as? STATE {
+    private func setVoidStateIfPossible() {
+        if let voidState = Void() as? STATE {
             componentState = voidState
         }
     }
