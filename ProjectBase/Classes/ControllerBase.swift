@@ -12,11 +12,6 @@ import RxCocoa
 import SnapKit
 import Lipstick
 
-enum ModelState {
-    case Set
-    case NotSet
-}
-
 public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalListener, Component {
     public let rootView: ROOT
     
@@ -51,8 +46,14 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         return false
     }
 
-    public let lifecycleDisposeBag = DisposeBag()
-    public var stateDisposeBag = DisposeBag()
+    /// DisposeBag for one-time subscriptions made in init. It is reset just before deallocating.
+    public let lifetimeDisposeBag = DisposeBag()
+
+    /// DisposeBag for actions from other controllers. This is reset before each `render` call.
+    public private(set) var controllersActionsBag = DisposeBag()
+
+    /// DisposeBag for actions in `render`. This is reset before each `render` call and in `viewWillDisappear`.
+    public private(set) var stateDisposeBag = DisposeBag()
 
     public init(title: String = "") {
         rootView = self.dynamicType.initializeRootView()
@@ -84,6 +85,7 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         }
         
         stateDisposeBag = DisposeBag()
+        controllersActionsBag = DisposeBag()
         render()
     }
 
@@ -132,19 +134,19 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
 
         canRender = true
 
-        rootView.willAppear(animated)
+        rootView.willAppearInternal(animated)
     }
 
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        rootView.didAppear(animated)
+        rootView.didAppearInternal(animated)
     }
 
     public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
 
-        rootView.willDisappear(animated)
+        rootView.willDisappearInternal(animated)
     }
 
     public override func viewDidDisappear(animated: Bool) {
@@ -154,7 +156,7 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         
         stateDisposeBag = DisposeBag()
         
-        rootView.didDisappear(animated)
+        rootView.didDisappearInternal(animated)
     }
 }
 

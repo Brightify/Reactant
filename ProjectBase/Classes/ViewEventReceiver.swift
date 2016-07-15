@@ -23,25 +23,33 @@ extension UIView: ViewEventReceiver {
         return .None
     }
 
-    public func willAppear(animated: Bool) {
+    func willAppearInternal(animated: Bool) {
+        willAppear(animated)
+
         subviews.forEach {
             $0.willAppear(animated)
         }
     }
 
-    public func didAppear(animated: Bool) {
+    func didAppearInternal(animated: Bool) {
+        didAppear(animated)
+
         subviews.forEach {
             $0.didAppear(animated)
         }
     }
 
-    public func willDisappear(animated: Bool) {
+    func willDisappearInternal(animated: Bool) {
+        willDisappear(animated)
+
         subviews.forEach {
             $0.willDisappear(animated)
         }
     }
 
-    public func didDisappear(animated: Bool) {
+    func didDisappearInternal(animated: Bool) {
+        didDisappear(animated)
+
         subviews.forEach {
             $0.didDisappear(animated)
         }

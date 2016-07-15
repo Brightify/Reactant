@@ -15,6 +15,7 @@ public class ViewBase<STATE>: UIView, Component {
     public let lifecycleDisposeBag = DisposeBag()
     public var stateDisposeBag = DisposeBag()
 
+    public private(set) var previousComponentState: STATE?
     public var componentState: STATE {
         get {
             if let model = stateStorage {
@@ -24,6 +25,7 @@ public class ViewBase<STATE>: UIView, Component {
             }
         }
         set {
+            previousComponentState = stateStorage
             stateStorage = newValue
             stateDisposeBag = DisposeBag()
             render()

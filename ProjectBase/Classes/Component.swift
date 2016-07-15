@@ -11,6 +11,8 @@ import UIKit
 public protocol Component: class {
     associatedtype StateType
 
+    var previousComponentState: StateType? { get set }
+
     var componentState: StateType { get set }
 
     func render()

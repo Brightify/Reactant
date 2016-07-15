@@ -14,6 +14,7 @@ public class ButtonBase<STATE>: UIButton, Component {
     public let lifecycleDisposeBag = DisposeBag()
     public var stateDisposeBag = DisposeBag()
     
+    public private(set) var previousComponentState: STATE?
     public var componentState: STATE {
         get {
             if let model = stateStorage {
@@ -23,6 +24,7 @@ public class ButtonBase<STATE>: UIButton, Component {
             }
         }
         set {
+            previousComponentState = stateStorage
             stateStorage = newValue
             stateDisposeBag = DisposeBag()
             render()
