@@ -14,7 +14,8 @@ import Lipstick
 
 public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalListener, Component {
     public let rootView: ROOT
-    
+
+    public private(set) var previousComponentState: STATE?
     public var componentState: STATE {
         get {
             if let state = stateStorage {
@@ -24,6 +25,7 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
             }
         }
         set {
+            previousComponentState = stateStorage
             stateStorage = newValue
             renderIfPossible()
         }
