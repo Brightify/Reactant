@@ -33,7 +33,7 @@ public class SimpleTableView<CELL: UIView where CELL: Component>: ViewBase<Table
         return .All
     }
 
-    private let tableView: UITableView
+    public let tableView: UITableView
     private let refreshControl = UIRefreshControl()
     private let emptyLabel = UILabel().styled(using: ProjectBaseConfiguration.global.emptyListLabelStyle)
     private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)

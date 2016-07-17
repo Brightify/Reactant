@@ -30,7 +30,7 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
     private let emptyLabel = UILabel().styled(using: ProjectBaseConfiguration.global.emptyListLabelStyle)
     private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 
-    private let tableView: UITableView
+    public let tableView: UITableView
     private let tableViewDelegate: SimulatedSeparatorTableViewDelegate
     private let reloadable: Bool
 

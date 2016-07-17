@@ -29,7 +29,7 @@ public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView whe
     private let emptyLabel = UILabel().styled(using: ProjectBaseConfiguration.global.emptyListLabelStyle)
     private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
-    private let tableView: UITableView
+    public let tableView: UITableView
     private let tableViewDelegate: SectionedTableViewDelegate
     private let reloadable: Bool
     
