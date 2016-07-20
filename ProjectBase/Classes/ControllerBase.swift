@@ -54,6 +54,10 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
     /// DisposeBag for actions from other controllers. This is reset before each `render` call.
     public private(set) var controllersActionsBag = DisposeBag()
 
+    /* We need to keep this until viewWillAppear is called to not dispose controller actions when user just peeks
+       back to this controller */
+    private var previousControllersActionsBag: DisposeBag?
+
     /// DisposeBag for actions in `render`. This is reset before each `render` call and in `viewWillDisappear`.
     public private(set) var stateDisposeBag = DisposeBag()
 
@@ -85,7 +89,7 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
                 return
             #endif
         }
-        
+
         stateDisposeBag = DisposeBag()
         controllersActionsBag = DisposeBag()
         render()
@@ -134,6 +138,9 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
 
         navigationController?.setNavigationBarHidden(navigationBarHidden, animated: animated)
 
+        // Save the previous dispose bag in case this controller will not appear after all.
+        previousControllersActionsBag = controllersActionsBag
+
         canRender = true
 
         rootView.willAppearInternal(animated)
@@ -143,20 +150,27 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         super.viewDidAppear(animated)
 
         rootView.didAppearInternal(animated)
+
+        previousControllersActionsBag = nil
     }
 
     public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+
+        canRender = false
+
+        // If the the bag is not reset to nil, then `didAppear` was not called and we have to keep the old bag.
+        if let previousControllersActionsBag = previousControllersActionsBag {
+            controllersActionsBag = previousControllersActionsBag
+        }
+
+        stateDisposeBag = DisposeBag()
 
         rootView.willDisappearInternal(animated)
     }
 
     public override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        canRender = false
-        
-        stateDisposeBag = DisposeBag()
         
         rootView.didDisappearInternal(animated)
     }
