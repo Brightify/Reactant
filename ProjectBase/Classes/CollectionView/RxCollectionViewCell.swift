@@ -5,9 +5,37 @@
 //
 import SwiftKit
 
+public protocol CollectionViewCellContent {
+    func setSelected(selected: Bool)
+
+    func setHighlighted(highlighted: Bool)
+}
+
+extension CollectionViewCellContent {
+    public func setSelected(selected: Bool) { }
+
+    public func setHighlighted(highlighted: Bool) { }
+}
+
 public final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
     private var content: CONTENT?
-    
+
+    public override var selected: Bool {
+        didSet {
+            if let content = content as? CollectionViewCellContent {
+                content.setSelected(selected)
+            }
+        }
+    }
+
+    public override var highlighted: Bool {
+        didSet {
+            if let content = content as? CollectionViewCellContent {
+                content.setHighlighted(highlighted)
+            }
+        }
+    }
+
     public func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
         if let content = content {
             return content

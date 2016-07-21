@@ -6,6 +6,33 @@
 
 import SwiftKit
 
+public protocol TableViewCellContent {
+
+    var selectionStyle: UITableViewCellSelectionStyle { get }
+
+    @available(iOS 9.0, *)
+    var focusStyle: UITableViewCellFocusStyle { get }
+
+    func setSelected(selected: Bool, animated: Bool)
+
+    func setHighlighted(highlighted: Bool, animated: Bool)
+}
+
+extension TableViewCellContent {
+    public var selectionStyle: UITableViewCellSelectionStyle {
+        return .Default
+    }
+
+    @available(iOS 9.0, *)
+    public var focusStyle: UITableViewCellFocusStyle {
+        return .Default
+    }
+    
+    public func setSelected(selected: Bool, animated: Bool) { }
+
+    public func setHighlighted(highlighted: Bool, animated: Bool) { }
+}
+
 public final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
     private var content: CONTENT?
 
@@ -23,18 +50,29 @@ public final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
 
     private func loadView() {
         backgroundColor = nil
+        backgroundView = nil
+        selectedBackgroundView = nil
+        multipleSelectionBackgroundView = nil
     }
 
     public func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
+        let cellContent: CONTENT
         if let content = content {
-            return content
+            cellContent = content
         } else {
             let content = factory()
             self.content = content
             content >> contentView
             setNeedsUpdateConstraints()
-            return content
+            cellContent = content
         }
+        if let tableCellContent = cellContent as? TableViewCellContent {
+            selectionStyle = tableCellContent.selectionStyle
+            if #available(iOS 9.0, *) {
+                focusStyle = tableCellContent.focusStyle
+            }
+        }
+        return cellContent
     }
 
     public override func updateConstraints() {
@@ -47,5 +85,17 @@ public final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
 
     public override class func requiresConstraintBasedLayout() -> Bool {
         return true
+    }
+
+    public override func setSelected(selected: Bool, animated: Bool) {
+        if let content = content as? TableViewCellContent {
+            content.setSelected(selected, animated: animated)
+        }
+    }
+
+    public override func setHighlighted(highlighted: Bool, animated: Bool) {
+        if let content = content as? TableViewCellContent {
+            content.setHighlighted(highlighted, animated: animated)
+        }
     }
 }
