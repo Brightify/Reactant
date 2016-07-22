@@ -67,8 +67,8 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
     /// DisposeBag for actions in `render`. This is reset before each `render` call and in `viewWillDisappear`.
     public private(set) var stateDisposeBag = DisposeBag()
 
-    public init(title: String = "") {
-        rootView = self.dynamicType.initializeRootView()
+    public init(title: String = "", root: ROOT = ROOT()) {
+        rootView = root
 
         super.init(nibName: nil, bundle: nil)
 
@@ -79,10 +79,6 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         if let voidState = Void() as? STATE {
             componentState = voidState
         }
-    }
-
-    public class func initializeRootView() -> ROOT {
-        return ROOT()
     }
     
     public func renderIfPossible() {
