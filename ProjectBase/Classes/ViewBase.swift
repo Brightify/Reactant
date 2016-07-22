@@ -15,6 +15,11 @@ public class ViewBase<STATE>: UIView, Component {
     public let lifecycleDisposeBag = DisposeBag()
     public var stateDisposeBag = DisposeBag()
 
+    public var observableState: Observable<STATE> {
+        return observableStateSubject
+    }
+    private let observableStateSubject = ReplaySubject<STATE>.create(bufferSize: 1)
+
     public private(set) var previousComponentState: STATE?
     public var componentState: STATE {
         get {
@@ -27,6 +32,7 @@ public class ViewBase<STATE>: UIView, Component {
         set {
             previousComponentState = stateStorage
             stateStorage = newValue
+            observableStateSubject.onNext(newValue)
             stateDisposeBag = DisposeBag()
             render()
         }

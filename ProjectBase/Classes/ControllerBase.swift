@@ -15,6 +15,11 @@ import Lipstick
 public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalListener, Component {
     public let rootView: ROOT
 
+    public var observableState: Observable<STATE> {
+        return observableStateSubject
+    }
+    private let observableStateSubject = ReplaySubject<STATE>.create(bufferSize: 1)
+
     public private(set) var previousComponentState: STATE?
     public var componentState: STATE {
         get {
@@ -27,6 +32,7 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         set {
             previousComponentState = stateStorage
             stateStorage = newValue
+            observableStateSubject.onNext(newValue)
             renderIfPossible()
         }
     }

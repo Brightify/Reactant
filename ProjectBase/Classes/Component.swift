@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 
 public protocol Component: class {
     associatedtype StateType
+
+    /// Observable with the current state of the component. Do not use this in `render` to avoid duplicite loading bugs
+    var observableState: Observable<StateType> { get }
 
     var previousComponentState: StateType? { get }
 
