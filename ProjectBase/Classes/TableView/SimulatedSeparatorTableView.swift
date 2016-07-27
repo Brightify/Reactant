@@ -28,7 +28,7 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
     private let refreshControl = UIRefreshControl()
     private let emptyLabel = UILabel().styled(using: ProjectBaseConfiguration.global.emptyListLabelStyle)
-    private let loadingIndicator: UIActivityIndicatorView
+    private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 
     public let tableView: UITableView
     private let tableViewDelegate: SimulatedSeparatorTableViewDelegate
@@ -44,8 +44,7 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
         style: UITableViewStyle = .Plain,
         separatorStyle: UITableViewCellSeparatorStyle = .None,
         tableHeaderView: UIView? = nil,
-        tableFooterView: UIView? = nil,
-        loadingIndicatorStyle: UIActivityIndicatorViewStyle = .Gray)
+        tableFooterView: UIView? = nil)
     {
         self.reloadable = reloadable
         tableView = UITableView(frame: CGRectZero, style: style)
@@ -58,8 +57,6 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
                 footer?.backgroundView?.backgroundColor = separatorColor
                 return footer
             })
-
-        loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: loadingIndicatorStyle)
 
         super.init()
 
@@ -191,12 +188,21 @@ extension SimulatedSeparatorTableView: Scrollable {
 }
 
 extension SimulatedSeparatorTableView {
-    var refreshControlTintColor: UIColor? {
+    public var refreshControlTintColor: UIColor? {
         get {
             return refreshControl.tintColor
         }
         set {
             refreshControl.tintColor = newValue
+        }
+    }
+
+    public var activityIndicatorStyle: UIActivityIndicatorViewStyle {
+        get {
+            return loadingIndicator.activityIndicatorViewStyle
+        }
+        set {
+            loadingIndicator.activityIndicatorViewStyle = newValue
         }
     }
 }
