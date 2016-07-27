@@ -28,7 +28,7 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
     private let refreshControl = UIRefreshControl()
     private let emptyLabel = UILabel().styled(using: ProjectBaseConfiguration.global.emptyListLabelStyle)
-    private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    private let loadingIndicator: UIActivityIndicatorView
 
     public let tableView: UITableView
     private let tableViewDelegate: SimulatedSeparatorTableViewDelegate
@@ -44,7 +44,8 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
         style: UITableViewStyle = .Plain,
         separatorStyle: UITableViewCellSeparatorStyle = .None,
         tableHeaderView: UIView? = nil,
-        tableFooterView: UIView? = nil)
+        tableFooterView: UIView? = nil,
+        loadingIndicatorStyle: UIActivityIndicatorViewStyle = .Gray)
     {
         self.reloadable = reloadable
         tableView = UITableView(frame: CGRectZero, style: style)
@@ -57,6 +58,8 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
                 footer?.backgroundView?.backgroundColor = separatorColor
                 return footer
             })
+
+        loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: loadingIndicatorStyle)
 
         super.init()
 
@@ -184,6 +187,17 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
 extension SimulatedSeparatorTableView: Scrollable {
     public func scrollToTop(animated: Bool) {
         tableView.scrollToTop(animated)
+    }
+}
+
+extension SimulatedSeparatorTableView {
+    var refreshControlTintColor: UIColor? {
+        get {
+            return refreshControl.tintColor
+        }
+        set {
+            refreshControl.tintColor = newValue
+        }
     }
 }
 
