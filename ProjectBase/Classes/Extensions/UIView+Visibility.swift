@@ -17,16 +17,47 @@ private class VisibilityBox {
     }
 }
 
+private class CollapsibleConstraintsBox {
+    var value: [(constraint: Constraint, action: ConstraintAction)]
+
+    init(_ value: [(constraint: Constraint, action: ConstraintAction)]) {
+        self.value = value
+    }
+}
+
+private class CollapseAxisBox {
+    var value: CollapseAxis
+
+    init(_ value: CollapseAxis) {
+        self.value = value
+    }
+}
+
 public enum Visibility {
     case Visible
     case Hidden
-    case Gone
+    case Collapsed
+}
+
+public enum ConstraintAction {
+    case SetConstant(visible: CGFloat, collapsed: CGFloat)
+    case Install
+    case Uninstall
+}
+
+public enum CollapseAxis {
+    case Horizontal
+    case Vertical
+    case Both
 }
 
 public extension UIView {
     private struct AssociatedKey {
+        static var collapseAxis: UInt8 = 0
         static var visibility: UInt8 = 0
-        static var constraints: UInt8 = 0
+        static var zeroWidthConstraints: UInt8 = 0
+        static var zeroHeightConstraints: UInt8 = 0
+        static var collapsibleConstraints: UInt8 = 0
     }
 
     public var rootView: UIView {
@@ -37,6 +68,26 @@ public extension UIView {
         }
     }
 
+    public var collapseAxis: CollapseAxis {
+        get {
+            return associatedObject(self, key: &AssociatedKey.collapseAxis) {
+                CollapseAxisBox(CollapseAxis.Vertical)
+                }.value
+        }
+        set {
+            let resetVisibility = visibility == .Collapsed && collapseAxis != newValue
+            if resetVisibility {
+                visibility = .Hidden
+            }
+
+            associateObject(self, key: &AssociatedKey.collapseAxis, value: CollapseAxisBox(newValue))
+
+            if resetVisibility {
+                visibility = .Collapsed
+            }
+        }
+    }
+
     public var visibility: Visibility {
         get {
             return associatedObject(self, key: &AssociatedKey.visibility) {
@@ -44,23 +95,76 @@ public extension UIView {
                 }.value
         }
         set {
-            switch newValue {
-            case .Gone:
-                zeroHeightConstraint.install()
-                alpha = 0
-            case .Hidden:
-                zeroHeightConstraint.uninstall()
-                alpha = 0
-            case .Visible:
-                zeroHeightConstraint.uninstall()
-                alpha = 1
+            var collapseConstraints: [(constraint: Constraint, action: ConstraintAction)] = collapsibleConstraints
+            switch collapseAxis {
+            case .Horizontal:
+                collapseConstraints.append((zeroWidthConstraint, .Install))
+            case .Vertical:
+                collapseConstraints.append((zeroHeightConstraint, .Install))
+            case .Both:
+                collapseConstraints.append((zeroWidthConstraint, .Install))
+                collapseConstraints.append((zeroHeightConstraint, .Install))
             }
+
+            alpha = newValue == .Visible ? 1 : 0
+            if newValue == .Collapsed {
+                for constraint in collapseConstraints {
+                    switch constraint.action {
+                    case .SetConstant(_, let collapsed):
+                        constraint.constraint.updateOffset(collapsed)
+                    case .Install:
+                        constraint.constraint.install()
+                    case .Uninstall:
+                        constraint.constraint.uninstall()
+                    }
+                }
+            } else {
+                for constraint in collapseConstraints {
+                    switch constraint.action {
+                    case .SetConstant(let visible, _):
+                        constraint.constraint.updateOffset(visible)
+                    case .Install:
+                        constraint.constraint.uninstall()
+                    case .Uninstall:
+                        constraint.constraint.install()
+                    }
+                }
+            }
+
             associateObject(self, key: &AssociatedKey.visibility, value: VisibilityBox(newValue))
         }
     }
 
+    public var collapsibleConstraints: [(constraint: Constraint, action: ConstraintAction)] {
+        get {
+            return associatedObject(self, key: &AssociatedKey.collapsibleConstraints) {
+                CollapsibleConstraintsBox([])
+                }.value
+        }
+        set {
+            let box = CollapsibleConstraintsBox(newValue)
+            associateObject(self, key: &AssociatedKey.collapsibleConstraints, value: box)
+        }
+    }
+
+    public func addCollapsibleConstraint(constraint: Constraint, action: ConstraintAction) {
+        collapsibleConstraints = collapsibleConstraints.filter { $0.constraint === constraint }
+            .arrayByAppending((constraint: constraint, action: action))
+    }
+
+    private var zeroWidthConstraint: Constraint {
+        return associatedObject(self, key: &AssociatedKey.zeroWidthConstraints) {
+            var maybeConstraint: Constraint?
+            snp_makeConstraints { make in
+                maybeConstraint = make.width.equalTo(0).constraint
+            }
+            guard let constraint = maybeConstraint else { fatalError("Could not create zero-width constraint!") }
+            return constraint
+        }
+    }
+
     private var zeroHeightConstraint: Constraint {
-        return associatedObject(self, key: &AssociatedKey.constraints) {
+        return associatedObject(self, key: &AssociatedKey.zeroHeightConstraints) {
             var maybeConstraint: Constraint?
             snp_makeConstraints { make in
                 maybeConstraint = make.height.equalTo(0).constraint
