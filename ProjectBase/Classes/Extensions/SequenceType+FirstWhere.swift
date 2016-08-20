@@ -6,7 +6,7 @@
 
 public extension SequenceType {
 
-    public func first(where condition: Generator.Element -> Bool) -> Generator.Element? {
+    public func first(@noescape where condition: Generator.Element -> Bool) -> Generator.Element? {
         for item in self where condition(item) {
             return item
         }
