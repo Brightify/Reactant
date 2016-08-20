@@ -119,7 +119,7 @@ public extension UIView {
                     }
                 }
             } else {
-                for constraint in collapseConstraints {
+                for constraint in collapseConstraints.reverse() {
                     switch constraint.action {
                     case .SetConstant(let visible, _):
                         constraint.constraint.updateOffset(visible)
@@ -148,14 +148,14 @@ public extension UIView {
     }
 
     public func addCollapsibleConstraint(constraint: Constraint, action: ConstraintAction) {
-        collapsibleConstraints = collapsibleConstraints.filter { $0.constraint === constraint }
+        collapsibleConstraints = collapsibleConstraints.filter { $0.constraint !== constraint }
             .arrayByAppending((constraint: constraint, action: action))
     }
 
     private var zeroWidthConstraint: Constraint {
         return associatedObject(self, key: &AssociatedKey.zeroWidthConstraints) {
             var maybeConstraint: Constraint?
-            snp_makeConstraints { make in
+            snp_prepareConstraints { make in
                 maybeConstraint = make.width.equalTo(0).constraint
             }
             guard let constraint = maybeConstraint else { fatalError("Could not create zero-width constraint!") }
@@ -166,7 +166,7 @@ public extension UIView {
     private var zeroHeightConstraint: Constraint {
         return associatedObject(self, key: &AssociatedKey.zeroHeightConstraints) {
             var maybeConstraint: Constraint?
-            snp_makeConstraints { make in
+            snp_prepareConstraints { make in
                 maybeConstraint = make.height.equalTo(0).constraint
             }
             guard let constraint = maybeConstraint else { fatalError("Could not create zero-height constraint!") }
