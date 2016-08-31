@@ -10,7 +10,7 @@ import RxSwift
 public struct Navigator {
     private let navigationController: UINavigationController
 
-    init(navigationController: UINavigationController) {
+    public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
