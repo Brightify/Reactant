@@ -8,52 +8,43 @@ import UIKit
 import RxSwift
 
 public struct Navigator {
-    private weak var owner: UIViewController?
+    private let navigationController: UINavigationController
 
-    public init(on owner: UIViewController) {
-        self.owner = owner
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
 
-    public func present<C: UIViewController>(controller: C, branchNavigation: Bool, animated: Bool) -> Observable<C> {
-        let target: UIViewController
-        if branchNavigation {
-            target = UINavigationController(rootViewController: controller)
-        } else {
-            target = controller
-        }
-
+    public func present<C: UIViewController>(controller: C, animated: Bool = true) -> Observable<C> {
         let replay = ReplaySubject<Void>.create(bufferSize: 1)
-        self.owner?.presentViewController(target, animated: animated, completion: { replay.onLast() })
+        navigationController.presentViewController(controller, animated: animated, completion: { replay.onLast() })
         return replay.rewrite(controller)
     }
 
-    public func dismiss(animated: Bool) -> Observable<Void> {
+    public func dismiss(animated animated: Bool = true) -> Observable<Void> {
         let replay = ReplaySubject<Void>.create(bufferSize: 1)
-        self.owner?.dismissViewControllerAnimated(animated, completion: { replay.onLast() })
+        navigationController.dismissViewControllerAnimated(animated, completion: { replay.onLast() })
         return replay
     }
 
-    public func push(controller: UIViewController, animated: Bool) {
-        owner?.navigationController?.pushViewController(controller, animated: animated)
+    public func push(controller: UIViewController, animated: Bool = true) {
+        navigationController.pushViewController(controller, animated: animated)
     }
 
     public func pop(animated animated: Bool = true) -> UIViewController? {
-        return owner?.navigationController?.popViewControllerAnimated(animated)
+        return navigationController.popViewControllerAnimated(animated)
     }
 
     public func replace(with controller: UIViewController, animated: Bool = true) -> UIViewController? {
-        var controllers = owner?.navigationController?.viewControllers ?? []
+        var controllers = navigationController.viewControllers ?? []
         let current = controllers.popLast()
         controllers.append(controller)
 
-        owner?.navigationController?.setViewControllers(controllers, animated: animated)
+        navigationController.setViewControllers(controllers, animated: animated)
 
         return current
     }
 
     public func popAllAndReplace(with controller: UIViewController) -> [UIViewController] {
-        guard let navigationController = owner?.navigationController else { return [] }
-
         let transition = CATransition()
         transition.duration = 0.5
         transition.type = kCATransitionMoveIn
@@ -66,50 +57,22 @@ public struct Navigator {
         return replaced
     }
 
-    public func replaceAll(with controller: UIViewController, animated: Bool) -> [UIViewController] {
-        let currentControllers = owner?.navigationController?.viewControllers ?? []
+    public func replaceAll(with controller: UIViewController, animated: Bool = true) -> [UIViewController] {
+        let currentControllers = navigationController.viewControllers
 
-        owner?.navigationController?.setViewControllers([controller], animated: animated)
-
+        navigationController.setViewControllers([controller], animated: animated)
+        
         return currentControllers
     }
-}
 
-// MARK:- `dismiss` convenience methods with default values
-public extension Navigator {
-    public func dismiss() -> Observable<Void> {
-        return dismiss(true)
-    }
-}
-
-// MARK:- `present` convenience methods with default values
-public extension Navigator {
-    public func present<C: UIViewController>(controller: C) -> Observable<C> {
-        return present(controller, branchNavigation: false)
-    }
-
-    public func present<C: UIViewController>(controller: C, branchNavigation: Bool) -> Observable<C> {
-        return present(controller, branchNavigation: branchNavigation, animated: true)
-    }
-}
-
-// MARK:- `push` convenience methods with default values
-public extension Navigator {
-    public func push(controller: UIViewController) {
-        push(controller, animated: true)
-    }
-}
-
-// MARK:- `replaceAll` convenience methods with default values
-public extension Navigator {
-    public func replaceAll(with controller: UIViewController) -> [UIViewController] {
-        return replaceAll(with: controller, animated: true)
-    }
-}
-
-public extension UIViewController {
-    /// Made for bridging between new and old code
-    public var navigator: Navigator {
-        return Navigator(on: self)
+    public static func branchedNavigation(controller: UIViewController,
+                                          closeButtonTitle: String? = "Close") -> UINavigationController {
+        let navigationController = UINavigationController(rootViewController: controller)
+        if let closeButtonTitle = closeButtonTitle {
+            controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: closeButtonTitle, style: .Done) { _ in
+                navigationController.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+        return navigationController
     }
 }
