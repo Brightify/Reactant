@@ -17,9 +17,12 @@ public enum EmailValidationError: RuleValidationError {
     case Invalid
 }
 
-
 public struct Rule<T, E: RuleValidationError> {
     public let validate: (T) -> E?
+
+    public init(validate: (T) -> E?) {
+        self.validate = validate
+    }
 
     public func test(value: T) -> Bool {
         return validate(value) == nil
