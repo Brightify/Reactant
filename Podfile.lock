@@ -1,19 +1,11 @@
 PODS:
-  - Alamofire (3.4.1)
-  - FBSnapshotTestCase (2.1.2):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.2)
-  - FBSnapshotTestCase/Core (2.1.2)
-  - FBSnapshotTestCase/SwiftSupport (2.1.2):
-    - FBSnapshotTestCase/Core
+  - Alamofire (3.4.2)
   - HTTPStatusCodes (3.0.0)
-  - Lipstick (0.3.0):
+  - Lipstick (0.3.1):
     - SwiftKitStaging
   - Nimble (3.2.0)
-  - Nimble-Snapshots (4.1.0):
-    - FBSnapshotTestCase (~> 2.0)
-    - Nimble
-    - Quick
-  - ProjectBase (0.1.7):
+  - Quick (0.9.3)
+  - Reactant (0.1.14):
     - HTTPStatusCodes
     - Lipstick
     - RxCocoa
@@ -23,7 +15,6 @@ PODS:
     - SnapKit
     - SwiftKit (= 0.9.0)
     - TZStackView
-  - Quick (0.9.2)
   - RxCocoa (2.6.0):
     - RxSwift (~> 2.5)
   - RxDataSources (0.9):
@@ -33,7 +24,7 @@ PODS:
     - RxCocoa (~> 2.0)
     - RxSwift (~> 2.0)
   - RxSwift (2.6.0)
-  - SnapKit (0.21.1)
+  - SnapKit (0.22.0)
   - SwiftKit (0.9.0):
     - SwiftKit/Events (= 0.9.0)
     - SwiftKit/Injection (= 0.9.0)
@@ -64,35 +55,31 @@ PODS:
   - TZStackView (1.2.0)
 
 DEPENDENCIES:
-  - FBSnapshotTestCase
   - Nimble (~> 3.0)
-  - Nimble-Snapshots
-  - ProjectBase (from `../`)
   - Quick (~> 0.8)
+  - Reactant (from `./`)
 
 EXTERNAL SOURCES:
-  ProjectBase:
-    :path: ../
+  Reactant:
+    :path: "./"
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  FBSnapshotTestCase: 918c55861356ee83aee7843d759f55a18ff6982b
+  Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
   HTTPStatusCodes: 1e9e52c98b13646d255af4b495d934471b4a80d4
-  Lipstick: 86fdf79d3406f69dbf02a185b0a6a2e2f0791974
+  Lipstick: 12d5e79b75fdde5075b7c0b30a6390d5236c6214
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
-  Nimble-Snapshots: 2da4d2ec829b458d6886c06812c52493fce284c9
-  ProjectBase: 34b2211958be6e84334710da1363b18436953346
-  Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
+  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
+  Reactant: 62db7e2e5a04f02f827316f3fb0d9e96465bbe7a
   RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
   RxDataSources: e169bba94a7be584df7c1e1487fa56edc8753ae6
   RxOptional: b77fb47a0190213cf8a37c7a2b7fda28160b4563
   RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
-  SnapKit: bbad04cb016c7cead63965f16b00c09318d271ee
+  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
   SwiftKit: 2566a443197d54e09113ffed25f544a253e2ff77
   SwiftKitStaging: c6426fc38163d3e66e1dedc3783e94c2d303610c
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TZStackView: 4b82373b4aabe4d99adf739a34e1bc6755149272
 
-PODFILE CHECKSUM: 577bdf2399974452a132bb9c29f2941d557848da
+PODFILE CHECKSUM: c9eec2c0a58918cdad9e62a5da89a6f4da797d7c
 
 COCOAPODS: 1.0.1

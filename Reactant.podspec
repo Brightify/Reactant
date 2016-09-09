@@ -7,28 +7,24 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'ProjectBase'
+  s.name             = 'Reactant'
   s.version          = '0.1.14'
-  s.summary          = 'A short description of ProjectBase.'
+  s.summary          = 'Imagine React Native in Swift and you get Reactant'
 
   s.description      = <<-DESC
-                        A base for new project of Brightify.
+                        We combined the strength of RxSwift with pure swift and
+                        made a framework for highly reusable and clean views.
                        DESC
 
-  s.homepage         = 'http://source.tmspark.com/scm/base/private-specs.git'
-  #s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Tadeas Kriz' => 'tadeas@brightify.org' }
+  s.homepage         = 'https://github.com/SwiftKit/Reactant.git'
+  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.author           = { 'Tadeas Kriz' => 'tadeas@brightify.org', 'Matous Hybl' => 'matous@brightify.org' }
   s.source           = { :git => 'http://source.tmspark.com/scm/base/projectbase-ios.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'ProjectBase/Classes/**/*'
+  s.source_files = 'Source/Classes/**/*'
 
-  # s.resource_bundles = {
-  #   'ProjectBase' => ['ProjectBase/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
   s.dependency 'RxSwift'
   s.dependency 'RxCocoa'

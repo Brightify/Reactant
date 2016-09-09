@@ -3,15 +3,14 @@ source 'http://source.tmspark.com/scm/base/private-specs.git'
 
 use_frameworks!
 
-target 'ProjectBase_Example' do
-  pod 'ProjectBase', :path => '../'
+target 'ReactantExample' do
+  pod 'Reactant', :path => './'
 
-  target 'ProjectBase_Tests' do
+
+  target 'ReactantTests' do
     inherit! :search_paths
 
     pod 'Quick', '~> 0.8'
     pod 'Nimble', '~> 3.0'
-    pod 'FBSnapshotTestCase'
-    pod 'Nimble-Snapshots'
   end
 end

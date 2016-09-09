@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "ProjectBase_Example.app"
-               BlueprintName = "ProjectBase_Example"
-               ReferencedContainer = "container:ProjectBase.xcodeproj">
+               BuildableName = "Reactant_Example.app"
+               BlueprintName = "ReactantExample"
+               ReferencedContainer = "container:Reactant.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,10 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "ProjectBase_Tests.xctest"
-               BlueprintName = "ProjectBase_Tests"
-               ReferencedContainer = "container:ProjectBase.xcodeproj">
+               BlueprintIdentifier = "1851214F1D834D1F002C4B08"
+               BuildableName = "ReactantTests.xctest"
+               BlueprintName = "ReactantTests"
+               ReferencedContainer = "container:Reactant.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,10 +46,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "ProjectBase_Tests.xctest"
-               BlueprintName = "ProjectBase_Tests"
-               ReferencedContainer = "container:ProjectBase.xcodeproj">
+               BlueprintIdentifier = "1851214F1D834D1F002C4B08"
+               BuildableName = "ReactantTests.xctest"
+               BlueprintName = "ReactantTests"
+               ReferencedContainer = "container:Reactant.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ProjectBase_Example.app"
-            BlueprintName = "ProjectBase_Example"
-            ReferencedContainer = "container:ProjectBase.xcodeproj">
+            BuildableName = "Reactant_Example.app"
+            BlueprintName = "ReactantExample"
+            ReferencedContainer = "container:Reactant.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ProjectBase_Example.app"
-            BlueprintName = "ProjectBase_Example"
-            ReferencedContainer = "container:ProjectBase.xcodeproj">
+            BuildableName = "Reactant_Example.app"
+            BlueprintName = "ReactantExample"
+            ReferencedContainer = "container:Reactant.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ProjectBase_Example.app"
-            BlueprintName = "ProjectBase_Example"
-            ReferencedContainer = "container:ProjectBase.xcodeproj">
+            BuildableName = "Reactant_Example.app"
+            BlueprintName = "ReactantExample"
+            ReferencedContainer = "container:Reactant.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
