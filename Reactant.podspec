@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/SwiftKit/Reactant.git'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Tadeas Kriz' => 'tadeas@brightify.org', 'Matous Hybl' => 'matous@brightify.org' }
-  s.source           = { :git => 'http://source.tmspark.com/scm/base/projectbase-ios.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/SwiftKit/Reactant', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
 
