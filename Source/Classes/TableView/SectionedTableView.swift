@@ -26,7 +26,7 @@ public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView whe
     
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
     private let refreshControl = UIRefreshControl()
-    private let emptyLabel = UILabel().styled(using: ProjectBaseConfiguration.global.emptyListLabelStyle)
+    private let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
     private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     public let tableView: UITableView

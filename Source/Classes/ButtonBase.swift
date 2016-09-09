@@ -59,7 +59,7 @@ public class ButtonBase<STATE>: UIButton, Component {
     }
 
     private func prepareView() {
-        layoutMargins = ProjectBaseConfiguration.global.layoutMargins
+        layoutMargins = ReactantConfiguration.global.layoutMargins
         translatesAutoresizingMaskIntoConstraints = false
 
         loadView()

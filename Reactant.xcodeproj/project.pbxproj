@@ -9,43 +9,48 @@
 /* Begin PBXBuildFile section */
 		04FBCFABE7A8A3FAFFF3AE44 /* Pods_ReactantExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466FE2B74BCC12512BE72D4A /* Pods_ReactantExample.framework */; };
 		10BD93C3AB7BCD120975D0DD /* Pods_ReactantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AECAA2A2AE5F07576B9DD9A8 /* Pods_ReactantTests.framework */; };
-		185121151D834C5D002C4B08 /* ButtonBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F41D834C5D002C4B08 /* ButtonBase.swift */; };
-		185121161D834C5D002C4B08 /* RxCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F61D834C5D002C4B08 /* RxCollectionReusableView.swift */; };
-		185121171D834C5D002C4B08 /* RxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F71D834C5D002C4B08 /* RxCollectionViewCell.swift */; };
-		185121181D834C5D002C4B08 /* SingleRowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F81D834C5D002C4B08 /* SingleRowCollectionView.swift */; };
-		185121191D834C5D002C4B08 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F91D834C5D002C4B08 /* Component.swift */; };
-		1851211A1D834C5D002C4B08 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FA1D834C5D002C4B08 /* ContainerView.swift */; };
-		1851211B1D834C5D002C4B08 /* ControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FB1D834C5D002C4B08 /* ControllerBase.swift */; };
-		1851211C1D834C5D002C4B08 /* Result+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FD1D834C5D002C4B08 /* Result+Utils.swift */; };
-		1851211D1D834C5D002C4B08 /* RxSwift+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FE1D834C5D002C4B08 /* RxSwift+Operators.swift */; };
-		1851211E1D834C5D002C4B08 /* SequenceType+FirstWhere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FF1D834C5D002C4B08 /* SequenceType+FirstWhere.swift */; };
-		1851211F1D834C5D002C4B08 /* SequenceType+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121001D834C5D002C4B08 /* SequenceType+Transform.swift */; };
-		185121201D834C5D002C4B08 /* TZStackView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121011D834C5D002C4B08 /* TZStackView+Util.swift */; };
-		185121211D834C5D002C4B08 /* UIView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121021D834C5D002C4B08 /* UIView+Util.swift */; };
-		185121221D834C5D002C4B08 /* UIView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121031D834C5D002C4B08 /* UIView+Visibility.swift */; };
-		185121231D834C5D002C4B08 /* FunctionalGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121041D834C5D002C4B08 /* FunctionalGlobals.swift */; };
-		185121241D834C5D002C4B08 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121051D834C5D002C4B08 /* Navigator.swift */; };
-		185121251D834C5D002C4B08 /* ProjectBaseConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121061D834C5D002C4B08 /* ProjectBaseConfiguration.swift */; };
-		185121261D834C5D002C4B08 /* RxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121071D834C5D002C4B08 /* RxRouter.swift */; };
-		185121271D834C5D002C4B08 /* Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121081D834C5D002C4B08 /* Scrollable.swift */; };
-		185121281D834C5D002C4B08 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210A1D834C5D002C4B08 /* Identifiers.swift */; };
-		185121291D834C5D002C4B08 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210B1D834C5D002C4B08 /* RxTableViewCell.swift */; };
-		1851212A1D834C5D002C4B08 /* RxTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210C1D834C5D002C4B08 /* RxTableViewHeaderFooterView.swift */; };
-		1851212B1D834C5D002C4B08 /* SectionedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210D1D834C5D002C4B08 /* SectionedTableView.swift */; };
-		1851212C1D834C5D002C4B08 /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210E1D834C5D002C4B08 /* SimpleTableView.swift */; };
-		1851212D1D834C5D002C4B08 /* SimulatedSeparatorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210F1D834C5D002C4B08 /* SimulatedSeparatorTableView.swift */; };
-		1851212E1D834C5D002C4B08 /* TableViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121101D834C5D002C4B08 /* TableViewState.swift */; };
-		1851212F1D834C5D002C4B08 /* ViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121111D834C5D002C4B08 /* ViewBase.swift */; };
-		185121301D834C5D002C4B08 /* ViewEventReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121121D834C5D002C4B08 /* ViewEventReceiver.swift */; };
 		1851213C1D834C7B002C4B08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121321D834C7B002C4B08 /* AppDelegate.swift */; };
 		1851213D1D834C7B002C4B08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121331D834C7B002C4B08 /* ViewController.swift */; };
 		1851213E1D834C7B002C4B08 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185121351D834C7B002C4B08 /* LaunchScreen.xib */; };
 		1851213F1D834C7B002C4B08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185121371D834C7B002C4B08 /* Main.storyboard */; };
 		185121401D834C7B002C4B08 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185121391D834C7B002C4B08 /* Images.xcassets */; };
-		185121411D834C7B002C4B08 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1851213B1D834C7B002C4B08 /* Info.plist */; };
 		1851214A1D834D1E002C4B08 /* Reactant.h in Headers */ = {isa = PBXBuildFile; fileRef = 185121491D834D1E002C4B08 /* Reactant.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		185121511D834D1F002C4B08 /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
 		1851215E1D834DD2002C4B08 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		18650B821D83645900B1B2A0 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650B811D83645900B1B2A0 /* Validation.swift */; };
+		18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */; };
+		18650B851D8364D800B1B2A0 /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210A1D834C5D002C4B08 /* Identifiers.swift */; };
+		18650B861D8364D800B1B2A0 /* RxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210B1D834C5D002C4B08 /* RxTableViewCell.swift */; };
+		18650B871D8364D800B1B2A0 /* RxTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210C1D834C5D002C4B08 /* RxTableViewHeaderFooterView.swift */; };
+		18650B881D8364D800B1B2A0 /* SectionedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210D1D834C5D002C4B08 /* SectionedTableView.swift */; };
+		18650B891D8364D800B1B2A0 /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210E1D834C5D002C4B08 /* SimpleTableView.swift */; };
+		18650B8A1D8364D800B1B2A0 /* SimulatedSeparatorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851210F1D834C5D002C4B08 /* SimulatedSeparatorTableView.swift */; };
+		18650B8B1D8364D800B1B2A0 /* TableViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121101D834C5D002C4B08 /* TableViewState.swift */; };
+		18650B8C1D8364D800B1B2A0 /* ViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121111D834C5D002C4B08 /* ViewBase.swift */; };
+		18650B8D1D8364D800B1B2A0 /* ViewEventReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121121D834C5D002C4B08 /* ViewEventReceiver.swift */; };
+		18650B8E1D8364DC00B1B2A0 /* Result+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FD1D834C5D002C4B08 /* Result+Utils.swift */; };
+		18650B8F1D8364DC00B1B2A0 /* RxSwift+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FE1D834C5D002C4B08 /* RxSwift+Operators.swift */; };
+		18650B901D8364DC00B1B2A0 /* SequenceType+FirstWhere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FF1D834C5D002C4B08 /* SequenceType+FirstWhere.swift */; };
+		18650B911D8364DC00B1B2A0 /* SequenceType+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121001D834C5D002C4B08 /* SequenceType+Transform.swift */; };
+		18650B921D8364DC00B1B2A0 /* TZStackView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121011D834C5D002C4B08 /* TZStackView+Util.swift */; };
+		18650B931D8364DC00B1B2A0 /* UIView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121021D834C5D002C4B08 /* UIView+Util.swift */; };
+		18650B941D8364DC00B1B2A0 /* UIView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121031D834C5D002C4B08 /* UIView+Visibility.swift */; };
+		18650B951D8364DC00B1B2A0 /* FunctionalGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121041D834C5D002C4B08 /* FunctionalGlobals.swift */; };
+		18650B961D8364DC00B1B2A0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121051D834C5D002C4B08 /* Navigator.swift */; };
+		18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121061D834C5D002C4B08 /* ReactantConfiguration.swift */; };
+		18650B981D8364DC00B1B2A0 /* RxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121071D834C5D002C4B08 /* RxRouter.swift */; };
+		18650B991D8364DC00B1B2A0 /* Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121081D834C5D002C4B08 /* Scrollable.swift */; };
+		18650B9A1D8364E000B1B2A0 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F91D834C5D002C4B08 /* Component.swift */; };
+		18650B9B1D8364E000B1B2A0 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FA1D834C5D002C4B08 /* ContainerView.swift */; };
+		18650B9C1D8364E000B1B2A0 /* ControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FB1D834C5D002C4B08 /* ControllerBase.swift */; };
+		18650B9D1D8364E500B1B2A0 /* RxCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F61D834C5D002C4B08 /* RxCollectionReusableView.swift */; };
+		18650B9E1D8364E500B1B2A0 /* RxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F71D834C5D002C4B08 /* RxCollectionViewCell.swift */; };
+		18650B9F1D8364E500B1B2A0 /* SingleRowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F81D834C5D002C4B08 /* SingleRowCollectionView.swift */; };
+		18650BA01D8364E800B1B2A0 /* ButtonBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F41D834C5D002C4B08 /* ButtonBase.swift */; };
+		18650BA21D83665E00B1B2A0 /* Transformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA11D83665E00B1B2A0 /* Transformations.swift */; };
+		18650BA41D8366EE00B1B2A0 /* ScrollControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA31D8366EE00B1B2A0 /* ScrollControllerBase.swift */; };
+		18650BA61D83671B00B1B2A0 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA51D83671B00B1B2A0 /* StaticMap.swift */; };
+		95849C1BDBF023F27035181B /* Pods_Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6CC6596D25C0A36466EED7 /* Pods_Reactant.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +81,7 @@
 		185121031D834C5D002C4B08 /* UIView+Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Visibility.swift"; sourceTree = "<group>"; };
 		185121041D834C5D002C4B08 /* FunctionalGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalGlobals.swift; sourceTree = "<group>"; };
 		185121051D834C5D002C4B08 /* Navigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
-		185121061D834C5D002C4B08 /* ProjectBaseConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectBaseConfiguration.swift; sourceTree = "<group>"; };
+		185121061D834C5D002C4B08 /* ReactantConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantConfiguration.swift; sourceTree = "<group>"; };
 		185121071D834C5D002C4B08 /* RxRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxRouter.swift; sourceTree = "<group>"; };
 		185121081D834C5D002C4B08 /* Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scrollable.swift; sourceTree = "<group>"; };
 		1851210A1D834C5D002C4B08 /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
@@ -99,15 +104,23 @@
 		1851214B1D834D1E002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185121501D834D1F002C4B08 /* ReactantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		185121571D834D1F002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18650B811D83645900B1B2A0 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		18650BA11D83665E00B1B2A0 /* Transformations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformations.swift; sourceTree = "<group>"; };
+		18650BA31D8366EE00B1B2A0 /* ScrollControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollControllerBase.swift; sourceTree = "<group>"; };
+		18650BA51D83671B00B1B2A0 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
+		41EEC5E5651B53BC71EA48F7 /* Pods-Reactant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.debug.xcconfig"; sourceTree = "<group>"; };
 		466FE2B74BCC12512BE72D4A /* Pods_ReactantExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		562C333C852ED98770DC1B7D /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Reactant_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reactant_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		6AEE61BA9FC646D8DC107E48 /* Pods-Reactant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.release.xcconfig"; sourceTree = "<group>"; };
 		AECAA2A2AE5F07576B9DD9A8 /* Pods_ReactantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B028DA1728A0BC7C8045D66E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B74FDB467A82C2BF57DCEB65 /* Pods-ReactantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BE454759266F772984890B47 /* Pods-ReactantExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.release.xcconfig"; sourceTree = "<group>"; };
 		D0CDB0F87F5A62A6CDB552C7 /* Reactant.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = Reactant.podspec; sourceTree = "<group>"; };
+		EB6CC6596D25C0A36466EED7 /* Pods_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD229C1ED9BBB91E681BA331 /* Pods-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95849C1BDBF023F27035181B /* Pods_Reactant.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,13 +181,18 @@
 				185120FC1D834C5D002C4B08 /* Extensions */,
 				185121041D834C5D002C4B08 /* FunctionalGlobals.swift */,
 				185121051D834C5D002C4B08 /* Navigator.swift */,
-				185121061D834C5D002C4B08 /* ProjectBaseConfiguration.swift */,
+				185121061D834C5D002C4B08 /* ReactantConfiguration.swift */,
 				185121071D834C5D002C4B08 /* RxRouter.swift */,
 				185121081D834C5D002C4B08 /* Scrollable.swift */,
 				185121091D834C5D002C4B08 /* TableView */,
 				185121111D834C5D002C4B08 /* ViewBase.swift */,
 				185121121D834C5D002C4B08 /* ViewEventReceiver.swift */,
 				185121491D834D1E002C4B08 /* Reactant.h */,
+				18650B811D83645900B1B2A0 /* Validation.swift */,
+				18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */,
+				18650BA11D83665E00B1B2A0 /* Transformations.swift */,
+				18650BA31D8366EE00B1B2A0 /* ScrollControllerBase.swift */,
+				18650BA51D83671B00B1B2A0 /* StaticMap.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -302,6 +321,8 @@
 				BE454759266F772984890B47 /* Pods-ReactantExample.release.xcconfig */,
 				B74FDB467A82C2BF57DCEB65 /* Pods-ReactantTests.debug.xcconfig */,
 				FD229C1ED9BBB91E681BA331 /* Pods-ReactantTests.release.xcconfig */,
+				41EEC5E5651B53BC71EA48F7 /* Pods-Reactant.debug.xcconfig */,
+				6AEE61BA9FC646D8DC107E48 /* Pods-Reactant.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -311,6 +332,7 @@
 			children = (
 				466FE2B74BCC12512BE72D4A /* Pods_ReactantExample.framework */,
 				AECAA2A2AE5F07576B9DD9A8 /* Pods_ReactantTests.framework */,
+				EB6CC6596D25C0A36466EED7 /* Pods_Reactant.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -333,10 +355,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 185121581D834D1F002C4B08 /* Build configuration list for PBXNativeTarget "Reactant" */;
 			buildPhases = (
+				6E9ECF0C84BECB81CB4C2DA3 /* [CP] Check Pods Manifest.lock */,
 				185121421D834D1E002C4B08 /* Sources */,
 				185121431D834D1E002C4B08 /* Frameworks */,
 				185121441D834D1E002C4B08 /* Headers */,
 				185121451D834D1E002C4B08 /* Resources */,
+				B8D3D88D8DF2C95DB3CCF701 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -451,7 +475,6 @@
 			files = (
 				1851213F1D834C7B002C4B08 /* Main.storyboard in Resources */,
 				185121401D834C7B002C4B08 /* Images.xcassets in Resources */,
-				185121411D834C7B002C4B08 /* Info.plist in Resources */,
 				1851213E1D834C7B002C4B08 /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,6 +527,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6E9ECF0C84BECB81CB4C2DA3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		B7196C991F11D1B041482001 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -517,6 +555,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B8D3D88D8DF2C95DB3CCF701 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reactant/Pods-Reactant-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C9B74EB0266B55E99616BC8E /* [CP] Check Pods Manifest.lock */ = {
@@ -571,6 +624,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18650B911D8364DC00B1B2A0 /* SequenceType+Transform.swift in Sources */,
+				18650B961D8364DC00B1B2A0 /* Navigator.swift in Sources */,
+				18650B8A1D8364D800B1B2A0 /* SimulatedSeparatorTableView.swift in Sources */,
+				18650BA41D8366EE00B1B2A0 /* ScrollControllerBase.swift in Sources */,
+				18650B8C1D8364D800B1B2A0 /* ViewBase.swift in Sources */,
+				18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */,
+				18650B8B1D8364D800B1B2A0 /* TableViewState.swift in Sources */,
+				18650B8E1D8364DC00B1B2A0 /* Result+Utils.swift in Sources */,
+				18650B8D1D8364D800B1B2A0 /* ViewEventReceiver.swift in Sources */,
+				18650BA21D83665E00B1B2A0 /* Transformations.swift in Sources */,
+				18650BA61D83671B00B1B2A0 /* StaticMap.swift in Sources */,
+				18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */,
+				18650B9F1D8364E500B1B2A0 /* SingleRowCollectionView.swift in Sources */,
+				18650B861D8364D800B1B2A0 /* RxTableViewCell.swift in Sources */,
+				18650B9E1D8364E500B1B2A0 /* RxCollectionViewCell.swift in Sources */,
+				18650B9D1D8364E500B1B2A0 /* RxCollectionReusableView.swift in Sources */,
+				18650B9C1D8364E000B1B2A0 /* ControllerBase.swift in Sources */,
+				18650B881D8364D800B1B2A0 /* SectionedTableView.swift in Sources */,
+				18650B921D8364DC00B1B2A0 /* TZStackView+Util.swift in Sources */,
+				18650B851D8364D800B1B2A0 /* Identifiers.swift in Sources */,
+				18650B9A1D8364E000B1B2A0 /* Component.swift in Sources */,
+				18650B891D8364D800B1B2A0 /* SimpleTableView.swift in Sources */,
+				18650B941D8364DC00B1B2A0 /* UIView+Visibility.swift in Sources */,
+				18650BA01D8364E800B1B2A0 /* ButtonBase.swift in Sources */,
+				18650B8F1D8364DC00B1B2A0 /* RxSwift+Operators.swift in Sources */,
+				18650B901D8364DC00B1B2A0 /* SequenceType+FirstWhere.swift in Sources */,
+				18650B931D8364DC00B1B2A0 /* UIView+Util.swift in Sources */,
+				18650B821D83645900B1B2A0 /* Validation.swift in Sources */,
+				18650B9B1D8364E000B1B2A0 /* ContainerView.swift in Sources */,
+				18650B951D8364DC00B1B2A0 /* FunctionalGlobals.swift in Sources */,
+				18650B981D8364DC00B1B2A0 /* RxRouter.swift in Sources */,
+				18650B991D8364DC00B1B2A0 /* Scrollable.swift in Sources */,
+				18650B871D8364D800B1B2A0 /* RxTableViewHeaderFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,36 +672,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				185121231D834C5D002C4B08 /* FunctionalGlobals.swift in Sources */,
-				185121251D834C5D002C4B08 /* ProjectBaseConfiguration.swift in Sources */,
-				1851212E1D834C5D002C4B08 /* TableViewState.swift in Sources */,
-				185121211D834C5D002C4B08 /* UIView+Util.swift in Sources */,
-				1851212A1D834C5D002C4B08 /* RxTableViewHeaderFooterView.swift in Sources */,
-				185121201D834C5D002C4B08 /* TZStackView+Util.swift in Sources */,
-				1851211E1D834C5D002C4B08 /* SequenceType+FirstWhere.swift in Sources */,
-				185121191D834C5D002C4B08 /* Component.swift in Sources */,
-				1851212F1D834C5D002C4B08 /* ViewBase.swift in Sources */,
-				1851212D1D834C5D002C4B08 /* SimulatedSeparatorTableView.swift in Sources */,
-				1851211C1D834C5D002C4B08 /* Result+Utils.swift in Sources */,
-				185121261D834C5D002C4B08 /* RxRouter.swift in Sources */,
-				185121181D834C5D002C4B08 /* SingleRowCollectionView.swift in Sources */,
 				1851213D1D834C7B002C4B08 /* ViewController.swift in Sources */,
-				1851212B1D834C5D002C4B08 /* SectionedTableView.swift in Sources */,
-				185121281D834C5D002C4B08 /* Identifiers.swift in Sources */,
-				1851212C1D834C5D002C4B08 /* SimpleTableView.swift in Sources */,
-				185121161D834C5D002C4B08 /* RxCollectionReusableView.swift in Sources */,
-				1851211B1D834C5D002C4B08 /* ControllerBase.swift in Sources */,
-				185121271D834C5D002C4B08 /* Scrollable.swift in Sources */,
-				185121301D834C5D002C4B08 /* ViewEventReceiver.swift in Sources */,
-				1851211A1D834C5D002C4B08 /* ContainerView.swift in Sources */,
 				1851213C1D834C7B002C4B08 /* AppDelegate.swift in Sources */,
-				185121241D834C5D002C4B08 /* Navigator.swift in Sources */,
-				1851211D1D834C5D002C4B08 /* RxSwift+Operators.swift in Sources */,
-				1851211F1D834C5D002C4B08 /* SequenceType+Transform.swift in Sources */,
-				185121151D834C5D002C4B08 /* ButtonBase.swift in Sources */,
-				185121221D834C5D002C4B08 /* UIView+Visibility.swift in Sources */,
-				185121171D834C5D002C4B08 /* RxCollectionViewCell.swift in Sources */,
-				185121291D834C5D002C4B08 /* RxTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,8 +709,10 @@
 /* Begin XCBuildConfiguration section */
 		185121591D834D1F002C4B08 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41EEC5E5651B53BC71EA48F7 /* Pods-Reactant.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
@@ -666,6 +726,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.Reactant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -674,8 +735,10 @@
 		};
 		1851215A1D834D1F002C4B08 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AEE61BA9FC646D8DC107E48 /* Pods-Reactant.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

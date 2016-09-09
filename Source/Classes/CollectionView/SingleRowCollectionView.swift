@@ -21,7 +21,7 @@ public class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBa
     
     public let collectionView: UICollectionView
     public let collectionViewLayout = UICollectionViewFlowLayout()
-    private let emptyLabel = UILabel().styled(using: ProjectBaseConfiguration.global.emptyListLabelStyle)
+    private let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
     private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     private let cellFactory: () -> CELL

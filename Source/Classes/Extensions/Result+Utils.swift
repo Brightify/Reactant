@@ -87,6 +87,10 @@ public extension ObservableConvertibleType where E: ResultType {
         return asObservable().map { $0.value ?? value }
     }
 
+    public func replaceResultErrorWithNil() -> RxSwift.Observable<Self.E.ValueType?> {
+        return asObservable().map { $0.value }
+    }
+
     public func map<T, U: ErrorType>(transformValue transformValue: E.ValueType -> T, transformError: E.FailureType -> U) -> Observable<Result<T, U>> {
         return asObservable().map { $0.map(transformValue: transformValue, transformError: transformError) }
     }

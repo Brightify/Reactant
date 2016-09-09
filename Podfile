@@ -3,6 +3,19 @@ source 'http://source.tmspark.com/scm/base/private-specs.git'
 
 use_frameworks!
 
+target 'Reactant' do
+    pod 'RxSwift'
+    pod 'RxCocoa'
+    pod 'SwiftKit', '0.9.0'
+    pod 'RxDataSources'
+    pod 'RxOptional'
+    pod 'Lipstick'
+    pod 'TZStackView'
+    pod 'SnapKit'
+    pod 'HTTPStatusCodes'
+    pod 'HanekeSwift'
+end
+
 target 'ReactantExample' do
   pod 'Reactant', :path => './'
 

@@ -60,7 +60,7 @@ public class ViewBase<STATE>: UIView, Component {
     }
 
     private func prepareView() {
-        layoutMargins = ProjectBaseConfiguration.global.layoutMargins
+        layoutMargins = ReactantConfiguration.global.layoutMargins
         translatesAutoresizingMaskIntoConstraints = false
 
         loadView()

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Reactant'
-  s.version          = '0.1.14'
+  s.version          = '0.2.0'
   s.summary          = 'Imagine React Native in Swift and you get Reactant'
 
   s.description      = <<-DESC
@@ -35,4 +35,5 @@ Pod::Spec.new do |s|
   s.dependency 'TZStackView'
   s.dependency 'SnapKit'
   s.dependency 'HTTPStatusCodes'
+  s.dependency 'HanekeSwift'
 end

@@ -118,7 +118,7 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
     
     public override func loadView() {
         // FIXME Add common styles and style rootview
-        view = ControllerRootView().styled(using: ProjectBaseConfiguration.global.controllerRootStyle)
+        view = ControllerRootView().styled(using: ReactantConfiguration.global.controllerRootStyle)
 
         view.addSubview(rootView)
     }
