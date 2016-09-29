@@ -6,32 +6,36 @@
 import SwiftKit
 
 public protocol CollectionViewCellContent {
-    func setSelected(selected: Bool)
+    func setSelected(_ selected: Bool)
 
-    func setHighlighted(highlighted: Bool)
+    func setHighlighted(_ highlighted: Bool)
 }
 
 extension CollectionViewCellContent {
-    public func setSelected(selected: Bool) { }
+    public func setSelected(_ selected: Bool) { }
 
-    public func setHighlighted(highlighted: Bool) { }
+    public func setHighlighted(_ highlighted: Bool) { }
 }
 
 public final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
     private var content: CONTENT?
 
-    public override var selected: Bool {
+    public override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
+
+    public override var isSelected: Bool {
         didSet {
             if let content = content as? CollectionViewCellContent {
-                content.setSelected(selected)
+                content.setSelected(isSelected)
             }
         }
     }
 
-    public override var highlighted: Bool {
+    public override var isHighlighted: Bool {
         didSet {
             if let content = content as? CollectionViewCellContent {
-                content.setHighlighted(highlighted)
+                content.setHighlighted(isHighlighted)
             }
         }
     }
@@ -42,7 +46,7 @@ public final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
         } else {
             let content = factory()
             self.content = content
-            content >> contentView
+            contentView.children(content)
             setNeedsUpdateConstraints()
             return content
         }
@@ -51,12 +55,8 @@ public final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
     public override func updateConstraints() {
         super.updateConstraints()
         
-        content?.snp_updateConstraints { make in
+        content?.snp.updateConstraints { make in
             make.edges.equalTo(contentView)
         }
-    }
-    
-    public override class func requiresConstraintBasedLayout() -> Bool {
-        return true
     }
 }

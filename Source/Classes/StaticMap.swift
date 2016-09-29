@@ -15,7 +15,7 @@ import Haneke
 public class StaticMap: ViewBase<MKCoordinateRegion> {
 
     public var selected: Observable<Void> {
-        return tapGestureRecognizer.rx_event.rewrite(Void())
+        return tapGestureRecognizer.rx.event.rewrite(with: Void())
     }
 
     private let image = UIImageView()
@@ -34,27 +34,29 @@ public class StaticMap: ViewBase<MKCoordinateRegion> {
                               componentState.span.latitudeDelta, componentState.span.longitudeDelta,
                               bounds.size.width, bounds.size.height)
 
-        Shared.imageCache.fetch(key: fileName)
+        _ = Shared.imageCache.fetch(key: fileName)
             .onSuccess { [image] in image.image = $0 }
             .onFailure { [componentState, bounds, image] _ in
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                DispatchQueue.global().async {
                     let options = MKMapSnapshotOptions()
                     options.region = componentState
-                    options.scale = UIScreen.mainScreen().scale
+                    options.scale = UIScreen.main.scale
                     options.size = bounds.size
 
                     let snapshotter = MKMapSnapshotter(options: options)
-                    snapshotter.startWithCompletionHandler { snapshot, error in
+                    snapshotter.start { snapshot, error in
                         guard let snapshot = snapshot else { return }
                         let snapshotImage = snapshot.image
 
                         UIGraphicsBeginImageContextWithOptions(snapshotImage.size, true, snapshotImage.scale)
-                        snapshotImage.drawAtPoint(CGPoint.zero)
+                        snapshotImage.draw(at: CGPoint.zero)
 
                         let compositeImage = UIGraphicsGetImageFromCurrentImageContext()
                         UIGraphicsEndImageContext()
 
-                        Shared.imageCache.set(value: compositeImage, key: fileName)
+                        if let imageToCache = compositeImage {
+                            Shared.imageCache.set(value: imageToCache, key: fileName)
+                        }
 
                         image.image = compositeImage
                     }
@@ -67,15 +69,15 @@ public class StaticMap: ViewBase<MKCoordinateRegion> {
             image
         )
 
-        backgroundColor = white
-        image.contentMode = .ScaleAspectFill
+        backgroundColor = UIColor.white
+        image.contentMode = .scaleAspectFill
         addGestureRecognizer(tapGestureRecognizer)
     }
 
     public override func setupConstraints() {
-        image.setContentHuggingPriority(UILayoutPriorityDefaultLow, forAxis: .Horizontal)
-        image.setContentHuggingPriority(UILayoutPriorityDefaultLow, forAxis: .Vertical)
-        image.snp_makeConstraints { make in
+        image.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .horizontal)
+        image.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .vertical)
+        image.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }
     }
@@ -83,7 +85,7 @@ public class StaticMap: ViewBase<MKCoordinateRegion> {
 
 import CoreLocation
 
-extension CollectionType where Generator.Element == CLLocationCoordinate2D, Index.Distance == Int {
+extension Collection where Iterator.Element == CLLocationCoordinate2D, IndexDistance == Int {
 
     /// Calculates center between coordinates in this collection
     public func centerCoordinate() -> CLLocationCoordinate2D {
@@ -153,16 +155,16 @@ private func / (lhs: DoubleVector3, rhs: Double) -> DoubleVector3 {
         z: lhs.z / rhs)
 }
 
-private func degreesToRadians(value: Double) -> Double {
+private func degreesToRadians(_ value: Double) -> Double {
     return value * M_PI / 180.0
 }
 
-private func radiansToDegrees(value: Double) -> Double {
+private func radiansToDegrees(_ value: Double) -> Double {
     return value * 180.0 / M_PI
 }
 
 extension MKCoordinateSpan {
-    public func inset(percent percent: Double) -> MKCoordinateSpan {
+    public func inset(percent: Double) -> MKCoordinateSpan {
         return inset(horizontalPercent: percent, verticalPercent: percent)
     }
 

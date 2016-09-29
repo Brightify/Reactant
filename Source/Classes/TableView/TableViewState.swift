@@ -5,29 +5,29 @@
 //
 
 public enum TableViewState<MODEL> {
-    case Items([MODEL])
-    case Empty(message: String)
-    case Loading
+    case items([MODEL])
+    case empty(message: String)
+    case loading
     
-    public func mapItems<U>(transform: [MODEL] -> [U]) -> TableViewState<U> {
+    public func mapItems<U>(transform: ([MODEL]) -> [U]) -> TableViewState<U> {
         switch self {
-        case .Loading:
-            return .Loading
-        case .Empty(let message):
-            return .Empty(message: message)
-        case .Items(let items):
-            return .Items(transform(items))
+        case .loading:
+            return .loading
+        case .empty(let message):
+            return .empty(message: message)
+        case .items(let items):
+            return .items(transform(items))
         }
     }
 }
 
 public func == <M: Equatable>(lhs: TableViewState<M>, rhs: TableViewState<M>) -> Bool {
     switch (lhs, rhs) {
-    case (.Loading, .Loading):
+    case (.loading, .loading):
         return true
-    case (.Empty(let lhsMessage), .Empty(let rhsMessage)):
+    case (.empty(let lhsMessage), .empty(let rhsMessage)):
         return lhsMessage == rhsMessage
-    case (.Items(let lhsItems), .Items(let rhsItems)):
+    case (.items(let lhsItems), .items(let rhsItems)):
         return lhsItems == rhsItems
     default:
         return false

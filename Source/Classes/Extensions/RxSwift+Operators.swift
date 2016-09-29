@@ -12,9 +12,9 @@ public extension ObserverType {
 
      - parameter element: Next element to send to observer(s)
      */
-    public final func onLast(element: E) {
-        on(.Next(element))
-        on(.Completed)
+    public final func onLast(_ element: E) {
+        on(.next(element))
+        on(.completed)
     }
 }
 
@@ -27,7 +27,7 @@ public extension ObservableConvertibleType {
             .map { ($0, $1!) }
     }
 
-    public func rewrite<T>(value: T) -> Observable<T> {
+    public func rewrite<T>(with value: T) -> Observable<T> {
         return asObservable().map { _ in value }
     }
 
@@ -39,7 +39,7 @@ public extension ObservableConvertibleType {
         return asObservable().withLatestFrom(second) { ($1, $0) }
     }
 
-    public func with<T, U>(value: T, resultSelector: (E, T) -> U) -> Observable<U> {
+    public func with<T, U>(_ value: T, resultSelector: @escaping (E, T) -> U) -> Observable<U> {
         return asObservable().withLatestFrom(Observable.just(value), resultSelector: resultSelector)
     }
 
@@ -61,9 +61,9 @@ public extension ObservableConvertibleType {
     }
 }
 
-public func observe<T>(block: AnyObserver<T> -> Void) -> Observable<T> {
+public func observe<T>(block: @escaping (AnyObserver<T>) -> Void) -> Observable<T> {
     return Observable<T>.create {
         block($0)
-        return NopDisposable.instance
+        return Disposables.create()
     }
 }

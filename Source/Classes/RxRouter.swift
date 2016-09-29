@@ -10,48 +10,47 @@ import SwiftKitStaging
 import SwiftyJSON
 import Alamofire
 
-public typealias Result = Alamofire.Result
 public typealias Response = SwiftKit.Response
 
-public enum RouterError: ErrorType {
-    case InvalidStatusCode(EmptyResponse)
-    case RequestError(ErrorType, EmptyResponse)
-    case AuthenticationError
-    case UnknownError
+public enum RouterError: Error {
+    case invalidStatusCode(EmptyResponse)
+    case requestError(Error, EmptyResponse)
+    case authenticationError
+    case unknownError
 }
 
 /// Extension that adds support basic types - for requests with no input and output and no output
 public extension Router {
-    private func observeRequest<T>(block: (Response<T> -> Void) -> Cancellable) -> Observable<Result<T, RouterError>> {
+    fileprivate func observeRequest<T>(_ block: @escaping (@escaping (Response<T>) -> Void) -> Cancellable) -> Observable<Result<T, RouterError>> {
         return Observable.create { observer in
             let cancelable = block { response in
                 if let error = response.error {
-                    observer.onNext(.Failure(.RequestError(error, response.emptyCopy())))
+                    observer.onNext(.failure(.requestError(error, response.emptyCopy())))
                 } else if response.statusCode?.isSuccess == false {
-                    observer.onNext(.Failure(.InvalidStatusCode(response.emptyCopy())))
+                    observer.onNext(.failure(.invalidStatusCode(response.emptyCopy())))
                 } else {
-                    observer.onNext(.Success(response.output))
+                    observer.onNext(.success(response.output))
                 }
                 observer.onCompleted()
             }
 
-            return AnonymousDisposable {
+            return Disposables.create {
                 cancelable.cancel()
             }
         }
     }
 
-    private func observeRequest<T>(block: (Response<T?> -> Void) -> Cancellable) -> Observable<Result<T, RouterError>> {
+    fileprivate func observeRequest<T>(_ block: @escaping (@escaping (Response<T?>) -> Void) -> Cancellable) -> Observable<Result<T, RouterError>> {
         return observeRequest(block).map { (result: Result<T?, RouterError>) in
             switch result {
-            case .Success(let maybeValue):
+            case .success(let maybeValue):
                 if let value = maybeValue {
-                    return .Success(value)
+                    return .success(value)
                 } else {
-                    return .Failure(.UnknownError)
+                    return .failure(.unknownError)
                 }
-            case .Failure(let error):
-                return .Failure(error)
+            case .failure(let error):
+                return .failure(error)
             }
         }
     }
@@ -63,11 +62,12 @@ public extension Router {
      :param: callback A callback that will be executed when the request is completed.
      :returns: Cancellable
      */
-    public func rx_request<ENDPOINT: Endpoint
-        where ENDPOINT.Input == Void, ENDPOINT.Output == Void>
-        (endpoint: ENDPOINT) -> Observable<Result<Void, RouterError>>
+    public func rx_request<ENDPOINT: Endpoint>(endpoint: ENDPOINT) -> Observable<Result<Void, RouterError>>
+        where ENDPOINT.Input == Void, ENDPOINT.Output == Void
     {
-        return observeRequest(curry(request)(endpoint))
+        return observeRequest {
+            self.request(endpoint, callback: $0)
+        }
     }
 
     /**
@@ -76,18 +76,20 @@ public extension Router {
      :param: endpoint The target Endpoint of the API
      :param: callback A callback that will be executed when the requests is completed.
      */
-    public func rx_request<ENDPOINT: Endpoint
-        where ENDPOINT.Input == Void, ENDPOINT.Output == String>
-        (endpoint: ENDPOINT) -> Observable<Result<String, RouterError>>
+    public func rx_request<ENDPOINT: Endpoint>(endpoint: ENDPOINT) -> Observable<Result<String, RouterError>>
+        where ENDPOINT.Input == Void, ENDPOINT.Output == String
     {
-        return observeRequest(curry(request)(endpoint))
+        return observeRequest {
+            self.request(endpoint, callback: $0)
+        }
     }
 
-    public func rx_request<ENDPOINT: Endpoint
-        where ENDPOINT.Input == Void, ENDPOINT.Output == [String]>
-        (endpoint: ENDPOINT) -> Observable<Result<[String], RouterError>>
+    public func rx_request<ENDPOINT: Endpoint>(endpoint: ENDPOINT) -> Observable<Result<[String], RouterError>>
+        where ENDPOINT.Input == Void, ENDPOINT.Output == [String]
     {
-        return observeRequest(curry(request)(endpoint))
+        return observeRequest {
+            self.request(endpoint, callback: $0)
+        }
     }
 
     /**
@@ -98,11 +100,12 @@ public extension Router {
      :param: callback The callback that is executed when request succeeds or fails
      :returns: Cancellable
      */
-    public func rx_request<ENDPOINT: Endpoint
-        where ENDPOINT.Input == [String], ENDPOINT.Output == Void>
-        (endpoint: ENDPOINT, input: [String]) -> Observable<Result<Void, RouterError>>
+    public func rx_request<ENDPOINT: Endpoint>(endpoint: ENDPOINT, input: [String]) -> Observable<Result<Void, RouterError>>
+        where ENDPOINT.Input == [String], ENDPOINT.Output == Void
     {
-        return observeRequest(curry(request)(endpoint)(input))
+        return observeRequest {
+            self.request(endpoint, input: input, callback: $0)
+        }
     }
 }
 
@@ -117,11 +120,12 @@ public extension Router {
      :param: callback The callback that is executed when request succeeds or fails
      :returns: Cancellable
      */
-    public func rx_request<IN: Serializable, ENDPOINT: Endpoint
-        where ENDPOINT.Input == IN, ENDPOINT.Output == Void>
-        (endpoint: ENDPOINT, input: IN) -> Observable<Result<Void, RouterError>>
+    public func rx_request<IN, ENDPOINT>(endpoint: ENDPOINT, input: IN) -> Observable<Result<Void, RouterError>>
+        where IN: Serializable, ENDPOINT: Endpoint, ENDPOINT.Input == IN, ENDPOINT.Output == Void
     {
-        return observeRequest(curry(request)(endpoint)(input))
+        return observeRequest {
+            self.request(endpoint, input: input, callback: $0)
+        }
     }
 
     /**
@@ -132,11 +136,12 @@ public extension Router {
      :param: callback The callback that is executed when request succeeds or fails
      :returns: Cancellable
      */
-    public func rx_request<IN: Serializable, ENDPOINT: Endpoint
-        where ENDPOINT.Input == [IN], ENDPOINT.Output == Void>
-        (endpoint: ENDPOINT, input: [IN]) -> Observable<Result<Void, RouterError>>
+    public func rx_request<IN, ENDPOINT>(endpoint: ENDPOINT, input: [IN]) -> Observable<Result<Void, RouterError>>
+        where IN: Serializable, ENDPOINT: Endpoint, ENDPOINT.Input == [IN], ENDPOINT.Output == Void
     {
-        return observeRequest(curry(request)(endpoint)(input))
+        return observeRequest {
+            self.request(endpoint, input: input, callback: $0)
+        }
     }
 
     /**
@@ -146,11 +151,12 @@ public extension Router {
      :param: callback The callback with Deserializable parameter
      :returns: Cancellable
      */
-    public func rx_request<OUT: Deserializable, ENDPOINT: Endpoint
-        where ENDPOINT.Input == Void, ENDPOINT.Output == OUT>
-        (endpoint: ENDPOINT) -> Observable<Result<OUT, RouterError>>
+    public func rx_request<OUT, ENDPOINT>(endpoint: ENDPOINT) -> Observable<Result<OUT, RouterError>>
+        where OUT: Deserializable, ENDPOINT: Endpoint, ENDPOINT.Input == Void, ENDPOINT.Output == OUT
     {
-        return observeRequest(curry(request)(endpoint))
+        return observeRequest {
+            self.request(endpoint, callback: $0)
+        }
     }
 
     /**
@@ -160,11 +166,12 @@ public extension Router {
      :param: callback The callback with Deserializable array parameter
      :returns: Cancellable
      */
-    public func rx_request<OUT: Deserializable, ENDPOINT: Endpoint
-        where ENDPOINT.Input == Void, ENDPOINT.Output == [OUT]>
-        (endpoint: ENDPOINT) -> Observable<Result<[OUT], RouterError>>
+    public func rx_request<OUT, ENDPOINT>(endpoint: ENDPOINT) -> Observable<Result<[OUT], RouterError>>
+        where OUT: Deserializable, ENDPOINT: Endpoint, ENDPOINT.Input == Void, ENDPOINT.Output == [OUT]
     {
-        return observeRequest(curry(request)(endpoint))
+        return observeRequest {
+            self.request(endpoint, callback: $0)
+        }
     }
 
     /**
@@ -175,11 +182,12 @@ public extension Router {
      :param: callback The callback with Deserializable parameter
      :returns: Cancellable
      */
-    public func rx_request<IN: Serializable, OUT: Deserializable, ENDPOINT: Endpoint
-        where ENDPOINT.Input == IN, ENDPOINT.Output == OUT>
-        (endpoint: ENDPOINT, input: ENDPOINT.Input) -> Observable<Result<OUT, RouterError>>
+    public func rx_request<IN, OUT, ENDPOINT>(endpoint: ENDPOINT, input: ENDPOINT.Input) -> Observable<Result<OUT, RouterError>>
+        where IN: Serializable, OUT: Deserializable, ENDPOINT: Endpoint, ENDPOINT.Input == IN, ENDPOINT.Output == OUT
     {
-        return observeRequest(curry(request)(endpoint)(input))
+        return observeRequest {
+            self.request(endpoint, input: input, callback: $0)
+        }
     }
 
     /**
@@ -190,11 +198,12 @@ public extension Router {
      :param: callback The callback with Deserializable parameter
      :returns: Cancellable
      */
-    public func rx_request<IN: Serializable, OUT: Deserializable, ENDPOINT: Endpoint
-        where ENDPOINT.Input == [IN], ENDPOINT.Output == OUT>
-        (endpoint: ENDPOINT, input: ENDPOINT.Input) -> Observable<Result<OUT, RouterError>>
+    public func rx_request<IN, OUT, ENDPOINT>(endpoint: ENDPOINT, input: ENDPOINT.Input) -> Observable<Result<OUT, RouterError>>
+        where IN: Serializable, OUT: Deserializable, ENDPOINT: Endpoint, ENDPOINT.Input == [IN], ENDPOINT.Output == OUT
     {
-        return observeRequest(curry(request)(endpoint)(input))
+        return observeRequest {
+            self.request(endpoint, input: input, callback: $0)
+        }
     }
 
     /**
@@ -205,11 +214,12 @@ public extension Router {
      :param: callback The callback with Deserializable array parameter
      :returns: Cancellable
      */
-    public func rx_request<IN: Serializable, OUT: Deserializable, ENDPOINT: Endpoint
-        where ENDPOINT.Input == IN, ENDPOINT.Output == [OUT]>
-        (endpoint: ENDPOINT, input: ENDPOINT.Input) -> Observable<Result<[OUT], RouterError>>
+    public func rx_request<IN, OUT, ENDPOINT>(endpoint: ENDPOINT, input: ENDPOINT.Input) -> Observable<Result<[OUT], RouterError>>
+        where IN: Serializable, OUT: Deserializable, ENDPOINT: Endpoint, ENDPOINT.Input == IN, ENDPOINT.Output == [OUT]
     {
-        return observeRequest(curry(request)(endpoint)(input))
+        return observeRequest {
+            self.request(endpoint, input: input, callback: $0)
+        }
     }
 
     /**
@@ -220,11 +230,12 @@ public extension Router {
      :param: callback The callback with Deserializable arrayparameter
      :returns: Cancellable
      */
-    public func rx_request<IN: Serializable, OUT: Deserializable, ENDPOINT: Endpoint
-        where ENDPOINT.Input == [IN], ENDPOINT.Output == [OUT]>
-        (endpoint: ENDPOINT, input: ENDPOINT.Input) -> Observable<Result<[OUT], RouterError>>
+    public func rx_request<IN, OUT, ENDPOINT>(endpoint: ENDPOINT, input: ENDPOINT.Input) -> Observable<Result<[OUT], RouterError>>
+        where IN: Serializable, OUT: Deserializable, ENDPOINT: Endpoint, ENDPOINT.Input == [IN], ENDPOINT.Output == [OUT]
     {
-        return observeRequest(curry(request)(endpoint)(input))
+        return observeRequest {
+            self.request(endpoint, input: input, callback: $0)
+        }
     }
 
     /**
@@ -235,11 +246,12 @@ public extension Router {
      :param: callback The Response with Deserializable parameter
      :returns: Cancellable
      */
-    public func rx_request<OUT: Deserializable, ENDPOINT: Endpoint
-        where ENDPOINT.Input == [String], ENDPOINT.Output == OUT>
-        (endpoint: ENDPOINT, input: [String]) -> Observable<Result<OUT, RouterError>>
+    public func rx_request<OUT, ENDPOINT>(endpoint: ENDPOINT, input: [String]) -> Observable<Result<OUT, RouterError>>
+        where OUT: Deserializable, ENDPOINT: Endpoint, ENDPOINT.Input == [String], ENDPOINT.Output == OUT
     {
-        return observeRequest(curry(request)(endpoint)(input))
+        return observeRequest {
+            self.request(endpoint, input: input, callback: $0)
+        }
     }
 
     /**
@@ -250,11 +262,12 @@ public extension Router {
      :param: callback The Response with Deserializable array parameter
      :returns: Cancellable
      */
-    public func rx_request<OUT: Deserializable, ENDPOINT: Endpoint
-        where ENDPOINT.Input == [String], ENDPOINT.Output == [OUT]>
-        (endpoint: ENDPOINT, input: ENDPOINT.Input) -> Observable<Result<[OUT], RouterError>>
+    public func rx_request<OUT, ENDPOINT>(endpoint: ENDPOINT, input: ENDPOINT.Input) -> Observable<Result<[OUT], RouterError>>
+        where OUT: Deserializable, ENDPOINT: Endpoint, ENDPOINT.Input == [String], ENDPOINT.Output == [OUT]
     {
-        return observeRequest(curry(request)(endpoint)(input))
+        return observeRequest {
+            self.request(endpoint, input: input, callback: $0)
+        }
     }
 }
 
@@ -268,10 +281,11 @@ public extension Router {
      :param: callback The Response with parameter of JSON
      :returns: Cancellable
      */
-    public func rx_request<ENDPOINT: Endpoint
-        where ENDPOINT.Input == JSON, ENDPOINT.Output == JSON>
-        (endpoint: ENDPOINT, input: JSON) -> Observable<Result<JSON, RouterError>>
+    public func rx_request<ENDPOINT>(endpoint: ENDPOINT, input: JSON) -> Observable<Result<JSON, RouterError>>
+        where ENDPOINT: Endpoint, ENDPOINT.Input == JSON, ENDPOINT.Output == JSON
     {
-        return observeRequest(curry(request)(endpoint)(input))
+        return observeRequest {
+            self.request(endpoint, input: input, callback: $0)
+        }
     }
 }

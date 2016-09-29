@@ -14,6 +14,9 @@ public class ButtonBase<STATE>: UIButton, Component {
     public let lifecycleDisposeBag = DisposeBag()
     public var stateDisposeBag = DisposeBag()
 
+    public override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
     public var observableState: Observable<STATE> {
         return observableStateSubject
     }
@@ -39,7 +42,7 @@ public class ButtonBase<STATE>: UIButton, Component {
     private var stateStorage: STATE?
 
     public init() {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
 
         prepareView()
 
@@ -47,7 +50,7 @@ public class ButtonBase<STATE>: UIButton, Component {
     }
 
     public init(initialState: STATE?) {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
 
         prepareView()
         
@@ -56,6 +59,11 @@ public class ButtonBase<STATE>: UIButton, Component {
         } else {
             setVoidStateIfPossible()
         }
+    }
+
+    @available(*, unavailable)
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     private func prepareView() {
@@ -78,13 +86,11 @@ public class ButtonBase<STATE>: UIButton, Component {
     
     public func setupConstraints() { }
     
-    public override func addSubview(view: UIView) {
+    public override func addSubview(_ view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
-        
+
         super.addSubview(view)
     }
     
-    public override class func requiresConstraintBasedLayout() -> Bool {
-        return true
-    }
+
 }

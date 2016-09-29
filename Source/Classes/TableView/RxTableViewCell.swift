@@ -20,21 +20,25 @@ public protocol TableViewCellContent {
 
 extension TableViewCellContent {
     public var selectionStyle: UITableViewCellSelectionStyle {
-        return .Default
+        return .default
     }
 
     @available(iOS 9.0, *)
     public var focusStyle: UITableViewCellFocusStyle {
-        return .Default
+        return .default
     }
     
-    public func setSelected(selected: Bool, animated: Bool) { }
+    public func setSelected(_ selected: Bool, animated: Bool) { }
 
-    public func setHighlighted(highlighted: Bool, animated: Bool) { }
+    public func setHighlighted(_ highlighted: Bool, animated: Bool) { }
 }
 
 public final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
     private var content: CONTENT?
+
+    public override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -62,7 +66,7 @@ public final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
         } else {
             let content = factory()
             self.content = content
-            content >> contentView
+            contentView.children(content)
             setNeedsUpdateConstraints()
             cellContent = content
         }
@@ -78,22 +82,18 @@ public final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
     public override func updateConstraints() {
         super.updateConstraints()
 
-        content?.snp_updateConstraints { make in
+        content?.snp.updateConstraints { make in
             make.edges.equalTo(contentView)
         }
     }
 
-    public override class func requiresConstraintBasedLayout() -> Bool {
-        return true
-    }
-
-    public override func setSelected(selected: Bool, animated: Bool) {
+    public override func setSelected(_ selected: Bool, animated: Bool) {
         if let content = content as? TableViewCellContent {
             content.setSelected(selected, animated: animated)
         }
     }
 
-    public override func setHighlighted(highlighted: Bool, animated: Bool) {
+    public override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if let content = content as? TableViewCellContent {
             content.setHighlighted(highlighted, animated: animated)
         }

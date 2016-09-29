@@ -15,6 +15,10 @@ public class ViewBase<STATE>: UIView, Component {
     public let lifecycleDisposeBag = DisposeBag()
     public var stateDisposeBag = DisposeBag()
 
+    public override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
+
     public var observableState: Observable<STATE> {
         return observableStateSubject
     }
@@ -40,7 +44,7 @@ public class ViewBase<STATE>: UIView, Component {
     private var stateStorage: STATE?
 
     public init() {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
 
         prepareView()
 
@@ -48,7 +52,7 @@ public class ViewBase<STATE>: UIView, Component {
     }
 
     public init(initialState: STATE?) {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
 
         prepareView()
 
@@ -58,6 +62,13 @@ public class ViewBase<STATE>: UIView, Component {
             setVoidStateIfPossible()
         }
     }
+
+    @available(*, unavailable)
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+
 
     private func prepareView() {
         layoutMargins = ReactantConfiguration.global.layoutMargins
@@ -78,8 +89,4 @@ public class ViewBase<STATE>: UIView, Component {
     public func loadView() { }
 
     public func setupConstraints() { }
-
-    public override class func requiresConstraintBasedLayout() -> Bool {
-        return true
-    }
 }

@@ -12,7 +12,7 @@ import Lipstick
 public struct ReactantConfiguration {
     public static var global = ReactantConfiguration()
 
-    public var layoutMargins: UIEdgeInsets = UIEdgeInsetsZero
+    public var layoutMargins: UIEdgeInsets = UIEdgeInsets.zero
     public var controllerRootStyle: (ControllerRootView) -> Void = { _ in }
     public var emptyListLabelStyle: (UILabel) -> Void = { _ in }
     public var defaultLoadingMessage: String = "Loading .."

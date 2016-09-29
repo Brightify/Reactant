@@ -28,11 +28,11 @@ public class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, RO
     }
 
     public override func updateRootViewConstraints() {
-        scrollView.snp_updateConstraints { make in
+        scrollView.snp.updateConstraints { make in
             make.edges.equalTo(view)
         }
 
-        rootView.snp_updateConstraints { make in
+        rootView.snp.updateConstraints { make in
             make.leading.equalTo(view)
             make.top.equalTo(scrollView)
             make.trailing.equalTo(view)
@@ -53,6 +53,6 @@ public class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, RO
 
 extension ScrollControllerBase: Scrollable {
     public func scrollToTop(animated: Bool) {
-        scrollView.scrollToTop(animated)
+        scrollView.scrollToTop(animated: animated)
     }
 }

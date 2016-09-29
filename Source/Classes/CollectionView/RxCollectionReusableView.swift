@@ -8,6 +8,10 @@ import SwiftKit
 
 public final class RxCollectionReusableView<CONTENT: UIView>: UICollectionReusableView {
     private var content: CONTENT?
+
+    public override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
     
     public func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
         if let content = content {
@@ -15,7 +19,7 @@ public final class RxCollectionReusableView<CONTENT: UIView>: UICollectionReusab
         } else {
             let content = factory()
             self.content = content
-            content >> self
+            children(content)
             setNeedsUpdateConstraints()
             return content
         }
@@ -24,12 +28,8 @@ public final class RxCollectionReusableView<CONTENT: UIView>: UICollectionReusab
     public override func updateConstraints() {
         super.updateConstraints()
         
-        content?.snp_updateConstraints { make in
+        content?.snp.updateConstraints { make in
             make.edges.equalTo(self)
         }
-    }
-    
-    public override class func requiresConstraintBasedLayout() -> Bool {
-        return true
     }
 }

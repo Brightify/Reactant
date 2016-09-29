@@ -8,33 +8,33 @@ import Lipstick
 import RxCocoa
 import RxSwift
 
-public class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBase<TableViewState<CELL.StateType>> {
+public class SingleRowCollectionView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>> where CELL: Component {
     private typealias MODEL = CELL.StateType
     
     public var modelSelected: ControlEvent<MODEL> {
-        return collectionView.rx_modelSelected(MODEL)
+        return collectionView.rx.modelSelected(MODEL.self)
     }
     
     public override var edgesForExtendedLayout: UIRectEdge {
-        return .All
+        return .all
     }
     
     public let collectionView: UICollectionView
     public let collectionViewLayout = UICollectionViewFlowLayout()
     private let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
-    private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     private let cellFactory: () -> CELL
     
     public init(
-        cellFactory: () -> CELL,
-        itemSize: CGSize = CGSizeZero,
-        estimatedItemSize: CGSize = CGSizeZero,
+        cellFactory: @escaping () -> CELL,
+        itemSize: CGSize = CGSize.zero,
+        estimatedItemSize: CGSize = CGSize.zero,
         minimumLineSpacing: CGFloat = 0,
         horizontalInsets: CGFloat = 0,
-        scrollDirection: UICollectionViewScrollDirection = .Horizontal)
+        scrollDirection: UICollectionViewScrollDirection = .horizontal)
     {
-        self.collectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: collectionViewLayout)
+        self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
         self.cellFactory = cellFactory
         
         super.init()
@@ -44,9 +44,9 @@ public class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBa
         collectionViewLayout.minimumLineSpacing = minimumLineSpacing
         collectionViewLayout.scrollDirection = scrollDirection
         
-        collectionView.backgroundColor = UIColor.clearColor()
+        collectionView.backgroundColor = UIColor.clear
         collectionView.contentInset = insets(horizontal: horizontalInsets, vertical: 0)
-        collectionView.registerClass(RxCollectionViewCell<CELL>.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(RxCollectionViewCell<CELL>.self, forCellWithReuseIdentifier: "Cell")
     }
     
     public override func loadView() {
@@ -65,11 +65,11 @@ public class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBa
         var emptyMessage: String = ""
         
         switch componentState {
-        case .Items(let models):
+        case .items(let models):
             items = models
-        case .Empty(let message):
+        case .empty(let message):
             emptyMessage = message
-        case .Loading:
+        case .loading:
             loading = true
         }
         
@@ -83,15 +83,16 @@ public class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBa
         
         
         Observable.just(items)
-            .bindTo(collectionView.rx_itemsWithCellIdentifier("Cell", cellType: RxCollectionViewCell<CELL>.self)) { [cellFactory] _, model, cell in
-                cell.cachedContentOrCreated(cellFactory).setComponentState(model)
+            .bindTo(collectionView.rx.items(cellIdentifier: "Cell", cellType: RxCollectionViewCell<CELL>.self)) { [cellFactory] _, model, cell in
+                cell.cachedContentOrCreated(factory: cellFactory).setComponentState(model)
             }
             .addDisposableTo(stateDisposeBag)
         
-        collectionView.rx_itemSelected
-            .subscribeNext { [collectionView] in
-                collectionView.deselectItemAtIndexPath($0, animated: true)
-            }.addDisposableTo(stateDisposeBag)
+        collectionView.rx.itemSelected
+            .subscribe(onNext: { [collectionView] in
+                collectionView.deselectItem(at: $0, animated: true)
+            })
+            .addDisposableTo(stateDisposeBag)
         
         setNeedsLayout()
     }
@@ -99,15 +100,15 @@ public class SingleRowCollectionView<CELL: UIView where CELL: Component>: ViewBa
     public override func updateConstraints() {
         super.updateConstraints()
         
-        collectionView.snp_remakeConstraints { make in
+        collectionView.snp.remakeConstraints { make in
             make.edges.equalTo(self)
         }
         
-        emptyLabel.snp_remakeConstraints { make in
+        emptyLabel.snp.remakeConstraints { make in
             make.center.equalTo(self)
         }
         
-        loadingIndicator.snp_remakeConstraints { make in
+        loadingIndicator.snp.remakeConstraints { make in
             make.center.equalTo(self)
         }
     }

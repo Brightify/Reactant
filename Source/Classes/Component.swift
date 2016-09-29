@@ -23,11 +23,11 @@ public protocol Component: class {
 }
 
 public extension Component {
-    public func setComponentState(state: StateType) {
+    public func setComponentState(_ state: StateType) {
         componentState = state
     }
     
-    public func withState(state: StateType) -> Self {
+    public func with(state: StateType) -> Self {
         setComponentState(state)
         return self
     }

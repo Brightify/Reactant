@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Reactant'
-  s.version          = '0.2.2'
+  s.version          = '0.3.0'
   s.summary          = 'Imagine React Native in Swift and you get Reactant'
 
   s.description      = <<-DESC
@@ -21,19 +21,18 @@ Pod::Spec.new do |s|
   s.author           = { 'Tadeas Kriz' => 'tadeas@brightify.org', 'Matous Hybl' => 'matous@brightify.org' }
   s.source           = { :git => 'https://github.com/SwiftKit/Reactant', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'Source/Classes/**/*'
 
   s.frameworks = 'UIKit'
-  s.dependency 'RxSwift'
-  s.dependency 'RxCocoa'
-  s.dependency 'SwiftKit', '0.9.0'
-  s.dependency 'RxDataSources'
-  s.dependency 'RxOptional'
-  s.dependency 'Lipstick'
-  s.dependency 'TZStackView'
-  s.dependency 'SnapKit'
-  s.dependency 'HTTPStatusCodes'
-  s.dependency 'HanekeSwift'
+  s.dependency 'RxSwift', '~> 3.0.0-beta.1'
+  s.dependency 'RxCocoa', '~> 3.0.0-beta.1'
+  s.dependency 'SwiftKit', '~> 0.10'
+  s.dependency 'RxDataSources', '~> 1.0.0-beta.2'
+  s.dependency 'RxOptional', '~> 3.0'
+  s.dependency 'Lipstick', '~> 0.4'
+  s.dependency 'SnapKit', '~> 3.0'
+  s.dependency 'HTTPStatusCodes', '~> 3.1'
+  s.dependency 'HanekeSwift', '~> 0.10'
 end

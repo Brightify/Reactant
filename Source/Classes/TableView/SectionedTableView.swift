@@ -8,35 +8,35 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView where HEADER: Component, CELL: Component, FOOTER: Component>: ViewBase<TableViewState<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>>> {
+public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBase<TableViewState<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>>> where HEADER: Component, CELL: Component, FOOTER: Component {
     private typealias MODEL = CELL.StateType
     private typealias SECTION = SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>
     
     public var refresh: ControlEvent<Void> {
-        return refreshControl.rx_controlEvent(.ValueChanged)
+        return refreshControl.rx.controlEvent(.valueChanged)
     }
     
     public var modelSelected: ControlEvent<MODEL> {
-        return tableView.rx_modelSelected(MODEL)
+        return tableView.rx.modelSelected(MODEL.self)
     }
     
     public override var edgesForExtendedLayout: UIRectEdge {
-        return .All
+        return .all
     }
     
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
     private let refreshControl = UIRefreshControl()
     private let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
-    private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     public let tableView: UITableView
     private let tableViewDelegate: SectionedTableViewDelegate
     private let reloadable: Bool
     
     public init(
-        cellFactory: () -> CELL,
-        headerFactory: () -> HEADER,
-        footerFactory: () -> FOOTER,
+        cellFactory: @escaping () -> CELL,
+        headerFactory: @escaping () -> HEADER,
+        footerFactory: @escaping () -> FOOTER,
         reloadable: Bool = true,
         rowHeight: CGFloat = UITableViewAutomaticDimension,
         estimatedRowHeight: CGFloat = 0,
@@ -44,13 +44,13 @@ public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView whe
         estimatedSectionHeaderHeight: CGFloat = 0,
         sectionFooterHeight: CGFloat = UITableViewAutomaticDimension,
         estimatedSectionFooterHeight: CGFloat = 0,
-        style: UITableViewStyle = .Plain,
-        separatorStyle: UITableViewCellSeparatorStyle = .SingleLine,
+        style: UITableViewStyle = .plain,
+        separatorStyle: UITableViewCellSeparatorStyle = .singleLine,
         tableHeaderView: UIView? = nil,
         tableFooterView: UIView? = nil)
     {
         self.reloadable = reloadable
-        tableView = UITableView(frame: CGRectZero, style: style)
+        tableView = UITableView(frame: CGRect.zero, style: style)
         
         tableViewDelegate = SectionedTableViewDelegate(
             sectionHeaderHeight: sectionHeaderHeight,
@@ -59,14 +59,14 @@ public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView whe
             estimatedSectionFooterHeight: estimatedSectionFooterHeight,
             
             viewForHeaderInSection: { [dataSource] tableView, section in
-                let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? RxTableViewHeaderFooterView<HEADER>
+                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header") as? RxTableViewHeaderFooterView<HEADER>
                 let section = dataSource.sectionAtIndex(section).identity
-                header?.cachedContentOrCreated(headerFactory).setComponentState(section.header)
+                header?.cachedContentOrCreated(factory: headerFactory).setComponentState(section.header)
                 return header
             }, viewForFooterInSection: { [dataSource] tableView, section in
-                let footer = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Footer") as? RxTableViewHeaderFooterView<FOOTER>
+                let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Footer") as? RxTableViewHeaderFooterView<FOOTER>
                 let section = dataSource.sectionAtIndex(section).identity
-                footer?.cachedContentOrCreated(footerFactory).setComponentState(section.footer)
+                footer?.cachedContentOrCreated(factory: footerFactory).setComponentState(section.footer)
                 return footer
             })
         
@@ -80,7 +80,7 @@ public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView whe
         tableView.estimatedSectionFooterHeight = estimatedSectionFooterHeight
         tableView.separatorStyle = separatorStyle
         tableView.backgroundView = nil
-        tableView.backgroundColor = UIColor.clearColor()
+        tableView.backgroundColor = UIColor.clear
         
         if let tableHeaderView = tableHeaderView {
             tableView.tableHeaderView = tableHeaderView
@@ -89,18 +89,18 @@ public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView whe
             tableView.tableFooterView = tableFooterView
         }
         
-        tableView.registerClass(RxTableViewHeaderFooterView<HEADER>.self, forHeaderFooterViewReuseIdentifier: "Header")
-        tableView.registerClass(RxTableViewHeaderFooterView<FOOTER>.self, forHeaderFooterViewReuseIdentifier: "Footer")
-        tableView.registerClass(RxTableViewCell<CELL>.self, forCellReuseIdentifier: "Cell")
+        tableView.register(RxTableViewHeaderFooterView<HEADER>.self, forHeaderFooterViewReuseIdentifier: "Header")
+        tableView.register(RxTableViewHeaderFooterView<FOOTER>.self, forHeaderFooterViewReuseIdentifier: "Footer")
+        tableView.register(RxTableViewCell<CELL>.self, forCellReuseIdentifier: "Cell")
         
         dataSource.configureCell = { [cellFactory] _, tableView, indexPath, model in
-            let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? RxTableViewCell<CELL>
-            cell?.cachedContentOrCreated(cellFactory).setComponentState(model)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? RxTableViewCell<CELL>
+            cell?.cachedContentOrCreated(factory: cellFactory).setComponentState(model)
             return cell ?? UITableViewCell()
         }
         
         tableView
-            .rx_setDelegate(tableViewDelegate)
+            .rx.setDelegate(tableViewDelegate)
             .addDisposableTo(lifecycleDisposeBag)
     }
     
@@ -126,11 +126,11 @@ public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView whe
         var emptyMessage: String = ""
         
         switch componentState {
-        case .Items(let models):
+        case .items(let models):
             items = models
-        case .Empty(let message):
+        case .empty(let message):
             emptyMessage = message
-        case .Loading:
+        case .loading:
             loading = true
         }
         
@@ -151,13 +151,14 @@ public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView whe
         }
         
         Observable.just(items)
-            .bindTo(tableView.rx_itemsWithDataSource(dataSource))
+            .bindTo(tableView.rx.items(dataSource: dataSource))
             .addDisposableTo(stateDisposeBag)
         
-        tableView.rx_itemSelected
-            .subscribeNext { [tableView] in
-                tableView.deselectRowAtIndexPath($0, animated: true)
-            }.addDisposableTo(stateDisposeBag)
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [tableView] in
+                tableView.deselectRow(at: $0, animated: true)
+            })
+            .addDisposableTo(stateDisposeBag)
         
         setNeedsLayout()
     }
@@ -165,15 +166,15 @@ public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView whe
     public override func updateConstraints() {
         super.updateConstraints()
         
-        tableView.snp_remakeConstraints { make in
+        tableView.snp.remakeConstraints { make in
             make.edges.equalTo(self)
         }
         
-        emptyLabel.snp_remakeConstraints { make in
+        emptyLabel.snp.remakeConstraints { make in
             make.center.equalTo(self)
         }
         
-        loadingIndicator.snp_remakeConstraints { make in
+        loadingIndicator.snp.remakeConstraints { make in
             make.center.equalTo(self)
         }
     }
@@ -182,16 +183,16 @@ public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView whe
         super.layoutSubviews()
         
         if let tableViewHeader = tableView.tableHeaderView {
-            setAndLayoutTableHeaderView(tableViewHeader)
+            setAndLayout(tableHeaderView: tableViewHeader)
         }
     }
     
-    private func setAndLayoutTableHeaderView(header: UIView) {
+    private func setAndLayout(tableHeaderView header: UIView) {
         header.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableHeaderView = nil
         let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
         
-        let size = header.systemLayoutSizeFittingSize(targetSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
+        let size = header.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
         header.translatesAutoresizingMaskIntoConstraints = true
         header.frame.size = CGSize(width: targetSize.width, height: size.height)
         tableView.tableHeaderView = header
@@ -200,7 +201,7 @@ public class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView whe
 
 extension SectionedTableView: Scrollable {
     public func scrollToTop(animated: Bool) {
-        tableView.scrollToTop(animated)
+        tableView.scrollToTop(animated: animated)
     }
 }
 
@@ -210,16 +211,16 @@ private class SectionedTableViewDelegate: NSObject, UITableViewDelegate {
     private let sectionFooterHeight: CGFloat
     private let estimatedSectionFooterHeight: CGFloat
     
-    private let viewForHeaderInSection: (tableView: UITableView, section: Int) -> UIView?
-    private let viewForFooterInSection: (tableView: UITableView, section: Int) -> UIView?
+    private let viewForHeaderInSection: (_ tableView: UITableView, _ section: Int) -> UIView?
+    private let viewForFooterInSection: (_ tableView: UITableView, _ section: Int) -> UIView?
     
     init(
         sectionHeaderHeight: CGFloat,
         estimatedSectionHeaderHeight: CGFloat,
         sectionFooterHeight: CGFloat,
         estimatedSectionFooterHeight: CGFloat,
-        viewForHeaderInSection: (tableView: UITableView, section: Int) -> UIView?,
-        viewForFooterInSection: (tableView: UITableView, section: Int) -> UIView?)
+        viewForHeaderInSection: @escaping (_ tableView: UITableView, _ section: Int) -> UIView?,
+        viewForFooterInSection: @escaping (_ tableView: UITableView, _ section: Int) -> UIView?)
     {
         self.sectionHeaderHeight = sectionHeaderHeight
         self.estimatedSectionHeaderHeight = estimatedSectionHeaderHeight
@@ -236,7 +237,7 @@ private class SectionedTableViewDelegate: NSObject, UITableViewDelegate {
     //        return estimatedSectionHeaderHeight
     //    }
     
-    @objc func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    @objc func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return sectionHeaderHeight
     }
     
@@ -244,15 +245,15 @@ private class SectionedTableViewDelegate: NSObject, UITableViewDelegate {
     //        return estimatedSectionFooterHeight
     //    }
     
-    @objc func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    @objc func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return sectionFooterHeight
     }
     
-    @objc func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return viewForHeaderInSection(tableView: tableView, section: section)
+    @objc func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return viewForHeaderInSection(tableView, section)
     }
     
-    @objc func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return viewForFooterInSection(tableView: tableView, section: section)
+    @objc func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return viewForFooterInSection(tableView, section)
     }
 }

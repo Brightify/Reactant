@@ -11,47 +11,47 @@ import UIKit
 @objc
 public protocol ViewEventReceiver {
     // FIXME edgesForExtendedLayout should be in a different protocol
-    optional var edgesForExtendedLayout: UIRectEdge { get }
-    optional func willAppear(animated: Bool)
-    optional func didAppear(animated: Bool)
-    optional func willDisappear(animated: Bool)
-    optional func didDisappear(animated: Bool)
+    @objc optional var edgesForExtendedLayout: UIRectEdge { get }
+    @objc optional func willAppear(animated: Bool)
+    @objc optional func didAppear(animated: Bool)
+    @objc optional func willDisappear(animated: Bool)
+    @objc optional func didDisappear(animated: Bool)
 }
 
 extension UIView: ViewEventReceiver {
     public var edgesForExtendedLayout: UIRectEdge {
-        return .None
+        return []
     }
 
     func willAppearInternal(animated: Bool) {
-        (self as ViewEventReceiver).willAppear?(animated)
+        (self as ViewEventReceiver).willAppear?(animated: animated)
 
         subviews.forEach {
-            $0.willAppearInternal(animated)
+            $0.willAppearInternal(animated: animated)
         }
     }
 
     func didAppearInternal(animated: Bool) {
-        (self as ViewEventReceiver).didAppear?(animated)
+        (self as ViewEventReceiver).didAppear?(animated: animated)
 
         subviews.forEach {
-            $0.didAppearInternal(animated)
+            $0.didAppearInternal(animated: animated)
         }
     }
 
     func willDisappearInternal(animated: Bool) {
-        (self as ViewEventReceiver).willDisappear?(animated)
+        (self as ViewEventReceiver).willDisappear?(animated: animated)
 
         subviews.forEach {
-            $0.willDisappearInternal(animated)
+            $0.willDisappearInternal(animated: animated)
         }
     }
 
     func didDisappearInternal(animated: Bool) {
-        (self as ViewEventReceiver).didDisappear?(animated)
+        (self as ViewEventReceiver).didDisappear?(animated: animated)
 
         subviews.forEach {
-            $0.didDisappearInternal(animated)
+            $0.didDisappearInternal(animated: animated)
         }
     }
 }

@@ -34,21 +34,21 @@ private class CollapseAxisBox {
 }
 
 public enum Visibility {
-    case Visible
-    case Hidden
-    case Collapsed
+    case visible
+    case hidden
+    case collapsed
 }
 
 public enum ConstraintAction {
-    case SetConstant(visible: CGFloat, collapsed: CGFloat)
-    case Install
-    case Uninstall
+    case setConstant(visible: CGFloat, collapsed: CGFloat)
+    case install
+    case uninstall
 }
 
 public enum CollapseAxis {
-    case Horizontal
-    case Vertical
-    case Both
+    case horizontal
+    case vertical
+    case both
 }
 
 public extension UIView {
@@ -71,19 +71,19 @@ public extension UIView {
     public var collapseAxis: CollapseAxis {
         get {
             return associatedObject(self, key: &AssociatedKey.collapseAxis) {
-                CollapseAxisBox(CollapseAxis.Vertical)
+                CollapseAxisBox(CollapseAxis.vertical)
                 }.value
         }
         set {
-            let resetVisibility = visibility == .Collapsed && collapseAxis != newValue
+            let resetVisibility = visibility == .collapsed && collapseAxis != newValue
             if resetVisibility {
-                visibility = .Hidden
+                visibility = .hidden
             }
 
             associateObject(self, key: &AssociatedKey.collapseAxis, value: CollapseAxisBox(newValue))
 
             if resetVisibility {
-                visibility = .Collapsed
+                visibility = .collapsed
             }
         }
     }
@@ -91,42 +91,42 @@ public extension UIView {
     public var visibility: Visibility {
         get {
             return associatedObject(self, key: &AssociatedKey.visibility) {
-                VisibilityBox(hidden ? .Hidden : .Visible)
+                VisibilityBox(isHidden ? .hidden : .visible)
                 }.value
         }
         set {
             var collapseConstraints: [(constraint: Constraint, action: ConstraintAction)] = collapsibleConstraints
             switch collapseAxis {
-            case .Horizontal:
-                collapseConstraints.append((zeroWidthConstraint, .Install))
-            case .Vertical:
-                collapseConstraints.append((zeroHeightConstraint, .Install))
-            case .Both:
-                collapseConstraints.append((zeroWidthConstraint, .Install))
-                collapseConstraints.append((zeroHeightConstraint, .Install))
+            case .horizontal:
+                collapseConstraints.append((zeroWidthConstraint, .install))
+            case .vertical:
+                collapseConstraints.append((zeroHeightConstraint, .install))
+            case .both:
+                collapseConstraints.append((zeroWidthConstraint, .install))
+                collapseConstraints.append((zeroHeightConstraint, .install))
             }
 
-            alpha = newValue == .Visible ? 1 : 0
-            if newValue == .Collapsed {
+            alpha = newValue == .visible ? 1 : 0
+            if newValue == .collapsed {
                 for constraint in collapseConstraints {
                     switch constraint.action {
-                    case .SetConstant(_, let collapsed):
-                        constraint.constraint.updateOffset(collapsed)
-                    case .Install:
-                        constraint.constraint.install()
-                    case .Uninstall:
-                        constraint.constraint.uninstall()
+                    case .setConstant(_, let collapsed):
+                        constraint.constraint.update(offset: collapsed)
+                    case .install:
+                        constraint.constraint.activate()
+                    case .uninstall:
+                        constraint.constraint.deactivate()
                     }
                 }
             } else {
-                for constraint in collapseConstraints.reverse() {
+                for constraint in collapseConstraints.reversed() {
                     switch constraint.action {
-                    case .SetConstant(let visible, _):
-                        constraint.constraint.updateOffset(visible)
-                    case .Install:
-                        constraint.constraint.uninstall()
-                    case .Uninstall:
-                        constraint.constraint.install()
+                    case .setConstant(let visible, _):
+                        constraint.constraint.update(offset: visible)
+                    case .install:
+                        constraint.constraint.deactivate()
+                    case .uninstall:
+                        constraint.constraint.activate()
                     }
                 }
             }
@@ -155,8 +155,8 @@ public extension UIView {
     private var zeroWidthConstraint: Constraint {
         return associatedObject(self, key: &AssociatedKey.zeroWidthConstraints) {
             var maybeConstraint: Constraint?
-            snp_prepareConstraints { make in
-                maybeConstraint = make.width.equalTo(0).constraint
+            snp.prepareConstraints { make in
+                maybeConstraint = make.width.equalToSuperview().constraint
             }
             guard let constraint = maybeConstraint else { fatalError("Could not create zero-width constraint!") }
             return constraint
@@ -166,8 +166,8 @@ public extension UIView {
     private var zeroHeightConstraint: Constraint {
         return associatedObject(self, key: &AssociatedKey.zeroHeightConstraints) {
             var maybeConstraint: Constraint?
-            snp_prepareConstraints { make in
-                maybeConstraint = make.height.equalTo(0).constraint
+            snp.prepareConstraints { make in
+                maybeConstraint = make.height.equalToSuperview().constraint
             }
             guard let constraint = maybeConstraint else { fatalError("Could not create zero-height constraint!") }
             return constraint

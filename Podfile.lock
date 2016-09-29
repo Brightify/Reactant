@@ -1,98 +1,97 @@
 PODS:
-  - Alamofire (3.4.2)
+  - Alamofire (4.0.1)
   - HanekeSwift (0.10.1)
-  - HTTPStatusCodes (3.0.0)
-  - Lipstick (0.3.1):
-    - SwiftKitStaging
-  - Nimble (3.2.0)
-  - Quick (0.9.3)
-  - Reactant (0.1.14):
-    - HanekeSwift
-    - HTTPStatusCodes
-    - Lipstick
+  - HTTPStatusCodes (3.1.0)
+  - Lipstick (0.4.0):
+    - SwiftKitStaging (~> 0.2)
+  - Nimble (5.0.0)
+  - Quick (0.10.0)
+  - Reactant (0.3.0):
+    - HanekeSwift (~> 0.10)
+    - HTTPStatusCodes (~> 3.1)
+    - Lipstick (~> 0.4)
+    - RxCocoa (~> 3.0.0-beta.1)
+    - RxDataSources (~> 1.0.0-beta.2)
+    - RxOptional (~> 3.0)
+    - RxSwift (~> 3.0.0-beta.1)
+    - SnapKit (~> 3.0)
+    - SwiftKit (~> 0.10)
+  - RxCocoa (3.0.0-beta.1):
+    - RxSwift (~> 3.0.0-beta.1)
+  - RxDataSources (1.0.0-beta.2):
+    - RxCocoa (~> 3.0.0-beta.1)
+    - RxSwift (~> 3.0.0-beta.1)
+  - RxOptional (3.0.0):
     - RxCocoa
-    - RxDataSources
-    - RxOptional
     - RxSwift
-    - SnapKit
-    - SwiftKit (= 0.9.0)
-    - TZStackView
-  - RxCocoa (2.6.0):
-    - RxSwift (~> 2.5)
-  - RxDataSources (0.9):
-    - RxCocoa (~> 2.2)
-    - RxSwift (~> 2.2)
-  - RxOptional (2.0.0):
-    - RxCocoa (~> 2.0)
-    - RxSwift (~> 2.0)
-  - RxSwift (2.6.0)
-  - SnapKit (0.22.0)
-  - SwiftKit (0.9.0):
-    - SwiftKit/Events (= 0.9.0)
-    - SwiftKit/Injection (= 0.9.0)
-    - SwiftKit/Preferences (= 0.9.0)
-    - SwiftKit/Router (= 0.9.0)
-    - SwiftKit/ViewComposer (= 0.9.0)
-  - SwiftKit/Events (0.9.0):
-    - SwiftKitStaging
-  - SwiftKit/Injection (0.9.0):
-    - SwiftKitStaging
-  - SwiftKit/ObjectMapper (0.9.0):
-    - SwiftKitStaging
-    - SwiftyJSON
-  - SwiftKit/Preferences (0.9.0):
-    - SwiftKit/Events
-    - SwiftKitStaging
-  - SwiftKit/Router (0.9.0):
-    - Alamofire (~> 3.0)
-    - HTTPStatusCodes
+  - RxSwift (3.0.0-beta.1)
+  - SnapKit (3.0.1)
+  - SwiftKit (0.10.0):
+    - SwiftKit/Injection (= 0.10.0)
+    - SwiftKit/Router (= 0.10.0)
+  - SwiftKit/Injection (0.10.0):
+    - SwiftKitStaging (~> 0.2)
+  - SwiftKit/ObjectMapper (0.10.0):
+    - SwiftKitStaging (~> 0.2)
+    - SwiftyJSON (~> 3.1)
+  - SwiftKit/Router (0.10.0):
+    - Alamofire (~> 4.0)
+    - HTTPStatusCodes (~> 3.1)
     - SwiftKit/ObjectMapper
-    - SwiftKitStaging
-    - SwiftyJSON
-  - SwiftKit/ViewComposer (0.9.0):
-    - SwiftKit/Events
-    - SwiftKitStaging
-  - SwiftKitStaging (0.1.2)
-  - SwiftyJSON (2.3.2)
-  - TZStackView (1.2.0)
+    - SwiftKitStaging (~> 0.2)
+    - SwiftyJSON (~> 3.1)
+  - SwiftKitStaging (0.2.0)
+  - SwiftyJSON (3.1.0)
 
 DEPENDENCIES:
-  - HanekeSwift
-  - HTTPStatusCodes
-  - Lipstick
-  - Nimble (~> 3.0)
-  - Quick (~> 0.8)
+  - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`, branch `feature/swift-3`)
+  - HTTPStatusCodes (= 3.1.0)
+  - Lipstick (= 0.4.0)
+  - Nimble (~> 5.0)
+  - Quick (from `https://github.com/Quick/Quick.git`, branch `master`)
   - Reactant (from `./`)
-  - RxCocoa
-  - RxDataSources
-  - RxOptional
-  - RxSwift
-  - SnapKit
-  - SwiftKit (= 0.9.0)
-  - TZStackView
+  - RxCocoa (= 3.0.0-beta.1)
+  - RxDataSources (= 1.0.0-beta.2)
+  - RxOptional (= 3.0.0)
+  - RxSwift (= 3.0.0-beta.1)
+  - SnapKit (= 3.0.1)
+  - SwiftKit (= 0.10.0)
 
 EXTERNAL SOURCES:
+  HanekeSwift:
+    :branch: feature/swift-3
+    :git: https://github.com/Haneke/HanekeSwift.git
+  Quick:
+    :branch: master
+    :git: https://github.com/Quick/Quick.git
   Reactant:
     :path: "./"
 
+CHECKOUT OPTIONS:
+  HanekeSwift:
+    :commit: 3fb394f3769303685c9e0e692c9065e6a037b30a
+    :git: https://github.com/Haneke/HanekeSwift.git
+  Quick:
+    :commit: 02fa36276e91b3fc3898d0753cc64786c47c46d3
+    :git: https://github.com/Quick/Quick.git
+
 SPEC CHECKSUMS:
-  Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
-  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
-  HTTPStatusCodes: 1e9e52c98b13646d255af4b495d934471b4a80d4
-  Lipstick: 12d5e79b75fdde5075b7c0b30a6390d5236c6214
-  Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
-  Quick: 13a2a2b19a5d8e3ed4fd0c36ee46597fd77ebf71
-  Reactant: f27b2dd380b950be90df227399a11f1a02801127
-  RxCocoa: 89ab00d5753502520227940e3a0e0a0413683c6b
-  RxDataSources: e169bba94a7be584df7c1e1487fa56edc8753ae6
-  RxOptional: b77fb47a0190213cf8a37c7a2b7fda28160b4563
-  RxSwift: 77f3a0b15324baa7a1c9bfa9f199648a82424e26
-  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
-  SwiftKit: 294f7680a9a0b060bf040f50e21fc82861b4bcf8
-  SwiftKitStaging: c6426fc38163d3e66e1dedc3783e94c2d303610c
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  TZStackView: 4b82373b4aabe4d99adf739a34e1bc6755149272
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
+  HTTPStatusCodes: e0747e2497f1c887944a306b7d7122cb2a01f553
+  Lipstick: e95a20c80513c7bf7c83b878d4c18e20cec2df2b
+  Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
+  Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
+  Reactant: 4c687a51ce4045607dfefd51d8363719f6defe92
+  RxCocoa: 8cecf331302b8ae5381bbab1bccba4ede2eae6a8
+  RxDataSources: 1cd87dc97fd46be002942eb1dcb1b432535141dd
+  RxOptional: 96404fb424af9998798040406fe55244a19fb07a
+  RxSwift: 0823e8d7969c23bfa9ddfb2afa4881e424a1a710
+  SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
+  SwiftKit: 5cb907fe9336d2a378b234c266620e1e49b9681f
+  SwiftKitStaging: 876cbfba9fc364555960e33e9b5c744c01135d3b
+  SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
 
-PODFILE CHECKSUM: 43e495cdbdde9019f36fcd26f3af73c67575cc33
+PODFILE CHECKSUM: d785db4e560824159de46c224b52e5236c8f78a7
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

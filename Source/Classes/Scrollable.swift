@@ -14,13 +14,13 @@ public protocol Scrollable {
 
 public extension Scrollable {
     public func scrollToTop() {
-        scrollToTop(true)
+        scrollToTop(animated: true)
     }
 }
 
 extension UIScrollView: Scrollable {
     public func scrollToTop(animated: Bool) {
         let inset = contentInset
-        setContentOffset(CGPointMake(-inset.left, -inset.top), animated: animated)
+        setContentOffset(CGPoint(x: -inset.left, y: -inset.top), animated: animated)
     }
 }

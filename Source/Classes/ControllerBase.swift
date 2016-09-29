@@ -73,21 +73,26 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         super.init(nibName: nil, bundle: nil)
 
         self.title = title
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style:.Plain)
-        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+
         // If the model is Void, we set it so caller does not have to. Calling it multiple times before canRender does not decrease performance.
         if let voidState = Void() as? STATE {
             componentState = voidState
         }
     }
-    
+
+    @available(*, unavailable)
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     public func renderIfPossible() {
         guard canRender else { return }
         guard stateStorage != nil else {
             #if DEBUG
-                fatalError("Model not set before render was enabled! Model \(STATE.self), controller \(self.dynamicType)")
+                fatalError("Model not set before render was enabled! Model \(STATE.self), controller \(type(of: self))")
             #else
-                print("WARNING: Model not set before render was enabled. This is usually developer error by not calling `setModel` on controller that need non-Void model. Controller \(self.dynamicType) needs \(STATE.self)!")
+                print("WARNING: Model not set before render was enabled. This is usually developer error by not calling `setModel` on controller that need non-Void model. Controller \(type(of: self)) needs \(STATE.self)!")
                 return
             #endif
         }
@@ -100,18 +105,18 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
     public func render() { }
 
     public func updateRootViewConstraints() {
-        rootView.snp_updateConstraints { make in
+        rootView.snp.updateConstraints { make in
             make.leading.equalTo(view)
-            if rootView.edgesForExtendedLayout.contains(.Top) {
+            if rootView.edgesForExtendedLayout.contains(.top) {
                 make.top.equalTo(view)
             } else {
-                make.top.equalTo(snp_topLayoutGuideBottom)
+                make.top.equalTo(topLayoutGuide.snp.bottom)
             }
             make.trailing.equalTo(view)
-            if rootView.edgesForExtendedLayout.contains(.Bottom) {
-                make.bottom.equalTo(view).priorityMedium()
+            if rootView.edgesForExtendedLayout.contains(.bottom) {
+                make.bottom.equalTo(view).priority(UILayoutPriorityDefaultHigh)
             } else {
-                make.bottom.equalTo(snp_bottomLayoutGuideTop).priorityMedium()
+                make.bottom.equalTo(bottomLayoutGuide.snp.top).priority(UILayoutPriorityDefaultHigh)
             }
         }
     }
@@ -135,7 +140,7 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
 
     public func dialogDidDismiss() { }
 
-    public override func viewWillAppear(animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         navigationController?.setNavigationBarHidden(navigationBarHidden, animated: animated)
@@ -145,18 +150,18 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
 
         canRender = true
 
-        rootView.willAppearInternal(animated)
+        rootView.willAppearInternal(animated: animated)
     }
 
-    public override func viewDidAppear(animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        rootView.didAppearInternal(animated)
+        rootView.didAppearInternal(animated: animated)
 
         previousControllersActionsBag = nil
     }
 
-    public override func viewWillDisappear(animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         canRender = false
@@ -168,13 +173,13 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
 
         stateDisposeBag = DisposeBag()
 
-        rootView.willDisappearInternal(animated)
+        rootView.willDisappearInternal(animated: animated)
     }
 
-    public override func viewDidDisappear(animated: Bool) {
+    public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        rootView.didDisappearInternal(animated)
+        rootView.didDisappearInternal(animated: animated)
     }
 }
 

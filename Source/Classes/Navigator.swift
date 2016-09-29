@@ -16,13 +16,13 @@ public struct Navigator {
 
     public func present<C: UIViewController>(controller: C, animated: Bool = true) -> Observable<C> {
         let replay = ReplaySubject<Void>.create(bufferSize: 1)
-        navigationController.presentViewController(controller, animated: animated, completion: { replay.onLast() })
-        return replay.rewrite(controller)
+        navigationController.present(controller, animated: animated, completion: { replay.onLast() })
+        return replay.rewrite(with: controller)
     }
 
-    public func dismiss(animated animated: Bool = true) -> Observable<Void> {
+    public func dismiss(animated: Bool = true) -> Observable<Void> {
         let replay = ReplaySubject<Void>.create(bufferSize: 1)
-        navigationController.dismissViewControllerAnimated(animated, completion: { replay.onLast() })
+        navigationController.dismiss(animated: animated, completion: { replay.onLast() })
         return replay
     }
 
@@ -30,12 +30,12 @@ public struct Navigator {
         navigationController.pushViewController(controller, animated: animated)
     }
 
-    public func pop(animated animated: Bool = true) -> UIViewController? {
-        return navigationController.popViewControllerAnimated(animated)
+    public func pop(animated: Bool = true) -> UIViewController? {
+        return navigationController.popViewController(animated: animated)
     }
 
     public func replace(with controller: UIViewController, animated: Bool = true) -> UIViewController? {
-        var controllers = navigationController.viewControllers ?? []
+        var controllers = navigationController.viewControllers
         let current = controllers.popLast()
         controllers.append(controller)
 
@@ -50,7 +50,7 @@ public struct Navigator {
         transition.type = kCATransitionMoveIn
         transition.subtype = kCATransitionFromLeft
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        navigationController.view.layer.addAnimation(transition, forKey: nil)
+        navigationController.view.layer.add(transition, forKey: nil)
 
         let replaced = replaceAll(with: controller, animated: false)
 
@@ -69,9 +69,9 @@ public struct Navigator {
                                           closeButtonTitle: String? = "Close") -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: controller)
         if let closeButtonTitle = closeButtonTitle {
-            controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: closeButtonTitle, style: .Done) { _ in
-                navigationController.dismissViewControllerAnimated(true, completion: nil)
-            }
+            controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: closeButtonTitle, style: .done, target: navigationController, action: #selector(UINavigationController.dismiss(animated:completion:))) // { _ in
+//                navigationController.dismissViewControllerAnimated(true, completion: nil)
+//            }
         }
         return navigationController
     }

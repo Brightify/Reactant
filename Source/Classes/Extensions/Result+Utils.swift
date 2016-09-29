@@ -7,11 +7,10 @@
 import RxSwift
 import RxCocoa
 import RxOptional
-import Alamofire
 
 public protocol ResultType {
     associatedtype ValueType
-    associatedtype FailureType: ErrorType
+    associatedtype FailureType: Error
 
     var isSuccess: Bool { get }
 
@@ -21,42 +20,80 @@ public protocol ResultType {
 
     var error: FailureType? { get }
 
-    func mapValue<T>(transform: ValueType -> T) -> Result<T, FailureType>
+    func mapValue<T>(transform: (ValueType) -> T) -> Result<T, FailureType>
 
-    func mapError<T: ErrorType>(transform: FailureType -> T) -> Result<ValueType, T>
+    func mapError<T: Error>(transform: (FailureType) -> T) -> Result<ValueType, T>
 
-    func map<T, U: ErrorType>(transformValue transformValue: ValueType -> T, transformError: FailureType -> U) -> Result<T, U>
+    func map<T, U: Error>(transformValue: (ValueType) -> T, transformError: (FailureType) -> U) -> Result<T, U>
 
     func emptied() -> Result<Void, FailureType>
 }
 
+public enum Result<ValueType, FailureType: Error> {
+    case success(ValueType)
+    case failure(FailureType)
+
+    /// Returns `true` if the result is a success, `false` otherwise.
+    public var isSuccess: Bool {
+        switch self {
+        case .success:
+            return true
+        case .failure:
+            return false
+        }
+    }
+
+    /// Returns `true` if the result is a failure, `false` otherwise.
+    public var isFailure: Bool {
+        return !isSuccess
+    }
+
+    /// Returns the associated value if the result is a success, `nil` otherwise.
+    public var value: ValueType? {
+        switch self {
+        case .success(let value):
+            return value
+        case .failure:
+            return nil
+        }
+    }
+
+    /// Returns the associated error value if the result is a failure, `nil` otherwise.
+    public var error: FailureType? {
+        switch self {
+        case .success:
+            return nil
+        case .failure(let error):
+            return error
+        }
+    }
+}
+
 extension Result: ResultType {
-    public typealias ValueType = Value
-    public typealias FailureType = Error
 
-    public func mapValue<T>(transform: Value -> T) -> Result<T, Error> {
+    public func mapValue<T>(transform: (ValueType) -> T) -> Result<T, FailureType> {
         switch self {
-        case .Success(let value):
-            return .Success(transform(value))
-        case .Failure(let error):
-            return .Failure(error)
+        case .success(let value):
+            return .success(transform(value))
+        case .failure(let error):
+            return .failure(error)
         }
     }
 
-    public func mapError<T: ErrorType>(transform: Error -> T) -> Result<Value, T> {
+    public func mapError<T: Error>(transform: (FailureType) -> T) -> Result<ValueType, T> {
         switch self {
-        case .Success(let value):
-            return .Success(value)
-        case .Failure(let error):
-            return .Failure(transform(error))
+        case .success(let value):
+            return .success(value)
+        case .failure(let error):
+            return .failure(transform(error))
         }
     }
 
-    public func map<T, U: ErrorType>(transformValue transformValue: Value -> T, transformError: Error -> U) -> Result<T, U> {
-        return mapValue(transformValue).mapError(transformError)
+    public func map<T, U: Error>(transformValue: (ValueType) -> T, transformError: (FailureType) -> U) -> Result<T, U> {
+        return mapValue(transform: transformValue).mapError(transform: transformError)
     }
 
-    public func emptied() -> Result<Void, Error> {
+    public func emptied() -> Result<Void, FailureType> {
         return mapValue { _ in }
     }
 }
@@ -71,19 +108,19 @@ public extension ObservableConvertibleType where E: ResultType {
         return asObservable().map { $0.error }.filterNil()
     }
 
-    public func mapValue<T>(transform: E.ValueType -> T) -> Observable<Result<T, E.FailureType>> {
-        return asObservable().map { $0.mapValue(transform) }
+    public func mapValue<T>(transform: @escaping (E.ValueType) -> T) -> Observable<Result<T, E.FailureType>> {
+        return asObservable().map { $0.mapValue(transform: transform) }
     }
 
-    public func mapError<T: ErrorType>(transform: E.FailureType -> T) -> Observable<Result<E.ValueType, T>> {
-        return asObservable().map { $0.mapError(transform) }
+    public func mapError<T: Error>(transform: @escaping (E.FailureType) -> T) -> Observable<Result<E.ValueType, T>> {
+        return asObservable().map { $0.mapError(transform: transform) }
     }
 
     public func rewriteValue<T>(newValue: T) -> Observable<Result<T, E.FailureType>> {
         return mapValue { _ in newValue }
     }
 
-    public func replaceResultErrorWith(value: E.ValueType) -> Observable<E.ValueType> {
+    public func replaceResultError(with value: E.ValueType) -> Observable<E.ValueType> {
         return asObservable().map { $0.value ?? value }
     }
 
@@ -91,7 +128,7 @@ public extension ObservableConvertibleType where E: ResultType {
         return asObservable().map { $0.value }
     }
 
-    public func map<T, U: ErrorType>(transformValue transformValue: E.ValueType -> T, transformError: E.FailureType -> U) -> Observable<Result<T, U>> {
+    public func map<T, U: Error>(transformValue: @escaping (E.ValueType) -> T, transformError: @escaping (E.FailureType) -> U) -> Observable<Result<T, U>> {
         return asObservable().map { $0.map(transformValue: transformValue, transformError: transformError) }
     }
 

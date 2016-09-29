@@ -7,6 +7,10 @@
 import UIKit
 
 public class ContainerView: UIView {
+    public override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -20,18 +24,14 @@ public class ContainerView: UIView {
     }
     
     public convenience init() {
-        self.init(frame: CGRectZero)
+        self.init(frame: CGRect.zero)
         
         layoutMargins = ReactantConfiguration.global.layoutMargins
     }
     
-    public override func addSubview(view: UIView) {
+    public override func addSubview(_ view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         super.addSubview(view)
-    }
-    
-    public override class func requiresConstraintBasedLayout() -> Bool {
-        return true
     }
 }

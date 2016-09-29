@@ -9,51 +9,51 @@ import RxCocoa
 import RxDataSources
 import UIKit
 
-public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: ViewBase<TableViewState<CELL.StateType>> {
+public class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>> where CELL: Component {
     typealias MODEL = CELL.StateType
     typealias SECTION = SectionModel<Void, CELL.StateType>
 
     public var refresh: ControlEvent<Void> {
-        return refreshControl.rx_controlEvent(.ValueChanged)
+        return refreshControl.rx.controlEvent(.valueChanged)
     }
 
     public var modelSelected: ControlEvent<MODEL> {
-        return tableView.rx_modelSelected(MODEL)
+        return tableView.rx.modelSelected(MODEL.self)
     }
 
     public override var edgesForExtendedLayout: UIRectEdge {
-        return .All
+        return .all
     }
 
-    private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
-    private let refreshControl = UIRefreshControl()
-    private let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
-    private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    fileprivate let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
+    fileprivate let refreshControl = UIRefreshControl()
+    fileprivate let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
+    fileprivate let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
     public let tableView: UITableView
-    private let tableViewDelegate: SimulatedSeparatorTableViewDelegate
-    private let reloadable: Bool
+    fileprivate let tableViewDelegate: SimulatedSeparatorTableViewDelegate
+    fileprivate let reloadable: Bool
 
     public init(
-        cellFactory: () -> CELL,
+        cellFactory: @escaping () -> CELL,
         separatorColor: UIColor? = nil,
         separatorHeight: CGFloat = 1,
         reloadable: Bool = true,
         rowHeight: CGFloat = UITableViewAutomaticDimension,
         estimatedRowHeight: CGFloat = 0,
-        style: UITableViewStyle = .Plain,
-        separatorStyle: UITableViewCellSeparatorStyle = .None,
+        style: UITableViewStyle = .plain,
+        separatorStyle: UITableViewCellSeparatorStyle = .none,
         tableHeaderView: UIView? = nil,
         tableFooterView: UIView? = nil)
     {
         self.reloadable = reloadable
-        tableView = UITableView(frame: CGRectZero, style: style)
+        tableView = UITableView(frame: CGRect.zero, style: style)
 
         tableViewDelegate = SimulatedSeparatorTableViewDelegate(
             sectionFooterHeight: separatorHeight,
 
             viewForFooterInSection: { tableView, _ in
-                let footer = tableView.dequeueReusableHeaderFooterViewWithIdentifier("SimulatedDelimiter")
+                let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SimulatedDelimiter")
                 footer?.backgroundView?.backgroundColor = separatorColor
                 return footer
             })
@@ -64,7 +64,7 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
         tableView.estimatedRowHeight = estimatedRowHeight
         tableView.separatorStyle = separatorStyle
         tableView.backgroundView = nil
-        tableView.backgroundColor = UIColor.clearColor()
+        tableView.backgroundColor = UIColor.clear
 
         if let tableHeaderView = tableHeaderView {
             tableView.tableHeaderView = tableHeaderView
@@ -73,17 +73,17 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
             tableView.tableFooterView = tableFooterView
         }
 
-        tableView.registerClass(SimulatedSeparatorFooter.self, forHeaderFooterViewReuseIdentifier: "SimulatedDelimiter")
-        tableView.registerClass(RxTableViewCell<CELL>.self, forCellReuseIdentifier: "Cell")
+        tableView.register(SimulatedSeparatorFooter.self, forHeaderFooterViewReuseIdentifier: "SimulatedDelimiter")
+        tableView.register(RxTableViewCell<CELL>.self, forCellReuseIdentifier: "Cell")
 
         dataSource.configureCell = { [cellFactory] _, tableView, indexPath, model in
-            let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? RxTableViewCell<CELL>
-            cell?.cachedContentOrCreated(cellFactory).setComponentState(model)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? RxTableViewCell<CELL>
+            cell?.cachedContentOrCreated(factory: cellFactory).setComponentState(model)
             return cell ?? UITableViewCell()
         }
 
         tableView
-            .rx_setDelegate(tableViewDelegate)
+            .rx.setDelegate(tableViewDelegate)
             .addDisposableTo(lifecycleDisposeBag)
     }
 
@@ -109,11 +109,11 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
         var emptyMessage: String = ""
 
         switch componentState {
-        case .Items(let models):
+        case .items(let models):
             items = models.map { SECTION(model: Void(), items: [$0]) }
-        case .Empty(let message):
+        case .empty(let message):
             emptyMessage = message
-        case .Loading:
+        case .loading:
             loading = true
         }
 
@@ -134,13 +134,14 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
         }
 
         Observable.just(items)
-            .bindTo(tableView.rx_itemsWithDataSource(dataSource))
+            .bindTo(tableView.rx.items(dataSource: dataSource))
             .addDisposableTo(stateDisposeBag)
 
-        tableView.rx_itemSelected
-            .subscribeNext { [tableView] in
-                tableView.deselectRowAtIndexPath($0, animated: true)
-            }.addDisposableTo(stateDisposeBag)
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [tableView] in
+                tableView.deselectRow(at: $0, animated: true)
+            })
+            .addDisposableTo(stateDisposeBag)
 
         setNeedsLayout()
     }
@@ -148,15 +149,15 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
     public override func updateConstraints() {
         super.updateConstraints()
 
-        tableView.snp_remakeConstraints { make in
+        tableView.snp.remakeConstraints { make in
             make.edges.equalTo(self)
         }
 
-        emptyLabel.snp_remakeConstraints { make in
+        emptyLabel.snp.remakeConstraints { make in
             make.center.equalTo(self)
         }
 
-        loadingIndicator.snp_remakeConstraints { make in
+        loadingIndicator.snp.remakeConstraints { make in
             make.center.equalTo(self)
         }
     }
@@ -165,16 +166,16 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
         super.layoutSubviews()
 
         if let tableViewHeader = tableView.tableHeaderView {
-            setAndLayoutTableHeaderView(tableViewHeader)
+            setAndLayout(tableHeaderView: tableViewHeader)
         }
     }
 
-    private func setAndLayoutTableHeaderView(header: UIView) {
+    private func setAndLayout(tableHeaderView header: UIView) {
         header.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableHeaderView = nil
         let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
 
-        let size = header.systemLayoutSizeFittingSize(targetSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
+        let size = header.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
         header.translatesAutoresizingMaskIntoConstraints = true
         header.frame.size = CGSize(width: targetSize.width, height: size.height)
         tableView.tableHeaderView = header
@@ -183,7 +184,7 @@ public class SimulatedSeparatorTableView<CELL: UIView where CELL: Component>: Vi
 
 extension SimulatedSeparatorTableView: Scrollable {
     public func scrollToTop(animated: Bool) {
-        tableView.scrollToTop(animated)
+        tableView.scrollToTop(animated: animated)
     }
 }
 
@@ -209,11 +210,11 @@ extension SimulatedSeparatorTableView {
 
 private class SimulatedSeparatorTableViewDelegate: NSObject, UITableViewDelegate {
     private let sectionFooterHeight: CGFloat
-    private let viewForFooterInSection: (tableView: UITableView, section: Int) -> UIView?
+    private let viewForFooterInSection: (_ tableView: UITableView, _ section: Int) -> UIView?
 
     init(
         sectionFooterHeight: CGFloat,
-        viewForFooterInSection: (tableView: UITableView, section: Int) -> UIView?)
+        viewForFooterInSection: @escaping (_ tableView: UITableView, _ section: Int) -> UIView?)
     {
         self.sectionFooterHeight = sectionFooterHeight
 
@@ -222,12 +223,12 @@ private class SimulatedSeparatorTableViewDelegate: NSObject, UITableViewDelegate
         super.init()
     }
 
-    @objc func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    @objc func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return sectionFooterHeight
     }
 
-    @objc func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return viewForFooterInSection(tableView: tableView, section: section)
+    @objc func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return viewForFooterInSection(tableView, section)
     }
 }
 

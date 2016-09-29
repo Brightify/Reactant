@@ -11,11 +11,11 @@ import RxCocoa
 
 public struct ActivityToken<E> : ObservableConvertibleType, Disposable {
     private let _source: Observable<E>
-    private let _dispose: AnonymousDisposable
+    private let _dispose: Cancelable
 
-    public init(source: Observable<E>, disposeAction: () -> ()) {
+    public init(source: Observable<E>, disposeAction: @escaping () -> ()) {
         _source = source
-        _dispose = AnonymousDisposable(disposeAction)
+        _dispose = Disposables.create(with: disposeAction)
     }
 
     public func dispose() {
@@ -46,15 +46,15 @@ public class ActivityIndicator: DriverConvertibleType {
         _loading = _variable.asObservable()
             .map { $0 > 0 }
             .distinctUntilChanged()
-            .asDriver { (error: ErrorType) -> Driver<Bool> in
+            .asDriver { (error: Error) -> Driver<Bool> in
                 _ = assert(false, "Loader can't fail")
                 return Driver.empty()
         }
     }
 
-    public func trackActivity<O: ObservableConvertibleType>(source: O, message: String) -> Observable<O.E> {
+    public func trackActivity<O: ObservableConvertibleType>(of source: O, message: String) -> Observable<O.E> {
         return Observable.using({ () -> ActivityToken<O.E> in
-            self.increment(message)
+            self.increment(message: message)
             return ActivityToken(source: source.asObservable(), disposeAction: self.decrement)
         }) { t in
             return t.asObservable()
@@ -80,8 +80,8 @@ public class ActivityIndicator: DriverConvertibleType {
 }
 
 extension ObservableConvertibleType {
-    public func trackActivity(activityIndicator: ActivityIndicator, message: String? = nil) -> Observable<E> {
-        return activityIndicator.trackActivity(
-            self, message: message ?? ReactantConfiguration.global.defaultLoadingMessage)
+    public func trackActivity(in activityIndicator: ActivityIndicator, message: String? = nil) -> Observable<E> {
+        return activityIndicator.trackActivity(of: self,
+                                               message: message ?? ReactantConfiguration.global.defaultLoadingMessage)
     }
 }
