@@ -6,7 +6,7 @@
 
 import SwiftKit
 
-public protocol TableViewCellContent {
+open protocol TableViewCellContent {
 
     var selectionStyle: UITableViewCellSelectionStyle { get }
 
@@ -19,34 +19,34 @@ public protocol TableViewCellContent {
 }
 
 extension TableViewCellContent {
-    public var selectionStyle: UITableViewCellSelectionStyle {
+    open var selectionStyle: UITableViewCellSelectionStyle {
         return .default
     }
 
     @available(iOS 9.0, *)
-    public var focusStyle: UITableViewCellFocusStyle {
+    open var focusStyle: UITableViewCellFocusStyle {
         return .default
     }
     
-    public func setSelected(_ selected: Bool, animated: Bool) { }
+    open func setSelected(_ selected: Bool, animated: Bool) { }
 
-    public func setHighlighted(_ highlighted: Bool, animated: Bool) { }
+    open func setHighlighted(_ highlighted: Bool, animated: Bool) { }
 }
 
-public final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
+open final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
     private var content: CONTENT?
 
-    public override class var requiresConstraintBasedLayout: Bool {
+    open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    open required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         loadView()
     }
 
-    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    open override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         loadView()
@@ -59,7 +59,7 @@ public final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
         multipleSelectionBackgroundView = nil
     }
 
-    public func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
+    open func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
         let cellContent: CONTENT
         if let content = content {
             cellContent = content
@@ -79,7 +79,7 @@ public final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
         return cellContent
     }
 
-    public override func updateConstraints() {
+    open override func updateConstraints() {
         super.updateConstraints()
 
         content?.snp.updateConstraints { make in
@@ -87,13 +87,13 @@ public final class RxTableViewCell<CONTENT: UIView>: UITableViewCell {
         }
     }
 
-    public override func setSelected(_ selected: Bool, animated: Bool) {
+    open override func setSelected(_ selected: Bool, animated: Bool) {
         if let content = content as? TableViewCellContent {
             content.setSelected(selected, animated: animated)
         }
     }
 
-    public override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+    open override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if let content = content as? TableViewCellContent {
             content.setHighlighted(highlighted, animated: animated)
         }

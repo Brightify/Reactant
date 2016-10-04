@@ -4,12 +4,12 @@
 //  Created by Maros Seleng on 10/05/16.
 //
 
-public enum TableViewState<MODEL> {
+open enum TableViewState<MODEL> {
     case items([MODEL])
     case empty(message: String)
     case loading
     
-    public func mapItems<U>(transform: ([MODEL]) -> [U]) -> TableViewState<U> {
+    open func mapItems<U>(transform: ([MODEL]) -> [U]) -> TableViewState<U> {
         switch self {
         case .loading:
             return .loading
@@ -21,7 +21,7 @@ public enum TableViewState<MODEL> {
     }
 }
 
-public func == <M: Equatable>(lhs: TableViewState<M>, rhs: TableViewState<M>) -> Bool {
+open func == <M: Equatable>(lhs: TableViewState<M>, rhs: TableViewState<M>) -> Bool {
     switch (lhs, rhs) {
     case (.loading, .loading):
         return true

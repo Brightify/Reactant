@@ -10,14 +10,14 @@ import SwiftKit
 import Lipstick
 import RxSwift
 
-public class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, ROOT> {
-    public let scrollView = UIScrollView()
+open class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, ROOT> {
+    open let scrollView = UIScrollView()
 
-    public override init(title: String = "", root: ROOT = ROOT()) {
+    open override init(title: String = "", root: ROOT = ROOT()) {
         super.init(title: title, root: root)
     }
 
-    public override func loadView() {
+    open override func loadView() {
         view = ControllerRootView().styled(using: ReactantConfiguration.global.controllerRootStyle)
 
         view.children(
@@ -27,7 +27,7 @@ public class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, RO
         )
     }
 
-    public override func updateRootViewConstraints() {
+    open override func updateRootViewConstraints() {
         scrollView.snp.updateConstraints { make in
             make.edges.equalTo(view)
         }
@@ -40,11 +40,11 @@ public class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, RO
         }
     }
 
-    public override func viewWillLayoutSubviews() {
+    open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
     }
 
-    public override func viewDidLayoutSubviews() {
+    open override func viewDidLayoutSubviews() {
         scrollView.contentSize = rootView.bounds.size
 
         super.viewDidLayoutSubviews()
@@ -52,7 +52,7 @@ public class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, RO
 }
 
 extension ScrollControllerBase: Scrollable {
-    public func scrollToTop(animated: Bool) {
+    open func scrollToTop(animated: Bool) {
         scrollView.scrollToTop(animated: animated)
     }
 }

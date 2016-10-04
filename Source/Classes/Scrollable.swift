@@ -8,18 +8,18 @@
 
 import UIKit
 
-public protocol Scrollable {
+open protocol Scrollable {
     func scrollToTop(animated: Bool)
 }
 
-public extension Scrollable {
-    public func scrollToTop() {
+open extension Scrollable {
+    open func scrollToTop() {
         scrollToTop(animated: true)
     }
 }
 
 extension UIScrollView: Scrollable {
-    public func scrollToTop(animated: Bool) {
+    open func scrollToTop(animated: Bool) {
         let inset = contentInset
         setContentOffset(CGPoint(x: -inset.left, y: -inset.top), animated: animated)
     }

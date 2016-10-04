@@ -9,11 +9,11 @@
 import UIKit
 import Lipstick
 
-public struct ReactantConfiguration {
-    public static var global = ReactantConfiguration()
+open struct ReactantConfiguration {
+    open static var global = ReactantConfiguration()
 
-    public var layoutMargins: UIEdgeInsets = UIEdgeInsets.zero
-    public var controllerRootStyle: (ControllerRootView) -> Void = { _ in }
-    public var emptyListLabelStyle: (UILabel) -> Void = { _ in }
-    public var defaultLoadingMessage: String = "Loading .."
+    open var layoutMargins: UIEdgeInsets = UIEdgeInsets.zero
+    open var controllerRootStyle: (ControllerRootView) -> Void = { _ in }
+    open var emptyListLabelStyle: (UILabel) -> Void = { _ in }
+    open var defaultLoadingMessage: String = "Loading .."
 }

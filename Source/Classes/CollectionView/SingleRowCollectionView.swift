@@ -8,25 +8,25 @@ import Lipstick
 import RxCocoa
 import RxSwift
 
-public class SingleRowCollectionView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>> where CELL: Component {
+open class SingleRowCollectionView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>> where CELL: Component {
     private typealias MODEL = CELL.StateType
     
-    public var modelSelected: ControlEvent<MODEL> {
+    open var modelSelected: ControlEvent<MODEL> {
         return collectionView.rx.modelSelected(MODEL.self)
     }
     
-    public override var edgesForExtendedLayout: UIRectEdge {
+    open override var edgesForExtendedLayout: UIRectEdge {
         return .all
     }
     
-    public let collectionView: UICollectionView
-    public let collectionViewLayout = UICollectionViewFlowLayout()
+    open let collectionView: UICollectionView
+    open let collectionViewLayout = UICollectionViewFlowLayout()
     private let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
     private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     private let cellFactory: () -> CELL
     
-    public init(
+    open init(
         cellFactory: @escaping () -> CELL,
         itemSize: CGSize = CGSize.zero,
         estimatedItemSize: CGSize = CGSize.zero,
@@ -49,7 +49,7 @@ public class SingleRowCollectionView<CELL: UIView>: ViewBase<TableViewState<CELL
         collectionView.register(RxCollectionViewCell<CELL>.self, forCellWithReuseIdentifier: "Cell")
     }
     
-    public override func loadView() {
+    open override func loadView() {
         children(
             collectionView,
             emptyLabel,
@@ -59,7 +59,7 @@ public class SingleRowCollectionView<CELL: UIView>: ViewBase<TableViewState<CELL
         loadingIndicator.hidesWhenStopped = true
     }
     
-    public override func render() {
+    open override func render() {
         var items: [MODEL] = []
         var loading: Bool = false
         var emptyMessage: String = ""
@@ -97,7 +97,7 @@ public class SingleRowCollectionView<CELL: UIView>: ViewBase<TableViewState<CELL
         setNeedsLayout()
     }
     
-    public override func updateConstraints() {
+    open override func updateConstraints() {
         super.updateConstraints()
         
         collectionView.snp.remakeConstraints { make in

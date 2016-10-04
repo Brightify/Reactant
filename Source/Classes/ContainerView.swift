@@ -6,30 +6,30 @@
 
 import UIKit
 
-public class ContainerView: UIView {
-    public override class var requiresConstraintBasedLayout: Bool {
+open class ContainerView: UIView {
+    open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
 
-    public required init?(coder aDecoder: NSCoder) {
+    open required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         layoutMargins = ReactantConfiguration.global.layoutMargins
     }
     
-    public override init(frame: CGRect) {
+    open override init(frame: CGRect) {
         super.init(frame: frame)
         
         layoutMargins = ReactantConfiguration.global.layoutMargins
     }
     
-    public convenience init() {
+    open convenience init() {
         self.init(frame: CGRect.zero)
         
         layoutMargins = ReactantConfiguration.global.layoutMargins
     }
     
-    public override func addSubview(_ view: UIView) {
+    open override func addSubview(_ view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         super.addSubview(view)

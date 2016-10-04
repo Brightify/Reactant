@@ -14,6 +14,6 @@ FOUNDATION_EXPORT double ReactantVersionNumber;
 //! Project version string for Reactant.
 FOUNDATION_EXPORT const unsigned char ReactantVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <Reactant/PublicHeader.h>
+// In this header, you should import all the open headers of your framework using statements like #import <Reactant/openHeader.h>
 
 

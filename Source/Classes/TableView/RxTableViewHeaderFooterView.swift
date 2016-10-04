@@ -6,14 +6,14 @@
 
 import SwiftKit
 
-public final class RxTableViewHeaderFooterView<CONTENT: UIView>: UITableViewHeaderFooterView {
+open final class RxTableViewHeaderFooterView<CONTENT: UIView>: UITableViewHeaderFooterView {
     private var content: CONTENT?
 
-    public override class var requiresConstraintBasedLayout: Bool {
+    open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
 
-    public func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
+    open func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
         if let content = content {
             return content
         } else {
@@ -25,7 +25,7 @@ public final class RxTableViewHeaderFooterView<CONTENT: UIView>: UITableViewHead
         }
     }
 
-    public override func updateConstraints() {
+    open override func updateConstraints() {
         super.updateConstraints()
 
         content?.snp.updateConstraints { make in

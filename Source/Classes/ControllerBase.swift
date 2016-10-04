@@ -12,16 +12,16 @@ import RxCocoa
 import SnapKit
 import Lipstick
 
-public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalListener, Component {
-    public let rootView: ROOT
+open class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalListener, Component {
+    open let rootView: ROOT
 
-    public var observableState: Observable<STATE> {
+    open var observableState: Observable<STATE> {
         return observableStateSubject
     }
     private let observableStateSubject = ReplaySubject<STATE>.create(bufferSize: 1)
 
-    public private(set) var previousComponentState: STATE?
-    public var componentState: STATE {
+    open private(set) var previousComponentState: STATE?
+    open var componentState: STATE {
         get {
             if let state = stateStorage {
                 return state
@@ -50,24 +50,24 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         }
     }
     
-    public var navigationBarHidden: Bool {
+    open var navigationBarHidden: Bool {
         return false
     }
 
     /// DisposeBag for one-time subscriptions made in init. It is reset just before deallocating.
-    public let lifetimeDisposeBag = DisposeBag()
+    open let lifetimeDisposeBag = DisposeBag()
 
     /// DisposeBag for actions from other controllers. This is reset before each `render` call.
-    public private(set) var controllersActionsBag = DisposeBag()
+    open private(set) var controllersActionsBag = DisposeBag()
 
     /* We need to keep this until viewWillAppear is called to not dispose controller actions when user just peeks
        back to this controller */
     private var previousControllersActionsBag: DisposeBag?
 
     /// DisposeBag for actions in `render`. This is reset before each `render` call and in `viewWillDisappear`.
-    public private(set) var stateDisposeBag = DisposeBag()
+    open private(set) var stateDisposeBag = DisposeBag()
 
-    public init(title: String = "", root: ROOT = ROOT()) {
+    open init(title: String = "", root: ROOT = ROOT()) {
         rootView = root
 
         super.init(nibName: nil, bundle: nil)
@@ -82,11 +82,11 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
     }
 
     @available(*, unavailable)
-    public required init?(coder aDecoder: NSCoder) {
+    open required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func renderIfPossible() {
+    open func renderIfPossible() {
         guard canRender else { return }
         guard stateStorage != nil else {
             #if DEBUG
@@ -102,9 +102,9 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         render()
     }
 
-    public func render() { }
+    open func render() { }
 
-    public func updateRootViewConstraints() {
+    open func updateRootViewConstraints() {
         rootView.snp.updateConstraints { make in
             make.leading.equalTo(view)
             if rootView.edgesForExtendedLayout.contains(.top) {
@@ -121,26 +121,26 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         }
     }
     
-    public override func loadView() {
+    open override func loadView() {
         // FIXME Add common styles and style rootview
         view = ControllerRootView().styled(using: ReactantConfiguration.global.controllerRootStyle)
 
         view.addSubview(rootView)
     }
 
-    public override func updateViewConstraints() {
+    open override func updateViewConstraints() {
         updateRootViewConstraints()
 
         super.updateViewConstraints()
     }
 
-    public func dialogWillDismiss() {
+    open func dialogWillDismiss() {
         renderIfPossible()
     }
 
-    public func dialogDidDismiss() { }
+    open func dialogDidDismiss() { }
 
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         navigationController?.setNavigationBarHidden(navigationBarHidden, animated: animated)
@@ -153,7 +153,7 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         rootView.willAppearInternal(animated: animated)
     }
 
-    public override func viewDidAppear(_ animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         rootView.didAppearInternal(animated: animated)
@@ -161,7 +161,7 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         previousControllersActionsBag = nil
     }
 
-    public override func viewWillDisappear(_ animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         canRender = false
@@ -176,14 +176,14 @@ public class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismis
         rootView.willDisappearInternal(animated: animated)
     }
 
-    public override func viewDidDisappear(_ animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         rootView.didDisappearInternal(animated: animated)
     }
 }
 
-public protocol DialogDismissalListener {
+open protocol DialogDismissalListener {
     func dialogWillDismiss()
     
     func dialogDidDismiss()

@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-public protocol Component: class {
+open protocol Component: class {
     associatedtype StateType
 
     /// Observable with the current state of the component. Do not use this in `render` to avoid duplicite loading bugs
@@ -22,12 +22,12 @@ public protocol Component: class {
     func render()
 }
 
-public extension Component {
-    public func setComponentState(_ state: StateType) {
+open extension Component {
+    open func setComponentState(_ state: StateType) {
         componentState = state
     }
     
-    public func with(state: StateType) -> Self {
+    open func with(state: StateType) -> Self {
         setComponentState(state)
         return self
     }

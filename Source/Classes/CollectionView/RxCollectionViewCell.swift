@@ -5,26 +5,26 @@
 //
 import SwiftKit
 
-public protocol CollectionViewCellContent {
+open protocol CollectionViewCellContent {
     func setSelected(_ selected: Bool)
 
     func setHighlighted(_ highlighted: Bool)
 }
 
 extension CollectionViewCellContent {
-    public func setSelected(_ selected: Bool) { }
+    open func setSelected(_ selected: Bool) { }
 
-    public func setHighlighted(_ highlighted: Bool) { }
+    open func setHighlighted(_ highlighted: Bool) { }
 }
 
-public final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
+open final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
     private var content: CONTENT?
 
-    public override class var requiresConstraintBasedLayout: Bool {
+    open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
 
-    public override var isSelected: Bool {
+    open override var isSelected: Bool {
         didSet {
             if let content = content as? CollectionViewCellContent {
                 content.setSelected(isSelected)
@@ -32,7 +32,7 @@ public final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
         }
     }
 
-    public override var isHighlighted: Bool {
+    open override var isHighlighted: Bool {
         didSet {
             if let content = content as? CollectionViewCellContent {
                 content.setHighlighted(isHighlighted)
@@ -40,7 +40,7 @@ public final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
         }
     }
 
-    public func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
+    open func cachedContentOrCreated(factory: () -> CONTENT) -> CONTENT {
         if let content = content {
             return content
         } else {
@@ -52,7 +52,7 @@ public final class RxCollectionViewCell<CONTENT: UIView>: UICollectionViewCell {
         }
     }
     
-    public override func updateConstraints() {
+    open override func updateConstraints() {
         super.updateConstraints()
         
         content?.snp.updateConstraints { make in

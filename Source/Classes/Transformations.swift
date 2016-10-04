@@ -9,13 +9,13 @@
 import SwiftKit
 import SwiftyJSON
 
-public struct Transformations {
+open struct Transformations {
 
-    public static let int = IntTransformation()
-    public static let string = StringTransformation()
-    public static let url = NSURLTransformation()
-    public static let bool = BoolTransformation()
-    public static let double = DoubleTransformation()
-    public static let date = ISO8601DateTransformation()
+    open static let int = IntTransformation()
+    open static let string = StringTransformation()
+    open static let url = NSURLTransformation()
+    open static let bool = BoolTransformation()
+    open static let double = DoubleTransformation()
+    open static let date = ISO8601DateTransformation()
 
 }

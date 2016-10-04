@@ -10,30 +10,30 @@ import RxCocoa
 import RxDataSources
 import Lipstick
 
-public class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>> where CELL: Component {
+open class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>> where CELL: Component {
     private typealias MODEL = CELL.StateType
 
-    public var refresh: ControlEvent<Void> {
+    open var refresh: ControlEvent<Void> {
         return refreshControl.rx.controlEvent(.valueChanged)
     }
 
-    public var modelSelected: ControlEvent<MODEL> {
+    open var modelSelected: ControlEvent<MODEL> {
         return tableView.rx.modelSelected(MODEL.self)
     }
     
-    public var contentOffset: ControlProperty<CGPoint> {
+    open var contentOffset: ControlProperty<CGPoint> {
         return tableView.rx.contentOffset
     }
     
-    public var contentSize: CGSize {
+    open var contentSize: CGSize {
         return tableView.contentSize
     }
 
-    public override var edgesForExtendedLayout: UIRectEdge {
+    open override var edgesForExtendedLayout: UIRectEdge {
         return .all
     }
 
-    public let tableView: UITableView
+    open let tableView: UITableView
     private let refreshControl = UIRefreshControl()
     private let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
     private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
@@ -41,7 +41,7 @@ public class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateTy
     private let cellFactory: () -> CELL
     private let reloadable: Bool
 
-    public init(
+    open init(
         cellFactory: @escaping () -> CELL,
         reloadable: Bool = true,
         rowHeight: CGFloat = UITableViewAutomaticDimension,
@@ -67,7 +67,7 @@ public class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateTy
         tableView.register(RxTableViewCell<CELL>.self, forCellReuseIdentifier: "Cell")
     }
 
-    public override func loadView() {
+    open override func loadView() {
         children(
             tableView,
             emptyLabel,
@@ -83,7 +83,7 @@ public class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateTy
         loadingIndicator.hidesWhenStopped = true
     }
 
-    public override func render() {
+    open override func render() {
         var items: [MODEL] = []
         var loading: Bool = false
         var emptyMessage: String = ""
@@ -128,7 +128,7 @@ public class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateTy
         setNeedsLayout()
     }
 
-    public override func updateConstraints() {
+    open override func updateConstraints() {
         super.updateConstraints()
 
         tableView.snp.remakeConstraints { make in
@@ -144,7 +144,7 @@ public class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateTy
         }
     }
 
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
 
         if let tableViewHeader = tableView.tableHeaderView {
@@ -165,7 +165,7 @@ public class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateTy
 }
 
 extension SimpleTableView: Scrollable {
-    public func scrollToTop(animated: Bool) {
+    open func scrollToTop(animated: Bool) {
         tableView.scrollToTop(animated: animated)
     }
 }

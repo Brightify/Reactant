@@ -10,22 +10,22 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-public class ViewBase<STATE>: UIView, Component {
+open class ViewBase<STATE>: UIView, Component {
     // MARK: Dispose bags
-    public let lifecycleDisposeBag = DisposeBag()
-    public var stateDisposeBag = DisposeBag()
+    open let lifecycleDisposeBag = DisposeBag()
+    open var stateDisposeBag = DisposeBag()
 
-    public override class var requiresConstraintBasedLayout: Bool {
+    open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
 
-    public var observableState: Observable<STATE> {
+    open var observableState: Observable<STATE> {
         return observableStateSubject
     }
     private let observableStateSubject = ReplaySubject<STATE>.create(bufferSize: 1)
 
-    public private(set) var previousComponentState: STATE?
-    public var componentState: STATE {
+    open private(set) var previousComponentState: STATE?
+    open var componentState: STATE {
         get {
             if let model = stateStorage {
                 return model
@@ -43,7 +43,7 @@ public class ViewBase<STATE>: UIView, Component {
     }
     private var stateStorage: STATE?
 
-    public init() {
+    open init() {
         super.init(frame: CGRect.zero)
 
         prepareView()
@@ -51,7 +51,7 @@ public class ViewBase<STATE>: UIView, Component {
         setVoidStateIfPossible()
     }
 
-    public init(initialState: STATE?) {
+    open init(initialState: STATE?) {
         super.init(frame: CGRect.zero)
 
         prepareView()
@@ -64,7 +64,7 @@ public class ViewBase<STATE>: UIView, Component {
     }
 
     @available(*, unavailable)
-    public required init?(coder aDecoder: NSCoder) {
+    open required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -84,9 +84,9 @@ public class ViewBase<STATE>: UIView, Component {
         }
     }
 
-    public func render() { }
+    open func render() { }
 
-    public func loadView() { }
+    open func loadView() { }
 
-    public func setupConstraints() { }
+    open func setupConstraints() { }
 }

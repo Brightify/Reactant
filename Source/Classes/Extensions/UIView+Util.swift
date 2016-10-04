@@ -6,9 +6,9 @@
 
 import UIKit
 
-public extension UIView {
+open extension UIView {
     @discardableResult
-    public func children(_ children: UIView...) -> UIView {
+    open func children(_ children: UIView...) -> UIView {
         children.forEach(addSubview)
         return self
     }

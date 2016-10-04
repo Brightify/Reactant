@@ -12,9 +12,9 @@ import RxCocoa
 import RxSwift
 import Haneke
 
-public class StaticMap: ViewBase<MKCoordinateRegion> {
+open class StaticMap: ViewBase<MKCoordinateRegion> {
 
-    public var selected: Observable<Void> {
+    open var selected: Observable<Void> {
         return tapGestureRecognizer.rx.event.rewrite(with: Void())
     }
 
@@ -22,11 +22,11 @@ public class StaticMap: ViewBase<MKCoordinateRegion> {
 
     private let tapGestureRecognizer = UITapGestureRecognizer()
 
-    public override init() {
+    open override init() {
         super.init()
     }
 
-    public override func render() {
+    open override func render() {
         layoutIfNeeded()
         image.image = nil
         let fileName = String(format: "map-image-c%.2f,%.2f-s%.2f,%.2f-%.0fx%.0f",
@@ -64,7 +64,7 @@ public class StaticMap: ViewBase<MKCoordinateRegion> {
         }
     }
 
-    public override func loadView() {
+    open override func loadView() {
         children(
             image
         )
@@ -74,7 +74,7 @@ public class StaticMap: ViewBase<MKCoordinateRegion> {
         addGestureRecognizer(tapGestureRecognizer)
     }
 
-    public override func setupConstraints() {
+    open override func setupConstraints() {
         image.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .horizontal)
         image.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .vertical)
         image.snp.makeConstraints { make in
@@ -88,7 +88,7 @@ import CoreLocation
 extension Collection where Iterator.Element == CLLocationCoordinate2D, IndexDistance == Int {
 
     /// Calculates center between coordinates in this collection
-    public func centerCoordinate() -> CLLocationCoordinate2D {
+    open func centerCoordinate() -> CLLocationCoordinate2D {
         guard count > 1 else { return first ?? CLLocationCoordinate2D() }
 
         let vector = reduce(DoubleVector3()) { accumulator, coordinate in
@@ -110,7 +110,7 @@ extension Collection where Iterator.Element == CLLocationCoordinate2D, IndexDist
             longitude: radiansToDegrees(resultLongitude))
     }
 
-    public func coordinateSpan() -> MKCoordinateSpan {
+    open func coordinateSpan() -> MKCoordinateSpan {
         var minLatitude: Double = 90
         var maxLatitude: Double = -90
         var minLongitude: Double = 180
@@ -164,11 +164,11 @@ private func radiansToDegrees(_ value: Double) -> Double {
 }
 
 extension MKCoordinateSpan {
-    public func inset(percent: Double) -> MKCoordinateSpan {
+    open func inset(percent: Double) -> MKCoordinateSpan {
         return inset(horizontalPercent: percent, verticalPercent: percent)
     }
 
-    public func inset(horizontalPercent horizontal: Double, verticalPercent vertical: Double) -> MKCoordinateSpan {
+    open func inset(horizontalPercent horizontal: Double, verticalPercent vertical: Double) -> MKCoordinateSpan {
         return MKCoordinateSpan(
             latitudeDelta: latitudeDelta + latitudeDelta * vertical,
             longitudeDelta: longitudeDelta + longitudeDelta * horizontal)

@@ -9,19 +9,19 @@ import RxCocoa
 import RxDataSources
 import UIKit
 
-public class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>> where CELL: Component {
+open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>> where CELL: Component {
     typealias MODEL = CELL.StateType
     typealias SECTION = SectionModel<Void, CELL.StateType>
 
-    public var refresh: ControlEvent<Void> {
+    open var refresh: ControlEvent<Void> {
         return refreshControl.rx.controlEvent(.valueChanged)
     }
 
-    public var modelSelected: ControlEvent<MODEL> {
+    open var modelSelected: ControlEvent<MODEL> {
         return tableView.rx.modelSelected(MODEL.self)
     }
 
-    public override var edgesForExtendedLayout: UIRectEdge {
+    open override var edgesForExtendedLayout: UIRectEdge {
         return .all
     }
 
@@ -30,11 +30,11 @@ public class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<
     fileprivate let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
     fileprivate let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
-    public let tableView: UITableView
+    open let tableView: UITableView
     fileprivate let tableViewDelegate: SimulatedSeparatorTableViewDelegate
     fileprivate let reloadable: Bool
 
-    public init(
+    open init(
         cellFactory: @escaping () -> CELL,
         separatorColor: UIColor? = nil,
         separatorHeight: CGFloat = 1,
@@ -87,7 +87,7 @@ public class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<
             .addDisposableTo(lifecycleDisposeBag)
     }
 
-    public override func loadView() {
+    open override func loadView() {
         children(
             tableView,
             emptyLabel,
@@ -103,7 +103,7 @@ public class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<
         loadingIndicator.hidesWhenStopped = true
     }
 
-    public override func render() {
+    open override func render() {
         var items: [SECTION] = []
         var loading: Bool = false
         var emptyMessage: String = ""
@@ -146,7 +146,7 @@ public class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<
         setNeedsLayout()
     }
 
-    public override func updateConstraints() {
+    open override func updateConstraints() {
         super.updateConstraints()
 
         tableView.snp.remakeConstraints { make in
@@ -162,7 +162,7 @@ public class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<
         }
     }
 
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
 
         if let tableViewHeader = tableView.tableHeaderView {
@@ -183,13 +183,13 @@ public class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<
 }
 
 extension SimulatedSeparatorTableView: Scrollable {
-    public func scrollToTop(animated: Bool) {
+    open func scrollToTop(animated: Bool) {
         tableView.scrollToTop(animated: animated)
     }
 }
 
 extension SimulatedSeparatorTableView {
-    public var refreshControlTintColor: UIColor? {
+    open var refreshControlTintColor: UIColor? {
         get {
             return refreshControl.tintColor
         }
@@ -198,7 +198,7 @@ extension SimulatedSeparatorTableView {
         }
     }
 
-    public var activityIndicatorStyle: UIActivityIndicatorViewStyle {
+    open var activityIndicatorStyle: UIActivityIndicatorViewStyle {
         get {
             return loadingIndicator.activityIndicatorViewStyle
         }
