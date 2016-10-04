@@ -7,34 +7,34 @@
 import UIKit
 import RxSwift
 
-open struct Navigator {
+public struct Navigator {
     private let navigationController: UINavigationController
 
-    open init(navigationController: UINavigationController) {
+    public init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
 
-    open func present<C: UIViewController>(controller: C, animated: Bool = true) -> Observable<C> {
+    public func present<C: UIViewController>(controller: C, animated: Bool = true) -> Observable<C> {
         let replay = ReplaySubject<Void>.create(bufferSize: 1)
         navigationController.present(controller, animated: animated, completion: { replay.onLast() })
         return replay.rewrite(with: controller)
     }
 
-    open func dismiss(animated: Bool = true) -> Observable<Void> {
+    public func dismiss(animated: Bool = true) -> Observable<Void> {
         let replay = ReplaySubject<Void>.create(bufferSize: 1)
         navigationController.dismiss(animated: animated, completion: { replay.onLast() })
         return replay
     }
 
-    open func push(controller: UIViewController, animated: Bool = true) {
+    public func push(controller: UIViewController, animated: Bool = true) {
         navigationController.pushViewController(controller, animated: animated)
     }
 
-    open func pop(animated: Bool = true) -> UIViewController? {
+    public func pop(animated: Bool = true) -> UIViewController? {
         return navigationController.popViewController(animated: animated)
     }
 
-    open func replace(with controller: UIViewController, animated: Bool = true) -> UIViewController? {
+    public func replace(with controller: UIViewController, animated: Bool = true) -> UIViewController? {
         var controllers = navigationController.viewControllers
         let current = controllers.popLast()
         controllers.append(controller)
@@ -44,7 +44,7 @@ open struct Navigator {
         return current
     }
 
-    open func popAllAndReplace(with controller: UIViewController) -> [UIViewController] {
+    public func popAllAndReplace(with controller: UIViewController) -> [UIViewController] {
         let transition = CATransition()
         transition.duration = 0.5
         transition.type = kCATransitionMoveIn
@@ -57,7 +57,7 @@ open struct Navigator {
         return replaced
     }
 
-    open func replaceAll(with controller: UIViewController, animated: Bool = true) -> [UIViewController] {
+    public func replaceAll(with controller: UIViewController, animated: Bool = true) -> [UIViewController] {
         let currentControllers = navigationController.viewControllers
 
         navigationController.setViewControllers([controller], animated: animated)
@@ -65,7 +65,7 @@ open struct Navigator {
         return currentControllers
     }
 
-    open static func branchedNavigation(controller: UIViewController,
+    public static func branchedNavigation(controller: UIViewController,
                                           closeButtonTitle: String? = "Close") -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: controller)
         if let closeButtonTitle = closeButtonTitle {

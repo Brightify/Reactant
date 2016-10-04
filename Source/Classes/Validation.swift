@@ -6,29 +6,29 @@
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
-open protocol RuleValidationError: Error { }
+public protocol RuleValidationError: Error { }
 
-open enum DefaultValidationError: RuleValidationError {
+public enum DefaultValidationError: RuleValidationError {
     case invalid
 }
 
-open enum EmailValidationError: RuleValidationError {
+public enum EmailValidationError: RuleValidationError {
     case empty
     case invalid
 }
 
-open struct Rule<T, E: RuleValidationError> {
-    open let validate: (T) -> E?
+public struct Rule<T, E: RuleValidationError> {
+    public let validate: (T) -> E?
 
-    open init(validate: @escaping (T) -> E?) {
+    public init(validate: @escaping (T) -> E?) {
         self.validate = validate
     }
 
-    open func test(_ value: T) -> Bool {
+    public func test(_ value: T) -> Bool {
         return validate(value) == nil
     }
 
-    open func run(_ value: T) -> Result<T, E> {
+    public func run(_ value: T) -> Result<T, E> {
         if let error = validate(value) {
             return .failure(error)
         } else {
@@ -37,8 +37,8 @@ open struct Rule<T, E: RuleValidationError> {
     }
 }
 
-open struct Rules {
-    open static let notEmpty = Rule<String?, DefaultValidationError> { value in
+public struct Rules {
+    public static let notEmpty = Rule<String?, DefaultValidationError> { value in
         guard let value = value, value.characters.isEmpty == false else {
             return .invalid
         }
@@ -46,7 +46,7 @@ open struct Rules {
         return nil
     }
 
-    open static func minLength(length: Int) -> Rule<String?, DefaultValidationError> {
+    public static func minLength(length: Int) -> Rule<String?, DefaultValidationError> {
         return Rule { value in
             guard let value = value, value.characters.count >= length else {
                 return .invalid
@@ -55,7 +55,7 @@ open struct Rules {
         }
     }
 
-    open static let email = Rule<String?, EmailValidationError> { value in
+    public static let email = Rule<String?, EmailValidationError> { value in
         guard Rules.notEmpty.test(value) else {
             return .empty
         }

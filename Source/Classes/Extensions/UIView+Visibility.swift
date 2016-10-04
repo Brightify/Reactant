@@ -33,25 +33,25 @@ private class CollapseAxisBox {
     }
 }
 
-open enum Visibility {
+public enum Visibility {
     case visible
     case hidden
     case collapsed
 }
 
-open enum ConstraintAction {
+public enum ConstraintAction {
     case setConstant(visible: CGFloat, collapsed: CGFloat)
     case install
     case uninstall
 }
 
-open enum CollapseAxis {
+public enum CollapseAxis {
     case horizontal
     case vertical
     case both
 }
 
-open extension UIView {
+public extension UIView {
     private struct AssociatedKey {
         static var collapseAxis: UInt8 = 0
         static var visibility: UInt8 = 0
@@ -60,7 +60,7 @@ open extension UIView {
         static var collapsibleConstraints: UInt8 = 0
     }
 
-    open var rootView: UIView {
+    public var rootView: UIView {
         if let superview = superview {
             return superview.rootView
         } else {
@@ -68,7 +68,7 @@ open extension UIView {
         }
     }
 
-    open var collapseAxis: CollapseAxis {
+    public var collapseAxis: CollapseAxis {
         get {
             return associatedObject(self, key: &AssociatedKey.collapseAxis) {
                 CollapseAxisBox(CollapseAxis.vertical)
@@ -88,7 +88,7 @@ open extension UIView {
         }
     }
 
-    open var visibility: Visibility {
+    public var visibility: Visibility {
         get {
             return associatedObject(self, key: &AssociatedKey.visibility) {
                 VisibilityBox(isHidden ? .hidden : .visible)
@@ -135,7 +135,7 @@ open extension UIView {
         }
     }
 
-    open var collapsibleConstraints: [(constraint: Constraint, action: ConstraintAction)] {
+    public var collapsibleConstraints: [(constraint: Constraint, action: ConstraintAction)] {
         get {
             return associatedObject(self, key: &AssociatedKey.collapsibleConstraints) {
                 CollapsibleConstraintsBox([])
@@ -147,7 +147,7 @@ open extension UIView {
         }
     }
 
-    open func addCollapsibleConstraint(constraint: Constraint, action: ConstraintAction) {
+    public func addCollapsibleConstraint(constraint: Constraint, action: ConstraintAction) {
         collapsibleConstraints = collapsibleConstraints.filter { $0.constraint !== constraint }
             .arrayByAppending((constraint: constraint, action: action))
     }

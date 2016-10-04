@@ -9,20 +9,20 @@
 import RxSwift
 import RxCocoa
 
-open struct ActivityToken<E> : ObservableConvertibleType, Disposable {
+public struct ActivityToken<E> : ObservableConvertibleType, Disposable {
     private let _source: Observable<E>
     private let _dispose: Cancelable
 
-    open init(source: Observable<E>, disposeAction: @escaping () -> ()) {
+    public init(source: Observable<E>, disposeAction: @escaping () -> ()) {
         _source = source
         _dispose = Disposables.create(with: disposeAction)
     }
 
-    open func dispose() {
+    public func dispose() {
         _dispose.dispose()
     }
 
-    open func asObservable() -> Observable<E> {
+    public func asObservable() -> Observable<E> {
         return _source
     }
 }
@@ -33,16 +33,16 @@ open struct ActivityToken<E> : ObservableConvertibleType, Disposable {
  If there is at least one sequence computation in progress, `true` will be sent.
  When all activities complete `false` will be sent.
  */
-open class ActivityIndicator: DriverConvertibleType {
-    open let disposeBag = DisposeBag()
-    open typealias E = (loading: Bool, message: String)
+public class ActivityIndicator: DriverConvertibleType {
+    public let disposeBag = DisposeBag()
+    public typealias E = (loading: Bool, message: String)
 
     private let _lock = NSRecursiveLock()
     private let _variable = Variable(0)
     private let _lastMessage = Variable<String>("")
     private let _loading: Driver<Bool>
 
-    open init() {
+    public init() {
         _loading = _variable.asObservable()
             .map { $0 > 0 }
             .distinctUntilChanged()
@@ -74,13 +74,13 @@ open class ActivityIndicator: DriverConvertibleType {
         _lock.unlock()
     }
 
-    open func asDriver() -> Driver<E> {
+    public func asDriver() -> Driver<E> {
         return _loading.withLatestFrom(_lastMessage.asDriver()) { (loading: $0, message: $1) }
     }
 }
 
 extension ObservableConvertibleType {
-    open func trackActivity(in activityIndicator: ActivityIndicator, message: String? = nil) -> Observable<E> {
+    public func trackActivity(in activityIndicator: ActivityIndicator, message: String? = nil) -> Observable<E> {
         return activityIndicator.trackActivity(of: self,
                                                message: message ?? ReactantConfiguration.global.defaultLoadingMessage)
     }

@@ -4,9 +4,9 @@
 //  Created by Tadeáš Kříž on 15/06/16.
 //
 
-open extension Sequence {
+public extension Sequence {
 
-    open func first(where condition: (Iterator.Element) -> Bool) -> Iterator.Element? {
+    public func first(where condition: (Iterator.Element) -> Bool) -> Iterator.Element? {
         for item in self where condition(item) {
             return item
         }

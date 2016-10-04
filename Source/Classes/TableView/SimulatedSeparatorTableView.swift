@@ -34,7 +34,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
     fileprivate let tableViewDelegate: SimulatedSeparatorTableViewDelegate
     fileprivate let reloadable: Bool
 
-    open init(
+    public init(
         cellFactory: @escaping () -> CELL,
         separatorColor: UIColor? = nil,
         separatorHeight: CGFloat = 1,

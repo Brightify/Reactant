@@ -13,7 +13,7 @@ import RxSwift
 open class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, ROOT> {
     open let scrollView = UIScrollView()
 
-    open override init(title: String = "", root: ROOT = ROOT()) {
+    public override init(title: String = "", root: ROOT = ROOT()) {
         super.init(title: title, root: root)
     }
 

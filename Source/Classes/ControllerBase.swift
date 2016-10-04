@@ -67,7 +67,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissa
     /// DisposeBag for actions in `render`. This is reset before each `render` call and in `viewWillDisappear`.
     open private(set) var stateDisposeBag = DisposeBag()
 
-    open init(title: String = "", root: ROOT = ROOT()) {
+    public init(title: String = "", root: ROOT = ROOT()) {
         rootView = root
 
         super.init(nibName: nil, bundle: nil)
@@ -82,7 +82,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissa
     }
 
     @available(*, unavailable)
-    open required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -183,7 +183,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissa
     }
 }
 
-open protocol DialogDismissalListener {
+public protocol DialogDismissalListener {
     func dialogWillDismiss()
     
     func dialogDidDismiss()

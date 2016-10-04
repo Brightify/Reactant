@@ -41,7 +41,7 @@ open class ButtonBase<STATE>: UIButton, Component {
     }
     private var stateStorage: STATE?
 
-    open init() {
+    public init() {
         super.init(frame: CGRect.zero)
 
         prepareView()
@@ -49,7 +49,7 @@ open class ButtonBase<STATE>: UIButton, Component {
         setVoidStateIfPossible()
     }
 
-    open init(initialState: STATE?) {
+    public init(initialState: STATE?) {
         super.init(frame: CGRect.zero)
 
         prepareView()
@@ -62,7 +62,7 @@ open class ButtonBase<STATE>: UIButton, Component {
     }
 
     @available(*, unavailable)
-    open required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 

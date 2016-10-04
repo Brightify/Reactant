@@ -33,7 +33,7 @@ open class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: Vie
     private let tableViewDelegate: SectionedTableViewDelegate
     private let reloadable: Bool
     
-    open init(
+    public init(
         cellFactory: @escaping () -> CELL,
         headerFactory: @escaping () -> HEADER,
         footerFactory: @escaping () -> FOOTER,

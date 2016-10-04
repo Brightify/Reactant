@@ -26,7 +26,7 @@ open class SingleRowCollectionView<CELL: UIView>: ViewBase<TableViewState<CELL.S
     
     private let cellFactory: () -> CELL
     
-    open init(
+    public init(
         cellFactory: @escaping () -> CELL,
         itemSize: CGSize = CGSize.zero,
         estimatedItemSize: CGSize = CGSize.zero,

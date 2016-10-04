@@ -6,7 +6,7 @@
 
 import SwiftKit
 
-open final class RxCollectionReusableView<CONTENT: UIView>: UICollectionReusableView {
+public final class RxCollectionReusableView<CONTENT: UIView>: UICollectionReusableView {
     private var content: CONTENT?
 
     open override class var requiresConstraintBasedLayout: Bool {

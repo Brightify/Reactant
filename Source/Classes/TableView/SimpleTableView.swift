@@ -41,7 +41,7 @@ open class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType
     private let cellFactory: () -> CELL
     private let reloadable: Bool
 
-    open init(
+    public init(
         cellFactory: @escaping () -> CELL,
         reloadable: Bool = true,
         rowHeight: CGFloat = UITableViewAutomaticDimension,

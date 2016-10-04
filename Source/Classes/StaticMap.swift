@@ -22,7 +22,7 @@ open class StaticMap: ViewBase<MKCoordinateRegion> {
 
     private let tapGestureRecognizer = UITapGestureRecognizer()
 
-    open override init() {
+    public override init() {
         super.init()
     }
 
@@ -88,7 +88,7 @@ import CoreLocation
 extension Collection where Iterator.Element == CLLocationCoordinate2D, IndexDistance == Int {
 
     /// Calculates center between coordinates in this collection
-    open func centerCoordinate() -> CLLocationCoordinate2D {
+    public func centerCoordinate() -> CLLocationCoordinate2D {
         guard count > 1 else { return first ?? CLLocationCoordinate2D() }
 
         let vector = reduce(DoubleVector3()) { accumulator, coordinate in
@@ -110,7 +110,7 @@ extension Collection where Iterator.Element == CLLocationCoordinate2D, IndexDist
             longitude: radiansToDegrees(resultLongitude))
     }
 
-    open func coordinateSpan() -> MKCoordinateSpan {
+    public func coordinateSpan() -> MKCoordinateSpan {
         var minLatitude: Double = 90
         var maxLatitude: Double = -90
         var minLongitude: Double = 180
@@ -164,11 +164,11 @@ private func radiansToDegrees(_ value: Double) -> Double {
 }
 
 extension MKCoordinateSpan {
-    open func inset(percent: Double) -> MKCoordinateSpan {
+    public func inset(percent: Double) -> MKCoordinateSpan {
         return inset(horizontalPercent: percent, verticalPercent: percent)
     }
 
-    open func inset(horizontalPercent horizontal: Double, verticalPercent vertical: Double) -> MKCoordinateSpan {
+    public func inset(horizontalPercent horizontal: Double, verticalPercent vertical: Double) -> MKCoordinateSpan {
         return MKCoordinateSpan(
             latitudeDelta: latitudeDelta + latitudeDelta * vertical,
             longitudeDelta: longitudeDelta + longitudeDelta * horizontal)

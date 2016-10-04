@@ -9,7 +9,7 @@
 import UIKit
 
 @objc
-open protocol ViewEventReceiver {
+public protocol ViewEventReceiver {
     // FIXME edgesForExtendedLayout should be in a different protocol
     @objc optional var edgesForExtendedLayout: UIRectEdge { get }
     @objc optional func willAppear(animated: Bool)
@@ -19,7 +19,7 @@ open protocol ViewEventReceiver {
 }
 
 extension UIView: ViewEventReceiver {
-    open var edgesForExtendedLayout: UIRectEdge {
+    public var edgesForExtendedLayout: UIRectEdge {
         return []
     }
 

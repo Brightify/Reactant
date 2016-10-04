@@ -11,19 +11,19 @@ open class ContainerView: UIView {
         return true
     }
 
-    open required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         layoutMargins = ReactantConfiguration.global.layoutMargins
     }
     
-    open override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         layoutMargins = ReactantConfiguration.global.layoutMargins
     }
     
-    open convenience init() {
+    public convenience init() {
         self.init(frame: CGRect.zero)
         
         layoutMargins = ReactantConfiguration.global.layoutMargins
