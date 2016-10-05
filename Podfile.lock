@@ -10,21 +10,21 @@ PODS:
     - HanekeSwift (~> 0.10)
     - HTTPStatusCodes (~> 3.1)
     - Lipstick (~> 0.4)
-    - RxCocoa (~> 3.0.0-beta.1)
+    - RxCocoa (~> 3.0.0-beta.2)
     - RxDataSources (~> 1.0.0-beta.2)
     - RxOptional (~> 3.0)
-    - RxSwift (~> 3.0.0-beta.1)
+    - RxSwift (~> 3.0.0-beta.2)
     - SnapKit (~> 3.0)
     - SwiftKit (~> 0.10)
-  - RxCocoa (3.0.0-beta.1):
-    - RxSwift (~> 3.0.0-beta.1)
+  - RxCocoa (3.0.0-beta.2):
+    - RxSwift (~> 3.0.0-beta.2)
   - RxDataSources (1.0.0-beta.2):
     - RxCocoa (~> 3.0.0-beta.1)
     - RxSwift (~> 3.0.0-beta.1)
   - RxOptional (3.0.0):
     - RxCocoa
     - RxSwift
-  - RxSwift (3.0.0-beta.1)
+  - RxSwift (3.0.0-beta.2)
   - SnapKit (3.0.1)
   - SwiftKit (0.10.0):
     - SwiftKit/Injection (= 0.10.0)
@@ -50,10 +50,10 @@ DEPENDENCIES:
   - Nimble (~> 5.0)
   - Quick (from `https://github.com/Quick/Quick.git`, branch `master`)
   - Reactant (from `./`)
-  - RxCocoa (= 3.0.0-beta.1)
+  - RxCocoa (= 3.0.0-beta.2)
   - RxDataSources (= 1.0.0-beta.2)
-  - RxOptional (= 3.0.0)
-  - RxSwift (= 3.0.0-beta.1)
+  - RxOptional (from `https://github.com/ivanbruel/RxOptional.git`, commit `93d12b3c3bfc1886ebd038149b24a8d7d6ef1ea4`)
+  - RxSwift (= 3.0.0-beta.2)
   - SnapKit (= 3.0.1)
   - SwiftKit (= 0.10.0)
 
@@ -66,6 +66,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/Quick/Quick.git
   Reactant:
     :path: "./"
+  RxOptional:
+    :commit: 93d12b3c3bfc1886ebd038149b24a8d7d6ef1ea4
+    :git: https://github.com/ivanbruel/RxOptional.git
 
 CHECKOUT OPTIONS:
   HanekeSwift:
@@ -74,6 +77,9 @@ CHECKOUT OPTIONS:
   Quick:
     :commit: 02fa36276e91b3fc3898d0753cc64786c47c46d3
     :git: https://github.com/Quick/Quick.git
+  RxOptional:
+    :commit: 93d12b3c3bfc1886ebd038149b24a8d7d6ef1ea4
+    :git: https://github.com/ivanbruel/RxOptional.git
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
@@ -82,16 +88,16 @@ SPEC CHECKSUMS:
   Lipstick: e95a20c80513c7bf7c83b878d4c18e20cec2df2b
   Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
   Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
-  Reactant: 4c687a51ce4045607dfefd51d8363719f6defe92
-  RxCocoa: 8cecf331302b8ae5381bbab1bccba4ede2eae6a8
+  Reactant: 43e0d584ebde4cc45f8b28d307841abc0b8581f3
+  RxCocoa: 1dd105d8a4e18034ccd7bd6d136445363ce67c8e
   RxDataSources: 1cd87dc97fd46be002942eb1dcb1b432535141dd
   RxOptional: 96404fb424af9998798040406fe55244a19fb07a
-  RxSwift: 0823e8d7969c23bfa9ddfb2afa4881e424a1a710
+  RxSwift: 0ea939d7d97cb70657190ffde8dc2a9b455778fc
   SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
   SwiftKit: 5cb907fe9336d2a378b234c266620e1e49b9681f
   SwiftKitStaging: 876cbfba9fc364555960e33e9b5c744c01135d3b
   SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
 
-PODFILE CHECKSUM: d785db4e560824159de46c224b52e5236c8f78a7
+PODFILE CHECKSUM: 65ef1e2066b08f1a71cdea6ab4364d63ac05aa98
 
 COCOAPODS: 1.1.0.rc.2

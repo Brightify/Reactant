@@ -33,7 +33,7 @@ public struct ActivityToken<E> : ObservableConvertibleType, Disposable {
  If there is at least one sequence computation in progress, `true` will be sent.
  When all activities complete `false` will be sent.
  */
-public class ActivityIndicator: DriverConvertibleType {
+public class ActivityIndicator {
     public let disposeBag = DisposeBag()
     public typealias E = (loading: Bool, message: String)
 

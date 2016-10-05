@@ -26,8 +26,8 @@ Pod::Spec.new do |s|
   s.source_files = 'Source/Classes/**/*'
 
   s.frameworks = 'UIKit'
-  s.dependency 'RxSwift', '~> 3.0.0-beta.1'
-  s.dependency 'RxCocoa', '~> 3.0.0-beta.1'
+  s.dependency 'RxSwift', '~> 3.0.0-beta.2'
+  s.dependency 'RxCocoa', '~> 3.0.0-beta.2'
   s.dependency 'SwiftKit', '~> 0.10'
   s.dependency 'RxDataSources', '~> 1.0.0-beta.2'
   s.dependency 'RxOptional', '~> 3.0'
