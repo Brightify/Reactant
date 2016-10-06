@@ -46,7 +46,7 @@ public struct Rules {
         return nil
     }
 
-    public static func minLength(length: Int) -> Rule<String?, DefaultValidationError> {
+    public static func minLength(_ length: Int) -> Rule<String?, DefaultValidationError> {
         return Rule { value in
             guard let value = value, value.characters.count >= length else {
                 return .invalid
