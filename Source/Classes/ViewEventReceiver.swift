@@ -19,7 +19,7 @@ public protocol ViewEventReceiver {
 }
 
 extension UIView: ViewEventReceiver {
-    public var edgesForExtendedLayout: UIRectEdge {
+    open var edgesForExtendedLayout: UIRectEdge {
         return []
     }
 
