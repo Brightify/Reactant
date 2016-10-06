@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04168232D53A3C6EC65FE3C3 /* Pods_Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */; };
+		1841DC671DA682D500862527 /* UIBarButtonItem+ClosureAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841DC661DA682D500862527 /* UIBarButtonItem+ClosureAction.swift */; };
 		1851213C1D834C7B002C4B08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121321D834C7B002C4B08 /* AppDelegate.swift */; };
 		1851213D1D834C7B002C4B08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121331D834C7B002C4B08 /* ViewController.swift */; };
 		1851213E1D834C7B002C4B08 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185121351D834C7B002C4B08 /* LaunchScreen.xib */; };
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		045F878B1A7F63F7AAD82596 /* Pods_ReactantExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		118FB89C32922066714D8F98 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1841DC661DA682D500862527 /* UIBarButtonItem+ClosureAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+ClosureAction.swift"; sourceTree = "<group>"; };
 		185120F41D834C5D002C4B08 /* ButtonBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonBase.swift; sourceTree = "<group>"; };
 		185120F61D834C5D002C4B08 /* RxCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCollectionReusableView.swift; sourceTree = "<group>"; };
 		185120F71D834C5D002C4B08 /* RxCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				185121011D834C5D002C4B08 /* UIStackView+Util.swift */,
 				185121021D834C5D002C4B08 /* UIView+Util.swift */,
 				185121031D834C5D002C4B08 /* UIView+Visibility.swift */,
+				1841DC661DA682D500862527 /* UIBarButtonItem+ClosureAction.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				18650B9B1D8364E000B1B2A0 /* ContainerView.swift in Sources */,
 				18650B981D8364DC00B1B2A0 /* RxRouter.swift in Sources */,
 				18650B991D8364DC00B1B2A0 /* Scrollable.swift in Sources */,
+				1841DC671DA682D500862527 /* UIBarButtonItem+ClosureAction.swift in Sources */,
 				18650B871D8364D800B1B2A0 /* RxTableViewHeaderFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
