@@ -147,7 +147,7 @@ public extension UIView {
         }
     }
 
-    public func addCollapsibleConstraint(constraint: Constraint, action: ConstraintAction) {
+    public func addCollapsible(constraint: Constraint, action: ConstraintAction) {
         collapsibleConstraints = collapsibleConstraints.filter { $0.constraint !== constraint }
             .arrayByAppending((constraint: constraint, action: action))
     }

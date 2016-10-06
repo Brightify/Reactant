@@ -31,7 +31,7 @@
 		18650B8F1D8364DC00B1B2A0 /* RxSwift+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FE1D834C5D002C4B08 /* RxSwift+Operators.swift */; };
 		18650B901D8364DC00B1B2A0 /* SequenceType+FirstWhere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FF1D834C5D002C4B08 /* SequenceType+FirstWhere.swift */; };
 		18650B911D8364DC00B1B2A0 /* SequenceType+Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121001D834C5D002C4B08 /* SequenceType+Transform.swift */; };
-		18650B921D8364DC00B1B2A0 /* TZStackView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121011D834C5D002C4B08 /* TZStackView+Util.swift */; };
+		18650B921D8364DC00B1B2A0 /* UIStackView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121011D834C5D002C4B08 /* UIStackView+Util.swift */; };
 		18650B931D8364DC00B1B2A0 /* UIView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121021D834C5D002C4B08 /* UIView+Util.swift */; };
 		18650B941D8364DC00B1B2A0 /* UIView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121031D834C5D002C4B08 /* UIView+Visibility.swift */; };
 		18650B961D8364DC00B1B2A0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121051D834C5D002C4B08 /* Navigator.swift */; };
@@ -76,7 +76,7 @@
 		185120FE1D834C5D002C4B08 /* RxSwift+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RxSwift+Operators.swift"; sourceTree = "<group>"; };
 		185120FF1D834C5D002C4B08 /* SequenceType+FirstWhere.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SequenceType+FirstWhere.swift"; sourceTree = "<group>"; };
 		185121001D834C5D002C4B08 /* SequenceType+Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SequenceType+Transform.swift"; sourceTree = "<group>"; };
-		185121011D834C5D002C4B08 /* TZStackView+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TZStackView+Util.swift"; sourceTree = "<group>"; };
+		185121011D834C5D002C4B08 /* UIStackView+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+Util.swift"; sourceTree = "<group>"; };
 		185121021D834C5D002C4B08 /* UIView+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Util.swift"; sourceTree = "<group>"; };
 		185121031D834C5D002C4B08 /* UIView+Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Visibility.swift"; sourceTree = "<group>"; };
 		185121051D834C5D002C4B08 /* Navigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 				185120FE1D834C5D002C4B08 /* RxSwift+Operators.swift */,
 				185120FF1D834C5D002C4B08 /* SequenceType+FirstWhere.swift */,
 				185121001D834C5D002C4B08 /* SequenceType+Transform.swift */,
-				185121011D834C5D002C4B08 /* TZStackView+Util.swift */,
+				185121011D834C5D002C4B08 /* UIStackView+Util.swift */,
 				185121021D834C5D002C4B08 /* UIView+Util.swift */,
 				185121031D834C5D002C4B08 /* UIView+Visibility.swift */,
 			);
@@ -623,7 +623,7 @@
 				18650B9D1D8364E500B1B2A0 /* RxCollectionReusableView.swift in Sources */,
 				18650B9C1D8364E000B1B2A0 /* ControllerBase.swift in Sources */,
 				18650B881D8364D800B1B2A0 /* SectionedTableView.swift in Sources */,
-				18650B921D8364DC00B1B2A0 /* TZStackView+Util.swift in Sources */,
+				18650B921D8364DC00B1B2A0 /* UIStackView+Util.swift in Sources */,
 				18650B851D8364D800B1B2A0 /* Identifiers.swift in Sources */,
 				18650B9A1D8364E000B1B2A0 /* Component.swift in Sources */,
 				18650B891D8364D800B1B2A0 /* SimpleTableView.swift in Sources */,

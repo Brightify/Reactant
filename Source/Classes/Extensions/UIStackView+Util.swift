@@ -5,7 +5,7 @@
 //
 
 public extension UIStackView {
-    public func arrangedChildren(children: UIView...) -> UIStackView {
+    public func arrangedChildren(_ children: UIView...) -> UIStackView {
         children.forEach(addArrangedSubview)
         return self
     }

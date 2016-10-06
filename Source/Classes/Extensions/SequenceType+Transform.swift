@@ -5,7 +5,7 @@
 //
 
 public extension Sequence {
-    public func transform(transformation: (inout Iterator.Element) -> Void) -> [Iterator.Element] {
+    public func transform(_ transformation: (inout Iterator.Element) -> Void) -> [Iterator.Element] {
         return map {
             var mutableItem = $0
             transformation(&mutableItem)
