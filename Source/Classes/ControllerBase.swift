@@ -20,23 +20,26 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissa
     }
     private let observableStateSubject = ReplaySubject<STATE>.create(bufferSize: 1)
 
-    open private(set) var previousComponentState: STATE?
+    open var previousComponentState: STATE? {
+        return previousStateStorage.value
+    }
+    private let previousStateStorage = StateBox<STATE?>(value: nil)
     open var componentState: STATE {
         get {
-            if let state = stateStorage {
+            if let state = stateStorage.value {
                 return state
             } else {
                 fatalError("Model accessed before stored!")
             }
         }
         set {
-            previousComponentState = stateStorage
-            stateStorage = newValue
+            previousStateStorage.value = stateStorage.value
+            stateStorage.value = newValue
             observableStateSubject.onNext(newValue)
             renderIfPossible()
         }
     }
-    private var stateStorage: STATE?
+    private let stateStorage = StateBox<STATE?>(value: nil)
     private var canRender = false {
         willSet {
             if newValue == canRender {
@@ -60,7 +63,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissa
     /// DisposeBag for actions from other controllers. This is reset before each `render` call.
     open private(set) var controllersActionsBag = DisposeBag()
 
-    /* We need to keep this until viewWillAppear is called to not dispose controller actions when user just peeks
+    /** We need to keep this until viewWillAppear is called to not dispose controller actions when user just peeks
        back to this controller */
     private var previousControllersActionsBag: DisposeBag?
 
@@ -88,7 +91,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissa
 
     open func renderIfPossible() {
         guard canRender else { return }
-        guard stateStorage != nil else {
+        guard stateStorage.value != nil else {
             #if DEBUG
                 fatalError("Model not set before render was enabled! Model \(STATE.self), controller \(type(of: self))")
             #else

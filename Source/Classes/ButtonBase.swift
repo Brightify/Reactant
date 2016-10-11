@@ -22,24 +22,28 @@ open class ButtonBase<STATE>: UIButton, Component {
     }
     private let observableStateSubject = ReplaySubject<STATE>.create(bufferSize: 1)
     
-    open private(set) var previousComponentState: STATE?
+    open var previousComponentState: STATE? {
+        return previousStateStorage.value
+    }
+    private let previousStateStorage = StateBox<STATE?>(value: nil)
+
     open var componentState: STATE {
         get {
-            if let model = stateStorage {
+            if let model = stateStorage.value {
                 return model
             } else {
                 fatalError("Model accessed, before stored!")
             }
         }
         set {
-            previousComponentState = stateStorage
-            stateStorage = newValue
+            previousStateStorage.value = stateStorage.value
+            stateStorage.value = newValue
             observableStateSubject.onNext(newValue)
             stateDisposeBag = DisposeBag()
             render()
         }
     }
-    private var stateStorage: STATE?
+    private let stateStorage = StateBox<STATE?>(value: nil)
 
     public init() {
         super.init(frame: CGRect.zero)

@@ -49,6 +49,7 @@
 		18650BA21D83665E00B1B2A0 /* Transformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA11D83665E00B1B2A0 /* Transformations.swift */; };
 		18650BA41D8366EE00B1B2A0 /* ScrollControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA31D8366EE00B1B2A0 /* ScrollControllerBase.swift */; };
 		18650BA61D83671B00B1B2A0 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA51D83671B00B1B2A0 /* StaticMap.swift */; };
+		18ABA1F81DACF00D001FF485 /* StateBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABA1F71DACF00D001FF485 /* StateBox.swift */; };
 		45444ED1E71FEFA1D6A84E08 /* Pods_ReactantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711603479E5441514316A7F3 /* Pods_ReactantTests.framework */; };
 		5873B42030682751449FE963 /* Pods_ReactantExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045F878B1A7F63F7AAD82596 /* Pods_ReactantExample.framework */; };
 /* End PBXBuildFile section */
@@ -110,6 +111,7 @@
 		18650BA11D83665E00B1B2A0 /* Transformations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformations.swift; sourceTree = "<group>"; };
 		18650BA31D8366EE00B1B2A0 /* ScrollControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollControllerBase.swift; sourceTree = "<group>"; };
 		18650BA51D83671B00B1B2A0 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
+		18ABA1F71DACF00D001FF485 /* StateBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateBox.swift; sourceTree = "<group>"; };
 		4406EA23619B586C084EBED1 /* Pods-ReactantExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.release.xcconfig"; sourceTree = "<group>"; };
 		50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975037688AFED52D683D2F3 /* Pods-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				18650BA11D83665E00B1B2A0 /* Transformations.swift */,
 				18650BA31D8366EE00B1B2A0 /* ScrollControllerBase.swift */,
 				18650BA51D83671B00B1B2A0 /* StaticMap.swift */,
+				18ABA1F71DACF00D001FF485 /* StateBox.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				18650B941D8364DC00B1B2A0 /* UIView+Visibility.swift in Sources */,
 				18650BA01D8364E800B1B2A0 /* ButtonBase.swift in Sources */,
 				18650B8F1D8364DC00B1B2A0 /* RxSwift+Operators.swift in Sources */,
+				18ABA1F81DACF00D001FF485 /* StateBox.swift in Sources */,
 				18650B901D8364DC00B1B2A0 /* SequenceType+FirstWhere.swift in Sources */,
 				18650B931D8364DC00B1B2A0 /* UIView+Util.swift in Sources */,
 				18650B821D83645900B1B2A0 /* Validation.swift in Sources */,
