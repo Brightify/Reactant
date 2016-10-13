@@ -156,7 +156,7 @@ public extension UIView {
         return associatedObject(self, key: &AssociatedKey.zeroWidthConstraints) {
             var maybeConstraint: Constraint?
             snp.prepareConstraints { make in
-                maybeConstraint = make.width.equalToSuperview().constraint
+                maybeConstraint = make.width.equalTo(0).constraint
             }
             guard let constraint = maybeConstraint else { fatalError("Could not create zero-width constraint!") }
             return constraint
@@ -167,7 +167,7 @@ public extension UIView {
         return associatedObject(self, key: &AssociatedKey.zeroHeightConstraints) {
             var maybeConstraint: Constraint?
             snp.prepareConstraints { make in
-                maybeConstraint = make.height.equalToSuperview().constraint
+                maybeConstraint = make.height.equalTo(0).constraint
             }
             guard let constraint = maybeConstraint else { fatalError("Could not create zero-height constraint!") }
             return constraint
