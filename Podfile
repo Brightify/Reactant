@@ -14,10 +14,6 @@ target 'Reactant' do
     pod 'Kingfisher'
 end
 
-target 'ReactantExample' do
-  pod 'Reactant', :path => './'
-end
-
 target 'ReactantTests' do
     pod 'Quick', :git => 'https://github.com/Quick/Quick.git', :branch => 'master'
     pod 'Nimble', '~> 5.0'
