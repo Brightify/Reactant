@@ -1,0 +1,60 @@
+PODS:
+  - HanekeSwift (0.10.1)
+  - Nimble (5.0.0)
+  - Quick (0.10.0)
+  - RxCocoa (3.0.0-beta.2):
+    - RxSwift (~> 3.0.0-beta.2)
+  - RxDataSources (1.0.0-beta.2):
+    - RxCocoa (~> 3.0.0-beta.1)
+    - RxSwift (~> 3.0.0-beta.1)
+  - RxOptional (3.0.0):
+    - RxCocoa
+    - RxSwift
+  - RxSwift (3.0.0-beta.2)
+  - SnapKit (3.0.1)
+
+DEPENDENCIES:
+  - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`, branch `feature/swift-3`)
+  - Nimble (~> 5.0)
+  - Quick (from `https://github.com/Quick/Quick.git`, branch `master`)
+  - RxCocoa (= 3.0.0-beta.2)
+  - RxDataSources (= 1.0.0-beta.2)
+  - RxOptional (from `https://github.com/ivanbruel/RxOptional.git`, commit `93d12b3c3bfc1886ebd038149b24a8d7d6ef1ea4`)
+  - RxSwift (= 3.0.0-beta.2)
+  - SnapKit (= 3.0.1)
+
+EXTERNAL SOURCES:
+  HanekeSwift:
+    :branch: feature/swift-3
+    :git: https://github.com/Haneke/HanekeSwift.git
+  Quick:
+    :branch: master
+    :git: https://github.com/Quick/Quick.git
+  RxOptional:
+    :commit: 93d12b3c3bfc1886ebd038149b24a8d7d6ef1ea4
+    :git: https://github.com/ivanbruel/RxOptional.git
+
+CHECKOUT OPTIONS:
+  HanekeSwift:
+    :commit: 3fb394f3769303685c9e0e692c9065e6a037b30a
+    :git: https://github.com/Haneke/HanekeSwift.git
+  Quick:
+    :commit: 02fa36276e91b3fc3898d0753cc64786c47c46d3
+    :git: https://github.com/Quick/Quick.git
+  RxOptional:
+    :commit: 93d12b3c3bfc1886ebd038149b24a8d7d6ef1ea4
+    :git: https://github.com/ivanbruel/RxOptional.git
+
+SPEC CHECKSUMS:
+  HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
+  Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
+  Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
+  RxCocoa: 1dd105d8a4e18034ccd7bd6d136445363ce67c8e
+  RxDataSources: 1cd87dc97fd46be002942eb1dcb1b432535141dd
+  RxOptional: 96404fb424af9998798040406fe55244a19fb07a
+  RxSwift: 0ea939d7d97cb70657190ffde8dc2a9b455778fc
+  SnapKit: f818b8326d45b4e1c777d0ab27b5c0a3624bfdeb
+
+PODFILE CHECKSUM: b8e6982ab5116b24f9f5de8045c25d770302ec89
+
+COCOAPODS: 1.1.0.rc.3

@@ -7,10 +7,11 @@
 //
 
 import MapKit
-import Lipstick
 import RxCocoa
 import RxSwift
 import Kingfisher
+
+// TODO Move to subspec with Haneke.
 
 open class StaticMap: ViewBase<MKCoordinateRegion> {
 

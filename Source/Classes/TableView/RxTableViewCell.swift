@@ -4,7 +4,7 @@
 //  Created by Tadeáš Kříž on 06/04/16.
 //
 
-import SwiftKit
+import UIKit
 
 public protocol TableViewCellContent {
 

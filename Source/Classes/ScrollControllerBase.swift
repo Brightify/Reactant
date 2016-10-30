@@ -6,8 +6,6 @@
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
-import SwiftKit
-import Lipstick
 import RxSwift
 
 open class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, ROOT> {
@@ -18,8 +16,10 @@ open class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, ROOT
     }
 
     open override func loadView() {
-        view = ControllerRootView().styled(using: ReactantConfiguration.global.controllerRootStyle)
-
+        let controllerRootView = ControllerRootView()
+        ReactantConfiguration.global.controllerRootStyle(controllerRootView)
+        view = controllerRootView
+        
         view.children(
             scrollView.children(
                 rootView

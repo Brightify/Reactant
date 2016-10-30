@@ -6,6 +6,8 @@
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
+import Foundation
+
 public protocol RuleValidationError: Error { }
 
 public enum DefaultValidationError: RuleValidationError {

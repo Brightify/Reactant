@@ -31,7 +31,6 @@
 		18650B941D8364DC00B1B2A0 /* UIView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121031D834C5D002C4B08 /* UIView+Visibility.swift */; };
 		18650B961D8364DC00B1B2A0 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121051D834C5D002C4B08 /* Navigator.swift */; };
 		18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121061D834C5D002C4B08 /* ReactantConfiguration.swift */; };
-		18650B981D8364DC00B1B2A0 /* RxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121071D834C5D002C4B08 /* RxRouter.swift */; };
 		18650B991D8364DC00B1B2A0 /* Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121081D834C5D002C4B08 /* Scrollable.swift */; };
 		18650B9A1D8364E000B1B2A0 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F91D834C5D002C4B08 /* Component.swift */; };
 		18650B9B1D8364E000B1B2A0 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FA1D834C5D002C4B08 /* ContainerView.swift */; };
@@ -40,11 +39,15 @@
 		18650B9E1D8364E500B1B2A0 /* RxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F71D834C5D002C4B08 /* RxCollectionViewCell.swift */; };
 		18650B9F1D8364E500B1B2A0 /* SingleRowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F81D834C5D002C4B08 /* SingleRowCollectionView.swift */; };
 		18650BA01D8364E800B1B2A0 /* ButtonBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120F41D834C5D002C4B08 /* ButtonBase.swift */; };
-		18650BA21D83665E00B1B2A0 /* Transformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA11D83665E00B1B2A0 /* Transformations.swift */; };
 		18650BA41D8366EE00B1B2A0 /* ScrollControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA31D8366EE00B1B2A0 /* ScrollControllerBase.swift */; };
 		18650BA61D83671B00B1B2A0 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA51D83671B00B1B2A0 /* StaticMap.swift */; };
 		18ABA1F81DACF00D001FF485 /* StateBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABA1F71DACF00D001FF485 /* StateBox.swift */; };
 		45444ED1E71FEFA1D6A84E08 /* Pods_ReactantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711603479E5441514316A7F3 /* Pods_ReactantTests.framework */; };
+		DC0785681DC693230063AB96 /* Array+MoreFunctionalMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785621DC693230063AB96 /* Array+MoreFunctionalMethods.swift */; };
+		DC07856A1DC693230063AB96 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785641DC693230063AB96 /* GlobalFunctions.swift */; };
+		DC07856B1DC693230063AB96 /* Int+Functionals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785651DC693230063AB96 /* Int+Functionals.swift */; };
+		DC07856C1DC693230063AB96 /* MoreFunctionalGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785661DC693230063AB96 /* MoreFunctionalGlobals.swift */; };
+		DC07856D1DC693230063AB96 /* ThreadLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785671DC693230063AB96 /* ThreadLocal.swift */; };
 		DC1674861DB62B9D00231E72 /* ControllerRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1674851DB62B9D00231E72 /* ControllerRootView.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,7 +98,6 @@
 		185121571D834D1F002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18650B811D83645900B1B2A0 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
-		18650BA11D83665E00B1B2A0 /* Transformations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformations.swift; sourceTree = "<group>"; };
 		18650BA31D8366EE00B1B2A0 /* ScrollControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollControllerBase.swift; sourceTree = "<group>"; };
 		18650BA51D83671B00B1B2A0 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		18ABA1F71DACF00D001FF485 /* StateBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateBox.swift; sourceTree = "<group>"; };
@@ -109,6 +111,12 @@
 		B028DA1728A0BC7C8045D66E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BE6BA3EF10B2D508C3108F59 /* Pods-Reactant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.debug.xcconfig"; sourceTree = "<group>"; };
 		D0CDB0F87F5A62A6CDB552C7 /* Reactant.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = Reactant.podspec; sourceTree = "<group>"; };
+		DC0785621DC693230063AB96 /* Array+MoreFunctionalMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+MoreFunctionalMethods.swift"; path = "Staging/Array+MoreFunctionalMethods.swift"; sourceTree = "<group>"; };
+		DC0785631DC693230063AB96 /* DispatchHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DispatchHelpers.swift; path = Staging/DispatchHelpers.swift; sourceTree = "<group>"; };
+		DC0785641DC693230063AB96 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalFunctions.swift; path = Staging/GlobalFunctions.swift; sourceTree = "<group>"; };
+		DC0785651DC693230063AB96 /* Int+Functionals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Int+Functionals.swift"; path = "Staging/Int+Functionals.swift"; sourceTree = "<group>"; };
+		DC0785661DC693230063AB96 /* MoreFunctionalGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MoreFunctionalGlobals.swift; path = Staging/MoreFunctionalGlobals.swift; sourceTree = "<group>"; };
+		DC0785671DC693230063AB96 /* ThreadLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadLocal.swift; path = Staging/ThreadLocal.swift; sourceTree = "<group>"; };
 		DC1674851DB62B9D00231E72 /* ControllerRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerRootView.swift; sourceTree = "<group>"; };
 		F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,12 +185,12 @@
 				18650BA31D8366EE00B1B2A0 /* ScrollControllerBase.swift */,
 				18ABA1F71DACF00D001FF485 /* StateBox.swift */,
 				18650BA51D83671B00B1B2A0 /* StaticMap.swift */,
-				18650BA11D83665E00B1B2A0 /* Transformations.swift */,
 				18650B811D83645900B1B2A0 /* Validation.swift */,
 				185121111D834C5D002C4B08 /* ViewBase.swift */,
 				185121121D834C5D002C4B08 /* ViewEventReceiver.swift */,
 				185120F51D834C5D002C4B08 /* CollectionView */,
 				185120FC1D834C5D002C4B08 /* Extensions */,
+				DC07855F1DC691600063AB96 /* Staging */,
 				185121091D834C5D002C4B08 /* TableView */,
 			);
 			path = Classes;
@@ -286,6 +294,19 @@
 				B028DA1728A0BC7C8045D66E /* README.md */,
 			);
 			path = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		DC07855F1DC691600063AB96 /* Staging */ = {
+			isa = PBXGroup;
+			children = (
+				DC0785621DC693230063AB96 /* Array+MoreFunctionalMethods.swift */,
+				DC0785631DC693230063AB96 /* DispatchHelpers.swift */,
+				DC0785641DC693230063AB96 /* GlobalFunctions.swift */,
+				DC0785651DC693230063AB96 /* Int+Functionals.swift */,
+				DC0785661DC693230063AB96 /* MoreFunctionalGlobals.swift */,
+				DC0785671DC693230063AB96 /* ThreadLocal.swift */,
+			);
+			name = Staging;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -488,8 +509,10 @@
 				18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */,
 				18650B8B1D8364D800B1B2A0 /* TableViewState.swift in Sources */,
 				18650B8E1D8364DC00B1B2A0 /* Result+Utils.swift in Sources */,
+				DC07856B1DC693230063AB96 /* Int+Functionals.swift in Sources */,
 				18650B8D1D8364D800B1B2A0 /* ViewEventReceiver.swift in Sources */,
-				18650BA21D83665E00B1B2A0 /* Transformations.swift in Sources */,
+				DC0785681DC693230063AB96 /* Array+MoreFunctionalMethods.swift in Sources */,
+				DC07856D1DC693230063AB96 /* ThreadLocal.swift in Sources */,
 				18650BA61D83671B00B1B2A0 /* StaticMap.swift in Sources */,
 				18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */,
 				18650B9F1D8364E500B1B2A0 /* SingleRowCollectionView.swift in Sources */,
@@ -504,13 +527,14 @@
 				18650B891D8364D800B1B2A0 /* SimpleTableView.swift in Sources */,
 				18650B941D8364DC00B1B2A0 /* UIView+Visibility.swift in Sources */,
 				18650BA01D8364E800B1B2A0 /* ButtonBase.swift in Sources */,
+				DC07856A1DC693230063AB96 /* GlobalFunctions.swift in Sources */,
 				18650B8F1D8364DC00B1B2A0 /* RxSwift+Operators.swift in Sources */,
 				18ABA1F81DACF00D001FF485 /* StateBox.swift in Sources */,
+				DC07856C1DC693230063AB96 /* MoreFunctionalGlobals.swift in Sources */,
 				18650B901D8364DC00B1B2A0 /* SequenceType+FirstWhere.swift in Sources */,
 				18650B931D8364DC00B1B2A0 /* UIView+Util.swift in Sources */,
 				18650B821D83645900B1B2A0 /* Validation.swift in Sources */,
 				18650B9B1D8364E000B1B2A0 /* ContainerView.swift in Sources */,
-				18650B981D8364DC00B1B2A0 /* RxRouter.swift in Sources */,
 				18650B991D8364DC00B1B2A0 /* Scrollable.swift in Sources */,
 				1841DC671DA682D500862527 /* UIBarButtonItem+ClosureAction.swift in Sources */,
 				18650B871D8364D800B1B2A0 /* RxTableViewHeaderFooterView.swift in Sources */,

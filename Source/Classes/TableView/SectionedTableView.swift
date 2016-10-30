@@ -26,7 +26,7 @@ open class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: Vie
     
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
     private let refreshControl = UIRefreshControl()
-    private let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
+    private let emptyLabel = UILabel()
     private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     open let tableView: UITableView
@@ -102,6 +102,8 @@ open class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: Vie
         tableView
             .rx.setDelegate(tableViewDelegate)
             .addDisposableTo(lifecycleDisposeBag)
+        
+        ReactantConfiguration.global.emptyListLabelStyle(emptyLabel)
     }
     
     open override func loadView() {

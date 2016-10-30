@@ -4,7 +4,6 @@
 //  Created by Maros Seleng on 10/05/16.
 //
 
-import Lipstick
 import RxCocoa
 import RxSwift
 
@@ -21,7 +20,7 @@ open class SingleRowCollectionView<CELL: UIView>: ViewBase<TableViewState<CELL.S
     
     open let collectionView: UICollectionView
     open let collectionViewLayout = UICollectionViewFlowLayout()
-    private let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
+    private let emptyLabel = UILabel()
     private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     private let cellFactory: () -> CELL
@@ -45,8 +44,10 @@ open class SingleRowCollectionView<CELL: UIView>: ViewBase<TableViewState<CELL.S
         collectionViewLayout.scrollDirection = scrollDirection
         
         collectionView.backgroundColor = UIColor.clear
-        collectionView.contentInset = insets(horizontal: horizontalInsets, vertical: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: horizontalInsets, bottom: 0, right: horizontalInsets)
         collectionView.register(RxCollectionViewCell<CELL>.self, forCellWithReuseIdentifier: "Cell")
+        
+        ReactantConfiguration.global.emptyListLabelStyle(emptyLabel)
     }
     
     open override func loadView() {

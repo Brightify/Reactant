@@ -27,7 +27,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
 
     fileprivate let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
     fileprivate let refreshControl = UIRefreshControl()
-    fileprivate let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
+    fileprivate let emptyLabel = UILabel()
     fileprivate let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
     open let tableView: UITableView
@@ -85,6 +85,8 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
         tableView
             .rx.setDelegate(tableViewDelegate)
             .addDisposableTo(lifecycleDisposeBag)
+        
+        ReactantConfiguration.global.emptyListLabelStyle(emptyLabel)
     }
 
     open override func loadView() {

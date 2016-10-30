@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Lipstick
 
 public struct ReactantConfiguration {
     public static var global = ReactantConfiguration()

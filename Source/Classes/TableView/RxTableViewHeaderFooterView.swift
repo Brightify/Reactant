@@ -4,7 +4,7 @@
 //  Created by Tadeáš Kříž on 16/04/16.
 //
 
-import SwiftKit
+import UIKit
 
 public final class RxTableViewHeaderFooterView<CONTENT: UIView>: UITableViewHeaderFooterView {
     private var content: CONTENT?

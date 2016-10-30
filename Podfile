@@ -5,12 +5,9 @@ use_frameworks!
 target 'Reactant' do
     pod 'RxSwift'
     pod 'RxCocoa'
-    pod 'SwiftKit'
     pod 'RxDataSources'
     pod 'RxOptional'
-    pod 'Lipstick'
     pod 'SnapKit'
-    pod 'HTTPStatusCodes'
     pod 'Kingfisher'
 end
 

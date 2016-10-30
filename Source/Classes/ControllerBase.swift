@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SnapKit
-import Lipstick
 
 open class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissalListener, Component {
     open let rootView: ROOT
@@ -126,7 +125,9 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, DialogDismissa
     
     open override func loadView() {
         // FIXME Add common styles and style rootview
-        view = ControllerRootView().styled(using: ReactantConfiguration.global.controllerRootStyle)
+        let controllerRootView = ControllerRootView()
+        ReactantConfiguration.global.controllerRootStyle(controllerRootView)
+        view = controllerRootView
 
         view.addSubview(rootView)
     }

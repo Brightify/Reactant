@@ -4,7 +4,7 @@
 //  Created by Maros Seleng on 10/05/16.
 //
 
-import SwiftKit
+import UIKit
 
 public final class RxCollectionReusableView<CONTENT: UIView>: UICollectionReusableView {
     private var content: CONTENT?

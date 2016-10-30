@@ -8,7 +8,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-import Lipstick
 
 open class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>> where CELL: Component {
     private typealias MODEL = CELL.StateType
@@ -35,9 +34,8 @@ open class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType
 
     open let tableView: UITableView
     private let refreshControl = UIRefreshControl()
-    private let emptyLabel = UILabel().styled(using: ReactantConfiguration.global.emptyListLabelStyle)
+    private let emptyLabel = UILabel()
     private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-
     private let cellFactory: () -> CELL
     private let reloadable: Bool
 
@@ -65,6 +63,8 @@ open class SimpleTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType
         tableView.tableFooterView = tableFooterView
         tableView.separatorStyle = separatorStyle
         tableView.register(RxTableViewCell<CELL>.self, forCellReuseIdentifier: "Cell")
+        
+        ReactantConfiguration.global.emptyListLabelStyle(emptyLabel)
     }
 
     open override func loadView() {
