@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Reactant'
-  s.version          = '0.3.0'
+  s.version          = '0.4.0'
   s.summary          = 'Imagine React Native in Swift and you get Reactant'
 
   s.description      = <<-DESC
@@ -26,13 +26,13 @@ Pod::Spec.new do |s|
   s.source_files = 'Source/Classes/**/*'
 
   s.frameworks = 'UIKit'
-  s.dependency 'RxSwift', '~> 3.0.0-beta.2'
-  s.dependency 'RxCocoa', '~> 3.0.0-beta.2'
+  s.dependency 'RxSwift', '~> 3.0.0'
+  s.dependency 'RxCocoa', '~> 3.0.0'
   s.dependency 'SwiftKit', '~> 0.10'
-  s.dependency 'RxDataSources', '~> 1.0.0-beta.2'
-  s.dependency 'RxOptional', '~> 3.0'
+  s.dependency 'RxDataSources', '~> 1.0.0'
+  s.dependency 'RxOptional', '~> 3.1'
   s.dependency 'Lipstick', '~> 0.4'
   s.dependency 'SnapKit', '~> 3.0'
   s.dependency 'HTTPStatusCodes', '~> 3.1'
-  s.dependency 'HanekeSwift', '~> 0.10'
+  s.dependency 'Kingfisher', '~> 3.1'
 end

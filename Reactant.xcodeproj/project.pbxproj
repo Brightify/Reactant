@@ -751,7 +751,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C37CA8BA58C7F3320247F9E /* Pods-ReactantTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
@@ -766,7 +765,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5975037688AFED52D683D2F3 /* Pods-ReactantTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -869,7 +867,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Example/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -883,7 +880,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4406EA23619B586C084EBED1 /* Pods-ReactantExample.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Example/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -10,7 +10,7 @@ import MapKit
 import Lipstick
 import RxCocoa
 import RxSwift
-import Haneke
+import Kingfisher
 
 open class StaticMap: ViewBase<MKCoordinateRegion> {
 
@@ -34,9 +34,10 @@ open class StaticMap: ViewBase<MKCoordinateRegion> {
                               componentState.span.latitudeDelta, componentState.span.longitudeDelta,
                               bounds.size.width, bounds.size.height)
 
-        _ = Shared.imageCache.fetch(key: fileName)
-            .onSuccess { [image] in image.image = $0 }
-            .onFailure { [componentState, bounds, image] _ in
+        ImageCache.default.retrieveImage(forKey: fileName, options: nil) { [image, componentState, bounds] cachedImage, _ in
+            if let cachedImage = cachedImage {
+                image.image = cachedImage
+            } else {
                 DispatchQueue.global().async {
                     let options = MKMapSnapshotOptions()
                     options.region = componentState
@@ -55,12 +56,13 @@ open class StaticMap: ViewBase<MKCoordinateRegion> {
                         UIGraphicsEndImageContext()
 
                         if let imageToCache = compositeImage {
-                            Shared.imageCache.set(value: imageToCache, key: fileName)
+                            ImageCache.default.store(imageToCache, forKey: fileName)
                         }
-
+                        
                         image.image = compositeImage
                     }
                 }
+            }
         }
     }
 

@@ -60,12 +60,12 @@ open class SectionedTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: Vie
             
             viewForHeaderInSection: { [dataSource] tableView, section in
                 let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Header") as? RxTableViewHeaderFooterView<HEADER>
-                let section = dataSource.sectionAtIndex(section).identity
+                let section = dataSource.sectionModels[section].identity
                 header?.cachedContentOrCreated(factory: headerFactory).setComponentState(section.header)
                 return header
             }, viewForFooterInSection: { [dataSource] tableView, section in
                 let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "Footer") as? RxTableViewHeaderFooterView<FOOTER>
-                let section = dataSource.sectionAtIndex(section).identity
+                let section = dataSource.sectionModels[section].identity
                 footer?.cachedContentOrCreated(factory: footerFactory).setComponentState(section.footer)
                 return footer
             })
