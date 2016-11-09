@@ -15,4 +15,6 @@ public struct ReactantConfiguration {
     public var controllerRootStyle: (ControllerRootView) -> Void = { _ in }
     public var emptyListLabelStyle: (UILabel) -> Void = { _ in }
     public var defaultLoadingMessage: String = "Loading .."
+    public var dialogStyle: (UIView) -> Void = { _ in }
+    public var dialogContentContainerStyle: (UIView) -> Void = { _ in }
 }

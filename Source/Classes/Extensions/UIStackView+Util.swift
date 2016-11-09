@@ -6,7 +6,9 @@
 
 import UIKit
 
-public extension UIStackView {
+extension UIStackView {
+    
+    @discardableResult
     public func arrangedChildren(_ children: UIView...) -> UIStackView {
         children.forEach(addArrangedSubview)
         return self

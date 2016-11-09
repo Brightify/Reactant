@@ -1,12 +1,15 @@
 //
-//  ContainerBase.swift
+//  ContainerView.swift
+//  Reactant
 //
 //  Created by Tadeáš Kříž on 05/04/16.
+//  Copyright © 2016 Brightify. All rights reserved.
 //
 
 import UIKit
 
 open class ContainerView: UIView {
+    
     open override class var requiresConstraintBasedLayout: Bool {
         return true
     }

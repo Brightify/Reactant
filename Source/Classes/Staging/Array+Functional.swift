@@ -9,10 +9,4 @@ public extension Array {
         mutableCopy.append(contentsOf: elements)
         return mutableCopy
     }
-    
-    public func product<U>(_ other: [U]) -> Array<(Element, U)> {
-        return flatMap { t in
-            other.map { u in (t, u) }
-        }
-    }
 }

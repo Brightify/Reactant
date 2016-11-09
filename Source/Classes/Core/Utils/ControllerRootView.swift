@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO Rename
 open class ControllerRootView: UIView {
     
     open let wrappedView: UIView?
@@ -24,6 +25,7 @@ open class ControllerRootView: UIView {
     
     public override init(frame: CGRect) {
         wrappedView = nil
+        
         super.init(frame: frame)
         
         loadView()
@@ -39,12 +41,13 @@ open class ControllerRootView: UIView {
     
     public init(wrap: UIView) {
         wrappedView = wrap
+        
         super.init(frame: CGRect.zero)
         
         addSubview(wrap)
     }
     
-    fileprivate func loadView() {
+    private func loadView() {
         autoresizingMask = [.flexibleWidth, .flexibleHeight]
         if frame == CGRect.zero {
             frame = window?.bounds ?? UIScreen.main.bounds

@@ -6,14 +6,11 @@
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
-import RxSwift
+import UIKit
 
-open class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, ROOT> {
+open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: RootView {
+    
     open let scrollView = UIScrollView()
-
-    public override init(title: String = "", root: ROOT = ROOT()) {
-        super.init(title: title, root: root)
-    }
 
     open override func loadView() {
         let controllerRootView = ControllerRootView()
@@ -40,10 +37,6 @@ open class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, ROOT
         }
     }
 
-    open override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-    }
-
     open override func viewDidLayoutSubviews() {
         scrollView.contentSize = rootView.bounds.size
 
@@ -52,7 +45,8 @@ open class ScrollControllerBase<MODEL, ROOT: UIView>: ControllerBase<MODEL, ROOT
 }
 
 extension ScrollControllerBase: Scrollable {
-    open func scrollToTop(animated: Bool) {
+    
+    public func scrollToTop(animated: Bool) {
         scrollView.scrollToTop(animated: animated)
     }
 }

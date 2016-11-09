@@ -8,10 +8,6 @@
 
 import Foundation
 
-public func inferredType<T>() -> T.Type {
-    return T.self
-}
-
 public func associatedObject<T: AnyObject>(_ base: AnyObject, key: UnsafePointer<UInt8>, initializer: () -> T) -> T {
     if let associated = objc_getAssociatedObject(base, key) as? T {
         return associated
