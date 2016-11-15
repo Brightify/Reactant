@@ -30,10 +30,8 @@ final class DialogView: ViewBase<Void> {
         )
     }
     
-    override func updateConstraints() {
-        super.updateConstraints()
-        
-        contentContainer.snp.remakeConstraints { make in
+    override func setupConstraints() {
+        contentContainer.snp.makeConstraints { make in
             make.leading.greaterThanOrEqualTo(snp.leadingMargin)
             make.top.greaterThanOrEqualTo(snp.topMargin)
             make.trailing.greaterThanOrEqualTo(snp.trailingMargin)
@@ -41,7 +39,7 @@ final class DialogView: ViewBase<Void> {
             make.center.equalTo(self)
         }
         
-        content.snp.updateConstraints { make in
+        content.snp.makeConstraints { make in
             make.edges.equalTo(contentContainer)
         }
     }

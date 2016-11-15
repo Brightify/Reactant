@@ -16,7 +16,6 @@ open class ButtonBase<STATE>: UIButton, ComponentWithDelegate {
     
     public let componentDelegate = ComponentDelegate<STATE, ButtonBase<STATE>>()
     
-    // TODO Should be in ViewBase (+ addSubview)?
     open override class var requiresConstraintBasedLayout: Bool {
         return true
     }

@@ -11,10 +11,11 @@ import UIKit
 public struct ReactantConfiguration {
     public static var global = ReactantConfiguration()
 
-    public var layoutMargins: UIEdgeInsets = UIEdgeInsets.zero
-    public var controllerRootStyle: (ControllerRootView) -> Void = { _ in }
+    public var layoutMargins = UIEdgeInsets.zero
+    public var controllerRootStyle: (ControllerRootViewContainer) -> Void = { _ in }
     public var emptyListLabelStyle: (UILabel) -> Void = { _ in }
-    public var defaultLoadingMessage: String = "Loading .."
+    public var defaultLoadingMessage = "Loading .."
+    public var closeButtonTitle = "Close"
     public var dialogStyle: (UIView) -> Void = { _ in }
     public var dialogContentContainerStyle: (UIView) -> Void = { _ in }
 }

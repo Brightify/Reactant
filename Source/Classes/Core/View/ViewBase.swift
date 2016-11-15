@@ -16,14 +16,15 @@ open class ViewBase<STATE>: UIView, ComponentWithDelegate {
     
     public let componentDelegate = ComponentDelegate<STATE, ViewBase<STATE>>()
     
-    public init(initialState: STATE? = nil) {
+    open override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
+    
+    public init() {
         super.init(frame: CGRect.zero)
         
         componentDelegate.ownerComponent = self
         componentDelegate.canUpdate = true
-        if let state = initialState, STATE.self != Void.self {
-            componentState = state
-        }
         
         layoutMargins = ReactantConfiguration.global.layoutMargins
         translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +43,12 @@ open class ViewBase<STATE>: UIView, ComponentWithDelegate {
     open func loadView() {
     }
     
-    // TODO UpdateConstrains?
     open func setupConstraints() {
+    }
+    
+    open override func addSubview(_ view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        super.addSubview(view)
     }
 }

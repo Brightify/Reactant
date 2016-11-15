@@ -32,7 +32,6 @@ public class ComponentDelegate<STATE, COMPONENT: Component> {
             previousComponentState = stateStorage
             stateStorage = newValue
             needsUpdate = true
-            // TODO Move to update?
             observableStateSubject.onNext(componentState)
         }
     }
@@ -55,7 +54,7 @@ public class ComponentDelegate<STATE, COMPONENT: Component> {
     
     public weak var ownerComponent: COMPONENT? {
         didSet {
-            needsUpdate = true
+            needsUpdate = stateStorage != nil
         }
     }
     

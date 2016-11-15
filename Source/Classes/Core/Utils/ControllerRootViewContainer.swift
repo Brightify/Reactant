@@ -1,6 +1,6 @@
 //
-//  ControllerRootView.swift
-//  Lipstick
+//  ControllerRootViewContainer.swift
+//  Reactant
 //
 //  Created by Tadeas Kriz on 08/01/16.
 //  Copyright © 2016 Brightify. All rights reserved.
@@ -8,8 +8,7 @@
 
 import UIKit
 
-// TODO Rename
-open class ControllerRootView: UIView {
+open class ControllerRootViewContainer: UIView {
     
     open let wrappedView: UIView?
     
@@ -29,6 +28,7 @@ open class ControllerRootView: UIView {
         super.init(frame: frame)
         
         loadView()
+        ReactantConfiguration.global.controllerRootStyle(self)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -37,6 +37,7 @@ open class ControllerRootView: UIView {
         super.init(coder: aDecoder)
         
         loadView()
+        ReactantConfiguration.global.controllerRootStyle(self)
     }
     
     public init(wrap: UIView) {
@@ -45,6 +46,7 @@ open class ControllerRootView: UIView {
         super.init(frame: CGRect.zero)
         
         addSubview(wrap)
+        ReactantConfiguration.global.controllerRootStyle(self)
     }
     
     private func loadView() {

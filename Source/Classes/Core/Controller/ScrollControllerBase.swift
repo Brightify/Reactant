@@ -8,14 +8,12 @@
 
 import UIKit
 
-open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: RootView {
+open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
     
     open let scrollView = UIScrollView()
 
     open override func loadView() {
-        let controllerRootView = ControllerRootView()
-        ReactantConfiguration.global.controllerRootStyle(controllerRootView)
-        view = controllerRootView
+        view = ControllerRootViewContainer()
         
         view.children(
             scrollView.children(

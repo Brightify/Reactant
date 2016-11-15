@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class RxBaseDialogController<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: RootView {
+public class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
     
     private var dialogView: DialogView
 
@@ -22,9 +22,7 @@ public class RxBaseDialogController<STATE, ROOT: UIView>: ControllerBase<STATE, 
     }
     
     open override func loadView() {
-        let controllerRootView = ControllerRootView()
-        ReactantConfiguration.global.controllerRootStyle(controllerRootView)
-        view = controllerRootView
+        view = ControllerRootViewContainer()
         
         view.addSubview(dialogView)
     }

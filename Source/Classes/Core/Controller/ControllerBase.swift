@@ -9,8 +9,7 @@
 import SnapKit
 import RxSwift
 
-// TODO Solve lifecycle in RootView.
-open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate where ROOT: RootView {
+open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate where ROOT: Component {
     
     public typealias StateType = STATE
     
@@ -24,7 +23,10 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     
     open let rootView: ROOT
     
-    // TODO Solve loadView.
+    private var castedRootView: RootView? {
+        return rootView as? RootView
+    }
+    
     public init(title: String = "", root: ROOT = ROOT()) {
         rootView = root
         
@@ -33,7 +35,6 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         componentDelegate.ownerComponent = self
         
         self.title = title
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         
         afterInit()
     }
@@ -45,9 +46,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     
     open override func loadView() {
         // FIXME Add common styles and style rootview
-        let controllerRootView = ControllerRootView()
-        ReactantConfiguration.global.controllerRootStyle(controllerRootView)
-        view = controllerRootView
+        view = ControllerRootViewContainer()
         
         view.addSubview(rootView)
     }
@@ -61,13 +60,13 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     public func updateRootViewConstraints() {
         rootView.snp.updateConstraints { make in
             make.leading.equalTo(view)
-            if rootView.edgesForExtendedLayout.contains(.top) {
+            if castedRootView?.edgesForExtendedLayout.contains(.top) == true {
                 make.top.equalTo(view)
             } else {
                 make.top.equalTo(topLayoutGuide.snp.bottom)
             }
             make.trailing.equalTo(view)
-            if rootView.edgesForExtendedLayout.contains(.bottom) {
+            if castedRootView?.edgesForExtendedLayout.contains(.bottom) == true {
                 make.bottom.equalTo(view).priority(UILayoutPriorityDefaultHigh)
             } else {
                 make.bottom.equalTo(bottomLayoutGuide.snp.top).priority(UILayoutPriorityDefaultHigh)
@@ -82,13 +81,13 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         
         componentDelegate.canUpdate = true
         
-        rootView.viewWillAppear()
+        castedRootView?.viewWillAppear()
     }
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        rootView.viewDidAppear()
+        castedRootView?.viewDidAppear()
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
@@ -96,12 +95,12 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         
         componentDelegate.canUpdate = false
         
-        rootView.viewWillDisappear()
+        castedRootView?.viewWillDisappear()
     }
     
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        rootView.viewDidDisappear()
+        castedRootView?.viewDidDisappear()
     }
 }

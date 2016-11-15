@@ -1,29 +1,12 @@
 //
-//  UINavigationController+Wireframe.swift
+//  UINavigationController+Navigation.swift
 //  Reactant
 //
 //  Created by Filip Dolnik on 09.11.16.
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import RxSwift
-
-extension UIViewController {
-    
-    @discardableResult
-    public func present<C: UIViewController>(controller: C, animated: Bool = true) -> Observable<C> {
-        let replay = ReplaySubject<Void>.create(bufferSize: 1)
-        present(controller, animated: animated, completion: { replay.onLast() })
-        return replay.rewrite(with: controller)
-    }
-    
-    @discardableResult
-    public func dismiss(animated: Bool = true) -> Observable<Void> {
-        let replay = ReplaySubject<Void>.create(bufferSize: 1)
-        dismiss(animated: animated, completion: { replay.onLast() })
-        return replay
-    }
-}
+import UIKit
 
 extension UINavigationController {
     
@@ -47,7 +30,6 @@ extension UINavigationController {
         return current
     }
     
-    // TODO Difference replaceAll?
     @discardableResult
     public func popAllAndReplace(with controller: UIViewController) -> [UIViewController] {
         let transition = CATransition()
@@ -67,17 +49,5 @@ extension UINavigationController {
         setViewControllers([controller], animated: animated)
         
         return currentControllers
-    }
-    
-    // TODO Name and present
-    public static func branchedNavigation(controller: UIViewController,
-                                          closeButtonTitle: String? = "Close") -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: controller)
-        if let closeButtonTitle = closeButtonTitle {
-            controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: closeButtonTitle, style: .done) { _ in
-                navigationController.dismiss(animated: true, completion: nil)
-            }
-        }
-        return navigationController
     }
 }
