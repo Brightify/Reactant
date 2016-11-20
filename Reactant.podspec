@@ -32,4 +32,5 @@ Pod::Spec.new do |s|
   s.dependency 'RxOptional', '~> 3.1'
   s.dependency 'SnapKit', '~> 3.0'
   s.dependency 'Kingfisher', '~> 3.1'
+  s.dependency 'Result', '~> 3.0.0'
 end

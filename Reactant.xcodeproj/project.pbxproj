@@ -11,9 +11,7 @@
 		1841DC671DA682D500862527 /* UIBarButtonItem+ClosureAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841DC661DA682D500862527 /* UIBarButtonItem+ClosureAction.swift */; };
 		185121511D834D1F002C4B08 /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
 		1851215E1D834DD2002C4B08 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		18650B821D83645900B1B2A0 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650B811D83645900B1B2A0 /* Validation.swift */; };
 		18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */; };
-		18650B8E1D8364DC00B1B2A0 /* Result+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FD1D834C5D002C4B08 /* Result+Utils.swift */; };
 		18650B8F1D8364DC00B1B2A0 /* RxSwift+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FE1D834C5D002C4B08 /* RxSwift+Operators.swift */; };
 		18650B921D8364DC00B1B2A0 /* UIStackView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121011D834C5D002C4B08 /* UIStackView+Util.swift */; };
 		18650B931D8364DC00B1B2A0 /* UIView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121021D834C5D002C4B08 /* UIView+Util.swift */; };
@@ -62,11 +60,16 @@
 		DC0785F61DDC6CA60063AB96 /* Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F41DDC6CA60063AB96 /* Scrollable.swift */; };
 		DC0785F71DDC6CA60063AB96 /* UIScrollView+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F51DDC6CA60063AB96 /* UIScrollView+Scrollable.swift */; };
 		DC0785F91DDC6CD20063AB96 /* ScrollControllerBase+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F81DDC6CD20063AB96 /* ScrollControllerBase+Scrollable.swift */; };
-		DC0785FB1DDC6D160063AB96 /* TableViewBase+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785FA1DDC6D160063AB96 /* TableViewBase+Scrollable.swift */; };
+		DC0785FB1DDC6D160063AB96 /* TableView+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785FA1DDC6D160063AB96 /* TableView+Scrollable.swift */; };
 		DC0785FF1DDC6F430063AB96 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785FE1DDC6F430063AB96 /* TableView.swift */; };
 		DC0786011DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0786001DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift */; };
 		DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */; };
 		DC2B5D281DE1A20300F9C9D7 /* TableView+SetComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D271DE1A20300F9C9D7 /* TableView+SetComponentState.swift */; };
+		DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */; };
+		DC2B5D2D1DE1B80700F9C9D7 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D2C1DE1B80700F9C9D7 /* Rule.swift */; };
+		DC2B5D2F1DE1B86C00F9C9D7 /* StringRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D2E1DE1B86C00F9C9D7 /* StringRules.swift */; };
+		DC2B5D331DE2051800F9C9D7 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D321DE2051800F9C9D7 /* ValidationError.swift */; };
+		DC2B5D351DE2055700F9C9D7 /* EmailValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D341DE2055700F9C9D7 /* EmailValidationError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +86,6 @@
 		045F878B1A7F63F7AAD82596 /* Pods_ReactantExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		118FB89C32922066714D8F98 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1841DC661DA682D500862527 /* UIBarButtonItem+ClosureAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButtonItem+ClosureAction.swift"; path = "Extensions/UIBarButtonItem+ClosureAction.swift"; sourceTree = "<group>"; };
-		185120FD1D834C5D002C4B08 /* Result+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Result+Utils.swift"; path = "Extensions/Result+Utils.swift"; sourceTree = "<group>"; };
 		185120FE1D834C5D002C4B08 /* RxSwift+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RxSwift+Operators.swift"; path = "Extensions/RxSwift+Operators.swift"; sourceTree = "<group>"; };
 		185121011D834C5D002C4B08 /* UIStackView+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView+Util.swift"; path = "Extensions/UIStackView+Util.swift"; sourceTree = "<group>"; };
 		185121021D834C5D002C4B08 /* UIView+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Util.swift"; path = "Extensions/UIView+Util.swift"; sourceTree = "<group>"; };
@@ -94,7 +96,6 @@
 		1851214B1D834D1E002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185121501D834D1F002C4B08 /* ReactantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		185121571D834D1F002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		18650B811D83645900B1B2A0 /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		18650BA51D83671B00B1B2A0 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		18ABA1F71DACF00D001FF485 /* StateBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateBox.swift; sourceTree = "<group>"; };
@@ -151,10 +152,15 @@
 		DC0785F41DDC6CA60063AB96 /* Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scrollable.swift; path = Scrollable/Scrollable.swift; sourceTree = "<group>"; };
 		DC0785F51DDC6CA60063AB96 /* UIScrollView+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIScrollView+Scrollable.swift"; path = "Scrollable/UIScrollView+Scrollable.swift"; sourceTree = "<group>"; };
 		DC0785F81DDC6CD20063AB96 /* ScrollControllerBase+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ScrollControllerBase+Scrollable.swift"; path = "Scrollable/ScrollControllerBase+Scrollable.swift"; sourceTree = "<group>"; };
-		DC0785FA1DDC6D160063AB96 /* TableViewBase+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TableViewBase+Scrollable.swift"; path = "Scrollable/TableViewBase+Scrollable.swift"; sourceTree = "<group>"; };
+		DC0785FA1DDC6D160063AB96 /* TableView+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TableView+Scrollable.swift"; path = "Scrollable/TableView+Scrollable.swift"; sourceTree = "<group>"; };
 		DC0785FE1DDC6F430063AB96 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableView.swift; path = Core/TableView/TableView.swift; sourceTree = "<group>"; };
 		DC0786001DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoTableViewHeaderFooterMarker.swift; path = Core/TableView/NoTableViewHeaderFooterMarker.swift; sourceTree = "<group>"; };
 		DC2B5D271DE1A20300F9C9D7 /* TableView+SetComponentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TableView+SetComponentState.swift"; path = "Core/TableView/TableView+SetComponentState.swift"; sourceTree = "<group>"; };
+		DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ObservableConvertibleType+Result.swift"; path = "Result/ObservableConvertibleType+Result.swift"; sourceTree = "<group>"; };
+		DC2B5D2C1DE1B80700F9C9D7 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rule.swift; path = Result/Validation/Rule.swift; sourceTree = "<group>"; };
+		DC2B5D2E1DE1B86C00F9C9D7 /* StringRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringRules.swift; path = Result/Validation/StringRules.swift; sourceTree = "<group>"; };
+		DC2B5D321DE2051800F9C9D7 /* ValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidationError.swift; path = Result/Validation/ValidationError.swift; sourceTree = "<group>"; };
+		DC2B5D341DE2055700F9C9D7 /* EmailValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmailValidationError.swift; path = Result/Validation/EmailValidationError.swift; sourceTree = "<group>"; };
 		F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,7 +222,7 @@
 				DC0785F31DDC6C460063AB96 /* Scrollable */,
 				DC0785721DC882820063AB96 /* StaticMap */,
 				DC0785701DC881F80063AB96 /* Trash */,
-				DC07856F1DC881E40063AB96 /* Validation */,
+				DC07856F1DC881E40063AB96 /* Result */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -296,13 +302,13 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
-		DC07856F1DC881E40063AB96 /* Validation */ = {
+		DC07856F1DC881E40063AB96 /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				DC0785F21DDC6C260063AB96 /* Scrollable */,
-				18650B811D83645900B1B2A0 /* Validation.swift */,
+				DC2B5D2B1DE1B7E500F9C9D7 /* Validation */,
+				DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */,
 			);
-			name = Validation;
+			name = Result;
 			sourceTree = "<group>";
 		};
 		DC0785701DC881F80063AB96 /* Trash */ = {
@@ -421,7 +427,6 @@
 			children = (
 				DC0785621DC693230063AB96 /* Array+Functional.swift */,
 				185120FE1D834C5D002C4B08 /* RxSwift+Operators.swift */,
-				185120FD1D834C5D002C4B08 /* Result+Utils.swift */,
 			);
 			name = FunctionalExtensions;
 			sourceTree = "<group>";
@@ -459,22 +464,26 @@
 			name = Identifier;
 			sourceTree = "<group>";
 		};
-		DC0785F21DDC6C260063AB96 /* Scrollable */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Scrollable;
-			sourceTree = "<group>";
-		};
 		DC0785F31DDC6C460063AB96 /* Scrollable */ = {
 			isa = PBXGroup;
 			children = (
 				DC0785F41DDC6CA60063AB96 /* Scrollable.swift */,
 				DC0785F81DDC6CD20063AB96 /* ScrollControllerBase+Scrollable.swift */,
-				DC0785FA1DDC6D160063AB96 /* TableViewBase+Scrollable.swift */,
+				DC0785FA1DDC6D160063AB96 /* TableView+Scrollable.swift */,
 				DC0785F51DDC6CA60063AB96 /* UIScrollView+Scrollable.swift */,
 			);
 			name = Scrollable;
+			sourceTree = "<group>";
+		};
+		DC2B5D2B1DE1B7E500F9C9D7 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				DC2B5D2C1DE1B80700F9C9D7 /* Rule.swift */,
+				DC2B5D2E1DE1B86C00F9C9D7 /* StringRules.swift */,
+				DC2B5D321DE2051800F9C9D7 /* ValidationError.swift */,
+				DC2B5D341DE2055700F9C9D7 /* EmailValidationError.swift */,
+			);
+			name = Validation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -674,18 +683,19 @@
 				DC0785FF1DDC6F430063AB96 /* TableView.swift in Sources */,
 				DC0785E61DDB2C150063AB96 /* CollectionViewCellIdentifier.swift in Sources */,
 				DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */,
+				DC2B5D2F1DE1B86C00F9C9D7 /* StringRules.swift in Sources */,
 				DC0785E21DDB22670063AB96 /* TableViewHeaderFooterIdentifier.swift in Sources */,
 				18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */,
 				DC0785EC1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift in Sources */,
 				DC0785D51DD9C63B0063AB96 /* SingleRowCollectionView.swift in Sources */,
 				DC0785CC1DD8C4F00063AB96 /* TableViewCellWrapper.swift in Sources */,
 				DC0785A41DD3BDE10063AB96 /* ContainerView.swift in Sources */,
-				18650B8E1D8364DC00B1B2A0 /* Result+Utils.swift in Sources */,
 				DC0785681DC693230063AB96 /* Array+Functional.swift in Sources */,
+				DC2B5D351DE2055700F9C9D7 /* EmailValidationError.swift in Sources */,
 				DC0785D41DD9C2330063AB96 /* CollectionReusableViewWrapper.swift in Sources */,
 				DC0785AE1DD3C3120063AB96 /* DialogControllerBase.swift in Sources */,
 				DC0786011DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift in Sources */,
-				DC0785FB1DDC6D160063AB96 /* TableViewBase+Scrollable.swift in Sources */,
+				DC0785FB1DDC6D160063AB96 /* TableView+Scrollable.swift in Sources */,
 				DC0785D01DD9C1E40063AB96 /* CollectionViewCell.swift in Sources */,
 				DC0785D21DD9C2070063AB96 /* CollectionViewCellWrapper.swift in Sources */,
 				DC0785E01DDB21E00063AB96 /* AnyTableViewCellIdentifier.swift in Sources */,
@@ -696,6 +706,7 @@
 				DC0785F61DDC6CA60063AB96 /* Scrollable.swift in Sources */,
 				18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */,
 				DC0785AF1DD3C3120063AB96 /* ScrollControllerBase.swift in Sources */,
+				DC2B5D2D1DE1B80700F9C9D7 /* Rule.swift in Sources */,
 				DC0785B11DD3CBDC0063AB96 /* DialogView.swift in Sources */,
 				DC0785C11DD468E20063AB96 /* TableViewState.swift in Sources */,
 				18650B921D8364DC00B1B2A0 /* UIStackView+Util.swift in Sources */,
@@ -705,18 +716,19 @@
 				DC07859D1DD3AA870063AB96 /* RootView.swift in Sources */,
 				DC07856A1DC693230063AB96 /* GlobalFunctions.swift in Sources */,
 				DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */,
+				DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */,
 				18650B8F1D8364DC00B1B2A0 /* RxSwift+Operators.swift in Sources */,
 				DC2B5D281DE1A20300F9C9D7 /* TableView+SetComponentState.swift in Sources */,
 				DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */,
 				DC0785CA1DD8C4DF0063AB96 /* TableViewCell.swift in Sources */,
 				DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */,
+				DC2B5D331DE2051800F9C9D7 /* ValidationError.swift in Sources */,
 				18ABA1F81DACF00D001FF485 /* StateBox.swift in Sources */,
 				DC0785A11DD3ADB60063AB96 /* ComponentWithDelegate.swift in Sources */,
 				18650B931D8364DC00B1B2A0 /* UIView+Util.swift in Sources */,
 				DC0785991DD3A3420063AB96 /* ViewBase.swift in Sources */,
 				DC0785A21DD3B77B0063AB96 /* ButtonBase.swift in Sources */,
 				DC0785DE1DDB20840063AB96 /* TableViewCellIdentifier.swift in Sources */,
-				18650B821D83645900B1B2A0 /* Validation.swift in Sources */,
 				DC07858D1DD39BE50063AB96 /* ControllerBase.swift in Sources */,
 				DC0785911DD39BF60063AB96 /* Component.swift in Sources */,
 				DC0785CE1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift in Sources */,
@@ -802,7 +814,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C37CA8BA58C7F3320247F9E /* Pods-ReactantTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
@@ -817,7 +828,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5975037688AFED52D683D2F3 /* Pods-ReactantTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;

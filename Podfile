@@ -9,6 +9,7 @@ target 'Reactant' do
     pod 'RxOptional'
     pod 'SnapKit'
     pod 'Kingfisher'
+    pod 'Result', '~> 3.0.0'
 end
 
 target 'ReactantTests' do

@@ -1,5 +1,5 @@
 //
-//  TableViewBase+Scrollable.swift
+//  TableView+Scrollable.swift
 //  Reactant
 //
 //  Created by Filip Dolnik on 16.11.16.
