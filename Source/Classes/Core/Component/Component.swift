@@ -35,7 +35,7 @@ public protocol Component: class {
 
 extension Component {
     
-    var setComponentState: (StateType) -> Void {
+    public var setComponentState: (StateType) -> Void {
         return { [weak self] in
             self?.componentState = $0
         }

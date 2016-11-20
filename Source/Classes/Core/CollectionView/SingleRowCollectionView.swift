@@ -23,11 +23,12 @@ open class SingleRowCollectionView<CELL: UIView>: ViewBase<CollectionViewState<C
         return .all
     }
     
+    // TODO Delegate properties
     open let collectionView: UICollectionView
     open let collectionViewLayout = UICollectionViewFlowLayout()
     
     private let emptyLabel = UILabel()
-    private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
     
     private let cellFactory: () -> CELL
     
@@ -81,8 +82,8 @@ open class SingleRowCollectionView<CELL: UIView>: ViewBase<CollectionViewState<C
     
     public func componentStateDidChange() {
         var items: [MODEL] = []
-        var emptyMessage: String = ""
-        var loading: Bool = false
+        var emptyMessage = ""
+        var loading = false
         
         switch componentState {
         case .items(let models):

@@ -6,8 +6,6 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import UIKit
-
 public protocol Scrollable {
     
     func scrollToTop(animated: Bool)

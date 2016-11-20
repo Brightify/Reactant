@@ -41,10 +41,3 @@ open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
         super.viewDidLayoutSubviews()
     }
 }
-
-extension ScrollControllerBase: Scrollable {
-    
-    public func scrollToTop(animated: Bool) {
-        scrollView.scrollToTop(animated: animated)
-    }
-}

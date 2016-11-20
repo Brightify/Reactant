@@ -8,6 +8,7 @@
 
 import RxSwift
 
+// TODO New naming without UI
 open class ViewBase<STATE>: UIView, ComponentWithDelegate {
     
     public typealias StateType = STATE

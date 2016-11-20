@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import Kingfisher
 
-// TODO Move to subspec with Haneke.
+// TODO Move to subspec with Kingfisher.
 
 open class StaticMap: ViewBase<MKCoordinateRegion> {
 

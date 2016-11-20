@@ -18,4 +18,5 @@ public struct ReactantConfiguration {
     public var closeButtonTitle = "Close"
     public var dialogStyle: (UIView) -> Void = { _ in }
     public var dialogContentContainerStyle: (UIView) -> Void = { _ in }
+    public var loadingIndicatorStyle: UIActivityIndicatorViewStyle = .gray
 }
