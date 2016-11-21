@@ -19,17 +19,14 @@
 		DC0785911DD39BF60063AB96 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858E1DD39BF60063AB96 /* Component.swift */; };
 		DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858F1DD39BF60063AB96 /* ComponentBase.swift */; };
 		DC0785931DD39BF60063AB96 /* ComponentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785901DD39BF60063AB96 /* ComponentDelegate.swift */; };
-		DC0785951DD39C5D0063AB96 /* DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785941DD39C5D0063AB96 /* DialogDismissalListener.swift */; };
 		DC0785971DD3A1F50063AB96 /* FutureControllerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785961DD3A1F40063AB96 /* FutureControllerProvider.swift */; };
 		DC0785991DD3A3420063AB96 /* ViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785981DD3A3420063AB96 /* ViewBase.swift */; };
 		DC07859D1DD3AA870063AB96 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07859C1DD3AA870063AB96 /* RootView.swift */; };
 		DC0785A11DD3ADB60063AB96 /* ComponentWithDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785A01DD3ADB60063AB96 /* ComponentWithDelegate.swift */; };
 		DC0785A21DD3B77B0063AB96 /* ButtonBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07859E1DD3ACD80063AB96 /* ButtonBase.swift */; };
 		DC0785A41DD3BDE10063AB96 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785A31DD3BDE10063AB96 /* ContainerView.swift */; };
-		DC0785AB1DD3C3030063AB96 /* ControllerRootViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785AA1DD3C3030063AB96 /* ControllerRootViewContainer.swift */; };
 		DC0785AE1DD3C3120063AB96 /* DialogControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785AC1DD3C3120063AB96 /* DialogControllerBase.swift */; };
 		DC0785AF1DD3C3120063AB96 /* ScrollControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785AD1DD3C3120063AB96 /* ScrollControllerBase.swift */; };
-		DC0785B11DD3CBDC0063AB96 /* DialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B01DD3CBDC0063AB96 /* DialogView.swift */; };
 		DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B21DD3D7080063AB96 /* UIViewController+Navigation.swift */; };
 		DC0785C11DD468E20063AB96 /* TableViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785BA1DD468E20063AB96 /* TableViewState.swift */; };
 		DC0785CA1DD8C4DF0063AB96 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785C91DD8C4DF0063AB96 /* TableViewCell.swift */; };
@@ -73,6 +70,11 @@
 		DC2B5D5D1DE2EB3600F9C9D7 /* CollapseAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D5C1DE2EB3600F9C9D7 /* CollapseAxis.swift */; };
 		DC2B5D611DE2EB6D00F9C9D7 /* ConstraintAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D601DE2EB6D00F9C9D7 /* ConstraintAction.swift */; };
 		DC2B5D651DE2EE5F00F9C9D7 /* AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D641DE2EE5F00F9C9D7 /* AssociatedObject.swift */; };
+		DC2B5D671DE2F90D00F9C9D7 /* TableView+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D661DE2F90D00F9C9D7 /* TableView+Properties.swift */; };
+		DC2B5D691DE2FD6800F9C9D7 /* SingleRowCollectionView+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D681DE2FD6800F9C9D7 /* SingleRowCollectionView+Properties.swift */; };
+		DC2B5D6C1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6A1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift */; };
+		DC2B5D6D1DE2FFC000F9C9D7 /* DialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6B1DE2FFC000F9C9D7 /* DialogView.swift */; };
+		DC2B5D6F1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6E1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,17 +115,14 @@
 		DC07858E1DD39BF60063AB96 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Component.swift; path = Core/Component/Component.swift; sourceTree = "<group>"; };
 		DC07858F1DD39BF60063AB96 /* ComponentBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComponentBase.swift; path = Core/Component/ComponentBase.swift; sourceTree = "<group>"; };
 		DC0785901DD39BF60063AB96 /* ComponentDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComponentDelegate.swift; path = Core/Component/ComponentDelegate.swift; sourceTree = "<group>"; };
-		DC0785941DD39C5D0063AB96 /* DialogDismissalListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DialogDismissalListener.swift; path = Core/Utils/DialogDismissalListener.swift; sourceTree = "<group>"; };
 		DC0785961DD3A1F40063AB96 /* FutureControllerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FutureControllerProvider.swift; path = Core/Wireframe/FutureControllerProvider.swift; sourceTree = "<group>"; };
 		DC0785981DD3A3420063AB96 /* ViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewBase.swift; path = Core/View/ViewBase.swift; sourceTree = "<group>"; };
 		DC07859C1DD3AA870063AB96 /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootView.swift; path = Core/View/RootView.swift; sourceTree = "<group>"; };
 		DC07859E1DD3ACD80063AB96 /* ButtonBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonBase.swift; path = Core/View/ButtonBase.swift; sourceTree = "<group>"; };
 		DC0785A01DD3ADB60063AB96 /* ComponentWithDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComponentWithDelegate.swift; path = Core/Component/ComponentWithDelegate.swift; sourceTree = "<group>"; };
 		DC0785A31DD3BDE10063AB96 /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContainerView.swift; path = Core/View/ContainerView.swift; sourceTree = "<group>"; };
-		DC0785AA1DD3C3030063AB96 /* ControllerRootViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ControllerRootViewContainer.swift; path = Core/Utils/ControllerRootViewContainer.swift; sourceTree = "<group>"; };
 		DC0785AC1DD3C3120063AB96 /* DialogControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DialogControllerBase.swift; path = Core/Controller/DialogControllerBase.swift; sourceTree = "<group>"; };
 		DC0785AD1DD3C3120063AB96 /* ScrollControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollControllerBase.swift; path = Core/Controller/ScrollControllerBase.swift; sourceTree = "<group>"; };
-		DC0785B01DD3CBDC0063AB96 /* DialogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DialogView.swift; path = Core/Utils/DialogView.swift; sourceTree = "<group>"; };
 		DC0785B21DD3D7080063AB96 /* UIViewController+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Navigation.swift"; path = "Core/Wireframe/UIViewController+Navigation.swift"; sourceTree = "<group>"; };
 		DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimulatedSeparatorTableView.swift; path = Core/TableView/SimulatedSeparatorTableView.swift; sourceTree = "<group>"; };
 		DC0785BA1DD468E20063AB96 /* TableViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewState.swift; path = Core/TableView/TableViewState.swift; sourceTree = "<group>"; };
@@ -167,6 +166,11 @@
 		DC2B5D5C1DE2EB3600F9C9D7 /* CollapseAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollapseAxis.swift; path = Core/Utils/Visibility/CollapseAxis.swift; sourceTree = "<group>"; };
 		DC2B5D601DE2EB6D00F9C9D7 /* ConstraintAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintAction.swift; path = Core/Utils/Visibility/ConstraintAction.swift; sourceTree = "<group>"; };
 		DC2B5D641DE2EE5F00F9C9D7 /* AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssociatedObject.swift; path = Core/Utils/AssociatedObject.swift; sourceTree = "<group>"; };
+		DC2B5D661DE2F90D00F9C9D7 /* TableView+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TableView+Properties.swift"; path = "Core/TableView/TableView+Properties.swift"; sourceTree = "<group>"; };
+		DC2B5D681DE2FD6800F9C9D7 /* SingleRowCollectionView+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SingleRowCollectionView+Properties.swift"; path = "Core/CollectionView/SingleRowCollectionView+Properties.swift"; sourceTree = "<group>"; };
+		DC2B5D6A1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ControllerRootViewContainer.swift; path = Core/View/ControllerRootViewContainer.swift; sourceTree = "<group>"; };
+		DC2B5D6B1DE2FFC000F9C9D7 /* DialogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DialogView.swift; path = Core/View/DialogView.swift; sourceTree = "<group>"; };
+		DC2B5D6E1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DialogDismissalListener.swift; path = Core/Controller/DialogDismissalListener.swift; sourceTree = "<group>"; };
 		F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -351,6 +355,7 @@
 			children = (
 				DC07858C1DD39BE50063AB96 /* ControllerBase.swift */,
 				DC0785AC1DD3C3120063AB96 /* DialogControllerBase.swift */,
+				DC2B5D6E1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift */,
 				DC0785AD1DD3C3120063AB96 /* ScrollControllerBase.swift */,
 			);
 			name = Controller;
@@ -361,6 +366,8 @@
 			children = (
 				DC07859E1DD3ACD80063AB96 /* ButtonBase.swift */,
 				DC0785A31DD3BDE10063AB96 /* ContainerView.swift */,
+				DC2B5D6A1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift */,
+				DC2B5D6B1DE2FFC000F9C9D7 /* DialogView.swift */,
 				DC07859C1DD3AA870063AB96 /* RootView.swift */,
 				DC0785981DD3A3420063AB96 /* ViewBase.swift */,
 			);
@@ -382,9 +389,6 @@
 			isa = PBXGroup;
 			children = (
 				DC2B5D641DE2EE5F00F9C9D7 /* AssociatedObject.swift */,
-				DC0785AA1DD3C3030063AB96 /* ControllerRootViewContainer.swift */,
-				DC0785941DD39C5D0063AB96 /* DialogDismissalListener.swift */,
-				DC0785B01DD3CBDC0063AB96 /* DialogView.swift */,
 				DC2B5D4B1DE20C3100F9C9D7 /* UIBarButtonItem+ClosureAction.swift */,
 				DC2B5D491DE20B9E00F9C9D7 /* UIStackView+ArrangedChildren.swift */,
 				DC2B5D471DE20B3900F9C9D7 /* UIView+Utils.swift */,
@@ -397,12 +401,13 @@
 		DC0785781DC884B40063AB96 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				DC0785D71DDB17740063AB96 /* Identifier */,
-				DC0785C41DD468F10063AB96 /* SingleRowCollectionView.swift */,
+				DC0785D31DD9C2330063AB96 /* CollectionReusableViewWrapper.swift */,
 				DC0785CF1DD9C1E40063AB96 /* CollectionViewCell.swift */,
 				DC0785D11DD9C2070063AB96 /* CollectionViewCellWrapper.swift */,
-				DC0785D31DD9C2330063AB96 /* CollectionReusableViewWrapper.swift */,
 				DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */,
+				DC0785C41DD468F10063AB96 /* SingleRowCollectionView.swift */,
+				DC2B5D681DE2FD6800F9C9D7 /* SingleRowCollectionView+Properties.swift */,
+				DC0785D71DDB17740063AB96 /* Identifier */,
 			);
 			name = CollectionView;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				DC0785F01DDC6A400063AB96 /* SimpleTableView.swift */,
 				DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */,
 				DC0785FE1DDC6F430063AB96 /* TableView.swift */,
+				DC2B5D661DE2F90D00F9C9D7 /* TableView+Properties.swift */,
 				DC2B5D271DE1A20300F9C9D7 /* TableView+SetComponentState.swift */,
 				DC0785C91DD8C4DF0063AB96 /* TableViewCell.swift */,
 				DC0785CB1DD8C4F00063AB96 /* TableViewCellWrapper.swift */,
@@ -708,6 +714,7 @@
 				DC0785FF1DDC6F430063AB96 /* TableView.swift in Sources */,
 				DC2B5D541DE20CB700F9C9D7 /* UIScrollView+Scrollable.swift in Sources */,
 				DC2B5D531DE20CB700F9C9D7 /* TableView+Scrollable.swift in Sources */,
+				DC2B5D6F1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift in Sources */,
 				DC0785E61DDB2C150063AB96 /* CollectionViewCellIdentifier.swift in Sources */,
 				DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */,
 				DC2B5D3E1DE2070200F9C9D7 /* StringRules.swift in Sources */,
@@ -724,16 +731,16 @@
 				DC0785AE1DD3C3120063AB96 /* DialogControllerBase.swift in Sources */,
 				DC0786011DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift in Sources */,
 				DC0785D01DD9C1E40063AB96 /* CollectionViewCell.swift in Sources */,
+				DC2B5D6D1DE2FFC000F9C9D7 /* DialogView.swift in Sources */,
 				DC0785D21DD9C2070063AB96 /* CollectionViewCellWrapper.swift in Sources */,
 				DC0785E01DDB21E00063AB96 /* AnyTableViewCellIdentifier.swift in Sources */,
 				DC0785E81DDB2C290063AB96 /* AnyCollectionViewCellIdentifier.swift in Sources */,
-				DC0785951DD39C5D0063AB96 /* DialogDismissalListener.swift in Sources */,
 				DC2B5D521DE20CB700F9C9D7 /* ScrollControllerBase+Scrollable.swift in Sources */,
 				DC0785E41DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
+				DC2B5D691DE2FD6800F9C9D7 /* SingleRowCollectionView+Properties.swift in Sources */,
 				18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */,
 				DC0785AF1DD3C3120063AB96 /* ScrollControllerBase.swift in Sources */,
 				DC2B5D3D1DE2070200F9C9D7 /* Rule.swift in Sources */,
-				DC0785B11DD3CBDC0063AB96 /* DialogView.swift in Sources */,
 				DC0785C11DD468E20063AB96 /* TableViewState.swift in Sources */,
 				DC0785841DD383E50063AB96 /* UINavigationController+Navigation.swift in Sources */,
 				DC07859D1DD3AA870063AB96 /* RootView.swift in Sources */,
@@ -746,6 +753,7 @@
 				DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */,
 				DC0785CA1DD8C4DF0063AB96 /* TableViewCell.swift in Sources */,
 				DC2B5D3F1DE2070200F9C9D7 /* ValidationError.swift in Sources */,
+				DC2B5D6C1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift in Sources */,
 				DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */,
 				DC2B5D5D1DE2EB3600F9C9D7 /* CollapseAxis.swift in Sources */,
 				DC2B5D591DE2EAD900F9C9D7 /* Visibility.swift in Sources */,
@@ -759,8 +767,8 @@
 				DC0785CE1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift in Sources */,
 				DC0785861DD3879B0063AB96 /* Wireframe.swift in Sources */,
 				DC2B5D4A1DE20B9E00F9C9D7 /* UIStackView+ArrangedChildren.swift in Sources */,
-				DC0785AB1DD3C3030063AB96 /* ControllerRootViewContainer.swift in Sources */,
 				DC2B5D431DE2094300F9C9D7 /* ObserverType+Utils.swift in Sources */,
+				DC2B5D671DE2F90D00F9C9D7 /* TableView+Properties.swift in Sources */,
 				DC2B5D511DE20CB700F9C9D7 /* Scrollable.swift in Sources */,
 				DC0785EA1DDB2C860063AB96 /* CollectionSupplementaryViewIdentifier.swift in Sources */,
 				DC2B5D611DE2EB6D00F9C9D7 /* ConstraintAction.swift in Sources */,

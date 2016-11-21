@@ -20,15 +20,17 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableView<NoTableViewHeade
     
     public var separatorHeight: CGFloat {
         get {
-            return footerHeight
+            return sectionFooterHeight
         }
         set {
-            footerHeight = newValue
+            sectionFooterHeight = newValue
         }
     }
     
     public init(cellFactory: @escaping () -> CELL = CELL.init, reloadable: Bool = true, style: UITableViewStyle = .plain) {
         super.init(cellFactory: cellFactory, style: style, reloadable: reloadable)
+
+        separatorHeight = 1
     }
     
     public override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

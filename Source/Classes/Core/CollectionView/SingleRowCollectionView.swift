@@ -9,6 +9,7 @@
 import RxCocoa
 import RxSwift
 
+// TODO Delegate properties
 open class SingleRowCollectionView<CELL: UIView>: ViewBase<CollectionViewState<CELL.StateType>> where CELL: Component {
     
     private typealias MODEL = CELL.StateType
@@ -23,7 +24,6 @@ open class SingleRowCollectionView<CELL: UIView>: ViewBase<CollectionViewState<C
         return .all
     }
     
-    // TODO Delegate properties
     open let collectionView: UICollectionView
     open let collectionViewLayout = UICollectionViewFlowLayout()
     

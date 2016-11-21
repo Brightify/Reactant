@@ -20,21 +20,51 @@ open class TableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBase<Tab
     private let headerIdentifier = TableViewHeaderFooterIdentifier<HEADER>()
     private let footerIdentifier = TableViewHeaderFooterIdentifier<FOOTER>()
     
-    public var footerHeight: CGFloat = 1 {
+    open var edgesForExtendedLayout: UIRectEdge {
+        return .all
+    }
+    
+    public var estimatedRowHeight: CGFloat = 0 {
         didSet {
             setNeedsLayout()
         }
     }
     
-    open var edgesForExtendedLayout: UIRectEdge {
-        return .all
+    public var rowHeight: CGFloat = UITableViewAutomaticDimension {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    public var estimatedSectionHeaderHeight: CGFloat = 0 {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    public var sectionHeaderHeight: CGFloat = UITableViewAutomaticDimension {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    public var estimatedSectionFooterHeight: CGFloat = 0 {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
+    public var sectionFooterHeight: CGFloat = UITableViewAutomaticDimension {
+        didSet {
+            setNeedsLayout()
+        }
     }
     
     open let tableView: UITableView
     
-    fileprivate let refreshControl: UIRefreshControl?
+    internal let refreshControl: UIRefreshControl?
     private let emptyLabel = UILabel()
-    fileprivate let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
+    internal let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
     
     private let headerFactory: (() -> HEADER)?
     private let footerFactory: (() -> FOOTER)?
@@ -185,36 +215,27 @@ open class TableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBase<Tab
         }
     }
     
+    public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return estimatedRowHeight
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return rowHeight
+    }
+    
+    public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return estimatedSectionHeaderHeight
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return sectionHeaderHeight
+    }
+    
+    public func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        return estimatedSectionFooterHeight
+    }
+    
     public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return footerHeight
-    }
-}
-
-extension TableView {
-    
-    public var refresh: ControlEvent<Void> {
-        return refreshControl?.rx.controlEvent(.valueChanged) ?? ControlEvent(events: Observable.empty())
-    }
-    
-    public var modelSelected: ControlEvent<MODEL> {
-        return tableView.rx.modelSelected(MODEL.self)
-    }
-    
-    public var refreshControlTintColor: UIColor? {
-        get {
-            return refreshControl?.tintColor
-        }
-        set {
-            refreshControl?.tintColor = newValue
-        }
-    }
-    
-    public var activityIndicatorStyle: UIActivityIndicatorViewStyle {
-        get {
-            return loadingIndicator.activityIndicatorViewStyle
-        }
-        set {
-            loadingIndicator.activityIndicatorViewStyle = newValue
-        }
+        return sectionFooterHeight
     }
 }
