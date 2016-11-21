@@ -1,5 +1,13 @@
-public extension Array {
+//
+//  Array+Utils.swift
+//  Reactant
+//
+//  Created by Filip Dolnik on 20.11.16.
+//  Copyright © 2016 Brightify. All rights reserved.
+//
 
+public extension Array {
+    
     public func arrayByAppending(_ elements: Element...) -> Array<Element> {
         return arrayByAppending(elements)
     }

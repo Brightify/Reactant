@@ -8,19 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		04168232D53A3C6EC65FE3C3 /* Pods_Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */; };
-		1841DC671DA682D500862527 /* UIBarButtonItem+ClosureAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1841DC661DA682D500862527 /* UIBarButtonItem+ClosureAction.swift */; };
 		185121511D834D1F002C4B08 /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
 		1851215E1D834DD2002C4B08 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */; };
-		18650B8F1D8364DC00B1B2A0 /* RxSwift+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185120FE1D834C5D002C4B08 /* RxSwift+Operators.swift */; };
-		18650B921D8364DC00B1B2A0 /* UIStackView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121011D834C5D002C4B08 /* UIStackView+Util.swift */; };
-		18650B931D8364DC00B1B2A0 /* UIView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121021D834C5D002C4B08 /* UIView+Util.swift */; };
-		18650B941D8364DC00B1B2A0 /* UIView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121031D834C5D002C4B08 /* UIView+Visibility.swift */; };
 		18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121061D834C5D002C4B08 /* ReactantConfiguration.swift */; };
-		18ABA1F81DACF00D001FF485 /* StateBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18ABA1F71DACF00D001FF485 /* StateBox.swift */; };
 		45444ED1E71FEFA1D6A84E08 /* Pods_ReactantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711603479E5441514316A7F3 /* Pods_ReactantTests.framework */; };
-		DC0785681DC693230063AB96 /* Array+Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785621DC693230063AB96 /* Array+Functional.swift */; };
-		DC07856A1DC693230063AB96 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785641DC693230063AB96 /* GlobalFunctions.swift */; };
 		DC0785841DD383E50063AB96 /* UINavigationController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785831DD383E50063AB96 /* UINavigationController+Navigation.swift */; };
 		DC0785861DD3879B0063AB96 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785851DD3879B0063AB96 /* Wireframe.swift */; };
 		DC07858D1DD39BE50063AB96 /* ControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858C1DD39BE50063AB96 /* ControllerBase.swift */; };
@@ -57,19 +49,30 @@
 		DC0785EC1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785EB1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift */; };
 		DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */; };
 		DC0785F11DDC6A400063AB96 /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F01DDC6A400063AB96 /* SimpleTableView.swift */; };
-		DC0785F61DDC6CA60063AB96 /* Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F41DDC6CA60063AB96 /* Scrollable.swift */; };
-		DC0785F71DDC6CA60063AB96 /* UIScrollView+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F51DDC6CA60063AB96 /* UIScrollView+Scrollable.swift */; };
-		DC0785F91DDC6CD20063AB96 /* ScrollControllerBase+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F81DDC6CD20063AB96 /* ScrollControllerBase+Scrollable.swift */; };
-		DC0785FB1DDC6D160063AB96 /* TableView+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785FA1DDC6D160063AB96 /* TableView+Scrollable.swift */; };
 		DC0785FF1DDC6F430063AB96 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785FE1DDC6F430063AB96 /* TableView.swift */; };
 		DC0786011DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0786001DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift */; };
 		DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */; };
 		DC2B5D281DE1A20300F9C9D7 /* TableView+SetComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D271DE1A20300F9C9D7 /* TableView+SetComponentState.swift */; };
 		DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */; };
-		DC2B5D2D1DE1B80700F9C9D7 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D2C1DE1B80700F9C9D7 /* Rule.swift */; };
-		DC2B5D2F1DE1B86C00F9C9D7 /* StringRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D2E1DE1B86C00F9C9D7 /* StringRules.swift */; };
-		DC2B5D331DE2051800F9C9D7 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D321DE2051800F9C9D7 /* ValidationError.swift */; };
-		DC2B5D351DE2055700F9C9D7 /* EmailValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D341DE2055700F9C9D7 /* EmailValidationError.swift */; };
+		DC2B5D3C1DE2070200F9C9D7 /* EmailValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D381DE2070200F9C9D7 /* EmailValidationError.swift */; };
+		DC2B5D3D1DE2070200F9C9D7 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D391DE2070200F9C9D7 /* Rule.swift */; };
+		DC2B5D3E1DE2070200F9C9D7 /* StringRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D3A1DE2070200F9C9D7 /* StringRules.swift */; };
+		DC2B5D3F1DE2070200F9C9D7 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D3B1DE2070200F9C9D7 /* ValidationError.swift */; };
+		DC2B5D411DE208F300F9C9D7 /* ObservableConvertibleType+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D401DE208F300F9C9D7 /* ObservableConvertibleType+Utils.swift */; };
+		DC2B5D431DE2094300F9C9D7 /* ObserverType+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D421DE2094300F9C9D7 /* ObserverType+Utils.swift */; };
+		DC2B5D451DE20A3500F9C9D7 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D441DE20A3500F9C9D7 /* Array+Utils.swift */; };
+		DC2B5D481DE20B3900F9C9D7 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D471DE20B3900F9C9D7 /* UIView+Utils.swift */; };
+		DC2B5D4A1DE20B9E00F9C9D7 /* UIStackView+ArrangedChildren.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D491DE20B9E00F9C9D7 /* UIStackView+ArrangedChildren.swift */; };
+		DC2B5D4C1DE20C3100F9C9D7 /* UIBarButtonItem+ClosureAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D4B1DE20C3100F9C9D7 /* UIBarButtonItem+ClosureAction.swift */; };
+		DC2B5D511DE20CB700F9C9D7 /* Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D4D1DE20CB700F9C9D7 /* Scrollable.swift */; };
+		DC2B5D521DE20CB700F9C9D7 /* ScrollControllerBase+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D4E1DE20CB700F9C9D7 /* ScrollControllerBase+Scrollable.swift */; };
+		DC2B5D531DE20CB700F9C9D7 /* TableView+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D4F1DE20CB700F9C9D7 /* TableView+Scrollable.swift */; };
+		DC2B5D541DE20CB700F9C9D7 /* UIScrollView+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D501DE20CB700F9C9D7 /* UIScrollView+Scrollable.swift */; };
+		DC2B5D591DE2EAD900F9C9D7 /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D581DE2EAD900F9C9D7 /* Visibility.swift */; };
+		DC2B5D5B1DE2EB0F00F9C9D7 /* UIView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D5A1DE2EB0F00F9C9D7 /* UIView+Visibility.swift */; };
+		DC2B5D5D1DE2EB3600F9C9D7 /* CollapseAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D5C1DE2EB3600F9C9D7 /* CollapseAxis.swift */; };
+		DC2B5D611DE2EB6D00F9C9D7 /* ConstraintAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D601DE2EB6D00F9C9D7 /* ConstraintAction.swift */; };
+		DC2B5D651DE2EE5F00F9C9D7 /* AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D641DE2EE5F00F9C9D7 /* AssociatedObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,11 +88,6 @@
 /* Begin PBXFileReference section */
 		045F878B1A7F63F7AAD82596 /* Pods_ReactantExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		118FB89C32922066714D8F98 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		1841DC661DA682D500862527 /* UIBarButtonItem+ClosureAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButtonItem+ClosureAction.swift"; path = "Extensions/UIBarButtonItem+ClosureAction.swift"; sourceTree = "<group>"; };
-		185120FE1D834C5D002C4B08 /* RxSwift+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RxSwift+Operators.swift"; path = "Extensions/RxSwift+Operators.swift"; sourceTree = "<group>"; };
-		185121011D834C5D002C4B08 /* UIStackView+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView+Util.swift"; path = "Extensions/UIStackView+Util.swift"; sourceTree = "<group>"; };
-		185121021D834C5D002C4B08 /* UIView+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Util.swift"; path = "Extensions/UIView+Util.swift"; sourceTree = "<group>"; };
-		185121031D834C5D002C4B08 /* UIView+Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Visibility.swift"; path = "Extensions/UIView+Visibility.swift"; sourceTree = "<group>"; };
 		185121061D834C5D002C4B08 /* ReactantConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantConfiguration.swift; sourceTree = "<group>"; };
 		185121071D834C5D002C4B08 /* RxRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxRouter.swift; sourceTree = "<group>"; };
 		185121471D834D1E002C4B08 /* Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,7 +96,6 @@
 		185121571D834D1F002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		18650BA51D83671B00B1B2A0 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
-		18ABA1F71DACF00D001FF485 /* StateBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateBox.swift; sourceTree = "<group>"; };
 		4406EA23619B586C084EBED1 /* Pods-ReactantExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.release.xcconfig"; sourceTree = "<group>"; };
 		50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975037688AFED52D683D2F3 /* Pods-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,8 +106,6 @@
 		B028DA1728A0BC7C8045D66E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BE6BA3EF10B2D508C3108F59 /* Pods-Reactant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.debug.xcconfig"; sourceTree = "<group>"; };
 		D0CDB0F87F5A62A6CDB552C7 /* Reactant.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = Reactant.podspec; sourceTree = "<group>"; };
-		DC0785621DC693230063AB96 /* Array+Functional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Functional.swift"; path = "Staging/Array+Functional.swift"; sourceTree = "<group>"; };
-		DC0785641DC693230063AB96 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalFunctions.swift; path = Staging/GlobalFunctions.swift; sourceTree = "<group>"; };
 		DC07857A1DC8867E0063AB96 /* Deprecated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deprecated.swift; sourceTree = "<group>"; };
 		DC0785831DD383E50063AB96 /* UINavigationController+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UINavigationController+Navigation.swift"; path = "Core/Wireframe/UINavigationController+Navigation.swift"; sourceTree = "<group>"; };
 		DC0785851DD3879B0063AB96 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wireframe.swift; path = Core/Wireframe/Wireframe.swift; sourceTree = "<group>"; };
@@ -149,18 +144,29 @@
 		DC0785EB1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyCollectionSupplementaryViewIdentifier.swift; path = Core/CollectionView/Identifier/AnyCollectionSupplementaryViewIdentifier.swift; sourceTree = "<group>"; };
 		DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewState.swift; path = Core/CollectionView/CollectionViewState.swift; sourceTree = "<group>"; };
 		DC0785F01DDC6A400063AB96 /* SimpleTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleTableView.swift; path = Core/TableView/SimpleTableView.swift; sourceTree = "<group>"; };
-		DC0785F41DDC6CA60063AB96 /* Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scrollable.swift; path = Scrollable/Scrollable.swift; sourceTree = "<group>"; };
-		DC0785F51DDC6CA60063AB96 /* UIScrollView+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIScrollView+Scrollable.swift"; path = "Scrollable/UIScrollView+Scrollable.swift"; sourceTree = "<group>"; };
-		DC0785F81DDC6CD20063AB96 /* ScrollControllerBase+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ScrollControllerBase+Scrollable.swift"; path = "Scrollable/ScrollControllerBase+Scrollable.swift"; sourceTree = "<group>"; };
-		DC0785FA1DDC6D160063AB96 /* TableView+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TableView+Scrollable.swift"; path = "Scrollable/TableView+Scrollable.swift"; sourceTree = "<group>"; };
 		DC0785FE1DDC6F430063AB96 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableView.swift; path = Core/TableView/TableView.swift; sourceTree = "<group>"; };
 		DC0786001DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoTableViewHeaderFooterMarker.swift; path = Core/TableView/NoTableViewHeaderFooterMarker.swift; sourceTree = "<group>"; };
 		DC2B5D271DE1A20300F9C9D7 /* TableView+SetComponentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TableView+SetComponentState.swift"; path = "Core/TableView/TableView+SetComponentState.swift"; sourceTree = "<group>"; };
 		DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ObservableConvertibleType+Result.swift"; path = "Result/ObservableConvertibleType+Result.swift"; sourceTree = "<group>"; };
-		DC2B5D2C1DE1B80700F9C9D7 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rule.swift; path = Result/Validation/Rule.swift; sourceTree = "<group>"; };
-		DC2B5D2E1DE1B86C00F9C9D7 /* StringRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringRules.swift; path = Result/Validation/StringRules.swift; sourceTree = "<group>"; };
-		DC2B5D321DE2051800F9C9D7 /* ValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidationError.swift; path = Result/Validation/ValidationError.swift; sourceTree = "<group>"; };
-		DC2B5D341DE2055700F9C9D7 /* EmailValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmailValidationError.swift; path = Result/Validation/EmailValidationError.swift; sourceTree = "<group>"; };
+		DC2B5D381DE2070200F9C9D7 /* EmailValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmailValidationError.swift; path = Validation/EmailValidationError.swift; sourceTree = "<group>"; };
+		DC2B5D391DE2070200F9C9D7 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rule.swift; path = Validation/Rule.swift; sourceTree = "<group>"; };
+		DC2B5D3A1DE2070200F9C9D7 /* StringRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringRules.swift; path = Validation/StringRules.swift; sourceTree = "<group>"; };
+		DC2B5D3B1DE2070200F9C9D7 /* ValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidationError.swift; path = Validation/ValidationError.swift; sourceTree = "<group>"; };
+		DC2B5D401DE208F300F9C9D7 /* ObservableConvertibleType+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ObservableConvertibleType+Utils.swift"; path = "FunctionalUtils/ObservableConvertibleType+Utils.swift"; sourceTree = "<group>"; };
+		DC2B5D421DE2094300F9C9D7 /* ObserverType+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ObserverType+Utils.swift"; path = "FunctionalUtils/ObserverType+Utils.swift"; sourceTree = "<group>"; };
+		DC2B5D441DE20A3500F9C9D7 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Utils.swift"; path = "FunctionalUtils/Array+Utils.swift"; sourceTree = "<group>"; };
+		DC2B5D471DE20B3900F9C9D7 /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Utils.swift"; path = "Core/Utils/UIView+Utils.swift"; sourceTree = "<group>"; };
+		DC2B5D491DE20B9E00F9C9D7 /* UIStackView+ArrangedChildren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView+ArrangedChildren.swift"; path = "Core/Utils/UIStackView+ArrangedChildren.swift"; sourceTree = "<group>"; };
+		DC2B5D4B1DE20C3100F9C9D7 /* UIBarButtonItem+ClosureAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButtonItem+ClosureAction.swift"; path = "Core/Utils/UIBarButtonItem+ClosureAction.swift"; sourceTree = "<group>"; };
+		DC2B5D4D1DE20CB700F9C9D7 /* Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scrollable.swift; path = Core/Utils/Scrollable/Scrollable.swift; sourceTree = "<group>"; };
+		DC2B5D4E1DE20CB700F9C9D7 /* ScrollControllerBase+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ScrollControllerBase+Scrollable.swift"; path = "Core/Utils/Scrollable/ScrollControllerBase+Scrollable.swift"; sourceTree = "<group>"; };
+		DC2B5D4F1DE20CB700F9C9D7 /* TableView+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TableView+Scrollable.swift"; path = "Core/Utils/Scrollable/TableView+Scrollable.swift"; sourceTree = "<group>"; };
+		DC2B5D501DE20CB700F9C9D7 /* UIScrollView+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIScrollView+Scrollable.swift"; path = "Core/Utils/Scrollable/UIScrollView+Scrollable.swift"; sourceTree = "<group>"; };
+		DC2B5D581DE2EAD900F9C9D7 /* Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Visibility.swift; path = Core/Utils/Visibility/Visibility.swift; sourceTree = "<group>"; };
+		DC2B5D5A1DE2EB0F00F9C9D7 /* UIView+Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Visibility.swift"; path = "Core/Utils/Visibility/UIView+Visibility.swift"; sourceTree = "<group>"; };
+		DC2B5D5C1DE2EB3600F9C9D7 /* CollapseAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollapseAxis.swift; path = Core/Utils/Visibility/CollapseAxis.swift; sourceTree = "<group>"; };
+		DC2B5D601DE2EB6D00F9C9D7 /* ConstraintAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstraintAction.swift; path = Core/Utils/Visibility/ConstraintAction.swift; sourceTree = "<group>"; };
+		DC2B5D641DE2EE5F00F9C9D7 /* AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssociatedObject.swift; path = Core/Utils/AssociatedObject.swift; sourceTree = "<group>"; };
 		F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,14 +221,11 @@
 		185120F21D834C5D002C4B08 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DC0785711DC8826F0063AB96 /* ActivityIndicator */,
+				DC2B5D461DE20A9C00F9C9D7 /* Todo */,
 				DC07856E1DC881B80063AB96 /* Core */,
-				DC07857C1DC887EF0063AB96 /* FunctionalExtensions */,
-				DC0785731DC8828A0063AB96 /* RxRouter */,
-				DC0785F31DDC6C460063AB96 /* Scrollable */,
-				DC0785721DC882820063AB96 /* StaticMap */,
-				DC0785701DC881F80063AB96 /* Trash */,
+				DC07857C1DC887EF0063AB96 /* FunctionalUtils */,
 				DC07856F1DC881E40063AB96 /* Result */,
+				DC2B5D2B1DE1B7E500F9C9D7 /* Validation */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -305,7 +308,6 @@
 		DC07856F1DC881E40063AB96 /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				DC2B5D2B1DE1B7E500F9C9D7 /* Validation */,
 				DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */,
 			);
 			name = Result;
@@ -314,14 +316,8 @@
 		DC0785701DC881F80063AB96 /* Trash */ = {
 			isa = PBXGroup;
 			children = (
-				18ABA1F71DACF00D001FF485 /* StateBox.swift */,
 				DC07857A1DC8867E0063AB96 /* Deprecated.swift */,
-				DC0785641DC693230063AB96 /* GlobalFunctions.swift */,
 				185121061D834C5D002C4B08 /* ReactantConfiguration.swift */,
-				1841DC661DA682D500862527 /* UIBarButtonItem+ClosureAction.swift */,
-				185121011D834C5D002C4B08 /* UIStackView+Util.swift */,
-				185121021D834C5D002C4B08 /* UIView+Util.swift */,
-				185121031D834C5D002C4B08 /* UIView+Visibility.swift */,
 			);
 			name = Trash;
 			sourceTree = "<group>";
@@ -385,9 +381,15 @@
 		DC0785771DC884AC0063AB96 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DC2B5D641DE2EE5F00F9C9D7 /* AssociatedObject.swift */,
 				DC0785AA1DD3C3030063AB96 /* ControllerRootViewContainer.swift */,
 				DC0785941DD39C5D0063AB96 /* DialogDismissalListener.swift */,
 				DC0785B01DD3CBDC0063AB96 /* DialogView.swift */,
+				DC2B5D4B1DE20C3100F9C9D7 /* UIBarButtonItem+ClosureAction.swift */,
+				DC2B5D491DE20B9E00F9C9D7 /* UIStackView+ArrangedChildren.swift */,
+				DC2B5D471DE20B3900F9C9D7 /* UIView+Utils.swift */,
+				DC0785F31DDC6C460063AB96 /* Scrollable */,
+				DC2B5D551DE2EA8F00F9C9D7 /* Visibility */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -422,13 +424,14 @@
 			name = TableView;
 			sourceTree = "<group>";
 		};
-		DC07857C1DC887EF0063AB96 /* FunctionalExtensions */ = {
+		DC07857C1DC887EF0063AB96 /* FunctionalUtils */ = {
 			isa = PBXGroup;
 			children = (
-				DC0785621DC693230063AB96 /* Array+Functional.swift */,
-				185120FE1D834C5D002C4B08 /* RxSwift+Operators.swift */,
+				DC2B5D441DE20A3500F9C9D7 /* Array+Utils.swift */,
+				DC2B5D401DE208F300F9C9D7 /* ObservableConvertibleType+Utils.swift */,
+				DC2B5D421DE2094300F9C9D7 /* ObserverType+Utils.swift */,
 			);
-			name = FunctionalExtensions;
+			name = FunctionalUtils;
 			sourceTree = "<group>";
 		};
 		DC07858B1DD39B5F0063AB96 /* Component */ = {
@@ -467,10 +470,10 @@
 		DC0785F31DDC6C460063AB96 /* Scrollable */ = {
 			isa = PBXGroup;
 			children = (
-				DC0785F41DDC6CA60063AB96 /* Scrollable.swift */,
-				DC0785F81DDC6CD20063AB96 /* ScrollControllerBase+Scrollable.swift */,
-				DC0785FA1DDC6D160063AB96 /* TableView+Scrollable.swift */,
-				DC0785F51DDC6CA60063AB96 /* UIScrollView+Scrollable.swift */,
+				DC2B5D4D1DE20CB700F9C9D7 /* Scrollable.swift */,
+				DC2B5D4E1DE20CB700F9C9D7 /* ScrollControllerBase+Scrollable.swift */,
+				DC2B5D4F1DE20CB700F9C9D7 /* TableView+Scrollable.swift */,
+				DC2B5D501DE20CB700F9C9D7 /* UIScrollView+Scrollable.swift */,
 			);
 			name = Scrollable;
 			sourceTree = "<group>";
@@ -478,12 +481,34 @@
 		DC2B5D2B1DE1B7E500F9C9D7 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
-				DC2B5D2C1DE1B80700F9C9D7 /* Rule.swift */,
-				DC2B5D2E1DE1B86C00F9C9D7 /* StringRules.swift */,
-				DC2B5D321DE2051800F9C9D7 /* ValidationError.swift */,
-				DC2B5D341DE2055700F9C9D7 /* EmailValidationError.swift */,
+				DC2B5D381DE2070200F9C9D7 /* EmailValidationError.swift */,
+				DC2B5D391DE2070200F9C9D7 /* Rule.swift */,
+				DC2B5D3A1DE2070200F9C9D7 /* StringRules.swift */,
+				DC2B5D3B1DE2070200F9C9D7 /* ValidationError.swift */,
 			);
 			name = Validation;
+			sourceTree = "<group>";
+		};
+		DC2B5D461DE20A9C00F9C9D7 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				DC0785711DC8826F0063AB96 /* ActivityIndicator */,
+				DC0785731DC8828A0063AB96 /* RxRouter */,
+				DC0785721DC882820063AB96 /* StaticMap */,
+				DC0785701DC881F80063AB96 /* Trash */,
+			);
+			name = Todo;
+			sourceTree = "<group>";
+		};
+		DC2B5D551DE2EA8F00F9C9D7 /* Visibility */ = {
+			isa = PBXGroup;
+			children = (
+				DC2B5D5C1DE2EB3600F9C9D7 /* CollapseAxis.swift */,
+				DC2B5D601DE2EB6D00F9C9D7 /* ConstraintAction.swift */,
+				DC2B5D5A1DE2EB0F00F9C9D7 /* UIView+Visibility.swift */,
+				DC2B5D581DE2EAD900F9C9D7 /* Visibility.swift */,
+			);
+			name = Visibility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -681,51 +706,51 @@
 				DC0785931DD39BF60063AB96 /* ComponentDelegate.swift in Sources */,
 				DC0785971DD3A1F50063AB96 /* FutureControllerProvider.swift in Sources */,
 				DC0785FF1DDC6F430063AB96 /* TableView.swift in Sources */,
+				DC2B5D541DE20CB700F9C9D7 /* UIScrollView+Scrollable.swift in Sources */,
+				DC2B5D531DE20CB700F9C9D7 /* TableView+Scrollable.swift in Sources */,
 				DC0785E61DDB2C150063AB96 /* CollectionViewCellIdentifier.swift in Sources */,
 				DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */,
-				DC2B5D2F1DE1B86C00F9C9D7 /* StringRules.swift in Sources */,
+				DC2B5D3E1DE2070200F9C9D7 /* StringRules.swift in Sources */,
 				DC0785E21DDB22670063AB96 /* TableViewHeaderFooterIdentifier.swift in Sources */,
 				18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */,
+				DC2B5D481DE20B3900F9C9D7 /* UIView+Utils.swift in Sources */,
+				DC2B5D4C1DE20C3100F9C9D7 /* UIBarButtonItem+ClosureAction.swift in Sources */,
 				DC0785EC1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift in Sources */,
 				DC0785D51DD9C63B0063AB96 /* SingleRowCollectionView.swift in Sources */,
+				DC2B5D651DE2EE5F00F9C9D7 /* AssociatedObject.swift in Sources */,
 				DC0785CC1DD8C4F00063AB96 /* TableViewCellWrapper.swift in Sources */,
 				DC0785A41DD3BDE10063AB96 /* ContainerView.swift in Sources */,
-				DC0785681DC693230063AB96 /* Array+Functional.swift in Sources */,
-				DC2B5D351DE2055700F9C9D7 /* EmailValidationError.swift in Sources */,
 				DC0785D41DD9C2330063AB96 /* CollectionReusableViewWrapper.swift in Sources */,
 				DC0785AE1DD3C3120063AB96 /* DialogControllerBase.swift in Sources */,
 				DC0786011DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift in Sources */,
-				DC0785FB1DDC6D160063AB96 /* TableView+Scrollable.swift in Sources */,
 				DC0785D01DD9C1E40063AB96 /* CollectionViewCell.swift in Sources */,
 				DC0785D21DD9C2070063AB96 /* CollectionViewCellWrapper.swift in Sources */,
 				DC0785E01DDB21E00063AB96 /* AnyTableViewCellIdentifier.swift in Sources */,
 				DC0785E81DDB2C290063AB96 /* AnyCollectionViewCellIdentifier.swift in Sources */,
 				DC0785951DD39C5D0063AB96 /* DialogDismissalListener.swift in Sources */,
+				DC2B5D521DE20CB700F9C9D7 /* ScrollControllerBase+Scrollable.swift in Sources */,
 				DC0785E41DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
-				DC0785F91DDC6CD20063AB96 /* ScrollControllerBase+Scrollable.swift in Sources */,
-				DC0785F61DDC6CA60063AB96 /* Scrollable.swift in Sources */,
 				18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */,
 				DC0785AF1DD3C3120063AB96 /* ScrollControllerBase.swift in Sources */,
-				DC2B5D2D1DE1B80700F9C9D7 /* Rule.swift in Sources */,
+				DC2B5D3D1DE2070200F9C9D7 /* Rule.swift in Sources */,
 				DC0785B11DD3CBDC0063AB96 /* DialogView.swift in Sources */,
 				DC0785C11DD468E20063AB96 /* TableViewState.swift in Sources */,
-				18650B921D8364DC00B1B2A0 /* UIStackView+Util.swift in Sources */,
 				DC0785841DD383E50063AB96 /* UINavigationController+Navigation.swift in Sources */,
-				18650B941D8364DC00B1B2A0 /* UIView+Visibility.swift in Sources */,
-				DC0785F71DDC6CA60063AB96 /* UIScrollView+Scrollable.swift in Sources */,
 				DC07859D1DD3AA870063AB96 /* RootView.swift in Sources */,
-				DC07856A1DC693230063AB96 /* GlobalFunctions.swift in Sources */,
+				DC2B5D3C1DE2070200F9C9D7 /* EmailValidationError.swift in Sources */,
 				DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */,
+				DC2B5D5B1DE2EB0F00F9C9D7 /* UIView+Visibility.swift in Sources */,
 				DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */,
-				18650B8F1D8364DC00B1B2A0 /* RxSwift+Operators.swift in Sources */,
 				DC2B5D281DE1A20300F9C9D7 /* TableView+SetComponentState.swift in Sources */,
+				DC2B5D451DE20A3500F9C9D7 /* Array+Utils.swift in Sources */,
 				DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */,
 				DC0785CA1DD8C4DF0063AB96 /* TableViewCell.swift in Sources */,
+				DC2B5D3F1DE2070200F9C9D7 /* ValidationError.swift in Sources */,
 				DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */,
-				DC2B5D331DE2051800F9C9D7 /* ValidationError.swift in Sources */,
-				18ABA1F81DACF00D001FF485 /* StateBox.swift in Sources */,
+				DC2B5D5D1DE2EB3600F9C9D7 /* CollapseAxis.swift in Sources */,
+				DC2B5D591DE2EAD900F9C9D7 /* Visibility.swift in Sources */,
 				DC0785A11DD3ADB60063AB96 /* ComponentWithDelegate.swift in Sources */,
-				18650B931D8364DC00B1B2A0 /* UIView+Util.swift in Sources */,
+				DC2B5D411DE208F300F9C9D7 /* ObservableConvertibleType+Utils.swift in Sources */,
 				DC0785991DD3A3420063AB96 /* ViewBase.swift in Sources */,
 				DC0785A21DD3B77B0063AB96 /* ButtonBase.swift in Sources */,
 				DC0785DE1DDB20840063AB96 /* TableViewCellIdentifier.swift in Sources */,
@@ -733,9 +758,12 @@
 				DC0785911DD39BF60063AB96 /* Component.swift in Sources */,
 				DC0785CE1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift in Sources */,
 				DC0785861DD3879B0063AB96 /* Wireframe.swift in Sources */,
-				1841DC671DA682D500862527 /* UIBarButtonItem+ClosureAction.swift in Sources */,
+				DC2B5D4A1DE20B9E00F9C9D7 /* UIStackView+ArrangedChildren.swift in Sources */,
 				DC0785AB1DD3C3030063AB96 /* ControllerRootViewContainer.swift in Sources */,
+				DC2B5D431DE2094300F9C9D7 /* ObserverType+Utils.swift in Sources */,
+				DC2B5D511DE20CB700F9C9D7 /* Scrollable.swift in Sources */,
 				DC0785EA1DDB2C860063AB96 /* CollectionSupplementaryViewIdentifier.swift in Sources */,
+				DC2B5D611DE2EB6D00F9C9D7 /* ConstraintAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
