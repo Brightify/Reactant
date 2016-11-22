@@ -10,7 +10,6 @@ import RxSwift
 
 public extension ObservableConvertibleType {
     
-    // TODO ?
     public func lag() -> Observable<(previous: E?, current: E)> {
         return asObservable().scan((previous: nil as E?, current: nil as E?)) { ($0.current, current: $1) }
             .filter { $0.current != nil }
@@ -48,13 +47,5 @@ public extension ObservableConvertibleType {
     /// Similar to startWith, but does not resolve the value until it is subscribed to.
     public func startWithWhenSubscribed(source: () -> E) -> Observable<E> {
         return asObservable().map { value in { value } }.startWith(source).map { $0() }
-    }
-}
-
-// TODO ?
-public func observe<T>(block: @escaping (AnyObserver<T>) -> Void) -> Observable<T> {
-    return Observable<T>.create {
-        block($0)
-        return Disposables.create()
     }
 }

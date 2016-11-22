@@ -6,29 +6,23 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import RxCocoa
 import RxSwift
 
-// TODO Delegate properties
 open class SingleRowCollectionView<CELL: UIView>: ViewBase<CollectionViewState<CELL.StateType>> where CELL: Component {
     
-    private typealias MODEL = CELL.StateType
+    public typealias MODEL = CELL.StateType
     
     private let identifier = CollectionViewCellIdentifier<CELL>()
-    
-    open var modelSelected: ControlEvent<MODEL> {
-        return collectionView.rx.modelSelected(MODEL.self)
-    }
     
     open var edgesForExtendedLayout: UIRectEdge {
         return .all
     }
     
-    open let collectionView: UICollectionView
-    open let collectionViewLayout = UICollectionViewFlowLayout()
+    public let collectionView: UICollectionView
+    public let collectionViewLayout = UICollectionViewFlowLayout()
     
-    private let emptyLabel = UILabel()
-    private let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
+    public let emptyLabel = UILabel()
+    public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
     
     private let cellFactory: () -> CELL
     
@@ -72,7 +66,7 @@ open class SingleRowCollectionView<CELL: UIView>: ViewBase<CollectionViewState<C
         }
     }
     
-    public func afterInit() {
+    open func afterInit() {
         collectionView.rx.itemSelected
             .subscribe(onNext: { [collectionView] in
                     collectionView.deselectItem(at: $0, animated: true)
@@ -80,7 +74,7 @@ open class SingleRowCollectionView<CELL: UIView>: ViewBase<CollectionViewState<C
             .addDisposableTo(lifetimeDisposeBag)
     }
     
-    public func componentStateDidChange() {
+    open func update() {
         var items: [MODEL] = []
         var emptyMessage = ""
         var loading = false

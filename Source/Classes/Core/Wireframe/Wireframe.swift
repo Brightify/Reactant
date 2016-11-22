@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class Wireframe {
+public protocol Wireframe {
 }
 
 extension Wireframe {

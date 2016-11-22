@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import RxCocoa
 
 extension SingleRowCollectionView {
+    
+    public var modelSelected: ControlEvent<MODEL> {
+        return collectionView.rx.modelSelected(MODEL.self)
+    }
     
     public var estimatedItemSize: CGSize {
         get {

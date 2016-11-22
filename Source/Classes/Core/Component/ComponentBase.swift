@@ -8,8 +8,7 @@
 
 import RxSwift
 
-// TODO Accessibility in whole project.
-public class ComponentBase<STATE>: ComponentWithDelegate {
+open class ComponentBase<STATE>: ComponentWithDelegate {
     
     public typealias StateType = STATE
 
@@ -18,10 +17,9 @@ public class ComponentBase<STATE>: ComponentWithDelegate {
     public let componentDelegate = ComponentDelegate<STATE, ComponentBase<STATE>>()
     
     // Do not forget to set componentDelegate.canUpdate.
-    init() {
+    public init() {
         componentDelegate.ownerComponent = self
         
         afterInit()
     }
 }
-

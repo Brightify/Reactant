@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-extension TableView {
+extension SimpleTableView {
     
     public var refresh: ControlEvent<Void> {
         return refreshControl?.rx.controlEvent(.valueChanged) ?? ControlEvent(events: Observable.empty())
@@ -61,6 +61,60 @@ extension TableView {
         }
         set  {
             tableView.separatorStyle = newValue
+        }
+    }
+    
+    public var estimatedRowHeight: CGFloat {
+        get {
+            return tableView.estimatedRowHeight
+        }
+        set  {
+            tableView.estimatedRowHeight = newValue
+        }
+    }
+    
+    public var rowHeight: CGFloat {
+        get {
+            return tableView.rowHeight
+        }
+        set  {
+            tableView.rowHeight = newValue
+        }
+    }
+    
+    public var estimatedSectionHeaderHeight: CGFloat {
+        get {
+            return tableView.estimatedSectionHeaderHeight
+        }
+        set  {
+            tableView.estimatedSectionHeaderHeight = newValue
+        }
+    }
+    
+    public var sectionHeaderHeight: CGFloat {
+        get {
+            return tableView.sectionHeaderHeight
+        }
+        set  {
+            tableView.sectionHeaderHeight = newValue
+        }
+    }
+    
+    public var estimatedSectionFooterHeight: CGFloat {
+        get {
+            return tableView.estimatedSectionFooterHeight
+        }
+        set  {
+            tableView.estimatedSectionFooterHeight = newValue
+        }
+    }
+    
+    public var sectionFooterHeight: CGFloat {
+        get {
+            return tableView.sectionFooterHeight
+        }
+        set  {
+            tableView.sectionFooterHeight = newValue
         }
     }
 }

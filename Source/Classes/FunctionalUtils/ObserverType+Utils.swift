@@ -15,7 +15,7 @@ public extension ObserverType {
      
      - parameter element: Next element to send to observer(s)
      */
-    public final func onLast(_ element: E) {
+    public func onLast(_ element: E) {
         on(.next(element))
         on(.completed)
     }

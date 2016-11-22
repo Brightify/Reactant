@@ -21,9 +21,9 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     
     public let componentDelegate = ComponentDelegate<STATE, ControllerBase<STATE, ROOT>>()
     
-    open let rootView: ROOT
+    public let rootView: ROOT
     
-    private var castedRootView: RootView? {
+    private var castRootView: RootView? {
         return rootView as? RootView
     }
     
@@ -57,16 +57,16 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         super.updateViewConstraints()
     }
     
-    public func updateRootViewConstraints() {
+    open func updateRootViewConstraints() {
         rootView.snp.updateConstraints { make in
             make.leading.equalTo(view)
-            if castedRootView?.edgesForExtendedLayout.contains(.top) == true {
+            if castRootView?.edgesForExtendedLayout.contains(.top) == true {
                 make.top.equalTo(view)
             } else {
                 make.top.equalTo(topLayoutGuide.snp.bottom)
             }
             make.trailing.equalTo(view)
-            if castedRootView?.edgesForExtendedLayout.contains(.bottom) == true {
+            if castRootView?.edgesForExtendedLayout.contains(.bottom) == true {
                 make.bottom.equalTo(view).priority(UILayoutPriorityDefaultHigh)
             } else {
                 make.bottom.equalTo(bottomLayoutGuide.snp.top).priority(UILayoutPriorityDefaultHigh)
@@ -81,13 +81,13 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         
         componentDelegate.canUpdate = true
         
-        castedRootView?.viewWillAppear()
+        castRootView?.viewWillAppear()
     }
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        castedRootView?.viewDidAppear()
+        castRootView?.viewDidAppear()
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
@@ -95,12 +95,12 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         
         componentDelegate.canUpdate = false
         
-        castedRootView?.viewWillDisappear()
+        castRootView?.viewWillDisappear()
     }
     
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        castedRootView?.viewDidDisappear()
+        castRootView?.viewDidDisappear()
     }
 }

@@ -41,7 +41,7 @@ extension ComponentWithDelegate {
     public func afterInit() {
     }
     
-    public func componentStateDidChange() {
+    public func update() {
     }
     
     public func invalidate() {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeaderFooterView {
+public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeaderFooterView {
     
     private var wrappedView: VIEW?
     

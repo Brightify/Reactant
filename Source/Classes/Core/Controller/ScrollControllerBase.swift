@@ -10,7 +10,7 @@ import UIKit
 
 open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
     
-    open let scrollView = UIScrollView()
+    public let scrollView = UIScrollView()
 
     open override func loadView() {
         view = ControllerRootViewContainer()

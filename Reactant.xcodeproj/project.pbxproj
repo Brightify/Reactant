@@ -45,8 +45,8 @@
 		DC0785EA1DDB2C860063AB96 /* CollectionSupplementaryViewIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785E91DDB2C860063AB96 /* CollectionSupplementaryViewIdentifier.swift */; };
 		DC0785EC1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785EB1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift */; };
 		DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */; };
-		DC0785F11DDC6A400063AB96 /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F01DDC6A400063AB96 /* SimpleTableView.swift */; };
-		DC0785FF1DDC6F430063AB96 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785FE1DDC6F430063AB96 /* TableView.swift */; };
+		DC0785F11DDC6A400063AB96 /* PlainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F01DDC6A400063AB96 /* PlainTableView.swift */; };
+		DC0785FF1DDC6F430063AB96 /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */; };
 		DC0786011DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0786001DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift */; };
 		DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */; };
 		DC2B5D281DE1A20300F9C9D7 /* TableView+SetComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D271DE1A20300F9C9D7 /* TableView+SetComponentState.swift */; };
@@ -108,7 +108,6 @@
 		B028DA1728A0BC7C8045D66E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BE6BA3EF10B2D508C3108F59 /* Pods-Reactant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.debug.xcconfig"; sourceTree = "<group>"; };
 		D0CDB0F87F5A62A6CDB552C7 /* Reactant.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = Reactant.podspec; sourceTree = "<group>"; };
-		DC07857A1DC8867E0063AB96 /* Deprecated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deprecated.swift; sourceTree = "<group>"; };
 		DC0785831DD383E50063AB96 /* UINavigationController+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UINavigationController+Navigation.swift"; path = "Core/Wireframe/UINavigationController+Navigation.swift"; sourceTree = "<group>"; };
 		DC0785851DD3879B0063AB96 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wireframe.swift; path = Core/Wireframe/Wireframe.swift; sourceTree = "<group>"; };
 		DC07858C1DD39BE50063AB96 /* ControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ControllerBase.swift; path = Core/Controller/ControllerBase.swift; sourceTree = "<group>"; };
@@ -142,8 +141,8 @@
 		DC0785E91DDB2C860063AB96 /* CollectionSupplementaryViewIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionSupplementaryViewIdentifier.swift; path = Core/CollectionView/Identifier/CollectionSupplementaryViewIdentifier.swift; sourceTree = "<group>"; };
 		DC0785EB1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnyCollectionSupplementaryViewIdentifier.swift; path = Core/CollectionView/Identifier/AnyCollectionSupplementaryViewIdentifier.swift; sourceTree = "<group>"; };
 		DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewState.swift; path = Core/CollectionView/CollectionViewState.swift; sourceTree = "<group>"; };
-		DC0785F01DDC6A400063AB96 /* SimpleTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleTableView.swift; path = Core/TableView/SimpleTableView.swift; sourceTree = "<group>"; };
-		DC0785FE1DDC6F430063AB96 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableView.swift; path = Core/TableView/TableView.swift; sourceTree = "<group>"; };
+		DC0785F01DDC6A400063AB96 /* PlainTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlainTableView.swift; path = Core/TableView/PlainTableView.swift; sourceTree = "<group>"; };
+		DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleTableView.swift; path = Core/TableView/SimpleTableView.swift; sourceTree = "<group>"; };
 		DC0786001DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NoTableViewHeaderFooterMarker.swift; path = Core/TableView/NoTableViewHeaderFooterMarker.swift; sourceTree = "<group>"; };
 		DC2B5D271DE1A20300F9C9D7 /* TableView+SetComponentState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TableView+SetComponentState.swift"; path = "Core/TableView/TableView+SetComponentState.swift"; sourceTree = "<group>"; };
 		DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ObservableConvertibleType+Result.swift"; path = "Result/ObservableConvertibleType+Result.swift"; sourceTree = "<group>"; };
@@ -225,10 +224,11 @@
 		185120F21D834C5D002C4B08 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DC2B5D461DE20A9C00F9C9D7 /* Todo */,
+				DC0785781DC884B40063AB96 /* CollectionView */,
 				DC07856E1DC881B80063AB96 /* Core */,
-				DC07857C1DC887EF0063AB96 /* FunctionalUtils */,
 				DC07856F1DC881E40063AB96 /* Result */,
+				DC2B5D461DE20A9C00F9C9D7 /* Staging */,
+				DC0785791DC884BB0063AB96 /* TableView */,
 				DC2B5D2B1DE1B7E500F9C9D7 /* Validation */,
 			);
 			path = Classes;
@@ -298,10 +298,9 @@
 		DC07856E1DC881B80063AB96 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				DC0785781DC884B40063AB96 /* CollectionView */,
 				DC07858B1DD39B5F0063AB96 /* Component */,
 				DC0785741DC8845E0063AB96 /* Controller */,
-				DC0785791DC884BB0063AB96 /* TableView */,
+				DC07857C1DC887EF0063AB96 /* FunctionalUtils */,
 				DC0785771DC884AC0063AB96 /* Utils */,
 				DC0785751DC884660063AB96 /* View */,
 				DC0785761DC884700063AB96 /* Wireframe */,
@@ -315,15 +314,6 @@
 				DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */,
 			);
 			name = Result;
-			sourceTree = "<group>";
-		};
-		DC0785701DC881F80063AB96 /* Trash */ = {
-			isa = PBXGroup;
-			children = (
-				DC07857A1DC8867E0063AB96 /* Deprecated.swift */,
-				185121061D834C5D002C4B08 /* ReactantConfiguration.swift */,
-			);
-			name = Trash;
 			sourceTree = "<group>";
 		};
 		DC0785711DC8826F0063AB96 /* ActivityIndicator */ = {
@@ -366,10 +356,9 @@
 			children = (
 				DC07859E1DD3ACD80063AB96 /* ButtonBase.swift */,
 				DC0785A31DD3BDE10063AB96 /* ContainerView.swift */,
-				DC2B5D6A1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift */,
-				DC2B5D6B1DE2FFC000F9C9D7 /* DialogView.swift */,
 				DC07859C1DD3AA870063AB96 /* RootView.swift */,
 				DC0785981DD3A3420063AB96 /* ViewBase.swift */,
+				DC2B5D701DE4372600F9C9D7 /* Internal */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -377,10 +366,10 @@
 		DC0785761DC884700063AB96 /* Wireframe */ = {
 			isa = PBXGroup;
 			children = (
-				DC0785961DD3A1F40063AB96 /* FutureControllerProvider.swift */,
 				DC0785831DD383E50063AB96 /* UINavigationController+Navigation.swift */,
 				DC0785B21DD3D7080063AB96 /* UIViewController+Navigation.swift */,
 				DC0785851DD3879B0063AB96 /* Wireframe.swift */,
+				DC2B5D711DE4377800F9C9D7 /* Internal */,
 			);
 			name = Wireframe;
 			sourceTree = "<group>";
@@ -401,13 +390,12 @@
 		DC0785781DC884B40063AB96 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				DC0785D31DD9C2330063AB96 /* CollectionReusableViewWrapper.swift */,
 				DC0785CF1DD9C1E40063AB96 /* CollectionViewCell.swift */,
-				DC0785D11DD9C2070063AB96 /* CollectionViewCellWrapper.swift */,
 				DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */,
 				DC0785C41DD468F10063AB96 /* SingleRowCollectionView.swift */,
 				DC2B5D681DE2FD6800F9C9D7 /* SingleRowCollectionView+Properties.swift */,
 				DC0785D71DDB17740063AB96 /* Identifier */,
+				DC2B5D721DE437C900F9C9D7 /* Internal */,
 			);
 			name = CollectionView;
 			sourceTree = "<group>";
@@ -416,16 +404,16 @@
 			isa = PBXGroup;
 			children = (
 				DC0786001DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift */,
-				DC0785F01DDC6A400063AB96 /* SimpleTableView.swift */,
+				DC0785F01DDC6A400063AB96 /* PlainTableView.swift */,
+				DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */,
 				DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */,
-				DC0785FE1DDC6F430063AB96 /* TableView.swift */,
 				DC2B5D661DE2F90D00F9C9D7 /* TableView+Properties.swift */,
+				DC2B5D4F1DE20CB700F9C9D7 /* TableView+Scrollable.swift */,
 				DC2B5D271DE1A20300F9C9D7 /* TableView+SetComponentState.swift */,
 				DC0785C91DD8C4DF0063AB96 /* TableViewCell.swift */,
-				DC0785CB1DD8C4F00063AB96 /* TableViewCellWrapper.swift */,
-				DC0785CD1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift */,
 				DC0785BA1DD468E20063AB96 /* TableViewState.swift */,
 				DC0785D61DDB176A0063AB96 /* Identifier */,
+				DC2B5D731DE437E300F9C9D7 /* Internal */,
 			);
 			name = TableView;
 			sourceTree = "<group>";
@@ -478,7 +466,6 @@
 			children = (
 				DC2B5D4D1DE20CB700F9C9D7 /* Scrollable.swift */,
 				DC2B5D4E1DE20CB700F9C9D7 /* ScrollControllerBase+Scrollable.swift */,
-				DC2B5D4F1DE20CB700F9C9D7 /* TableView+Scrollable.swift */,
 				DC2B5D501DE20CB700F9C9D7 /* UIScrollView+Scrollable.swift */,
 			);
 			name = Scrollable;
@@ -495,15 +482,15 @@
 			name = Validation;
 			sourceTree = "<group>";
 		};
-		DC2B5D461DE20A9C00F9C9D7 /* Todo */ = {
+		DC2B5D461DE20A9C00F9C9D7 /* Staging */ = {
 			isa = PBXGroup;
 			children = (
+				185121061D834C5D002C4B08 /* ReactantConfiguration.swift */,
 				DC0785711DC8826F0063AB96 /* ActivityIndicator */,
 				DC0785731DC8828A0063AB96 /* RxRouter */,
 				DC0785721DC882820063AB96 /* StaticMap */,
-				DC0785701DC881F80063AB96 /* Trash */,
 			);
-			name = Todo;
+			name = Staging;
 			sourceTree = "<group>";
 		};
 		DC2B5D551DE2EA8F00F9C9D7 /* Visibility */ = {
@@ -515,6 +502,41 @@
 				DC2B5D581DE2EAD900F9C9D7 /* Visibility.swift */,
 			);
 			name = Visibility;
+			sourceTree = "<group>";
+		};
+		DC2B5D701DE4372600F9C9D7 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				DC2B5D6A1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift */,
+				DC2B5D6B1DE2FFC000F9C9D7 /* DialogView.swift */,
+			);
+			name = Internal;
+			sourceTree = "<group>";
+		};
+		DC2B5D711DE4377800F9C9D7 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				DC0785961DD3A1F40063AB96 /* FutureControllerProvider.swift */,
+			);
+			name = Internal;
+			sourceTree = "<group>";
+		};
+		DC2B5D721DE437C900F9C9D7 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				DC0785D31DD9C2330063AB96 /* CollectionReusableViewWrapper.swift */,
+				DC0785D11DD9C2070063AB96 /* CollectionViewCellWrapper.swift */,
+			);
+			name = Internal;
+			sourceTree = "<group>";
+		};
+		DC2B5D731DE437E300F9C9D7 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				DC0785CB1DD8C4F00063AB96 /* TableViewCellWrapper.swift */,
+				DC0785CD1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift */,
+			);
+			name = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -708,10 +730,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC0785F11DDC6A400063AB96 /* SimpleTableView.swift in Sources */,
+				DC0785F11DDC6A400063AB96 /* PlainTableView.swift in Sources */,
 				DC0785931DD39BF60063AB96 /* ComponentDelegate.swift in Sources */,
 				DC0785971DD3A1F50063AB96 /* FutureControllerProvider.swift in Sources */,
-				DC0785FF1DDC6F430063AB96 /* TableView.swift in Sources */,
+				DC0785FF1DDC6F430063AB96 /* SimpleTableView.swift in Sources */,
 				DC2B5D541DE20CB700F9C9D7 /* UIScrollView+Scrollable.swift in Sources */,
 				DC2B5D531DE20CB700F9C9D7 /* TableView+Scrollable.swift in Sources */,
 				DC2B5D6F1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift in Sources */,

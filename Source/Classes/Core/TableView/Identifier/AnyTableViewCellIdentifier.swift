@@ -10,8 +10,8 @@ import UIKit
 
 public struct AnyTableViewCellIdentifier {
     
-    public let name: String
-    public let type: UITableViewCell.Type
+    internal let name: String
+    internal let type: UITableViewCell.Type
 }
 
 extension TableViewCellIdentifier {

@@ -6,9 +6,9 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-extension TableView: Scrollable {
+extension SimpleTableView: Scrollable {
     
-    open func scrollToTop(animated: Bool) {
+    public func scrollToTop(animated: Bool) {
         tableView.scrollToTop(animated: animated)
     }
 }

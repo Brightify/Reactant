@@ -9,11 +9,12 @@
 import UIKit
 
 public struct AnyCollectionSupplementaryViewIdentifier {
-    public typealias IdentifiedType = UICollectionReusableView
     
-    public var name: String
-    public var kind: String
-    public var type: UICollectionReusableView.Type
+    internal typealias IdentifiedType = UICollectionReusableView
+    
+    internal var name: String
+    internal var kind: String
+    internal var type: UICollectionReusableView.Type
 }
 
 extension CollectionSupplementaryViewIdentifier {

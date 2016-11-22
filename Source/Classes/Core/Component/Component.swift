@@ -9,12 +9,13 @@
 import RxSwift
 
 public protocol Component: class {
+    
     associatedtype StateType
     
     /// DisposeBag for one-time subscriptions made in init. It is reset just before deallocating.
     var lifetimeDisposeBag: DisposeBag { get }
     
-    /// DisposeBag for actions in `componentStateDidChange`. This is reset before each `componentStateDidChange` call.
+    /// DisposeBag for actions in `update`. This is reset before each `update` call.
     var stateDisposeBag: DisposeBag { get }
     
     /// Observable with the current state of the component. Do not use this in `render` to avoid duplicite loading bugs
@@ -27,8 +28,9 @@ public protocol Component: class {
     // Do not access componentState.
     func afterInit()
     
-    // componentStateChanged, update, state-||-,
-    func componentStateDidChange()
+    func needsUpdate() -> Bool
+    
+    func update()
     
     func invalidate()
 }
@@ -44,5 +46,19 @@ extension Component {
     public func with(state: StateType) -> Self {
         componentState = state
         return self
+    }
+}
+
+extension Component {
+    
+    public func needsUpdate() -> Bool {
+        return true
+    }
+}
+
+extension Component where StateType: Equatable {
+    
+    public func needsUpdate() -> Bool {
+        return componentState != previousComponentState
     }
 }

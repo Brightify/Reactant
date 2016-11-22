@@ -10,7 +10,7 @@ import RxSwift
 
 public struct TableViewCellIdentifier<T: UIView> {
     
-    public let name: String
+    internal let name: String
     
     public init(name: String = NSStringFromClass(T.self)) {
         self.name = name
@@ -28,7 +28,6 @@ extension UITableView {
     }
 }
 
-// TODO Nil or crash?
 extension UITableView {
     
     public func items<S: Sequence, Cell: UIView, O: ObservableType>(with identifier: TableViewCellIdentifier<Cell>) ->
@@ -37,11 +36,17 @@ extension UITableView {
     }
     
     public func dequeue<T>(identifier: TableViewCellIdentifier<T>) -> TableViewCellWrapper<T> {
-        return dequeueReusableCell(withIdentifier: identifier.name) as! TableViewCellWrapper<T>
+        guard let cell = dequeueReusableCell(withIdentifier: identifier.name) as? TableViewCellWrapper<T> else {
+            preconditionFailure("\(identifier) is not registered.")
+        }
+        return cell
     }
     
     public func dequeue<T>(identifier: TableViewCellIdentifier<T>, for indexPath: IndexPath) -> TableViewCellWrapper<T> {
-        return dequeueReusableCell(withIdentifier: identifier.name, for: indexPath) as! TableViewCellWrapper<T>
+        guard let cell = dequeueReusableCell(withIdentifier: identifier.name, for: indexPath) as? TableViewCellWrapper<T> else {
+            preconditionFailure("\(identifier) is not registered.")
+        }
+        return cell
     }
     
     public func dequeue<T>(identifier: TableViewCellIdentifier<T>, forRow row: Int, inSection section: Int = 0) -> TableViewCellWrapper<T> {

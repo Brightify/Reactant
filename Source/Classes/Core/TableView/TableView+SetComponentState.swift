@@ -8,7 +8,7 @@
 
 import RxDataSources
 
-extension TableView {
+extension SimpleTableView {
     
     // Workaround for some bug which prevents from using componentState in with method. Seems that the -> Self causes the problem.
     fileprivate var componentState: StateType {
@@ -21,7 +21,7 @@ extension TableView {
     }
 }
 
-extension TableView where HEADER.StateType == Void {
+extension SimpleTableView where HEADER.StateType == Void {
     
     public var setComponentState: (TableViewState<SectionModel<FOOTER.StateType, CELL.StateType>>) -> Void {
         return { [weak self] in
@@ -37,7 +37,7 @@ extension TableView where HEADER.StateType == Void {
     }
 }
 
-extension TableView where FOOTER.StateType == Void {
+extension SimpleTableView where FOOTER.StateType == Void {
     
     public var setComponentState: (TableViewState<SectionModel<HEADER.StateType, CELL.StateType>>) -> Void {
         return { [weak self] in
@@ -53,7 +53,7 @@ extension TableView where FOOTER.StateType == Void {
     }
 }
 
-extension TableView where HEADER.StateType == Void, FOOTER.StateType == Void {
+extension SimpleTableView where HEADER.StateType == Void, FOOTER.StateType == Void {
     
     public var setComponentState: (TableViewState<CELL.StateType>) -> Void {
         return { [weak self] in

@@ -8,7 +8,6 @@
 
 import UIKit
 
-// TODO Solve directory structure for Core
 open class ContainerView: UIView {
     
     open override class var requiresConstraintBasedLayout: Bool {

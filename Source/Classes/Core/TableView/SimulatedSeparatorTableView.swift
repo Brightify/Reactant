@@ -7,18 +7,17 @@
 //
 
 import RxSwift
-import RxCocoa
 import RxDataSources
 
-open class SimulatedSeparatorTableView<CELL: UIView>: TableView<NoTableViewHeaderFooterMarker, CELL, ViewBase<Void>> where CELL: Component {
+open class SimulatedSeparatorTableView<CELL: UIView>: SimpleTableView<NoTableViewHeaderFooterMarker, CELL, ViewBase<Void>> where CELL: Component {
     
-    public var separatorColor: UIColor? = nil {
+    open var separatorColor: UIColor? = nil {
         didSet {
             setNeedsLayout()
         }
     }
     
-    public var separatorHeight: CGFloat {
+    open var separatorHeight: CGFloat {
         get {
             return sectionFooterHeight
         }
@@ -33,7 +32,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableView<NoTableViewHeade
         separatorHeight = 1
     }
     
-    public override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    open override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = super.tableView(tableView, viewForFooterInSection: section)
         footer?.backgroundColor = separatorColor
         return footer

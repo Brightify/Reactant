@@ -10,7 +10,7 @@ import UIKit
 
 public struct TableViewHeaderFooterIdentifier<T: UIView> {
     
-    public let name: String
+    internal let name: String
     
     public init(name: String = NSStringFromClass(T.self)) {
         self.name = name
@@ -31,6 +31,9 @@ extension UITableView {
 extension UITableView {
     
     public func dequeue<T>(identifier: TableViewHeaderFooterIdentifier<T>) -> TableViewHeaderFooterWrapper<T> {
-        return dequeueReusableHeaderFooterView(withIdentifier: identifier.name) as! TableViewHeaderFooterWrapper<T>
+        guard let view = dequeueReusableHeaderFooterView(withIdentifier: identifier.name) as? TableViewHeaderFooterWrapper<T> else {
+            preconditionFailure("\(identifier) is not registered.")
+        }
+        return view
     }
 }

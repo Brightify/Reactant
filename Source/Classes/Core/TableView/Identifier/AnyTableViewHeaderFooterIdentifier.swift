@@ -10,8 +10,8 @@ import UIKit
 
 public struct AnyTableViewHeaderFooterIdentifier {
     
-    public let name: String
-    public let type: UITableViewHeaderFooterView.Type
+    internal let name: String
+    internal let type: UITableViewHeaderFooterView.Type
 }
 
 extension TableViewHeaderFooterIdentifier {

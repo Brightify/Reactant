@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal final class DialogView: ViewBase<Void> {
+public final class DialogView: ViewBase<Void> {
     
     private let contentContainer = ContainerView()
     private let content: UIView
@@ -22,7 +22,7 @@ internal final class DialogView: ViewBase<Void> {
         ReactantConfiguration.global.dialogContentContainerStyle(contentContainer)
     }
     
-    override func loadView() {
+    override public func loadView() {
         children(
             contentContainer.children(
                 content
@@ -30,7 +30,7 @@ internal final class DialogView: ViewBase<Void> {
         )
     }
     
-    override func setupConstraints() {
+    override public func setupConstraints() {
         contentContainer.snp.makeConstraints { make in
             make.leading.greaterThanOrEqualTo(snp.leadingMargin)
             make.top.greaterThanOrEqualTo(snp.topMargin)

@@ -10,8 +10,8 @@ import UIKit
 
 public struct AnyCollectionViewCellIdentifier {
     
-    public let name: String
-    public let type: UICollectionViewCell.Type
+    internal let name: String
+    internal let type: UICollectionViewCell.Type
 }
 
 extension CollectionViewCellIdentifier {

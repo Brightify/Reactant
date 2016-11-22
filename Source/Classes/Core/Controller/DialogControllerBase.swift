@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
+open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
     
-    private var dialogView: DialogView
+    public var dialogView: DialogView
 
     public override init(title: String = "", root: ROOT = ROOT()) {
         dialogView = DialogView(content: root)

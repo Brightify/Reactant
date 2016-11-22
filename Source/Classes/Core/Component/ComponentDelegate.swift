@@ -8,8 +8,8 @@
 
 import RxSwift
 
-// COMPONENT cannot have restriction to StateType becaouse it is impossible then to use ComponentWithDelegate (associatedtype cannot be used with where).
-public class ComponentDelegate<STATE, COMPONENT: Component> {
+// COMPONENT cannot have restriction to StateType because it is impossible then to use ComponentWithDelegate (associatedtype cannot be used with where).
+public final class ComponentDelegate<STATE, COMPONENT: Component> {
     
     public var stateDisposeBag = DisposeBag()
     
@@ -80,10 +80,13 @@ public class ComponentDelegate<STATE, COMPONENT: Component> {
         }
         
         needsUpdate = false
-        stateDisposeBag = DisposeBag()
+        
         #if DEBUG
             precondition(ownerComponent != nil, "Update called when ownerComponent is nil. Probably wasn't set in init of the component.")
         #endif
-        ownerComponent?.componentStateDidChange()
+        if ownerComponent?.needsUpdate() == true {
+            stateDisposeBag = DisposeBag()
+            ownerComponent?.update()
+        }
     }
 }

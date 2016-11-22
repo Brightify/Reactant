@@ -12,11 +12,11 @@ public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReus
     
     private var wrappedView: VIEW?
     
-    open override class var requiresConstraintBasedLayout: Bool {
+    public override class var requiresConstraintBasedLayout: Bool {
         return true
     }
     
-    open override func updateConstraints() {
+    public override func updateConstraints() {
         super.updateConstraints()
         
         wrappedView?.snp.updateConstraints { make in
@@ -24,7 +24,7 @@ public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReus
         }
     }
     
-    open func cachedViewOrCreated(factory: () -> VIEW) -> VIEW {
+    public func cachedViewOrCreated(factory: () -> VIEW) -> VIEW {
         if let wrappedView = wrappedView {
             return wrappedView
         } else {

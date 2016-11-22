@@ -10,8 +10,8 @@ import UIKit
 
 public struct CollectionSupplementaryViewIdentifier<T: UIView> {
     
-    public let name: String
-    public let kind: String
+    internal let name: String
+    internal let kind: String
     
     public init(name: String = NSStringFromClass(T.self), kind: String) {
         self.name = name
@@ -33,7 +33,10 @@ extension UICollectionView {
 extension UICollectionView {
     
     public func dequeue<T>(identifier: CollectionSupplementaryViewIdentifier<T>, for indexPath: IndexPath) -> CollectionReusableViewWrapper<T> {
-        return dequeueReusableSupplementaryView(ofKind: identifier.kind, withReuseIdentifier: identifier.name, for: indexPath) as! CollectionReusableViewWrapper<T>
+        guard let view = dequeueReusableSupplementaryView(ofKind: identifier.kind, withReuseIdentifier: identifier.name, for: indexPath) as? CollectionReusableViewWrapper<T> else {
+            preconditionFailure("\(identifier) is not registered.")
+        }
+        return view
     }
     
     public func dequeue<T>(identifier: CollectionSupplementaryViewIdentifier<T>, forRow row: Int, inSection section: Int = 0) -> CollectionReusableViewWrapper<T> {

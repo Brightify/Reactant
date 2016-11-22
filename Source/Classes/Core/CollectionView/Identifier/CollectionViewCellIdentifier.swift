@@ -10,7 +10,7 @@ import RxSwift
 
 public struct CollectionViewCellIdentifier<T: UIView> {
     
-    public let name: String
+    internal let name: String
     
     public init(name: String = NSStringFromClass(T.self)) {
         self.name = name
@@ -31,7 +31,10 @@ extension UICollectionView {
 extension UICollectionView {
     
     public func dequeue<T>(identifier: CollectionViewCellIdentifier<T>, for indexPath: IndexPath) -> CollectionViewCellWrapper<T> {
-        return dequeueReusableCell(withReuseIdentifier: identifier.name, for: indexPath) as! CollectionViewCellWrapper<T>
+        guard let cell = dequeueReusableCell(withReuseIdentifier: identifier.name, for: indexPath) as? CollectionViewCellWrapper<T> else {
+            preconditionFailure("\(identifier) is not registered.")
+        }
+        return cell
     }
     
     public func dequeue<T>(identifier: CollectionViewCellIdentifier<T>, forRow row: Int, inSection section: Int = 0) -> CollectionViewCellWrapper<T> {

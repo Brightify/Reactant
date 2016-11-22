@@ -8,11 +8,11 @@
 
 import UIKit
 
-open class ControllerRootViewContainer: UIView {
+public final class ControllerRootViewContainer: UIView {
     
-    open let wrappedView: UIView?
+    public let wrappedView: UIView?
     
-    open override var frame: CGRect {
+    public override var frame: CGRect {
         didSet {
             wrappedView?.frame = bounds
         }

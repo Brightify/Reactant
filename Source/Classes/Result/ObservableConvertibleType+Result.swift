@@ -20,7 +20,7 @@ public extension ObservableConvertibleType where E: ResultProtocol {
         return asObservable().map { $0.error }.filterNil()
     }
     
-    public func map<T>(_ transform: @escaping (E.Value) -> T) -> Observable<Result<T, E.Error>> {
+    public func mapValue<T>(_ transform: @escaping (E.Value) -> T) -> Observable<Result<T, E.Error>> {
         return asObservable().map { $0.map(transform) }
     }
     
@@ -29,7 +29,7 @@ public extension ObservableConvertibleType where E: ResultProtocol {
     }
     
     public func rewriteValue<T>(newValue: T) -> Observable<Result<T, E.Error>> {
-        return map { _ in newValue }
+        return mapValue { _ in newValue }
     }
     
     public func recover(_ value: E.Value) -> Observable<E.Value> {
