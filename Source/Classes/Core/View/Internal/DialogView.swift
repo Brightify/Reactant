@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class DialogView: ViewBase<Void> {
+public final class DialogView: ViewBase<Void, Void> {
     
     private let contentContainer = ContainerView()
     private let content: UIView

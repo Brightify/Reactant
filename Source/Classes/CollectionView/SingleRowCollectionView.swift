@@ -8,7 +8,7 @@
 
 import RxSwift
 
-open class SingleRowCollectionView<CELL: UIView>: ViewBase<CollectionViewState<CELL.StateType>> where CELL: Component {
+open class SingleRowCollectionView<CELL: UIView>: ViewBase<CollectionViewState<CELL.StateType>, Void> where CELL: Component {
     
     public typealias MODEL = CELL.StateType
     

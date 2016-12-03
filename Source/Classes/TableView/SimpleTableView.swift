@@ -9,7 +9,7 @@
 import RxSwift
 import RxDataSources
 
-open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBase<TableViewState<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>>>, UITableViewDelegate where HEADER: Component, CELL: Component, FOOTER: Component {
+open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBase<TableViewState<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>>, Void>, UITableViewDelegate where HEADER: Component, CELL: Component, FOOTER: Component {
     
     public typealias MODEL = CELL.StateType
     public typealias SECTION = SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>

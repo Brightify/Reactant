@@ -8,8 +8,8 @@
 
 import RxSwift
 
-// COMPONENT cannot have restriction to StateType because it is impossible then to use ComponentWithDelegate (associatedtype cannot be used with where).
-public final class ComponentDelegate<STATE, COMPONENT: Component> {
+// COMPONENT and ACTION cannot have restriction to StateType because it is impossible then to use ComponentWithDelegate (associatedtype cannot be used with where).
+public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     
     public var stateDisposeBag = DisposeBag()
     
@@ -36,6 +36,10 @@ public final class ComponentDelegate<STATE, COMPONENT: Component> {
         }
     }
     
+    public var action: Observable<ACTION> {
+        return actionSubject
+    }
+    
     public var needsUpdate: Bool = false {
         didSet {
             if needsUpdate && canUpdate {
@@ -58,15 +62,29 @@ public final class ComponentDelegate<STATE, COMPONENT: Component> {
         }
     }
     
+    public var actions: [Observable<ACTION>] = [] {
+        didSet {
+            actionsDisposeBag = DisposeBag()
+            Observable.from(actions).merge().subscribe(onNext: perform).addDisposableTo(actionsDisposeBag)
+        }
+    }
+    
     private let observableStateSubject = ReplaySubject<STATE>.create(bufferSize: 1)
+    private let actionSubject = ReplaySubject<ACTION>.create(bufferSize: 1)
     
     private var stateStorage: STATE? = nil
+    
+    private var actionsDisposeBag = DisposeBag()
     
     public init() {
         // If the model is Void, we set it so caller does not have to.
         if let voidState = Void() as? STATE {
             componentState = voidState
         }
+    }
+    
+    public func perform(action: ACTION) {
+        actionSubject.onNext(action)
     }
     
     private func update() {

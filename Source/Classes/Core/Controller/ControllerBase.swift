@@ -12,6 +12,7 @@ import RxSwift
 open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate where ROOT: Component {
     
     public typealias StateType = STATE
+    public typealias ActionType = Void
     
     open var navigationBarHidden: Bool {
         return false
@@ -19,7 +20,11 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     
     public let lifetimeDisposeBag = DisposeBag()
     
-    public let componentDelegate = ComponentDelegate<STATE, ControllerBase<STATE, ROOT>>()
+    public let componentDelegate = ComponentDelegate<STATE, Void, ControllerBase<STATE, ROOT>>()
+    
+    public let action: Observable<Void> = Observable.empty()
+    
+    public let actions: [Observable<Void>] = []
     
     public let rootView: ROOT
     
@@ -33,6 +38,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         super.init(nibName: nil, bundle: nil)
         
         componentDelegate.ownerComponent = self
+        rootView.action.subscribe(onNext: act).addDisposableTo(lifetimeDisposeBag)
         
         self.title = title
         
@@ -102,5 +108,14 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         super.viewDidDisappear(animated)
         
         castRootView?.viewDidDisappear()
+    }
+    
+    public final func perform(action: Void) {
+    }
+    
+    public final func resetActions() {
+    }
+    
+    open func act(on action: ROOT.ActionType) {
     }
 }

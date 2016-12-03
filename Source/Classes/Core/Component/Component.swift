@@ -11,6 +11,7 @@ import RxSwift
 public protocol Component: class {
     
     associatedtype StateType
+    associatedtype ActionType
     
     /// DisposeBag for one-time subscriptions made in init. It is reset just before deallocating.
     var lifetimeDisposeBag: DisposeBag { get }
@@ -25,6 +26,8 @@ public protocol Component: class {
     
     var componentState: StateType { get set }
     
+    var action: Observable<ActionType> { get }
+    
     // Do not access componentState.
     func afterInit()
     
@@ -33,6 +36,8 @@ public protocol Component: class {
     func update()
     
     func invalidate()
+    
+    func perform(action: ActionType)
 }
 
 extension Component {

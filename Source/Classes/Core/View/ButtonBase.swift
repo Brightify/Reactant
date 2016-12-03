@@ -8,32 +8,32 @@
 
 import RxSwift
 
-open class ButtonBase<STATE>: UIButton, ComponentWithDelegate {
+open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
 
     public typealias StateType = STATE
+    public typealias ActionType = ACTION
     
     public let lifetimeDisposeBag = DisposeBag()
     
-    public let componentDelegate = ComponentDelegate<STATE, ButtonBase<STATE>>()
+    public let componentDelegate = ComponentDelegate<STATE, ACTION, ButtonBase<STATE, ACTION>>()
     
     open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
 
-    public init(initialState: STATE? = nil) {
+    public init() {
         super.init(frame: CGRect.zero)
         
         componentDelegate.ownerComponent = self
         componentDelegate.canUpdate = true
-        if let state = initialState, STATE.self != Void.self {
-            componentState = state
-        }
         
         layoutMargins = ReactantConfiguration.global.layoutMargins
         translatesAutoresizingMaskIntoConstraints = false
         
         loadView()
         setupConstraints()
+        
+        resetActions()
         
         afterInit()
     }

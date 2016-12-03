@@ -11,6 +11,7 @@ import RxCocoa
 
 extension SimpleTableView {
     
+    // TODO Move to actions.
     public var refresh: ControlEvent<Void> {
         return refreshControl?.rx.controlEvent(.valueChanged) ?? ControlEvent(events: Observable.empty())
     }

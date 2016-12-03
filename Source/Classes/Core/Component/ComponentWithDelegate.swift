@@ -12,7 +12,11 @@ public protocol ComponentWithDelegate: Component {
     
     associatedtype ComponentType: Component
     
-    var componentDelegate: ComponentDelegate<StateType, ComponentType> { get }
+    var componentDelegate: ComponentDelegate<StateType, ActionType, ComponentType> { get }
+    
+    var actions: [Observable<ActionType>] { get }
+    
+    func resetActions()
 }
 
 extension ComponentWithDelegate {
@@ -38,6 +42,10 @@ extension ComponentWithDelegate {
         }
     }
     
+    public var action: Observable<ActionType> {
+        return componentDelegate.action
+    }
+    
     public func afterInit() {
     }
     
@@ -46,5 +54,20 @@ extension ComponentWithDelegate {
     
     public func invalidate() {
         componentDelegate.needsUpdate = true
+    }
+    
+    public func perform(action: ActionType) {
+        componentDelegate.perform(action: action)
+    }
+}
+
+extension ComponentWithDelegate {
+    
+    public var actions: [Observable<ActionType>] {
+        return []
+    }
+    
+    public func resetActions() {
+        componentDelegate.actions = actions
     }
 }

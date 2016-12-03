@@ -9,7 +9,7 @@
 import RxSwift
 import RxDataSources
 
-open class SimulatedSeparatorTableView<CELL: UIView>: SimpleTableView<NoTableViewHeaderFooterMarker, CELL, ViewBase<Void>> where CELL: Component {
+open class SimulatedSeparatorTableView<CELL: UIView>: SimpleTableView<NoTableViewHeaderFooterMarker, CELL, ViewBase<Void, Void>> where CELL: Component {
     
     open var separatorColor: UIColor? = nil {
         didSet {

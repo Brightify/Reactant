@@ -8,13 +8,14 @@
 
 import RxSwift
 
-open class ViewBase<STATE>: UIView, ComponentWithDelegate {
+open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate {
     
     public typealias StateType = STATE
+    public typealias ActionType = ACTION
     
     public let lifetimeDisposeBag = DisposeBag()
     
-    public let componentDelegate = ComponentDelegate<STATE, ViewBase<STATE>>()
+    public let componentDelegate = ComponentDelegate<STATE, ACTION, ViewBase<STATE, ACTION>>()
     
     open override class var requiresConstraintBasedLayout: Bool {
         return true
@@ -31,6 +32,8 @@ open class ViewBase<STATE>: UIView, ComponentWithDelegate {
         
         loadView()
         setupConstraints()
+        
+        resetActions()
         
         afterInit()
     }

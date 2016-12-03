@@ -6,5 +6,5 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-public final class NoTableViewHeaderFooterMarker: ViewBase<Void> {
+public final class NoTableViewHeaderFooterMarker: ViewBase<Void, Void> {
 }

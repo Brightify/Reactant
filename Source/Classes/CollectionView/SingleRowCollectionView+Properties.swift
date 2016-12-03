@@ -11,6 +11,7 @@ import RxCocoa
 
 extension SingleRowCollectionView {
     
+    // TODO Move to actions.
     public var modelSelected: ControlEvent<MODEL> {
         return collectionView.rx.modelSelected(MODEL.self)
     }
