@@ -91,7 +91,6 @@
 		045F878B1A7F63F7AAD82596 /* Pods_ReactantExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		118FB89C32922066714D8F98 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		185121061D834C5D002C4B08 /* ReactantConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantConfiguration.swift; sourceTree = "<group>"; };
-		185121071D834C5D002C4B08 /* RxRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxRouter.swift; sourceTree = "<group>"; };
 		185121471D834D1E002C4B08 /* Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1851214B1D834D1E002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185121501D834D1F002C4B08 /* ReactantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -332,14 +331,6 @@
 			path = StaticMap;
 			sourceTree = "<group>";
 		};
-		DC0785731DC8828A0063AB96 /* RxRouter */ = {
-			isa = PBXGroup;
-			children = (
-				185121071D834C5D002C4B08 /* RxRouter.swift */,
-			);
-			path = RxRouter;
-			sourceTree = "<group>";
-		};
 		DC0785741DC8845E0063AB96 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -487,7 +478,6 @@
 			children = (
 				185121061D834C5D002C4B08 /* ReactantConfiguration.swift */,
 				DC0785711DC8826F0063AB96 /* ActivityIndicator */,
-				DC0785731DC8828A0063AB96 /* RxRouter */,
 				DC0785721DC882820063AB96 /* StaticMap */,
 			);
 			path = Staging;
