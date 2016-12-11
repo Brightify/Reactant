@@ -13,6 +13,6 @@ target 'Reactant' do
 end
 
 target 'ReactantTests' do
-    pod 'Quick', :git => 'https://github.com/Quick/Quick.git', :branch => 'master'
+    pod 'Quick', '~> 1.0'
     pod 'Nimble', '~> 5.0'
 end

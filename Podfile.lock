@@ -1,7 +1,7 @@
 PODS:
-  - Kingfisher (3.2.1)
+  - Kingfisher (3.2.2)
   - Nimble (5.1.1)
-  - Quick (0.10.0)
+  - Quick (1.0.0)
   - Result (3.0.0)
   - RxCocoa (3.0.1):
     - RxSwift (~> 3.0)
@@ -17,7 +17,7 @@ PODS:
 DEPENDENCIES:
   - Kingfisher
   - Nimble (~> 5.0)
-  - Quick (from `https://github.com/Quick/Quick.git`, branch `master`)
+  - Quick (~> 1.0)
   - Result (~> 3.0.0)
   - RxCocoa
   - RxDataSources
@@ -25,20 +25,10 @@ DEPENDENCIES:
   - RxSwift
   - SnapKit
 
-EXTERNAL SOURCES:
-  Quick:
-    :branch: master
-    :git: https://github.com/Quick/Quick.git
-
-CHECKOUT OPTIONS:
-  Quick:
-    :commit: 1257ecbdbe772adb83855b55e943219e0f4061fa
-    :git: https://github.com/Quick/Quick.git
-
 SPEC CHECKSUMS:
-  Kingfisher: 64ef28c6d3d6f344e3ae2d7f5c9da80439505d99
+  Kingfisher: 821466474ad7ffc375a4aecadfa05068cfed67b3
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
-  Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
+  Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
   Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
   RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
   RxDataSources: 824693e84d00781d0a5e5cedc1ff95ce9250aacd
@@ -46,6 +36,6 @@ SPEC CHECKSUMS:
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: d97914694db460d142aecda7b98cffa73034cd58
+PODFILE CHECKSUM: f2145cd089530a779b485d8d131aed4ffe816ee3
 
-COCOAPODS: 1.1.0.rc.3
+COCOAPODS: 1.2.0.beta.1
