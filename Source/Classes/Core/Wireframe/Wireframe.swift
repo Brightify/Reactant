@@ -20,7 +20,7 @@ extension Wireframe {
         return controller
     }
     
-    public func brancheNavigation(controller: UIViewController,
+    public func branchNavigation(controller: UIViewController,
                                           closeButtonTitle: String? = ReactantConfiguration.global.closeButtonTitle) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: controller)
         if let closeButtonTitle = closeButtonTitle {

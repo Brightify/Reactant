@@ -90,7 +90,7 @@
 /* Begin PBXFileReference section */
 		045F878B1A7F63F7AAD82596 /* Pods_ReactantExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		118FB89C32922066714D8F98 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		185121061D834C5D002C4B08 /* ReactantConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantConfiguration.swift; sourceTree = "<group>"; };
+		185121061D834C5D002C4B08 /* ReactantConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactantConfiguration.swift; path = ReactantConfiguration.swift; sourceTree = "<group>"; };
 		185121471D834D1E002C4B08 /* Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1851214B1D834D1E002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185121501D834D1F002C4B08 /* ReactantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,8 +206,8 @@
 		185120EF1D834C5D002C4B08 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				185120F01D834C5D002C4B08 /* Resources */,
 				185120F21D834C5D002C4B08 /* Classes */,
+				185120F01D834C5D002C4B08 /* Resources */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -249,12 +249,12 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				10B68A63379DA3294E15D42D /* Frameworks */,
+				3EF99E495EDB2A91B3FA3DE7 /* Pods */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
+				607FACD11AFB9204008FA782 /* Products */,
 				185120EF1D834C5D002C4B08 /* Source */,
 				607FACE81AFB9204008FA782 /* Tests */,
-				607FACD11AFB9204008FA782 /* Products */,
-				3EF99E495EDB2A91B3FA3DE7 /* Pods */,
-				10B68A63379DA3294E15D42D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -288,8 +288,8 @@
 			isa = PBXGroup;
 			children = (
 				118FB89C32922066714D8F98 /* LICENSE */,
-				D0CDB0F87F5A62A6CDB552C7 /* Reactant.podspec */,
 				B028DA1728A0BC7C8045D66E /* README.md */,
+				D0CDB0F87F5A62A6CDB552C7 /* Reactant.podspec */,
 			);
 			path = "Podspec Metadata";
 			sourceTree = "<group>";
@@ -303,6 +303,7 @@
 				DC0785771DC884AC0063AB96 /* Utils */,
 				DC0785751DC884660063AB96 /* View */,
 				DC0785761DC884700063AB96 /* Wireframe */,
+				185121061D834C5D002C4B08 /* ReactantConfiguration.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -345,11 +346,11 @@
 		DC0785751DC884660063AB96 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DC2B5D701DE4372600F9C9D7 /* Internal */,
 				DC07859E1DD3ACD80063AB96 /* ButtonBase.swift */,
 				DC0785A31DD3BDE10063AB96 /* ContainerView.swift */,
 				DC07859C1DD3AA870063AB96 /* RootView.swift */,
 				DC0785981DD3A3420063AB96 /* ViewBase.swift */,
-				DC2B5D701DE4372600F9C9D7 /* Internal */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -357,10 +358,10 @@
 		DC0785761DC884700063AB96 /* Wireframe */ = {
 			isa = PBXGroup;
 			children = (
+				DC2B5D711DE4377800F9C9D7 /* Internal */,
 				DC0785831DD383E50063AB96 /* UINavigationController+Navigation.swift */,
 				DC0785B21DD3D7080063AB96 /* UIViewController+Navigation.swift */,
 				DC0785851DD3879B0063AB96 /* Wireframe.swift */,
-				DC2B5D711DE4377800F9C9D7 /* Internal */,
 			);
 			path = Wireframe;
 			sourceTree = "<group>";
@@ -368,12 +369,12 @@
 		DC0785771DC884AC0063AB96 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				DC0785F31DDC6C460063AB96 /* Scrollable */,
+				DC2B5D551DE2EA8F00F9C9D7 /* Visibility */,
 				DC2B5D641DE2EE5F00F9C9D7 /* AssociatedObject.swift */,
 				DC2B5D4B1DE20C3100F9C9D7 /* UIBarButtonItem+ClosureAction.swift */,
 				DC2B5D491DE20B9E00F9C9D7 /* UIStackView+ArrangedChildren.swift */,
 				DC2B5D471DE20B3900F9C9D7 /* UIView+Utils.swift */,
-				DC0785F31DDC6C460063AB96 /* Scrollable */,
-				DC2B5D551DE2EA8F00F9C9D7 /* Visibility */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -381,12 +382,12 @@
 		DC0785781DC884B40063AB96 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				DC0785CF1DD9C1E40063AB96 /* CollectionViewCell.swift */,
-				DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */,
-				DC0785C41DD468F10063AB96 /* SingleRowCollectionView.swift */,
-				DC2B5D681DE2FD6800F9C9D7 /* SingleRowCollectionView+Properties.swift */,
 				DC0785D71DDB17740063AB96 /* Identifier */,
 				DC2B5D721DE437C900F9C9D7 /* Internal */,
+				DC0785CF1DD9C1E40063AB96 /* CollectionViewCell.swift */,
+				DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */,
+				DC2B5D681DE2FD6800F9C9D7 /* SingleRowCollectionView+Properties.swift */,
+				DC0785C41DD468F10063AB96 /* SingleRowCollectionView.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -394,6 +395,8 @@
 		DC0785791DC884BB0063AB96 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				DC0785D61DDB176A0063AB96 /* Identifier */,
+				DC2B5D731DE437E300F9C9D7 /* Internal */,
 				DC0786001DDC727F0063AB96 /* NoTableViewHeaderFooterMarker.swift */,
 				DC0785F01DDC6A400063AB96 /* PlainTableView.swift */,
 				DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */,
@@ -403,8 +406,6 @@
 				DC2B5D271DE1A20300F9C9D7 /* TableView+SetComponentState.swift */,
 				DC0785C91DD8C4DF0063AB96 /* TableViewCell.swift */,
 				DC0785BA1DD468E20063AB96 /* TableViewState.swift */,
-				DC0785D61DDB176A0063AB96 /* Identifier */,
-				DC2B5D731DE437E300F9C9D7 /* Internal */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -455,8 +456,8 @@
 		DC0785F31DDC6C460063AB96 /* Scrollable */ = {
 			isa = PBXGroup;
 			children = (
-				DC2B5D4D1DE20CB700F9C9D7 /* Scrollable.swift */,
 				DC2B5D4E1DE20CB700F9C9D7 /* ScrollControllerBase+Scrollable.swift */,
+				DC2B5D4D1DE20CB700F9C9D7 /* Scrollable.swift */,
 				DC2B5D501DE20CB700F9C9D7 /* UIScrollView+Scrollable.swift */,
 			);
 			path = Scrollable;
@@ -476,7 +477,6 @@
 		DC2B5D461DE20A9C00F9C9D7 /* Staging */ = {
 			isa = PBXGroup;
 			children = (
-				185121061D834C5D002C4B08 /* ReactantConfiguration.swift */,
 				DC0785711DC8826F0063AB96 /* ActivityIndicator */,
 				DC0785721DC882820063AB96 /* StaticMap */,
 			);

@@ -13,7 +13,7 @@ import Kingfisher
 
 // TODO Move to subspec with Kingfisher.
 
-open class StaticMap: ViewBase<MKCoordinateRegion> {
+open class StaticMap: ViewBase<MKCoordinateRegion, Void> {
 
     open var selected: Observable<Void> {
         return tapGestureRecognizer.rx.event.rewrite(with: Void())
@@ -21,13 +21,13 @@ open class StaticMap: ViewBase<MKCoordinateRegion> {
 
     private let image = UIImageView()
 
-    private let tapGestureRecognizer = UITapGestureRecognizer()
+    private let tapGestureRecognizer = UIGestureRecognizer()
 
-    public override init() {
+    override init() {
         super.init()
     }
 
-    open override func render() {
+    open func update() {
         layoutIfNeeded()
         image.image = nil
         let fileName = String(format: "map-image-c%.2f,%.2f-s%.2f,%.2f-%.0fx%.0f",

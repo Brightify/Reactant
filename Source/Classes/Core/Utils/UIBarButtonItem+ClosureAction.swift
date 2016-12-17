@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 /// Extension of UIBarButtonItem, that adds option to use closure instead of target and selector
 extension UIBarButtonItem {
 
     public convenience init(image: UIImage?, style: UIBarButtonItemStyle, action: (() -> Void)? = nil) {
         self.init(image: image, style: style, target: nil, action: nil)
-
+        if let action = action {
+            _ = rx.tap.takeUntil(rx.deallocating).subscribe(onNext: action)
+        }
         register(action: action)
     }
 
