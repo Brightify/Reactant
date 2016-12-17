@@ -15,9 +15,7 @@ extension UIBarButtonItem {
 
     public convenience init(image: UIImage?, style: UIBarButtonItemStyle, action: (() -> Void)? = nil) {
         self.init(image: image, style: style, target: nil, action: nil)
-        if let action = action {
-            _ = rx.tap.takeUntil(rx.deallocating).subscribe(onNext: action)
-        }
+        
         register(action: action)
     }
 
