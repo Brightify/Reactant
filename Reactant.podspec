@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Reactant'
-  s.version          = '0.5.0'
+  s.version          = '0.5.1'
   s.summary          = 'Imagine React Native in Swift and you get Reactant'
 
   s.description      = <<-DESC
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
                         made a framework for highly reusable and clean views.
                        DESC
 
-  s.homepage         = 'https://github.com/SwiftKit/Reactant.git'
+  s.homepage         = 'https://github.com/Brightify/Reactant.git'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Tadeas Kriz' => 'tadeas@brightify.org', 'Matous Hybl' => 'matous@brightify.org' }
   s.source           = { :git => 'https://github.com/Brightify/Reactant.git', :tag => s.version.to_s }
