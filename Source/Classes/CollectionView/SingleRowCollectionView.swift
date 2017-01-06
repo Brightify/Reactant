@@ -66,7 +66,7 @@ open class SingleRowCollectionView<CELL: UIView>: ViewBase<CollectionViewState<C
         }
     }
     
-    open func afterInit() {
+    open override func afterInit() {
         collectionView.rx.itemSelected
             .subscribe(onNext: { [collectionView] in
                     collectionView.deselectItem(at: $0, animated: true)
@@ -74,7 +74,7 @@ open class SingleRowCollectionView<CELL: UIView>: ViewBase<CollectionViewState<C
             .addDisposableTo(lifetimeDisposeBag)
     }
     
-    open func update() {
+    open override func update() {
         var items: [MODEL] = []
         var emptyMessage = ""
         var loading = false

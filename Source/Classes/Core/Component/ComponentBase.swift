@@ -25,4 +25,11 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
         
         afterInit()
     }
+
+    open func afterInit() {
+    }
+
+    open func update() {
+        
+    }
 }

@@ -49,6 +49,10 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     public required init?(coder aDecoder: NSCoder) {
         preconditionFailure("init(coder:) has not been implemented")
     }
+
+    open func afterInit() { }
+
+    open func update() { }
     
     open override func loadView() {
         // FIXME Add common styles and style rootview

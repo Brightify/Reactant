@@ -46,12 +46,6 @@ extension ComponentWithDelegate {
         return componentDelegate.action
     }
     
-    public func afterInit() {
-    }
-    
-    public func update() {
-    }
-    
     public func invalidate() {
         componentDelegate.needsUpdate = true
     }

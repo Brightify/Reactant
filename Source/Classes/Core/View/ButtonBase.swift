@@ -43,6 +43,10 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
         preconditionFailure("init(coder:) has not been implemented")
     }
 
+    open func afterInit() { }
+
+    open func update() { }
+
     open func loadView() {
     }
     

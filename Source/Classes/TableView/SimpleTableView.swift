@@ -95,7 +95,7 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBa
         }
     }
     
-    open func afterInit() {
+    open override func afterInit() {
         tableView.rx.itemSelected
             .subscribe(onNext: { [tableView] in
                 tableView.deselectRow(at: $0, animated: true)
@@ -103,7 +103,7 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBa
             .addDisposableTo(lifetimeDisposeBag)
     }
     
-    open func update() {
+    open override func update() {
         var items: [SECTION] = []
         var emptyMessage = ""
         var loading = false
