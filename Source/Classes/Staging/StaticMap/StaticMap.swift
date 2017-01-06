@@ -27,7 +27,7 @@ open class StaticMap: ViewBase<MKCoordinateRegion, Void> {
         super.init()
     }
 
-    open func update() {
+    open override func update() {
         layoutIfNeeded()
         image.image = nil
         let fileName = String(format: "map-image-c%.2f,%.2f-s%.2f,%.2f-%.0fx%.0f",
