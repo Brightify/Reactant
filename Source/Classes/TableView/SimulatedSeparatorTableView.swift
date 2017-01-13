@@ -9,7 +9,12 @@
 import RxSwift
 import RxDataSources
 
-open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>, Void>, UITableViewDelegate, ReactantTableView where CELL: Component {
+public enum SimulatedSeparatorTableViewAction<CELL: Component> {
+    case selected(CELL.StateType)
+    case rowAction(CELL.StateType, CELL.ActionType)
+}
+
+open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>, SimulatedSeparatorTableViewAction<CELL>>, UITableViewDelegate, ReactantTableView where CELL: Component {
 
     public typealias MODEL = CELL.StateType
     public typealias SECTION = SectionModel<Void, CELL.StateType>
@@ -19,6 +24,12 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
 
     open var edgesForExtendedLayout: UIRectEdge {
         return .all
+    }
+
+    open override var actions: [Observable<SimulatedSeparatorTableViewAction<CELL>>] {
+        return [
+            tableView.rx.modelSelected(MODEL.self).map(SimulatedSeparatorTableViewAction.selected)
+        ]
     }
 
     open var separatorColor: UIColor? = nil {
@@ -55,9 +66,16 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
 
         separatorHeight = 1
 
-        dataSource.configureCell = { [unowned self] _, tableView, indexPath, model in
-            let cell = tableView.dequeue(identifier: self.cellIdentifier)
-            cell.cachedCellOrCreated(factory: cellFactory).setComponentState(model)
+        dataSource.configureCell = { [cellIdentifier] _, tableView, indexPath, model in
+            let cell = tableView.dequeue(identifier: cellIdentifier)
+            let component = cell.cachedCellOrCreated(factory: cellFactory)
+            component.componentState = model
+            component.action
+                .subscribe(onNext: { [weak self] in
+                    self?.perform(action: .rowAction(model, $0))
+                })
+                .addDisposableTo(component.stateDisposeBag)
+
             return cell
         }
     }

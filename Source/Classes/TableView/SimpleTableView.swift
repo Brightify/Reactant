@@ -9,7 +9,14 @@
 import RxSwift
 import RxDataSources
 
-open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBase<TableViewState<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>>, Void>, UITableViewDelegate where HEADER: Component, CELL: Component, FOOTER: Component {
+public enum SimpleTableViewAction<HEADER: Component, CELL: Component, FOOTER: Component> {
+    case selected(CELL.StateType)
+    case headerAction(HEADER.StateType, HEADER.ActionType)
+    case rowAction(CELL.StateType, CELL.ActionType)
+    case footerAction(FOOTER.StateType, FOOTER.ActionType)
+}
+
+open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBase<TableViewState<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>>, SimpleTableViewAction<HEADER, CELL, FOOTER>>, UITableViewDelegate, ReactantTableView where HEADER: Component, CELL: Component, FOOTER: Component {
     
     public typealias MODEL = CELL.StateType
     public typealias SECTION = SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>
@@ -21,6 +28,12 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBa
     open var edgesForExtendedLayout: UIRectEdge {
         return .all
     }
+
+    open override var actions: [Observable<SimpleTableViewAction<HEADER, CELL, FOOTER>>] {
+        return [
+            tableView.rx.modelSelected(MODEL.self).map(SimpleTableViewAction.selected)
+        ]
+    }
     
     public let tableView: UITableView
     
@@ -28,8 +41,8 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBa
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
     
-    private let headerFactory: (() -> HEADER)?
-    private let footerFactory: (() -> FOOTER)?
+    private let headerFactory: (() -> HEADER)
+    private let footerFactory: (() -> FOOTER)
     
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
     
@@ -47,9 +60,14 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBa
         
         super.init()
         
-        dataSource.configureCell = { [unowned self] _, tableView, indexPath, model in
-            let cell = tableView.dequeue(identifier: self.cellIdentifier)
-            cell.cachedCellOrCreated(factory: cellFactory).setComponentState(model)
+        dataSource.configureCell = { [cellIdentifier] _, tableView, indexPath, model in
+            let cell = tableView.dequeue(identifier: cellIdentifier)
+            let component = cell.cachedCellOrCreated(factory: cellFactory)
+            component.componentState = model
+            component.action.subscribe(onNext: { [weak self] in
+                self?.perform(action: .rowAction(model, $0))
+            })
+                .addDisposableTo(component.stateDisposeBag)
             return cell
         }
     }
@@ -99,7 +117,7 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBa
         tableView.rx.itemSelected
             .subscribe(onNext: { [tableView] in
                 tableView.deselectRow(at: $0, animated: true)
-                })
+            })
             .addDisposableTo(lifetimeDisposeBag)
     }
     
@@ -143,37 +161,35 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBa
     open override func layoutSubviews() {
         super.layoutSubviews()
         
-        if let header = tableView.tableHeaderView {
-            header.translatesAutoresizingMaskIntoConstraints = false
-            tableView.tableHeaderView = nil
-            let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
-            
-            let size = header.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
-            header.translatesAutoresizingMaskIntoConstraints = true
-            header.frame.size = CGSize(width: targetSize.width, height: size.height)
-            tableView.tableHeaderView = header
-        }
+        layoutHeaderView()
+        layoutFooterView()
     }
     
     @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let headerFactory = headerFactory {
-            let header = tableView.dequeue(identifier: headerIdentifier)
-            let section = dataSource.sectionModels[section].identity
-            header.cachedViewOrCreated(factory: headerFactory).setComponentState(section.header)
-            return header
-        } else {
-            return nil
-        }
+        let header = tableView.dequeue(identifier: headerIdentifier)
+        let section = dataSource.sectionModels[section].identity
+        let component = header.cachedViewOrCreated(factory: headerFactory)
+        component.componentState = section.header
+        component.action
+            .subscribe(onNext: { [weak self] in
+                self?.perform(action: .headerAction(section.header, $0))
+            })
+            .addDisposableTo(component.stateDisposeBag)
+
+        return header
     }
     
     @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if let footerFactory = footerFactory {
-            let footer = tableView.dequeue(identifier: footerIdentifier)
-            let section = dataSource.sectionModels[section].identity
-            footer.cachedViewOrCreated(factory: footerFactory).setComponentState(section.footer)
-            return footer
-        } else {
-            return nil
-        }
+        let footer = tableView.dequeue(identifier: footerIdentifier)
+        let section = dataSource.sectionModels[section].identity
+        let component = footer.cachedViewOrCreated(factory: footerFactory)
+        component.componentState = section.footer
+        component.action
+            .subscribe(onNext: { [weak self] in
+                self?.perform(action: .footerAction(section.footer, $0))
+            })
+            .addDisposableTo(component.stateDisposeBag)
+
+        return footer
     }
 }

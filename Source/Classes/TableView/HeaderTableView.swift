@@ -9,7 +9,13 @@
 import RxSwift
 import RxDataSources
 
-open class HeaderTableView<HEADER: UIView, CELL: UIView>: ViewBase<TableViewState<SectionModel<HEADER.StateType, CELL.StateType>>, Void>, UITableViewDelegate, ReactantTableView where HEADER: Component, CELL: Component {
+public enum HeaderTableViewAction<HEADER: Component, CELL: Component> {
+    case selected(CELL.StateType)
+    case headerAction(HEADER.StateType, HEADER.ActionType)
+    case rowAction(CELL.StateType, CELL.ActionType)
+}
+
+open class HeaderTableView<HEADER: UIView, CELL: UIView>: ViewBase<TableViewState<SectionModel<HEADER.StateType, CELL.StateType>>, HeaderTableViewAction<HEADER, CELL>>, UITableViewDelegate, ReactantTableView where HEADER: Component, CELL: Component {
 
     public typealias MODEL = CELL.StateType
     public typealias SECTION = SectionModel<HEADER.StateType, CELL.StateType>
@@ -21,13 +27,19 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: ViewBase<TableViewStat
         return .all
     }
 
+    open override var actions: [Observable<HeaderTableViewAction<HEADER, CELL>>] {
+        return [
+            tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected)
+        ]
+    }
+
     public let tableView: UITableView
 
     public let refreshControl: UIRefreshControl?
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
 
-    private let headerFactory: (() -> HEADER)?
+    private let headerFactory: (() -> HEADER)
 
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
 
@@ -43,9 +55,15 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: ViewBase<TableViewStat
 
         super.init()
 
-        dataSource.configureCell = { [unowned self] _, tableView, indexPath, model in
-            let cell = tableView.dequeue(identifier: self.cellIdentifier)
-            cell.cachedCellOrCreated(factory: cellFactory).setComponentState(model)
+        dataSource.configureCell = { [cellIdentifier] _, tableView, indexPath, model in
+            let cell = tableView.dequeue(identifier: cellIdentifier)
+            let component = cell.cachedCellOrCreated(factory: cellFactory)
+            component.componentState = model
+            component.action
+                .subscribe(onNext: { [weak self] in
+                    self?.perform(action: .rowAction(model, $0))
+                })
+                .addDisposableTo(component.stateDisposeBag)
             return cell
         }
     }
@@ -143,13 +161,15 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: ViewBase<TableViewStat
     }
 
     @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let headerFactory = headerFactory {
-            let header = tableView.dequeue(identifier: headerIdentifier)
-            let section = dataSource.sectionModels[section].identity
-            header.cachedViewOrCreated(factory: headerFactory).setComponentState(section)
-            return header
-        } else {
-            return nil
-        }
+        let header = tableView.dequeue(identifier: headerIdentifier)
+        let section = dataSource.sectionModels[section].identity
+        let component = header.cachedViewOrCreated(factory: headerFactory)
+        component.componentState = section
+        component.action
+            .subscribe(onNext: { [weak self] in
+                self?.perform(action: .headerAction(section, $0))
+            })
+            .addDisposableTo(component.stateDisposeBag)
+        return header
     }
 }

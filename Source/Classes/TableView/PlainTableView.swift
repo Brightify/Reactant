@@ -9,18 +9,24 @@
 import UIKit
 import RxSwift
 
-enum PlainTableViewAction<CELL: Component> {
+public enum PlainTableViewAction<CELL: Component> {
     case selected(CELL.StateType)
-    case rowAction(CELL.ActionType)
+    case rowAction(CELL.StateType, CELL.ActionType)
 }
 
-open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>, Void>, ReactantTableView where CELL: Component {
+open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>, PlainTableViewAction<CELL>>, ReactantTableView where CELL: Component {
     public typealias MODEL = CELL.StateType
 
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
 
     open var edgesForExtendedLayout: UIRectEdge {
         return .all
+    }
+
+    open override var actions: [Observable<PlainTableViewAction<CELL>>] {
+        return [
+            tableView.rx.modelSelected(MODEL.self).map(PlainTableViewAction.selected)
+        ]
     }
 
     public let tableView: UITableView
@@ -69,19 +75,25 @@ open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>
 
     open override func setupConstraints() {
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self)
+            make.edges.equalToSuperview()
         }
 
         emptyLabel.snp.makeConstraints { make in
-            make.center.equalTo(self)
+            make.center.equalToSuperview()
         }
 
         loadingIndicator.snp.makeConstraints { make in
-            make.center.equalTo(self)
+            make.center.equalToSuperview()
         }
     }
 
     open override func afterInit() {
+        tableView.rx.modelSelected(MODEL.self)
+            .subscribe(onNext: { [weak self] in
+                self?.perform(action: .selected($0))
+            })
+            .addDisposableTo(lifetimeDisposeBag)
+
         tableView.rx.itemSelected
             .subscribe(onNext: { [tableView] in
                 tableView.deselectRow(at: $0, animated: true)
@@ -121,7 +133,12 @@ open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>
 
         Observable.just(items)
             .bindTo(tableView.items(with: cellIdentifier)) { [cellFactory] row, model, cell in
-                cell.cachedCellOrCreated(factory: cellFactory).componentState = model
+                let component = cell.cachedCellOrCreated(factory: cellFactory)
+                component.componentState = model
+                component.action.subscribe(onNext: { [weak self] in
+                    self?.perform(action: .rowAction(model, $0))
+                })
+                .addDisposableTo(component.stateDisposeBag)
             }
             .addDisposableTo(stateDisposeBag)
 

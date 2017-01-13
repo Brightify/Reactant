@@ -9,7 +9,13 @@
 import RxSwift
 import RxDataSources
 
-open class FooterTableView<CELL: UIView, FOOTER: UIView>: ViewBase<TableViewState<SectionModel<FOOTER.StateType, CELL.StateType>>, Void>, UITableViewDelegate, ReactantTableView where CELL: Component, FOOTER: Component {
+public enum FooterTableViewAction<CELL: Component, FOOTER: Component> {
+    case selected(CELL.StateType)
+    case rowAction(CELL.StateType, CELL.ActionType)
+    case footerAction(FOOTER.StateType, FOOTER.ActionType)
+}
+
+open class FooterTableView<CELL: UIView, FOOTER: UIView>: ViewBase<TableViewState<SectionModel<FOOTER.StateType, CELL.StateType>>, FooterTableViewAction<CELL, FOOTER>>, UITableViewDelegate, ReactantTableView where CELL: Component, FOOTER: Component {
 
     public typealias MODEL = CELL.StateType
     public typealias SECTION = SectionModel<FOOTER.StateType, CELL.StateType>
@@ -21,13 +27,19 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: ViewBase<TableViewStat
         return .all
     }
 
+    open override var actions: [Observable<FooterTableViewAction<CELL, FOOTER>>] {
+        return [
+            tableView.rx.modelSelected(MODEL.self).map(FooterTableViewAction.selected)
+        ]
+    }
+
     public let tableView: UITableView
 
     public let refreshControl: UIRefreshControl?
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
 
-    private let footerFactory: (() -> FOOTER)?
+    private let footerFactory: (() -> FOOTER)
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
 
     public init(
@@ -44,7 +56,13 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: ViewBase<TableViewStat
 
         dataSource.configureCell = { [unowned self] _, tableView, indexPath, model in
             let cell = tableView.dequeue(identifier: self.cellIdentifier)
-            cell.cachedCellOrCreated(factory: cellFactory).setComponentState(model)
+            let component = cell.cachedCellOrCreated(factory: cellFactory)
+            component.componentState = model
+            component.action
+                .subscribe(onNext: { [weak self] in
+                    self?.perform(action: .rowAction(model, $0))
+                })
+                .addDisposableTo(component.stateDisposeBag)
             return cell
         }
     }
@@ -142,13 +160,15 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: ViewBase<TableViewStat
     }
 
     @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if let footerFactory = footerFactory {
-            let footer = tableView.dequeue(identifier: footerIdentifier)
-            let section = dataSource.sectionModels[section].identity
-            footer.cachedViewOrCreated(factory: footerFactory).setComponentState(section)
-            return footer
-        } else {
-            return nil
-        }
+        let footer = tableView.dequeue(identifier: footerIdentifier)
+        let section = dataSource.sectionModels[section].identity
+        let component = footer.cachedViewOrCreated(factory: footerFactory)
+        component.componentState = section
+        component.action
+            .subscribe(onNext: { [weak self] in
+                self?.perform(action: .footerAction(section, $0))
+            })
+            .addDisposableTo(component.stateDisposeBag)
+        return footer
     }
 }
