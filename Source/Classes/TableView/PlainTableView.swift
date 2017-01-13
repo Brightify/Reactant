@@ -88,12 +88,6 @@ open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>
     }
 
     open override func afterInit() {
-        tableView.rx.modelSelected(MODEL.self)
-            .subscribe(onNext: { [weak self] in
-                self?.perform(action: .selected($0))
-            })
-            .addDisposableTo(lifetimeDisposeBag)
-
         tableView.rx.itemSelected
             .subscribe(onNext: { [tableView] in
                 tableView.deselectRow(at: $0, animated: true)
