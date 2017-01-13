@@ -30,4 +30,19 @@ extension UITableView {
     public func unregister(identifier: AnyTableViewCellIdentifier) {
         register(nil as AnyClass?, forCellReuseIdentifier: identifier.name)
     }
+
+    public func dequeue(identifier: AnyTableViewCellIdentifier) -> UITableViewCell {
+        guard let cell = dequeueReusableCell(withIdentifier: identifier.name) else {
+            preconditionFailure("\(identifier) is not registered.")
+        }
+        return cell
+    }
+
+    public func dequeue(identifier: AnyTableViewCellIdentifier, for indexPath: IndexPath) -> UITableViewCell {
+        return dequeueReusableCell(withIdentifier: identifier.name, for: indexPath)
+    }
+
+    public func dequeue(identifier: AnyTableViewCellIdentifier, forRow row: Int, inSection section: Int = 0) -> UITableViewCell {
+        return dequeue(identifier: identifier, for: IndexPath(row: row, section: section))
+    }
 }

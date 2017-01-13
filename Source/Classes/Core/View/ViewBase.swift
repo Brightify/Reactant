@@ -16,7 +16,15 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate {
     public let lifetimeDisposeBag = DisposeBag()
     
     public let componentDelegate = ComponentDelegate<STATE, ACTION, ViewBase<STATE, ACTION>>()
-    
+
+    open var actions: [Observable<ActionType>] {
+        return []
+    }
+
+    open var action: Observable<ActionType> {
+        return componentDelegate.action
+    }
+
     open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
@@ -43,15 +51,16 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate {
         preconditionFailure("init(coder:) has not been implemented")
     }
 
-    open func afterInit() {
-    }
+    open func afterInit() { }
 
     open func update() { }
     
-    open func loadView() {
-    }
+    open func loadView() { }
     
-    open func setupConstraints() {
+    open func setupConstraints() { }
+
+    open func needsUpdate() -> Bool {
+        return true
     }
     
     open override func addSubview(_ view: UIView) {

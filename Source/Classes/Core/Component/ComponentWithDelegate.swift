@@ -42,10 +42,6 @@ extension ComponentWithDelegate {
         }
     }
     
-    public var action: Observable<ActionType> {
-        return componentDelegate.action
-    }
-    
     public func invalidate() {
         componentDelegate.needsUpdate = true
     }
@@ -56,11 +52,7 @@ extension ComponentWithDelegate {
 }
 
 extension ComponentWithDelegate {
-    
-    public var actions: [Observable<ActionType>] {
-        return []
-    }
-    
+
     public func resetActions() {
         componentDelegate.actions = actions
     }

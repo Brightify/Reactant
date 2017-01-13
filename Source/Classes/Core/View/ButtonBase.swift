@@ -21,6 +21,18 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
         return true
     }
 
+    open var action: Observable<ACTION> {
+        return componentDelegate.action
+    }
+
+    open func needsUpdate() -> Bool {
+        return true
+    }
+
+    open var actions: [Observable<ACTION>] {
+        return []
+    }
+
     public init() {
         super.init(frame: CGRect.zero)
         

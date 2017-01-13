@@ -30,4 +30,11 @@ extension UITableView {
     public func unregister(identifier: AnyTableViewHeaderFooterIdentifier) {
         register(nil as AnyClass?, forHeaderFooterViewReuseIdentifier: identifier.name)
     }
+
+    public func dequeue(identifier: AnyTableViewHeaderFooterIdentifier) -> UITableViewHeaderFooterView {
+        guard let view = dequeueReusableHeaderFooterView(withIdentifier: identifier.name) else {
+            preconditionFailure("\(identifier) is not registered.")
+        }
+        return view
+    }
 }

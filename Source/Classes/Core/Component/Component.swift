@@ -28,7 +28,7 @@ public protocol Component: class {
     
     var action: Observable<ActionType> { get }
     
-    // Do not access componentState.
+    /// Do not access componentState in this method.
     func afterInit()
     
     func needsUpdate() -> Bool
@@ -51,19 +51,5 @@ extension Component {
     public func with(state: StateType) -> Self {
         componentState = state
         return self
-    }
-}
-
-extension Component {
-    
-    public func needsUpdate() -> Bool {
-        return true
-    }
-}
-
-extension Component where StateType: Equatable {
-    
-    public func needsUpdate() -> Bool {
-        return componentState != previousComponentState
     }
 }

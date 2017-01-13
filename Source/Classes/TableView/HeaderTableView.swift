@@ -1,39 +1,24 @@
 //
-//  SimulatedSeparatorTableView.swift
+//  HeaderTableView.swift
 //  Reactant
 //
-//  Created by Filip Dolnik on 20.11.16.
-//  Copyright © 2016 Brightify. All rights reserved.
+//  Created by Tadeáš Kříž on 1/13/17.
+//  Copyright © 2017 Brightify. All rights reserved.
 //
 
 import RxSwift
 import RxDataSources
 
-open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>, Void>, UITableViewDelegate, ReactantTableView where CELL: Component {
+open class HeaderTableView<HEADER: UIView, CELL: UIView>: ViewBase<TableViewState<SectionModel<HEADER.StateType, CELL.StateType>>, Void>, UITableViewDelegate, ReactantTableView where HEADER: Component, CELL: Component {
 
     public typealias MODEL = CELL.StateType
-    public typealias SECTION = SectionModel<Void, CELL.StateType>
+    public typealias SECTION = SectionModel<HEADER.StateType, CELL.StateType>
 
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
-    private let footerIdentifier = AnyTableViewHeaderFooterIdentifier(name: "Footer", type: UITableViewHeaderFooterView.self)
+    private let headerIdentifier = TableViewHeaderFooterIdentifier<HEADER>()
 
     open var edgesForExtendedLayout: UIRectEdge {
         return .all
-    }
-
-    open var separatorColor: UIColor? = nil {
-        didSet {
-            setNeedsLayout()
-        }
-    }
-
-    open var separatorHeight: CGFloat {
-        get {
-            return sectionFooterHeight
-        }
-        set {
-            sectionFooterHeight = newValue
-        }
     }
 
     public let tableView: UITableView
@@ -41,19 +26,22 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
     public let refreshControl: UIRefreshControl?
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
+
+    private let headerFactory: (() -> HEADER)?
+
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
 
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
+        headerFactory: @escaping () -> HEADER = HEADER.init,
         style: UITableViewStyle = .plain,
         reloadable: Bool = true)
     {
         self.tableView = UITableView(frame: CGRect.zero, style: style)
+        self.headerFactory = headerFactory
         self.refreshControl = reloadable ? UIRefreshControl() : nil
 
         super.init()
-
-        separatorHeight = 1
 
         dataSource.configureCell = { [unowned self] _, tableView, indexPath, model in
             let cell = tableView.dequeue(identifier: self.cellIdentifier)
@@ -85,7 +73,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
         tableView.delegate = self
 
         tableView.register(identifier: cellIdentifier)
-        tableView.register(identifier: footerIdentifier)
+        tableView.register(identifier: headerIdentifier)
     }
 
     open override func setupConstraints() {
@@ -117,7 +105,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
 
         switch componentState {
         case .items(let models):
-            items = models.map { SECTION(model: (), items: [$0]) }
+            items = models
         case .empty(let message):
             emptyMessage = message
         case .loading:
@@ -154,12 +142,14 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
         layoutFooterView()
     }
 
-    @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = tableView.dequeue(identifier: footerIdentifier)
-        if footer.backgroundView == nil {
-            footer.backgroundView = UIView()
+    @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let headerFactory = headerFactory {
+            let header = tableView.dequeue(identifier: headerIdentifier)
+            let section = dataSource.sectionModels[section].identity
+            header.cachedViewOrCreated(factory: headerFactory).setComponentState(section)
+            return header
+        } else {
+            return nil
         }
-        footer.backgroundView?.backgroundColor = separatorColor
-        return footer
     }
 }

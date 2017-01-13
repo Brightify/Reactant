@@ -9,7 +9,6 @@
 import RxSwift
 
 open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
-    
     public typealias StateType = STATE
     public typealias ActionType = ACTION
 
@@ -17,6 +16,18 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
 
     public let componentDelegate = ComponentDelegate<STATE, ACTION, ComponentBase<STATE, ACTION>>()
     
+    open var action: Observable<ACTION> {
+        return componentDelegate.action
+    }
+
+    open var actions: [Observable<ACTION>] {
+        return []
+    }
+
+    open func needsUpdate() -> Bool {
+        return true
+    }
+
     // Do not forget to set componentDelegate.canUpdate.
     public init() {
         componentDelegate.ownerComponent = self

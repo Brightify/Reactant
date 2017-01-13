@@ -1,5 +1,5 @@
 //
-//  TableView+Properties.swift
+//  ReactantTableView.swift
 //  Reactant
 //
 //  Created by Filip Dolnik on 21.11.16.
@@ -9,16 +9,49 @@
 import RxSwift
 import RxCocoa
 
-extension SimpleTableView {
-    
-    // TODO Move to actions.
-    public var refresh: ControlEvent<Void> {
-        return refreshControl?.rx.controlEvent(.valueChanged) ?? ControlEvent(events: Observable.empty())
+public protocol ReactantTableView: class, Scrollable {
+    var refreshControl: UIRefreshControl? { get }
+
+    var loadingIndicator: UIActivityIndicatorView { get }
+
+    var tableView: UITableView { get }
+}
+
+extension ReactantTableView {
+    public func scrollToTop(animated: Bool) {
+        tableView.scrollToTop(animated: animated)
     }
-    
-    public var modelSelected: ControlEvent<MODEL> {
-        return tableView.rx.modelSelected(MODEL.self)
+}
+
+extension ReactantTableView {
+    public func layoutHeaderView() {
+        if let header = tableView.tableHeaderView {
+            header.translatesAutoresizingMaskIntoConstraints = false
+            tableView.tableHeaderView = nil
+            let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
+
+            let size = header.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
+            header.translatesAutoresizingMaskIntoConstraints = true
+            header.frame.size = CGSize(width: targetSize.width, height: size.height)
+            tableView.tableHeaderView = header
+        }
     }
+
+    public func layoutFooterView() {
+        if let footer = tableView.tableFooterView {
+            footer.translatesAutoresizingMaskIntoConstraints = false
+            tableView.tableHeaderView = nil
+            let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
+
+            let size = footer.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
+            footer.translatesAutoresizingMaskIntoConstraints = true
+            footer.frame.size = CGSize(width: targetSize.width, height: size.height)
+            tableView.tableFooterView = footer
+        }
+    }
+}
+
+extension ReactantTableView {
     
     public var refreshControlTintColor: UIColor? {
         get {

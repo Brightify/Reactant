@@ -10,7 +10,6 @@ import SnapKit
 import RxSwift
 
 open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate where ROOT: Component {
-    
     public typealias StateType = STATE
     public typealias ActionType = Void
     
@@ -53,7 +52,11 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     open func afterInit() { }
 
     open func update() { }
-    
+
+    open func needsUpdate() -> Bool {
+        return true
+    }
+
     open override func loadView() {
         // FIXME Add common styles and style rootview
         view = ControllerRootViewContainer()
@@ -114,12 +117,9 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         castRootView?.viewDidDisappear()
     }
     
-    public final func perform(action: Void) {
-    }
+    public final func perform(action: Void) { }
     
-    public final func resetActions() {
-    }
+    public final func resetActions() { }
     
-    open func act(on action: ROOT.ActionType) {
-    }
+    open func act(on action: ROOT.ActionType) { }
 }

@@ -41,8 +41,8 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBa
         reloadable: Bool = true)
     {
         self.tableView = UITableView(frame: CGRect.zero, style: style)
-        self.headerFactory = HEADER.self != NoTableViewHeaderFooterMarker.self ? headerFactory : nil
-        self.footerFactory = FOOTER.self != NoTableViewHeaderFooterMarker.self ? footerFactory : nil
+        self.headerFactory = headerFactory
+        self.footerFactory = footerFactory
         self.refreshControl = reloadable ? UIRefreshControl() : nil
         
         super.init()
