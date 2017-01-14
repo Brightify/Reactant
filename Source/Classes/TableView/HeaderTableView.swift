@@ -13,6 +13,7 @@ public enum HeaderTableViewAction<HEADER: Component, CELL: Component> {
     case selected(CELL.StateType)
     case headerAction(HEADER.StateType, HEADER.ActionType)
     case rowAction(CELL.StateType, CELL.ActionType)
+    case refresh
 }
 
 open class HeaderTableView<HEADER: UIView, CELL: UIView>: ViewBase<TableViewState<SectionModel<HEADER.StateType, CELL.StateType>>, HeaderTableViewAction<HEADER, CELL>>, UITableViewDelegate, ReactantTableView where HEADER: Component, CELL: Component {
@@ -29,8 +30,9 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: ViewBase<TableViewStat
 
     open override var actions: [Observable<HeaderTableViewAction<HEADER, CELL>>] {
         return [
-            tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected)
-        ]
+            tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected),
+            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: HeaderTableViewAction.refresh)
+        ].flatMap { $0 }
     }
 
     public let tableView: UITableView

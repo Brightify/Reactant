@@ -12,6 +12,7 @@ import RxSwift
 public enum PlainTableViewAction<CELL: Component> {
     case selected(CELL.StateType)
     case rowAction(CELL.StateType, CELL.ActionType)
+    case refresh
 }
 
 open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>, PlainTableViewAction<CELL>>, ReactantTableView where CELL: Component {
@@ -25,8 +26,9 @@ open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>
 
     open override var actions: [Observable<PlainTableViewAction<CELL>>] {
         return [
-            tableView.rx.modelSelected(MODEL.self).map(PlainTableViewAction.selected)
-        ]
+            tableView.rx.modelSelected(MODEL.self).map(PlainTableViewAction.selected),
+            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: PlainTableViewAction.refresh)
+        ].flatMap { $0 }
     }
 
     public let tableView: UITableView

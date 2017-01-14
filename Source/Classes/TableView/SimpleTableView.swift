@@ -14,6 +14,7 @@ public enum SimpleTableViewAction<HEADER: Component, CELL: Component, FOOTER: Co
     case headerAction(HEADER.StateType, HEADER.ActionType)
     case rowAction(CELL.StateType, CELL.ActionType)
     case footerAction(FOOTER.StateType, FOOTER.ActionType)
+    case refresh
 }
 
 open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBase<TableViewState<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>>, SimpleTableViewAction<HEADER, CELL, FOOTER>>, UITableViewDelegate, ReactantTableView where HEADER: Component, CELL: Component, FOOTER: Component {
@@ -31,8 +32,9 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBa
 
     open override var actions: [Observable<SimpleTableViewAction<HEADER, CELL, FOOTER>>] {
         return [
-            tableView.rx.modelSelected(MODEL.self).map(SimpleTableViewAction.selected)
-        ]
+            tableView.rx.modelSelected(MODEL.self).map(SimpleTableViewAction.selected),
+            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: SimpleTableViewAction.refresh)
+        ].flatMap { $0 }
     }
     
     public let tableView: UITableView

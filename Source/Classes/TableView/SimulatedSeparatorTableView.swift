@@ -12,6 +12,7 @@ import RxDataSources
 public enum SimulatedSeparatorTableViewAction<CELL: Component> {
     case selected(CELL.StateType)
     case rowAction(CELL.StateType, CELL.ActionType)
+    case refresh
 }
 
 open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>, SimulatedSeparatorTableViewAction<CELL>>, UITableViewDelegate, ReactantTableView where CELL: Component {
@@ -28,8 +29,9 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
 
     open override var actions: [Observable<SimulatedSeparatorTableViewAction<CELL>>] {
         return [
-            tableView.rx.modelSelected(MODEL.self).map(SimulatedSeparatorTableViewAction.selected)
-        ]
+            tableView.rx.modelSelected(MODEL.self).map(SimulatedSeparatorTableViewAction.selected),
+            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: SimulatedSeparatorTableViewAction.refresh)
+        ].flatMap { $0 }
     }
 
     open var separatorColor: UIColor? = nil {

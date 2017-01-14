@@ -13,6 +13,7 @@ public enum FooterTableViewAction<CELL: Component, FOOTER: Component> {
     case selected(CELL.StateType)
     case rowAction(CELL.StateType, CELL.ActionType)
     case footerAction(FOOTER.StateType, FOOTER.ActionType)
+    case refresh
 }
 
 open class FooterTableView<CELL: UIView, FOOTER: UIView>: ViewBase<TableViewState<SectionModel<FOOTER.StateType, CELL.StateType>>, FooterTableViewAction<CELL, FOOTER>>, UITableViewDelegate, ReactantTableView where CELL: Component, FOOTER: Component {
@@ -29,8 +30,9 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: ViewBase<TableViewStat
 
     open override var actions: [Observable<FooterTableViewAction<CELL, FOOTER>>] {
         return [
-            tableView.rx.modelSelected(MODEL.self).map(FooterTableViewAction.selected)
-        ]
+            tableView.rx.modelSelected(MODEL.self).map(FooterTableViewAction.selected),
+            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: FooterTableViewAction.refresh)
+        ].flatMap { $0 }
     }
 
     public let tableView: UITableView
