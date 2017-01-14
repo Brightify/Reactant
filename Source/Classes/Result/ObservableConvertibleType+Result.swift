@@ -24,7 +24,7 @@ public extension ObservableConvertibleType where E: ResultProtocol {
         return asObservable().map { $0.map(transform) }
     }
     
-    public func mapError<T: Error>(_ transform: @escaping @autoclosure (E.Error) -> T) -> Observable<Result<E.Value, T>> {
+    public func mapError<T: Error>(_ transform: @escaping (E.Error) -> T) -> Observable<Result<E.Value, T>> {
         return asObservable().map { $0.mapError(transform) }
     }
     
