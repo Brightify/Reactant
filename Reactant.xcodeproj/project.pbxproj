@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		04168232D53A3C6EC65FE3C3 /* Pods_Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */; };
+		183D82AC1E37B65C002E380A /* Recycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D82AB1E37B65C002E380A /* Recycler.swift */; };
+		183D82AE1E37B674002E380A /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D82AD1E37B674002E380A /* Reusable.swift */; };
+		183D82B01E37B684002E380A /* UIView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D82AF1E37B684002E380A /* UIView+Reusable.swift */; };
 		185121511D834D1F002C4B08 /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
 		1851215E1D834DD2002C4B08 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */; };
@@ -89,6 +92,9 @@
 /* Begin PBXFileReference section */
 		045F878B1A7F63F7AAD82596 /* Pods_ReactantExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		118FB89C32922066714D8F98 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		183D82AB1E37B65C002E380A /* Recycler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recycler.swift; sourceTree = "<group>"; };
+		183D82AD1E37B674002E380A /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		183D82AF1E37B684002E380A /* UIView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Reusable.swift"; sourceTree = "<group>"; };
 		185121061D834C5D002C4B08 /* ReactantConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantConfiguration.swift; sourceTree = "<group>"; };
 		185121471D834D1E002C4B08 /* Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1851214B1D834D1E002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -199,6 +205,16 @@
 				711603479E5441514316A7F3 /* Pods_ReactantTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		183D82AA1E37B63A002E380A /* Recycler */ = {
+			isa = PBXGroup;
+			children = (
+				183D82AB1E37B65C002E380A /* Recycler.swift */,
+				183D82AD1E37B674002E380A /* Reusable.swift */,
+				183D82AF1E37B684002E380A /* UIView+Reusable.swift */,
+			);
+			path = Recycler;
 			sourceTree = "<group>";
 		};
 		185120EF1D834C5D002C4B08 /* Source */ = {
@@ -367,6 +383,7 @@
 		DC0785771DC884AC0063AB96 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				183D82AA1E37B63A002E380A /* Recycler */,
 				DC0785F31DDC6C460063AB96 /* Scrollable */,
 				DC2B5D551DE2EA8F00F9C9D7 /* Visibility */,
 				DC2B5D641DE2EE5F00F9C9D7 /* AssociatedObject.swift */,
@@ -736,6 +753,7 @@
 				DC0785CC1DD8C4F00063AB96 /* TableViewCellWrapper.swift in Sources */,
 				DC0785A41DD3BDE10063AB96 /* ContainerView.swift in Sources */,
 				DC0785D41DD9C2330063AB96 /* CollectionReusableViewWrapper.swift in Sources */,
+				183D82AE1E37B674002E380A /* Reusable.swift in Sources */,
 				DC0785AE1DD3C3120063AB96 /* DialogControllerBase.swift in Sources */,
 				DC0785D01DD9C1E40063AB96 /* CollectionViewCell.swift in Sources */,
 				DC2B5D6D1DE2FFC000F9C9D7 /* DialogView.swift in Sources */,
@@ -751,6 +769,7 @@
 				DC0785C11DD468E20063AB96 /* TableViewState.swift in Sources */,
 				DC0785841DD383E50063AB96 /* UINavigationController+Navigation.swift in Sources */,
 				DC07859D1DD3AA870063AB96 /* RootView.swift in Sources */,
+				183D82AC1E37B65C002E380A /* Recycler.swift in Sources */,
 				DC2B5D3C1DE2070200F9C9D7 /* EmailValidationError.swift in Sources */,
 				DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */,
 				DC2B5D5B1DE2EB0F00F9C9D7 /* UIView+Visibility.swift in Sources */,
@@ -764,6 +783,7 @@
 				DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */,
 				DC2B5D5D1DE2EB3600F9C9D7 /* CollapseAxis.swift in Sources */,
 				DC2B5D591DE2EAD900F9C9D7 /* Visibility.swift in Sources */,
+				183D82B01E37B684002E380A /* UIView+Reusable.swift in Sources */,
 				DC0785A11DD3ADB60063AB96 /* ComponentWithDelegate.swift in Sources */,
 				DC2B5D411DE208F300F9C9D7 /* ObservableConvertibleType+Utils.swift in Sources */,
 				DC0785991DD3A3420063AB96 /* ViewBase.swift in Sources */,
