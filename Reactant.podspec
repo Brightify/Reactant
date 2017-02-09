@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
       subspec.dependency 'SnapKit', '~> 3.0'
   end
   def result do |subspec|
-      subspec.dependency 'Result', '~> 3.1'
+      subspec.dependency 'Result', '~> 3.0'
   end
   def rxCocoa do |subspec|
       subspec.dependency 'RxCocoa', '~> 3.0'
@@ -43,7 +43,7 @@ Pod::Spec.new do |s|
       subspec.dependency 'RxDataSources', '~> 1.0'
   end
   def rxOptional do |subspec|
-      subspec.dependency 'RxOptional', '~> 3.1'
+      subspec.dependency 'RxOptional', '~> 3.0'
   end
 
   spec.subspec 'Core' do |subspec|
