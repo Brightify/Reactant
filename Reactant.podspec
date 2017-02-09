@@ -8,71 +8,78 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Reactant'
-  s.version          = '0.5.13'
+  s.version          = '0.6.0'
   s.summary          = 'Imagine React Native in Swift and you get Reactant'
 
   s.description      = <<-DESC
                         We combined the strength of RxSwift with pure swift and
                         made a framework for highly reusable and clean views.
                        DESC
+  spec.homepage         = 'https://github.com/Brightify/Reactant'
+  spec.license          = 'MIT'
+  spec.author           = { 'Tadeas Kriz' => 'tadeas@brightify.org', 'Matous Hybl' => 'matous@brightify.org', "Filip Dolnik" => "filip@brightify.org" }
+  spec.source           = {
+      :git => 'https://github.com/Brightify/Reactant.git',
+      :tag => spec.version.to_s
+  }
+  spec.social_media_url = 'https://twitter.com/BrightifyOrg'
+  spec.requires_arc = true
 
-  s.homepage         = 'https://github.com/Brightify/Reactant.git'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Tadeas Kriz' => 'tadeas@brightify.org', 'Matous Hybl' => 'matous@brightify.org' }
-  s.source           = { :git => 'https://github.com/Brightify/Reactant.git', :tag => s.version.to_s }
+  spec.ios.deployment_target = '8.0'
 
-  s.ios.deployment_target = '9.0'
-
-  s.default_subspec = 'Core', 'Result', 'Staging'
-
-  s.subspec 'Core' do |core|
-    core.frameworks = 'UIKit'
-    core.source_files = 'Source/Classes/Core/**/*'
-    core.dependency 'RxSwift', '~> 3.0.0'
-    core.dependency 'RxCocoa', '~> 3.0.0'
-    core.dependency 'RxOptional', '~> 3.1'
-    core.dependency 'SnapKit', '~> 3.0'
+  def rxSwift do |subspec|
+      subspec.dependency 'RxSwift', '~> 3.0'
+  end
+  def snapKit do |subspec|
+      subspec.dependency 'SnapKit', '~> 3.0'
+  end
+  def result do |subspec|
+      subspec.dependency 'Result', '~> 3.1'
+  end
+  def rxCocoa do |subspec|
+      subspec.dependency 'RxCocoa', '~> 3.0'
+  end
+  def rxDataSources do |subspec|
+      subspec.dependency 'RxDataSources', '~> 1.0'
+  end
+  def rxOptional do |subspec|
+      subspec.dependency 'RxOptional', '~> 3.1'
   end
 
-  s.subspec 'Result' do |result|
-    result.source_files = 'Source/Classes/Result/**/*'
-    s.dependency 'Result', '~> 3.0.0'
-    s.dependency 'RxSwift', '~> 3.0.0'
-    s.dependency 'RxOptional', '~> 3.1'
+  spec.subspec 'Core' do |subspec|
+      subspec.frameworks = 'UIKit'
+      rxSwift(subspec)
+      snapKit(subspec)
+      subspec.source_files = 'Source/Core/**/*.swift'
   end
 
-  s.subspec 'Staging' do |staging|
-    staging.frameworks = 'UIKit'
-    staging.source_files = 'Source/Classes/Staging/**/*'
-    staging.dependency 'Reactant/Core'
-    staging.dependency 'RxSwift', '~> 3.0.0'
-    staging.dependency 'RxCocoa', '~> 3.0.0'
-    staging.dependency 'Kingfisher', '~> 3.1'
-    staging.dependency 'SnapKit', '~> 3.0'
+  spec.subspec 'Result' do |subspec|
+      result(subspec)
+      rxSwift(subspec)
+      rxOptional(subspec)
+      subspec.source_files = 'Source/Result/**/*.swift'
   end
 
-  s.subspec 'Validation' do |validation|
-    validation.source_files = 'Source/Classes/Validation/**/*'
-    validation.frameworks = 'Foundation'
+  spec.subspec 'Validation' do |subspec|
+      result(subspec)
+      subspec.source_files = 'Source/Validation/**/*.swift'
   end
 
-  s.subspec 'TableView' do |tableView|
-    tableView.frameworks = 'UIKit'
-    tableView.source_files = 'Source/Classes/TableView/**/*'
-    tableView.dependency 'Reactant/Core'
-    tableView.dependency 'RxSwift', '~> 3.0.0'
-    tableView.dependency 'RxCocoa', '~> 3.0.0'
-    tableView.dependency 'RxDataSources', '~> 1.0.0'
-
+  spec.subspec 'TableView' do |subspec|
+      subspec.frameworks = 'UIKit'
+      subspec.dependency 'Reactant/Core'
+      rxCocoa(subspec)
+      rxDataSources(subspec)
+      subspec.source_files = 'Source/TableView/**/*.swift'
   end
 
-  s.subspec 'CollectionView' do |collectionView|
-    collectionView.frameworks = 'UIKit'
-    collectionView.source_files = 'Source/Classes/CollectionView/**/*'
-    collectionView.dependency 'Reactant/Core'
-    collectionView.dependency 'Reactant/TableView'
-    collectionView.dependency 'RxSwift', '~> 3.0.0'
-    collectionView.dependency 'RxCocoa', '~> 3.0.0'
-    collectionView.dependency 'RxDataSources', '~> 1.0.0'
+  spec.subspec 'CollectionView' do |subspec|
+      subspec.frameworks = 'UIKit'
+      subspec.dependency 'Reactant/Core'
+      rxCocoa(subspec)
+      rxDataSources(subspec)
+      subspec.source_files = ['Source/CollectionView/**/*.swift', 'Source/TableView/TableViewState.swift']
   end
+
+  spec.default_subspec = 'Core', 'Result'
 end

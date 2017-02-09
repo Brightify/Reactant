@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # references:
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
@@ -15,8 +16,9 @@ before_install:
     - pod repo update --silent
 
 script:
-    #- set -o pipefail && xcodebuild test -workspace Example/Reactant.xcworkspace -scheme Reactant-Example -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO | xcpretty
-    #- travis_wait pod lib lint --allow-warnings
+    # - (xcodebuild -workspace Reactant.xcworkspace -scheme Reactant -sdk iphonesimulator build-for-testing | egrep -A 3 "(error|warning|note):\ "; exit ${PIPESTATUS[0]})
+    # - xctool -workspace Reactant.xcworkspace -scheme Reactant -sdk iphonesimulator run-tests
+    # - travis_wait pod lib lint --allow-warnings
     - npm install docpress && ./node_modules/.bin/docpress build
 
 after_success:
@@ -28,3 +30,6 @@ env:
     - GIT_EMAIL: info@brightify.org
     - GITHUB_REPO: Brightify/Reactant
     - GIT_SOURCE: _docpress
+
+notifications:
+    slack: brightify:00rIGJIfWqG5RyWCVoRNEgxt

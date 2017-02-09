@@ -19,8 +19,8 @@ Feel free to reach us on Slack! http://swiftkit.brightify.org/
 
 ## Installation
 
-Reactant is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+Reactant is available through [CocoaPods](http://cocoapods.org). To install 
+it, simply add the following line to your test target in your Podfile:
 
 ```ruby
 pod 'Reactant'
@@ -30,14 +30,32 @@ pod 'Reactant/CollectionView'
 pod 'Reactant/Validation'
 ```
 
+## Usage
+
+## Versioning
+
+This library uses semantic versioning. Until the version 1.0 API breaking changes may occur even in minor versions. We consider the version 0.6 to be prerelease, which means that API should be stable but is not tested yet in a real project. After that testing, we make needed adjustments and bump the version to 1.0 (first release).
+
 ## Author
 
-Tadeas Kriz, tadeas@brightify.org
+* Tadeas Kriz, [tadeas@brightify.org](mailto:tadeas@brightify.org)
+* Matous Hybl, [matous@brightify.org](mailto:matous@brightify.org)
+* Filip Dolník, [filip@brightify.org](mailto:filip@brightify.org)
 
-Filip Dolnik, filip@brightify.org
+## Used libraries
 
-Matous Hybl, matous@brightify.org
+* [Result](https://github.com/antitypical/Result)
+* [SnapKit](https://github.com/SnapKit/SnapKit)
+* [RxSwift](https://github.com/ReactiveX/RxSwift)
+* [RxCocoa](https://github.com/ReactiveX/RxSwift)
+* [RxOptional](https://github.com/RxSwiftCommunity/RxOptional)
+* [RxDataSources](https://github.com/RxSwiftCommunity/RxDataSources)
+
+### Tests
+
+* [Quick](https://github.com/Quick/Quick)
+* [Nimble](https://github.com/Quick/Nimble)
 
 ## License
 
-Reactant is available under the MIT license. See the LICENSE file for more info.
+Reactant is available under the [MIT License](LICENSE).
