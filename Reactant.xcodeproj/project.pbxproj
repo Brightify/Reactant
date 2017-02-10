@@ -51,12 +51,13 @@
 		DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */; };
 		DC0785F11DDC6A400063AB96 /* PlainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F01DDC6A400063AB96 /* PlainTableView.swift */; };
 		DC0785FF1DDC6F430063AB96 /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */; };
+		DC137F731E4DB5FB00A0516F /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F721E4DB5FB00A0516F /* Rules.swift */; };
+		DC137F751E4DB62200A0516F /* Rules+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F741E4DB62200A0516F /* Rules+String.swift */; };
+		DC137F791E4DB7F100A0516F /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F781E4DB7F100A0516F /* ValidationError.swift */; };
+		DC137F7C1E4DB83C00A0516F /* String+EmailValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F7B1E4DB83C00A0516F /* String+EmailValidationError.swift */; };
 		DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */; };
 		DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */; };
-		DC2B5D3C1DE2070200F9C9D7 /* EmailValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D381DE2070200F9C9D7 /* EmailValidationError.swift */; };
 		DC2B5D3D1DE2070200F9C9D7 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D391DE2070200F9C9D7 /* Rule.swift */; };
-		DC2B5D3E1DE2070200F9C9D7 /* StringRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D3A1DE2070200F9C9D7 /* StringRules.swift */; };
-		DC2B5D3F1DE2070200F9C9D7 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D3B1DE2070200F9C9D7 /* ValidationError.swift */; };
 		DC2B5D411DE208F300F9C9D7 /* ObservableConvertibleType+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D401DE208F300F9C9D7 /* ObservableConvertibleType+Utils.swift */; };
 		DC2B5D431DE2094300F9C9D7 /* ObserverType+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D421DE2094300F9C9D7 /* ObserverType+Utils.swift */; };
 		DC2B5D451DE20A3500F9C9D7 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D441DE20A3500F9C9D7 /* Array+Utils.swift */; };
@@ -150,11 +151,12 @@
 		DC137F6E1E4C638000A0516F /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DC137F6F1E4C638000A0516F /* Reactant.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reactant.podspec; sourceTree = "<group>"; };
 		DC137F701E4C63A900A0516F /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		DC137F721E4DB5FB00A0516F /* Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rules.swift; path = Rules/Rules.swift; sourceTree = "<group>"; };
+		DC137F741E4DB62200A0516F /* Rules+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Rules+String.swift"; path = "Rules/Rules+String.swift"; sourceTree = "<group>"; };
+		DC137F781E4DB7F100A0516F /* ValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
+		DC137F7B1E4DB83C00A0516F /* String+EmailValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+EmailValidationError.swift"; path = "Rules/Error/String+EmailValidationError.swift"; sourceTree = "<group>"; };
 		DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+Result.swift"; sourceTree = "<group>"; };
-		DC2B5D381DE2070200F9C9D7 /* EmailValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailValidationError.swift; sourceTree = "<group>"; };
 		DC2B5D391DE2070200F9C9D7 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
-		DC2B5D3A1DE2070200F9C9D7 /* StringRules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringRules.swift; sourceTree = "<group>"; };
-		DC2B5D3B1DE2070200F9C9D7 /* ValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		DC2B5D401DE208F300F9C9D7 /* ObservableConvertibleType+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+Utils.swift"; sourceTree = "<group>"; };
 		DC2B5D421DE2094300F9C9D7 /* ObserverType+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObserverType+Utils.swift"; sourceTree = "<group>"; };
 		DC2B5D441DE20A3500F9C9D7 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
@@ -450,13 +452,30 @@
 			path = Scrollable;
 			sourceTree = "<group>";
 		};
+		DC137F711E4DB5E800A0516F /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				DC137F7A1E4DB81000A0516F /* Error */,
+				DC137F721E4DB5FB00A0516F /* Rules.swift */,
+				DC137F741E4DB62200A0516F /* Rules+String.swift */,
+			);
+			name = Rules;
+			sourceTree = "<group>";
+		};
+		DC137F7A1E4DB81000A0516F /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				DC137F7B1E4DB83C00A0516F /* String+EmailValidationError.swift */,
+			);
+			name = Error;
+			sourceTree = "<group>";
+		};
 		DC2B5D2B1DE1B7E500F9C9D7 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
-				DC2B5D381DE2070200F9C9D7 /* EmailValidationError.swift */,
 				DC2B5D391DE2070200F9C9D7 /* Rule.swift */,
-				DC2B5D3A1DE2070200F9C9D7 /* StringRules.swift */,
-				DC2B5D3B1DE2070200F9C9D7 /* ValidationError.swift */,
+				DC137F781E4DB7F100A0516F /* ValidationError.swift */,
+				DC137F711E4DB5E800A0516F /* Rules */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -713,9 +732,9 @@
 				DC0785FF1DDC6F430063AB96 /* SimpleTableView.swift in Sources */,
 				DC2B5D541DE20CB700F9C9D7 /* UIScrollView+Scrollable.swift in Sources */,
 				DC2B5D6F1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift in Sources */,
+				DC137F751E4DB62200A0516F /* Rules+String.swift in Sources */,
 				DC0785E61DDB2C150063AB96 /* CollectionViewCellIdentifier.swift in Sources */,
 				DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */,
-				DC2B5D3E1DE2070200F9C9D7 /* StringRules.swift in Sources */,
 				DC0785E21DDB22670063AB96 /* TableViewHeaderFooterIdentifier.swift in Sources */,
 				18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */,
 				DC2B5D481DE20B3900F9C9D7 /* UIView+Utils.swift in Sources */,
@@ -723,6 +742,7 @@
 				DC0785EC1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift in Sources */,
 				DC0785D51DD9C63B0063AB96 /* SingleRowCollectionView.swift in Sources */,
 				DC2B5D651DE2EE5F00F9C9D7 /* AssociatedObject.swift in Sources */,
+				DC137F7C1E4DB83C00A0516F /* String+EmailValidationError.swift in Sources */,
 				DC0785CC1DD8C4F00063AB96 /* TableViewCellWrapper.swift in Sources */,
 				DC0785A41DD3BDE10063AB96 /* ContainerView.swift in Sources */,
 				DC0785D41DD9C2330063AB96 /* CollectionReusableViewWrapper.swift in Sources */,
@@ -737,20 +757,20 @@
 				DC0785E41DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
 				DC2B5D691DE2FD6800F9C9D7 /* SingleRowCollectionView+Properties.swift in Sources */,
 				18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */,
+				DC137F791E4DB7F100A0516F /* ValidationError.swift in Sources */,
+				DC137F731E4DB5FB00A0516F /* Rules.swift in Sources */,
 				DC0785AF1DD3C3120063AB96 /* ScrollControllerBase.swift in Sources */,
 				DC2B5D3D1DE2070200F9C9D7 /* Rule.swift in Sources */,
 				DC0785C11DD468E20063AB96 /* TableViewState.swift in Sources */,
 				DC0785841DD383E50063AB96 /* UINavigationController+Navigation.swift in Sources */,
 				DC07859D1DD3AA870063AB96 /* RootView.swift in Sources */,
 				183D82AC1E37B65C002E380A /* Recycler.swift in Sources */,
-				DC2B5D3C1DE2070200F9C9D7 /* EmailValidationError.swift in Sources */,
 				DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */,
 				DC2B5D5B1DE2EB0F00F9C9D7 /* UIView+Visibility.swift in Sources */,
 				DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */,
 				DC2B5D451DE20A3500F9C9D7 /* Array+Utils.swift in Sources */,
 				DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */,
 				DC0785CA1DD8C4DF0063AB96 /* TableViewCell.swift in Sources */,
-				DC2B5D3F1DE2070200F9C9D7 /* ValidationError.swift in Sources */,
 				18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */,
 				DC2B5D6C1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift in Sources */,
 				DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */,
@@ -807,7 +827,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Source/Resources/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -833,7 +853,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Source/Resources/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

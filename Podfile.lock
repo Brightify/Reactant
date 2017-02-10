@@ -15,15 +15,15 @@ PODS:
   - SnapKit (3.0.2)
 
 DEPENDENCIES:
-  - Kingfisher
+  - Kingfisher (~> 3.2)
   - Nimble (~> 5.0)
   - Quick (~> 1.0)
-  - Result (~> 3.0.0)
-  - RxCocoa
-  - RxDataSources
-  - RxOptional
-  - RxSwift
-  - SnapKit
+  - Result (~> 3.0)
+  - RxCocoa (~> 3.0)
+  - RxDataSources (~> 1.0)
+  - RxOptional (~> 3.0)
+  - RxSwift (~> 3.0)
+  - SnapKit (~> 3.0)
 
 SPEC CHECKSUMS:
   Kingfisher: 821466474ad7ffc375a4aecadfa05068cfed67b3
@@ -36,6 +36,6 @@ SPEC CHECKSUMS:
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: f2145cd089530a779b485d8d131aed4ffe816ee3
+PODFILE CHECKSUM: 689b1b53b4aeba626bace7dbd1b5bc7ed966e21d
 
 COCOAPODS: 1.2.0
