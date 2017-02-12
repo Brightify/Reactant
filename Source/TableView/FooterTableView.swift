@@ -44,14 +44,9 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
 
         super.init(style: style, reloadable: reloadable)
 
-        dataSource.configureCell = { [unowned self] _, tableView, indexPath, model in
-            let cell = tableView.dequeue(identifier: self.cellIdentifier)
-            let component = cell.cachedCellOrCreated(factory: cellFactory)
-            component.componentState = model
-            component.action.map { FooterTableViewAction.rowAction(model, $0) }
-                .subscribe(onNext: self.perform)
-                .addDisposableTo(component.stateDisposeBag)
-            return cell
+        dataSource.configureCell = { [unowned self] _, _, _, model in
+            return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,
+                                            model: model, mapAction: { FooterTableViewAction.rowAction(model, $0) })
         }
     }
 
@@ -69,13 +64,8 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
     }
 
     @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = tableView.dequeue(identifier: footerIdentifier)
         let section = dataSource.sectionModels[section].identity
-        let component = footer.cachedViewOrCreated(factory: footerFactory)
-        component.componentState = section
-        component.action.map { FooterTableViewAction.footerAction(section, $0) }
-            .subscribe(onNext: perform)
-            .addDisposableTo(component.stateDisposeBag)
-        return footer
+        return dequeueAndConfigure(identifier: footerIdentifier, factory: footerFactory,
+                                   model: section, mapAction: { FooterTableViewAction.footerAction(section, $0) })
     }
 }

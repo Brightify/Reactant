@@ -44,14 +44,9 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
 
         super.init(style: style, reloadable: reloadable)
 
-        dataSource.configureCell = { [unowned self] _, tableView, indexPath, model in
-            let cell = tableView.dequeue(identifier: self.cellIdentifier)
-            let component = cell.cachedCellOrCreated(factory: cellFactory)
-            component.componentState = model
-            component.action.map { HeaderTableViewAction.rowAction(model, $0) }
-                .subscribe(onNext: self.perform)
-                .addDisposableTo(component.stateDisposeBag)
-            return cell
+        dataSource.configureCell = { [unowned self] _, _, _, model in
+            return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,
+                                            model: model, mapAction: { HeaderTableViewAction.rowAction(model, $0) })
         }
     }
 
@@ -69,13 +64,8 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
     }
 
     @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeue(identifier: headerIdentifier)
         let section = dataSource.sectionModels[section].identity
-        let component = header.cachedViewOrCreated(factory: headerFactory)
-        component.componentState = section
-        component.action.map { HeaderTableViewAction.headerAction(section, $0) }
-            .subscribe(onNext: perform)
-            .addDisposableTo(component.stateDisposeBag)
-        return header
+        return dequeueAndConfigure(identifier: headerIdentifier, factory: headerFactory,
+                                   model: section, mapAction: { HeaderTableViewAction.headerAction(section, $0) })
     }
 }
