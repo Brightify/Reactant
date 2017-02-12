@@ -10,7 +10,7 @@ import RxSwift
 import RxOptional
 import Result
 
-public extension ObservableConvertibleType where E: ResultProtocol {
+extension ObservableConvertibleType where E: ResultProtocol {
     
     public func filterError() -> Observable<E.Value> {
         return asObservable().map { $0.value }.filterNil()
@@ -36,7 +36,7 @@ public extension ObservableConvertibleType where E: ResultProtocol {
         return asObservable().map { $0.value ?? value }
     }
     
-    public func replaceResultErrorWithNil() -> Observable<Self.E.Value?> {
+    public func recoverWithNil() -> Observable<Self.E.Value?> {
         return asObservable().map { $0.value }
     }
 }

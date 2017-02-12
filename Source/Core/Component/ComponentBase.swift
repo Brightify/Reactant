@@ -41,6 +41,5 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
     }
 
     open func update() {
-        
     }
 }

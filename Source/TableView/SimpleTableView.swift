@@ -45,7 +45,6 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBa
     
     private let headerFactory: (() -> HEADER)
     private let footerFactory: (() -> FOOTER)
-    
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
     
     public init(
@@ -92,7 +91,7 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: ViewBa
         ReactantConfiguration.global.emptyListLabelStyle(emptyLabel)
         
         tableView.backgroundView = nil
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = .clear
         tableView.separatorStyle = .singleLine
         tableView.delegate = self
         

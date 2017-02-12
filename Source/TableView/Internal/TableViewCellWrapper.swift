@@ -52,7 +52,7 @@ public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell {
     }
     
     public override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        tableViewCell?.setHighlighted(isSelected, animated: animated)
+        tableViewCell?.setHighlighted(isHighlighted, animated: animated)
     }
     
     public func cachedCellOrCreated(factory: () -> CELL) -> CELL {

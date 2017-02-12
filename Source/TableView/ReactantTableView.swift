@@ -10,20 +10,23 @@ import RxSwift
 import RxCocoa
 
 public protocol ReactantTableView: class, Scrollable {
+    
+    var tableView: UITableView { get }
+    
     var refreshControl: UIRefreshControl? { get }
 
     var loadingIndicator: UIActivityIndicatorView { get }
-
-    var tableView: UITableView { get }
 }
 
 extension ReactantTableView {
+    
     public func scrollToTop(animated: Bool) {
         tableView.scrollToTop(animated: animated)
     }
 }
 
 extension ReactantTableView {
+    
     public func layoutHeaderView() {
         if let header = tableView.tableHeaderView {
             header.translatesAutoresizingMaskIntoConstraints = false

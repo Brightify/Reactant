@@ -17,20 +17,16 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
     
     public let componentDelegate = ComponentDelegate<STATE, ACTION, ButtonBase<STATE, ACTION>>()
     
-    open override class var requiresConstraintBasedLayout: Bool {
-        return true
+    open var actions: [Observable<ACTION>] {
+        return []
     }
-
+    
     open var action: Observable<ACTION> {
         return componentDelegate.action
     }
 
-    open func needsUpdate() -> Bool {
+    open override class var requiresConstraintBasedLayout: Bool {
         return true
-    }
-
-    open var actions: [Observable<ACTION>] {
-        return []
     }
 
     public init() {
@@ -54,15 +50,21 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
     public required init?(coder aDecoder: NSCoder) {
         preconditionFailure("init(coder:) has not been implemented")
     }
+    
+    open func afterInit() {
+    }
 
-    open func afterInit() { }
-
-    open func update() { }
+    open func update() {
+    }
 
     open func loadView() {
     }
     
     open func setupConstraints() {
+    }
+    
+    open func needsUpdate() -> Bool {
+        return true
     }
     
     open override func addSubview(_ view: UIView) {

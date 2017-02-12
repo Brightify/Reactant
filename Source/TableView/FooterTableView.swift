@@ -87,7 +87,7 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: ViewBase<TableViewStat
         ReactantConfiguration.global.emptyListLabelStyle(emptyLabel)
 
         tableView.backgroundView = nil
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = .clear
         tableView.separatorStyle = .singleLine
         tableView.delegate = self
 

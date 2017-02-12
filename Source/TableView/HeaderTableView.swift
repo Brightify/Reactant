@@ -42,7 +42,6 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: ViewBase<TableViewStat
     public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
 
     private let headerFactory: (() -> HEADER)
-
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
 
     public init(
@@ -88,7 +87,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: ViewBase<TableViewStat
         ReactantConfiguration.global.emptyListLabelStyle(emptyLabel)
 
         tableView.backgroundView = nil
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = .clear
         tableView.separatorStyle = .singleLine
         tableView.delegate = self
 

@@ -51,13 +51,17 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate {
         preconditionFailure("init(coder:) has not been implemented")
     }
 
-    open func afterInit() { }
+    open func afterInit() {
+    }
 
-    open func update() { }
+    open func update() {
+    }
     
-    open func loadView() { }
+    open func loadView() {
+    }
     
-    open func setupConstraints() { }
+    open func setupConstraints() {
+    }
 
     open func needsUpdate() -> Bool {
         return true

@@ -1,107 +1,105 @@
 //
-//  PlainTableViewswift
+//  PlainCollectionView.swift
 //  Reactant
 //
-//  Created by Filip Dolnik on 16.11.16.
-//  Copyright © 2016 Brightify. All rights reserved.
+//  Created by Filip Dolnik on 12.02.17.
+//  Copyright © 2017 Brightify. All rights reserved.
 //
 
 import RxSwift
+import RxCocoa
 
-public enum PlainTableViewAction<CELL: Component> {
+public enum PlainCollectionViewAction<CELL: Component> {
     case selected(CELL.StateType)
-    case rowAction(CELL.StateType, CELL.ActionType)
+    case cellAction(CELL.StateType, CELL.ActionType)
     case refresh
 }
 
-open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>, PlainTableViewAction<CELL>>, ReactantTableView where CELL: Component {
+open class PlainCollectionView<CELL: UIView>: ViewBase<CollectionViewState<CELL.StateType>, PlainCollectionViewAction<CELL>>, ReactantCollectionView where CELL: Component {
     
     public typealias MODEL = CELL.StateType
-
-    private let cellIdentifier = TableViewCellIdentifier<CELL>()
-
+    
+    private let cellIdentifier = CollectionViewCellIdentifier<CELL>()
+    
     open var edgesForExtendedLayout: UIRectEdge {
         return .all
     }
-
-    open override var actions: [Observable<PlainTableViewAction<CELL>>] {
+    
+    open override var actions: [Observable<PlainCollectionViewAction<CELL>>] {
         return [
-            tableView.rx.modelSelected(MODEL.self).map(PlainTableViewAction.selected),
-            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: PlainTableViewAction.refresh)
+            collectionView.rx.modelSelected(MODEL.self).map(PlainCollectionViewAction.selected),
+            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: PlainCollectionViewAction.refresh)
         ].flatMap { $0 }
     }
-
-    public let tableView: UITableView
-
+    
+    public let collectionView: UICollectionView
+    public let collectionViewLayout = UICollectionViewFlowLayout()
+    
     public let refreshControl: UIRefreshControl?
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
-
+    
     private let cellFactory: () -> CELL
-
-    public init(
-        cellFactory: @escaping () -> CELL = CELL.init,
-        style: UITableViewStyle = .plain,
-        reloadable: Bool = true)
-    {
-        self.tableView = UITableView(frame: CGRect.zero, style: style)
+    
+    // TODO Test crash.
+    public init(cellFactory: @escaping () -> CELL = CELL.init, reloadable: Bool = true) {
+        self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
         self.refreshControl = reloadable ? UIRefreshControl() : nil
         self.cellFactory = cellFactory
-
+        
         super.init()
     }
-
+    
     open override func loadView() {
         children(
-            tableView,
+            collectionView,
             emptyLabel,
             loadingIndicator
         )
-
+        
         if let refreshControl = refreshControl {
-            tableView.children(
+            collectionView.children(
                 refreshControl
             )
         }
-
+        
         loadingIndicator.hidesWhenStopped = true
-
+        
         ReactantConfiguration.global.emptyListLabelStyle(emptyLabel)
-
-        tableView.backgroundView = nil
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .singleLine
-
-        tableView.register(identifier: cellIdentifier)
+        
+        collectionView.backgroundColor = .clear
+        collectionView.alwaysBounceVertical = true
+        
+        collectionView.register(identifier: cellIdentifier)
     }
-
+    
     open override func setupConstraints() {
-        tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalTo(self)
         }
-
+        
         emptyLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.center.equalTo(self)
         }
-
+        
         loadingIndicator.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.center.equalTo(self)
         }
     }
-
+    
     open override func afterInit() {
-        tableView.rx.itemSelected
-            .subscribe(onNext: { [tableView] in
-                tableView.deselectRow(at: $0, animated: true)
+        collectionView.rx.itemSelected
+            .subscribe(onNext: { [collectionView] in
+                collectionView.deselectItem(at: $0, animated: true)
             })
             .addDisposableTo(lifetimeDisposeBag)
     }
-
+    
     open override func update() {
         var items: [MODEL] = []
         var emptyMessage = ""
         var loading = false
-
+        
         switch componentState {
         case .items(let models):
             items = models
@@ -110,9 +108,9 @@ open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>
         case .loading:
             loading = true
         }
-
+        
         emptyLabel.text = emptyMessage
-
+        
         if let refreshControl = refreshControl {
             if loading {
                 refreshControl.beginRefreshing()
@@ -126,25 +124,18 @@ open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>
                 loadingIndicator.stopAnimating()
             }
         }
-
+        
         Observable.just(items)
-            .bindTo(tableView.items(with: cellIdentifier)) { [cellFactory] row, model, cell in
+            .bindTo(collectionView.items(with: cellIdentifier)) { [cellFactory] _, model, cell in
                 let component = cell.cachedCellOrCreated(factory: cellFactory)
                 component.componentState = model
                 component.action.subscribe(onNext: { [weak self] in
-                    self?.perform(action: .rowAction(model, $0))
+                    self?.perform(action: .cellAction(model, $0))
                 })
                 .addDisposableTo(component.stateDisposeBag)
             }
             .addDisposableTo(stateDisposeBag)
-
+        
         setNeedsLayout()
-    }
-
-    open override func layoutSubviews() {
-        super.layoutSubviews()
-
-        layoutHeaderView()
-        layoutFooterView()
     }
 }

@@ -61,7 +61,7 @@ Pod::Spec.new do |spec|
       subspec.dependency 'Reactant/Core'
       rxCocoa(subspec)
       rxDataSources(subspec)
-      subspec.source_files = 'Source/TableView/**/*.swift'
+      subspec.source_files = ['Source/TableView/**/*.swift', 'Source/CollectionView/CollectionViewState.swift']
   end
 
   spec.subspec 'CollectionView' do |subspec|
@@ -69,7 +69,7 @@ Pod::Spec.new do |spec|
       subspec.dependency 'Reactant/Core'
       rxCocoa(subspec)
       rxDataSources(subspec)
-      subspec.source_files = ['Source/CollectionView/**/*.swift', 'Source/TableView/TableViewState.swift']
+      subspec.source_files = 'Source/CollectionView/**/*.swift'
   end
 
   spec.default_subspec = 'Core', 'Result'
