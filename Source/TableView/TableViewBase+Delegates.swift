@@ -1,58 +1,14 @@
 //
-//  ReactantTableView.swift
+//  TableViewBase+Delegates.swift
 //  Reactant
 //
-//  Created by Filip Dolnik on 21.11.16.
-//  Copyright © 2016 Brightify. All rights reserved.
+//  Created by Filip Dolnik on 12.02.17.
+//  Copyright © 2017 Brightify. All rights reserved.
 //
 
-import RxSwift
-import RxCocoa
+import UIKit
 
-public protocol ReactantTableView: class, Scrollable {
-    
-    var tableView: UITableView { get }
-    
-    var refreshControl: UIRefreshControl? { get }
-
-    var loadingIndicator: UIActivityIndicatorView { get }
-}
-
-extension ReactantTableView {
-    
-    public func scrollToTop(animated: Bool) {
-        tableView.scrollToTop(animated: animated)
-    }
-}
-
-extension ReactantTableView {
-
-    private func layout(view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
-        let size = view.systemLayoutSizeFitting(targetSize,
-                                                withHorizontalFittingPriority: UILayoutPriorityRequired,
-                                                verticalFittingPriority: UILayoutPriorityDefaultLow)
-        view.translatesAutoresizingMaskIntoConstraints = true
-        view.frame.size = CGSize(width: targetSize.width, height: size.height)
-    }
-
-    public func layoutHeaderView() {
-        guard let header = tableView.tableHeaderView else { return }
-        tableView.tableHeaderView = nil
-        layout(view: header)
-        tableView.tableHeaderView = header
-    }
-
-    public func layoutFooterView() {
-        guard let footer = tableView.tableFooterView else { return }
-        tableView.tableFooterView = nil
-        layout(view: footer)
-        tableView.tableFooterView = footer
-    }
-}
-
-extension ReactantTableView {
+extension TableViewBase {
     
     public var refreshControlTintColor: UIColor? {
         get {

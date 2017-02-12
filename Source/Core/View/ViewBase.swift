@@ -50,21 +50,21 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate {
     public required init?(coder aDecoder: NSCoder) {
         preconditionFailure("init(coder:) has not been implemented")
     }
-
-    open func afterInit() {
-    }
-
-    open func update() {
-    }
     
     open func loadView() {
     }
     
     open func setupConstraints() {
     }
+    
+    open func afterInit() {
+    }
 
     public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
         return componentDelegate.observeState(when)
+    }
+
+    open func update() {
     }
 
     open func needsUpdate() -> Bool {
