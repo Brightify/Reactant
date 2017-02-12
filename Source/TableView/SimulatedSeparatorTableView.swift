@@ -54,6 +54,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
     public let refreshControl: UIRefreshControl?
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
+    
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
 
     public init(
@@ -100,7 +101,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
         ReactantConfiguration.global.emptyListLabelStyle(emptyLabel)
 
         tableView.backgroundView = nil
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = .clear
         tableView.separatorStyle = .singleLine
         tableView.delegate = self
 

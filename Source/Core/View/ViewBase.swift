@@ -51,13 +51,17 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate {
         preconditionFailure("init(coder:) has not been implemented")
     }
 
-    open func afterInit() { }
+    open func afterInit() {
+    }
 
-    open func update() { }
+    open func update() {
+    }
     
-    open func loadView() { }
+    open func loadView() {
+    }
     
-    open func setupConstraints() { }
+    open func setupConstraints() {
+    }
 
     public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
         return componentDelegate.observeState(when)

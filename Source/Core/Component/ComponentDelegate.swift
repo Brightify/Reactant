@@ -8,7 +8,7 @@
 
 import RxSwift
 
-// COMPONENT and ACTION cannot have restriction to StateType because it is impossible then to use ComponentWithDelegate (associatedtype cannot be used with where).
+// COMPONENT and ACTION cannot have restriction to StateType because then it is impossible to use ComponentWithDelegate (associatedtype cannot be used with where).
 public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     
     public var stateDisposeBag = DisposeBag()

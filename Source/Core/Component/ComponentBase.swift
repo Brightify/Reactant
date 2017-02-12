@@ -41,7 +41,6 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
     }
 
     open func update() {
-        
     }
 
     public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {

@@ -1,14 +1,15 @@
 //
 //  ProjectBaseConfiguration.swift
-//  Pods
+//  Reactant
 //
 //  Created by Tadeáš Kříž on 12/06/16.
-//
+//  Copyright © 2016 Brightify. All rights reserved.
 //
 
 import UIKit
 
 public struct ReactantConfiguration {
+    
     public static var global = ReactantConfiguration()
 
     public var layoutMargins = UIEdgeInsets.zero

@@ -10,20 +10,23 @@ import RxSwift
 import RxCocoa
 
 public protocol ReactantTableView: class, Scrollable {
+    
+    var tableView: UITableView { get }
+    
     var refreshControl: UIRefreshControl? { get }
 
     var loadingIndicator: UIActivityIndicatorView { get }
-
-    var tableView: UITableView { get }
 }
 
 extension ReactantTableView {
+    
     public func scrollToTop(animated: Bool) {
         tableView.scrollToTop(animated: animated)
     }
 }
 
 extension ReactantTableView {
+
     private func layout(view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
