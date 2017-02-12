@@ -82,6 +82,7 @@
 		DC6940731E505F7200C99380 /* SingleRowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940721E505F7200C99380 /* SingleRowCollectionView.swift */; };
 		DC6940751E509DE600C99380 /* TableViewBase+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940741E509DE600C99380 /* TableViewBase+Scrollable.swift */; };
 		DC6940771E509E0700C99380 /* TableViewBase+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940761E509E0700C99380 /* TableViewBase+Delegates.swift */; };
+		DC69407B1E50B89900C99380 /* TableViewBase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69407A1E50B89900C99380 /* TableViewBase+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,6 +187,7 @@
 		DC6940721E505F7200C99380 /* SingleRowCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleRowCollectionView.swift; path = Implementation/SingleRowCollectionView.swift; sourceTree = "<group>"; };
 		DC6940741E509DE600C99380 /* TableViewBase+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewBase+Scrollable.swift"; sourceTree = "<group>"; };
 		DC6940761E509E0700C99380 /* TableViewBase+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewBase+Delegates.swift"; sourceTree = "<group>"; };
+		DC69407A1E50B89900C99380 /* TableViewBase+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewBase+Utils.swift"; sourceTree = "<group>"; };
 		F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -377,6 +379,7 @@
 				DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */,
 				DC6940761E509E0700C99380 /* TableViewBase+Delegates.swift */,
 				DC6940741E509DE600C99380 /* TableViewBase+Scrollable.swift */,
+				DC69407A1E50B89900C99380 /* TableViewBase+Utils.swift */,
 				DC0785C91DD8C4DF0063AB96 /* TableViewCell.swift */,
 				DC6940701E505CA700C99380 /* TableViewState.swift */,
 				DC0785D61DDB176A0063AB96 /* Identifier */,
@@ -824,6 +827,7 @@
 				DC137FA41E4E29DA00A0516F /* ScrollControllerBase+Scrollable.swift in Sources */,
 				DC137FA81E4E29DA00A0516F /* UIView+Utils.swift in Sources */,
 				DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */,
+				DC69407B1E50B89900C99380 /* TableViewBase+Utils.swift in Sources */,
 				DC0785CA1DD8C4DF0063AB96 /* TableViewCell.swift in Sources */,
 				DC6940711E505CA700C99380 /* TableViewState.swift in Sources */,
 				18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */,

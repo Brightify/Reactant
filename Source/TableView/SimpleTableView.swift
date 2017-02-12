@@ -49,14 +49,9 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
         
         super.init(style: style, reloadable: reloadable)
         
-        dataSource.configureCell = { [unowned self] _, tableView, indexPath, model in
-            let cell = tableView.dequeue(identifier: self.cellIdentifier)
-            let component = cell.cachedCellOrCreated(factory: cellFactory)
-            component.componentState = model
-            component.action.map { SimpleTableViewAction.rowAction(model, $0) }
-                .subscribe(onNext: self.perform)
-                .addDisposableTo(component.stateDisposeBag)
-            return cell
+        dataSource.configureCell = { [unowned self] _, _, _, model in
+            return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,
+                                            model: model, mapAction: { SimpleTableViewAction.rowAction(model, $0) })
         }
     }
     
@@ -75,24 +70,14 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
     }
     
     @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeue(identifier: headerIdentifier)
-        let section = dataSource.sectionModels[section].identity
-        let component = header.cachedViewOrCreated(factory: headerFactory)
-        component.componentState = section.header
-        component.action.map { SimpleTableViewAction.headerAction(section.header, $0) }
-            .subscribe(onNext: perform)
-            .addDisposableTo(component.stateDisposeBag)
-        return header
+        let model = dataSource.sectionModels[section].identity.header
+        return dequeueAndConfigure(identifier: headerIdentifier, factory: headerFactory,
+                                   model: model, mapAction: { SimpleTableViewAction.headerAction(model, $0) })
     }
     
     @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = tableView.dequeue(identifier: footerIdentifier)
-        let section = dataSource.sectionModels[section].identity
-        let component = footer.cachedViewOrCreated(factory: footerFactory)
-        component.componentState = section.footer
-        component.action.map { SimpleTableViewAction.footerAction(section.footer, $0) }
-            .subscribe(onNext: perform)
-            .addDisposableTo(component.stateDisposeBag)
-        return footer
+        let model = dataSource.sectionModels[section].identity.footer
+        return dequeueAndConfigure(identifier: footerIdentifier, factory: footerFactory,
+                                   model: model, mapAction: { SimpleTableViewAction.footerAction(model, $0) })
     }
 }

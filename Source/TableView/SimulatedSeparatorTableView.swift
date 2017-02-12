@@ -55,15 +55,10 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
         super.init(style: style, reloadable: reloadable)
 
         separatorHeight = 1
-
-        dataSource.configureCell = { [unowned self] _, tableView, indexPath, model in
-            let cell = tableView.dequeue(identifier: self.cellIdentifier)
-            let component = cell.cachedCellOrCreated(factory: cellFactory)
-            component.componentState = model
-            component.action.map { SimulatedSeparatorTableViewAction.rowAction(model, $0) }
-                .subscribe(onNext: self.perform)
-                .addDisposableTo(component.stateDisposeBag)
-            return cell
+        
+        dataSource.configureCell = { [unowned self] _, _, _, model in
+            return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,
+                                            model: model, mapAction: { SimulatedSeparatorTableViewAction.rowAction(model, $0) })
         }
     }
 

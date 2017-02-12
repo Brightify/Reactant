@@ -117,30 +117,4 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
 
     open func bind(items: [MODEL]) {
     }
-
-    public final func layoutHeaderView() {
-        if let header = tableView.tableHeaderView {
-            header.translatesAutoresizingMaskIntoConstraints = false
-            tableView.tableHeaderView = nil
-            let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
-            
-            let size = header.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
-            header.translatesAutoresizingMaskIntoConstraints = true
-            header.frame.size = CGSize(width: targetSize.width, height: size.height)
-            tableView.tableHeaderView = header
-        }
-    }
-    
-    public final func layoutFooterView() {
-        if let footer = tableView.tableFooterView {
-            footer.translatesAutoresizingMaskIntoConstraints = false
-            tableView.tableHeaderView = nil
-            let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
-            
-            let size = footer.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
-            footer.translatesAutoresizingMaskIntoConstraints = true
-            footer.frame.size = CGSize(width: targetSize.width, height: size.height)
-            tableView.tableFooterView = footer
-        }
-    }
 }

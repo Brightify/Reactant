@@ -47,12 +47,8 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
     
     open override func bind(items: [CELL.StateType]) {
         Observable.just(items)
-            .bindTo(tableView.items(with: cellIdentifier)) { [unowned self] row, model, cell in
-                let component = cell.cachedCellOrCreated(factory: self.cellFactory)
-                component.componentState = model
-                component.action.map { PlainTableViewAction.rowAction(model, $0) }
-                    .subscribe(onNext: self.perform)
-                    .addDisposableTo(component.stateDisposeBag)
+            .bindTo(tableView.items(with: cellIdentifier)) { [unowned self] _, model, cell in
+                self.configure(cell: cell, factory: self.cellFactory, model: model, mapAction: { PlainTableViewAction.rowAction(model, $0) })
             }
             .addDisposableTo(stateDisposeBag)
     }
