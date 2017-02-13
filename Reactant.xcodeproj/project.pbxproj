@@ -73,16 +73,19 @@
 		DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */; };
 		DC2B5D3D1DE2070200F9C9D7 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D391DE2070200F9C9D7 /* Rule.swift */; };
 		DC2B5D671DE2F90D00F9C9D7 /* TableViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */; };
-		DC2B5D691DE2FD6800F9C9D7 /* ReactantCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D681DE2FD6800F9C9D7 /* ReactantCollectionView.swift */; };
+		DC2B5D691DE2FD6800F9C9D7 /* CollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D681DE2FD6800F9C9D7 /* CollectionViewBase.swift */; };
 		DC2B5D6C1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6A1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift */; };
 		DC2B5D6D1DE2FFC000F9C9D7 /* DialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6B1DE2FFC000F9C9D7 /* DialogView.swift */; };
 		DC2B5D6F1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6E1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift */; };
-		DC69406E1E505C3900C99380 /* PlainCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69406D1E505C3900C99380 /* PlainCollectionView.swift */; };
+		DC69406E1E505C3900C99380 /* SimpleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69406D1E505C3900C99380 /* SimpleCollectionView.swift */; };
 		DC6940711E505CA700C99380 /* TableViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940701E505CA700C99380 /* TableViewState.swift */; };
 		DC6940731E505F7200C99380 /* SingleRowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940721E505F7200C99380 /* SingleRowCollectionView.swift */; };
 		DC6940751E509DE600C99380 /* TableViewBase+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940741E509DE600C99380 /* TableViewBase+Scrollable.swift */; };
 		DC6940771E509E0700C99380 /* TableViewBase+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940761E509E0700C99380 /* TableViewBase+Delegates.swift */; };
-		DC69407B1E50B89900C99380 /* TableViewBase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69407A1E50B89900C99380 /* TableViewBase+Utils.swift */; };
+		DC69407D1E51AE7600C99380 /* CollectionViewBase+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69407C1E51AE7600C99380 /* CollectionViewBase+Scrollable.swift */; };
+		DC69407F1E51AE9A00C99380 /* CollectionViewBase+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69407E1E51AE9A00C99380 /* CollectionViewBase+Delegates.swift */; };
+		DC6940831E51B23A00C99380 /* FlowCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940821E51B23A00C99380 /* FlowCollectionViewBase.swift */; };
+		DC6940851E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940841E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,16 +181,19 @@
 		DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+Result.swift"; sourceTree = "<group>"; };
 		DC2B5D391DE2070200F9C9D7 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewBase.swift; sourceTree = "<group>"; };
-		DC2B5D681DE2FD6800F9C9D7 /* ReactantCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantCollectionView.swift; sourceTree = "<group>"; };
+		DC2B5D681DE2FD6800F9C9D7 /* CollectionViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewBase.swift; sourceTree = "<group>"; };
 		DC2B5D6A1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerRootViewContainer.swift; sourceTree = "<group>"; };
 		DC2B5D6B1DE2FFC000F9C9D7 /* DialogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogView.swift; sourceTree = "<group>"; };
 		DC2B5D6E1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogDismissalListener.swift; sourceTree = "<group>"; };
-		DC69406D1E505C3900C99380 /* PlainCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlainCollectionView.swift; path = Implementation/PlainCollectionView.swift; sourceTree = "<group>"; };
+		DC69406D1E505C3900C99380 /* SimpleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleCollectionView.swift; path = Implementation/SimpleCollectionView.swift; sourceTree = "<group>"; };
 		DC6940701E505CA700C99380 /* TableViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewState.swift; sourceTree = "<group>"; };
 		DC6940721E505F7200C99380 /* SingleRowCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleRowCollectionView.swift; path = Implementation/SingleRowCollectionView.swift; sourceTree = "<group>"; };
 		DC6940741E509DE600C99380 /* TableViewBase+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewBase+Scrollable.swift"; sourceTree = "<group>"; };
 		DC6940761E509E0700C99380 /* TableViewBase+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewBase+Delegates.swift"; sourceTree = "<group>"; };
-		DC69407A1E50B89900C99380 /* TableViewBase+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewBase+Utils.swift"; sourceTree = "<group>"; };
+		DC69407C1E51AE7600C99380 /* CollectionViewBase+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionViewBase+Scrollable.swift"; sourceTree = "<group>"; };
+		DC69407E1E51AE9A00C99380 /* CollectionViewBase+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionViewBase+Delegates.swift"; sourceTree = "<group>"; };
+		DC6940821E51B23A00C99380 /* FlowCollectionViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCollectionViewBase.swift; sourceTree = "<group>"; };
+		DC6940841E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FlowCollectionViewBase+Delegates.swift"; sourceTree = "<group>"; };
 		F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -357,9 +363,13 @@
 		DC0785781DC884B40063AB96 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				DC2B5D681DE2FD6800F9C9D7 /* CollectionViewBase.swift */,
+				DC69407E1E51AE9A00C99380 /* CollectionViewBase+Delegates.swift */,
+				DC69407C1E51AE7600C99380 /* CollectionViewBase+Scrollable.swift */,
 				DC0785CF1DD9C1E40063AB96 /* CollectionViewCell.swift */,
 				DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */,
-				DC2B5D681DE2FD6800F9C9D7 /* ReactantCollectionView.swift */,
+				DC6940821E51B23A00C99380 /* FlowCollectionViewBase.swift */,
+				DC6940841E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift */,
 				DC0785D71DDB17740063AB96 /* Identifier */,
 				DC69406F1E505C4500C99380 /* Implementation */,
 				DC2B5D721DE437C900F9C9D7 /* Internal */,
@@ -379,7 +389,6 @@
 				DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */,
 				DC6940761E509E0700C99380 /* TableViewBase+Delegates.swift */,
 				DC6940741E509DE600C99380 /* TableViewBase+Scrollable.swift */,
-				DC69407A1E50B89900C99380 /* TableViewBase+Utils.swift */,
 				DC0785C91DD8C4DF0063AB96 /* TableViewCell.swift */,
 				DC6940701E505CA700C99380 /* TableViewState.swift */,
 				DC0785D61DDB176A0063AB96 /* Identifier */,
@@ -443,8 +452,8 @@
 		DC137F811E4E251200A0516F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				DC137F821E4E29DA00A0516F /* FunctionalUtils */,
 				DC137F861E4E29DA00A0516F /* TODO.swift */,
+				DC137F821E4E29DA00A0516F /* FunctionalUtils */,
 				DC137F871E4E29DA00A0516F /* Utils */,
 			);
 			name = Utils;
@@ -577,7 +586,7 @@
 		DC69406F1E505C4500C99380 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				DC69406D1E505C3900C99380 /* PlainCollectionView.swift */,
+				DC69406D1E505C3900C99380 /* SimpleCollectionView.swift */,
 				DC6940721E505F7200C99380 /* SingleRowCollectionView.swift */,
 			);
 			name = Implementation;
@@ -798,6 +807,7 @@
 				DC137F9E1E4E29DA00A0516F /* AssociatedObject.swift in Sources */,
 				DC0785A41DD3BDE10063AB96 /* ContainerView.swift in Sources */,
 				DC137FA61E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift in Sources */,
+				DC6940831E51B23A00C99380 /* FlowCollectionViewBase.swift in Sources */,
 				DC0785D41DD9C2330063AB96 /* CollectionReusableViewWrapper.swift in Sources */,
 				DC0785AE1DD3C3120063AB96 /* DialogControllerBase.swift in Sources */,
 				DC137F9C1E4E29DA00A0516F /* ObserverType+Utils.swift in Sources */,
@@ -810,7 +820,7 @@
 				DC0785E01DDB21E00063AB96 /* AnyTableViewCellIdentifier.swift in Sources */,
 				DC0785E81DDB2C290063AB96 /* AnyCollectionViewCellIdentifier.swift in Sources */,
 				DC0785E41DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
-				DC2B5D691DE2FD6800F9C9D7 /* ReactantCollectionView.swift in Sources */,
+				DC2B5D691DE2FD6800F9C9D7 /* CollectionViewBase.swift in Sources */,
 				DC137FA51E4E29DA00A0516F /* UIScrollView+Scrollable.swift in Sources */,
 				18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */,
 				DC137F791E4DB7F100A0516F /* ValidationError.swift in Sources */,
@@ -819,15 +829,16 @@
 				DC2B5D3D1DE2070200F9C9D7 /* Rule.swift in Sources */,
 				DC137FAA1E4E29DA00A0516F /* ConstraintAction.swift in Sources */,
 				DC0785841DD383E50063AB96 /* UINavigationController+Navigation.swift in Sources */,
-				DC69406E1E505C3900C99380 /* PlainCollectionView.swift in Sources */,
+				DC69406E1E505C3900C99380 /* SimpleCollectionView.swift in Sources */,
 				DC07859D1DD3AA870063AB96 /* RootView.swift in Sources */,
+				DC69407F1E51AE9A00C99380 /* CollectionViewBase+Delegates.swift in Sources */,
+				DC6940851E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift in Sources */,
 				DC6940731E505F7200C99380 /* SingleRowCollectionView.swift in Sources */,
 				DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */,
 				DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */,
 				DC137FA41E4E29DA00A0516F /* ScrollControllerBase+Scrollable.swift in Sources */,
 				DC137FA81E4E29DA00A0516F /* UIView+Utils.swift in Sources */,
 				DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */,
-				DC69407B1E50B89900C99380 /* TableViewBase+Utils.swift in Sources */,
 				DC0785CA1DD8C4DF0063AB96 /* TableViewCell.swift in Sources */,
 				DC6940711E505CA700C99380 /* TableViewState.swift in Sources */,
 				18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */,
@@ -844,6 +855,7 @@
 				DC0785CE1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift in Sources */,
 				DC0785861DD3879B0063AB96 /* Wireframe.swift in Sources */,
 				DC2B5D671DE2F90D00F9C9D7 /* TableViewBase.swift in Sources */,
+				DC69407D1E51AE7600C99380 /* CollectionViewBase+Scrollable.swift in Sources */,
 				18B4BF7D1E294E7A00D39EEA /* HeaderTableView.swift in Sources */,
 				DC0785EA1DDB2C860063AB96 /* CollectionSupplementaryViewIdentifier.swift in Sources */,
 				DC6940771E509E0700C99380 /* TableViewBase+Delegates.swift in Sources */,
