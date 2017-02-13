@@ -1,51 +1,28 @@
 //
-//  PlainCollectionView.swift
+//  CollectionViewBase.swift
 //  Reactant
 //
-//  Created by Filip Dolnik on 12.02.17.
-//  Copyright © 2017 Brightify. All rights reserved.
+//  Created by Filip Dolnik on 21.11.16.
+//  Copyright © 2016 Brightify. All rights reserved.
 //
 
 import RxSwift
-import RxCocoa
 
-public enum PlainCollectionViewAction<CELL: Component> {
-    case selected(CELL.StateType)
-    case cellAction(CELL.StateType, CELL.ActionType)
-    case refresh
-}
-
-open class PlainCollectionView<CELL: UIView>: ViewBase<CollectionViewState<CELL.StateType>, PlainCollectionViewAction<CELL>>, ReactantCollectionView where CELL: Component {
-    
-    public typealias MODEL = CELL.StateType
-    
-    private let cellIdentifier = CollectionViewCellIdentifier<CELL>()
+open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL>, ACTION>, UICollectionViewDelegate {
     
     open var edgesForExtendedLayout: UIRectEdge {
         return .all
     }
     
-    open override var actions: [Observable<PlainCollectionViewAction<CELL>>] {
-        return [
-            collectionView.rx.modelSelected(MODEL.self).map(PlainCollectionViewAction.selected),
-            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: PlainCollectionViewAction.refresh)
-        ].flatMap { $0 }
-    }
-    
     public let collectionView: UICollectionView
-    public let collectionViewLayout = UICollectionViewFlowLayout()
     
     public let refreshControl: UIRefreshControl?
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
     
-    private let cellFactory: () -> CELL
-    
-    // TODO Test crash.
-    public init(cellFactory: @escaping () -> CELL = CELL.init, reloadable: Bool = true) {
-        self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewLayout)
+    public init(layout: UICollectionViewLayout, reloadable: Bool = true) {
+        self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         self.refreshControl = reloadable ? UIRefreshControl() : nil
-        self.cellFactory = cellFactory
         
         super.init()
     }
@@ -69,8 +46,7 @@ open class PlainCollectionView<CELL: UIView>: ViewBase<CollectionViewState<CELL.
         
         collectionView.backgroundColor = .clear
         collectionView.alwaysBounceVertical = true
-        
-        collectionView.register(identifier: cellIdentifier)
+        collectionView.delegate = self
     }
     
     open override func setupConstraints() {
@@ -125,17 +101,44 @@ open class PlainCollectionView<CELL: UIView>: ViewBase<CollectionViewState<CELL.
             }
         }
         
-        Observable.just(items)
-            .bindTo(collectionView.items(with: cellIdentifier)) { [cellFactory] _, model, cell in
-                let component = cell.cachedCellOrCreated(factory: cellFactory)
-                component.componentState = model
-                component.action.subscribe(onNext: { [weak self] in
-                    self?.perform(action: .cellAction(model, $0))
-                })
-                .addDisposableTo(component.stateDisposeBag)
-            }
-            .addDisposableTo(stateDisposeBag)
+        bind(items: items)
         
         setNeedsLayout()
     }
+    
+    open func bind(items: [MODEL]) {
+    }
+    
+    open func configure<T: Component>(cell: CollectionViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
+                          mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
+        let component = cell.cachedCellOrCreated(factory: factory)
+        component.componentState = model
+        component.action.map(mapAction)
+            .subscribe(onNext: perform)
+            .addDisposableTo(component.stateDisposeBag)
+    }
+    
+    open func dequeueAndConfigure<T: Component>(identifier: CollectionViewCellIdentifier<T>, forRow row: Int, factory: @escaping () -> T,
+                                    model: T.StateType, mapAction: @escaping (T.ActionType) -> ACTION) -> CollectionViewCellWrapper<T> {
+        let cell = collectionView.dequeue(identifier: identifier, forRow: row)
+        configure(cell: cell, factory: factory, model: model, mapAction: mapAction)
+        return cell
+    }
+    
+    open func configure<T: Component>(view: CollectionReusableViewWrapper<T>, factory: @escaping () -> T, model: T.StateType,
+                          mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
+        let component = view.cachedViewOrCreated(factory: factory)
+        component.componentState = model
+        component.action.map(mapAction)
+            .subscribe(onNext: perform)
+            .addDisposableTo(component.stateDisposeBag)
+    }
+    
+    open func dequeueAndConfigure<T: Component>(identifier: CollectionSupplementaryViewIdentifier<T>, forRow row: Int, factory: @escaping () -> T,
+                                    model: T.StateType, mapAction: @escaping (T.ActionType) -> ACTION) -> CollectionReusableViewWrapper<T> {
+        let view = collectionView.dequeue(identifier: identifier, forRow: row)
+        configure(view: view, factory: factory, model: model, mapAction: mapAction)
+        return view
+    }
 }
+

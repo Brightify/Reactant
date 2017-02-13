@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class SingleRowCollectionView<CELL: UIView>: PlainCollectionView<CELL> where CELL: Component {
+open class SingleRowCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where CELL: Component {
     
     open override func loadView() {
         super.loadView()
