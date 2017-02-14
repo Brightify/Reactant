@@ -86,6 +86,11 @@
 		DC69407F1E51AE9A00C99380 /* CollectionViewBase+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69407E1E51AE9A00C99380 /* CollectionViewBase+Delegates.swift */; };
 		DC6940831E51B23A00C99380 /* FlowCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940821E51B23A00C99380 /* FlowCollectionViewBase.swift */; };
 		DC6940851E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940841E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift */; };
+		DC69408A1E53590A00C99380 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940891E53590A00C99380 /* Configuration.swift */; };
+		DC69408C1E53594800C99380 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69408B1E53594800C99380 /* Property.swift */; };
+		DC69408E1E53595400C99380 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69408D1E53595400C99380 /* Properties.swift */; };
+		DC6940911E5359BD00C99380 /* OptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940901E5359BD00C99380 /* OptionalType.swift */; };
+		DC79F6AB1E5377B60033AE51 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AA1E5377B60033AE51 /* Configurable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,6 +199,11 @@
 		DC69407E1E51AE9A00C99380 /* CollectionViewBase+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionViewBase+Delegates.swift"; sourceTree = "<group>"; };
 		DC6940821E51B23A00C99380 /* FlowCollectionViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCollectionViewBase.swift; sourceTree = "<group>"; };
 		DC6940841E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FlowCollectionViewBase+Delegates.swift"; sourceTree = "<group>"; };
+		DC6940891E53590A00C99380 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = DefaultConfiguration/Configuration.swift; sourceTree = "<group>"; };
+		DC69408B1E53594800C99380 /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Property.swift; path = DefaultConfiguration/Property.swift; sourceTree = "<group>"; };
+		DC69408D1E53595400C99380 /* Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Properties.swift; path = DefaultConfiguration/Properties.swift; sourceTree = "<group>"; };
+		DC6940901E5359BD00C99380 /* OptionalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionalType.swift; path = DefaultConfiguration/OptionalType.swift; sourceTree = "<group>"; };
+		DC79F6AA1E5377B60033AE51 /* Configurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Configurable.swift; path = DefaultConfiguration/Configurable.swift; sourceTree = "<group>"; };
 		F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +241,7 @@
 		185120EF1D834C5D002C4B08 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				DC6940881E53556400C99380 /* Configuration */,
 				1851214B1D834D1E002C4B08 /* Info.plist */,
 				DC0785781DC884B40063AB96 /* CollectionView */,
 				DC07856E1DC881B80063AB96 /* Core */,
@@ -586,6 +597,18 @@
 			name = Implementation;
 			sourceTree = "<group>";
 		};
+		DC6940881E53556400C99380 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				DC79F6AA1E5377B60033AE51 /* Configurable.swift */,
+				DC6940891E53590A00C99380 /* Configuration.swift */,
+				DC6940901E5359BD00C99380 /* OptionalType.swift */,
+				DC69408D1E53595400C99380 /* Properties.swift */,
+				DC69408B1E53594800C99380 /* Property.swift */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -783,6 +806,7 @@
 				DC0785FF1DDC6F430063AB96 /* SimpleTableView.swift in Sources */,
 				DC137F9B1E4E29DA00A0516F /* ObservableConvertibleType+Utils.swift in Sources */,
 				DC2B5D6F1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift in Sources */,
+				DC69408C1E53594800C99380 /* Property.swift in Sources */,
 				DC137F751E4DB62200A0516F /* Rules+String.swift in Sources */,
 				DC0785E61DDB2C150063AB96 /* CollectionViewCellIdentifier.swift in Sources */,
 				DC137F9A1E4E29DA00A0516F /* Array+Utils.swift in Sources */,
@@ -813,6 +837,7 @@
 				DC137F9D1E4E29DA00A0516F /* TODO.swift in Sources */,
 				DC0785E01DDB21E00063AB96 /* AnyTableViewCellIdentifier.swift in Sources */,
 				DC0785E81DDB2C290063AB96 /* AnyCollectionViewCellIdentifier.swift in Sources */,
+				DC6940911E5359BD00C99380 /* OptionalType.swift in Sources */,
 				DC0785E41DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
 				DC2B5D691DE2FD6800F9C9D7 /* CollectionViewBase.swift in Sources */,
 				DC137FA51E4E29DA00A0516F /* UIScrollView+Scrollable.swift in Sources */,
@@ -830,6 +855,7 @@
 				DC6940731E505F7200C99380 /* SingleRowCollectionView.swift in Sources */,
 				DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */,
 				DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */,
+				DC79F6AB1E5377B60033AE51 /* Configurable.swift in Sources */,
 				DC137FA41E4E29DA00A0516F /* ScrollControllerBase+Scrollable.swift in Sources */,
 				DC137FA81E4E29DA00A0516F /* UIView+Utils.swift in Sources */,
 				DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */,
@@ -840,6 +866,7 @@
 				DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */,
 				DC137FA71E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift in Sources */,
 				DC0785A11DD3ADB60063AB96 /* ComponentWithDelegate.swift in Sources */,
+				DC69408E1E53595400C99380 /* Properties.swift in Sources */,
 				DC0785991DD3A3420063AB96 /* ViewBase.swift in Sources */,
 				DC0785A21DD3B77B0063AB96 /* ButtonBase.swift in Sources */,
 				DC0785DE1DDB20840063AB96 /* TableViewCellIdentifier.swift in Sources */,
@@ -847,6 +874,7 @@
 				DC0785911DD39BF60063AB96 /* Component.swift in Sources */,
 				DC6940751E509DE600C99380 /* TableViewBase+Scrollable.swift in Sources */,
 				DC0785CE1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift in Sources */,
+				DC69408A1E53590A00C99380 /* Configuration.swift in Sources */,
 				DC0785861DD3879B0063AB96 /* Wireframe.swift in Sources */,
 				DC2B5D671DE2F90D00F9C9D7 /* TableViewBase.swift in Sources */,
 				DC69407D1E51AE7600C99380 /* CollectionViewBase+Scrollable.swift in Sources */,
