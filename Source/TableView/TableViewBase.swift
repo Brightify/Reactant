@@ -16,8 +16,14 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     
     open override var configuration: Configuration {
         didSet {
-            loadingIndicator.activityIndicatorViewStyle = configuration.get(valueFor: Properties.loadingIndicatorStyle)
-            configuration.get(valueFor: Properties.emptyListLabelStyle)(emptyLabel)
+            configuration.get(valueFor: Properties.Style.TableView.tableView)(tableView)
+            if let refreshControl = refreshControl {
+                configuration.get(valueFor: Properties.Style.TableView.refreshControl)(refreshControl)
+            }
+            configuration.get(valueFor: Properties.Style.TableView.emptyLabel)(emptyLabel)
+            configuration.get(valueFor: Properties.Style.TableView.loadingIndicator)(loadingIndicator)
+            
+            configurationChangeTime = clock()
             setNeedsLayout()
         }
     }
@@ -27,6 +33,9 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     public let refreshControl: UIRefreshControl?
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView()
+    
+    // Optimization that prevents configuration reloading each time cell is dequeued.
+    private var configurationChangeTime: clock_t = clock()
     
     public init(style: UITableViewStyle = .plain, reloadable: Bool = true) {
         self.tableView = UITableView(frame: CGRect.zero, style: style)
@@ -125,6 +134,10 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     
     open func configure<T: Component>(cell: TableViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
+        if configurationChangeTime != cell.configurationChangeTime {
+            cell.configuration = configuration
+            cell.configurationChangeTime = configurationChangeTime
+        }
         let component = cell.cachedCellOrCreated(factory: factory)
         component.componentState = model
         (component as? Configurable)?.configuration = configuration
@@ -142,6 +155,10 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     
     open func configure<T: Component>(view: TableViewHeaderFooterWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
+        if configurationChangeTime != view.configurationChangeTime {
+            view.configuration = configuration
+            view.configurationChangeTime = configurationChangeTime
+        }
         let component = view.cachedViewOrCreated(factory: factory)
         component.componentState = model
         (component as? Configurable)?.configuration = configuration

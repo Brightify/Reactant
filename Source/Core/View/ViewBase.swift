@@ -28,6 +28,7 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
     open var configuration: Configuration = .global {
         didSet {
             layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
+            configuration.get(valueFor: Properties.Style.view)(self)
         }
     }
     

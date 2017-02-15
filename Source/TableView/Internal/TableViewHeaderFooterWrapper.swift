@@ -8,9 +8,18 @@
 
 import UIKit
 
-public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeaderFooterView {
+public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeaderFooterView, Configurable {
+    
+    public var configurationChangeTime: clock_t = 0
     
     private var wrappedView: VIEW?
+    
+    public var configuration: Configuration = .global {
+        didSet {
+            (wrappedView as? Configurable)?.configuration = configuration
+            configuration.get(valueFor: Properties.Style.TableView.headerFooterWrapper)(self)
+        }
+    }
     
     public override class var requiresConstraintBasedLayout: Bool {
         return true
@@ -29,6 +38,7 @@ public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeader
             return wrappedView
         } else {
             let wrappedView = factory()
+            (wrappedView as? Configurable)?.configuration = configuration
             self.wrappedView = wrappedView
             contentView.children(wrappedView)
             setNeedsUpdateConstraints()

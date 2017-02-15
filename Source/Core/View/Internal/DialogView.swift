@@ -16,8 +16,8 @@ public final class DialogView: ViewBase<Void, Void> {
     public override var configuration: Configuration {
         didSet {
             contentContainer.configuration = configuration
-            configuration.get(valueFor: Properties.dialogStyle)(self)
-            configuration.get(valueFor: Properties.dialogContentContainerStyle)(contentContainer)
+            configuration.get(valueFor: Properties.Style.dialogContentContainer)(contentContainer)
+            configuration.get(valueFor: Properties.Style.dialog)(self)
         }
     }
     

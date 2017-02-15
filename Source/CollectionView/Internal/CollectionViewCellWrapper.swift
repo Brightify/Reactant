@@ -8,9 +8,18 @@
 
 import UIKit
 
-public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell {
+public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell, Configurable {
+    
+    public var configurationChangeTime: clock_t = 0
     
     private var cell: CELL?
+    
+    public var configuration: Configuration = .global {
+        didSet {
+            (cell as? Configurable)?.configuration = configuration
+            configuration.get(valueFor: Properties.Style.CollectionView.cellWrapper)(self)
+        }
+    }
     
     public override class var requiresConstraintBasedLayout: Bool {
         return true
@@ -45,6 +54,7 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
             return cell
         } else {
             let cell = factory()
+            (cell as? Configurable)?.configuration = configuration
             self.cell = cell
             contentView.children(cell)
             setNeedsUpdateConstraints()

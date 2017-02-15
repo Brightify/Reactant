@@ -16,8 +16,14 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     
     open override var configuration: Configuration {
         didSet {
-            loadingIndicator.activityIndicatorViewStyle = configuration.get(valueFor: Properties.loadingIndicatorStyle)
-            configuration.get(valueFor: Properties.emptyListLabelStyle)(emptyLabel)
+            configuration.get(valueFor: Properties.Style.CollectionView.collectionView)(collectionView)
+            if let refreshControl = refreshControl {
+                configuration.get(valueFor: Properties.Style.CollectionView.refreshControl)(refreshControl)
+            }
+            configuration.get(valueFor: Properties.Style.CollectionView.emptyLabel)(emptyLabel)
+            configuration.get(valueFor: Properties.Style.CollectionView.loadingIndicator)(loadingIndicator)
+            
+            configurationChangeTime = clock()
             setNeedsLayout()
         }
     }
@@ -27,6 +33,9 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     public let refreshControl: UIRefreshControl?
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView()
+    
+    // Optimization that prevents configuration reloading each time cell is dequeued.
+    private var configurationChangeTime: clock_t = clock()
     
     public init(layout: UICollectionViewLayout, reloadable: Bool = true) {
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -117,9 +126,12 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     
     open func configure<T: Component>(cell: CollectionViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
+        if configurationChangeTime != cell.configurationChangeTime {
+            cell.configuration = configuration
+            cell.configurationChangeTime = configurationChangeTime
+        }
         let component = cell.cachedCellOrCreated(factory: factory)
         component.componentState = model
-        (component as? Configurable)?.configuration = configuration
         component.action.map(mapAction)
             .subscribe(onNext: perform)
             .addDisposableTo(component.stateDisposeBag)
@@ -134,9 +146,12 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     
     open func configure<T: Component>(view: CollectionReusableViewWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
+        if configurationChangeTime != view.configurationChangeTime {
+            view.configuration = configuration
+            view.configurationChangeTime = configurationChangeTime
+        }
         let component = view.cachedViewOrCreated(factory: factory)
         component.componentState = model
-        (component as? Configurable)?.configuration = configuration
         component.action.map(mapAction)
             .subscribe(onNext: perform)
             .addDisposableTo(component.stateDisposeBag)
