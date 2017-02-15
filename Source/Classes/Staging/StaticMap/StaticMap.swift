@@ -23,7 +23,7 @@ open class StaticMap: ViewBase<MKCoordinateRegion, Void> {
 
     private let tapGestureRecognizer = UIGestureRecognizer()
 
-    override init() {
+    public override init() {
         super.init()
     }
 
