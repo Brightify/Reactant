@@ -14,11 +14,19 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         return .all
     }
     
+    open override var configuration: Configuration {
+        didSet {
+            loadingIndicator.activityIndicatorViewStyle = configuration.get(valueFor: Properties.loadingIndicatorStyle)
+            configuration.get(valueFor: Properties.emptyListLabelStyle)(emptyLabel)
+            setNeedsLayout()
+        }
+    }
+    
     public let tableView: UITableView
     
     public let refreshControl: UIRefreshControl?
     public let emptyLabel = UILabel()
-    public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
+    public let loadingIndicator = UIActivityIndicatorView()
     
     public init(style: UITableViewStyle = .plain, reloadable: Bool = true) {
         self.tableView = UITableView(frame: CGRect.zero, style: style)
@@ -41,8 +49,6 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         }
         
         loadingIndicator.hidesWhenStopped = true
-        
-        ReactantConfiguration.global.emptyListLabelStyle(emptyLabel)
         
         tableView.backgroundView = nil
         tableView.backgroundColor = .clear
@@ -121,6 +127,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         let component = cell.cachedCellOrCreated(factory: factory)
         component.componentState = model
+        (component as? Configurable)?.configuration = configuration
         component.action.map(mapAction)
             .subscribe(onNext: perform)
             .addDisposableTo(component.stateDisposeBag)
@@ -137,6 +144,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         let component = view.cachedViewOrCreated(factory: factory)
         component.componentState = model
+        (component as? Configurable)?.configuration = configuration
         component.action.map(mapAction)
             .subscribe(onNext: perform)
             .addDisposableTo(component.stateDisposeBag)

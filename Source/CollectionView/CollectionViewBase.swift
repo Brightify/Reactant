@@ -14,11 +14,19 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         return .all
     }
     
+    open override var configuration: Configuration {
+        didSet {
+            loadingIndicator.activityIndicatorViewStyle = configuration.get(valueFor: Properties.loadingIndicatorStyle)
+            configuration.get(valueFor: Properties.emptyListLabelStyle)(emptyLabel)
+            setNeedsLayout()
+        }
+    }
+    
     public let collectionView: UICollectionView
     
     public let refreshControl: UIRefreshControl?
     public let emptyLabel = UILabel()
-    public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
+    public let loadingIndicator = UIActivityIndicatorView()
     
     public init(layout: UICollectionViewLayout, reloadable: Bool = true) {
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -41,8 +49,6 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         }
         
         loadingIndicator.hidesWhenStopped = true
-        
-        ReactantConfiguration.global.emptyListLabelStyle(emptyLabel)
         
         collectionView.backgroundColor = .clear
         collectionView.alwaysBounceVertical = true
@@ -113,6 +119,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         let component = cell.cachedCellOrCreated(factory: factory)
         component.componentState = model
+        (component as? Configurable)?.configuration = configuration
         component.action.map(mapAction)
             .subscribe(onNext: perform)
             .addDisposableTo(component.stateDisposeBag)
@@ -129,6 +136,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         let component = view.cachedViewOrCreated(factory: factory)
         component.componentState = model
+        (component as? Configurable)?.configuration = configuration
         component.action.map(mapAction)
             .subscribe(onNext: perform)
             .addDisposableTo(component.stateDisposeBag)

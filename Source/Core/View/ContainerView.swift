@@ -8,7 +8,13 @@
 
 import UIKit
 
-open class ContainerView: UIView {
+open class ContainerView: UIView, Configurable {
+    
+    open var configuration: Configuration = .global {
+        didSet {
+            layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
+        }
+    }
     
     open override class var requiresConstraintBasedLayout: Bool {
         return true
@@ -17,19 +23,19 @@ open class ContainerView: UIView {
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        layoutMargins = ReactantConfiguration.global.layoutMargins
+        reloadConfiguration()
     }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        layoutMargins = ReactantConfiguration.global.layoutMargins
+        reloadConfiguration()
     }
     
     public convenience init() {
         self.init(frame: CGRect.zero)
         
-        layoutMargins = ReactantConfiguration.global.layoutMargins
+        reloadConfiguration()
     }
     
     open override func addSubview(_ view: UIView) {

@@ -8,7 +8,7 @@
 
 import RxSwift
 
-open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate {
+open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable {
     
     public typealias StateType = STATE
     public typealias ActionType = ACTION
@@ -16,7 +16,7 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate {
     public let lifetimeDisposeBag = DisposeBag()
     
     public let componentDelegate = ComponentDelegate<STATE, ACTION, ViewBase<STATE, ACTION>>()
-
+    
     open var actions: [Observable<ActionType>] {
         return []
     }
@@ -24,7 +24,13 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate {
     open var action: Observable<ActionType> {
         return componentDelegate.action
     }
-
+    
+    open var configuration: Configuration = .global {
+        didSet {
+            layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
+        }
+    }
+    
     open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
@@ -35,13 +41,13 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate {
         componentDelegate.ownerComponent = self
         componentDelegate.canUpdate = true
         
-        layoutMargins = ReactantConfiguration.global.layoutMargins
         translatesAutoresizingMaskIntoConstraints = false
         
         loadView()
         setupConstraints()
         
         resetActions()
+        reloadConfiguration()
         
         afterInit()
     }

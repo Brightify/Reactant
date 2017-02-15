@@ -82,6 +82,6 @@ public class ActivityIndicator {
 extension ObservableConvertibleType {
     public func trackActivity(in activityIndicator: ActivityIndicator, message: String? = nil) -> Observable<E> {
         return activityIndicator.trackActivity(of: self,
-                                               message: message ?? ReactantConfiguration.global.defaultLoadingMessage)
+                                               message: message ?? "") //Property<String>(defaultValue: "Loading ..")
     }
 }

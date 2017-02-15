@@ -8,7 +8,7 @@
 
 import RxSwift
 
-open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
+open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configurable {
 
     public typealias StateType = STATE
     public typealias ActionType = ACTION
@@ -24,24 +24,30 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
     open var action: Observable<ACTION> {
         return componentDelegate.action
     }
-
+    
+    open var configuration: Configuration = .global {
+        didSet {
+            layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
+        }
+    }
+    
     open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
-
+    
     public init() {
         super.init(frame: CGRect.zero)
         
         componentDelegate.ownerComponent = self
         componentDelegate.canUpdate = true
         
-        layoutMargins = ReactantConfiguration.global.layoutMargins
         translatesAutoresizingMaskIntoConstraints = false
         
         loadView()
         setupConstraints()
         
         resetActions()
+        reloadConfiguration()
         
         afterInit()
     }

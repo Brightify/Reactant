@@ -11,8 +11,13 @@ public final class Configuration {
     public static var global = Configuration()
     
     private var data: [Int: Any] = [:]
-    
-    public init() {
+        
+    public init(copy: Configuration...) {
+        self.data = copy.map { $0.data }.reduce([:]) { acc, value in
+            var dictionary = acc
+            value.forEach { dictionary[$0] = $1 }
+            return dictionary
+        }
     }
     
     public func set<T>(value: T, for property: Property<T>) {

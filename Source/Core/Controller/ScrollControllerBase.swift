@@ -12,13 +12,9 @@ open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
     
     public let scrollView = UIScrollView()
 
-    public override init(title: String = "", root: ROOT = ROOT.init()) {
-        super.init(title: title, root: root)
-    }
-
     open override func loadView() {
-        view = ControllerRootViewContainer()
-        
+        view = ControllerRootViewContainer().with(configuration: configuration)
+
         view.children(
             scrollView.children(
                 rootView
