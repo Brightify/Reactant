@@ -11,6 +11,12 @@ import UIKit
 open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
     
     public let scrollView = UIScrollView()
+    
+    open override var configuration: Configuration {
+        didSet {
+            configuration.get(valueFor: Properties.Style.scroll)(scrollView)
+        }
+    }
 
     open override func loadView() {
         view = ControllerRootViewContainer().with(configuration: configuration)

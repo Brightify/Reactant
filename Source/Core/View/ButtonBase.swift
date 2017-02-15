@@ -28,6 +28,7 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
     open var configuration: Configuration = .global {
         didSet {
             layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
+            configuration.get(valueFor: Properties.Style.button)(self)
         }
     }
     

@@ -8,9 +8,18 @@
 
 import UIKit
 
-public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReusableView {
+public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReusableView, Configurable {
+    
+    public var configurationChangeTime: clock_t = 0
     
     private var wrappedView: VIEW?
+        
+    public var configuration: Configuration = .global {
+        didSet {
+            (wrappedView as? Configurable)?.configuration = configuration
+            configuration.get(valueFor: Properties.Style.CollectionView.reusableViewWrapper)(self)
+        }
+    }
     
     public override class var requiresConstraintBasedLayout: Bool {
         return true
@@ -29,6 +38,7 @@ public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReus
             return wrappedView
         } else {
             let wrappedView = factory()
+            (wrappedView as? Configurable)?.configuration = configuration
             self.wrappedView = wrappedView
             children(wrappedView)
             setNeedsUpdateConstraints()

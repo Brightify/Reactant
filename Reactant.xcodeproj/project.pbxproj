@@ -92,6 +92,8 @@
 		DC6940911E5359BD00C99380 /* OptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940901E5359BD00C99380 /* OptionalType.swift */; };
 		DC79F6AB1E5377B60033AE51 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AA1E5377B60033AE51 /* Configurable.swift */; };
 		DC79F6AD1E54A5880033AE51 /* Properties+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AC1E54A5880033AE51 /* Properties+CollectionView.swift */; };
+		DC79F6AF1E54AB170033AE51 /* Properties+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AE1E54AB170033AE51 /* Properties+TableView.swift */; };
+		DC79F6B11E54AD540033AE51 /* Properties+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6B01E54AD540033AE51 /* Properties+Style.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +208,8 @@
 		DC6940901E5359BD00C99380 /* OptionalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionalType.swift; path = DefaultConfiguration/OptionalType.swift; sourceTree = "<group>"; };
 		DC79F6AA1E5377B60033AE51 /* Configurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Configurable.swift; path = DefaultConfiguration/Configurable.swift; sourceTree = "<group>"; };
 		DC79F6AC1E54A5880033AE51 /* Properties+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+CollectionView.swift"; sourceTree = "<group>"; };
+		DC79F6AE1E54AB170033AE51 /* Properties+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+TableView.swift"; sourceTree = "<group>"; };
+		DC79F6B01E54AD540033AE51 /* Properties+Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+Style.swift"; sourceTree = "<group>"; };
 		F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -307,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				185121061D834C5D002C4B08 /* Properties+Core.swift */,
+				DC79F6B01E54AD540033AE51 /* Properties+Style.swift */,
 				DC07858B1DD39B5F0063AB96 /* Component */,
 				DC0785741DC8845E0063AB96 /* Controller */,
 				DC0785751DC884660063AB96 /* View */,
@@ -394,6 +399,7 @@
 		DC0785791DC884BB0063AB96 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				DC79F6AE1E54AB170033AE51 /* Properties+TableView.swift */,
 				DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */,
 				DC6940761E509E0700C99380 /* TableViewBase+Delegates.swift */,
 				DC6940741E509DE600C99380 /* TableViewBase+Scrollable.swift */,
@@ -829,6 +835,7 @@
 				DC0785A41DD3BDE10063AB96 /* ContainerView.swift in Sources */,
 				DC137FA61E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift in Sources */,
 				DC6940831E51B23A00C99380 /* FlowCollectionViewBase.swift in Sources */,
+				DC79F6AF1E54AB170033AE51 /* Properties+TableView.swift in Sources */,
 				DC0785D41DD9C2330063AB96 /* CollectionReusableViewWrapper.swift in Sources */,
 				DC0785AE1DD3C3120063AB96 /* DialogControllerBase.swift in Sources */,
 				DC137F9C1E4E29DA00A0516F /* ObserverType+Utils.swift in Sources */,
@@ -844,6 +851,7 @@
 				DC0785E41DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
 				DC2B5D691DE2FD6800F9C9D7 /* CollectionViewBase.swift in Sources */,
 				DC137FA51E4E29DA00A0516F /* UIScrollView+Scrollable.swift in Sources */,
+				DC79F6B11E54AD540033AE51 /* Properties+Style.swift in Sources */,
 				18650B971D8364DC00B1B2A0 /* Properties+Core.swift in Sources */,
 				DC137F791E4DB7F100A0516F /* ValidationError.swift in Sources */,
 				DC137F731E4DB5FB00A0516F /* Rules.swift in Sources */,

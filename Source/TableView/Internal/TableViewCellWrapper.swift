@@ -8,9 +8,18 @@
 
 import UIKit
 
-public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell {
+public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell, Configurable {
+    
+    public var configurationChangeTime: clock_t = 0
     
     private var cell: CELL?
+    
+    public var configuration: Configuration = .global {
+        didSet {
+            (cell as? Configurable)?.configuration = configuration
+            configuration.get(valueFor: Properties.Style.TableView.cellWrapper)(self)
+        }
+    }
     
     public override class var requiresConstraintBasedLayout: Bool {
         return true
@@ -60,6 +69,7 @@ public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell {
             return cell
         } else {
             let cell = factory()
+            (cell as? Configurable)?.configuration = configuration
             self.cell = cell
             if let tableViewCell = tableViewCell {
                 selectionStyle = tableViewCell.selectionStyle

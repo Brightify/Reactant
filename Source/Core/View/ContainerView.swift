@@ -13,6 +13,7 @@ open class ContainerView: UIView, Configurable {
     open var configuration: Configuration = .global {
         didSet {
             layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
+            configuration.get(valueFor: Properties.Style.container)(self)
         }
     }
     

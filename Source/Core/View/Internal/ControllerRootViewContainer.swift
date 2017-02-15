@@ -14,7 +14,7 @@ public final class ControllerRootViewContainer: UIView, Configurable {
     
     public var configuration: Configuration = .global {
         didSet {
-            configuration.get(valueFor: Properties.controllerRootStyle)(self)
+            configuration.get(valueFor: Properties.Style.controllerRoot)(self)
         }
     }
     
