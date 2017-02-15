@@ -20,8 +20,7 @@ extension Wireframe {
         return controller
     }
     
-    public func branchNavigation(controller: UIViewController,
-                                          closeButtonTitle: String? = ReactantConfiguration.global.closeButtonTitle) -> UINavigationController {
+    public func branchNavigation(controller: UIViewController, closeButtonTitle: String?) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: controller)
         if let closeButtonTitle = closeButtonTitle {
             controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: closeButtonTitle, style: .done) { _ in
@@ -29,5 +28,10 @@ extension Wireframe {
             }
         }
         return navigationController
+    }
+    
+    public func branchNavigation<S, T>(controller: ControllerBase<S, T>) -> UINavigationController {
+        let closeButtonTitle = controller.configuration.get(valueFor: Properties.closeButtonTitle)
+        return branchNavigation(controller: controller, closeButtonTitle: closeButtonTitle)
     }
 }

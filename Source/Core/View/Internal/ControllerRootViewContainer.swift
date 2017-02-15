@@ -8,27 +8,20 @@
 
 import UIKit
 
-public final class ControllerRootViewContainer: UIView {
+public final class ControllerRootViewContainer: UIView, Configurable {
     
     public let wrappedView: UIView?
+    
+    public var configuration: Configuration = .global {
+        didSet {
+            configuration.get(valueFor: Properties.controllerRootStyle)(self)
+        }
+    }
     
     public override var frame: CGRect {
         didSet {
             wrappedView?.frame = bounds
         }
-    }
-    
-    public convenience init() {
-        self.init(frame: CGRect.zero)
-    }
-    
-    public override init(frame: CGRect) {
-        wrappedView = nil
-        
-        super.init(frame: frame)
-        
-        loadView()
-        ReactantConfiguration.global.controllerRootStyle(self)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -37,7 +30,16 @@ public final class ControllerRootViewContainer: UIView {
         super.init(coder: aDecoder)
         
         loadView()
-        ReactantConfiguration.global.controllerRootStyle(self)
+        reloadConfiguration()
+    }
+    
+    public override init(frame: CGRect = .zero) {
+        wrappedView = nil
+        
+        super.init(frame: frame)
+        
+        loadView()
+        reloadConfiguration()
     }
     
     public init(wrap: UIView) {
@@ -46,7 +48,7 @@ public final class ControllerRootViewContainer: UIView {
         super.init(frame: CGRect.zero)
         
         addSubview(wrap)
-        ReactantConfiguration.global.controllerRootStyle(self)
+        reloadConfiguration()
     }
     
     private func loadView() {

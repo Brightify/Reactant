@@ -10,7 +10,7 @@
 		04168232D53A3C6EC65FE3C3 /* Pods_Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */; };
 		185121511D834D1F002C4B08 /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
 		18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */; };
-		18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121061D834C5D002C4B08 /* ReactantConfiguration.swift */; };
+		18650B971D8364DC00B1B2A0 /* Properties+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121061D834C5D002C4B08 /* Properties+Core.swift */; };
 		18B4BF7D1E294E7A00D39EEA /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */; };
 		18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */; };
 		45444ED1E71FEFA1D6A84E08 /* Pods_ReactantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711603479E5441514316A7F3 /* Pods_ReactantTests.framework */; };
@@ -91,6 +91,7 @@
 		DC69408E1E53595400C99380 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69408D1E53595400C99380 /* Properties.swift */; };
 		DC6940911E5359BD00C99380 /* OptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940901E5359BD00C99380 /* OptionalType.swift */; };
 		DC79F6AB1E5377B60033AE51 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AA1E5377B60033AE51 /* Configurable.swift */; };
+		DC79F6AD1E54A5880033AE51 /* Properties+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AC1E54A5880033AE51 /* Properties+CollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,7 +106,7 @@
 
 /* Begin PBXFileReference section */
 		045F878B1A7F63F7AAD82596 /* Pods_ReactantExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		185121061D834C5D002C4B08 /* ReactantConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantConfiguration.swift; sourceTree = "<group>"; };
+		185121061D834C5D002C4B08 /* Properties+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+Core.swift"; sourceTree = "<group>"; };
 		185121471D834D1E002C4B08 /* Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1851214B1D834D1E002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185121501D834D1F002C4B08 /* ReactantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +205,7 @@
 		DC69408D1E53595400C99380 /* Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Properties.swift; path = DefaultConfiguration/Properties.swift; sourceTree = "<group>"; };
 		DC6940901E5359BD00C99380 /* OptionalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionalType.swift; path = DefaultConfiguration/OptionalType.swift; sourceTree = "<group>"; };
 		DC79F6AA1E5377B60033AE51 /* Configurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Configurable.swift; path = DefaultConfiguration/Configurable.swift; sourceTree = "<group>"; };
+		DC79F6AC1E54A5880033AE51 /* Properties+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+CollectionView.swift"; sourceTree = "<group>"; };
 		F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -304,7 +306,7 @@
 		DC07856E1DC881B80063AB96 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				185121061D834C5D002C4B08 /* ReactantConfiguration.swift */,
+				185121061D834C5D002C4B08 /* Properties+Core.swift */,
 				DC07858B1DD39B5F0063AB96 /* Component */,
 				DC0785741DC8845E0063AB96 /* Controller */,
 				DC0785751DC884660063AB96 /* View */,
@@ -381,6 +383,7 @@
 				DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */,
 				DC6940821E51B23A00C99380 /* FlowCollectionViewBase.swift */,
 				DC6940841E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift */,
+				DC79F6AC1E54A5880033AE51 /* Properties+CollectionView.swift */,
 				DC0785D71DDB17740063AB96 /* Identifier */,
 				DC69406F1E505C4500C99380 /* Implementation */,
 				DC2B5D721DE437C900F9C9D7 /* Internal */,
@@ -847,7 +850,7 @@
 				DC0785E41DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
 				DC2B5D691DE2FD6800F9C9D7 /* CollectionViewBase.swift in Sources */,
 				DC137FA51E4E29DA00A0516F /* UIScrollView+Scrollable.swift in Sources */,
-				18650B971D8364DC00B1B2A0 /* ReactantConfiguration.swift in Sources */,
+				18650B971D8364DC00B1B2A0 /* Properties+Core.swift in Sources */,
 				DC137F791E4DB7F100A0516F /* ValidationError.swift in Sources */,
 				DC137F731E4DB5FB00A0516F /* Rules.swift in Sources */,
 				DC0785AF1DD3C3120063AB96 /* ScrollControllerBase.swift in Sources */,
@@ -871,6 +874,7 @@
 				DC2B5D6C1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift in Sources */,
 				DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */,
 				DC137FA71E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift in Sources */,
+				DC79F6AD1E54A5880033AE51 /* Properties+CollectionView.swift in Sources */,
 				DC0785A11DD3ADB60063AB96 /* ComponentWithDelegate.swift in Sources */,
 				DC69408E1E53595400C99380 /* Properties.swift in Sources */,
 				DC0785991DD3A3420063AB96 /* ViewBase.swift in Sources */,
@@ -1029,7 +1033,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1070,7 +1073,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

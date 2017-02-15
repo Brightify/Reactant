@@ -9,7 +9,7 @@
 import SnapKit
 import RxSwift
 
-open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate where ROOT: Component {
+open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate, Configurable where ROOT: Component {
     
     public typealias StateType = STATE
     public typealias ActionType = Void
@@ -28,6 +28,15 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     
     public let rootView: ROOT
     
+    open var configuration: Configuration = .global {
+        didSet {
+            (rootView as? Configurable)?.configuration = configuration
+            (view as? Configurable)?.configuration = configuration
+            
+            navigationItem.backBarButtonItem = configuration.get(valueFor: Properties.defaultBackButton)
+        }
+    }
+    
     private var castRootView: RootView? {
         return rootView as? RootView
     }
@@ -45,9 +54,8 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
             .addDisposableTo(lifetimeDisposeBag)
         
         self.title = title
-        if let backButtonTitle = ReactantConfiguration.global.defaultBackButtonTitle {
-            navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .plain)
-        }
+        
+        reloadConfiguration()
         
         afterInit()
     }
@@ -72,8 +80,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     }
 
     open override func loadView() {
-        // FIXME Add common styles and style rootview
-        view = ControllerRootViewContainer()
+        view = ControllerRootViewContainer().with(configuration: configuration)
         
         view.addSubview(rootView)
     }

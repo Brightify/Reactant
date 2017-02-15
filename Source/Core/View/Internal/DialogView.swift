@@ -13,13 +13,18 @@ public final class DialogView: ViewBase<Void, Void> {
     private let contentContainer = ContainerView()
     private let content: UIView
     
-    init(content: UIView) {
+    public override var configuration: Configuration {
+        didSet {
+            contentContainer.configuration = configuration
+            configuration.get(valueFor: Properties.dialogStyle)(self)
+            configuration.get(valueFor: Properties.dialogContentContainerStyle)(contentContainer)
+        }
+    }
+    
+    public init(content: UIView) {
         self.content = content
         
         super.init()
-        
-        ReactantConfiguration.global.dialogStyle(self)
-        ReactantConfiguration.global.dialogContentContainerStyle(contentContainer)
     }
     
     override public func loadView() {
