@@ -79,7 +79,6 @@
 		DC2B5D6F1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6E1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift */; };
 		DC69406E1E505C3900C99380 /* SimpleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69406D1E505C3900C99380 /* SimpleCollectionView.swift */; };
 		DC6940711E505CA700C99380 /* TableViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940701E505CA700C99380 /* TableViewState.swift */; };
-		DC6940731E505F7200C99380 /* SingleRowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940721E505F7200C99380 /* SingleRowCollectionView.swift */; };
 		DC6940751E509DE600C99380 /* TableViewBase+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940741E509DE600C99380 /* TableViewBase+Scrollable.swift */; };
 		DC6940771E509E0700C99380 /* TableViewBase+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940761E509E0700C99380 /* TableViewBase+Delegates.swift */; };
 		DC69407D1E51AE7600C99380 /* CollectionViewBase+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69407C1E51AE7600C99380 /* CollectionViewBase+Scrollable.swift */; };
@@ -94,6 +93,7 @@
 		DC79F6AD1E54A5880033AE51 /* Properties+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AC1E54A5880033AE51 /* Properties+CollectionView.swift */; };
 		DC79F6AF1E54AB170033AE51 /* Properties+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AE1E54AB170033AE51 /* Properties+TableView.swift */; };
 		DC79F6B11E54AD540033AE51 /* Properties+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6B01E54AD540033AE51 /* Properties+Style.swift */; };
+		DC79F6B31E55A67E0033AE51 /* PagingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6B21E55A67E0033AE51 /* PagingCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,7 +195,6 @@
 		DC2B5D6E1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogDismissalListener.swift; sourceTree = "<group>"; };
 		DC69406D1E505C3900C99380 /* SimpleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleCollectionView.swift; path = Implementation/SimpleCollectionView.swift; sourceTree = "<group>"; };
 		DC6940701E505CA700C99380 /* TableViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewState.swift; sourceTree = "<group>"; };
-		DC6940721E505F7200C99380 /* SingleRowCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleRowCollectionView.swift; path = Implementation/SingleRowCollectionView.swift; sourceTree = "<group>"; };
 		DC6940741E509DE600C99380 /* TableViewBase+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewBase+Scrollable.swift"; sourceTree = "<group>"; };
 		DC6940761E509E0700C99380 /* TableViewBase+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewBase+Delegates.swift"; sourceTree = "<group>"; };
 		DC69407C1E51AE7600C99380 /* CollectionViewBase+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionViewBase+Scrollable.swift"; sourceTree = "<group>"; };
@@ -210,6 +209,7 @@
 		DC79F6AC1E54A5880033AE51 /* Properties+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+CollectionView.swift"; sourceTree = "<group>"; };
 		DC79F6AE1E54AB170033AE51 /* Properties+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+TableView.swift"; sourceTree = "<group>"; };
 		DC79F6B01E54AD540033AE51 /* Properties+Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+Style.swift"; sourceTree = "<group>"; };
+		DC79F6B21E55A67E0033AE51 /* PagingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagingCollectionView.swift; path = Implementation/PagingCollectionView.swift; sourceTree = "<group>"; };
 		F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -601,7 +601,7 @@
 			isa = PBXGroup;
 			children = (
 				DC69406D1E505C3900C99380 /* SimpleCollectionView.swift */,
-				DC6940721E505F7200C99380 /* SingleRowCollectionView.swift */,
+				DC79F6B21E55A67E0033AE51 /* PagingCollectionView.swift */,
 			);
 			name = Implementation;
 			sourceTree = "<group>";
@@ -823,6 +823,7 @@
 				DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */,
 				DC137FA91E4E29DA00A0516F /* CollapseAxis.swift in Sources */,
 				DC0785E21DDB22670063AB96 /* TableViewHeaderFooterIdentifier.swift in Sources */,
+				DC79F6B31E55A67E0033AE51 /* PagingCollectionView.swift in Sources */,
 				18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */,
 				DC0785EC1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift in Sources */,
 				DC137F9F1E4E29DA00A0516F /* OrderedDictionary.swift in Sources */,
@@ -863,7 +864,6 @@
 				DC07859D1DD3AA870063AB96 /* RootView.swift in Sources */,
 				DC69407F1E51AE9A00C99380 /* CollectionViewBase+Delegates.swift in Sources */,
 				DC6940851E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift in Sources */,
-				DC6940731E505F7200C99380 /* SingleRowCollectionView.swift in Sources */,
 				DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */,
 				DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */,
 				DC79F6AB1E5377B60033AE51 /* Configurable.swift in Sources */,

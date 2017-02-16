@@ -18,5 +18,6 @@ extension Properties.Style {
         public static let loadingIndicator = Properties.Style.style(for: UIActivityIndicatorView.self)
         public static let reusableViewWrapper = Properties.Style.style(for: UICollectionReusableView.self)
         public static let cellWrapper = Properties.Style.style(for: UICollectionViewCell.self)
+        public static let pageControl = Properties.Style.style(for: UIPageControl.self)
     }
 }
