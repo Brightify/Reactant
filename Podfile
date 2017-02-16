@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-target 'Reactant' do
+def shared
     pod 'RxSwift', '~> 3.0'
     pod 'RxCocoa', '~> 3.0'
     pod 'RxDataSources', '~> 1.0'
@@ -12,7 +12,17 @@ target 'Reactant' do
     pod 'Result', '~> 3.0'
 end
 
+target 'Reactant' do
+    shared
+end
+
 target 'ReactantTests' do
+    shared
+    
     pod 'Quick', '~> 1.0'
     pod 'Nimble', '~> 5.0'
+end
+
+target 'ReactantPrototyping' do
+    shared
 end
