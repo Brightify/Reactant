@@ -1,5 +1,5 @@
 //
-//  CollectionViewBase+Delegates.swift
+//  ReactantCollectionView+Delegates.swift
 //  Reactant
 //
 //  Created by Filip Dolnik on 13.02.17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension CollectionViewBase {
+extension ReactantCollectionView {
     
     public var refreshControlTintColor: UIColor? {
         get {

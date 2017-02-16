@@ -8,7 +8,7 @@
 
 import RxSwift
 
-open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>, UITableViewDelegate {
+open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>, ReactantTableView, UITableViewDelegate {
     
     open var edgesForExtendedLayout: UIRectEdge {
         return .all
@@ -16,12 +16,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     
     open override var configuration: Configuration {
         didSet {
-            configuration.get(valueFor: Properties.Style.TableView.tableView)(tableView)
-            if let refreshControl = refreshControl {
-                configuration.get(valueFor: Properties.Style.TableView.refreshControl)(refreshControl)
-            }
-            configuration.get(valueFor: Properties.Style.TableView.emptyLabel)(emptyLabel)
-            configuration.get(valueFor: Properties.Style.TableView.loadingIndicator)(loadingIndicator)
+            configuration.get(valueFor: Properties.Style.TableView.tableView)(self)
             
             configurationChangeTime = clock()
             setNeedsLayout()

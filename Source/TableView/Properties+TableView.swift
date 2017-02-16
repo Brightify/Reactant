@@ -12,10 +12,7 @@ extension Properties.Style {
     
     public struct TableView {
         
-        public static let tableView = Properties.Style.style(for: UITableView.self)
-        public static let refreshControl = Properties.Style.style(for: UIRefreshControl.self)
-        public static let emptyLabel = Properties.Style.style(for: UILabel.self)
-        public static let loadingIndicator = Properties.Style.style(for: UIActivityIndicatorView.self)
+        public static let tableView = Properties.Style.style(for: ReactantTableView.self)
         public static let headerFooterWrapper = Properties.Style.style(for: UITableViewHeaderFooterView.self)
         public static let cellWrapper = Properties.Style.style(for: UITableViewCell.self)
     }
