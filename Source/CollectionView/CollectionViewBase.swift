@@ -8,7 +8,7 @@
 
 import RxSwift
 
-open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL>, ACTION>, UICollectionViewDelegate {
+open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL>, ACTION>, ReactantCollectionView, UICollectionViewDelegate {
     
     open var edgesForExtendedLayout: UIRectEdge {
         return .all
@@ -16,12 +16,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     
     open override var configuration: Configuration {
         didSet {
-            configuration.get(valueFor: Properties.Style.CollectionView.collectionView)(collectionView)
-            if let refreshControl = refreshControl {
-                configuration.get(valueFor: Properties.Style.CollectionView.refreshControl)(refreshControl)
-            }
-            configuration.get(valueFor: Properties.Style.CollectionView.emptyLabel)(emptyLabel)
-            configuration.get(valueFor: Properties.Style.CollectionView.loadingIndicator)(loadingIndicator)
+            configuration.get(valueFor: Properties.Style.CollectionView.collectionView)(self)
             
             configurationChangeTime = clock()
             setNeedsLayout()

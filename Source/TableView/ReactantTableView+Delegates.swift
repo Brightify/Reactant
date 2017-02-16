@@ -1,5 +1,5 @@
 //
-//  TableViewBase+Delegates.swift
+//  ReactantTableView+Delegates.swift
 //  Reactant
 //
 //  Created by Filip Dolnik on 12.02.17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension TableViewBase {
+extension ReactantTableView {
     
     public var refreshControlTintColor: UIColor? {
         get {
@@ -41,7 +41,7 @@ extension TableViewBase {
         get {
             return tableView.tableFooterView
         }
-        set  {
+        set {
             tableView.tableFooterView = newValue
         }
     }
@@ -50,7 +50,7 @@ extension TableViewBase {
         get {
             return tableView.separatorStyle
         }
-        set  {
+        set {
             tableView.separatorStyle = newValue
         }
     }
@@ -59,7 +59,7 @@ extension TableViewBase {
         get {
             return tableView.estimatedRowHeight
         }
-        set  {
+        set {
             tableView.estimatedRowHeight = newValue
         }
     }
@@ -68,7 +68,7 @@ extension TableViewBase {
         get {
             return tableView.rowHeight
         }
-        set  {
+        set {
             tableView.rowHeight = newValue
         }
     }
@@ -77,7 +77,7 @@ extension TableViewBase {
         get {
             return tableView.estimatedSectionHeaderHeight
         }
-        set  {
+        set {
             tableView.estimatedSectionHeaderHeight = newValue
         }
     }
@@ -86,7 +86,7 @@ extension TableViewBase {
         get {
             return tableView.sectionHeaderHeight
         }
-        set  {
+        set {
             tableView.sectionHeaderHeight = newValue
         }
     }
@@ -95,7 +95,7 @@ extension TableViewBase {
         get {
             return tableView.estimatedSectionFooterHeight
         }
-        set  {
+        set {
             tableView.estimatedSectionFooterHeight = newValue
         }
     }
@@ -104,7 +104,7 @@ extension TableViewBase {
         get {
             return tableView.sectionFooterHeight
         }
-        set  {
+        set {
             tableView.sectionFooterHeight = newValue
         }
     }

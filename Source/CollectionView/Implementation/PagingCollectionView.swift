@@ -35,15 +35,6 @@ open class PagingCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
     
     public let pageControl = UIPageControl()
     
-    open var numberOfPages: Int {
-        get {
-            return pageControl.numberOfPages
-        } set {
-            pageControl.numberOfPages = newValue
-            invalidate()
-        }
-    }
-    
     private let cellFactory: () -> CELL
     
     public init(cellFactory: @escaping () -> CELL = CELL.init, reloadable: Bool = true) {
@@ -67,7 +58,7 @@ open class PagingCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
         
         // TODO Adjust
         pageControl.snp.makeConstraints { make in
-            make.center.equalTo(self)
+            make.edges.equalTo(self)
         }
     }
     
@@ -85,19 +76,19 @@ open class PagingCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
     }
     
     open func items(forPage page: Int, items: [MODEL]) -> [MODEL] {
-        if numberOfPages <= 1 || items.count < 1 {
+        if pageControl.numberOfPages <= 1 || items.count < 1 {
             return items
         } else {
             let from: Int
             let to: Int
-            if items.count % numberOfPages == 0 {
-                let itemsPerPage = items.count / numberOfPages
+            if items.count % pageControl.numberOfPages == 0 {
+                let itemsPerPage = items.count / pageControl.numberOfPages
                 from = itemsPerPage * page
                 to = itemsPerPage * (page + 1)
             } else {
-                let itemsPerPage = (items.count - 1) / (numberOfPages - 1)
-                if page == numberOfPages - 1 {
-                    from = itemsPerPage * (numberOfPages - 1)
+                let itemsPerPage = (items.count - 1) / (pageControl.numberOfPages - 1)
+                if page == pageControl.numberOfPages - 1 {
+                    from = itemsPerPage * (pageControl.numberOfPages - 1)
                     to = items.count
                 } else {
                     from = itemsPerPage * page
@@ -110,6 +101,5 @@ open class PagingCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
             }
             return result
         }
-
     }
 }
