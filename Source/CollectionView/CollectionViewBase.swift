@@ -55,7 +55,6 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         loadingIndicator.hidesWhenStopped = true
         
         collectionView.backgroundColor = .clear
-        collectionView.alwaysBounceVertical = true
         collectionView.delegate = self
     }
     

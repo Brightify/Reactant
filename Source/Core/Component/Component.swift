@@ -50,8 +50,8 @@ public protocol Component: class {
 extension Component {
     
     public var setComponentState: (StateType) -> Void {
-        return { [weak self] in
-            self?.componentState = $0
+        return { [unowned self] in
+            self.componentState = $0
         }
     }
     

@@ -69,6 +69,8 @@
 		DC137FAA1E4E29DA00A0516F /* ConstraintAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F971E4E29DA00A0516F /* ConstraintAction.swift */; };
 		DC137FAB1E4E29DA00A0516F /* UIView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F981E4E29DA00A0516F /* UIView+Visibility.swift */; };
 		DC137FAC1E4E29DA00A0516F /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F991E4E29DA00A0516F /* Visibility.swift */; };
+		DC1C67EA1E56F3000081E7BD /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
+		DC1C67EB1E56F3000081E7BD /* Reactant.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */; };
 		DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */; };
 		DC2B5D3D1DE2070200F9C9D7 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D391DE2070200F9C9D7 /* Rule.swift */; };
@@ -109,10 +111,30 @@
 			remoteGlobalIDString = 185121461D834D1E002C4B08;
 			remoteInfo = Reactant;
 		};
+		DC1C67EC1E56F3000081E7BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 185121461D834D1E002C4B08;
+			remoteInfo = Reactant;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DC1C67EE1E56F3000081E7BD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DC1C67EB1E56F3000081E7BD /* Reactant.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		045F878B1A7F63F7AAD82596 /* Pods_ReactantExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		185121061D834C5D002C4B08 /* Properties+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+Core.swift"; sourceTree = "<group>"; };
 		185121471D834D1E002C4B08 /* Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1851214B1D834D1E002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -122,7 +144,6 @@
 		18650BA51D83671B00B1B2A0 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
-		4406EA23619B586C084EBED1 /* Pods-ReactantExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.release.xcconfig"; sourceTree = "<group>"; };
 		50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975037688AFED52D683D2F3 /* Pods-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A648916F85EF94ED93EB6F6 /* Pods-Reactant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.release.xcconfig"; sourceTree = "<group>"; };
@@ -223,7 +244,6 @@
 		DC79F6C61E55FAA70033AE51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC79F6CA1E560A5A0033AE51 /* ReactantTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantTableView.swift; sourceTree = "<group>"; };
 		DC79F6CC1E560C400033AE51 /* ReactantCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantCollectionView.swift; sourceTree = "<group>"; };
-		F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantExample/Pods-ReactantExample.debug.xcconfig"; sourceTree = "<group>"; };
 		FC0E811E1078A9018C567089 /* Pods-ReactantPrototyping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantPrototyping.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -249,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1C67EA1E56F3000081E7BD /* Reactant.framework in Frameworks */,
 				F34A376471BD5DC822F0E8D2 /* Pods_ReactantPrototyping.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,7 +281,6 @@
 			isa = PBXGroup;
 			children = (
 				50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */,
-				045F878B1A7F63F7AAD82596 /* Pods_ReactantExample.framework */,
 				711603479E5441514316A7F3 /* Pods_ReactantTests.framework */,
 				7B0CE169634834E74544F2A0 /* Pods_ReactantPrototyping.framework */,
 			);
@@ -270,9 +290,9 @@
 		185120EF1D834C5D002C4B08 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				DC6940881E53556400C99380 /* Configuration */,
 				1851214B1D834D1E002C4B08 /* Info.plist */,
 				DC0785781DC884B40063AB96 /* CollectionView */,
+				DC6940881E53556400C99380 /* Configuration */,
 				DC07856E1DC881B80063AB96 /* Core */,
 				DC07856F1DC881E40063AB96 /* Result */,
 				DC2B5D461DE20A9C00F9C9D7 /* Staging */,
@@ -288,8 +308,6 @@
 			children = (
 				BE6BA3EF10B2D508C3108F59 /* Pods-Reactant.debug.xcconfig */,
 				5A648916F85EF94ED93EB6F6 /* Pods-Reactant.release.xcconfig */,
-				F78069484B4568D925EAEE32 /* Pods-ReactantExample.debug.xcconfig */,
-				4406EA23619B586C084EBED1 /* Pods-ReactantExample.release.xcconfig */,
 				7C37CA8BA58C7F3320247F9E /* Pods-ReactantTests.debug.xcconfig */,
 				5975037688AFED52D683D2F3 /* Pods-ReactantTests.release.xcconfig */,
 				C14DA6654F57338B068153C4 /* Pods-ReactantPrototyping.debug.xcconfig */,
@@ -727,10 +745,12 @@
 				DC79F6B61E55FAA60033AE51 /* Resources */,
 				F68371F98938141DD06743C2 /* [CP] Embed Pods Frameworks */,
 				25A3365583A940DBEF28AC2C /* [CP] Copy Pods Resources */,
+				DC1C67EE1E56F3000081E7BD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DC1C67ED1E56F3000081E7BD /* PBXTargetDependency */,
 			);
 			name = ReactantPrototyping;
 			productName = ReactantPrototyping;
@@ -1044,6 +1064,11 @@
 			target = 185121461D834D1E002C4B08 /* Reactant */;
 			targetProxy = 185121521D834D1F002C4B08 /* PBXContainerItemProxy */;
 		};
+		DC1C67ED1E56F3000081E7BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 185121461D834D1E002C4B08 /* Reactant */;
+			targetProxy = DC1C67EC1E56F3000081E7BD /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1230,6 +1255,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C14DA6654F57338B068153C4 /* Pods-ReactantPrototyping.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1249,6 +1275,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FC0E811E1078A9018C567089 /* Pods-ReactantPrototyping.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
