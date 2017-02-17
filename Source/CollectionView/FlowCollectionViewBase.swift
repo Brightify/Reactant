@@ -12,7 +12,7 @@ open class FlowCollectionViewBase<MODEL, ACTION>: CollectionViewBase<MODEL, ACTI
     
     public let collectionViewLayout = UICollectionViewFlowLayout()
     
-    public init(reloadable: Bool) {
+    public init(reloadable: Bool = true) {
         super.init(layout: collectionViewLayout, reloadable: reloadable)
     }
 }

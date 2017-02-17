@@ -11,16 +11,22 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class ViewController: ControllerBase<Void, View> {
+class ViewController: ControllerBase<Void, Cell> {
 
-    public override init(title: String = "", root: View = View()) {
-        super.init(title: title, root: root)
+    init() {
+        super.init()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        rootView.componentState = .brown
     }
 }
 
-class View: ViewBase<Void, Void> {
-
-    override func loadView() {
-        backgroundColor = .white
+class Cell: ViewBase<UIColor, Void> {
+    
+    override func update() {
+        backgroundColor = componentState
     }
 }

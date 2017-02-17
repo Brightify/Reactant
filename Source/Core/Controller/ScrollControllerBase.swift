@@ -27,6 +27,10 @@ open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
             )
         )
     }
+    
+    public override init(title: String = "", root: ROOT = ROOT()) {
+        super.init(title: title, root: root)
+    }
 
     open override func updateRootViewConstraints() {
         scrollView.snp.updateConstraints { make in
