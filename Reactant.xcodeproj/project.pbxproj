@@ -53,14 +53,12 @@
 		DC137F9A1E4E29DA00A0516F /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F831E4E29DA00A0516F /* Array+Utils.swift */; };
 		DC137F9B1E4E29DA00A0516F /* ObservableConvertibleType+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F841E4E29DA00A0516F /* ObservableConvertibleType+Utils.swift */; };
 		DC137F9C1E4E29DA00A0516F /* ObserverType+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F851E4E29DA00A0516F /* ObserverType+Utils.swift */; };
-		DC137F9D1E4E29DA00A0516F /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F861E4E29DA00A0516F /* TODO.swift */; };
+		DC137F9D1E4E29DA00A0516F /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F861E4E29DA00A0516F /* Hash.swift */; };
 		DC137F9E1E4E29DA00A0516F /* AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F881E4E29DA00A0516F /* AssociatedObject.swift */; };
-		DC137F9F1E4E29DA00A0516F /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F891E4E29DA00A0516F /* OrderedDictionary.swift */; };
 		DC137FA01E4E29DA00A0516F /* Recycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F8B1E4E29DA00A0516F /* Recycler.swift */; };
 		DC137FA11E4E29DA00A0516F /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F8C1E4E29DA00A0516F /* Reusable.swift */; };
 		DC137FA21E4E29DA00A0516F /* UIView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F8D1E4E29DA00A0516F /* UIView+Reusable.swift */; };
 		DC137FA31E4E29DA00A0516F /* Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F8F1E4E29DA00A0516F /* Scrollable.swift */; };
-		DC137FA41E4E29DA00A0516F /* ScrollControllerBase+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F901E4E29DA00A0516F /* ScrollControllerBase+Scrollable.swift */; };
 		DC137FA51E4E29DA00A0516F /* UIScrollView+Scrollable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F911E4E29DA00A0516F /* UIScrollView+Scrollable.swift */; };
 		DC137FA61E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */; };
 		DC137FA71E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F931E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift */; };
@@ -71,6 +69,12 @@
 		DC137FAC1E4E29DA00A0516F /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F991E4E29DA00A0516F /* Visibility.swift */; };
 		DC1C67EA1E56F3000081E7BD /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
 		DC1C67EB1E56F3000081E7BD /* Reactant.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DC1C67F01E5C2F800081E7BD /* SynchronizedRecycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C67EF1E5C2F800081E7BD /* SynchronizedRecycler.swift */; };
+		DC1C67F21E5C39F30081E7BD /* Sequence+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C67F11E5C39F30081E7BD /* Sequence+Utils.swift */; };
+		DC1C67F41E5C3C900081E7BD /* Collection+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C67F31E5C3C900081E7BD /* Collection+Utils.swift */; };
+		DC1C67F61E5C3CC70081E7BD /* Dictionary+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C67F51E5C3CC70081E7BD /* Dictionary+Utils.swift */; };
+		DC1C67F81E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C67F71E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift */; };
+		DC1C67FA1E5C3D210081E7BD /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C67F91E5C3D210081E7BD /* UIImage+Utils.swift */; };
 		DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */; };
 		DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */; };
 		DC2B5D3D1DE2070200F9C9D7 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D391DE2070200F9C9D7 /* Rule.swift */; };
@@ -195,25 +199,29 @@
 		DC137F741E4DB62200A0516F /* Rules+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Rules+String.swift"; path = "Rules/Rules+String.swift"; sourceTree = "<group>"; };
 		DC137F781E4DB7F100A0516F /* ValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
 		DC137F7B1E4DB83C00A0516F /* String+EmailValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+EmailValidationError.swift"; path = "Rules/Error/String+EmailValidationError.swift"; sourceTree = "<group>"; };
-		DC137F831E4E29DA00A0516F /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
+		DC137F831E4E29DA00A0516F /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Utils.swift"; path = "Utils/FunctionalUtils/Array+Utils.swift"; sourceTree = "<group>"; };
 		DC137F841E4E29DA00A0516F /* ObservableConvertibleType+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+Utils.swift"; sourceTree = "<group>"; };
 		DC137F851E4E29DA00A0516F /* ObserverType+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObserverType+Utils.swift"; sourceTree = "<group>"; };
-		DC137F861E4E29DA00A0516F /* TODO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TODO.swift; path = Utils/TODO.swift; sourceTree = "<group>"; };
-		DC137F881E4E29DA00A0516F /* AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedObject.swift; sourceTree = "<group>"; };
-		DC137F891E4E29DA00A0516F /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
+		DC137F861E4E29DA00A0516F /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hash.swift; path = Utils/Hash.swift; sourceTree = "<group>"; };
+		DC137F881E4E29DA00A0516F /* AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssociatedObject.swift; path = Utils/Utils/AssociatedObject.swift; sourceTree = "<group>"; };
 		DC137F8B1E4E29DA00A0516F /* Recycler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recycler.swift; sourceTree = "<group>"; };
 		DC137F8C1E4E29DA00A0516F /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		DC137F8D1E4E29DA00A0516F /* UIView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Reusable.swift"; sourceTree = "<group>"; };
 		DC137F8F1E4E29DA00A0516F /* Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scrollable.swift; sourceTree = "<group>"; };
-		DC137F901E4E29DA00A0516F /* ScrollControllerBase+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScrollControllerBase+Scrollable.swift"; sourceTree = "<group>"; };
 		DC137F911E4E29DA00A0516F /* UIScrollView+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Scrollable.swift"; sourceTree = "<group>"; };
-		DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+ClosureAction.swift"; sourceTree = "<group>"; };
-		DC137F931E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+ArrangedChildren.swift"; sourceTree = "<group>"; };
-		DC137F941E4E29DA00A0516F /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
+		DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButtonItem+ClosureAction.swift"; path = "../Utils/UIBarButtonItem+ClosureAction.swift"; sourceTree = "<group>"; };
+		DC137F931E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView+ArrangedChildren.swift"; path = "Utils/Utils/UIStackView+ArrangedChildren.swift"; sourceTree = "<group>"; };
+		DC137F941E4E29DA00A0516F /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Utils.swift"; path = "Utils/Utils/UIView+Utils.swift"; sourceTree = "<group>"; };
 		DC137F961E4E29DA00A0516F /* CollapseAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapseAxis.swift; sourceTree = "<group>"; };
 		DC137F971E4E29DA00A0516F /* ConstraintAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintAction.swift; sourceTree = "<group>"; };
 		DC137F981E4E29DA00A0516F /* UIView+Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Visibility.swift"; sourceTree = "<group>"; };
 		DC137F991E4E29DA00A0516F /* Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
+		DC1C67EF1E5C2F800081E7BD /* SynchronizedRecycler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedRecycler.swift; sourceTree = "<group>"; };
+		DC1C67F11E5C39F30081E7BD /* Sequence+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Sequence+Utils.swift"; path = "Utils/Sequence+Utils.swift"; sourceTree = "<group>"; };
+		DC1C67F31E5C3C900081E7BD /* Collection+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Collection+Utils.swift"; path = "Utils/Collection+Utils.swift"; sourceTree = "<group>"; };
+		DC1C67F51E5C3CC70081E7BD /* Dictionary+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+Utils.swift"; path = "Utils/Dictionary+Utils.swift"; sourceTree = "<group>"; };
+		DC1C67F71E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RangeReplaceableCollection+Utils.swift"; path = "Utils/RangeReplaceableCollection+Utils.swift"; sourceTree = "<group>"; };
+		DC1C67F91E5C3D210081E7BD /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Utils.swift"; path = "Utils/UIImage+Utils.swift"; sourceTree = "<group>"; };
 		DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+Result.swift"; sourceTree = "<group>"; };
 		DC2B5D391DE2070200F9C9D7 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewBase.swift; sourceTree = "<group>"; };
@@ -517,38 +525,33 @@
 		DC137F811E4E251200A0516F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				DC137F861E4E29DA00A0516F /* TODO.swift */,
-				DC137F821E4E29DA00A0516F /* FunctionalUtils */,
-				DC137F871E4E29DA00A0516F /* Utils */,
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
-		DC137F821E4E29DA00A0516F /* FunctionalUtils */ = {
-			isa = PBXGroup;
-			children = (
 				DC137F831E4E29DA00A0516F /* Array+Utils.swift */,
-				DC137F841E4E29DA00A0516F /* ObservableConvertibleType+Utils.swift */,
-				DC137F851E4E29DA00A0516F /* ObserverType+Utils.swift */,
-			);
-			name = FunctionalUtils;
-			path = Utils/FunctionalUtils;
-			sourceTree = "<group>";
-		};
-		DC137F871E4E29DA00A0516F /* Utils */ = {
-			isa = PBXGroup;
-			children = (
 				DC137F881E4E29DA00A0516F /* AssociatedObject.swift */,
-				DC137F891E4E29DA00A0516F /* OrderedDictionary.swift */,
-				DC137F8A1E4E29DA00A0516F /* Recycler */,
-				DC137F8E1E4E29DA00A0516F /* Scrollable */,
-				DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */,
+				DC1C67F31E5C3C900081E7BD /* Collection+Utils.swift */,
+				DC1C67F51E5C3CC70081E7BD /* Dictionary+Utils.swift */,
+				DC1C67F71E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift */,
+				DC1C67F11E5C39F30081E7BD /* Sequence+Utils.swift */,
+				DC137F861E4E29DA00A0516F /* Hash.swift */,
+				DC1C67F91E5C3D210081E7BD /* UIImage+Utils.swift */,
 				DC137F931E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift */,
 				DC137F941E4E29DA00A0516F /* UIView+Utils.swift */,
+				DC137F8A1E4E29DA00A0516F /* Recycler */,
+				DC137F821E4E29DA00A0516F /* RxUtils */,
+				DC137F8E1E4E29DA00A0516F /* Scrollable */,
 				DC137F951E4E29DA00A0516F /* Visibility */,
 			);
 			name = Utils;
-			path = Utils/Utils;
+			sourceTree = "<group>";
+		};
+		DC137F821E4E29DA00A0516F /* RxUtils */ = {
+			isa = PBXGroup;
+			children = (
+				DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */,
+				DC137F841E4E29DA00A0516F /* ObservableConvertibleType+Utils.swift */,
+				DC137F851E4E29DA00A0516F /* ObserverType+Utils.swift */,
+			);
+			name = RxUtils;
+			path = Utils/FunctionalUtils;
 			sourceTree = "<group>";
 		};
 		DC137F8A1E4E29DA00A0516F /* Recycler */ = {
@@ -556,19 +559,21 @@
 			children = (
 				DC137F8B1E4E29DA00A0516F /* Recycler.swift */,
 				DC137F8C1E4E29DA00A0516F /* Reusable.swift */,
+				DC1C67EF1E5C2F800081E7BD /* SynchronizedRecycler.swift */,
 				DC137F8D1E4E29DA00A0516F /* UIView+Reusable.swift */,
 			);
-			path = Recycler;
+			name = Recycler;
+			path = Utils/Utils/Recycler;
 			sourceTree = "<group>";
 		};
 		DC137F8E1E4E29DA00A0516F /* Scrollable */ = {
 			isa = PBXGroup;
 			children = (
 				DC137F8F1E4E29DA00A0516F /* Scrollable.swift */,
-				DC137F901E4E29DA00A0516F /* ScrollControllerBase+Scrollable.swift */,
 				DC137F911E4E29DA00A0516F /* UIScrollView+Scrollable.swift */,
 			);
-			path = Scrollable;
+			name = Scrollable;
+			path = Utils/Utils/Scrollable;
 			sourceTree = "<group>";
 		};
 		DC137F951E4E29DA00A0516F /* Visibility */ = {
@@ -579,7 +584,8 @@
 				DC137F981E4E29DA00A0516F /* UIView+Visibility.swift */,
 				DC137F991E4E29DA00A0516F /* Visibility.swift */,
 			);
-			path = Visibility;
+			name = Visibility;
+			path = Utils/Utils/Visibility;
 			sourceTree = "<group>";
 		};
 		DC2B5D2B1DE1B7E500F9C9D7 /* Validation */ = {
@@ -955,12 +961,16 @@
 			files = (
 				DC0785F11DDC6A400063AB96 /* PlainTableView.swift in Sources */,
 				DC0785931DD39BF60063AB96 /* ComponentDelegate.swift in Sources */,
+				DC1C67F01E5C2F800081E7BD /* SynchronizedRecycler.swift in Sources */,
 				DC0785971DD3A1F50063AB96 /* FutureControllerProvider.swift in Sources */,
 				DC0785FF1DDC6F430063AB96 /* SimpleTableView.swift in Sources */,
+				DC1C67F41E5C3C900081E7BD /* Collection+Utils.swift in Sources */,
 				DC137F9B1E4E29DA00A0516F /* ObservableConvertibleType+Utils.swift in Sources */,
 				DC2B5D6F1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift in Sources */,
 				DC69408C1E53594800C99380 /* Property.swift in Sources */,
+				DC1C67F61E5C3CC70081E7BD /* Dictionary+Utils.swift in Sources */,
 				DC137F751E4DB62200A0516F /* Rules+String.swift in Sources */,
+				DC1C67FA1E5C3D210081E7BD /* UIImage+Utils.swift in Sources */,
 				DC0785E61DDB2C150063AB96 /* CollectionViewCellIdentifier.swift in Sources */,
 				DC137F9A1E4E29DA00A0516F /* Array+Utils.swift in Sources */,
 				DC137FA01E4E29DA00A0516F /* Recycler.swift in Sources */,
@@ -971,7 +981,6 @@
 				DC79F6B31E55A67E0033AE51 /* PagingCollectionView.swift in Sources */,
 				18650B841D8364AE00B1B2A0 /* ActivityIndicator.swift in Sources */,
 				DC0785EC1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift in Sources */,
-				DC137F9F1E4E29DA00A0516F /* OrderedDictionary.swift in Sources */,
 				DC137F7C1E4DB83C00A0516F /* String+EmailValidationError.swift in Sources */,
 				DC137FAB1E4E29DA00A0516F /* UIView+Visibility.swift in Sources */,
 				DC137FA21E4E29DA00A0516F /* UIView+Reusable.swift in Sources */,
@@ -991,11 +1000,12 @@
 				DC2B5D6D1DE2FFC000F9C9D7 /* DialogView.swift in Sources */,
 				DC0785D21DD9C2070063AB96 /* CollectionViewCellWrapper.swift in Sources */,
 				DC137FA11E4E29DA00A0516F /* Reusable.swift in Sources */,
-				DC137F9D1E4E29DA00A0516F /* TODO.swift in Sources */,
+				DC137F9D1E4E29DA00A0516F /* Hash.swift in Sources */,
 				DC0785E01DDB21E00063AB96 /* AnyTableViewCellIdentifier.swift in Sources */,
 				DC0785E81DDB2C290063AB96 /* AnyCollectionViewCellIdentifier.swift in Sources */,
 				DC6940911E5359BD00C99380 /* OptionalType.swift in Sources */,
 				DC0785E41DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
+				DC1C67F81E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift in Sources */,
 				DC2B5D691DE2FD6800F9C9D7 /* CollectionViewBase.swift in Sources */,
 				DC137FA51E4E29DA00A0516F /* UIScrollView+Scrollable.swift in Sources */,
 				DC79F6B11E54AD540033AE51 /* Properties+Style.swift in Sources */,
@@ -1009,11 +1019,11 @@
 				DC69406E1E505C3900C99380 /* SimpleCollectionView.swift in Sources */,
 				DC07859D1DD3AA870063AB96 /* RootView.swift in Sources */,
 				DC69407F1E51AE9A00C99380 /* ReactantCollectionView+Delegates.swift in Sources */,
+				DC1C67F21E5C39F30081E7BD /* Sequence+Utils.swift in Sources */,
 				DC6940851E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift in Sources */,
 				DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */,
 				DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */,
 				DC79F6AB1E5377B60033AE51 /* Configurable.swift in Sources */,
-				DC137FA41E4E29DA00A0516F /* ScrollControllerBase+Scrollable.swift in Sources */,
 				DC137FA81E4E29DA00A0516F /* UIView+Utils.swift in Sources */,
 				DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */,
 				DC0785CA1DD8C4DF0063AB96 /* TableViewCell.swift in Sources */,

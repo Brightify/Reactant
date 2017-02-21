@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIView: Reusable {
+    
     public func prepareForReuse() {
         removeFromSuperview()
     }

@@ -7,5 +7,6 @@
 //
 
 public protocol Reusable: class {
+    
     func prepareForReuse()
 }

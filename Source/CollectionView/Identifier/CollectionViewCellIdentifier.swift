@@ -32,7 +32,7 @@ extension UICollectionView {
     
     public func dequeue<T>(identifier: CollectionViewCellIdentifier<T>, for indexPath: IndexPath) -> CollectionViewCellWrapper<T> {
         guard let cell = dequeueReusableCell(withReuseIdentifier: identifier.name, for: indexPath) as? CollectionViewCellWrapper<T> else {
-            preconditionFailure("\(identifier) is not registered.")
+            fatalError("\(identifier) is not registered.")
         }
         return cell
     }

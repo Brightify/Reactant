@@ -33,7 +33,7 @@ extension UITableView {
 
     public func dequeue(identifier: AnyTableViewCellIdentifier) -> UITableViewCell {
         guard let cell = dequeueReusableCell(withIdentifier: identifier.name) else {
-            preconditionFailure("\(identifier) is not registered.")
+            fatalError("\(identifier) is not registered.")
         }
         return cell
     }

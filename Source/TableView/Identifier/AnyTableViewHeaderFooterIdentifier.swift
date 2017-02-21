@@ -33,7 +33,7 @@ extension UITableView {
 
     public func dequeue(identifier: AnyTableViewHeaderFooterIdentifier) -> UITableViewHeaderFooterView {
         guard let view = dequeueReusableHeaderFooterView(withIdentifier: identifier.name) else {
-            preconditionFailure("\(identifier) is not registered.")
+            fatalError("\(identifier) is not registered.")
         }
         return view
     }

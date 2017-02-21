@@ -50,7 +50,7 @@ Pod::Spec.new do |s|
       subspec.frameworks = 'UIKit'
       rxSwift(subspec)
       snapKit(subspec)
-      subspec.source_files = 'Source/Core/**/*.swift'
+      subspec.source_files = ['Source/Core/**/*.swift', 'Source/Utils/**/*.swift']
   end
 
   spec.subspec 'Result' do |subspec|
