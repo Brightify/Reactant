@@ -6,7 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-public extension Array {
+extension Array {
     
     public func arrayByAppending(_ elements: Element...) -> Array<Element> {
         return arrayByAppending(elements)

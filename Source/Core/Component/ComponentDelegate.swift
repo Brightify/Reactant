@@ -25,7 +25,7 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
             if let state = stateStorage {
                 return state
             } else {
-                preconditionFailure("ComponentState accessed before stored!")
+                fatalError("ComponentState accessed before stored!")
             }
         }
         set {
@@ -90,7 +90,7 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     private func update() {
         guard stateStorage != nil else {
             #if DEBUG
-                preconditionFailure("ComponentState not set before needsUpdate and canUpdate were set! ComponentState \(STATE.self), component \(type(of: ownerComponent))")
+                fatalError("ComponentState not set before needsUpdate and canUpdate were set! ComponentState \(STATE.self), component \(type(of: ownerComponent))")
             #else
                 print("WARNING: ComponentState not set before needsUpdate and canUpdate were set. This is usually developer error by not calling `setComponentState` on Component that needs non-Void componentState. ComponentState \(STATE.self), component \(type(of: ownerComponent))")
                 return

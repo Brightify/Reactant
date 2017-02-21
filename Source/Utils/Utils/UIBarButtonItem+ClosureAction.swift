@@ -3,14 +3,12 @@
 //  Reactant
 //
 //  Created by Tadeas Kriz on 06/10/2016.
-//  Copyright © 2016 CocoaPods. All rights reserved.
+//  Copyright © 2016 Brightify. All rights reserved.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
-
-// TODO Move to RxCocoa extension
 
 /// Extension of UIBarButtonItem, that adds option to use closure instead of target and selector
 extension UIBarButtonItem {

@@ -37,14 +37,14 @@ extension UITableView {
     
     public func dequeue<T>(identifier: TableViewCellIdentifier<T>) -> TableViewCellWrapper<T> {
         guard let cell = dequeueReusableCell(withIdentifier: identifier.name) as? TableViewCellWrapper<T> else {
-            preconditionFailure("\(identifier) is not registered.")
+            fatalError("\(identifier) is not registered.")
         }
         return cell
     }
     
     public func dequeue<T>(identifier: TableViewCellIdentifier<T>, for indexPath: IndexPath) -> TableViewCellWrapper<T> {
         guard let cell = dequeueReusableCell(withIdentifier: identifier.name, for: indexPath) as? TableViewCellWrapper<T> else {
-            preconditionFailure("\(identifier) is not registered.")
+            fatalError("\(identifier) is not registered.")
         }
         return cell
     }

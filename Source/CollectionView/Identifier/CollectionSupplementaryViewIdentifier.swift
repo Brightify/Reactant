@@ -34,7 +34,7 @@ extension UICollectionView {
     
     public func dequeue<T>(identifier: CollectionSupplementaryViewIdentifier<T>, for indexPath: IndexPath) -> CollectionReusableViewWrapper<T> {
         guard let view = dequeueReusableSupplementaryView(ofKind: identifier.kind, withReuseIdentifier: identifier.name, for: indexPath) as? CollectionReusableViewWrapper<T> else {
-            preconditionFailure("\(identifier) is not registered.")
+            fatalError("\(identifier) is not registered.")
         }
         return view
     }

@@ -6,8 +6,8 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-// FIXME Might need improved thread safety!
 public class Recycler<T: Reusable> {
+    
     private var instancesInUse: [T] = []
     private var recycledInstances: [T]
 
@@ -54,7 +54,7 @@ public class Recycler<T: Reusable> {
             recycledInstances.append(instance)
         }
     }
-
+    
     public func recycleAll() {
         let instancesToRecycle = instancesInUse
         instancesInUse.removeAll(keepingCapacity: true)

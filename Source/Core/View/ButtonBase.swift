@@ -55,7 +55,7 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
     
     @available(*, unavailable)
     public required init?(coder aDecoder: NSCoder) {
-        preconditionFailure("init(coder:) has not been implemented")
+        fatalError("init(coder:) has not been implemented")
     }
     
     open func afterInit() {
