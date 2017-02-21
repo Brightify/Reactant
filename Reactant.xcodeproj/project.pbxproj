@@ -195,33 +195,33 @@
 		DC137F6E1E4C638000A0516F /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DC137F6F1E4C638000A0516F /* Reactant.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reactant.podspec; sourceTree = "<group>"; };
 		DC137F701E4C63A900A0516F /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
-		DC137F721E4DB5FB00A0516F /* Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rules.swift; path = Rules/Rules.swift; sourceTree = "<group>"; };
-		DC137F741E4DB62200A0516F /* Rules+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Rules+String.swift"; path = "Rules/Rules+String.swift"; sourceTree = "<group>"; };
+		DC137F721E4DB5FB00A0516F /* Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+		DC137F741E4DB62200A0516F /* Rules+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rules+String.swift"; sourceTree = "<group>"; };
 		DC137F781E4DB7F100A0516F /* ValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
-		DC137F7B1E4DB83C00A0516F /* String+EmailValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+EmailValidationError.swift"; path = "Rules/Error/String+EmailValidationError.swift"; sourceTree = "<group>"; };
-		DC137F831E4E29DA00A0516F /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Utils.swift"; path = "Utils/FunctionalUtils/Array+Utils.swift"; sourceTree = "<group>"; };
+		DC137F7B1E4DB83C00A0516F /* String+EmailValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+EmailValidationError.swift"; sourceTree = "<group>"; };
+		DC137F831E4E29DA00A0516F /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		DC137F841E4E29DA00A0516F /* ObservableConvertibleType+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+Utils.swift"; sourceTree = "<group>"; };
 		DC137F851E4E29DA00A0516F /* ObserverType+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObserverType+Utils.swift"; sourceTree = "<group>"; };
-		DC137F861E4E29DA00A0516F /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hash.swift; path = Utils/Hash.swift; sourceTree = "<group>"; };
-		DC137F881E4E29DA00A0516F /* AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssociatedObject.swift; path = Utils/Utils/AssociatedObject.swift; sourceTree = "<group>"; };
+		DC137F861E4E29DA00A0516F /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
+		DC137F881E4E29DA00A0516F /* AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedObject.swift; sourceTree = "<group>"; };
 		DC137F8B1E4E29DA00A0516F /* Recycler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recycler.swift; sourceTree = "<group>"; };
 		DC137F8C1E4E29DA00A0516F /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		DC137F8D1E4E29DA00A0516F /* UIView+Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Reusable.swift"; sourceTree = "<group>"; };
 		DC137F8F1E4E29DA00A0516F /* Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scrollable.swift; sourceTree = "<group>"; };
 		DC137F911E4E29DA00A0516F /* UIScrollView+Scrollable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Scrollable.swift"; sourceTree = "<group>"; };
-		DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButtonItem+ClosureAction.swift"; path = "../Utils/UIBarButtonItem+ClosureAction.swift"; sourceTree = "<group>"; };
-		DC137F931E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView+ArrangedChildren.swift"; path = "Utils/Utils/UIStackView+ArrangedChildren.swift"; sourceTree = "<group>"; };
-		DC137F941E4E29DA00A0516F /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Utils.swift"; path = "Utils/Utils/UIView+Utils.swift"; sourceTree = "<group>"; };
+		DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+ClosureAction.swift"; sourceTree = "<group>"; };
+		DC137F931E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStackView+ArrangedChildren.swift"; sourceTree = "<group>"; };
+		DC137F941E4E29DA00A0516F /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		DC137F961E4E29DA00A0516F /* CollapseAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapseAxis.swift; sourceTree = "<group>"; };
 		DC137F971E4E29DA00A0516F /* ConstraintAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintAction.swift; sourceTree = "<group>"; };
 		DC137F981E4E29DA00A0516F /* UIView+Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Visibility.swift"; sourceTree = "<group>"; };
 		DC137F991E4E29DA00A0516F /* Visibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visibility.swift; sourceTree = "<group>"; };
 		DC1C67EF1E5C2F800081E7BD /* SynchronizedRecycler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizedRecycler.swift; sourceTree = "<group>"; };
-		DC1C67F11E5C39F30081E7BD /* Sequence+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Sequence+Utils.swift"; path = "Utils/Sequence+Utils.swift"; sourceTree = "<group>"; };
-		DC1C67F31E5C3C900081E7BD /* Collection+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Collection+Utils.swift"; path = "Utils/Collection+Utils.swift"; sourceTree = "<group>"; };
-		DC1C67F51E5C3CC70081E7BD /* Dictionary+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Dictionary+Utils.swift"; path = "Utils/Dictionary+Utils.swift"; sourceTree = "<group>"; };
-		DC1C67F71E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "RangeReplaceableCollection+Utils.swift"; path = "Utils/RangeReplaceableCollection+Utils.swift"; sourceTree = "<group>"; };
-		DC1C67F91E5C3D210081E7BD /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Utils.swift"; path = "Utils/UIImage+Utils.swift"; sourceTree = "<group>"; };
+		DC1C67F11E5C39F30081E7BD /* Sequence+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sequence+Utils.swift"; sourceTree = "<group>"; };
+		DC1C67F31E5C3C900081E7BD /* Collection+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Utils.swift"; sourceTree = "<group>"; };
+		DC1C67F51E5C3CC70081E7BD /* Dictionary+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Utils.swift"; sourceTree = "<group>"; };
+		DC1C67F71E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RangeReplaceableCollection+Utils.swift"; sourceTree = "<group>"; };
+		DC1C67F91E5C3D210081E7BD /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
 		DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+Result.swift"; sourceTree = "<group>"; };
 		DC2B5D391DE2070200F9C9D7 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewBase.swift; sourceTree = "<group>"; };
@@ -229,21 +229,21 @@
 		DC2B5D6A1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerRootViewContainer.swift; sourceTree = "<group>"; };
 		DC2B5D6B1DE2FFC000F9C9D7 /* DialogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogView.swift; sourceTree = "<group>"; };
 		DC2B5D6E1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogDismissalListener.swift; sourceTree = "<group>"; };
-		DC69406D1E505C3900C99380 /* SimpleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleCollectionView.swift; path = Implementation/SimpleCollectionView.swift; sourceTree = "<group>"; };
+		DC69406D1E505C3900C99380 /* SimpleCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCollectionView.swift; sourceTree = "<group>"; };
 		DC6940701E505CA700C99380 /* TableViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewState.swift; sourceTree = "<group>"; };
 		DC6940761E509E0700C99380 /* ReactantTableView+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReactantTableView+Delegates.swift"; sourceTree = "<group>"; };
 		DC69407E1E51AE9A00C99380 /* ReactantCollectionView+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ReactantCollectionView+Delegates.swift"; sourceTree = "<group>"; };
 		DC6940821E51B23A00C99380 /* FlowCollectionViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowCollectionViewBase.swift; sourceTree = "<group>"; };
 		DC6940841E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FlowCollectionViewBase+Delegates.swift"; sourceTree = "<group>"; };
-		DC6940891E53590A00C99380 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = DefaultConfiguration/Configuration.swift; sourceTree = "<group>"; };
-		DC69408B1E53594800C99380 /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Property.swift; path = DefaultConfiguration/Property.swift; sourceTree = "<group>"; };
-		DC69408D1E53595400C99380 /* Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Properties.swift; path = DefaultConfiguration/Properties.swift; sourceTree = "<group>"; };
-		DC6940901E5359BD00C99380 /* OptionalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionalType.swift; path = DefaultConfiguration/OptionalType.swift; sourceTree = "<group>"; };
-		DC79F6AA1E5377B60033AE51 /* Configurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Configurable.swift; path = DefaultConfiguration/Configurable.swift; sourceTree = "<group>"; };
+		DC6940891E53590A00C99380 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		DC69408B1E53594800C99380 /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		DC69408D1E53595400C99380 /* Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Properties.swift; sourceTree = "<group>"; };
+		DC6940901E5359BD00C99380 /* OptionalType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalType.swift; sourceTree = "<group>"; };
+		DC79F6AA1E5377B60033AE51 /* Configurable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configurable.swift; sourceTree = "<group>"; };
 		DC79F6AC1E54A5880033AE51 /* Properties+CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+CollectionView.swift"; sourceTree = "<group>"; };
 		DC79F6AE1E54AB170033AE51 /* Properties+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+TableView.swift"; sourceTree = "<group>"; };
 		DC79F6B01E54AD540033AE51 /* Properties+Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+Style.swift"; sourceTree = "<group>"; };
-		DC79F6B21E55A67E0033AE51 /* PagingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PagingCollectionView.swift; path = Implementation/PagingCollectionView.swift; sourceTree = "<group>"; };
+		DC79F6B21E55A67E0033AE51 /* PagingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingCollectionView.swift; sourceTree = "<group>"; };
 		DC79F6B81E55FAA60033AE51 /* ReactantPrototyping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactantPrototyping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC79F6BA1E55FAA70033AE51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC79F6BC1E55FAA70033AE51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -460,8 +460,8 @@
 				DC2B5D661DE2F90D00F9C9D7 /* ReactantTableView.swift */,
 				DC79F6AE1E54AB170033AE51 /* Properties+TableView.swift */,
 				DC79F6CA1E560A5A0033AE51 /* ReactantTableView.swift */,
-				DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */,
 				DC6940761E509E0700C99380 /* ReactantTableView+Delegates.swift */,
+				DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */,
 				DC0785C91DD8C4DF0063AB96 /* TableViewCell.swift */,
 				DC6940701E505CA700C99380 /* TableViewState.swift */,
 				DC0785D61DDB176A0063AB96 /* Identifier */,
@@ -507,11 +507,11 @@
 		DC137F711E4DB5E800A0516F /* Rules */ = {
 			isa = PBXGroup;
 			children = (
-				DC137F7A1E4DB81000A0516F /* Error */,
 				DC137F721E4DB5FB00A0516F /* Rules.swift */,
 				DC137F741E4DB62200A0516F /* Rules+String.swift */,
+				DC137F7A1E4DB81000A0516F /* Error */,
 			);
-			name = Rules;
+			path = Rules;
 			sourceTree = "<group>";
 		};
 		DC137F7A1E4DB81000A0516F /* Error */ = {
@@ -519,7 +519,7 @@
 			children = (
 				DC137F7B1E4DB83C00A0516F /* String+EmailValidationError.swift */,
 			);
-			name = Error;
+			path = Error;
 			sourceTree = "<group>";
 		};
 		DC137F811E4E251200A0516F /* Utils */ = {
@@ -529,9 +529,9 @@
 				DC137F881E4E29DA00A0516F /* AssociatedObject.swift */,
 				DC1C67F31E5C3C900081E7BD /* Collection+Utils.swift */,
 				DC1C67F51E5C3CC70081E7BD /* Dictionary+Utils.swift */,
+				DC137F861E4E29DA00A0516F /* Hash.swift */,
 				DC1C67F71E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift */,
 				DC1C67F11E5C39F30081E7BD /* Sequence+Utils.swift */,
-				DC137F861E4E29DA00A0516F /* Hash.swift */,
 				DC1C67F91E5C3D210081E7BD /* UIImage+Utils.swift */,
 				DC137F931E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift */,
 				DC137F941E4E29DA00A0516F /* UIView+Utils.swift */,
@@ -540,18 +540,17 @@
 				DC137F8E1E4E29DA00A0516F /* Scrollable */,
 				DC137F951E4E29DA00A0516F /* Visibility */,
 			);
-			name = Utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		DC137F821E4E29DA00A0516F /* RxUtils */ = {
 			isa = PBXGroup;
 			children = (
-				DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */,
 				DC137F841E4E29DA00A0516F /* ObservableConvertibleType+Utils.swift */,
 				DC137F851E4E29DA00A0516F /* ObserverType+Utils.swift */,
+				DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */,
 			);
-			name = RxUtils;
-			path = Utils/FunctionalUtils;
+			path = RxUtils;
 			sourceTree = "<group>";
 		};
 		DC137F8A1E4E29DA00A0516F /* Recycler */ = {
@@ -562,8 +561,7 @@
 				DC1C67EF1E5C2F800081E7BD /* SynchronizedRecycler.swift */,
 				DC137F8D1E4E29DA00A0516F /* UIView+Reusable.swift */,
 			);
-			name = Recycler;
-			path = Utils/Utils/Recycler;
+			path = Recycler;
 			sourceTree = "<group>";
 		};
 		DC137F8E1E4E29DA00A0516F /* Scrollable */ = {
@@ -572,8 +570,7 @@
 				DC137F8F1E4E29DA00A0516F /* Scrollable.swift */,
 				DC137F911E4E29DA00A0516F /* UIScrollView+Scrollable.swift */,
 			);
-			name = Scrollable;
-			path = Utils/Utils/Scrollable;
+			path = Scrollable;
 			sourceTree = "<group>";
 		};
 		DC137F951E4E29DA00A0516F /* Visibility */ = {
@@ -584,8 +581,7 @@
 				DC137F981E4E29DA00A0516F /* UIView+Visibility.swift */,
 				DC137F991E4E29DA00A0516F /* Visibility.swift */,
 			);
-			name = Visibility;
-			path = Utils/Utils/Visibility;
+			path = Visibility;
 			sourceTree = "<group>";
 		};
 		DC2B5D2B1DE1B7E500F9C9D7 /* Validation */ = {
@@ -651,16 +647,16 @@
 				DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */,
 				DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */,
 			);
-			name = Implementation;
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		DC69406F1E505C4500C99380 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				DC69406D1E505C3900C99380 /* SimpleCollectionView.swift */,
 				DC79F6B21E55A67E0033AE51 /* PagingCollectionView.swift */,
+				DC69406D1E505C3900C99380 /* SimpleCollectionView.swift */,
 			);
-			name = Implementation;
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		DC6940881E53556400C99380 /* Configuration */ = {
@@ -672,7 +668,7 @@
 				DC69408D1E53595400C99380 /* Properties.swift */,
 				DC69408B1E53594800C99380 /* Property.swift */,
 			);
-			name = Configuration;
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		DC79F6B91E55FAA70033AE51 /* ReactantPrototyping */ = {
@@ -1088,6 +1084,7 @@
 				DC79F6C41E55FAA70033AE51 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
