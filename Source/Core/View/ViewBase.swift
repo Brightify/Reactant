@@ -40,7 +40,6 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         super.init(frame: CGRect.zero)
         
         componentDelegate.ownerComponent = self
-        componentDelegate.canUpdate = true
         
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -51,6 +50,8 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         reloadConfiguration()
         
         afterInit()
+        
+        componentDelegate.canUpdate = true
     }
     
     @available(*, unavailable)

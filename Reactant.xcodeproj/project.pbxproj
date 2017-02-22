@@ -299,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				1851214B1D834D1E002C4B08 /* Info.plist */,
+				DC0785711DC8826F0063AB96 /* ActivityIndicator */,
 				DC0785781DC884B40063AB96 /* CollectionView */,
 				DC6940881E53556400C99380 /* Configuration */,
 				DC07856E1DC881B80063AB96 /* Core */,
@@ -386,7 +387,8 @@
 			children = (
 				18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */,
 			);
-			path = ActivityIndicator;
+			name = ActivityIndicator;
+			path = Staging/ActivityIndicator;
 			sourceTree = "<group>";
 		};
 		DC0785721DC882820063AB96 /* StaticMap */ = {
@@ -591,7 +593,6 @@
 		DC2B5D461DE20A9C00F9C9D7 /* Staging */ = {
 			isa = PBXGroup;
 			children = (
-				DC0785711DC8826F0063AB96 /* ActivityIndicator */,
 				DC0785721DC882820063AB96 /* StaticMap */,
 			);
 			path = Staging;

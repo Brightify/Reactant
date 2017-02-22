@@ -40,7 +40,6 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
         super.init(frame: CGRect.zero)
         
         componentDelegate.ownerComponent = self
-        componentDelegate.canUpdate = true
         
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -51,6 +50,8 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
         reloadConfiguration()
         
         afterInit()
+        
+        componentDelegate.canUpdate = true
     }
     
     @available(*, unavailable)

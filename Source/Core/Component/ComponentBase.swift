@@ -9,6 +9,7 @@
 import RxSwift
 
 open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
+    
     public typealias StateType = STATE
     public typealias ActionType = ACTION
 
@@ -28,13 +29,14 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
         return true
     }
 
-    // Do not forget to set componentDelegate.canUpdate.
-    public init() {
+    public init(canUpdate: Bool = true) {
         componentDelegate.ownerComponent = self
         
         resetActions()
         
         afterInit()
+        
+        componentDelegate.canUpdate = canUpdate
     }
 
     open func afterInit() {
