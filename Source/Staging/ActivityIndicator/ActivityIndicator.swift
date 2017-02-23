@@ -9,40 +9,51 @@
 import RxSwift
 import RxCocoa
 
-/**
- Enables monitoring of sequence computation.
- 
- If there is at least one sequence computation in progress, `true` will be sent.
- When all activities complete `false` will be sent.
- */
 public final class ActivityIndicator: ObservableConvertibleType {
     
     public typealias E = (loading: Bool, message: String?)
     
     public let disposeBag = DisposeBag()
     
-    private let variable: Variable<[(id: UUID, message: String)]> = Variable([])
+    private let variable: Variable<[(id: UUID, message: String?)]> = Variable([])
     
     private let driver: Driver<E>
     
     public init() {
-        driver = variable.asDriver().map { (loading: !$0.isEmpty, message: $0.first?.message) }
+        driver = variable.asDriver()
+            .map { (loading: !$0.isEmpty, message: $0.flatMap { $0.message }.first) }
+            .distinctUntilChanged { lhs, rhs in lhs.loading == rhs.loading && lhs.message == rhs.message }
     }
     
-    public func trackActivity<O: ObservableConvertibleType>(of source: O, message: String) -> Observable<O.E> {
-        // No reference cycle.
-        return Observable.create { subscriber in
-            let disposable = source.asObservable().subscribe(subscriber)
+    public func trackActivity<O: ObservableConvertibleType>(of source: O, message: String? = nil) -> Observable<O.E> {
+        return trackActivity(of: source, initialMessage: message, messageProvider: { _ in message })
+    }
+    
+    public func trackActivity<O: ObservableConvertibleType>(of source: O, initialMessage: String? = nil, messageProvider: @escaping (O.E) -> String?) -> Observable<O.E> {
+        return Observable.create { [variable] subscriber in
+            let observable = source.asObservable().shareReplay(1)
+            let subscriptionDisposable = observable.subscribe(subscriber)
             
             let id = UUID()
-            self.variable.value.append((id: id, message: message))
+            
+            let messageChangeDisposable = observable.map(messageProvider)
+                .startWith(initialMessage)
+                .distinctUntilChanged()
+                .subscribe(onNext: {
+                    if let index = variable.value.index(where: { $0.id == id }) {
+                        variable.value[index].message = $0
+                    } else {
+                        variable.value.append((id: id, message: $0))
+                    }
+                })
             
             return Disposables.create {
-                if let index = self.variable.value.index(where: { $0.id == id }) {
-                    self.variable.value.remove(at: index)
-                }
+                subscriptionDisposable.dispose()
+                messageChangeDisposable.dispose()
                 
-                disposable.dispose()
+                if let index = variable.value.index(where: { $0.id == id }) {
+                    variable.value.remove(at: index)
+                }
             }
         }
     }
@@ -58,7 +69,11 @@ public final class ActivityIndicator: ObservableConvertibleType {
 
 extension ObservableConvertibleType {
     
-    public func trackActivity(in activityIndicator: ActivityIndicator, message: String) -> Observable<E> {
+    public func trackActivity(in activityIndicator: ActivityIndicator, message: String? = nil) -> Observable<E> {
         return activityIndicator.trackActivity(of: self, message: message)
+    }
+    
+    public func trackActivity(in activityIndicator: ActivityIndicator, initialMessage: String? = nil, messageProvider: @escaping (E) -> String?) -> Observable<E> {
+        return activityIndicator.trackActivity(of: self, initialMessage: initialMessage, messageProvider: messageProvider)
     }
 }
