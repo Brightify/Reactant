@@ -17,31 +17,31 @@ import RxCocoa
  */
 public final class ActivityIndicator: ObservableConvertibleType {
     
-    public typealias E = (loading: Bool, message: String)
+    public typealias E = (loading: Bool, message: String?)
     
     public let disposeBag = DisposeBag()
     
-    private let lastMessage = Variable("")
-    private let variable = Variable(0)
+    private let variable: Variable<[(id: UUID, message: String)]> = Variable([])
     
     private let driver: Driver<E>
     
     public init() {
-        driver = variable.asDriver()
-            .map { $0 > 0 }
-            .distinctUntilChanged()
-            .withLatestFrom(lastMessage.asDriver()) { (loading: $0, message: $1) }
+        driver = variable.asDriver().map { (loading: !$0.isEmpty, message: $0.first?.message) }
     }
     
     public func trackActivity<O: ObservableConvertibleType>(of source: O, message: String) -> Observable<O.E> {
         // No reference cycle.
         return Observable.create { subscriber in
-            self.lastMessage.value = message
-            self.variable.value += 1
             let disposable = source.asObservable().subscribe(subscriber)
             
+            let id = UUID()
+            self.variable.value.append((id: id, message: message))
+            
             return Disposables.create {
-                self.variable.value -= 1
+                if let index = self.variable.value.index(where: { $0.id == id }) {
+                    self.variable.value.remove(at: index)
+                }
+                
                 disposable.dispose()
             }
         }
