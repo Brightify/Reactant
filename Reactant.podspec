@@ -72,5 +72,11 @@ Pod::Spec.new do |spec|
       subspec.source_files = 'Source/CollectionView/**/*.swift'
   end
 
+  spec.subspec 'ActivityIndicator' do |subspec|
+      subspec.frameworks = 'UIKit'
+      rxCocoa(subspec)
+      subspec.source_files = 'Source/ActivityIndicator/**/*.swift'
+  end
+
   spec.default_subspec = 'Core', 'Result'
 end
