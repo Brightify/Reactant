@@ -16,6 +16,7 @@ public struct ReactantConfiguration {
     public var emptyListLabelStyle: (UILabel) -> Void = { _ in }
     public var defaultLoadingMessage = "Loading .."
     public var closeButtonTitle = "Close"
+    public var defaultBackButtonTitle: String? = nil
     public var dialogStyle: (UIView) -> Void = { _ in }
     public var dialogContentContainerStyle: (UIView) -> Void = { _ in }
     public var loadingIndicatorStyle: UIActivityIndicatorViewStyle = .gray

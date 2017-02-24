@@ -40,6 +40,9 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         rootView.action.subscribe(onNext: act).addDisposableTo(lifetimeDisposeBag)
         
         self.title = title
+        if let backButtonTitle = ReactantConfiguration.global.defaultBackButtonTitle {
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .plain)
+        }
         
         afterInit()
     }
