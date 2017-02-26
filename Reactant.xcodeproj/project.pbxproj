@@ -110,6 +110,9 @@
 		DCC98CE11E62CE830018757E /* CLLocationCoordinate2D+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC98CE01E62CE830018757E /* CLLocationCoordinate2D+utils.swift */; };
 		DCC98CE31E62CED80018757E /* MKCoordinateRegion+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC98CE21E62CED80018757E /* MKCoordinateRegion+utils.swift */; };
 		DCC98CE51E62CEFE0018757E /* InternalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC98CE41E62CEFE0018757E /* InternalUtils.swift */; };
+		DCC98CF21E62EA110018757E /* ConfigurableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC98CF11E62EA110018757E /* ConfigurableTest.swift */; };
+		DCC98CF41E62EA1A0018757E /* ConfigurationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC98CF31E62EA1A0018757E /* ConfigurationTest.swift */; };
+		DCC98CF61E62EA480018757E /* PropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC98CF51E62EA480018757E /* PropertyTest.swift */; };
 		F34A376471BD5DC822F0E8D2 /* Pods_ReactantPrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0CE169634834E74544F2A0 /* Pods_ReactantPrototyping.framework */; };
 /* End PBXBuildFile section */
 
@@ -227,7 +230,7 @@
 		DC1C67F51E5C3CC70081E7BD /* Dictionary+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Utils.swift"; sourceTree = "<group>"; };
 		DC1C67F71E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RangeReplaceableCollection+Utils.swift"; sourceTree = "<group>"; };
 		DC1C67F91E5C3D210081E7BD /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
-		DC1C68001E5F574B0081E7BD /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		DC1C68001E5F574B0081E7BD /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+Result.swift"; sourceTree = "<group>"; };
 		DC2B5D391DE2070200F9C9D7 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewBase.swift; sourceTree = "<group>"; };
@@ -263,6 +266,9 @@
 		DCC98CE01E62CE830018757E /* CLLocationCoordinate2D+utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+utils.swift"; sourceTree = "<group>"; };
 		DCC98CE21E62CED80018757E /* MKCoordinateRegion+utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+utils.swift"; sourceTree = "<group>"; };
 		DCC98CE41E62CEFE0018757E /* InternalUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalUtils.swift; sourceTree = "<group>"; };
+		DCC98CF11E62EA110018757E /* ConfigurableTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurableTest.swift; sourceTree = "<group>"; };
+		DCC98CF31E62EA1A0018757E /* ConfigurationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTest.swift; sourceTree = "<group>"; };
+		DCC98CF51E62EA480018757E /* PropertyTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyTest.swift; sourceTree = "<group>"; };
 		FC0E811E1078A9018C567089 /* Pods-ReactantPrototyping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantPrototyping.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -368,6 +374,15 @@
 			isa = PBXGroup;
 			children = (
 				185121571D834D1F002C4B08 /* Info.plist */,
+				DCC98CE61E62E89E0018757E /* ActivityIndicator */,
+				DCC98CE71E62E8AA0018757E /* CollectionView */,
+				DCC98CE81E62E8B20018757E /* Configuration */,
+				DCC98CE91E62E8BE0018757E /* Core */,
+				DCC98CEA1E62E9AE0018757E /* Result */,
+				DCC98CEB1E62E9B50018757E /* StaticMap */,
+				DCC98CEC1E62E9BC0018757E /* TableView */,
+				DCC98CED1E62E9C80018757E /* Utils */,
+				DCC98CEE1E62E9CD0018757E /* Validation */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -398,7 +413,6 @@
 			children = (
 				DC1C68001E5F574B0081E7BD /* ActivityIndicator.swift */,
 			);
-			name = ActivityIndicator;
 			path = ActivityIndicator;
 			sourceTree = "<group>";
 		};
@@ -411,7 +425,6 @@
 				DCC98CE01E62CE830018757E /* CLLocationCoordinate2D+utils.swift */,
 				DCC98CE21E62CED80018757E /* MKCoordinateRegion+utils.swift */,
 			);
-			name = StaticMap;
 			path = StaticMap;
 			sourceTree = "<group>";
 		};
@@ -698,8 +711,73 @@
 			children = (
 				DCC98CE41E62CEFE0018757E /* InternalUtils.swift */,
 			);
-			name = Internal;
 			path = Internal;
+			sourceTree = "<group>";
+		};
+		DCC98CE61E62E89E0018757E /* ActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ActivityIndicator;
+			sourceTree = "<group>";
+		};
+		DCC98CE71E62E8AA0018757E /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CollectionView;
+			sourceTree = "<group>";
+		};
+		DCC98CE81E62E8B20018757E /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				DCC98CF11E62EA110018757E /* ConfigurableTest.swift */,
+				DCC98CF31E62EA1A0018757E /* ConfigurationTest.swift */,
+				DCC98CF51E62EA480018757E /* PropertyTest.swift */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		DCC98CE91E62E8BE0018757E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		DCC98CEA1E62E9AE0018757E /* Result */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Result;
+			sourceTree = "<group>";
+		};
+		DCC98CEB1E62E9B50018757E /* StaticMap */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = StaticMap;
+			sourceTree = "<group>";
+		};
+		DCC98CEC1E62E9BC0018757E /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
+		DCC98CED1E62E9C80018757E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		DCC98CEE1E62E9CD0018757E /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Validation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -793,6 +871,7 @@
 					};
 					1851214F1D834D1F002C4B08 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0820;
 					};
 					DC79F6B71E55FAA60033AE51 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1075,6 +1154,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCC98CF61E62EA480018757E /* PropertyTest.swift in Sources */,
+				DCC98CF41E62EA1A0018757E /* ConfigurationTest.swift in Sources */,
+				DCC98CF21E62EA110018757E /* ConfigurableTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1172,12 +1254,15 @@
 			baseConfigurationReference = 7C37CA8BA58C7F3320247F9E /* Pods-ReactantTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1186,11 +1271,13 @@
 			baseConfigurationReference = 5975037688AFED52D683D2F3 /* Pods-ReactantTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = "Tests/Supporting Files/Info.plist";
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
