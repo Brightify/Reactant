@@ -36,6 +36,9 @@ Pod::Spec.new do |spec|
   def rxOptional do |subspec|
       subspec.dependency 'RxOptional', '~> 3.0'
   end
+  def kingfisher do |subspec|
+      subspec.dependency 'Kingfisher', '~> 3.0'
+  end
 
   spec.subspec 'Core' do |subspec|
       subspec.frameworks = 'UIKit'
@@ -76,6 +79,13 @@ Pod::Spec.new do |spec|
       subspec.frameworks = 'UIKit'
       rxCocoa(subspec)
       subspec.source_files = 'Source/ActivityIndicator/**/*.swift'
+  end
+
+  spec.subspec 'StaticMap' do |subspec|
+      subspec.frameworks = ['UIKit', 'MapKit']
+      rxCocoa(subspec)
+      kingfisher(subspec)
+      subspec.source_files = 'Source/StaticMap/**/*.swift'
   end
 
   spec.default_subspec = 'Core', 'Result'
