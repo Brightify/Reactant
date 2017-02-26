@@ -42,9 +42,17 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'Core' do |subspec|
       subspec.frameworks = 'UIKit'
+      subspec.dependency 'Reactant/Configuration'
       rxSwift(subspec)
       snapKit(subspec)
       subspec.source_files = ['Source/Core/**/*.swift', 'Source/Utils/**/*.swift']
+  end
+
+  spec.subspec 'Configuration' do |subspec|
+      subspec.frameworks = 'UIKit'
+      rxSwift(subspec)
+      snapKit(subspec)
+      subspec.source_files = 'Source/Configuration/**/*.swift'
   end
 
   spec.subspec 'Result' do |subspec|
