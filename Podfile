@@ -8,7 +8,7 @@ def shared
     pod 'RxDataSources', '~> 1.0'
     pod 'RxOptional', '~> 3.0'
     pod 'SnapKit', '~> 3.0'
-    pod 'Kingfisher', '~> 3.2'
+    pod 'Kingfisher', '~> 3.0'
     pod 'Result', '~> 3.0'
 end
 

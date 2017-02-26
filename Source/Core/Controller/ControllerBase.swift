@@ -32,7 +32,6 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         didSet {
             (rootView as? Configurable)?.configuration = configuration
             (view as? Configurable)?.configuration = configuration
-            
             navigationItem.backBarButtonItem = configuration.get(valueFor: Properties.defaultBackButton)
         }
     }

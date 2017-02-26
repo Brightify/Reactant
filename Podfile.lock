@@ -1,5 +1,5 @@
 PODS:
-  - Kingfisher (3.2.2)
+  - Kingfisher (3.0.1)
   - Nimble (5.1.1)
   - Quick (1.0.0)
   - Result (3.0.0)
@@ -15,7 +15,7 @@ PODS:
   - SnapKit (3.0.2)
 
 DEPENDENCIES:
-  - Kingfisher (~> 3.2)
+  - Kingfisher (~> 3.0)
   - Nimble (~> 5.0)
   - Quick (~> 1.0)
   - Result (~> 3.0)
@@ -26,7 +26,7 @@ DEPENDENCIES:
   - SnapKit (~> 3.0)
 
 SPEC CHECKSUMS:
-  Kingfisher: 821466474ad7ffc375a4aecadfa05068cfed67b3
+  Kingfisher: d5a491b45ea453d90a31bd2c0831d5243e73a73f
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
   Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
@@ -36,6 +36,6 @@ SPEC CHECKSUMS:
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: e7accd3a9b83dc58ce0c80daa6b8c40fbd8172ef
+PODFILE CHECKSUM: 26e5fd54e4da93bf9440f7a7ee78bbd4341fa03c
 
 COCOAPODS: 1.2.0

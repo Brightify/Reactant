@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class ViewController: ControllerBase<Void, Cell> {
+class ViewController: ControllerBase<Void, View> {
 
     init() {
         super.init()
@@ -24,7 +24,7 @@ class ViewController: ControllerBase<Void, Cell> {
     }
 }
 
-class Cell: ViewBase<UIColor, Void> {
+class View: ViewBase<UIColor, Void> {
     
     override func update() {
         backgroundColor = componentState
