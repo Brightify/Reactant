@@ -27,25 +27,25 @@ Pod::Spec.new do |s|
 
   spec.ios.deployment_target = '8.0'
 
-  def rxSwift do |subspec|
+  def self.rxSwift(subspec)
       subspec.dependency 'RxSwift', '~> 3.0'
   end
-  def snapKit do |subspec|
+  def self.snapKit(subspec)
       subspec.dependency 'SnapKit', '~> 3.0'
   end
-  def result do |subspec|
+  def self.result(subspec)
       subspec.dependency 'Result', '~> 3.0'
   end
-  def rxCocoa do |subspec|
+  def self.rxCocoa(subspec)
       subspec.dependency 'RxCocoa', '~> 3.0'
   end
-  def rxDataSources do |subspec|
+  def self.rxDataSources(subspec)
       subspec.dependency 'RxDataSources', '~> 1.0'
   end
-  def rxOptional do |subspec|
+  def self.rxOptional(subspec)
       subspec.dependency 'RxOptional', '~> 3.0'
   end
-  def kingfisher do |subspec|
+  def self.kingfisher(subspec)
       subspec.dependency 'Kingfisher', '~> 3.0'
   end
 
