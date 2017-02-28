@@ -113,6 +113,7 @@
 		DCC98CF21E62EA110018757E /* ConfigurableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC98CF11E62EA110018757E /* ConfigurableTest.swift */; };
 		DCC98CF41E62EA1A0018757E /* ConfigurationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC98CF31E62EA1A0018757E /* ConfigurationTest.swift */; };
 		DCC98CF61E62EA480018757E /* PropertyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC98CF51E62EA480018757E /* PropertyTest.swift */; };
+		DCC98CF81E657C240018757E /* ObservableConvertibleType+ResultTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC98CF71E657C240018757E /* ObservableConvertibleType+ResultTest.swift */; };
 		F34A376471BD5DC822F0E8D2 /* Pods_ReactantPrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0CE169634834E74544F2A0 /* Pods_ReactantPrototyping.framework */; };
 /* End PBXBuildFile section */
 
@@ -269,6 +270,7 @@
 		DCC98CF11E62EA110018757E /* ConfigurableTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurableTest.swift; sourceTree = "<group>"; };
 		DCC98CF31E62EA1A0018757E /* ConfigurationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTest.swift; sourceTree = "<group>"; };
 		DCC98CF51E62EA480018757E /* PropertyTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyTest.swift; sourceTree = "<group>"; };
+		DCC98CF71E657C240018757E /* ObservableConvertibleType+ResultTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+ResultTest.swift"; sourceTree = "<group>"; };
 		FC0E811E1078A9018C567089 /* Pods-ReactantPrototyping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantPrototyping.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -742,6 +744,7 @@
 		DCC98CEA1E62E9AE0018757E /* Result */ = {
 			isa = PBXGroup;
 			children = (
+				DCC98CF71E657C240018757E /* ObservableConvertibleType+ResultTest.swift */,
 			);
 			name = Result;
 			sourceTree = "<group>";
@@ -1151,6 +1154,7 @@
 				DCC98CF61E62EA480018757E /* PropertyTest.swift in Sources */,
 				DCC98CF41E62EA1A0018757E /* ConfigurationTest.swift in Sources */,
 				DCC98CF21E62EA110018757E /* ConfigurableTest.swift in Sources */,
+				DCC98CF81E657C240018757E /* ObservableConvertibleType+ResultTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
