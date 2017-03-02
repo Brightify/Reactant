@@ -55,7 +55,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         loadingIndicator.hidesWhenStopped = true
         
         collectionView.backgroundColor = .clear
-        collectionView.delegate = self
+        collectionView.rx.setDelegate(self).addDisposableTo(lifetimeDisposeBag)
     }
     
     open override func setupConstraints() {
