@@ -57,7 +57,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         tableView.backgroundView = nil
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .singleLine
-        tableView.delegate = self
+        tableView.rx.setDelegate(self).addDisposableTo(lifetimeDisposeBag)
     }
     
     open override func setupConstraints() {
