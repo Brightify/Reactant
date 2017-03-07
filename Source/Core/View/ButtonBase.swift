@@ -8,8 +8,9 @@
 
 import RxSwift
 
+#if os(iOS)
 @available(*, deprecated, message: "This class has been deprecated by ControlBase")
-open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configurable {
+open class ButtonBase<STATE, ACTION>: Button, ComponentWithDelegate, Configurable {
 
     public typealias StateType = STATE
     public typealias ActionType = ACTION
@@ -22,13 +23,26 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
         return []
     }
 
+    #if os(iOS)
+    open override class var requiresConstraintBasedLayout: Bool {
+        return true
+    }
+    #elseif os(macOS)
+    open override class func requiresConstraintBasedLayout() -> Bool {
+        return true
+    }
+    #endif
+
+
     open var action: Observable<ACTION> {
         return componentDelegate.action
     }
 
     open var configuration: Configuration = .global {
         didSet {
+            #if os(iOS)
             layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
+            #endif
             configuration.get(valueFor: Properties.Style.button)(self)
         }
     }
@@ -110,9 +124,10 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
         return true
     }
 
-    open override func addSubview(_ view: UIView) {
+    open override func addSubview(_ view: View) {
         view.translatesAutoresizingMaskIntoConstraints = false
 
         super.addSubview(view)
     }
 }
+#endif

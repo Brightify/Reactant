@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public final class FutureControllerProvider<T: UIViewController> {
@@ -26,3 +27,12 @@ public final class FutureControllerProvider<T: UIViewController> {
         return controller?.navigationController
     }
 }
+    
+#elseif os(macOS)
+    import AppKit
+
+    public final class FutureControllerProvider<T: NSViewController> {
+
+        public internal(set) weak var controller: T?
+    }
+#endif

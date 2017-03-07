@@ -6,11 +6,11 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-import UIKit
+#if os(iOS)
+    extension View: Reusable {
 
-extension UIView: Reusable {
-    
-    public func prepareForReuse() {
-        removeFromSuperview()
+        public func prepareForReuse() {
+            removeFromSuperview()
+        }
     }
-}
+#endif

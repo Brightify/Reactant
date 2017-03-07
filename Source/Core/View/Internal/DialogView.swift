@@ -6,13 +6,11 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import UIKit
-
 public final class DialogView: ViewBase<Void, Void> {
-    
+
     private let contentContainer = ContainerView()
-    private let content: UIView
-    
+    private let content: View
+
     public override var configuration: Configuration {
         didSet {
             contentContainer.configuration = configuration
@@ -20,13 +18,13 @@ public final class DialogView: ViewBase<Void, Void> {
             configuration.get(valueFor: Properties.Style.dialog)(self)
         }
     }
-    
-    public init(content: UIView) {
+
+    public init(content: View) {
         self.content = content
-        
+
         super.init()
     }
-    
+
     override public func loadView() {
         children(
             contentContainer.children(
@@ -34,7 +32,7 @@ public final class DialogView: ViewBase<Void, Void> {
             )
         )
     }
-    
+
     override public func setupConstraints() {
         contentContainer.snp.makeConstraints { make in
             make.leading.greaterThanOrEqualTo(snp.leadingMargin)
@@ -43,7 +41,7 @@ public final class DialogView: ViewBase<Void, Void> {
             make.bottom.lessThanOrEqualTo(snp.bottomMargin)
             make.center.equalTo(self)
         }
-        
+
         content.snp.makeConstraints { make in
             make.edges.equalTo(contentContainer)
         }

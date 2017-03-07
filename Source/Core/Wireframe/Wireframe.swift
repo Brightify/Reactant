@@ -6,7 +6,10 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#endif
+
 import RxSwift
 
 public protocol Wireframe {
@@ -65,6 +68,7 @@ extension Wireframe {
         return (controller, subject.takeUntil(controller.rx.deallocated))
     }
 
+    #if os(iOS)
     /**
      * Used when you need a navigation controller embedded inside a controller that is already inside a navigation controller and is supposed to have a close button.
      */
@@ -85,4 +89,5 @@ extension Wireframe {
         let closeButtonTitle = controller.configuration.get(valueFor: Properties.closeButtonTitle)
         return branchNavigation(controller: controller, closeButtonTitle: closeButtonTitle)
     }
+    #endif
 }
