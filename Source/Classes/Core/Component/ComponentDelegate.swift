@@ -70,7 +70,7 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     }
     
     private let observableStateSubject = ReplaySubject<STATE>.create(bufferSize: 1)
-    private let actionSubject = ReplaySubject<ACTION>.create(bufferSize: 1)
+    private let actionSubject = PublishSubject<ACTION>()
     
     private var stateStorage: STATE? = nil
     
