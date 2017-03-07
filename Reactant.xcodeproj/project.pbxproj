@@ -89,6 +89,10 @@
 		182AF7121E6EFDCC005DE502 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182AF7101E6EFC9A005DE502 /* Typealiases.swift */; };
 		182AF7141E6F0389005DE502 /* NSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182AF7131E6F0389005DE502 /* NSLabel.swift */; };
 		182AF7151E6F03D7005DE502 /* NSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182AF7131E6F0389005DE502 /* NSLabel.swift */; };
+		182AF7161E6F18CA005DE502 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650B831D8364AE00B1B2A0 /* ActivityIndicator.swift */; };
+		182AF7171E6F18DE005DE502 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA51D83671B00B1B2A0 /* StaticMap.swift */; };
+		182AF7181E6F18DF005DE502 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA51D83671B00B1B2A0 /* StaticMap.swift */; };
+		182AF7191E6F1AE8005DE502 /* ObservableConvertibleType+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */; };
 		183D82AC1E37B65C002E380A /* Recycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D82AB1E37B65C002E380A /* Recycler.swift */; };
 		183D82AE1E37B674002E380A /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D82AD1E37B674002E380A /* Reusable.swift */; };
 		183D82B01E37B684002E380A /* UIView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D82AF1E37B684002E380A /* UIView+Reusable.swift */; };
@@ -1362,6 +1366,7 @@
 				182AF6F51E6EFA81005DE502 /* ButtonBase.swift in Sources */,
 				182AF6FC1E6EFA88005DE502 /* UIBarButtonItem+ClosureAction.swift in Sources */,
 				182AF6FD1E6EFA88005DE502 /* UIStackView+ArrangedChildren.swift in Sources */,
+				182AF7161E6F18CA005DE502 /* ActivityIndicator.swift in Sources */,
 				182AF7001E6EFA8C005DE502 /* ConstraintAction.swift in Sources */,
 				182AF7051E6EFA90005DE502 /* UIScrollView+Scrollable.swift in Sources */,
 				182AF6F01E6EFA76005DE502 /* ReactantConfiguration.swift in Sources */,
@@ -1373,6 +1378,7 @@
 				182AF7041E6EFA90005DE502 /* Scrollable.swift in Sources */,
 				182AF6F21E6EFA79005DE502 /* UIViewController+Navigation.swift in Sources */,
 				182AF6F11E6EFA79005DE502 /* UINavigationController+Navigation.swift in Sources */,
+				182AF7191E6F1AE8005DE502 /* ObservableConvertibleType+Result.swift in Sources */,
 				182AF6FE1E6EFA88005DE502 /* UIView+Utils.swift in Sources */,
 				182AF6F81E6EFA81005DE502 /* ViewBase.swift in Sources */,
 				182AF6EF1E6EFA6F005DE502 /* ComponentWithDelegate.swift in Sources */,
@@ -1381,6 +1387,7 @@
 				182AF6F31E6EFA79005DE502 /* Wireframe.swift in Sources */,
 				182AF7061E6EFA94005DE502 /* Recycler.swift in Sources */,
 				182AF7091E6EFA98005DE502 /* Array+Utils.swift in Sources */,
+				182AF7181E6F18DF005DE502 /* StaticMap.swift in Sources */,
 				182AF70E1E6EFA9C005DE502 /* DialogDismissalListener.swift in Sources */,
 				182AF6ED1E6EFA6F005DE502 /* ComponentBase.swift in Sources */,
 				182AF7071E6EFA94005DE502 /* Reusable.swift in Sources */,
@@ -1482,6 +1489,9 @@
 				DC1C67F21E5C39F30081E7BD /* Sequence+Utils.swift in Sources */,
 				DC1C68011E5F574B0081E7BD /* ActivityIndicator.swift in Sources */,
 				DC6940851E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift in Sources */,
+				183D82AC1E37B65C002E380A /* Recycler.swift in Sources */,
+				DC2B5D3C1DE2070200F9C9D7 /* EmailValidationError.swift in Sources */,
+				182AF7171E6F18DE005DE502 /* StaticMap.swift in Sources */,
 				DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */,
 				DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */,
 				DC79F6AB1E5377B60033AE51 /* Configurable.swift in Sources */,
