@@ -8,7 +8,7 @@
 
 import SnapKit
 
-public extension UIView {
+public extension View {
     
     private struct AssociatedKey {
         static var collapseAxis: UInt8 = 0
@@ -53,8 +53,12 @@ public extension UIView {
                 collapseConstraints.append((zeroWidthConstraint, .install))
                 collapseConstraints.append((zeroHeightConstraint, .install))
             }
-            
-            alpha = newValue == .visible ? 1 : 0
+
+            #if os(iOS)
+                alpha = newValue == .visible ? 1 : 0
+            #elseif os(macOS)
+                alphaValue = newValue == .visible ? 1 : 0
+            #endif
             if newValue == .collapsed {
                 for constraint in collapseConstraints {
                     switch constraint.action {

@@ -1,5 +1,4 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
 use_frameworks!
 inhibit_all_warnings!
 
@@ -14,10 +13,14 @@ def shared
 end
 
 target 'Reactant' do
+    platform :ios, '9.0'
     shared
+
+    pod 'RxDataSources'
 end
 
 target 'ReactantTests' do
+    platform :ios, '9.0'
     shared
 
     pod 'Quick', '~> 1.0'
@@ -25,6 +28,15 @@ target 'ReactantTests' do
 end
 
 target 'ReactantPrototyping' do
+    platform :ios, '9.0'
+    shared
+
+    pod 'Reactant', :path => './'
+end
+
+target 'ReactantMacOS' do
+    platform :osx, '10.11'
+
     shared
 
     pod 'Reactant', :path => './'

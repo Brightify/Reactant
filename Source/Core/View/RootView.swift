@@ -6,11 +6,15 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#endif
 
 public protocol RootView {
     
+    #if os(iOS)
     var edgesForExtendedLayout: UIRectEdge { get }
+    #endif
     
     func viewWillAppear()
     
@@ -22,10 +26,12 @@ public protocol RootView {
 }
 
 extension RootView {
-    
+
+    #if os(iOS)
     public var edgesForExtendedLayout: UIRectEdge {
         return []
     }
+    #endif
     
     public func viewWillAppear() {
     }

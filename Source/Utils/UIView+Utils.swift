@@ -6,22 +6,20 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import UIKit
-
-extension UIView {
+extension View {
     
     @discardableResult
-    public func children(_ children: UIView...) -> UIView {
+    public func children(_ children: View...) -> View {
         return self.children(children)
     }
     
     @discardableResult
-    public func children(_ children: [UIView]) -> UIView {
+    public func children(_ children: [View]) -> View {
         children.forEach(addSubview)
         return self
     }
     
-    public var rootView: UIView {
+    public var rootView: View {
         if let superview = superview {
             return superview.rootView
         } else {

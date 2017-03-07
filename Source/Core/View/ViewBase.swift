@@ -8,7 +8,7 @@
 
 import RxSwift
 
-open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable {
+open class ViewBase<STATE, ACTION>: View, ComponentWithDelegate, Configurable {
 
     public typealias StateType = STATE
     public typealias ActionType = ACTION
@@ -27,14 +27,22 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
 
     open var configuration: Configuration = .global {
         didSet {
+            #if os(iOS)
             layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
+            #endif
             configuration.get(valueFor: Properties.Style.view)(self)
         }
     }
 
+    #if os(iOS)
     open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
+    #elseif os(iOS)
+    open override class func requiresConstraintBasedLayout() -> Bool {
+        return true
+    }
+    #endif
 
     public init() {
         super.init(frame: CGRect.zero)
@@ -89,7 +97,7 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         return true
     }
 
-    open override func addSubview(_ view: UIView) {
+    open override func addSubview(_ view: View) {
         view.translatesAutoresizingMaskIntoConstraints = false
 
         super.addSubview(view)

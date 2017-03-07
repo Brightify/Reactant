@@ -6,12 +6,10 @@
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
-import UIKit
+open class ScrollControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> where ROOT: Component {
 
-open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
-    
-    public let scrollView = UIScrollView()
-    
+    public let scrollView = ScrollView()
+
     open override var configuration: Configuration {
         didSet {
             configuration.get(valueFor: Properties.Style.scroll)(scrollView)
@@ -22,12 +20,14 @@ open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
         view = ControllerRootViewContainer().with(configuration: configuration)
 
         view.children(
-            scrollView.children(
-                rootView
-            )
+            scrollView
         )
+
+        #if os(macOS)
+        scrollView.documentView = rootView
+        #endif
     }
-    
+
     public override init(title: String = "", root: ROOT = ROOT()) {
         super.init(title: title, root: root)
     }
@@ -45,15 +45,23 @@ open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
         }
     }
 
+    #if os(iOS)
     open override func viewDidLayoutSubviews() {
         scrollView.contentSize = rootView.bounds.size
 
         super.viewDidLayoutSubviews()
     }
+    #elseif os(macOS)
+    open override func viewDidLayout() {
+//        scrollView.contentSize = rootView.fittingSize
+
+        super.viewDidLayout()
+    }
+    #endif
 }
 
 extension ScrollControllerBase: Scrollable {
-    
+
     public func scrollToTop(animated: Bool) {
         scrollView.scrollToTop(animated: animated)
     }
