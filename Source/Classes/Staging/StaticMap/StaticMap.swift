@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import Kingfisher
 
+#if os(iOS)
 // TODO Move to subspec with Kingfisher.
 
 open class StaticMap: ViewBase<MKCoordinateRegion, Void> {
@@ -19,7 +20,7 @@ open class StaticMap: ViewBase<MKCoordinateRegion, Void> {
         return tapGestureRecognizer.rx.event.rewrite(with: Void())
     }
 
-    private let image = UIImageView()
+    private let image = ImageView()
 
     private let tapGestureRecognizer = UIGestureRecognizer()
 
@@ -177,3 +178,4 @@ extension MKCoordinateSpan {
             longitudeDelta: longitudeDelta + longitudeDelta * horizontal)
     }
 }
+#endif
