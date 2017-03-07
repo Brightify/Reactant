@@ -23,28 +23,32 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
 
-
   s.default_subspec = 'Core', 'Result', 'Staging'
 
   s.subspec 'Core' do |core|
-    core.frameworks = 'UIKit'
+    core.ios.deployment_target = '9.0'
+    core.osx.deployment_target = '10.11'
+
     core.source_files = 'Source/Classes/Core/**/*'
     core.dependency 'RxSwift', '~> 3.0'
     core.dependency 'RxCocoa', '~> 3.0'
     core.dependency 'RxOptional', '~> 3.1'
     core.dependency 'SnapKit', '~> 3.0'
-    core.osx.deployment_target = '10.11'
   end
 
   s.subspec 'Result' do |result|
+    result.ios.deployment_target = '9.0'
+    result.osx.deployment_target = '10.11'
+
     result.source_files = 'Source/Classes/Result/**/*'
-    s.dependency 'Result', '~> 3.0.0'
-    s.dependency 'RxSwift', '~> 3.0'
-    s.dependency 'RxOptional', '~> 3.1'
+    result.dependency 'Result', '~> 3.0.0'
+    result.dependency 'RxSwift', '~> 3.0'
+    result.dependency 'RxOptional', '~> 3.1'
   end
 
   s.subspec 'Staging' do |staging|
-    staging.frameworks = 'UIKit'
+    staging.ios.deployment_target = '9.0'
+    staging.osx.deployment_target = '10.11'
     staging.source_files = 'Source/Classes/Staging/**/*'
     staging.dependency 'Reactant/Core'
     staging.dependency 'RxSwift', '~> 3.0'
@@ -54,12 +58,14 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Validation' do |validation|
+    validation.ios.deployment_target = '9.0'
+    validation.osx.deployment_target = '10.11'
     validation.source_files = 'Source/Classes/Validation/**/*'
     validation.frameworks = 'Foundation'
+    validation.dependency 'Result', '~> 3.0.0'
   end
 
   s.subspec 'TableView' do |tableView|
-    tableView.frameworks = 'UIKit'
     tableView.source_files = 'Source/Classes/TableView/**/*'
     tableView.dependency 'Reactant/Core'
     tableView.dependency 'RxSwift', '~> 3.0'
@@ -69,7 +75,6 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'CollectionView' do |collectionView|
-    collectionView.frameworks = 'UIKit'
     collectionView.source_files = 'Source/Classes/CollectionView/**/*'
     collectionView.dependency 'Reactant/Core'
     collectionView.dependency 'Reactant/TableView'
