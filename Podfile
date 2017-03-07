@@ -14,13 +14,11 @@ end
 
 target 'Reactant' do
     platform :ios, '9.0'
-
     shared
 end
 
 target 'ReactantTests' do
     platform :ios, '9.0'
-
     shared
 
     pod 'Quick', '~> 1.1'
@@ -43,6 +41,13 @@ target 'TVPrototyping' do
     shared
 
     pod 'Reactant', :subspecs => ['All-tvOS', 'FallbackSafeAreaInsets'], :path => './'
+end
+
+target 'ReactantMacOS' do
+    platform :osx, '10.11'
+    shared
+    
+    pod 'Reactant', :path => './'
 end
 
 # Required until CocoaPods adds support for targets with multiple Swift versions or when all dependencies support Swift 4.0

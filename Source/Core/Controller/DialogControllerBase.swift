@@ -6,12 +6,11 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import UIKit
+open class DialogControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> where ROOT: Component {
 
-open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
-
-    private let rootViewContainer = ControllerRootViewContainer()
     public var dialogView: DialogView
+    
+    private let rootViewContainer = ControllerRootViewContainer()
     
     open override var configuration: Configuration {
         didSet {
@@ -24,9 +23,11 @@ open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
         dialogView = DialogView(content: root)
         
         super.init(title: title, root: root)
-        
+
+        #if os(iOS)
         modalTransitionStyle = .crossDissolve
         modalPresentationStyle = .overCurrentContext
+        #endif
     }
     
     open override func loadView() {
@@ -34,7 +35,8 @@ open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
         
         view.addSubview(dialogView)
     }
-    
+
+    #if os(iOS)
     open override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         let dismissalListener = presentingViewController as? DialogDismissalListener
         dismissalListener?.dialogWillDismiss()
@@ -43,6 +45,15 @@ open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
             completion?()
         }
     }
+    #elseif os(macOS)
+    open override func dismissViewController(_ viewController: NSViewController) {
+        let dismissalListener = presenting as? DialogDismissalListener
+        dismissalListener?.dialogWillDismiss()
+        super.dismiss(viewController)
+        dismissalListener?.dialogDidDismiss()
+    }
+
+    #endif
     
     open override func updateRootViewConstraints() {
         dialogView.snp.updateConstraints { make in

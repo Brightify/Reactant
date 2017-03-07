@@ -6,7 +6,11 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import UIKit
+#if os(iOS)
+    import UIKit
+#elseif os(macOS)
+    import AppKit
+#endif
 
 /**
  * ## Set Constant

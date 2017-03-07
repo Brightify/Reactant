@@ -6,9 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import UIKit
-
-extension UIView {
+extension View {
 
     /**
      * Adds subviews to the view that this method is called upon.
@@ -29,7 +27,7 @@ extension UIView {
      * ```
      */
     @discardableResult
-    public func children(_ children: UIView...) -> UIView {
+    public func children(_ children: View...) -> View {
         return self.children(children)
     }
 
@@ -52,7 +50,7 @@ extension UIView {
      * ```
      */
     @discardableResult
-    public func children(_ children: [UIView]) -> UIView {
+    public func children(_ children: [View]) -> View {
         children.forEach(addSubview)
         return self
     }
