@@ -12,6 +12,7 @@
     public typealias Label = UILabel
     public typealias Button = UIButton
     public typealias View = UIView
+    public typealias ImageView = UIImageView
     public typealias ScrollView = UIScrollView
     public typealias ProgressIndicator = UIActivityIndicatorView
     public typealias ViewController = UIViewController
@@ -21,6 +22,7 @@
     public typealias Label = NSLabel
     public typealias Button = NSButton
     public typealias View = NSView
+    public typealias ImageView = NSImageView
     public typealias ScrollView = NSScrollView
     public typealias ProgressIndicator = NSProgressIndicator
     public typealias ViewController = NSViewController
