@@ -28,7 +28,8 @@ Pod::Spec.new do |spec|
     spec.social_media_url = 'https://twitter.com/BrightifyOrg'
     spec.requires_arc = true
 
-    spec.ios.deployment_target = '8.0'
+    spec.ios.deployment_target = '9.0'
+    spec.osx.deployment_target = '10.11'
     spec.default_subspec = 'Core', 'Result'
 
     def self.rxSwift(subspec)
@@ -54,9 +55,6 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'Core' do |subspec|
-        subspec.ios.deployment_target = '9.0'
-        subspec.osx.deployment_target = '10.11'
-
         subspec.dependency 'Reactant/Configuration'
         rxSwift(subspec)
         rxCocoa(subspec)
@@ -69,18 +67,12 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'Configuration' do |subspec|
-        subspec.ios.deployment_target = '9.0'
-        subspec.osx.deployment_target = '10.11'
-
         rxSwift(subspec)
         snapKit(subspec)
         subspec.source_files = 'Source/Configuration/**/*.swift'
     end
 
     spec.subspec 'Result' do |subspec|
-        subspec.ios.deployment_target = '9.0'
-        subspec.osx.deployment_target = '10.11'
-
         result(subspec)
         rxSwift(subspec)
         rxOptional(subspec)
@@ -88,14 +80,12 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'Validation' do |subspec|
-        subspec.ios.deployment_target = '9.0'
-        subspec.osx.deployment_target = '10.11'
-
         result(subspec)
         subspec.source_files = 'Source/Validation/**/*.swift'
     end
 
     spec.subspec 'TableView' do |subspec|
+        subspec.ios.deployment_target = '9.0'
         subspec.frameworks = 'UIKit'
         subspec.dependency 'Reactant/Core'
         rxCocoa(subspec)
@@ -107,6 +97,7 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'CollectionView' do |subspec|
+        subspec.ios.deployment_target = '9.0'
         subspec.frameworks = 'UIKit'
         subspec.dependency 'Reactant/Core'
         rxCocoa(subspec)
@@ -115,15 +106,13 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'ActivityIndicator' do |subspec|
-        subspec.ios.deployment_target = '9.0'
-        subspec.osx.deployment_target = '10.11'
-
         subspec.frameworks = 'UIKit'
         rxCocoa(subspec)
         subspec.source_files = 'Source/ActivityIndicator/**/*.swift'
     end
 
     spec.subspec 'StaticMap' do |subspec|
+        subspec.ios.deployment_target = '9.0'
         subspec.frameworks = ['UIKit', 'MapKit']
         subspec.dependency 'Reactant/Core'
         rxCocoa(subspec)
