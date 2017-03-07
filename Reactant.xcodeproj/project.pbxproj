@@ -93,6 +93,10 @@
 		182AF7171E6F18DE005DE502 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA51D83671B00B1B2A0 /* StaticMap.swift */; };
 		182AF7181E6F18DF005DE502 /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA51D83671B00B1B2A0 /* StaticMap.swift */; };
 		182AF7191E6F1AE8005DE502 /* ObservableConvertibleType+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */; };
+		182AF71A1E6F1B34005DE502 /* EmailValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D381DE2070200F9C9D7 /* EmailValidationError.swift */; };
+		182AF71B1E6F1B34005DE502 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D391DE2070200F9C9D7 /* Rule.swift */; };
+		182AF71C1E6F1B34005DE502 /* StringRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D3A1DE2070200F9C9D7 /* StringRules.swift */; };
+		182AF71D1E6F1B34005DE502 /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D3B1DE2070200F9C9D7 /* ValidationError.swift */; };
 		183D82AC1E37B65C002E380A /* Recycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D82AB1E37B65C002E380A /* Recycler.swift */; };
 		183D82AE1E37B674002E380A /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D82AD1E37B674002E380A /* Reusable.swift */; };
 		183D82B01E37B684002E380A /* UIView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183D82AF1E37B684002E380A /* UIView+Reusable.swift */; };
@@ -1364,8 +1368,10 @@
 			files = (
 				182AF7121E6EFDCC005DE502 /* Typealiases.swift in Sources */,
 				182AF6F51E6EFA81005DE502 /* ButtonBase.swift in Sources */,
+				182AF71C1E6F1B34005DE502 /* StringRules.swift in Sources */,
 				182AF6FC1E6EFA88005DE502 /* UIBarButtonItem+ClosureAction.swift in Sources */,
 				182AF6FD1E6EFA88005DE502 /* UIStackView+ArrangedChildren.swift in Sources */,
+				182AF71B1E6F1B34005DE502 /* Rule.swift in Sources */,
 				182AF7161E6F18CA005DE502 /* ActivityIndicator.swift in Sources */,
 				182AF7001E6EFA8C005DE502 /* ConstraintAction.swift in Sources */,
 				182AF7051E6EFA90005DE502 /* UIScrollView+Scrollable.swift in Sources */,
@@ -1382,6 +1388,7 @@
 				182AF6FE1E6EFA88005DE502 /* UIView+Utils.swift in Sources */,
 				182AF6F81E6EFA81005DE502 /* ViewBase.swift in Sources */,
 				182AF6EF1E6EFA6F005DE502 /* ComponentWithDelegate.swift in Sources */,
+				182AF71A1E6F1B34005DE502 /* EmailValidationError.swift in Sources */,
 				182AF6FA1E6EFA84005DE502 /* DialogView.swift in Sources */,
 				182AF6FB1E6EFA88005DE502 /* AssociatedObject.swift in Sources */,
 				182AF6F31E6EFA79005DE502 /* Wireframe.swift in Sources */,
@@ -1400,6 +1407,7 @@
 				182AF7031E6EFA90005DE502 /* ScrollControllerBase+Scrollable.swift in Sources */,
 				182AF70C1E6EFA9C005DE502 /* ControllerBase.swift in Sources */,
 				182AF6FF1E6EFA8C005DE502 /* CollapseAxis.swift in Sources */,
+				182AF71D1E6F1B34005DE502 /* ValidationError.swift in Sources */,
 				182AF70A1E6EFA98005DE502 /* ObservableConvertibleType+Utils.swift in Sources */,
 				182AF6F61E6EFA81005DE502 /* ContainerView.swift in Sources */,
 				182AF6F41E6EFA7C005DE502 /* FutureControllerProvider.swift in Sources */,
