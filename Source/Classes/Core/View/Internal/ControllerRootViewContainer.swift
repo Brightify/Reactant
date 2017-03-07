@@ -6,11 +6,15 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
-public final class ControllerRootViewContainer: UIView {
+public final class ControllerRootViewContainer: View {
     
-    public let wrappedView: UIView?
+    public let wrappedView: View?
     
     public override var frame: CGRect {
         didSet {
@@ -40,7 +44,7 @@ public final class ControllerRootViewContainer: UIView {
         ReactantConfiguration.global.controllerRootStyle(self)
     }
     
-    public init(wrap: UIView) {
+    public init(wrap: View) {
         wrappedView = wrap
         
         super.init(frame: CGRect.zero)
@@ -50,9 +54,13 @@ public final class ControllerRootViewContainer: UIView {
     }
     
     private func loadView() {
+        #if os(iOS)
         autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        #elseif os(macOS)
+        autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+        #endif
         if frame == CGRect.zero {
-            frame = window?.bounds ?? UIScreen.main.bounds
+            frame = window?.frame ?? .zero
         }
     }
 }

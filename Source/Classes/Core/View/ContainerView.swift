@@ -6,10 +6,15 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import UIKit
+#if os(iOS)
+    import UIKit
+#elseif os(macOS)
+    import AppKit
+#endif
 
-open class ContainerView: UIView {
-    
+open class ContainerView: View {
+
+    #if os(iOS)
     open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
@@ -31,8 +36,13 @@ open class ContainerView: UIView {
         
         layoutMargins = ReactantConfiguration.global.layoutMargins
     }
+    #elseif os(macOS)
+    open override class func requiresConstraintBasedLayout() -> Bool {
+        return true
+    }
+    #endif
     
-    open override func addSubview(_ view: UIView) {
+    open override func addSubview(_ view: View) {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         super.addSubview(view)

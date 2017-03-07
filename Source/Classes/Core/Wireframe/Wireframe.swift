@@ -6,7 +6,9 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
+#endif
 
 public protocol Wireframe {
 }
@@ -19,7 +21,7 @@ extension Wireframe {
         futureControllerProvider.controller = controller
         return controller
     }
-    
+    #if os(iOS)
     public func branchNavigation(controller: UIViewController,
                                           closeButtonTitle: String? = ReactantConfiguration.global.closeButtonTitle) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: controller)
@@ -30,4 +32,5 @@ extension Wireframe {
         }
         return navigationController
     }
+    #endif
 }

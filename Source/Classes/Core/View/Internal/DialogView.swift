@@ -6,14 +6,12 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import UIKit
-
 public final class DialogView: ViewBase<Void, Void> {
     
     private let contentContainer = ContainerView()
-    private let content: UIView
+    private let content: View
     
-    init(content: UIView) {
+    init(content: View) {
         self.content = content
         
         super.init()

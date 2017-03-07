@@ -8,7 +8,8 @@
 
 import RxSwift
 
-open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
+#if os(iOS)
+open class ButtonBase<STATE, ACTION>: Button, ComponentWithDelegate {
 
     public typealias StateType = STATE
     public typealias ActionType = ACTION
@@ -16,10 +17,17 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
     public let lifetimeDisposeBag = DisposeBag()
     
     public let componentDelegate = ComponentDelegate<STATE, ACTION, ButtonBase<STATE, ACTION>>()
-    
+
+    #if os(iOS)
     open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
+    #elseif os(macOS)
+    open override class func requiresConstraintBasedLayout() -> Bool {
+        return true
+    }
+    #endif
+
 
     open var action: Observable<ACTION> {
         return componentDelegate.action
@@ -38,8 +46,10 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
         
         componentDelegate.ownerComponent = self
         componentDelegate.canUpdate = true
-        
+
+        #if os(iOS)
         layoutMargins = ReactantConfiguration.global.layoutMargins
+        #endif
         translatesAutoresizingMaskIntoConstraints = false
         
         loadView()
@@ -69,9 +79,10 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
     open func setupConstraints() {
     }
     
-    open override func addSubview(_ view: UIView) {
+    open override func addSubview(_ view: View) {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         super.addSubview(view)
     }
 }
+#endif

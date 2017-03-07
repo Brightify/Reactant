@@ -9,13 +9,15 @@
 import SnapKit
 import RxSwift
 
-open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate where ROOT: Component {
+open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDelegate where ROOT: Component {
     public typealias StateType = STATE
     public typealias ActionType = Void
-    
+
+    #if os(iOS)
     open var navigationBarHidden: Bool {
         return false
     }
+    #endif
     
     public let lifetimeDisposeBag = DisposeBag()
     
@@ -33,8 +35,12 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     
     public init(title: String = "", root: ROOT = ROOT()) {
         rootView = root
-        
+
+        #if os(iOS)
         super.init(nibName: nil, bundle: nil)
+        #elseif os(macOS)
+        super.init(nibName: nil, bundle: nil)!
+        #endif
         
         componentDelegate.ownerComponent = self
         rootView.action
@@ -44,9 +50,12 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
             .addDisposableTo(lifetimeDisposeBag)
         
         self.title = title
+
+        #if os(iOS)
         if let backButtonTitle = ReactantConfiguration.global.defaultBackButtonTitle {
             navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .plain)
         }
+        #endif
         
         afterInit()
     }
@@ -82,6 +91,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     }
     
     open func updateRootViewConstraints() {
+        #if os(iOS)
         rootView.snp.updateConstraints { make in
             make.leading.equalTo(view)
             if castRootView?.edgesForExtendedLayout.contains(.top) == true {
@@ -96,8 +106,17 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
                 make.bottom.equalTo(bottomLayoutGuide.snp.top).priority(UILayoutPriorityDefaultHigh)
             }
         }
+        #elseif os(macOS)
+            rootView.snp.updateConstraints { make in
+                make.leading.equalTo(view)
+                make.trailing.equalTo(view)
+                make.top.equalTo(view)
+                make.bottom.equalTo(view).priority(NSLayoutPriorityDefaultHigh)
+            }
+        #endif
     }
-    
+
+    #if os(iOS)
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -127,6 +146,35 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         
         castRootView?.viewDidDisappear()
     }
+    #elseif os(macOS)
+    open override func viewWillAppear() {
+        super.viewWillAppear()
+
+        componentDelegate.canUpdate = true
+
+        castRootView?.viewWillAppear()
+    }
+
+    open override func viewDidAppear() {
+        super.viewDidAppear()
+
+        castRootView?.viewDidAppear()
+    }
+
+    open override func viewWillDisappear() {
+        super.viewWillDisappear()
+
+        componentDelegate.canUpdate = false
+
+        castRootView?.viewWillDisappear()
+    }
+
+    open override func viewDidDisappear() {
+        super.viewDidDisappear()
+
+        castRootView?.viewDidDisappear()
+    }
+    #endif
     
     public final func perform(action: Void) { }
     

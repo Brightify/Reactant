@@ -23,21 +23,23 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
 
+
   s.default_subspec = 'Core', 'Result', 'Staging'
 
   s.subspec 'Core' do |core|
     core.frameworks = 'UIKit'
     core.source_files = 'Source/Classes/Core/**/*'
-    core.dependency 'RxSwift', '~> 3.0.0'
-    core.dependency 'RxCocoa', '~> 3.0.0'
+    core.dependency 'RxSwift', '~> 3.0'
+    core.dependency 'RxCocoa', '~> 3.0'
     core.dependency 'RxOptional', '~> 3.1'
     core.dependency 'SnapKit', '~> 3.0'
+    core.osx.deployment_target = '10.11'
   end
 
   s.subspec 'Result' do |result|
     result.source_files = 'Source/Classes/Result/**/*'
     s.dependency 'Result', '~> 3.0.0'
-    s.dependency 'RxSwift', '~> 3.0.0'
+    s.dependency 'RxSwift', '~> 3.0'
     s.dependency 'RxOptional', '~> 3.1'
   end
 
@@ -45,8 +47,8 @@ Pod::Spec.new do |s|
     staging.frameworks = 'UIKit'
     staging.source_files = 'Source/Classes/Staging/**/*'
     staging.dependency 'Reactant/Core'
-    staging.dependency 'RxSwift', '~> 3.0.0'
-    staging.dependency 'RxCocoa', '~> 3.0.0'
+    staging.dependency 'RxSwift', '~> 3.0'
+    staging.dependency 'RxCocoa', '~> 3.0'
     staging.dependency 'Kingfisher', '~> 3.1'
     staging.dependency 'SnapKit', '~> 3.0'
   end
@@ -60,8 +62,8 @@ Pod::Spec.new do |s|
     tableView.frameworks = 'UIKit'
     tableView.source_files = 'Source/Classes/TableView/**/*'
     tableView.dependency 'Reactant/Core'
-    tableView.dependency 'RxSwift', '~> 3.0.0'
-    tableView.dependency 'RxCocoa', '~> 3.0.0'
+    tableView.dependency 'RxSwift', '~> 3.0'
+    tableView.dependency 'RxCocoa', '~> 3.0'
     tableView.dependency 'RxDataSources', '~> 1.0.0'
 
   end
@@ -71,8 +73,8 @@ Pod::Spec.new do |s|
     collectionView.source_files = 'Source/Classes/CollectionView/**/*'
     collectionView.dependency 'Reactant/Core'
     collectionView.dependency 'Reactant/TableView'
-    collectionView.dependency 'RxSwift', '~> 3.0.0'
-    collectionView.dependency 'RxCocoa', '~> 3.0.0'
+    collectionView.dependency 'RxSwift', '~> 3.0'
+    collectionView.dependency 'RxCocoa', '~> 3.0'
     collectionView.dependency 'RxDataSources', '~> 1.0.0'
   end
 end

@@ -6,11 +6,9 @@
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 
-import UIKit
-
-open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
+open class ScrollControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> where ROOT: Component {
     
-    public let scrollView = UIScrollView()
+    public let scrollView = ScrollView()
 
     public override init(title: String = "", root: ROOT = ROOT.init()) {
         super.init(title: title, root: root)
@@ -18,12 +16,14 @@ open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
 
     open override func loadView() {
         view = ControllerRootViewContainer()
-        
+
         view.children(
-            scrollView.children(
-                rootView
-            )
+            scrollView
         )
+
+        #if os(macOS)
+        scrollView.documentView = rootView
+        #endif
     }
 
     open override func updateRootViewConstraints() {
@@ -39,9 +39,17 @@ open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
         }
     }
 
+    #if os(iOS)
     open override func viewDidLayoutSubviews() {
         scrollView.contentSize = rootView.bounds.size
 
         super.viewDidLayoutSubviews()
     }
+    #elseif os(macOS)
+    open override func viewDidLayout() {
+//        scrollView.contentSize = rootView.fittingSize
+
+        super.viewDidLayout()
+    }
+    #endif
 }
