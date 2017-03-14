@@ -23,6 +23,8 @@ open class ScrollControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> 
 
         #if os(macOS)
         scrollView.documentView = rootView
+        #elseif os(iOS)
+        scrollView.children(rootView)
         #endif
     }
 
