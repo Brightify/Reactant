@@ -1,0 +1,15 @@
+platform :ios, '9.0'
+use_frameworks!
+
+target 'Reactant_Example' do
+    pod 'Reactant', :path => '../'
+    pod 'Reactant/TableView', :path => '../'
+    pod 'Reactant/CollectionView', :path => '../'
+    pod 'Reactant/Validation', :path => '../'
+
+  target 'Reactant_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
