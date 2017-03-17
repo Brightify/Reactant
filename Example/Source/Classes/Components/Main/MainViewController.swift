@@ -7,88 +7,32 @@
 //
 
 import Reactant
+import RxSwift
 
 final class MainViewController: ControllerBase<Void, MainRootView> {
 
     init() {
+        // this needs to be called like this, because of a bug in Swift
         super.init(title: "Main")
+
+        // set inital state of RootView
+        rootView.componentState = Date()
     }
 
     override func update() {
         // do nothing since this controller has void state
     }
 
-    // Act according to action from root view
+    // Act according to action from RootView
     override func act(on action: MainRootView.ActionType) {
         switch action {
-        case .tableSelected:
+        case .updateLabel:
+            // when this action is sent from RootView, set new state to RootView's componentState
+            rootView.componentState = Date()
             break
-        case .gridSelected:
+        // just a dummy action
+        case .openTable:
             break
         }
     }
 }
-
-enum MainAction {
-    case tableSelected
-    case gridSelected
-}
-
-final class MainRootView: ViewBase<Void, MainAction>, RootView {
-
-    private let tableButton = UIButton()
-    private let gridButton = UIButton()
-
-    override func update() {
-        // do nothing since this view has no state
-    }
-
-    override func loadView() {
-        children(
-            tableButton,
-            gridButton
-        )
-    }
-
-    override func setupConstraints() {
-
-    }
-}
-
-final class LabelView: ViewBase<String, Void> {
-
-    private let label = UILabel()
-
-    override func update() {
-        label.text = componentState
-    }
-
-    override func loadView() {
-        children(
-            label.children(
-                label,
-                label
-            ),
-            label
-        )
-    }
-
-    override func setupConstraints() {
-        label.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
