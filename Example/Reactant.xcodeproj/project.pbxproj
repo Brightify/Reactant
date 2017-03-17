@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2214D1161E7C476B0065572E /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2214D1151E7C476B0065572E /* LabelView.swift */; };
 		2286DFB11E7B30BF006340C0 /* MainRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2286DFB01E7B30BF006340C0 /* MainRootView.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* MainViewController.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		0F053E1FE7E1621ED16B140B /* Pods-Reactant_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant_Tests/Pods-Reactant_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		2214D1151E7C476B0065572E /* LabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		2286DFB01E7B30BF006340C0 /* MainRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRootView.swift; sourceTree = "<group>"; };
 		36E06D5FCB04C90B38547C5C /* Pods_Reactant_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		542FF02ED552BBD9CB7D7B2E /* Pods-Reactant_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant_Example/Pods-Reactant_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -74,7 +76,6 @@
 			children = (
 				2286DFAC1E7B3034006340C0 /* Components */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -84,7 +85,6 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 			);
-			name = Resources;
 			path = Resources;
 			sourceTree = "<group>";
 		};
@@ -95,7 +95,6 @@
 				2286DFAD1E7B304E006340C0 /* Main */,
 				2286DFAE1E7B3054006340C0 /* Table */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -104,8 +103,8 @@
 			children = (
 				2286DFB01E7B30BF006340C0 /* MainRootView.swift */,
 				607FACD71AFB9204008FA782 /* MainViewController.swift */,
+				2214D1151E7C476B0065572E /* LabelView.swift */,
 			);
-			name = Main;
 			path = Main;
 			sourceTree = "<group>";
 		};
@@ -113,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = Table;
 			path = Table;
 			sourceTree = "<group>";
 		};
@@ -121,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = Grid;
 			path = Grid;
 			sourceTree = "<group>";
 		};
@@ -163,7 +160,6 @@
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 			);
-			name = Source;
 			path = Source;
 			sourceTree = "<group>";
 		};
@@ -172,7 +168,6 @@
 			children = (
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
-			name = "Supporting Files";
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
@@ -190,7 +185,6 @@
 			children = (
 				607FACEA1AFB9204008FA782 /* Info.plist */,
 			);
-			name = "Supporting Files";
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
@@ -201,7 +195,6 @@
 				C99E86109227D973B98F61CE /* README.md */,
 				8D2D6B89AFA06A5EC08AB362 /* Reactant.podspec */,
 			);
-			name = "Podspec Metadata";
 			path = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
@@ -420,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2286DFB11E7B30BF006340C0 /* MainRootView.swift in Sources */,
+				2214D1161E7C476B0065572E /* LabelView.swift in Sources */,
 				607FACD81AFB9204008FA782 /* MainViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
