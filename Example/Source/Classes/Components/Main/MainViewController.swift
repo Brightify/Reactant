@@ -11,7 +11,14 @@ import RxSwift
 
 final class MainViewController: ControllerBase<Void, MainRootView> {
 
-    init() {
+    struct Reactions {
+        let openTable: () -> Void
+    }
+
+    private let reactions: Reactions
+
+    init(reactions: Reactions) {
+        self.reactions = reactions
         // this needs to be called like this, because of a bug in Swift
         super.init(title: "Main")
 
@@ -32,6 +39,7 @@ final class MainViewController: ControllerBase<Void, MainRootView> {
             break
         // just a dummy action
         case .openTable:
+            reactions.openTable()
             break
         }
     }
