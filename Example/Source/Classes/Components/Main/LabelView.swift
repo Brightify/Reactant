@@ -22,6 +22,7 @@ final class LabelView: ViewBase<String, Void> {
         )
 
         label.textColor = .black
+        label.textAlignment = .center
     }
 
     override func setupConstraints() {

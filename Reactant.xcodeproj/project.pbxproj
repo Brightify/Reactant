@@ -412,14 +412,14 @@
 			children = (
 				DC0785D61DDB176A0063AB96 /* Identifier */,
 				DC2B5D731DE437E300F9C9D7 /* Internal */,
+				18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */,
+				18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */,
 				DC0785F01DDC6A400063AB96 /* PlainTableView.swift */,
+				DC2B5D661DE2F90D00F9C9D7 /* ReactantTableView.swift */,
 				DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */,
 				DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */,
-				DC2B5D661DE2F90D00F9C9D7 /* ReactantTableView.swift */,
 				DC0785C91DD8C4DF0063AB96 /* TableViewCell.swift */,
 				DC0785BA1DD468E20063AB96 /* TableViewState.swift */,
-				18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */,
-				18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
