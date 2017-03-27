@@ -7,6 +7,7 @@ let uiFiles = Path.current.find(searchDepth: -1) { path in
 }
 
 for (index, path) in uiFiles.enumerated() {
+    print("// Generated from \(path)")
     let file = DataFile(path: path)
     let data = try! file.read()
 
