@@ -24,6 +24,12 @@ Pod::Spec.new do |s|
   }
   spec.social_media_url = 'https://twitter.com/BrightifyOrg'
   spec.requires_arc = true
+  spec.preserve_paths = ['ReactantUI/**/*']
+  spec.prepare_command = <<-CMD
+    cd ReactantUI
+    swift build
+    cp ./.build/debug/reactant-ui ./
+  CMD
 
   spec.ios.deployment_target = '8.0'
 

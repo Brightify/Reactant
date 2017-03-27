@@ -1,0 +1,30 @@
+{
+  "autoPin": true,
+  "pins": [
+    {
+      "package": "Commandant",
+      "reason": null,
+      "repositoryURL": "https://github.com/Carthage/Commandant.git",
+      "version": "0.11.3"
+    },
+    {
+      "package": "FileKit",
+      "reason": null,
+      "repositoryURL": "https://github.com/TadeasKriz/FileKit.git",
+      "version": "4.0.2"
+    },
+    {
+      "package": "Result",
+      "reason": null,
+      "repositoryURL": "https://github.com/antitypical/Result.git",
+      "version": "3.2.1"
+    },
+    {
+      "package": "SWXMLHash",
+      "reason": null,
+      "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
+      "version": "3.0.4"
+    }
+  ],
+  "version": 1
+}

@@ -8,6 +8,10 @@
 
 import RxSwift
 
+public protocol ReactantUI {
+    func setupReactantUI()
+}
+
 open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable {
     
     public typealias StateType = STATE
@@ -42,7 +46,11 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         componentDelegate.ownerComponent = self
         
         translatesAutoresizingMaskIntoConstraints = false
-        
+
+        if let reactantUi = self as? ReactantUI {
+            reactantUi.setupReactantUI()
+        }
+
         loadView()
         setupConstraints()
         
