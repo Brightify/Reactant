@@ -1,6 +1,10 @@
 import Foundation
 import SWXMLHash
 
+#if ReactantRuntime
+import UIKit
+#endif
+
 struct TokenizerError: Error {
     let message: String
 }
@@ -15,6 +19,12 @@ protocol UIElement: Assignable {
     var initialization: String { get }
 
     func propertyAssignment(name: String, generator: Generator)
+
+    #if ReactantRuntime
+    func propertyAssignment(instance: UIView)
+
+    func initialize() -> UIView
+    #endif
 }
 
 protocol UIContainer {
@@ -483,6 +493,16 @@ public struct Element {
                 field: node.value(ofAttribute: "field"),
                 layout: node.value())
         }
+
+        #if ReactantRuntime
+        func initialize() -> UIView {
+            return UIView()
+        }
+
+        func propertyAssignment(instance: UIView) {
+
+        }
+        #endif
     }
 
     public struct Root: XMLIndexerDeserializable, UIContainer, StyleContainer {
@@ -515,6 +535,16 @@ public struct Element {
                 field: node.value(ofAttribute: "field"),
                 children: uiElements(node.children))
         }
+
+        #if ReactantRuntime
+        func initialize() -> UIView {
+            return UIView()
+        }
+
+        func propertyAssignment(instance: UIView) {
+
+        }
+        #endif
     }
 
     struct View {
@@ -545,6 +575,19 @@ public struct Element {
                 field: node.value(ofAttribute: "field"),
                 layout: node.value())
         }
+
+        #if ReactantRuntime
+        func initialize() -> UIView {
+            return UITextField()
+        }
+
+        func propertyAssignment(instance: UIView) {
+            let textField = instance as! UITextField
+
+            textField.text = text
+            textField.placeholder = placeholder
+        }
+        #endif
     }
 
     struct Label: XMLIndexerDeserializable, UIElement {
@@ -566,6 +609,17 @@ public struct Element {
                 field: node.value(ofAttribute: "field"),
                 layout: node.value())
         }
+
+        #if ReactantRuntime
+        func initialize() -> UIView {
+            return UILabel()
+        }
+
+        func propertyAssignment(instance: UIView) {
+            let label = instance as! UILabel
+            label.text = text
+        }
+        #endif
     }
 
     struct Button: XMLIndexerDeserializable, UIElement, UIContainer {
@@ -589,17 +643,30 @@ public struct Element {
                 layout: node.value(),
                 children: uiElements(node.children))
         }
+
+        #if ReactantRuntime
+        func propertyAssignment(instance: UIView) {
+            let button = instance as! UIButton
+            button.setTitle(title, for: .normal)
+        }
+
+        func initialize() -> UIView {
+            return UIButton()
+        }
+        #endif
     }
 }
 
 public class Generator {
     let root: Element.Root
+    let localXmlPath: String
 
     private var nestLevel: Int = 0
     private var tempCounter: Int = 1
 
-    public init(root: Element.Root) {
+    public init(root: Element.Root, localXmlPath: String) {
         self.root = root
+        self.localXmlPath = localXmlPath
     }
 
     public func generate(imports: Bool) {
@@ -610,6 +677,8 @@ public class Generator {
         }
         l()
         l("extension \(root.type): ReactantUI" + (root.isRootView ? ", RootView" : "")) {
+            l("var uiXmlPath: String { return \"\(localXmlPath)\" }")
+
             l("var layout: \(root.type).LayoutContainer") {
                 l("return LayoutContainer()")
             }

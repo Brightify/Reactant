@@ -13,5 +13,5 @@ for (index, path) in uiFiles.enumerated() {
 
     let xml = SWXMLHash.parse(data)
     let root: Element.Root = try! xml["UI"].value()
-    Generator(root: root).generate(imports: index == 0)
+    Generator(root: root, localXmlPath: path.absolute.rawValue).generate(imports: index == 0)
 }

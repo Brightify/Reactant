@@ -9,6 +9,8 @@
 import RxSwift
 
 public protocol ReactantUI {
+    var uiXmlPath: String { get }
+
     func setupReactantUI()
 }
 
@@ -50,6 +52,10 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         if let reactantUi = self as? ReactantUI {
             reactantUi.setupReactantUI()
         }
+
+        #if REACTANT_LIVE_UI
+            ReactantLiveUIManager.test()
+        #endif
 
         loadView()
         setupConstraints()

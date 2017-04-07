@@ -12,6 +12,7 @@
 		18650B971D8364DC00B1B2A0 /* Properties+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121061D834C5D002C4B08 /* Properties+Core.swift */; };
 		18B4BF7D1E294E7A00D39EEA /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */; };
 		18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */; };
+		18BAF6F81E8C6B0C00C92AB9 /* ReactantLiveUI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */; };
 		45444ED1E71FEFA1D6A84E08 /* Pods_ReactantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711603479E5441514316A7F3 /* Pods_ReactantTests.framework */; };
 		DC0785841DD383E50063AB96 /* UINavigationController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785831DD383E50063AB96 /* UINavigationController+Navigation.swift */; };
 		DC0785861DD3879B0063AB96 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785851DD3879B0063AB96 /* Wireframe.swift */; };
@@ -157,6 +158,7 @@
 		18650BA51D83671B00B1B2A0 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
+		18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReactantLiveUI.podspec; sourceTree = "<group>"; };
 		50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975037688AFED52D683D2F3 /* Pods-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A648916F85EF94ED93EB6F6 /* Pods-Reactant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.release.xcconfig"; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				DC137F6D1E4C638000A0516F /* LICENSE */,
 				DC137F6E1E4C638000A0516F /* Podfile */,
 				DC137F6F1E4C638000A0516F /* Reactant.podspec */,
+				18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */,
 				DC137F6B1E4C636A00A0516F /* README.md */,
 				DC137F6C1E4C638000A0516F /* .travis.yml */,
 				185120EF1D834C5D002C4B08 /* Source */,
@@ -907,6 +910,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BAF6F81E8C6B0C00C92AB9 /* ReactantLiveUI.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
