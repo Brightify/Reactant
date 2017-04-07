@@ -15,14 +15,11 @@ protocol Assignable {
 
 protocol UIElement: Assignable {
     var layout: Layout { get }
+    var properties: [String: SupportedPropertyValue] { get }
 
     var initialization: String { get }
 
-    func propertyAssignment(name: String, generator: Generator)
-
     #if ReactantRuntime
-    func propertyAssignment(instance: UIView)
-
     func initialize() -> UIView
     #endif
 }
@@ -33,6 +30,120 @@ protocol UIContainer {
 
 protocol StyleContainer {
     var styles: [Style] { get }
+}
+
+enum TextAlignment: String {
+    case left
+    case right
+    case center
+    case justified
+    case natural
+}
+
+enum ContentMode: String {
+    case scaleAspectFit
+    case scaleAspectFill
+}
+
+enum SupportedPropertyType {
+    case color
+    case string
+    case font
+    case integer
+    case textAlignment
+    case contentMode
+    case image
+
+    func value(of text: String) -> SupportedPropertyValue? {
+        switch self {
+        case .color:
+            return .color(Color(parse: text))
+        case .string:
+            return .string(text)
+        case .font:
+            return Font(parse: text).map(SupportedPropertyValue.font)
+        case .integer:
+            return Int(text).map(SupportedPropertyValue.integer)
+        case .textAlignment:
+            return TextAlignment(rawValue: text).map(SupportedPropertyValue.textAlignment)
+        case .contentMode:
+            return ContentMode(rawValue: text).map(SupportedPropertyValue.contentMode)
+        case .image:
+            return .image(text)
+        }
+    }
+}
+
+enum SupportedPropertyValue {
+    case color(Color)
+    case string(String)
+    case font(Font)
+    case integer(Int)
+    case textAlignment(TextAlignment)
+    case contentMode(ContentMode)
+    case image(String)
+
+    var generated: String {
+        switch self {
+        case .color(let color):
+            return "UIColor(hex: \(color.red), green: \(color.green), blue: \(color.blue), alpha: \(color.alpha))"
+        case .string(let string):
+            return "\"\(string)\""
+        case .font(let font):
+            switch font {
+            case .system(let weight, let size):
+                return "UIFont.systemFont(ofSize: \(size), weight: \(weight.name))"
+            }
+        case .integer(let value):
+            return "\(value)"
+        case .textAlignment(let value):
+            return "NSTextAlignment.\(value.rawValue)"
+        case .contentMode(let value):
+            return "UIViewContentMode.\(value.rawValue)"
+        case .image(let name):
+            return "UIImage(named: \"\(name)\")"
+        }
+    }
+
+    #if ReactantRuntime
+    var value: Any {
+        switch self {
+        case .color(let color):
+            return UIColor(red: color.red, green: color.green, blue: color.blue, alpha: color.alpha)
+        case .string(let string):
+            return string
+        case .font(let font):
+            switch font {
+            case .system(let weight, let size):
+                return UIFont.systemFont(ofSize: size, weight: weight.value)
+            }
+        case .integer(let value):
+            return value
+        case .textAlignment(let value):
+            switch value {
+            case .center:
+                return NSTextAlignment.center.rawValue
+            case .left:
+                return NSTextAlignment.left.rawValue
+            case .right:
+                return NSTextAlignment.right.rawValue
+            case .justified:
+                return NSTextAlignment.justified.rawValue
+            case .natural:
+                return NSTextAlignment.natural.rawValue
+            }
+        case .contentMode(let value):
+            switch value {
+            case .scaleAspectFill:
+                return UIViewContentMode.scaleAspectFill.rawValue
+            case .scaleAspectFit:
+                return UIViewContentMode.scaleAspectFit.rawValue
+            }
+        case .image(let name):
+            return UIImage(named: name)
+        }
+    }
+    #endif
 }
 
 func uiElements(_ nodes: [XMLIndexer]) throws -> [UIElement] {
@@ -48,6 +159,8 @@ func uiElements(_ nodes: [XMLIndexer]) throws -> [UIElement] {
             return try node.value() as Element.TextField
         case "Button"?:
             return try node.value() as Element.Button
+        case "ImageView"?:
+            return try node.value() as Element.ImageView
         case "styles"?, "layout"?:
             // Intentionally ignored as these are parsed directly
             return nil
@@ -59,433 +172,17 @@ func uiElements(_ nodes: [XMLIndexer]) throws -> [UIElement] {
     }
 }
 
-struct Layout: XMLIndexerDeserializable {
-    let id: String?
-    let constraints: [Constraint]
-
-    public static func deserialize(_ node: XMLIndexer) throws -> Layout {
-        if node["layout"].element != nil {
-            return try deserializeNodeLayout(node["layout"])
-        } else {
-            return try deserializeAttributeLayout(node)
-        }
-    }
-
-    private static func deserializeNodeLayout(_ node: XMLIndexer) throws -> Layout {
-        return Layout(id:
-            node.value(ofAttribute: "id"),
-                      constraints: [])
-    }
-
-    private static func deserializeAttributeLayout(_ node: XMLIndexer) throws -> Layout {
-        let layoutAttributes = node.element?.allAttributes
-            .filter { $0.key.hasPrefix("layout:") && $0.key != "layout:id" }
-            .map { ($0.replacingOccurrences(of: "layout:", with: ""), $1) }
-
-        return try Layout(
-            id: node.value(ofAttribute: "layout:id"),
-            constraints: layoutAttributes?.flatMap(Constraint.constraints) ?? [])
-    }
-}
-
-struct Constraint {
-    let field: String?
-    let anchor: LayoutAnchor
-    let target: String
-    let targetAnchor: LayoutAnchor
-    let relation: ConstraintRelation
-    let multiplier: Float
-    let constant: Float
-    let priority: ConstraintPriority
-
-    static func constraints(name: String, attribute: XMLAttribute) throws -> [Constraint] {
-        let layoutAttributes = try LayoutAttribute.deserialize(name)
-
-        return try attribute.text.components(separatedBy: ";").flatMap { fullConstraint -> [Constraint] in
-            let fieldAndConstraint = fullConstraint.components(separatedBy: " = ")
-            let field: String?
-            let constraint: String
-            if fieldAndConstraint.count == 2 {
-                field = fieldAndConstraint.first
-                constraint = fieldAndConstraint[1]
-            } else {
-                field = nil
-                constraint = fullConstraint
-            }
-
-            var parts = constraint.components(separatedBy: " ")
-
-            let relation: ConstraintRelation
-            if let declaredRelation = parts.first.flatMap({ try? ConstraintRelation($0) }) {
-                relation = declaredRelation
-                parts.removeFirst()
-            } else {
-                relation = .equal
-            }
-
-            let target: String
-            let targetAnchor: LayoutAnchor?
-            if parts.first != nil {
-                var targetAndAnchor = parts.removeFirst().components(separatedBy: ".")
-                target = targetAndAnchor.removeFirst()
-                targetAnchor = try targetAndAnchor.first.flatMap(LayoutAnchor.init)
-            } else {
-                target = "super"
-                targetAnchor = nil
-            }
-
-            let priority: ConstraintPriority
-            if let lastItem = parts.last, lastItem.hasPrefix("@") {
-                priority = try ConstraintPriority(lastItem.substring(from: lastItem.startIndex))
-            } else {
-                priority = .required
-            }
-
-            var offset: Float = 0
-            var inset: Float = 0
-            var multiplier: Float = 1
-            for part in parts {
-                let modifier = try ConstraintModifier(part)
-                switch modifier {
-                case .multiplied(let multiplierValue):
-                    multiplier *= multiplierValue
-
-                case .divided(let dividerValue):
-                    multiplier /= dividerValue
-
-                case .offset(let offsetValue):
-                    offset += offsetValue
-
-                case .inset(let insetValue):
-                    inset += insetValue
-                }
-            }
-
-            guard layoutAttributes.count < 2 || targetAnchor == nil else {
-                throw TokenizerError(message: "Multiple attribute declaration `\(name)` can't have target anchor set! (\(targetAnchor)")
-            }
-
-            return layoutAttributes.map { layoutAttribute in
-                Constraint(
-                    field: field,
-                    anchor: layoutAttribute.anchor,
-                    target: target,
-                    targetAnchor: targetAnchor ?? layoutAttribute.targetAnchor,
-                    relation: relation,
-                    multiplier: multiplier,
-                    constant: offset + (layoutAttribute.insetDirection * inset),
-                    priority: priority)
-            }
-
-        }
-    }
-}
-
-enum LayoutAttribute {
-    case leading
-    case trailing
-    case left
-    case right
-    case top
-    case bottom
-    case width
-    case height
-    case before
-    case after
-    case above
-    case below
-//    case leftRight
-//    case topBottom
-
-    var insetDirection: Float {
-        switch self {
-        case .leading, .left, .top, .before, .above:
-            return 1
-        case .trailing, .right, .bottom, .width, .height, .after, .below:
-            return -1
-        }
-    }
-
-    static func deserialize(_ string: String) throws -> [LayoutAttribute] {
-        switch string {
-        case "leading":
-            return [.leading]
-        case "trailing":
-            return [.trailing]
-        case "left":
-            return [.left]
-        case "right":
-            return [.right]
-        case "top":
-            return [.top]
-        case "bottom":
-            return [.bottom]
-        case "width":
-            return [.width]
-        case "height":
-            return [.height]
-        case "before":
-            return [.before]
-        case "after":
-            return [.after]
-        case "above":
-            return [.above]
-        case "below":
-            return [.below]
-        case "edges":
-            return [.left, .right, .top, .bottom]
-        default:
-            throw TokenizerError(message: "Unknown layout attribute \(string)")
-        }
-    }
-
-    var anchor: LayoutAnchor {
-        switch self {
-        case .top, .below:
-            return .top
-        case .bottom, .above:
-            return .bottom
-        case .leading, .after:
-            return .leading
-        case .trailing, .before:
-            return .trailing
-        case .left:
-            return .left
-        case .right:
-            return .right
-        case .width:
-            return .width
-        case .height:
-            return .height
-        }
-    }
-
-    var targetAnchor: LayoutAnchor {
-        switch self {
-        case .top, .above:
-            return .top
-        case .bottom, .below:
-            return .bottom
-        case .leading, .before:
-            return .leading
-        case .trailing, .after:
-            return .trailing
-        case .left:
-            return .left
-        case .right:
-            return .right
-        case .width:
-            return .width
-        case .height:
-            return .height
-        }
-    }
-}
-
-enum LayoutAnchor: CustomStringConvertible {
-    case top
-    case bottom
-    case leading
-    case trailing
-    case left
-    case right
-    case width
-    case height
-
-    var description: String {
-        switch self {
-        case .top:
-            return "top"
-        case .bottom:
-            return "bottom"
-        case .leading:
-            return "leading"
-        case .trailing:
-            return "trailing"
-        case .left:
-            return "left"
-        case .right:
-            return "right"
-        case .width:
-            return "width"
-        case .height:
-            return "height"
-        }
-    }
-
-    init(_ string: String) throws {
-        switch string {
-        case "leading":
-            self = .leading
-        case "trailing":
-            self = .trailing
-        case "left":
-            self = .left
-        case "right":
-            self = .right
-        case "top":
-            self = .top
-        case "bottom":
-            self = .bottom
-        case "width":
-            self = .width
-        case "height":
-            self = .height
-        default:
-            throw TokenizerError(message: "Unknown layout anchor \(string)")
-        }
-    }
-}
-
-enum ConstraintRelation: CustomStringConvertible {
-    case equal
-    case lessThanOrEqual
-    case greaterThanOrEqual
-
-    var description: String {
-        switch self {
-        case .equal:
-            return "equalTo"
-        case .lessThanOrEqual:
-            return "lessThanOrEqualTo"
-        case .greaterThanOrEqual:
-            return "greaterThanOrEqualTo"
-        }
-    }
-
-    init(_ string: String) throws {
-        switch string {
-        case "==":
-            self = .equal
-        case "<=":
-            self = .lessThanOrEqual
-        case ">=":
-            self = .greaterThanOrEqual
-        default:
-            throw TokenizerError(message: "Unknown relation \(string)")
-        }
-    }
-}
-
-enum ConstraintModifier {
-    case multiplied(by: Float)
-    case divided(by: Float)
-    case offset(by: Float)
-    case inset(by: Float)
-
-    init(_ string: String) throws {
-        func parseFloat(_ string: String) throws -> Float {
-            guard let floatValue = Float(string) else { throw TokenizerError(message: "Can't parse \(string) as Float") }
-            return floatValue
-        }
-        let lowercased = string.lowercased()
-        if lowercased.hasPrefix("multiplied(by:") {
-            let value = lowercased.replacingOccurrences(of: "multiplied(by:", with: "")
-                .replacingOccurrences(of: ")", with: "")
-            self = .multiplied(by: try parseFloat(value))
-
-        } else if lowercased.hasPrefix("divided(by:") {
-            let value = lowercased.replacingOccurrences(of: "divided(by:", with: "")
-                .replacingOccurrences(of: ")", with: "")
-            self = .divided(by: try parseFloat(value))
-
-        } else if lowercased.hasPrefix("offset(") {
-            let value = lowercased.replacingOccurrences(of: "offset(", with: "")
-                .replacingOccurrences(of: ")", with: "")
-            self = .offset(by: try parseFloat(value))
-
-        } else if lowercased.hasPrefix("inset(") {
-            let value = lowercased.replacingOccurrences(of: "inset(", with: "")
-                .replacingOccurrences(of: ")", with: "")
-            self = .inset(by: try parseFloat(value))
-
-        } else {
-            throw TokenizerError(message: "Unknown constraint part \(string)")
-        }
-    }
-}
-
-enum ConstraintPriority {
-    case required
-    case high
-    case medium
-    case low
-    case custom(Float)
-
-    var numeric: Float {
-        switch self {
-        case .required:
-            return 1000.0
-        case .high:
-            return 750.0
-        case .medium:
-            return 500.0
-        case .low:
-            return 250.0
-        case .custom(let value):
-            return value
-        }
-    }
-
-    init(_ value: String) throws {
-        if let floatValue = Float(value) {
-            self = .custom(floatValue)
-        }
-
-        switch value {
-        case "required":
-            self = .required
-        case "high":
-            self = .high
-        case "medium":
-            self = .medium
-        case "low":
-            self = .low
-        default:
-            throw TokenizerError(message: "Unknown constraint priority \(value)")
-        }
-    }
-}
-
-
-struct Style: XMLIndexerDeserializable {
-    let type: String
-    let properties: [Property]
-
-    public static func deserialize(_ node: XMLIndexer) throws -> Style {
-        return try Style(
-            type: node.value(ofAttribute: "type"),
-            properties: node.children.map { try $0.value() })
-    }
-}
-
-extension Style {
-    struct Property: XMLIndexerDeserializable {
-        let name: String
-        let value: String
-
-        public static func deserialize(_ node: XMLIndexer) throws -> Property {
-            return Property(
-                name: node.element!.name,
-                value: node.element!.text!
-            )
-        }
-    }
-}
-
-
 public struct Element {
 
     struct ComponentReference: XMLIndexerDeserializable, UIElement {
         let type: String
         let field: String?
         let layout: Layout
+        let properties: [String : SupportedPropertyValue] = [:]
 
         var initialization: String {
             return "\(type)()"
         }
-
-        func propertyAssignment(name: String, generator: Generator) { }
 
         public static func deserialize(_ node: XMLIndexer) throws -> ComponentReference {
             return try ComponentReference(
@@ -496,11 +193,7 @@ public struct Element {
 
         #if ReactantRuntime
         func initialize() -> UIView {
-            return UIView()
-        }
-
-        func propertyAssignment(instance: UIView) {
-
+            return (NSClassFromString("ReactantUIPrototypeTest.\(type)") as! UIView.Type).init()
         }
         #endif
     }
@@ -514,146 +207,170 @@ public struct Element {
         public static func deserialize(_ node: XMLIndexer) throws -> Root {
             return try Root(
                 type: node.value(ofAttribute: "type"),
-                isRootView: node.value(ofAttribute: "rootView"),
-                styles: node["styles"]["style"].value(),
+                isRootView: node.value(ofAttribute: "rootView") ?? false,
+                styles: node["styles"]["style"].value() ?? [],
                 children: uiElements(node.children))
         }
     }
 
     struct Container: XMLIndexerDeserializable, UIElement, UIContainer {
+        static let availableProperties: [String: SupportedPropertyType] = View.availableProperties
         let layout: Layout
         let field: String?
         let children: [UIElement]
+        let properties: [String : SupportedPropertyValue]
 
         let initialization: String = "UIView()"
 
-        func propertyAssignment(name: String, generator: Generator) { }
-
         public static func deserialize(_ node: XMLIndexer) throws -> Container {
+            let properties = Element.deserializeSupportedProperties(properties: Container.availableProperties, in: node)
             return try Container(
                 layout: node.value(),
                 field: node.value(ofAttribute: "field"),
-                children: uiElements(node.children))
+                children: uiElements(node.children),
+                properties: properties)
         }
 
         #if ReactantRuntime
         func initialize() -> UIView {
             return UIView()
         }
-
-        func propertyAssignment(instance: UIView) {
-
-        }
         #endif
     }
 
     struct View {
-
+        static let availableProperties: [String: SupportedPropertyType] = [
+            "backgroundColor": .color
+        ]
     }
 
     struct TextField: XMLIndexerDeserializable, UIElement {
-        let text: String?
-        let placeholder: String?
+        static let availableProperties: [String: SupportedPropertyType] = View.availableProperties.merged(with: [
+                "text": .string,
+                "placeholder": .string,
+                "font": .font,
+                "textColor": .color
+            ])
+
         let field: String?
         let layout: Layout
+        let properties: [String: SupportedPropertyValue]
 
         let initialization: String = "UITextField()"
 
-        func propertyAssignment(name: String, generator: Generator) {
-            if let text = text {
-                generator.l("\(name).text = \"\(text)\"")
-            }
-            if let placeholder = placeholder {
-                generator.l("\(name).placeholder = \"\(placeholder)\"")
-            }
-        }
-
         public static func deserialize(_ node: XMLIndexer) throws -> TextField {
+            let props = Element.deserializeSupportedProperties(properties: TextField.availableProperties, in: node)
+
             return try TextField(
-                text: node.value(ofAttribute: "text"),
-                placeholder: node.value(ofAttribute: "placeholder"),
                 field: node.value(ofAttribute: "field"),
-                layout: node.value())
+                layout: node.value(),
+                properties: props)
         }
 
         #if ReactantRuntime
         func initialize() -> UIView {
             return UITextField()
         }
-
-        func propertyAssignment(instance: UIView) {
-            let textField = instance as! UITextField
-
-            textField.text = text
-            textField.placeholder = placeholder
-        }
         #endif
     }
 
+    static func deserializeSupportedProperties(properties: [String: SupportedPropertyType], in node: XMLIndexer) -> [String: SupportedPropertyValue] {
+        var result = [:] as [String: SupportedPropertyValue]
+        for (key, value) in properties {
+            guard let property = try? node.value(ofAttribute: key) as String else { continue }
+            guard let propertyValue = value.value(of: property) else {
+                print("Could not parse `\(property)` as `\(value)` for property `\(key)`")
+                continue
+            }
+            result[key] = propertyValue
+        }
+
+        return result
+    }
+
     struct Label: XMLIndexerDeserializable, UIElement {
-        let text: String?
+        static let availableProperties: [String: SupportedPropertyType] = View.availableProperties.merged(with: [
+                "text": .string,
+                "textColor": .color,
+                "font": .font,
+                "numberOfLines": .integer,
+                "textAlignment": .textAlignment
+            ])
         let field: String?
         let layout: Layout
+        let properties: [String : SupportedPropertyValue]
 
         let initialization: String = "UILabel()"
 
-        func propertyAssignment(name: String, generator: Generator) {
-            if let text = text {
-                generator.l("\(name).text = \"\(text)\"")
-            }
-        }
-
         public static func deserialize(_ node: XMLIndexer) throws -> Label {
+            let properties = Element.deserializeSupportedProperties(properties: Label.availableProperties, in: node)
             return try Label(
-                text: node.value(ofAttribute: "text"),
                 field: node.value(ofAttribute: "field"),
-                layout: node.value())
+                layout: node.value(),
+                properties: properties
+            )
         }
 
         #if ReactantRuntime
         func initialize() -> UIView {
             return UILabel()
         }
-
-        func propertyAssignment(instance: UIView) {
-            let label = instance as! UILabel
-            label.text = text
-        }
         #endif
     }
 
     struct Button: XMLIndexerDeserializable, UIElement, UIContainer {
-        let title: String?
+        static let availableProperties: [String: SupportedPropertyType] = [
+            "normalTitle": .string
+            ].merged(with: View.availableProperties)
         let field: String?
         let layout: Layout
         let children: [UIElement]
+        let properties: [String : SupportedPropertyValue]
 
         let initialization: String = "UIButton()"
 
-        func propertyAssignment(name: String, generator: Generator) {
-            if let title = title {
-                generator.l("\(name).setTitle(\"\(title)\", for: .normal)")
-            }
-        }
-
         public static func deserialize(_ node: XMLIndexer) throws -> Button {
+            let properties = Element.deserializeSupportedProperties(properties: Button.availableProperties, in: node)
             return try Button(
-                title: node.value(ofAttribute: "title"),
                 field: node.value(ofAttribute: "field"),
                 layout: node.value(),
-                children: uiElements(node.children))
+                children: uiElements(node.children),
+                properties: properties)
         }
 
         #if ReactantRuntime
-        func propertyAssignment(instance: UIView) {
-            let button = instance as! UIButton
-            button.setTitle(title, for: .normal)
-        }
-
         func initialize() -> UIView {
             return UIButton()
         }
         #endif
+    }
+
+    struct ImageView: XMLIndexerDeserializable, UIElement {
+
+        static let availableProperties: [String: SupportedPropertyType] = [
+            "image": .image,
+            "contentMode": .contentMode
+        ]
+
+        let field: String?
+        let layout: Layout
+        let properties: [String : SupportedPropertyValue]
+
+        let initialization: String = "UIImageView()"
+
+        #if ReactantRuntime
+        func initialize() -> UIView {
+            return UIImageView()
+        }
+        #endif
+
+        public static func deserialize(_ node: XMLIndexer) throws -> ImageView {
+            let properties = Element.deserializeSupportedProperties(properties: ImageView.availableProperties, in: node)
+            return try ImageView(
+                field: node.value(ofAttribute: "field"),
+                layout: node.value(),
+                properties: properties)
+        }
     }
 }
 
@@ -674,6 +391,7 @@ public class Generator {
             l("import UIKit")
             l("import Reactant")
             l("import SnapKit")
+            l("import ReactantLiveUI")
         }
         l()
         l("extension \(root.type): ReactantUI" + (root.isRootView ? ", RootView" : "")) {
@@ -684,9 +402,18 @@ public class Generator {
             }
             l()
             l("func setupReactantUI()") {
+                l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
+                l("ReactantLiveUIManager.shared.register(self)")
+                l("#else")
                 root.children.forEach { generate(element: $0, superName: "self") }
                 tempCounter = 1
                 root.children.forEach { generateConstraints(element: $0, superName: "self") }
+                l("#endif")
+            }
+            l("func destroyReactantUI()") {
+                l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
+                l("ReactantLiveUIManager.shared.unregister(self)")
+                l("#endif")
             }
             l()
             l("final class LayoutContainer") {
@@ -708,7 +435,10 @@ public class Generator {
             l("let \(name) = \(element.initialization)")
         }
 
-        element.propertyAssignment(name: name, generator: self)
+        for (key, value) in element.properties {
+            l("\(name).\(key) = \(value.generated)")
+        }
+
         l("\(superName).addSubview(\(name))")
 
         l()
@@ -739,7 +469,15 @@ public class Generator {
                 if let targetConstant = Float(constraint.target), constraint.anchor == .width || constraint.anchor == .height {
                     constraintLine += "\(targetConstant)"
                 } else {
-                    constraintLine += constraint.target != "super" ? constraint.target : superName
+                    let target: String
+                    if constraint.target == "super" {
+                        target = superName
+                    } else if let colonIndex = constraint.target.characters.index(of: ":"), constraint.target.substring(to: colonIndex) == "id" {
+                        target = "named_\(constraint.target.substring(from: constraint.target.characters.index(after: colonIndex)))"
+                    } else {
+                        target = constraint.target
+                    }
+                    constraintLine += target
                     if constraint.targetAnchor != constraint.anchor {
                         constraintLine += ".snp.\(constraint.targetAnchor)"
                     }
@@ -794,4 +532,153 @@ public class Generator {
         nestLevel -= 1
         l("}")
     }
+}
+
+extension Dictionary {
+
+    mutating func merge(with dictionary: Dictionary) {
+        dictionary.forEach { updateValue($1, forKey: $0) }
+    }
+
+    func merged(with dictionary: Dictionary) -> Dictionary {
+        var dict = self
+        dict.merge(with: dictionary)
+        return dict
+    }
+}
+
+
+struct Color {
+    var red: CGFloat
+    var green: CGFloat
+    var blue: CGFloat
+    var alpha: CGFloat
+
+    /// Accepted formats: "#RRGGBB" and "#RRGGBBAA".
+    init(hex: String) {
+        let hexNumber = String(hex.characters.dropFirst())
+        let length = hexNumber.characters.count
+        guard length == 6 || length == 8 else {
+            preconditionFailure("Hex string \(hex) has to be in format #RRGGBB or #RRGGBBAA !")
+        }
+
+        if let hexValue = UInt(hexNumber, radix: 16) {
+            if length == 6 {
+                self.init(rgb: hexValue)
+            } else {
+                self.init(rgba: hexValue)
+            }
+        } else {
+            preconditionFailure("Hex string \(hex) could not be parsed!")
+        }
+    }
+
+    init(parse text: String) {
+        switch text {
+        case "black":
+            self.init(rgb: 0x000000)
+        case "white":
+            self.init(rgb: 0xffffff)
+        default:
+            self.init(hex: text)
+        }
+    }
+
+    init(rgb: UInt) {
+        if rgb > 0xFFFFFF {
+            print("WARNING: RGB color is greater than the value of white (0xFFFFFF) which is probably developer error.")
+        }
+        self.init(rgba: (rgb << 8) + 0xFF)
+    }
+
+    init(rgba: UInt) {
+        red = CGFloat((rgba & 0xFF000000) >> 24) / 255.0
+        green = CGFloat((rgba & 0xFF0000) >> 16) / 255.0
+        blue = CGFloat((rgba & 0xFF00) >> 8) / 255.0
+        alpha = CGFloat(rgba & 0xFF) / 255.0
+    }
+}
+
+enum Font {
+    case system(weight: SystemFontWeight, size: CGFloat)
+    //    case named(String, size: CGFloat)
+
+    init?(parse text: String) {
+        if text.hasPrefix(":") {
+            // :thin@25
+            let parts = text.substring(from: text.index(after: text.startIndex)).components(separatedBy: "@")
+            guard let weight = (parts.first?.lowercased()).flatMap(SystemFontWeight.init) else { return nil }
+            let size = parts.last.flatMap(Float.init).map(CGFloat.init) ?? 15
+            self = .system(weight: weight, size: size)
+        } else if let size = Float(text).map(CGFloat.init) {
+            // 25
+            self = .system(weight: .regular, size: size)
+        } else {
+            return nil
+        }
+    }
+}
+
+enum SystemFontWeight: String {
+    static let allValues: [SystemFontWeight] = [
+        .ultralight, .thin, .light, .regular, .medium, .semibold, .bold, .heavy, .black
+    ]
+
+    case ultralight
+    case thin
+    case light
+    case regular
+    case medium
+    case semibold
+    case bold
+    case heavy
+    case black
+
+    var name: String {
+        switch self {
+        case .ultralight:
+            return "UIFontWeightUltraLight"
+        case .thin:
+            return "UIFontWeightThin"
+        case .light:
+            return "UIFontWeightLight"
+        case .regular:
+            return "UIFontWeightRegular"
+        case .medium:
+            return "UIFontWeightMedium"
+        case .semibold:
+            return "UIFontWeightSemibold"
+        case .bold:
+            return "UIFontWeightBold"
+        case .heavy:
+            return "UIFontWeightHeavy"
+        case .black:
+            return "UIFontWeightBlack"
+        }
+    }
+
+    #if ReactantRuntime
+    var value: CGFloat {
+        switch self {
+        case .ultralight:
+            return UIFontWeightUltraLight
+        case .thin:
+            return UIFontWeightThin
+        case .light:
+            return UIFontWeightLight
+        case .regular:
+            return UIFontWeightRegular
+        case .medium:
+            return UIFontWeightMedium
+        case .semibold:
+            return UIFontWeightSemibold
+        case .bold:
+            return UIFontWeightBold
+        case .heavy:
+            return UIFontWeightHeavy
+        case .black:
+            return UIFontWeightBlack
+        }
+    }
+    #endif
 }

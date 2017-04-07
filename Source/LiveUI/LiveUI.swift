@@ -1,9 +1,86 @@
 import UIKit
 import SnapKit
+import Reactant
+import KZFileWatchers
+import SWXMLHash
+
+private struct WeakUIBox {
+    weak var ui: ReactantUI?
+    /// Workaround for non-existent class existentials
+    weak var view: UIView?
+    
+    init<UI: UIView>(ui: UI) where UI: ReactantUI {
+        self.ui = ui
+        self.view = ui
+    }
+}
+
+extension WeakUIBox: Equatable {
+    
+    static func ==(lhs: WeakUIBox, rhs: WeakUIBox) -> Bool {
+        return lhs.ui === rhs.ui
+    }
+}
 
 public class ReactantLiveUIManager {
-    public static func test() {
-        print("ReactantLiveUI!!!")
+    
+    public static let shared = ReactantLiveUIManager()
+    
+    private var watchers: [String: (watcher: FileWatcherProtocol, uis: [WeakUIBox])] = [:]
+    
+    public func register<UI: UIView>(_ ui: UI) where UI: ReactantUI {
+        if watchers.keys.contains(ui.uiXmlPath) {
+            watchers[ui.uiXmlPath]?.uis.append(WeakUIBox(ui: ui))
+            
+            readAndApply(ui: ui)
+        } else {
+            let watcher = FileWatcher.Local(path: ui.uiXmlPath)
+            watchers[ui.uiXmlPath] = (watcher, [WeakUIBox(ui: ui)])
+            
+            try! watcher.start { result in
+                switch result {
+                case .noChanges:
+                    break
+                case .updated(let data):
+                    self.watchers[ui.uiXmlPath]?.uis
+                        .flatMap { $0.view }
+                        .forEach { self.apply(data: data, ui: $0) }
+                }
+            }
+        }
+    }
+    
+    public func unregister<UI: UIView>(_ ui: UI) where UI: ReactantUI {
+        guard let watcher = watchers[ui.uiXmlPath] else {
+            print("ERROR: attempting to remove not registered UI")
+            return
+        }
+        if watcher.uis.count == 1 {
+            try! watcher.watcher.stop()
+            watchers.removeValue(forKey: ui.uiXmlPath)
+        } else if let index = watchers[ui.uiXmlPath]?.uis.index(where: { $0.ui === ui }) {
+            watchers[ui.uiXmlPath]?.uis.remove(at: index)
+        }
+    }
+    
+    private func apply(data: Data, ui: UIView) {
+        let xml = SWXMLHash.parse(data)
+        do {
+            let root: Element.Root = try xml["UI"].value()
+            ReactantLiveUIApplier(root: root, instance: ui).apply()
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    private func readAndApply<UI: UIView>(ui: UI) where UI: ReactantUI {
+        let url = URL(fileURLWithPath: ui.uiXmlPath)
+        guard let data = try? Data(contentsOf: url, options: .uncached) else {
+            print("ERROR: file not found")
+            return
+        }
+        
+        apply(data: data, ui: ui)
     }
 }
 
@@ -46,7 +123,9 @@ public class ReactantLiveUIApplier {
             view = element.initialize()
         }
 
-        element.propertyAssignment(instance: view)
+        for (key, value) in element.properties {
+            view.setValue(value.value, forKey: key)
+        }
 
         superview.addSubview(view)
 
@@ -92,6 +171,14 @@ public class ReactantLiveUIApplier {
                     maker = make.width
                 case .height:
                     maker = make.height
+                case .centerX:
+                    maker = make.centerX
+                case .centerY:
+                    maker = make.centerY
+                case .firstBaseline:
+                    maker = make.firstBaseline
+                case .lastBaseline:
+                    maker = make.lastBaseline
                 }
 
                 let target: ConstraintRelatableTarget
@@ -99,7 +186,13 @@ public class ReactantLiveUIApplier {
                 if let targetConstant = Float(constraint.target), constraint.anchor == .width || constraint.anchor == .height {
                     target = targetConstant
                 } else {
-                    let targetView = constraint.target != "super" ? views.named(constraint.target) : superview
+                    let targetName: String
+                    if let colonIndex = constraint.target.characters.index(of: ":"), constraint.target.substring(to: colonIndex) == "id" {
+                        targetName = "named_\(constraint.target.substring(from: constraint.target.characters.index(after: colonIndex)))"
+                    } else {
+                        targetName = constraint.target
+                    }
+                    let targetView = targetName != "super" ? views.named(targetName) : superview
                     if constraint.targetAnchor != constraint.anchor {
                         switch constraint.targetAnchor {
                         case .top:
@@ -118,6 +211,14 @@ public class ReactantLiveUIApplier {
                             target = targetView.snp.width
                         case .height:
                             target = targetView.snp.height
+                        case .centerX:
+                            target = targetView.snp.centerX
+                        case .centerY:
+                            target = targetView.snp.centerY
+                        case .firstBaseline:
+                            target = targetView.snp.firstBaseline
+                        case .lastBaseline:
+                            target = targetView.snp.lastBaseline
                         }
                     } else {
                         target = targetView

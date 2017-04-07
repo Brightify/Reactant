@@ -8,10 +8,12 @@
 
 import RxSwift
 
-public protocol ReactantUI {
+public protocol ReactantUI: class {
     var uiXmlPath: String { get }
 
     func setupReactantUI()
+    
+    func destroyReactantUI()
 }
 
 open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable {
@@ -53,10 +55,6 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
             reactantUi.setupReactantUI()
         }
 
-        #if REACTANT_LIVE_UI
-            ReactantLiveUIManager.test()
-        #endif
-
         loadView()
         setupConstraints()
         
@@ -66,6 +64,12 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         afterInit()
         
         componentDelegate.canUpdate = true
+    }
+    
+    deinit {
+        if let reactantUi = self as? ReactantUI {
+            reactantUi.destroyReactantUI()
+        }
     }
     
     @available(*, unavailable)
