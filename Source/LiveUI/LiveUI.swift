@@ -124,7 +124,22 @@ public class ReactantLiveUIApplier {
         }
 
         for (key, value) in element.properties {
-            view.setValue(value.value, forKey: key)
+            guard view.responds(to: Selector(key)) else {
+                print("!! View `\(view)` doesn't respond to selector `\(key)` to set value `\(value)`")
+                continue
+            }
+            if let objectValue = value.value as? AnyObject {
+                var mutableObject: AnyObject? = objectValue
+                do {
+                    try view.validateValue(&mutableObject, forKey: key)
+                    view.setValue(mutableObject, forKey: key)
+                } catch {
+                    print("!! Value `\(value)` isn't valid for key `\(key)` on view `\(view)")
+                    continue
+                }
+            } else {
+                print("!! Value `\(value)` cannot be set to `\(key)` as it's not Objc compatible. View: `\(view)`")
+            }
         }
 
         superview.addSubview(view)

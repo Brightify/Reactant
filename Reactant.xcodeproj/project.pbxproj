@@ -10,6 +10,11 @@
 		04168232D53A3C6EC65FE3C3 /* Pods_Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */; };
 		185121511D834D1F002C4B08 /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
 		18650B971D8364DC00B1B2A0 /* Properties+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121061D834C5D002C4B08 /* Properties+Core.swift */; };
+		18685FDB1E998B9F00DD2318 /* ExampleRootView.ui.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18685FD71E998B9F00DD2318 /* ExampleRootView.ui.xml */; };
+		18685FDC1E998B9F00DD2318 /* ExampleRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18685FD81E998B9F00DD2318 /* ExampleRootView.swift */; };
+		18685FDD1E998B9F00DD2318 /* ExampleView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18685FD91E998B9F00DD2318 /* ExampleView2.swift */; };
+		18685FDE1E998B9F00DD2318 /* ExampleView2.ui.xml in Resources */ = {isa = PBXBuildFile; fileRef = 18685FDA1E998B9F00DD2318 /* ExampleView2.ui.xml */; };
+		18685FE11E998D6F00DD2318 /* GeneratedUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18685FE01E998D6F00DD2318 /* GeneratedUI.swift */; };
 		18B4BF7D1E294E7A00D39EEA /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */; };
 		18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */; };
 		18BAF6F81E8C6B0C00C92AB9 /* ReactantLiveUI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */; };
@@ -156,6 +161,11 @@
 		185121501D834D1F002C4B08 /* ReactantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		185121571D834D1F002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18650BA51D83671B00B1B2A0 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
+		18685FD71E998B9F00DD2318 /* ExampleRootView.ui.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ExampleRootView.ui.xml; sourceTree = "<group>"; };
+		18685FD81E998B9F00DD2318 /* ExampleRootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleRootView.swift; sourceTree = "<group>"; };
+		18685FD91E998B9F00DD2318 /* ExampleView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleView2.swift; sourceTree = "<group>"; };
+		18685FDA1E998B9F00DD2318 /* ExampleView2.ui.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ExampleView2.ui.xml; sourceTree = "<group>"; };
+		18685FE01E998D6F00DD2318 /* GeneratedUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedUI.swift; sourceTree = "<group>"; };
 		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
 		18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReactantLiveUI.podspec; sourceTree = "<group>"; };
@@ -702,6 +712,11 @@
 		DC79F6B91E55FAA70033AE51 /* ReactantPrototyping */ = {
 			isa = PBXGroup;
 			children = (
+				18685FE01E998D6F00DD2318 /* GeneratedUI.swift */,
+				18685FD71E998B9F00DD2318 /* ExampleRootView.ui.xml */,
+				18685FD81E998B9F00DD2318 /* ExampleRootView.swift */,
+				18685FD91E998B9F00DD2318 /* ExampleView2.swift */,
+				18685FDA1E998B9F00DD2318 /* ExampleView2.ui.xml */,
 				DC79F6BA1E55FAA70033AE51 /* AppDelegate.swift */,
 				DC79F6BC1E55FAA70033AE51 /* ViewController.swift */,
 				DC79F6C11E55FAA70033AE51 /* Assets.xcassets */,
@@ -845,6 +860,7 @@
 			buildConfigurationList = DC79F6C71E55FAA70033AE51 /* Build configuration list for PBXNativeTarget "ReactantPrototyping" */;
 			buildPhases = (
 				A5EC77EC0E361FCF959DF778 /* [CP] Check Pods Manifest.lock */,
+				18685FDF1E998C2100DD2318 /* Run ReactantUI */,
 				DC79F6B41E55FAA60033AE51 /* Sources */,
 				DC79F6B51E55FAA60033AE51 /* Frameworks */,
 				DC79F6B61E55FAA60033AE51 /* Resources */,
@@ -925,8 +941,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18685FDB1E998B9F00DD2318 /* ExampleRootView.ui.xml in Resources */,
 				DC79F6C51E55FAA70033AE51 /* LaunchScreen.storyboard in Resources */,
 				DC79F6C21E55FAA70033AE51 /* Assets.xcassets in Resources */,
+				18685FDE1E998B9F00DD2318 /* ExampleView2.ui.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,6 +965,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		18685FDF1E998C2100DD2318 /* Run ReactantUI */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run ReactantUI";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "OLD_PWD=$(pwd)\ncd $PROJECT_DIR/ReactantUI\nenv -i HOME=$HOME PATH=$PATH swift build\ncd \"$OLD_PWD\"\n$PROJECT_DIR/ReactantUI/.build/debug/reactant-ui > $PROJECT_DIR/ReactantPrototyping/GeneratedUI.swift";
 		};
 		25A3365583A940DBEF28AC2C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1172,7 +1204,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18685FDC1E998B9F00DD2318 /* ExampleRootView.swift in Sources */,
+				18685FE11E998D6F00DD2318 /* GeneratedUI.swift in Sources */,
 				DC79F6BD1E55FAA70033AE51 /* ViewController.swift in Sources */,
+				18685FDD1E998B9F00DD2318 /* ExampleView2.swift in Sources */,
 				DC79F6BB1E55FAA70033AE51 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

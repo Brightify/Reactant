@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 def shared
@@ -25,4 +25,8 @@ end
 
 target 'ReactantPrototyping' do
     shared
+
+    pod 'Reactant', :path => './'
+    pod 'ReactantLiveUI', :path => './', :configuration => 'Debug'
+    pod 'KZFileWatchers', :configuration => 'Debug'
 end

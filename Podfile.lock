@@ -1,7 +1,29 @@
 PODS:
+  - FileKit (4.0.1)
   - Kingfisher (3.0.1)
+  - KZFileWatchers (1.0.1)
   - Nimble (5.1.1)
   - Quick (1.0.0)
+  - Reactant (0.6.0):
+    - Reactant/Core (= 0.6.0)
+    - Reactant/Result (= 0.6.0)
+  - Reactant/Configuration (0.6.0):
+    - RxSwift (~> 3.0)
+    - SnapKit (~> 3.0)
+  - Reactant/Core (0.6.0):
+    - Reactant/Configuration
+    - RxSwift (~> 3.0)
+    - SnapKit (~> 3.0)
+  - Reactant/Result (0.6.0):
+    - Result (~> 3.0)
+    - RxOptional (~> 3.0)
+    - RxSwift (~> 3.0)
+  - ReactantLiveUI (0.0.1):
+    - FileKit
+    - KZFileWatchers
+    - Reactant
+    - SnapKit
+    - SWXMLHash
   - Result (3.0.0)
   - RxCocoa (3.0.1):
     - RxSwift (~> 3.0)
@@ -13,11 +35,15 @@ PODS:
     - RxSwift
   - RxSwift (3.0.1)
   - SnapKit (3.0.2)
+  - SWXMLHash (3.0.4)
 
 DEPENDENCIES:
   - Kingfisher (~> 3.0)
+  - KZFileWatchers
   - Nimble (~> 5.0)
   - Quick (~> 1.0)
+  - Reactant (from `./`)
+  - ReactantLiveUI (from `./`)
   - Result (~> 3.0)
   - RxCocoa (~> 3.0)
   - RxDataSources (~> 1.0)
@@ -25,17 +51,28 @@ DEPENDENCIES:
   - RxSwift (~> 3.0)
   - SnapKit (~> 3.0)
 
+EXTERNAL SOURCES:
+  Reactant:
+    :path: "./"
+  ReactantLiveUI:
+    :path: "./"
+
 SPEC CHECKSUMS:
+  FileKit: 1ea916f594bc0bb9a3951f80edf92b52bb7f883c
   Kingfisher: d5a491b45ea453d90a31bd2c0831d5243e73a73f
+  KZFileWatchers: 0215a3745b1822c5efb56562b5870153dee582d0
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
+  Reactant: a01cf3e6e6ec67406da3b91790279d6974a96491
+  ReactantLiveUI: 40248a9ac0def31d2fcdb2d764bc6f74286d06f6
   Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
   RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
   RxDataSources: 824693e84d00781d0a5e5cedc1ff95ce9250aacd
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  SWXMLHash: 29d20b84692fc319ea8ed933058fe7d8d005139b
 
-PODFILE CHECKSUM: 26e5fd54e4da93bf9440f7a7ee78bbd4341fa03c
+PODFILE CHECKSUM: 2f1f4f2551fcfb62dd96163d67b2cb56dab0d5fa
 
 COCOAPODS: 1.2.0

@@ -193,7 +193,7 @@ public struct Element {
 
         #if ReactantRuntime
         func initialize() -> UIView {
-            return (NSClassFromString("ReactantUIPrototypeTest.\(type)") as! UIView.Type).init()
+            return (NSClassFromString("ReactantPrototyping.\(type)") as! UIView.Type).init()
         }
         #endif
     }
@@ -279,7 +279,7 @@ public struct Element {
         for (key, value) in properties {
             guard let property = try? node.value(ofAttribute: key) as String else { continue }
             guard let propertyValue = value.value(of: property) else {
-                print("Could not parse `\(property)` as `\(value)` for property `\(key)`")
+                print("// Could not parse `\(property)` as `\(value)` for property `\(key)`")
                 continue
             }
             result[key] = propertyValue

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<UI xmlns="http://www.brightify.org"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.brightify.org ../schema/ReactantUI.xsd"
+    type="ExampleRootView"
+    rootView="true">
+
+    <!--<styles>
+        <style type="UILabel">
+            <textColor>#AABBCC</textColor>
+            <font>System(10)</font>
+        </style>
+    </styles>-->
+
+    <ImageView
+    layout:edges="super inset(-20)"
+    image="falcon"
+    contentMode="scaleAspectFill"
+    />
+
+    <Container
+        layout:edges="super">
+
+        <Label
+            layout:id="helloWorldLabel"
+            textColor="#ffffff"
+            text="Falcon 9"
+            font=":bold@30"
+            numberOfLines="0"
+            textAlignment="center"
+            layout:fillHorizontally="super inset(20)"
+            layout:top="super offset(60)"/>
+
+        <Label
+            layout:id="prdel"
+            text="Keep your rocket safe"
+            font=":regular@14"
+            numberOfLines="0"
+            textAlignment="center"
+            textColor="#ffffff"
+            layout:below="id:helloWorldLabel offset(10)"
+            layout:fillHorizontally="super inset(20)"/>
+
+        <TextField
+            placeholder="E-mail"
+            field="email"
+            textColor="white"
+            layout:above="send offset(-50)"
+            layout:fillHorizontally="super inset(50)"/>
+
+        <Button
+            normalTitle="Register now"
+            backgroundColor="#FF00cc"
+            field="send"
+            layout:leading="buttonLeadingConstraint = super inset(40)"
+            layout:trailing="super inset(40)"
+            layout:height="buttonHeightConstraint = 50"
+            layout:centerY="super"/>
+
+            <Button
+                layout:id="neco"
+                normalTitle="Forgotten password?"
+                backgroundColor="#FFddaa"
+                layout:fillHorizontally="super inset(60)"
+                layout:height="50"
+                layout:centerY="super offset(70)"/>
+
+        <Component
+            layout:id="compo"
+            type="ExampleView2"
+            layout:below="id:neco offset(20)"
+            layout:fillHorizontally="super inset(20)"
+        />
+
+    </Container>
+</UI>

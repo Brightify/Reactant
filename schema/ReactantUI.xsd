@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.brightify.org"
+    xmlns="http://www.brightify.org" elementFormDefault="qualified" vc:minVersion="1.1"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+
+    <xs:element name="UI">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="ViewGroup"/>
+            </xs:choice>
+            <xs:attribute name="type" type="xs:string" use="required"/>
+            <xs:attribute name="rootView" type="xs:boolean" default="false"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:group name="ViewGroup">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="ImageView" type="imageViewType"/>
+            <xs:element name="Container" type="containerType"/>
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="viewType">
+        <xs:annotation>
+            <xs:documentation>The color attribute group indicates the color of an element.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="backgroundColor" type="color"/>
+    </xs:complexType>
+
+    <xs:complexType name="labelType">
+        <xs:complexContent>
+            <xs:extension base="viewType">
+                <xs:attribute name="text" type="xs:string"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="imageViewType">
+        <xs:complexContent>
+            <xs:extension base="viewType">
+                <xs:attribute name="image" type="xs:string"/>
+                <xs:attribute name="contentMode" type="contentMode"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="containerType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:group ref="ViewGroup"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:simpleType name="contentMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="left"/>
+            <xs:enumeration value="scaleAspectFill"/>
+            <xs:enumeration value="scaleAspectFit"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="color">
+        <!-- should contain hexColor, but autocomplete-xml crashes -->
+        <xs:union memberTypes="namedColor"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="hexColor">
+        <xs:annotation>
+            <xs:documentation>The color entity indicates the color of an element. Color may be represented as hexadecimal RGB triples, as in HTML, or as hexadecimal ARGB tuples, with the A indicating alpha of transparency. An alpha value of 00 is totally transparent; FF is totally opaque. If RGB is used, the A value is assumed to be FF. For instance, the RGB value "#800080" represents purple. An ARGB value of "#40800080" would be a transparent purple. As in SVG 1.1, colors are defined in terms of the sRGB color space (IEC 61966).</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:pattern value="#[\dA-Fa-f]{6}([\dA-Fa-f][\dA-Fa-f])?"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="namedColor">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="black"/>
+            <xs:enumeration value="white"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

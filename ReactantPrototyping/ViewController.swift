@@ -11,22 +11,9 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class ViewController: ControllerBase<Void, View> {
+class ViewController: ControllerBase<Void, ExampleRootView> {
 
     init() {
         super.init()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        rootView.componentState = .brown
-    }
-}
-
-class View: ViewBase<UIColor, Void> {
-    
-    override func update() {
-        backgroundColor = componentState
     }
 }
