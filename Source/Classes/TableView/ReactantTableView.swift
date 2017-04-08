@@ -24,30 +24,28 @@ extension ReactantTableView {
 }
 
 extension ReactantTableView {
-    public func layoutHeaderView() {
-        if let header = tableView.tableHeaderView {
-            header.translatesAutoresizingMaskIntoConstraints = false
-            tableView.tableHeaderView = nil
-            let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
+    private func layout(view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
+        let size = view.systemLayoutSizeFitting(targetSize,
+                                                withHorizontalFittingPriority: UILayoutPriorityRequired,
+                                                verticalFittingPriority: UILayoutPriorityDefaultLow)
+        view.translatesAutoresizingMaskIntoConstraints = true
+        view.frame.size = CGSize(width: targetSize.width, height: size.height)
+    }
 
-            let size = header.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
-            header.translatesAutoresizingMaskIntoConstraints = true
-            header.frame.size = CGSize(width: targetSize.width, height: size.height)
-            tableView.tableHeaderView = header
-        }
+    public func layoutHeaderView() {
+        guard let header = tableView.tableHeaderView else { return }
+        tableView.tableHeaderView = nil
+        layout(view: header)
+        tableView.tableHeaderView = header
     }
 
     public func layoutFooterView() {
-        if let footer = tableView.tableFooterView {
-            footer.translatesAutoresizingMaskIntoConstraints = false
-            tableView.tableHeaderView = nil
-            let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
-
-            let size = footer.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: UILayoutPriorityRequired, verticalFittingPriority: UILayoutPriorityDefaultLow)
-            footer.translatesAutoresizingMaskIntoConstraints = true
-            footer.frame.size = CGSize(width: targetSize.width, height: size.height)
-            tableView.tableFooterView = footer
-        }
+        guard let footer = tableView.tableFooterView else { return }
+        tableView.tableFooterView = nil
+        layout(view: footer)
+        tableView.tableFooterView = footer
     }
 }
 

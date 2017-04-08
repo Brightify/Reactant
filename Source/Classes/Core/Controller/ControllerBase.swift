@@ -37,7 +37,11 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         super.init(nibName: nil, bundle: nil)
         
         componentDelegate.ownerComponent = self
-        rootView.action.subscribe(onNext: act).addDisposableTo(lifetimeDisposeBag)
+        rootView.action
+            .subscribe(onNext: { [weak self] in
+                self?.act(on: $0)
+            })
+            .addDisposableTo(lifetimeDisposeBag)
         
         self.title = title
         if let backButtonTitle = ReactantConfiguration.global.defaultBackButtonTitle {
