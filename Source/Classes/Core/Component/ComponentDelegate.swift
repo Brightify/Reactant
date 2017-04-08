@@ -82,6 +82,11 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
             componentState = voidState
         }
     }
+
+    deinit {
+        observableStateSubject.onCompleted()
+        actionSubject.onCompleted()
+    }
     
     public func perform(action: ACTION) {
         actionSubject.onNext(action)

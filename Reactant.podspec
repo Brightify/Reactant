@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Reactant'
-  s.version          = '0.5.11'
+  s.version          = '0.5.12'
   s.summary          = 'Imagine React Native in Swift and you get Reactant'
 
   s.description      = <<-DESC
