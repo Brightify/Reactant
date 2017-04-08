@@ -13,17 +13,16 @@
     </styles>-->
 
     <ImageView
-    layout:edges="super inset(-20)"
-    image="falcon"
-    contentMode="scaleAspectFill"
-    />
+        layout:edges="super inset(-20)"
+        image="falcon"
+        contentMode="scaleAspectFill" />
 
     <Container
         layout:edges="super">
 
         <Label
             layout:id="helloWorldLabel"
-            textColor="#ffffff"
+            textColor="white"
             text="Falcon 9"
             font=":bold@30"
             numberOfLines="0"

@@ -57,7 +57,7 @@ enum SupportedPropertyType {
     func value(of text: String) -> SupportedPropertyValue? {
         switch self {
         case .color:
-            return .color(Color(parse: text))
+            return Color(parse: text).map(SupportedPropertyValue.color)
         case .string:
             return .string(text)
         case .font:
@@ -555,11 +555,11 @@ struct Color {
     var alpha: CGFloat
 
     /// Accepted formats: "#RRGGBB" and "#RRGGBBAA".
-    init(hex: String) {
+    init?(hex: String) {
         let hexNumber = String(hex.characters.dropFirst())
         let length = hexNumber.characters.count
         guard length == 6 || length == 8 else {
-            preconditionFailure("Hex string \(hex) has to be in format #RRGGBB or #RRGGBBAA !")
+            return nil
         }
 
         if let hexValue = UInt(hexNumber, radix: 16) {
@@ -569,11 +569,11 @@ struct Color {
                 self.init(rgba: hexValue)
             }
         } else {
-            preconditionFailure("Hex string \(hex) could not be parsed!")
+            return nil
         }
     }
 
-    init(parse text: String) {
+    init?(parse text: String) {
         switch text {
         case "black":
             self.init(rgb: 0x000000)
@@ -586,7 +586,7 @@ struct Color {
 
     init(rgb: UInt) {
         if rgb > 0xFFFFFF {
-            print("WARNING: RGB color is greater than the value of white (0xFFFFFF) which is probably developer error.")
+            print("// WARNING: RGB color is greater than the value of white (0xFFFFFF) which is probably developer error.")
         }
         self.init(rgba: (rgb << 8) + 0xFF)
     }
