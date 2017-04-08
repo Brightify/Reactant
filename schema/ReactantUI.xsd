@@ -60,7 +60,7 @@
 
     <xs:simpleType name="color">
         <!-- should contain hexColor, but autocomplete-xml crashes -->
-        <xs:union memberTypes="namedColor"/>
+        <xs:union memberTypes="namedColor hexColor"/>
     </xs:simpleType>
 
     <xs:simpleType name="hexColor">

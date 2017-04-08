@@ -12,6 +12,8 @@
         </style>
     </styles>-->
 
+	<ImageView backgroundColor="black" />
+	
     <ImageView
         layout:edges="super inset(-20)"
         image="falcon"

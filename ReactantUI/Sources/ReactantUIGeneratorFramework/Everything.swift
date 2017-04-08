@@ -193,7 +193,8 @@ public struct Element {
 
         #if ReactantRuntime
         func initialize() -> UIView {
-            return (NSClassFromString("ReactantPrototyping.\(type)") as! UIView.Type).init()
+            // FIXME should not force unwrap
+            return ReactantLiveUIManager.shared.type(named: type)!.init() // ?? UIView()
         }
         #endif
     }
@@ -203,6 +204,23 @@ public struct Element {
         let isRootView: Bool
         let styles: [Style]
         let children: [UIElement]
+
+        var componentTypes: [String] {
+            return [type] + Root.componentTypes(in: children)
+        }
+
+        private static func componentTypes(in elements: [UIElement]) -> [String] {
+            return elements.flatMap { element -> [String] in
+                switch element {
+                case let ref as ComponentReference:
+                    return [ref.type]
+                case let container as UIContainer:
+                    return componentTypes(in: container.children)
+                default:
+                    return []
+                }
+            }
+        }
 
         public static func deserialize(_ node: XMLIndexer) throws -> Root {
             return try Root(
@@ -403,6 +421,9 @@ public class Generator {
             l()
             l("func setupReactantUI()") {
                 l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
+                for type in root.componentTypes {
+                    l("ReactantLiveUIManager.shared.register(component: \(type).self, named: \"\(type)\")")
+                }
                 l("ReactantLiveUIManager.shared.register(self)")
                 l("#else")
                 root.children.forEach { generate(element: $0, superName: "self") }

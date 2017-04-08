@@ -166,6 +166,11 @@
 		18685FD91E998B9F00DD2318 /* ExampleView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleView2.swift; sourceTree = "<group>"; };
 		18685FDA1E998B9F00DD2318 /* ExampleView2.ui.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ExampleView2.ui.xml; sourceTree = "<group>"; };
 		18685FE01E998D6F00DD2318 /* GeneratedUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedUI.swift; sourceTree = "<group>"; };
+		1868649A1E999D0B00DD2318 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		1868679D1E999D0D00DD2318 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		1868679F1E999D0D00DD2318 /* Everything.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Everything.swift; sourceTree = "<group>"; };
+		186867A01E999D0D00DD2318 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		186867A11E999D0D00DD2318 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
 		18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReactantLiveUI.podspec; sourceTree = "<group>"; };
@@ -343,6 +348,50 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		18685FE21E999D0800DD2318 /* ReactantUI */ = {
+			isa = PBXGroup;
+			children = (
+				1868649A1E999D0B00DD2318 /* Package.swift */,
+				1868679B1E999D0D00DD2318 /* Sources */,
+				186867A21E999D0D00DD2318 /* Tests */,
+			);
+			path = ReactantUI;
+			sourceTree = "<group>";
+		};
+		1868679B1E999D0D00DD2318 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1868679C1E999D0D00DD2318 /* reactant-ui */,
+				1868679E1E999D0D00DD2318 /* ReactantUIGeneratorFramework */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		1868679C1E999D0D00DD2318 /* reactant-ui */ = {
+			isa = PBXGroup;
+			children = (
+				1868679D1E999D0D00DD2318 /* main.swift */,
+			);
+			path = "reactant-ui";
+			sourceTree = "<group>";
+		};
+		1868679E1E999D0D00DD2318 /* ReactantUIGeneratorFramework */ = {
+			isa = PBXGroup;
+			children = (
+				1868679F1E999D0D00DD2318 /* Everything.swift */,
+				186867A01E999D0D00DD2318 /* Layout.swift */,
+				186867A11E999D0D00DD2318 /* Styles.swift */,
+			);
+			path = ReactantUIGeneratorFramework;
+			sourceTree = "<group>";
+		};
+		186867A21E999D0D00DD2318 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		3EF99E495EDB2A91B3FA3DE7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +417,7 @@
 				DC137F6C1E4C638000A0516F /* .travis.yml */,
 				185120EF1D834C5D002C4B08 /* Source */,
 				607FACE81AFB9204008FA782 /* Tests */,
+				18685FE21E999D0800DD2318 /* ReactantUI */,
 				DC79F6B91E55FAA70033AE51 /* ReactantPrototyping */,
 				10B68A63379DA3294E15D42D /* Frameworks */,
 				3EF99E495EDB2A91B3FA3DE7 /* Pods */,

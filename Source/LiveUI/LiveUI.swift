@@ -25,9 +25,17 @@ extension WeakUIBox: Equatable {
 public class ReactantLiveUIManager {
     
     public static let shared = ReactantLiveUIManager()
-    
+    private var componentTypes: [String: UIView.Type] = [:]
     private var watchers: [String: (watcher: FileWatcherProtocol, uis: [WeakUIBox])] = [:]
-    
+
+    public func register(component: UIView.Type, named: String) {
+        componentTypes[named] = component
+    }
+
+    internal func type(named name: String) -> UIView.Type? {
+        return componentTypes[name]
+    }
+
     public func register<UI: UIView>(_ ui: UI) where UI: ReactantUI {
         if watchers.keys.contains(ui.uiXmlPath) {
             watchers[ui.uiXmlPath]?.uis.append(WeakUIBox(ui: ui))

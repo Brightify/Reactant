@@ -14,8 +14,6 @@ final class ExampleRootView: ViewBase<Void, Void> {
     let email = UITextField()
     let send = UIButton()
 
-    let someOtherThing = ExampleView2()
-
     override func update() {
         
     }
