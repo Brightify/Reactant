@@ -5,15 +5,15 @@ import UIKit
 #endif
 
 public class View: XMLIndexerDeserializable, UIElement {
-    class var availableProperties: [String: SupportedPropertyType] {
+    class var availableProperties: [PropertyDescription] {
         return [
-            "backgroundColor": .color
+            assignable(name: "backgroundColor", type: .color)
         ]
     }
 
     public let field: String?
     public let layout: Layout
-    public let properties: [String : SupportedPropertyValue]
+    public let properties: [Property]
 
     public var initialization: String {
         return "UIView()"
@@ -28,7 +28,12 @@ public class View: XMLIndexerDeserializable, UIElement {
     public required init(node: XMLIndexer) throws {
         field = node.value(ofAttribute: "field")
         layout = try node.value()
-        properties = View.deserializeSupportedProperties(properties: type(of: self).availableProperties, in: node)
+
+        if let element = node.element {
+            properties = View.deserializeSupportedProperties(properties: type(of: self).availableProperties, in: element)
+        } else {
+            properties = []
+        }
     }
 
     public static func deserialize(_ node: XMLIndexer) throws -> Self {
@@ -52,17 +57,18 @@ public class View: XMLIndexerDeserializable, UIElement {
         }
     }
 
-    static func deserializeSupportedProperties(properties: [String: SupportedPropertyType], in node: XMLIndexer) -> [String: SupportedPropertyValue] {
-        var result = [:] as [String: SupportedPropertyValue]
-        for (key, value) in properties {
-            guard let property = try? node.value(ofAttribute: key) as String else { continue }
-            guard let propertyValue = value.value(of: property) else {
-                print("// Could not parse `\(property)` as `\(value)` for property `\(key)`")
+    static func deserializeSupportedProperties(properties: [PropertyDescription], in element: SWXMLHash.XMLElement) -> [Property] {
+        var result = [] as [Property]
+        for (attributeName, attribute) in element.allAttributes {
+            guard let propertyDescription = properties.first(where: { $0.matches(attributeName: attributeName) }) else {
                 continue
             }
-            result[key] = propertyValue
+            guard let property = propertyDescription.materialize(attributeName: attributeName, value: attribute.text) else {
+                print("// Could not materialize property `\(propertyDescription)` from `\(attribute)`")
+                continue
+            }
+            result.append(property)
         }
-
         return result
     }
 }

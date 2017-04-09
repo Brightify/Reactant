@@ -53,8 +53,13 @@
                 layout:fillHorizontally="super inset(50)"/>
 
             <Button
-                normalTitle="Register now"
-                backgroundColor="#FF00cc"
+                title="Register now"
+                titleColor="white"
+                titleColor.highlighted="black"
+                font=":medium@20"
+                numberOfLines="0"
+                backgroundColor="black"
+                backgroundColor.highlighted="white"
                 field="send"
                 layout:leading="buttonLeadingConstraint = super inset(40)"
                 layout:trailing="super inset(40)"
@@ -62,7 +67,7 @@
 
             <Button
                 layout:id="neco"
-                normalTitle="Forgotten password?"
+                title="Forgotten password?"
                 backgroundColor="#FFddaa"
                 layout:fillHorizontally="super inset(60)"
                 layout:height="50"

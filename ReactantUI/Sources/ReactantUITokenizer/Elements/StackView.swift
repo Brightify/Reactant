@@ -5,10 +5,10 @@ import UIKit
 #endif
 
 public class StackView: Container {
-    override class var availableProperties: [String: SupportedPropertyType] {
-        return super.availableProperties.merged(with: [
-            "axis": .layoutAxis
-        ])
+    override class var availableProperties: [PropertyDescription] {
+        return [
+            assignable(name: "axis", type: .layoutAxis)
+        ] + super.availableProperties
     }
 
     public override var initialization: String {

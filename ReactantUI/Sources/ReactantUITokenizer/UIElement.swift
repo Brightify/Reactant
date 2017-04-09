@@ -5,7 +5,7 @@ import UIKit
 
 public protocol UIElement: Assignable {
     var layout: Layout { get }
-    var properties: [String: SupportedPropertyValue] { get }
+    var properties: [Property] { get }
 
     var initialization: String { get }
 

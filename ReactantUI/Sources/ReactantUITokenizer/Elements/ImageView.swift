@@ -5,11 +5,11 @@ import UIKit
 #endif
 
 public class ImageView: View {
-    override class var availableProperties: [String: SupportedPropertyType] {
-        return super.availableProperties.merged(with: [
-            "image": .image,
-            "contentMode": .contentMode
-        ])
+    override class var availableProperties: [PropertyDescription] {
+        return [
+            assignable(name: "image", type: .image),
+            assignable(name: "contentMode", type: .contentMode)
+        ] + super.availableProperties
     }
 
     public override var initialization: String {

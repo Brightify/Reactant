@@ -5,14 +5,14 @@ import UIKit
 #endif
 
 public class Label: View {
-    override class var availableProperties: [String: SupportedPropertyType] {
-        return View.availableProperties.merged(with: [
-            "text": .string,
-            "textColor": .color,
-            "font": .font,
-            "numberOfLines": .integer,
-            "textAlignment": .textAlignment
-        ])
+    override class var availableProperties: [PropertyDescription] {
+        return [
+            assignable(name: "text", type: .string),
+            assignable(name: "textColor", type: .color),
+            assignable(name: "font", type: .font),
+            assignable(name: "numberOfLines", type: .integer),
+            assignable(name: "textAlignment", type: .textAlignment),
+        ] + super.availableProperties
     }
 
     public override var initialization: String {

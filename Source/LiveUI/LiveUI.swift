@@ -131,23 +131,8 @@ public class ReactantLiveUIApplier {
             view = element.initialize()
         }
 
-        for (key, value) in element.properties {
-            guard let resolvedValue = value.value else {
-                print("!! Value `\(value)` couldn't be resolved in runtime for key `\(key)`")
-                continue
-            }
-            guard view.responds(to: Selector(key)) else {
-                print("!! View `\(view)` doesn't respond to selector `\(key)` to set value `\(value)`")
-                continue
-            }
-            var mutableObject: AnyObject? = resolvedValue as AnyObject
-            do {
-                try view.validateValue(&mutableObject, forKey: key)
-                view.setValue(mutableObject, forKey: key)
-            } catch {
-                print("!! Value `\(value)` isn't valid for key `\(key)` on view `\(view)")
-                continue
-            }
+        for property in element.properties {
+            property.apply(property, view)
         }
 
         // FIXME This is a workaround, should not be doing it here (could move to the UIContainer)

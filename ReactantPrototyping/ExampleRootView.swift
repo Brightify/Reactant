@@ -19,15 +19,21 @@ final class ExampleRootView: ViewBase<Void, Void> {
     }
 }
 
-
+// FIXME We should put this into ReactantUI
 extension UIButton {
-    var normalTitle: String? {
-        get {
-            return title(for: .normal)
-        }
 
-        set {
-            setTitle(newValue, for: .normal)
-        }
+    @objc(setBackgroundColor:forState:)
+    public func setBackgroundColor(_ color: UIColor, for state: UIControlState) {
+        let rectangle = CGRect(origin: CGPoint.zero, size: CGSize(width: 1, height: 1))
+        UIGraphicsBeginImageContext(rectangle.size)
+
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(color.cgColor)
+        context?.fill(rectangle)
+
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        setBackgroundImage(image!, for: state)
     }
 }

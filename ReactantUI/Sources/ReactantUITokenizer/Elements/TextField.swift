@@ -5,13 +5,13 @@ import UIKit
 #endif
 
 public class TextField: View {
-    override class var availableProperties: [String: SupportedPropertyType] {
-        return super.availableProperties.merged(with: [
-            "text": .string,
-            "placeholder": .string,
-            "font": .font,
-            "textColor": .color
-        ])
+    override class var availableProperties: [PropertyDescription] {
+        return [
+            assignable(name: "text", type: .string),
+            assignable(name: "placeholder", type: .string),
+            assignable(name: "font", type: .font),
+            assignable(name: "textColor", type: .color),
+            ] + super.availableProperties
     }
 
     public override var initialization: String {

@@ -64,8 +64,8 @@ public class Generator {
             l("let \(name) = \(element.initialization)")
         }
 
-        for (key, value) in element.properties {
-            l("\(name).\(key) = \(value.generated)")
+        for property in element.properties {
+            l(property.application(property, name))
         }
 
         // FIXME This is a workaround, it should be done elsethere (possibly UIContainer)

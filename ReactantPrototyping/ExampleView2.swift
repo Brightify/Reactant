@@ -9,11 +9,4 @@
 import Reactant
 import UIKit
 
-final class ExampleView2: ViewBase<Void, Void> {
-    let email = UITextField()
-    let send = UIButton()
-
-    override func update() {
-
-    }
-}
+final class ExampleView2: ViewBase<Void, Void> { }
