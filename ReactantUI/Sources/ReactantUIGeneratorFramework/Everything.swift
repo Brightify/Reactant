@@ -184,9 +184,17 @@ func uiElements(_ nodes: [XMLIndexer]) throws -> [UIElement] {
     }
 }
 
+class XMLIndexerInitializable: XMLIndexerDeserializable {
+    required init(node: XMLIndexer) throws { }
+
+    public static func deserialize(_ node: XMLIndexer) throws -> Self {
+        return try self.init(node: node)
+    }
+}
+
 public struct Element {
 
-    struct ComponentReference: XMLIndexerDeserializable, UIElement {
+    class ComponentReference: XMLIndexerInitializable, UIElement {
         let type: String
         let field: String?
         let layout: Layout
@@ -196,11 +204,12 @@ public struct Element {
             return "\(type)()"
         }
 
-        public static func deserialize(_ node: XMLIndexer) throws -> ComponentReference {
-            return try ComponentReference(
-                type: node.value(ofAttribute: "type"),
-                field: node.value(ofAttribute: "field"),
-                layout: node.value())
+        required init(node: XMLIndexer) throws {
+            type = try node.value(ofAttribute: "type")
+            field = node.value(ofAttribute: "field")
+            layout = try node.value()
+
+            try super.init(node: node)
         }
 
         #if ReactantRuntime
