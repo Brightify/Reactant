@@ -7,6 +7,9 @@ public enum SupportedPropertyType {
     case contentMode
     case image
     case layoutAxis
+    case layoutDistribution
+    case layoutAlignment
+    case float
 
     public func value(of text: String) -> SupportedPropertyValue? {
         switch self {
@@ -30,6 +33,12 @@ public enum SupportedPropertyType {
             return .image(text)
         case .layoutAxis:
             return .layoutAxis(vertical: text == "vertical" ? true : false)
+        case .layoutDistribution:
+            return LayoutDistribution(rawValue: text).map(SupportedPropertyValue.layoutDistribution)
+        case .layoutAlignment:
+            return LayoutAlignment(rawValue: text).map(SupportedPropertyValue.layoutAlignment)
+        case .float:
+            return Float(text).map(SupportedPropertyValue.float)
         }
     }
 }

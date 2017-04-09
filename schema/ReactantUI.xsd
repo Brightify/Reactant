@@ -53,6 +53,8 @@
                                 <xs:group ref="ViewGroup"/>
                             </xs:choice>
                             <xs:attribute name="axis" type="layoutAxis" />
+                            <xs:attribute name="distribution" type="layoutDistribution" />
+                            <xs:attribute name="alignment" type="layoutAlignment" />
                         </xs:extension>
                     </xs:complexContent>
                 </xs:complexType>
@@ -156,6 +158,27 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="vertical" />
             <xs:enumeration value="horizontal" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="layoutDistribution">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="fill" />
+            <xs:enumeration value="fillEqually" />
+            <xs:enumeration value="fillProportionally" />
+            <xs:enumeration value="equalSpacing" />
+            <xs:enumeration value="equalCentering" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="layoutAlignment">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="fill" />
+            <xs:enumeration value="firstBaseline" />
+            <xs:enumeration value="lastBaseline" />
+            <xs:enumeration value="leading" />
+            <xs:enumeration value="trailing" />
+            <xs:enumeration value="center" />
         </xs:restriction>
     </xs:simpleType>
 

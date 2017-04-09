@@ -212,6 +212,8 @@
 		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
 		18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReactantLiveUI.podspec; sourceTree = "<group>"; };
+		227B03631E9AD3EE000BC6D9 /* LayoutDistribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDistribution.swift; sourceTree = "<group>"; };
+		227B03651E9AD411000BC6D9 /* LayoutAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAlignment.swift; sourceTree = "<group>"; };
 		50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975037688AFED52D683D2F3 /* Pods-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A648916F85EF94ED93EB6F6 /* Pods-Reactant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.release.xcconfig"; sourceTree = "<group>"; };
@@ -510,6 +512,8 @@
 				186C3D221E9ABBB00077C52F /* Font.swift */,
 				186C3D231E9ABBB00077C52F /* SystemFontWeight.swift */,
 				186C3D241E9ABBB00077C52F /* TextAlignment.swift */,
+				227B03631E9AD3EE000BC6D9 /* LayoutDistribution.swift */,
+				227B03651E9AD411000BC6D9 /* LayoutAlignment.swift */,
 			);
 			path = Values;
 			sourceTree = "<group>";

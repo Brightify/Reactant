@@ -13,6 +13,9 @@ public enum SupportedPropertyValue {
     case contentMode(ContentMode)
     case image(String)
     case layoutAxis(vertical: Bool)
+    case layoutDistribution(LayoutDistribution)
+    case layoutAlignment(LayoutAlignment)
+    case float(Float)
 
     public var generated: String {
         switch self {
@@ -37,6 +40,12 @@ public enum SupportedPropertyValue {
             return "UIImage(named: \"\(name)\")"
         case .layoutAxis(let vertical):
             return vertical ? "UILayoutConstraintAxis.vertical" : "UILayoutConstraintAxis.horizontal"
+        case .float(let value):
+            return "\(value)"
+        case .layoutDistribution(let distribution):
+            return "UIStackViewDistribution.\(distribution.rawValue)"
+        case .layoutAlignment(let alignment):
+            return "UIStackViewAlignment.\(alignment.rawValue)"
         }
     }
 
@@ -80,6 +89,36 @@ public enum SupportedPropertyValue {
             return UIImage(named: name)
         case .layoutAxis(let vertical):
             return vertical ? UILayoutConstraintAxis.vertical.rawValue : UILayoutConstraintAxis.horizontal.rawValue
+        case .float(let value):
+            return value
+        case .layoutDistribution(let distribution):
+            switch distribution {
+            case .equalCentering:
+                return UIStackViewDistribution.equalCentering.rawValue
+            case .equalSpacing:
+                return UIStackViewDistribution.equalSpacing.rawValue
+            case .fill:
+                return UIStackViewDistribution.fill.rawValue
+            case .fillEqually:
+                return UIStackViewDistribution.fillEqually.rawValue
+            case .fillProportionaly:
+                return UIStackViewDistribution.fillProportionally
+            }
+        case .layoutAlignment(let alignment):
+            switch alignment {
+            case .center:
+                return UIStackViewAlignment.center.rawValue
+            case .fill:
+                return UIStackViewAlignment.fill.rawValue
+            case .firstBaseline:
+                return UIStackViewAlignment.firstBaseline.rawValue
+            case .lastBaseline:
+                return UIStackViewAlignment.lastBaseline.rawValue
+            case .leading:
+                return UIStackViewAlignment.leading.rawValue
+            case .trailing:
+                return UIStackViewAlignment.trailing.rawValue
+            }
         }
     }
     #endif

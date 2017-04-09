@@ -7,7 +7,10 @@ import UIKit
 public class StackView: Container {
     override class var availableProperties: [PropertyDescription] {
         return [
-            assignable(name: "axis", type: .layoutAxis)
+            assignable(name: "axis", type: .layoutAxis),
+            assignable(name: "spacing", type: .float),
+            assignable(name: "distribution", type: .layoutDistribution),
+            assignable(name: "alignment", type: .layoutDistribution)
         ] + super.availableProperties
     }
 
