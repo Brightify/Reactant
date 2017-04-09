@@ -10,7 +10,7 @@ public class StackView: Container {
             assignable(name: "axis", type: .layoutAxis),
             assignable(name: "spacing", type: .float),
             assignable(name: "distribution", type: .layoutDistribution),
-            assignable(name: "alignment", type: .layoutDistribution)
+            assignable(name: "alignment", type: .layoutAlignment)
         ] + super.availableProperties
     }
 

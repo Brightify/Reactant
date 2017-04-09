@@ -7,9 +7,15 @@ import UIKit
 public class View: XMLIndexerDeserializable, UIElement {
     class var availableProperties: [PropertyDescription] {
         return [
-            assignable(name: "backgroundColor", type: .color)
-        ]
+            assignable(name: "backgroundColor", type: .color),
+            assignable(name: "clipsToBounds", type: .bool)
+        ] + nested(field: "layer", properties: View.layerAvailableProperties)
     }
+
+    static let layerAvailableProperties: [PropertyDescription] = [
+        assignable(name: "cornerRadius", type: .float),
+        assignable(name: "borderWidth", type: .float)
+    ]
 
     public let field: String?
     public let layout: Layout

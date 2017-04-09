@@ -55,6 +55,7 @@
                             <xs:attribute name="axis" type="layoutAxis" />
                             <xs:attribute name="distribution" type="layoutDistribution" />
                             <xs:attribute name="alignment" type="layoutAlignment" />
+                            <xs:attribute name="spacing" type="xs:decimal" />
                         </xs:extension>
                     </xs:complexContent>
                 </xs:complexType>
@@ -131,6 +132,7 @@
                     <xs:documentation>The color attribute group indicates the color of an element.</xs:documentation>
                 </xs:annotation>
                 <xs:attribute name="backgroundColor" type="color"/>
+                <xs:attribute name="clipsToBounds" type="xs:boolean"/>
                 <xs:attributeGroup ref="layout:layoutAttributes" />
             </xs:extension>
         </xs:complexContent>

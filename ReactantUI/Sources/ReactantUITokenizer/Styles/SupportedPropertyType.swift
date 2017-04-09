@@ -10,6 +10,7 @@ public enum SupportedPropertyType {
     case layoutDistribution
     case layoutAlignment
     case float
+    case bool
 
     public func value(of text: String) -> SupportedPropertyValue? {
         switch self {
@@ -39,6 +40,8 @@ public enum SupportedPropertyType {
             return LayoutAlignment(rawValue: text).map(SupportedPropertyValue.layoutAlignment)
         case .float:
             return Float(text).map(SupportedPropertyValue.float)
+        case .bool:
+            return Bool(text).map(SupportedPropertyValue.bool)
         }
     }
 }

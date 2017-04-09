@@ -10,8 +10,9 @@ public class Button: Container {
             controlState(name: "title", type: .string),
             controlState(name: "titleColor", type: .color),
             controlState(name: "backgroundColor", type: .color),
-        ] + nested(field: "titleLabel", optional: true, properties: Label.availableProperties)
-            + super.availableProperties
+        ] + super.availableProperties
+          + nested(field: "titleLabel", optional: true, properties: Label.availableProperties)
+
     }
 
     public override var initialization: String {

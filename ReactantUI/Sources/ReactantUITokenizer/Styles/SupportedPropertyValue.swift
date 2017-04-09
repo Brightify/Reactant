@@ -16,6 +16,7 @@ public enum SupportedPropertyValue {
     case layoutDistribution(LayoutDistribution)
     case layoutAlignment(LayoutAlignment)
     case float(Float)
+    case bool(Bool)
 
     public var generated: String {
         switch self {
@@ -46,6 +47,8 @@ public enum SupportedPropertyValue {
             return "UIStackViewDistribution.\(distribution.rawValue)"
         case .layoutAlignment(let alignment):
             return "UIStackViewAlignment.\(alignment.rawValue)"
+        case .bool(let value):
+            return value ? "true" : "false"
         }
     }
 
@@ -119,6 +122,8 @@ public enum SupportedPropertyValue {
             case .trailing:
                 return UIStackViewAlignment.trailing.rawValue
             }
+        case .bool(let value):
+            return value
         }
     }
     #endif

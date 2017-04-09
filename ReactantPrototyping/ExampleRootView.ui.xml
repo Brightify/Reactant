@@ -69,15 +69,13 @@
                 layout:id="neco"
                 title="Forgotten password?"
                 backgroundColor="#FFddaa"
+                cornerRadius="10"
                 layout:fillHorizontally="super inset(60)"
                 layout:height="50"
                 layout:below="send offset(70)"/>
             <StackView
                 axis="vertical"
-                spacing="10"
-                alignment="center"
                 backgroundColor="black"
-                distribution="equalCentering"
                 layout:below="id:neco offset(20)"
                 layout:fillHorizontally="super inset(20)"
                 layout:bottom="super inset(20)">
