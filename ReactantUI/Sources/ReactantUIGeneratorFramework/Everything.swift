@@ -112,7 +112,7 @@ enum SupportedPropertyValue {
     }
 
     #if ReactantRuntime
-    var value: Any {
+    var value: Any? {
         switch self {
         case .color(let color):
             return UIColor(red: color.red, green: color.green, blue: color.blue, alpha: color.alpha)
@@ -155,6 +155,16 @@ enum SupportedPropertyValue {
 }
 
 public struct Element {
+    static let elementMapping: [String: View.Type] = [
+        "Component": ComponentReference.self,
+        "Container": Container.self,
+        "Label": Label.self,
+        "TextField": TextField.self,
+        "Button": Button.self,
+        "ImageView": ImageView.self,
+        "ScrollView": ScrollView.self,
+        "StackView": StackView.self,
+    ]
 
     class View: XMLIndexerDeserializable, UIElement {
         class var availableProperties: [String: SupportedPropertyType] {
@@ -189,30 +199,17 @@ public struct Element {
 
         public static func deserialize(nodes: [XMLIndexer]) throws -> [UIElement] {
             return try nodes.flatMap { node -> UIElement? in
-                switch node.element?.name {
-                case "Component"?:
-                    return try ComponentReference(node: node)
-                case "Container"?:
-                    return try node.value() as Element.Container
-                case "Label"?:
-                    return try node.value() as Element.Label
-                case "TextField"?:
-                    return try node.value() as Element.TextField
-                case "Button"?:
-                    return try node.value() as Element.Button
-                case "ImageView"?:
-                    return try node.value() as Element.ImageView
-                case "ScrollView"?:
-                    return try node.value() as Element.ScrollView
-                case "StackView"?:
-                    return try node.value() as Element.StackView
-                case "styles"?, "layout"?:
+                guard let elementName = node.element?.name else { return nil }
+                if let elementType = Element.elementMapping[elementName] {
+                    return try elementType.init(node: node)
+                }
+                /* /* Not yet implemented and not sure if will be */
+                else if elementName == "styles" {
                     // Intentionally ignored as these are parsed directly
                     return nil
-                case .none:
-                    return nil
-                case let unknownTag:
-                    throw TokenizerError(message: "Unknown tag \(unknownTag)")
+                 }*/
+                else {
+                    throw TokenizerError(message: "Unknown tag `\(elementName)`")
                 }
             }
         }

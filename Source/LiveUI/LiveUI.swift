@@ -132,25 +132,25 @@ public class ReactantLiveUIApplier {
         }
 
         for (key, value) in element.properties {
+            guard let resolvedValue = value.value else {
+                print("!! Value `\(value)` couldn't be resolved in runtime for key `\(key)`")
+                continue
+            }
             guard view.responds(to: Selector(key)) else {
                 print("!! View `\(view)` doesn't respond to selector `\(key)` to set value `\(value)`")
                 continue
             }
-            if let objectValue = value.value as? AnyObject {
-                var mutableObject: AnyObject? = objectValue
-                do {
-                    try view.validateValue(&mutableObject, forKey: key)
-                    view.setValue(mutableObject, forKey: key)
-                } catch {
-                    print("!! Value `\(value)` isn't valid for key `\(key)` on view `\(view)")
-                    continue
-                }
-            } else {
-                print("!! Value `\(value)` cannot be set to `\(key)` as it's not Objc compatible. View: `\(view)`")
+            var mutableObject: AnyObject? = resolvedValue as AnyObject
+            do {
+                try view.validateValue(&mutableObject, forKey: key)
+                view.setValue(mutableObject, forKey: key)
+            } catch {
+                print("!! Value `\(value)` isn't valid for key `\(key)` on view `\(view)")
+                continue
             }
         }
 
-        // FIXME This is a workaround, should not be doing it here (could move to the UIContainer) 
+        // FIXME This is a workaround, should not be doing it here (could move to the UIContainer)
         if let stackView = superview as? UIStackView {
             stackView.addArrangedSubview(view)
         } else {
