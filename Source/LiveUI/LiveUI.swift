@@ -150,7 +150,12 @@ public class ReactantLiveUIApplier {
             }
         }
 
-        superview.addSubview(view)
+        // FIXME This is a workaround, should not be doing it here (could move to the UIContainer) 
+        if let stackView = superview as? UIStackView {
+            stackView.addArrangedSubview(view)
+        } else {
+            superview.addSubview(view)
+        }
 
         if let container = element as? UIContainer {
             let children = container.children.flatMap { apply(element: $0, superview: view) }

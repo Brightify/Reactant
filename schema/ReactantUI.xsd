@@ -1,7 +1,14 @@
 <?xml version="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.brightify.org"
-    xmlns="http://www.brightify.org" elementFormDefault="qualified" vc:minVersion="1.1"
-    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.brightify.org"
+    xmlns="http://www.brightify.org"
+    elementFormDefault="qualified"
+    vc:minVersion="1.1"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns:layout="http://www.brightify.org/layout">
+
+    <xs:import namespace="http://www.brightify.org/layout" schemaLocation="Layout.xsd" />
 
     <xs:element name="UI">
         <xs:complexType>
@@ -14,40 +21,117 @@
     </xs:element>
 
     <xs:group name="ViewGroup">
-        <xs:choice maxOccurs="unbounded" minOccurs="0">
-            <xs:element name="ImageView" type="imageViewType"/>
-            <xs:element name="Container" type="containerType"/>
+        <xs:choice>
+            <xs:element name="ImageView" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attribute name="image" type="xs:string"/>
+                            <xs:attribute name="contentMode" type="contentMode"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Container" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                <xs:group ref="ViewGroup"/>
+                            </xs:choice>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="StackView" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                <xs:group ref="ViewGroup"/>
+                            </xs:choice>
+                            <xs:attribute name="axis" type="layoutAxis" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="ScrollView" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:choice maxOccurs="1" minOccurs="0">
+                                <xs:group ref="ViewGroup" />
+                            </xs:choice>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Label" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="textAttributes" />
+                            <xs:attribute name="numberOfLines" type="xs:nonNegativeInteger" />
+                            <xs:attribute name="textAlignment" type="textAlignment" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="TextField" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="textAttributes" />
+                            <xs:attribute name="placeholder" type="xs:string" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Button" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attribute name="normalTitle" type="xs:string" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Component" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:attribute name="type" type="xs:string" />
+                    <xs:attributeGroup ref="layout:layoutAttributes" />
+                </xs:complexType>
+            </xs:element>
         </xs:choice>
     </xs:group>
 
+    <xs:attributeGroup name="textAttributes">
+        <xs:attribute name="text" type="xs:string"/>
+        <xs:attribute name="textColor" type="color"/>
+        <xs:attribute name="font" type="xs:string"/>
+    </xs:attributeGroup>
+
+    <xs:complexType name="assignable">
+        <xs:attribute name="field" type="xs:string" />
+    </xs:complexType>
+
     <xs:complexType name="viewType">
-        <xs:annotation>
-            <xs:documentation>The color attribute group indicates the color of an element.</xs:documentation>
-        </xs:annotation>
-        <xs:attribute name="backgroundColor" type="color"/>
-    </xs:complexType>
-
-    <xs:complexType name="labelType">
         <xs:complexContent>
-            <xs:extension base="viewType">
-                <xs:attribute name="text" type="xs:string"/>
+            <xs:extension base="assignable">
+                <xs:annotation>
+                    <xs:documentation>The color attribute group indicates the color of an element.</xs:documentation>
+                </xs:annotation>
+                <xs:attribute name="backgroundColor" type="color"/>
+                <xs:attributeGroup ref="layout:layoutAttributes" />
             </xs:extension>
         </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="imageViewType">
-        <xs:complexContent>
-            <xs:extension base="viewType">
-                <xs:attribute name="image" type="xs:string"/>
-                <xs:attribute name="contentMode" type="contentMode"/>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-
-    <xs:complexType name="containerType">
-        <xs:choice maxOccurs="unbounded" minOccurs="0">
-            <xs:group ref="ViewGroup"/>
-        </xs:choice>
     </xs:complexType>
 
     <xs:simpleType name="contentMode">
@@ -55,6 +139,23 @@
             <xs:enumeration value="left"/>
             <xs:enumeration value="scaleAspectFill"/>
             <xs:enumeration value="scaleAspectFit"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="textAlignment">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="left" />
+            <xs:enumeration value="right" />
+            <xs:enumeration value="center" />
+            <xs:enumeration value="justified" />
+            <xs:enumeration value="natural" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="layoutAxis">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="vertical" />
+            <xs:enumeration value="horizontal" />
         </xs:restriction>
     </xs:simpleType>
 

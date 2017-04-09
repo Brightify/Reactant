@@ -53,6 +53,7 @@ enum SupportedPropertyType {
     case textAlignment
     case contentMode
     case image
+    case layoutAxis
 
     func value(of text: String) -> SupportedPropertyValue? {
         switch self {
@@ -70,6 +71,8 @@ enum SupportedPropertyType {
             return ContentMode(rawValue: text).map(SupportedPropertyValue.contentMode)
         case .image:
             return .image(text)
+        case .layoutAxis:
+            return .layoutAxis(vertical: text == "vertical" ? true : false)
         }
     }
 }
@@ -82,6 +85,7 @@ enum SupportedPropertyValue {
     case textAlignment(TextAlignment)
     case contentMode(ContentMode)
     case image(String)
+    case layoutAxis(vertical: Bool)
 
     var generated: String {
         switch self {
@@ -102,6 +106,8 @@ enum SupportedPropertyValue {
             return "UIViewContentMode.\(value.rawValue)"
         case .image(let name):
             return "UIImage(named: \"\(name)\")"
+        case .layoutAxis(let vertical):
+            return vertical ? "UILayoutConstraintAxis.vertical" : "UILayoutConstraintAxis.horizontal"
         }
     }
 
@@ -141,6 +147,8 @@ enum SupportedPropertyValue {
             }
         case .image(let name):
             return UIImage(named: name)
+        case .layoutAxis(let vertical):
+            return vertical ? UILayoutConstraintAxis.vertical.rawValue : UILayoutConstraintAxis.horizontal.rawValue
         }
     }
     #endif
@@ -161,6 +169,10 @@ func uiElements(_ nodes: [XMLIndexer]) throws -> [UIElement] {
             return try node.value() as Element.Button
         case "ImageView"?:
             return try node.value() as Element.ImageView
+        case "ScrollView"?:
+            return try node.value() as Element.ScrollView
+        case "StackView"?:
+            return try node.value() as Element.StackView
         case "styles"?, "layout"?:
             // Intentionally ignored as these are parsed directly
             return nil
@@ -252,6 +264,59 @@ public struct Element {
         #if ReactantRuntime
         func initialize() -> UIView {
             return UIView()
+        }
+        #endif
+    }
+
+    struct StackView: XMLIndexerDeserializable, UIElement, UIContainer {
+        static let availableProperties: [String: SupportedPropertyType] = View.availableProperties.merged(with: [
+            "axis": .layoutAxis
+            ])
+        let layout: Layout
+        let field: String?
+        let children: [UIElement]
+        let properties: [String : SupportedPropertyValue]
+
+        let initialization: String = "UIStackView()"
+
+        public static func deserialize(_ node: XMLIndexer) throws -> StackView {
+            let properties = Element.deserializeSupportedProperties(properties: StackView.availableProperties, in: node)
+            return try StackView(
+                layout: node.value(),
+                field: node.value(ofAttribute: "field"),
+                children: uiElements(node.children),
+                properties: properties)
+        }
+
+        #if ReactantRuntime
+        func initialize() -> UIView {
+            return UIStackView()
+        }
+        #endif
+    }
+
+    struct ScrollView: XMLIndexerDeserializable, UIElement, UIContainer {
+        static let availableProperties: [String: SupportedPropertyType] = View.availableProperties
+
+        let layout: Layout
+        let field: String?
+        let children: [UIElement]
+        let properties: [String : SupportedPropertyValue]
+
+        let initialization: String = "UIScrollView()"
+
+        public static func deserialize(_ node: XMLIndexer) throws -> ScrollView {
+            let properties = Element.deserializeSupportedProperties(properties: ScrollView.availableProperties, in: node)
+            return try ScrollView(
+                layout: node.value(),
+                field: node.value(ofAttribute: "field"),
+                children: uiElements(node.children),
+                properties: properties)
+        }
+
+        #if ReactantRuntime
+        func initialize() -> UIView {
+            return UIScrollView()
         }
         #endif
     }
@@ -460,10 +525,14 @@ public class Generator {
             l("\(name).\(key) = \(value.generated)")
         }
 
-        l("\(superName).addSubview(\(name))")
-
+        // FIXME This is a workaround, it should be done elsethere (possibly UIContainer)
+        l("if let super_stackView = \(superName) as? UIStackView") {
+            l("\(superName).addArrangedSubview(\(name))")
+        }
+        l("else") {
+            l("\(superName).addSubview(\(name))")
+        }
         l()
-
         if let container = element as? UIContainer {
             container.children.forEach { generate(element: $0, superName: name) }
         }
