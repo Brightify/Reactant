@@ -176,7 +176,20 @@
     <xs:simpleType name="namedColor">
         <xs:restriction base="xs:string">
             <xs:enumeration value="black"/>
+            <xs:enumeration value="darkGray"/>
+            <xs:enumeration value="lightGray"/>
             <xs:enumeration value="white"/>
+            <xs:enumeration value="gray"/>
+            <xs:enumeration value="red"/>
+            <xs:enumeration value="green"/>
+            <xs:enumeration value="blue"/>
+            <xs:enumeration value="cyan"/>
+            <xs:enumeration value="yellow"/>
+            <xs:enumeration value="magenta"/>
+            <xs:enumeration value="orange"/>
+            <xs:enumeration value="purple"/>
+            <xs:enumeration value="brown"/>
+            <xs:enumeration value="clear"/>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

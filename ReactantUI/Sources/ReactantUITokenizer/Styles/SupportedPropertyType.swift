@@ -11,7 +11,11 @@ public enum SupportedPropertyType {
     public func value(of text: String) -> SupportedPropertyValue? {
         switch self {
         case .color:
-            return Color(parse: text).map(SupportedPropertyValue.color)
+            if Color.supportedNames.contains(text) {
+                return .namedColor(text)
+            } else {
+                return Color(hex: text).map(SupportedPropertyValue.color)
+            }
         case .string:
             return .string(text)
         case .font:

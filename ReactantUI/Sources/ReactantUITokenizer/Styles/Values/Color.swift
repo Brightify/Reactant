@@ -25,14 +25,6 @@ public struct Color {
         }
     }
 
-    init?(parse text: String) {
-        if let namedColor = Color.names[text] {
-            self.init(rgb: namedColor)
-        } else {
-            self.init(hex: text)
-        }
-    }
-
     init(rgb: UInt) {
         if rgb > 0xFFFFFF {
             print("// WARNING: RGB color is greater than the value of white (0xFFFFFF) which is probably developer error.")

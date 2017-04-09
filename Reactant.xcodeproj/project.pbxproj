@@ -168,9 +168,41 @@
 		18685FE01E998D6F00DD2318 /* GeneratedUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedUI.swift; sourceTree = "<group>"; };
 		1868649A1E999D0B00DD2318 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		1868679D1E999D0D00DD2318 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		1868679F1E999D0D00DD2318 /* Everything.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Everything.swift; sourceTree = "<group>"; };
-		186867A01E999D0D00DD2318 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
-		186867A11E999D0D00DD2318 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		186C3CD41E9A71BC0077C52F /* Assignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignable.swift; sourceTree = "<group>"; };
+		186C3CD61E9A71BC0077C52F /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		186C3CD71E9A71BC0077C52F /* ComponentReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentReference.swift; sourceTree = "<group>"; };
+		186C3CD81E9A71BC0077C52F /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		186C3CD91E9A71BC0077C52F /* Element+Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Element+Root.swift"; sourceTree = "<group>"; };
+		186C3CDA1E9A71BC0077C52F /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
+		186C3CDB1E9A71BC0077C52F /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		186C3CDC1E9A71BC0077C52F /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		186C3CDD1E9A71BC0077C52F /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
+		186C3CDE1E9A71BC0077C52F /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		186C3CDF1E9A71BC0077C52F /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		186C3CE01E9A71BC0077C52F /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		186C3CE21E9A71BC0077C52F /* Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraint.swift; sourceTree = "<group>"; };
+		186C3CE31E9A71BC0077C52F /* ConstraintModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintModifier.swift; sourceTree = "<group>"; };
+		186C3CE41E9A71BC0077C52F /* ConstraintPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintPriority.swift; sourceTree = "<group>"; };
+		186C3CE51E9A71BC0077C52F /* ConstraintRelation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintRelation.swift; sourceTree = "<group>"; };
+		186C3CE61E9A71BC0077C52F /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		186C3CE71E9A71BC0077C52F /* LayoutAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAnchor.swift; sourceTree = "<group>"; };
+		186C3CE81E9A71BC0077C52F /* LayoutAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAttribute.swift; sourceTree = "<group>"; };
+		186C3CEA1E9A71BC0077C52F /* Style+Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Style+Property.swift"; sourceTree = "<group>"; };
+		186C3CEB1E9A71BC0077C52F /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		186C3CEC1E9A71BC0077C52F /* StyleContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleContainer.swift; sourceTree = "<group>"; };
+		186C3CED1E9A71BC0077C52F /* SupportedPropertyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedPropertyType.swift; sourceTree = "<group>"; };
+		186C3CEE1E9A71BC0077C52F /* SupportedPropertyValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedPropertyValue.swift; sourceTree = "<group>"; };
+		186C3CF01E9A71BC0077C52F /* Color+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Names.swift"; sourceTree = "<group>"; };
+		186C3CF11E9A71BC0077C52F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		186C3CF21E9A71BC0077C52F /* ContentMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMode.swift; sourceTree = "<group>"; };
+		186C3CF31E9A71BC0077C52F /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		186C3CF41E9A71BC0077C52F /* SystemFontWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemFontWeight.swift; sourceTree = "<group>"; };
+		186C3CF51E9A71BC0077C52F /* TextAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlignment.swift; sourceTree = "<group>"; };
+		186C3CF61E9A71BC0077C52F /* UIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIContainer.swift; sourceTree = "<group>"; };
+		186C3CF71E9A71BC0077C52F /* UIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElement.swift; sourceTree = "<group>"; };
+		186C3CF91E9A71BC0077C52F /* Dictionary+Merge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Merge.swift"; sourceTree = "<group>"; };
+		186C3CFA1E9A71BC0077C52F /* TokenizationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizationError.swift; sourceTree = "<group>"; };
+		186C3CFC1E9A71BC0077C52F /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
 		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
 		18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReactantLiveUI.podspec; sourceTree = "<group>"; };
@@ -361,8 +393,9 @@
 		1868679B1E999D0D00DD2318 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				186C3CD31E9A71BC0077C52F /* ReactantUITokenizer */,
+				186C3CFB1E9A71BC0077C52F /* ReactantUIGenerator */,
 				1868679C1E999D0D00DD2318 /* reactant-ui */,
-				1868679E1E999D0D00DD2318 /* ReactantUIGeneratorFramework */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -375,21 +408,100 @@
 			path = "reactant-ui";
 			sourceTree = "<group>";
 		};
-		1868679E1E999D0D00DD2318 /* ReactantUIGeneratorFramework */ = {
-			isa = PBXGroup;
-			children = (
-				1868679F1E999D0D00DD2318 /* Everything.swift */,
-				186867A01E999D0D00DD2318 /* Layout.swift */,
-				186867A11E999D0D00DD2318 /* Styles.swift */,
-			);
-			path = ReactantUIGeneratorFramework;
-			sourceTree = "<group>";
-		};
 		186867A21E999D0D00DD2318 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		186C3CD31E9A71BC0077C52F /* ReactantUITokenizer */ = {
+			isa = PBXGroup;
+			children = (
+				186C3CD41E9A71BC0077C52F /* Assignable.swift */,
+				186C3CD51E9A71BC0077C52F /* Elements */,
+				186C3CE11E9A71BC0077C52F /* Layout */,
+				186C3CE91E9A71BC0077C52F /* Styles */,
+				186C3CF61E9A71BC0077C52F /* UIContainer.swift */,
+				186C3CF71E9A71BC0077C52F /* UIElement.swift */,
+				186C3CF81E9A71BC0077C52F /* Util */,
+			);
+			path = ReactantUITokenizer;
+			sourceTree = "<group>";
+		};
+		186C3CD51E9A71BC0077C52F /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				186C3CD61E9A71BC0077C52F /* Button.swift */,
+				186C3CD71E9A71BC0077C52F /* ComponentReference.swift */,
+				186C3CD81E9A71BC0077C52F /* Container.swift */,
+				186C3CD91E9A71BC0077C52F /* Element+Root.swift */,
+				186C3CDA1E9A71BC0077C52F /* Element.swift */,
+				186C3CDB1E9A71BC0077C52F /* ImageView.swift */,
+				186C3CDC1E9A71BC0077C52F /* Label.swift */,
+				186C3CDD1E9A71BC0077C52F /* ScrollView.swift */,
+				186C3CDE1E9A71BC0077C52F /* StackView.swift */,
+				186C3CDF1E9A71BC0077C52F /* TextField.swift */,
+				186C3CE01E9A71BC0077C52F /* View.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		186C3CE11E9A71BC0077C52F /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				186C3CE21E9A71BC0077C52F /* Constraint.swift */,
+				186C3CE31E9A71BC0077C52F /* ConstraintModifier.swift */,
+				186C3CE41E9A71BC0077C52F /* ConstraintPriority.swift */,
+				186C3CE51E9A71BC0077C52F /* ConstraintRelation.swift */,
+				186C3CE61E9A71BC0077C52F /* Layout.swift */,
+				186C3CE71E9A71BC0077C52F /* LayoutAnchor.swift */,
+				186C3CE81E9A71BC0077C52F /* LayoutAttribute.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		186C3CE91E9A71BC0077C52F /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				186C3CEA1E9A71BC0077C52F /* Style+Property.swift */,
+				186C3CEB1E9A71BC0077C52F /* Style.swift */,
+				186C3CEC1E9A71BC0077C52F /* StyleContainer.swift */,
+				186C3CED1E9A71BC0077C52F /* SupportedPropertyType.swift */,
+				186C3CEE1E9A71BC0077C52F /* SupportedPropertyValue.swift */,
+				186C3CEF1E9A71BC0077C52F /* Values */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		186C3CEF1E9A71BC0077C52F /* Values */ = {
+			isa = PBXGroup;
+			children = (
+				186C3CF01E9A71BC0077C52F /* Color+Names.swift */,
+				186C3CF11E9A71BC0077C52F /* Color.swift */,
+				186C3CF21E9A71BC0077C52F /* ContentMode.swift */,
+				186C3CF31E9A71BC0077C52F /* Font.swift */,
+				186C3CF41E9A71BC0077C52F /* SystemFontWeight.swift */,
+				186C3CF51E9A71BC0077C52F /* TextAlignment.swift */,
+			);
+			path = Values;
+			sourceTree = "<group>";
+		};
+		186C3CF81E9A71BC0077C52F /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				186C3CF91E9A71BC0077C52F /* Dictionary+Merge.swift */,
+				186C3CFA1E9A71BC0077C52F /* TokenizationError.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		186C3CFB1E9A71BC0077C52F /* ReactantUIGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				186C3CFC1E9A71BC0077C52F /* Generator.swift */,
+			);
+			path = ReactantUIGenerator;
 			sourceTree = "<group>";
 		};
 		3EF99E495EDB2A91B3FA3DE7 /* Pods */ = {

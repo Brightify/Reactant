@@ -5,6 +5,7 @@ import UIKit
 
 public enum SupportedPropertyValue {
     case color(Color)
+    case namedColor(String)
     case string(String)
     case font(Font)
     case integer(Int)
@@ -17,6 +18,8 @@ public enum SupportedPropertyValue {
         switch self {
         case .color(let color):
             return "UIColor(hex: \(color.red), green: \(color.green), blue: \(color.blue), alpha: \(color.alpha))"
+        case .namedColor(let colorName):
+            return "UIColor.\(colorName)"
         case .string(let string):
             return "\"\(string)\""
         case .font(let font):
@@ -42,6 +45,8 @@ public enum SupportedPropertyValue {
         switch self {
         case .color(let color):
             return UIColor(red: color.red, green: color.green, blue: color.blue, alpha: color.alpha)
+        case .namedColor(let colorName):
+            return UIColor.value(forKeyPath: "\(colorName)Color")
         case .string(let string):
             return string
         case .font(let font):
