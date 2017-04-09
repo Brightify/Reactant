@@ -583,6 +583,15 @@ extension Dictionary {
     }
 }
 
+extension Color {
+    static let names: [String: UInt] = [
+        "black": 0x000000,
+        "white": 0xffffff,
+        "red": 0xff0000,
+        "green": 0x00ff00,
+        "blue": 0x0000ff,
+    ]
+}
 
 struct Color {
     var red: CGFloat
@@ -610,12 +619,9 @@ struct Color {
     }
 
     init?(parse text: String) {
-        switch text {
-        case "black":
-            self.init(rgb: 0x000000)
-        case "white":
-            self.init(rgb: 0xffffff)
-        default:
+        if let namedColor = Color.names[text] {
+            self.init(rgb: namedColor)
+        } else {
             self.init(hex: text)
         }
     }
