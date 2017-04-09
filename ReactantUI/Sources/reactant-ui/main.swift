@@ -1,6 +1,7 @@
 import SWXMLHash
 import FileKit
-import ReactantUIGeneratorFramework
+import ReactantUIGenerator
+import ReactantUITokenizer
 
 let uiFiles = Path.current.find(searchDepth: -1) { path in
     path.fileName.hasSuffix(".ui.xml")

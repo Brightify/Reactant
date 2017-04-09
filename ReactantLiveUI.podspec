@@ -31,6 +31,6 @@ Pod::Spec.new do |spec|
   spec.dependency 'SnapKit'
   spec.dependency 'Reactant'
   spec.dependency 'KZFileWatchers'
-  spec.source_files = ['Source/LiveUI/**/*.swift', 'ReactantUI/Sources/ReactantUIGeneratorFramework/**/*.swift']
+  spec.source_files = ['Source/LiveUI/**/*.swift', 'ReactantUI/Sources/ReactantUITokenizer/**/*.swift']
 
 end

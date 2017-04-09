@@ -5,10 +5,14 @@ import PackageDescription
 let package = Package(
     name: "ReactantUI",
     targets: [
-        Target(name: "ReactantUIGeneratorFramework", dependencies: []),
+        Target(name: "ReactantUITokenizer", dependencies: []),
+        Target(name: "ReactantUIGenerator", dependencies: [
+            .Target(name: "ReactantUITokenizer")
+        ]),
 
         Target(name: "reactant-ui", dependencies: [
-            .Target(name: "ReactantUIGeneratorFramework")]),
+            .Target(name: "ReactantUIGenerator")
+        ]),
     ],
     dependencies: [
         .Package(url: "https://github.com/Carthage/Commandant.git", versions: Version(0, 11, 3)..<Version(0, 11, .max)),
