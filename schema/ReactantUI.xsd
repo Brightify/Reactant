@@ -77,9 +77,7 @@
                 <xs:complexType>
                     <xs:complexContent>
                         <xs:extension base="viewType">
-                            <xs:attributeGroup ref="textAttributes" />
-                            <xs:attribute name="numberOfLines" type="xs:nonNegativeInteger" />
-                            <xs:attribute name="textAlignment" type="textAlignment" />
+                            <xs:attributeGroup ref="labelAttributes" />
                         </xs:extension>
                     </xs:complexContent>
                 </xs:complexType>
@@ -100,7 +98,9 @@
                 <xs:complexType>
                     <xs:complexContent>
                         <xs:extension base="viewType">
-                            <xs:attribute name="normalTitle" type="xs:string" />
+                            <xs:attributeGroup ref="labelAttributes" />
+                            <xs:attribute name="title" type="xs:string" />
+                            <xs:attribute name="titleColor" type="color" />
                         </xs:extension>
                     </xs:complexContent>
                 </xs:complexType>
@@ -121,6 +121,12 @@
         <xs:attribute name="font" type="xs:string"/>
     </xs:attributeGroup>
 
+    <xs:attributeGroup name="labelAttributes">
+        <xs:attributeGroup ref="textAttributes" />
+        <xs:attribute name="numberOfLines" type="xs:nonNegativeInteger" />
+        <xs:attribute name="textAlignment" type="textAlignment" />
+    </xs:attributeGroup>
+
     <xs:complexType name="assignable">
         <xs:attribute name="field" type="xs:string" />
     </xs:complexType>
@@ -133,6 +139,7 @@
                 </xs:annotation>
                 <xs:attribute name="backgroundColor" type="color"/>
                 <xs:attribute name="clipsToBounds" type="xs:boolean"/>
+                <xs:attribute name="cornerRadius" type="xs:decimal"/>
                 <xs:attributeGroup ref="layout:layoutAttributes" />
             </xs:extension>
         </xs:complexContent>
