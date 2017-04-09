@@ -154,66 +154,99 @@ enum SupportedPropertyValue {
     #endif
 }
 
-func uiElements(_ nodes: [XMLIndexer]) throws -> [UIElement] {
-    return try nodes.flatMap { node -> UIElement? in
-        switch node.element?.name {
-        case "Component"?:
-            return try node.value() as Element.ComponentReference
-        case "Container"?:
-            return try node.value() as Element.Container
-        case "Label"?:
-            return try node.value() as Element.Label
-        case "TextField"?:
-            return try node.value() as Element.TextField
-        case "Button"?:
-            return try node.value() as Element.Button
-        case "ImageView"?:
-            return try node.value() as Element.ImageView
-        case "ScrollView"?:
-            return try node.value() as Element.ScrollView
-        case "StackView"?:
-            return try node.value() as Element.StackView
-        case "styles"?, "layout"?:
-            // Intentionally ignored as these are parsed directly
-            return nil
-        case .none:
-            return nil
-        case let unknownTag:
-            throw TokenizerError(message: "Unknown tag \(unknownTag)")
-        }
-    }
-}
-
-class XMLIndexerInitializable: XMLIndexerDeserializable {
-    required init(node: XMLIndexer) throws { }
-
-    public static func deserialize(_ node: XMLIndexer) throws -> Self {
-        return try self.init(node: node)
-    }
-}
-
 public struct Element {
 
-    class ComponentReference: XMLIndexerInitializable, UIElement {
-        let type: String
+    class View: XMLIndexerDeserializable, UIElement {
+        class var availableProperties: [String: SupportedPropertyType] {
+            return [
+                "backgroundColor": .color
+            ]
+        }
+
         let field: String?
         let layout: Layout
-        let properties: [String : SupportedPropertyValue] = [:]
+        let properties: [String : SupportedPropertyValue]
 
         var initialization: String {
+            return "UIView()"
+        }
+
+        #if ReactantRuntime
+        func initialize() -> UIView {
+            return UIView()
+        }
+        #endif
+
+        required init(node: XMLIndexer) throws {
+            field = node.value(ofAttribute: "field")
+            layout = try node.value()
+            properties = View.deserializeSupportedProperties(properties: type(of: self).availableProperties, in: node)
+        }
+
+        public static func deserialize(_ node: XMLIndexer) throws -> Self {
+            return try self.init(node: node)
+        }
+
+        public static func deserialize(nodes: [XMLIndexer]) throws -> [UIElement] {
+            return try nodes.flatMap { node -> UIElement? in
+                switch node.element?.name {
+                case "Component"?:
+                    return try ComponentReference(node: node)
+                case "Container"?:
+                    return try node.value() as Element.Container
+                case "Label"?:
+                    return try node.value() as Element.Label
+                case "TextField"?:
+                    return try node.value() as Element.TextField
+                case "Button"?:
+                    return try node.value() as Element.Button
+                case "ImageView"?:
+                    return try node.value() as Element.ImageView
+                case "ScrollView"?:
+                    return try node.value() as Element.ScrollView
+                case "StackView"?:
+                    return try node.value() as Element.StackView
+                case "styles"?, "layout"?:
+                    // Intentionally ignored as these are parsed directly
+                    return nil
+                case .none:
+                    return nil
+                case let unknownTag:
+                    throw TokenizerError(message: "Unknown tag \(unknownTag)")
+                }
+            }
+        }
+
+        static func deserializeSupportedProperties(properties: [String: SupportedPropertyType], in node: XMLIndexer) -> [String: SupportedPropertyValue] {
+            var result = [:] as [String: SupportedPropertyValue]
+            for (key, value) in properties {
+                guard let property = try? node.value(ofAttribute: key) as String else { continue }
+                guard let propertyValue = value.value(of: property) else {
+                    print("// Could not parse `\(property)` as `\(value)` for property `\(key)`")
+                    continue
+                }
+                result[key] = propertyValue
+            }
+            
+            return result
+        }
+    }
+
+    class ComponentReference: View {
+        let type: String
+
+        override var initialization: String {
             return "\(type)()"
         }
 
         required init(node: XMLIndexer) throws {
             type = try node.value(ofAttribute: "type")
-            field = node.value(ofAttribute: "field")
-            layout = try node.value()
 
             try super.init(node: node)
         }
 
         #if ReactantRuntime
-        func initialize() -> UIView {
+        override func initialize() -> UIView {
             // FIXME should not force unwrap
             return ReactantLiveUIManager.shared.type(named: type)!.init() // ?? UIView()
         }
@@ -248,221 +281,128 @@ public struct Element {
                 type: node.value(ofAttribute: "type"),
                 isRootView: node.value(ofAttribute: "rootView") ?? false,
                 styles: node["styles"]["style"].value() ?? [],
-                children: uiElements(node.children))
+                children: View.deserialize(nodes: node.children))
         }
     }
 
-    struct Container: XMLIndexerDeserializable, UIElement, UIContainer {
-        static let availableProperties: [String: SupportedPropertyType] = View.availableProperties
-        let layout: Layout
-        let field: String?
+    class Container: View, UIContainer {
         let children: [UIElement]
-        let properties: [String : SupportedPropertyValue]
 
-        let initialization: String = "UIView()"
+        required init(node: XMLIndexer) throws {
+            children = try View.deserialize(nodes: node.children)
 
-        public static func deserialize(_ node: XMLIndexer) throws -> Container {
-            let properties = Element.deserializeSupportedProperties(properties: Container.availableProperties, in: node)
-            return try Container(
-                layout: node.value(),
-                field: node.value(ofAttribute: "field"),
-                children: uiElements(node.children),
-                properties: properties)
+            try super.init(node: node)
         }
-
-        #if ReactantRuntime
-        func initialize() -> UIView {
-            return UIView()
-        }
-        #endif
     }
 
-    struct StackView: XMLIndexerDeserializable, UIElement, UIContainer {
-        static let availableProperties: [String: SupportedPropertyType] = View.availableProperties.merged(with: [
-            "axis": .layoutAxis
+    class StackView: Container {
+        override class var availableProperties: [String: SupportedPropertyType] {
+            return super.availableProperties.merged(with: [
+                "axis": .layoutAxis
             ])
-        let layout: Layout
-        let field: String?
-        let children: [UIElement]
-        let properties: [String : SupportedPropertyValue]
+        }
 
-        let initialization: String = "UIStackView()"
-
-        public static func deserialize(_ node: XMLIndexer) throws -> StackView {
-            let properties = Element.deserializeSupportedProperties(properties: StackView.availableProperties, in: node)
-            return try StackView(
-                layout: node.value(),
-                field: node.value(ofAttribute: "field"),
-                children: uiElements(node.children),
-                properties: properties)
+        override var initialization: String {
+            return "UIStackView()"
         }
 
         #if ReactantRuntime
-        func initialize() -> UIView {
+        override func initialize() -> UIView {
             return UIStackView()
         }
         #endif
     }
 
-    struct ScrollView: XMLIndexerDeserializable, UIElement, UIContainer {
-        static let availableProperties: [String: SupportedPropertyType] = View.availableProperties
-
-        let layout: Layout
-        let field: String?
-        let children: [UIElement]
-        let properties: [String : SupportedPropertyValue]
-
-        let initialization: String = "UIScrollView()"
-
-        public static func deserialize(_ node: XMLIndexer) throws -> ScrollView {
-            let properties = Element.deserializeSupportedProperties(properties: ScrollView.availableProperties, in: node)
-            return try ScrollView(
-                layout: node.value(),
-                field: node.value(ofAttribute: "field"),
-                children: uiElements(node.children),
-                properties: properties)
+    class ScrollView: Container {
+        override var initialization: String {
+            return "UIScrollView()"
         }
 
         #if ReactantRuntime
-        func initialize() -> UIView {
+        override func initialize() -> UIView {
             return UIScrollView()
         }
         #endif
     }
 
-    struct View {
-        static let availableProperties: [String: SupportedPropertyType] = [
-            "backgroundColor": .color
-        ]
-    }
-
-    struct TextField: XMLIndexerDeserializable, UIElement {
-        static let availableProperties: [String: SupportedPropertyType] = View.availableProperties.merged(with: [
+    class TextField: View {
+        override class var availableProperties: [String: SupportedPropertyType] {
+            return super.availableProperties.merged(with: [
                 "text": .string,
                 "placeholder": .string,
                 "font": .font,
                 "textColor": .color
             ])
+        }
 
-        let field: String?
-        let layout: Layout
-        let properties: [String: SupportedPropertyValue]
-
-        let initialization: String = "UITextField()"
-
-        public static func deserialize(_ node: XMLIndexer) throws -> TextField {
-            let props = Element.deserializeSupportedProperties(properties: TextField.availableProperties, in: node)
-
-            return try TextField(
-                field: node.value(ofAttribute: "field"),
-                layout: node.value(),
-                properties: props)
+        override var initialization: String {
+            return "UITextField()"
         }
 
         #if ReactantRuntime
-        func initialize() -> UIView {
+        override func initialize() -> UIView {
             return UITextField()
         }
         #endif
     }
 
-    static func deserializeSupportedProperties(properties: [String: SupportedPropertyType], in node: XMLIndexer) -> [String: SupportedPropertyValue] {
-        var result = [:] as [String: SupportedPropertyValue]
-        for (key, value) in properties {
-            guard let property = try? node.value(ofAttribute: key) as String else { continue }
-            guard let propertyValue = value.value(of: property) else {
-                print("// Could not parse `\(property)` as `\(value)` for property `\(key)`")
-                continue
-            }
-            result[key] = propertyValue
-        }
-
-        return result
-    }
-
-    struct Label: XMLIndexerDeserializable, UIElement {
-        static let availableProperties: [String: SupportedPropertyType] = View.availableProperties.merged(with: [
+    class Label: View {
+        override class var availableProperties: [String: SupportedPropertyType] {
+            return View.availableProperties.merged(with: [
                 "text": .string,
                 "textColor": .color,
                 "font": .font,
                 "numberOfLines": .integer,
                 "textAlignment": .textAlignment
             ])
-        let field: String?
-        let layout: Layout
-        let properties: [String : SupportedPropertyValue]
+        }
 
-        let initialization: String = "UILabel()"
-
-        public static func deserialize(_ node: XMLIndexer) throws -> Label {
-            let properties = Element.deserializeSupportedProperties(properties: Label.availableProperties, in: node)
-            return try Label(
-                field: node.value(ofAttribute: "field"),
-                layout: node.value(),
-                properties: properties
-            )
+        override var initialization: String {
+            return "UILabel()"
         }
 
         #if ReactantRuntime
-        func initialize() -> UIView {
+        override func initialize() -> UIView {
             return UILabel()
         }
         #endif
     }
 
-    struct Button: XMLIndexerDeserializable, UIElement, UIContainer {
-        static let availableProperties: [String: SupportedPropertyType] = [
-            "normalTitle": .string
-            ].merged(with: View.availableProperties)
-        let field: String?
-        let layout: Layout
-        let children: [UIElement]
-        let properties: [String : SupportedPropertyValue]
+    class Button: Container {
+        override class var availableProperties: [String: SupportedPropertyType] {
+            return super.availableProperties.merged(with: [
+                "normalTitle": .string
+            ])
+        }
 
-        let initialization: String = "UIButton()"
-
-        public static func deserialize(_ node: XMLIndexer) throws -> Button {
-            let properties = Element.deserializeSupportedProperties(properties: Button.availableProperties, in: node)
-            return try Button(
-                field: node.value(ofAttribute: "field"),
-                layout: node.value(),
-                children: uiElements(node.children),
-                properties: properties)
+        override var initialization: String {
+            return "UIButton()"
         }
 
         #if ReactantRuntime
-        func initialize() -> UIView {
+        override func initialize() -> UIView {
             return UIButton()
         }
         #endif
     }
 
-    struct ImageView: XMLIndexerDeserializable, UIElement {
+    class ImageView: View {
+        override class var availableProperties: [String: SupportedPropertyType] {
+            return super.availableProperties.merged(with: [
+                "image": .image,
+                "contentMode": .contentMode
+            ])
+        }
 
-        static let availableProperties: [String: SupportedPropertyType] = [
-            "image": .image,
-            "contentMode": .contentMode
-        ]
-
-        let field: String?
-        let layout: Layout
-        let properties: [String : SupportedPropertyValue]
-
-        let initialization: String = "UIImageView()"
+        override var initialization: String {
+            return "UIImageView()"
+        }
 
         #if ReactantRuntime
-        func initialize() -> UIView {
+        override func initialize() -> UIView {
             return UIImageView()
         }
         #endif
-
-        public static func deserialize(_ node: XMLIndexer) throws -> ImageView {
-            let properties = Element.deserializeSupportedProperties(properties: ImageView.availableProperties, in: node)
-            return try ImageView(
-                field: node.value(ofAttribute: "field"),
-                layout: node.value(),
-                properties: properties)
-        }
     }
 }
 
