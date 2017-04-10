@@ -26,6 +26,15 @@ public class Generator {
             l("var layout: \(root.type).LayoutContainer") {
                 l("return LayoutContainer()")
             }
+            if root.isRootView {
+                l("var edgesForExtendedLayout: UIRectEdge") {
+                    l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
+                    l("return ReactantLiveUIManager.shared.extendedEdges(of: self)")
+                    l("#else")
+                    l("return \(SupportedPropertyValue.rectEdge(root.edgesForExtendedLayout).generated)")
+                    l("#endif")
+                }
+            }
             l()
             l("func setupReactantUI()") {
                 l("#if (arch(i386) || arch(x86_64)) && os(iOS)")

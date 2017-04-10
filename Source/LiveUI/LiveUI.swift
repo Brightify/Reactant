@@ -22,11 +22,32 @@ extension WeakUIBox: Equatable {
     }
 }
 
+extension UIWindow {
+    func topViewController() -> UIViewController? {
+        return rootViewController.map(topViewController)
+    }
+
+    private func topViewController(with root: UIViewController) -> UIViewController {
+        if let selectedController = (root as? UITabBarController)?.selectedViewController {
+            return topViewController(with: selectedController)
+        } else if let visibleController = (root as? UINavigationController)?.visibleViewController {
+            return topViewController(with: visibleController)
+        } else {
+            return root.presentedViewController.map(topViewController) ?? root
+        }
+    }
+}
+
 public class ReactantLiveUIManager {
     
     public static let shared = ReactantLiveUIManager()
     private var componentTypes: [String: UIView.Type] = [:]
     private var watchers: [String: (watcher: FileWatcherProtocol, uis: [WeakUIBox])] = [:]
+    private var extendedEdges: [String: UIRectEdge] = [:]
+
+    public func extendedEdges<UI: UIView>(of view: UI) -> UIRectEdge where UI: ReactantUI {
+        return extendedEdges[view.uiXmlPath] ?? []
+    }
 
     public func register(component: UIView.Type, named: String) {
         componentTypes[named] = component
@@ -36,23 +57,24 @@ public class ReactantLiveUIManager {
         return componentTypes[name]
     }
 
-    public func register<UI: UIView>(_ ui: UI) where UI: ReactantUI {
-        if watchers.keys.contains(ui.uiXmlPath) {
-            watchers[ui.uiXmlPath]?.uis.append(WeakUIBox(ui: ui))
+    public func register<UI: UIView>(_ view: UI) where UI: ReactantUI {
+        if watchers.keys.contains(view.uiXmlPath) {
+            watchers[view.uiXmlPath]?.uis.append(WeakUIBox(ui: view))
             
-            readAndApply(ui: ui)
+            readAndApply(view: view)
         } else {
-            let watcher = FileWatcher.Local(path: ui.uiXmlPath)
-            watchers[ui.uiXmlPath] = (watcher, [WeakUIBox(ui: ui)])
+            let watcher = FileWatcher.Local(path: view.uiXmlPath)
+            watchers[view.uiXmlPath] = (watcher, [WeakUIBox(ui: view)])
             
             try! watcher.start { result in
                 switch result {
                 case .noChanges:
                     break
                 case .updated(let data):
-                    self.watchers[ui.uiXmlPath]?.uis
-                        .flatMap { $0.view }
-                        .forEach { self.apply(data: data, ui: $0) }
+                    guard let watcher = self.watchers[view.uiXmlPath] else {
+                        fatalError("Probably inconsistent state, got a file update with")
+                    }
+                    self.apply(data: data, views: watcher.uis.flatMap { $0.view }, xmlPath: view.uiXmlPath)
                 }
             }
         }
@@ -70,25 +92,46 @@ public class ReactantLiveUIManager {
             watchers[ui.uiXmlPath]?.uis.remove(at: index)
         }
     }
-    
-    private func apply(data: Data, ui: UIView) {
+
+    private func apply(data: Data, views: [UIView], xmlPath: String) {
         let xml = SWXMLHash.parse(data)
+        var windows = [] as [UIWindow]
         do {
             let root: Element.Root = try xml["UI"].value()
-            ReactantLiveUIApplier(root: root, instance: ui).apply()
+            if root.isRootView {
+                extendedEdges[xmlPath] = root.edgesForExtendedLayout.resolveUnion()
+            } else {
+                extendedEdges.removeValue(forKey: xmlPath)
+            }
+            views.forEach {
+                apply(root: root, view: $0)
+                if let window = $0.window, !windows.contains(window) {
+                    windows.append(window)
+                }
+            }
+            windows.forEach {
+                $0.topViewController()?.updateViewConstraints()
+            }
         } catch let error {
             print(error)
         }
     }
     
-    private func readAndApply<UI: UIView>(ui: UI) where UI: ReactantUI {
-        let url = URL(fileURLWithPath: ui.uiXmlPath)
+    private func apply(root: Element.Root, view: UIView) {
+        ReactantLiveUIApplier(root: root, instance: view).apply()
+        if let invalidable = view as? Invalidable {
+            invalidable.invalidate()
+        }
+    }
+    
+    private func readAndApply<UI: UIView>(view: UI) where UI: ReactantUI {
+        let url = URL(fileURLWithPath: view.uiXmlPath)
         guard let data = try? Data(contentsOf: url, options: .uncached) else {
             print("ERROR: file not found")
             return
         }
         
-        apply(data: data, ui: ui)
+        apply(data: data, views: [view], xmlPath: view.uiXmlPath)
     }
 }
 

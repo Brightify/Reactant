@@ -91,7 +91,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     }
     
     open func updateRootViewConstraints() {
-        rootView.snp.updateConstraints { make in
+        rootView.snp.remakeConstraints { make in
             make.leading.equalTo(view)
             if castRootView?.edgesForExtendedLayout.contains(.top) == true {
                 make.top.equalTo(view)

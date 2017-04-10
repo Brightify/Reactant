@@ -5,6 +5,7 @@
     xsi:schemaLocation="http://www.brightify.org ../schema/ReactantUI.xsd
                         http://www.brightify.org/layout ../schema/Layout.xsd"
     type="ExampleRootView"
+    extend="all"
     rootView="true">
 
     <!--<styles>
@@ -15,7 +16,7 @@
     </styles>-->
 
     <ImageView
-        layout:edges="super inset(-20)"
+        layout:edges="super"
         image="falcon"
         contentMode="scaleAspectFill" />
 
@@ -79,6 +80,7 @@
                 layout:below="id:neco offset(20)"
                 layout:fillHorizontally="super inset(20)"
                 layout:bottom="super inset(20)">
+                <Component type="ExampleView2" />
                 <Component type="ExampleView2" />
                 <Component type="ExampleView2" />
                 <Component type="ExampleView2" />

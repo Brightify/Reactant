@@ -208,7 +208,6 @@
 		186C3D281E9ABBB00077C52F /* Dictionary+Merge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Merge.swift"; sourceTree = "<group>"; };
 		186C3D291E9ABBB00077C52F /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		186C3D2A1E9ABBB00077C52F /* TokenizationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizationError.swift; sourceTree = "<group>"; };
-		186C3D2B1E9ABCA40077C52F /* InnerAssignmentPropertyDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerAssignmentPropertyDescription.swift; sourceTree = "<group>"; };
 		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
 		18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReactantLiveUI.podspec; sourceTree = "<group>"; };
@@ -485,7 +484,6 @@
 				186C3D151E9ABBB00077C52F /* ControlStatePropertyDescription.swift */,
 				186C3D161E9ABBB00077C52F /* Property.swift */,
 				186C3D171E9ABBB00077C52F /* PropertyDescription.swift */,
-				186C3D2B1E9ABCA40077C52F /* InnerAssignmentPropertyDescription.swift */,
 			);
 			path = Properties;
 			sourceTree = "<group>";

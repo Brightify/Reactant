@@ -17,6 +17,7 @@
             </xs:choice>
             <xs:attribute name="type" type="xs:string" use="required"/>
             <xs:attribute name="rootView" type="xs:boolean" default="false"/>
+            <xs:attribute name="extend" type="rectEdge" />
         </xs:complexType>
     </xs:element>
 
@@ -203,6 +204,20 @@
         <xs:restriction base="xs:token">
             <xs:pattern value="#[\dA-Fa-f]{6}([\dA-Fa-f][\dA-Fa-f])?"/>
         </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="rectEdge">
+        <xs:list>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="all" />
+                    <xs:enumeration value="top" />
+                    <xs:enumeration value="bottom" />
+                    <xs:enumeration value="left" />
+                    <xs:enumeration value="right" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:list>
     </xs:simpleType>
 
     <xs:simpleType name="namedColor">

@@ -11,6 +11,7 @@ public enum SupportedPropertyType {
     case layoutAlignment
     case float
     case bool
+    case rectEdge
 
     public func value(of text: String) -> SupportedPropertyValue? {
         switch self {
@@ -42,6 +43,8 @@ public enum SupportedPropertyType {
             return Float(text).map(SupportedPropertyValue.float)
         case .bool:
             return Bool(text).map(SupportedPropertyValue.bool)
+        case .rectEdge:
+            return SupportedPropertyValue.rectEdge(RectEdge.parse(text: text))
         }
     }
 }

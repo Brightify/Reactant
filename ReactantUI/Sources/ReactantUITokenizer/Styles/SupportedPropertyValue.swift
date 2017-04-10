@@ -17,6 +17,7 @@ public enum SupportedPropertyValue {
     case layoutAlignment(LayoutAlignment)
     case float(Float)
     case bool(Bool)
+    case rectEdge([RectEdge])
 
     public var generated: String {
         switch self {
@@ -49,6 +50,8 @@ public enum SupportedPropertyValue {
             return "UIStackViewAlignment.\(alignment.rawValue)"
         case .bool(let value):
             return value ? "true" : "false"
+        case .rectEdge(let rectEdges):
+            return "[\(rectEdges.map { "UIRectEdge.\($0.rawValue)" }.joined(separator: ", "))]"
         }
     }
 
@@ -124,6 +127,8 @@ public enum SupportedPropertyValue {
             }
         case .bool(let value):
             return value
+        case .rectEdge(let rectEdges):
+            return rectEdges.resolveUnion().rawValue
         }
     }
     #endif

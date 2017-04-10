@@ -13,8 +13,12 @@ public enum ObservableStateEvent {
     case afterUpdate
 }
 
-public protocol Component: class {
-    
+public protocol Invalidable: class {
+    func invalidate()
+}
+
+public protocol Component: class, Invalidable {
+
     associatedtype StateType
     associatedtype ActionType
     
@@ -39,8 +43,6 @@ public protocol Component: class {
     func needsUpdate() -> Bool
     
     func update()
-    
-    func invalidate()
     
     func perform(action: ActionType)
 

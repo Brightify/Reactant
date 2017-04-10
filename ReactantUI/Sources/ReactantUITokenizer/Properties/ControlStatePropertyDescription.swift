@@ -10,31 +10,6 @@ func controlState(name: String, key: String, type: SupportedPropertyType) -> Con
     return ControlStatePropertyDescription(name: name, key: key, type: type)
 }
 
-public enum ControlState: String {
-    case normal
-    case highlighted
-    case disabled
-    case selected
-    case focused
-
-    #if ReactantRuntime
-    var state: UIControlState {
-        switch self {
-        case .normal:
-            return .normal
-        case .highlighted:
-            return .highlighted
-        case .disabled:
-            return .disabled
-        case .selected:
-            return .selected
-        case .focused:
-            return .focused
-        }
-    }
-    #endif
-}
-
 struct ControlStatePropertyDescription: PropertyDescription {
     let name: String
     let key: String
@@ -71,11 +46,7 @@ struct ControlStatePropertyDescription: PropertyDescription {
 
         let method = unsafeBitCast(signature, to: setValueForControlStateIMP.self)
 
-        method(object, selector, resolvedValue as AnyObject, parseState(from: property.attributeName))
-    }
-
-    private func parseState(from attributeName: String) -> UIControlState {
-        return parseState(from: attributeName).reduce(UIControlState.normal) { $0.union($1.state) }
+        method(object, selector, resolvedValue as AnyObject, parseState(from: property.attributeName).resolveUnion())
     }
     #endif
 }
