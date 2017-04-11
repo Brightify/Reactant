@@ -59,6 +59,10 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate {
 
     open func update() { }
 
+    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
+        return componentDelegate.observeState(when)
+    }
+
     open func loadView() {
     }
     

@@ -8,6 +8,11 @@
 
 import RxSwift
 
+public enum ObservableStateEvent {
+    case beforeUpdate
+    case afterUpdate
+}
+
 public protocol Component: class {
     
     associatedtype StateType
@@ -38,6 +43,8 @@ public protocol Component: class {
     func invalidate()
     
     func perform(action: ActionType)
+
+    func observeState(_ when: ObservableStateEvent) -> Observable<StateType>
 }
 
 extension Component {

@@ -31,8 +31,10 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
         set {
             previousComponentState = stateStorage
             stateStorage = newValue
+
+            observableStateBeforeUpdate.onNext(newValue)
             needsUpdate = true
-            observableStateSubject.onNext(componentState)
+            observableStateSubject.onNext(newValue)
         }
     }
     
@@ -43,7 +45,9 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     public var needsUpdate: Bool = false {
         didSet {
             if needsUpdate && canUpdate {
+                let componentStateBeforeUpdate = componentState
                 update()
+                observableStateAfterUpdate.onNext(componentStateBeforeUpdate)
             }
         }
     }
@@ -51,7 +55,9 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     public var canUpdate: Bool = false {
         didSet {
             if canUpdate && needsUpdate {
+                let componentStateBeforeUpdate = componentState
                 update()
+                observableStateAfterUpdate.onNext(componentStateBeforeUpdate)
             }
         }
     }
@@ -68,8 +74,10 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
             Observable.from(actions).merge().subscribe(onNext: perform).addDisposableTo(actionsDisposeBag)
         }
     }
-    
+
     private let observableStateSubject = ReplaySubject<STATE>.create(bufferSize: 1)
+    private let observableStateBeforeUpdate = PublishSubject<STATE>()
+    private let observableStateAfterUpdate = PublishSubject<STATE>()
     private let actionSubject = PublishSubject<ACTION>()
     
     private var stateStorage: STATE? = nil
@@ -86,10 +94,22 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     deinit {
         observableStateSubject.onCompleted()
         actionSubject.onCompleted()
+        observableStateBeforeUpdate.onCompleted()
+        observableStateAfterUpdate.onCompleted()
     }
     
     public func perform(action: ACTION) {
         actionSubject.onNext(action)
+    }
+
+
+    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
+        switch when {
+        case .beforeUpdate:
+            return observableStateBeforeUpdate
+        case .afterUpdate:
+            return observableStateAfterUpdate
+        }
     }
     
     private func update() {

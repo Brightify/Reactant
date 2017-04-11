@@ -59,6 +59,10 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate {
     
     open func setupConstraints() { }
 
+    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
+        return componentDelegate.observeState(when)
+    }
+
     open func needsUpdate() -> Bool {
         return true
     }

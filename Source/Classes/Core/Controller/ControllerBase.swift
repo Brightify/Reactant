@@ -64,6 +64,10 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         return true
     }
 
+    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
+        return componentDelegate.observeState(when)
+    }
+
     open override func loadView() {
         // FIXME Add common styles and style rootview
         view = ControllerRootViewContainer()
