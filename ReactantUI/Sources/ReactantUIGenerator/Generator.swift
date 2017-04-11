@@ -23,7 +23,7 @@ public class Generator {
         l("extension \(root.type): ReactantUI" + (root.isRootView ? ", RootView" : "")) {
             l("var uiXmlPath: String { return \"\(localXmlPath)\" }")
 
-            l("var layout: \(root.type).LayoutContainer") {
+            l("var rui_layout: \(root.type).LayoutContainer") {
                 l("return LayoutContainer()")
             }
             if root.isRootView {
@@ -137,7 +137,7 @@ public class Generator {
                 }
 
                 if let field = constraint.field {
-                    constraintLine = "layout.\(field) = \(constraintLine).constraint"
+                    constraintLine = "rui_layout.\(field) = \(constraintLine).constraint"
                 }
 
                 l(constraintLine)
