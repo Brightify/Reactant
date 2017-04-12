@@ -21,11 +21,6 @@ public class Generator {
         }
         l()
         l("extension \(root.type): ReactantUI" + (root.isRootView ? ", RootView" : "")) {
-            l("var uiXmlPath: String { return \"\(localXmlPath)\" }")
-
-            l("var rui_layout: \(root.type).LayoutContainer") {
-                l("return LayoutContainer()")
-            }
             if root.isRootView {
                 l("var edgesForExtendedLayout: UIRectEdge") {
                     l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
@@ -36,22 +31,52 @@ public class Generator {
                 }
             }
             l()
-            l("func setupReactantUI()") {
-                l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
-                for type in root.componentTypes {
-                    l("ReactantLiveUIManager.shared.register(component: \(type).self, named: \"\(type)\")")
+            l("var rui: \(root.type).RUIContainer") {
+                l("return Reactant.associatedObject(self, key: &\(root.type).RUIContainer.associatedObjectKey)") {
+                    l("return \(root.type).RUIContainer(target: self)")
                 }
-                l("ReactantLiveUIManager.shared.register(self)")
-                l("#else")
-                root.children.forEach { generate(element: $0, superName: "self") }
-                tempCounter = 1
-                root.children.forEach { generateConstraints(element: $0, superName: "self") }
-                l("#endif")
             }
-            l("func destroyReactantUI()") {
-                l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
-                l("ReactantLiveUIManager.shared.unregister(self)")
-                l("#endif")
+            l()
+            l("var __rui: Reactant.ReactantUIContainer") {
+                l("return rui")
+            }
+            l()
+            l("final class RUIContainer: Reactant.ReactantUIContainer") {
+                l("fileprivate static var associatedObjectKey = 0 as UInt8")
+                l()
+                l("var xmlPath: String") {
+                    l("return \"\(localXmlPath)\"")
+                }
+                l()
+                l("let constraints = \(root.type).LayoutContainer()")
+                l()
+                l("private weak var target: \(root.type)?")
+                l()
+                l("fileprivate init(target: \(root.type))") {
+                    l("self.target = target")
+                }
+                l()
+                l("func setupReactantUI()") {
+                    l("guard let target = self.target else { /* FIXME Should we fatalError here? */ return }")
+                    l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
+                    for type in root.componentTypes {
+                        l("ReactantLiveUIManager.shared.register(component: \(type).self, named: \"\(type)\")")
+                    }
+                    // This will register `self` to remove `deinit` from ViewBase
+                    l("ReactantLiveUIManager.shared.register(target)")
+                    l("#else")
+                    root.children.forEach { generate(element: $0, superName: "target") }
+                    tempCounter = 1
+                    root.children.forEach { generateConstraints(element: $0, superName: "target") }
+                    l("#endif")
+                }
+                l()
+                l("func destroyReactantUI()") {
+                    l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
+                    l("guard let target = self.target else { /* FIXME Should we fatalError here? */ return }")
+                    l("ReactantLiveUIManager.shared.unregister(target)")
+                    l("#endif")
+                }
             }
             l()
             l("final class LayoutContainer") {
@@ -63,7 +88,7 @@ public class Generator {
     private func generate(element: UIElement, superName: String) {
         let name: String
         if let field = element.field {
-            name = "self.\(field)"
+            name = "target.\(field)"
         } else if let layoutId = element.layout.id {
             name = "named_\(layoutId)"
             l("let \(name) = \(element.initialization)")
@@ -79,7 +104,7 @@ public class Generator {
 
         // FIXME This is a workaround, it should be done elsethere (possibly UIContainer)
         l("if let super_stackView = \(superName) as? UIStackView") {
-            l("\(superName).addArrangedSubview(\(name))")
+            l("super_stackView.addArrangedSubview(\(name))")
         }
         l("else") {
             l("\(superName).addSubview(\(name))")
@@ -93,7 +118,7 @@ public class Generator {
     private func generateConstraints(element: UIElement, superName: String) {
         let name: String
         if let field = element.field {
-            name = "self.\(field)"
+            name = "target.\(field)"
         } else if let layoutId = element.layout.id {
             name = "named_\(layoutId)"
         } else {
@@ -117,7 +142,7 @@ public class Generator {
                     } else if let colonIndex = constraint.target.characters.index(of: ":"), constraint.target.substring(to: colonIndex) == "id" {
                         target = "named_\(constraint.target.substring(from: constraint.target.characters.index(after: colonIndex)))"
                     } else {
-                        target = constraint.target
+                        target = "target.\(constraint.target)"
                     }
                     constraintLine += target
                     if constraint.targetAnchor != constraint.anchor {
@@ -137,7 +162,7 @@ public class Generator {
                 }
 
                 if let field = constraint.field {
-                    constraintLine = "rui_layout.\(field) = \(constraintLine).constraint"
+                    constraintLine = "constraints.\(field) = \(constraintLine).constraint"
                 }
 
                 l(constraintLine)

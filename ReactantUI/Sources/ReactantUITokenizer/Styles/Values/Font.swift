@@ -9,11 +9,11 @@ public enum Font {
             // :thin@25
             let parts = text.substring(from: text.index(after: text.startIndex)).components(separatedBy: "@")
             guard let weight = (parts.first?.lowercased()).flatMap({ SystemFontWeight(rawValue: $0) }) else { return nil }
-            let size = parts.last.flatMap(Float.init).map(CGFloat.init) ?? 15
-            self = .system(weight: weight, size: size)
-        } else if let size = Float(text).map(CGFloat.init) {
+            let size = parts.last.flatMap(Float.init) ?? 15
+            self = .system(weight: weight, size: CGFloat(size))
+        } else if let size = Float(text) {
             // 25
-            self = .system(weight: .regular, size: size)
+            self = .system(weight: .regular, size: CGFloat(size))
         } else {
             return nil
         }

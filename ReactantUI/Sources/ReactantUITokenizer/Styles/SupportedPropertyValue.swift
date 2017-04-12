@@ -22,7 +22,7 @@ public enum SupportedPropertyValue {
     public var generated: String {
         switch self {
         case .color(let color):
-            return "UIColor(hex: \(color.red), green: \(color.green), blue: \(color.blue), alpha: \(color.alpha))"
+            return "UIColor(red: \(color.red), green: \(color.green), blue: \(color.blue), alpha: \(color.alpha))"
         case .namedColor(let colorName):
             return "UIColor.\(colorName)"
         case .string(let string):

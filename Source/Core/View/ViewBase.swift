@@ -9,10 +9,14 @@
 import RxSwift
 
 public protocol ReactantUI: class {
-    var uiXmlPath: String { get }
+    var __rui: ReactantUIContainer { get }
+}
+
+public protocol ReactantUIContainer: class {
+    var xmlPath: String { get }
 
     func setupReactantUI()
-    
+
     func destroyReactantUI()
 }
 
@@ -52,7 +56,7 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         translatesAutoresizingMaskIntoConstraints = false
 
         if let reactantUi = self as? ReactantUI {
-            reactantUi.setupReactantUI()
+            reactantUi.__rui.setupReactantUI()
         }
 
         loadView()
@@ -68,7 +72,7 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
     
     deinit {
         if let reactantUi = self as? ReactantUI {
-            reactantUi.destroyReactantUI()
+            reactantUi.__rui.destroyReactantUI()
         }
     }
     

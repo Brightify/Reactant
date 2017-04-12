@@ -80,7 +80,7 @@ public class ReactantLiveUIManager {
     }
 
     public func extendedEdges<UI: UIView>(of view: UI) -> UIRectEdge where UI: ReactantUI {
-        return extendedEdges[view.uiXmlPath] ?? []
+        return extendedEdges[view.__rui.xmlPath] ?? []
     }
 
     public func register(component: UIView.Type, named: String) {
@@ -92,13 +92,14 @@ public class ReactantLiveUIManager {
     }
 
     public func register<UI: UIView>(_ view: UI) where UI: ReactantUI {
-        if watchers.keys.contains(view.uiXmlPath) {
-            watchers[view.uiXmlPath]?.uis.append(WeakUIBox(ui: view))
+        let xmlPath = view.__rui.xmlPath
+        if watchers.keys.contains(xmlPath) {
+            watchers[xmlPath]?.uis.append(WeakUIBox(ui: view))
             
             readAndApply(view: view)
         } else {
-            let watcher = FileWatcher.Local(path: view.uiXmlPath)
-            watchers[view.uiXmlPath] = (watcher, [WeakUIBox(ui: view)])
+            let watcher = FileWatcher.Local(path: xmlPath)
+            watchers[xmlPath] = (watcher, [WeakUIBox(ui: view)])
             
             try! watcher.start { result in
                 switch result {
@@ -106,25 +107,26 @@ public class ReactantLiveUIManager {
                     break
                 case .updated(let data):
                     self.scrollView.visibility = .collapsed
-                    guard let watcher = self.watchers[view.uiXmlPath] else {
+                    guard let watcher = self.watchers[xmlPath] else {
                         fatalError("Probably inconsistent state, got a file update with")
                     }
-                    self.apply(data: data, views: watcher.uis.flatMap { $0.view }, xmlPath: view.uiXmlPath)
+                    self.apply(data: data, views: watcher.uis.flatMap { $0.view }, xmlPath: xmlPath)
                 }
             }
         }
     }
     
     public func unregister<UI: UIView>(_ ui: UI) where UI: ReactantUI {
-        guard let watcher = watchers[ui.uiXmlPath] else {
+        let xmlPath = ui.__rui.xmlPath
+        guard let watcher = watchers[xmlPath] else {
             error("ERROR: attempting to remove not registered UI")
             return
         }
         if watcher.uis.count == 1 {
             try! watcher.watcher.stop()
-            watchers.removeValue(forKey: ui.uiXmlPath)
-        } else if let index = watchers[ui.uiXmlPath]?.uis.index(where: { $0.ui === ui }) {
-            watchers[ui.uiXmlPath]?.uis.remove(at: index)
+            watchers.removeValue(forKey: xmlPath)
+        } else if let index = watchers[xmlPath]?.uis.index(where: { $0.ui === ui }) {
+            watchers[xmlPath]?.uis.remove(at: index)
         }
     }
 
@@ -174,13 +176,14 @@ public class ReactantLiveUIManager {
     }
     
     private func readAndApply<UI: UIView>(view: UI) where UI: ReactantUI {
-        let url = URL(fileURLWithPath: view.uiXmlPath)
+        let xmlPath = view.__rui.xmlPath
+        let url = URL(fileURLWithPath: xmlPath)
         guard let data = try? Data(contentsOf: url, options: .uncached) else {
             error("ERROR: file not found")
             return
         }
         
-        apply(data: data, views: [view], xmlPath: view.uiXmlPath)
+        apply(data: data, views: [view], xmlPath: xmlPath)
     }
 
 }
