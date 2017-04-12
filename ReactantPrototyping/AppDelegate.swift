@@ -15,8 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         window?.backgroundColor = .white
-        window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
+        window?.rootViewController = ViewController()
         return true
     }
 }

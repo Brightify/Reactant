@@ -45,6 +45,40 @@ public class ReactantLiveUIManager {
     private var watchers: [String: (watcher: FileWatcherProtocol, uis: [WeakUIBox])] = [:]
     private var extendedEdges: [String: UIRectEdge] = [:]
 
+    private let scrollView = UIScrollView()
+    private let errorLabel = UILabel()
+
+    init() {
+        let errorContainer = ContainerView()
+        scrollView.addSubview(errorContainer)
+        scrollView.backgroundColor = .red
+
+        errorContainer.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        errorLabel.textColor = .white
+        errorLabel.numberOfLines = 0
+        errorLabel.textAlignment = .center
+        errorContainer.addSubview(errorLabel)
+        errorLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(16)
+
+            make.top.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(16)
+        }
+        UIApplication.shared.keyWindow?.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview().priority(UILayoutPriorityDefaultLow)
+        }
+        scrollView.visibility = .collapsed
+    }
+
     public func extendedEdges<UI: UIView>(of view: UI) -> UIRectEdge where UI: ReactantUI {
         return extendedEdges[view.uiXmlPath] ?? []
     }
@@ -71,6 +105,7 @@ public class ReactantLiveUIManager {
                 case .noChanges:
                     break
                 case .updated(let data):
+                    self.scrollView.visibility = .collapsed
                     guard let watcher = self.watchers[view.uiXmlPath] else {
                         fatalError("Probably inconsistent state, got a file update with")
                     }
@@ -82,7 +117,7 @@ public class ReactantLiveUIManager {
     
     public func unregister<UI: UIView>(_ ui: UI) where UI: ReactantUI {
         guard let watcher = watchers[ui.uiXmlPath] else {
-            print("ERROR: attempting to remove not registered UI")
+            error("ERROR: attempting to remove not registered UI")
             return
         }
         if watcher.uis.count == 1 {
@@ -91,6 +126,14 @@ public class ReactantLiveUIManager {
         } else if let index = watchers[ui.uiXmlPath]?.uis.index(where: { $0.ui === ui }) {
             watchers[ui.uiXmlPath]?.uis.remove(at: index)
         }
+    }
+
+    public func error(_ error: String) {
+        print(error)
+        errorLabel.text = error
+
+        scrollView.visibility = .visible
+        UIApplication.shared.keyWindow?.bringSubview(toFront: scrollView)
     }
 
     private func apply(data: Data, views: [UIView], xmlPath: String) {
@@ -118,26 +161,33 @@ public class ReactantLiveUIManager {
     }
     
     private func apply(root: Element.Root, view: UIView) {
-        ReactantLiveUIApplier(root: root, instance: view).apply()
-        if let invalidable = view as? Invalidable {
-            invalidable.invalidate()
+        do {
+            try ReactantLiveUIApplier(root: root, instance: view).apply()
+            if let invalidable = view as? Invalidable {
+                invalidable.invalidate()
+            }
+        } catch let error {
+            if let uiError = error as? LiveUIError {
+                ReactantLiveUIManager.shared.error(uiError.message)
+            }
         }
     }
     
     private func readAndApply<UI: UIView>(view: UI) where UI: ReactantUI {
         let url = URL(fileURLWithPath: view.uiXmlPath)
         guard let data = try? Data(contentsOf: url, options: .uncached) else {
-            print("ERROR: file not found")
+            error("ERROR: file not found")
             return
         }
         
         apply(data: data, views: [view], xmlPath: view.uiXmlPath)
     }
+
 }
 
 extension Array where Element == (String, UIView) {
-    func named(_ name: String) -> UIView {
-        return first(where: { $0.0 == name })!.1
+    func named(_ name: String) -> UIView? {
+        return first(where: { $0.0 == name })?.1
     }
 }
 
@@ -152,14 +202,14 @@ public class ReactantLiveUIApplier {
         self.instance = instance
     }
 
-    public func apply() {
+    public func apply() throws {
         instance.subviews.forEach { $0.removeFromSuperview() }
-        let views = root.children.flatMap { apply(element: $0, superview: instance) }
+        let views = try root.children.flatMap { try apply(element: $0, superview: instance) }
         tempCounter = 1
-        root.children.forEach { applyConstraints(views: views, element: $0, superview: instance) }
+        try root.children.forEach { try applyConstraints(views: views, element: $0, superview: instance) }
     }
 
-    private func apply(element: UIElement, superview: UIView) -> [(String, UIView)] {
+    private func apply(element: UIElement, superview: UIView) throws -> [(String, UIView)] {
         let name: String
         let view: UIView
         if let field = element.field {
@@ -190,7 +240,7 @@ public class ReactantLiveUIApplier {
         }
 
         if let container = element as? UIContainer {
-            let children = container.children.flatMap { apply(element: $0, superview: view) }
+            let children = try container.children.flatMap { try apply(element: $0, superview: view) }
 
             return [(name, view)] + children
         } else {
@@ -198,7 +248,7 @@ public class ReactantLiveUIApplier {
         }
     }
 
-    private func applyConstraints(views: [(String, UIView)], element: UIElement, superview: UIView) {
+    private func applyConstraints(views: [(String, UIView)], element: UIElement, superview: UIView) throws {
         let name: String
         if let field = element.field {
             name = "\(field)"
@@ -209,7 +259,12 @@ public class ReactantLiveUIApplier {
             tempCounter += 1
         }
 
-        let view = views.named(name)
+        guard let view = views.named(name) else {
+            throw LiveUIError(message: "Couldn't find view with name \(name) in view hierarchy")
+            return
+        }
+
+        var error: LiveUIError?
 
         view.snp.remakeConstraints { make in
             for constraint in element.layout.constraints {
@@ -252,7 +307,10 @@ public class ReactantLiveUIApplier {
                     } else {
                         targetName = constraint.target
                     }
-                    let targetView = targetName != "super" ? views.named(targetName) : superview
+                    guard let targetView = targetName != "super" ? views.named(targetName) : superview else {
+                        error = LiveUIError(message: "Couldn't find view with name \(targetName) in view hierarchy")
+                        return
+                    }
                     if constraint.targetAnchor != constraint.anchor {
                         switch constraint.targetAnchor {
                         case .top:
@@ -307,8 +365,17 @@ public class ReactantLiveUIApplier {
             }
         }
 
+        if let error = error {
+            throw error
+        }
+
         if let container = element as? UIContainer {
-            container.children.forEach { applyConstraints(views: views, element: $0, superview: view) }
+            try container.children.forEach { try applyConstraints(views: views, element: $0, superview: view) }
         }
     }
 }
+
+public struct LiveUIError: Error {
+    let message: String
+}
+
