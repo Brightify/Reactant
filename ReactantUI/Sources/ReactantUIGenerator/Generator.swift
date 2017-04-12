@@ -108,7 +108,7 @@ public class Generator {
 
                 var constraintLine = "make.\(constraint.anchor).\(constraint.relation)("
 
-                if let targetConstant = Float(constraint.target), constraint.anchor == .width || constraint.anchor == .height {
+                if let targetConstant = Float(constraint.target), constraint.anchor == .width || constraint.anchor == .height || constraint.anchor == .size {
                     constraintLine += "\(targetConstant)"
                 } else {
                     let target: String

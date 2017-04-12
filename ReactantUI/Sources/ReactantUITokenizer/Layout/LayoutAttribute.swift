@@ -17,12 +17,13 @@ public enum LayoutAttribute {
     case centerY
     case firstBaseline
     case lastBaseline
+    case size
 
     public var insetDirection: Float {
         switch self {
         case .leading, .left, .top, .before, .above:
             return 1
-        case .trailing, .right, .bottom, .width, .height, .after, .below, .centerY, .centerX, .firstBaseline, .lastBaseline:
+        case .trailing, .right, .bottom, .width, .height, .after, .below, .centerY, .centerX, .firstBaseline, .lastBaseline, .size:
             return -1
         }
     }
@@ -69,6 +70,8 @@ public enum LayoutAttribute {
             return [.firstBaseline]
         case "lastBaseline":
             return [.lastBaseline]
+        case "size":
+            return [.size]
         default:
             throw TokenizationError(message: "Unknown layout attribute \(string)")
         }
@@ -100,6 +103,8 @@ public enum LayoutAttribute {
             return .firstBaseline
         case .lastBaseline:
             return .lastBaseline
+        case .size:
+            return .size
         }
     }
 
@@ -129,6 +134,8 @@ public enum LayoutAttribute {
             return .firstBaseline
         case .lastBaseline:
             return .lastBaseline
+        case .size:
+            return .size
         }
     }
 }

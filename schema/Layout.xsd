@@ -29,6 +29,7 @@
         <xs:attribute name="edges" type="constraint" />
         <xs:attribute name="fillHorizontally" type="constraint" />
         <xs:attribute name="fillVertically" type="constraint" />
+        <xs:attribute name="size" type="constraint" />
     </xs:attributeGroup>
 
     <xs:simpleType name="constraint">

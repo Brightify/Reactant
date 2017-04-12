@@ -298,11 +298,13 @@ public class ReactantLiveUIApplier {
                     maker = make.firstBaseline
                 case .lastBaseline:
                     maker = make.lastBaseline
+                case .size:
+                    maker = make.size
                 }
 
                 let target: ConstraintRelatableTarget
 
-                if let targetConstant = Float(constraint.target), constraint.anchor == .width || constraint.anchor == .height {
+                if let targetConstant = Float(constraint.target), constraint.anchor == .width || constraint.anchor == .height || constraint.anchor == .size {
                     target = targetConstant
                 } else {
                     let targetName: String
@@ -341,6 +343,8 @@ public class ReactantLiveUIApplier {
                             target = targetView.snp.firstBaseline
                         case .lastBaseline:
                             target = targetView.snp.lastBaseline
+                        case .size:
+                            target = targetView.snp.size
                         }
                     } else {
                         target = targetView

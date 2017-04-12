@@ -13,6 +13,7 @@ public enum LayoutAnchor: CustomStringConvertible {
     case centerY
     case firstBaseline
     case lastBaseline
+    case size
 
     public var description: String {
         switch self {
@@ -40,6 +41,8 @@ public enum LayoutAnchor: CustomStringConvertible {
             return "firstBaseline"
         case .lastBaseline:
             return "lastBaseline"
+        case .size:
+            return "size"
         }
     }
 
@@ -69,6 +72,8 @@ public enum LayoutAnchor: CustomStringConvertible {
             self = .firstBaseline
         case "lastBaseline":
             self = .lastBaseline
+        case "size":
+            self = .size
         default:
             throw TokenizationError(message: "Unknown layout anchor \(string)")
         }

@@ -42,8 +42,10 @@
                 numberOfLines="0"
                 textAlignment="center"
                 textColor="#ffffff"
+                backgroundColor="blue"
                 layout:below="id:helloWorldLabel offset(10)"
-                layout:fillHorizontally="super inset(20)"/>
+                layout:centerX="super"
+                layout:size="100"/>
 
             <TextField
                 placeholder="E-mail"
@@ -51,7 +53,7 @@
                 textColor="white"
                 layout:below="id:prdel offset(50)"
                 layout:above="send offset(-50)"
-                layout:fillHorizontally="super inset(50)"/>
+                layout:fillHorizontally="super inset(50)" />
 
             <Button
                 title="Register now"
