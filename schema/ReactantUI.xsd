@@ -14,6 +14,7 @@
         <xs:complexType>
             <xs:choice maxOccurs="unbounded" minOccurs="0">
                 <xs:group ref="ViewGroup"/>
+                <xs:element name="styles" minOccurs="0" maxOccurs="1" type="stylesType" />
             </xs:choice>
             <xs:attribute name="type" type="xs:string" use="required"/>
             <xs:attribute name="rootView" type="xs:boolean" default="false"/>
@@ -27,8 +28,8 @@
                 <xs:complexType>
                     <xs:complexContent>
                         <xs:extension base="viewType">
+                            <xs:attributeGroup ref="imageStyleAttributes" />
                             <xs:attribute name="image" type="xs:string"/>
-                            <xs:attribute name="contentMode" type="contentMode"/>
                         </xs:extension>
                     </xs:complexContent>
                 </xs:complexType>
@@ -53,10 +54,7 @@
                             <xs:choice maxOccurs="unbounded" minOccurs="0">
                                 <xs:group ref="ViewGroup"/>
                             </xs:choice>
-                            <xs:attribute name="axis" type="layoutAxis" />
-                            <xs:attribute name="distribution" type="layoutDistribution" />
-                            <xs:attribute name="alignment" type="layoutAlignment" />
-                            <xs:attribute name="spacing" type="xs:decimal" />
+                            <xs:attributeGroup ref="stackViewStyleAttributes" />
                         </xs:extension>
                     </xs:complexContent>
                 </xs:complexType>
@@ -78,7 +76,8 @@
                 <xs:complexType>
                     <xs:complexContent>
                         <xs:extension base="viewType">
-                            <xs:attributeGroup ref="labelAttributes" />
+                            <xs:attributeGroup ref="labelStyleAttributes" />
+                            <xs:attribute name="text" type="xs:string"/>
                         </xs:extension>
                     </xs:complexContent>
                 </xs:complexType>
@@ -88,7 +87,8 @@
                 <xs:complexType>
                     <xs:complexContent>
                         <xs:extension base="viewType">
-                            <xs:attributeGroup ref="textAttributes" />
+                            <xs:attributeGroup ref="textFieldStyleAttributes" />
+                            <xs:attribute name="text" type="xs:string"/>
                             <xs:attribute name="placeholder" type="xs:string" />
                         </xs:extension>
                     </xs:complexContent>
@@ -99,9 +99,8 @@
                 <xs:complexType>
                     <xs:complexContent>
                         <xs:extension base="viewType">
-                            <xs:attributeGroup ref="labelAttributes" />
+                            <xs:attributeGroup ref="buttonStyleAttributes" />
                             <xs:attribute name="title" type="xs:string" />
-                            <xs:attribute name="titleColor" type="color" />
                         </xs:extension>
                     </xs:complexContent>
                 </xs:complexType>
@@ -116,16 +115,92 @@
         </xs:choice>
     </xs:group>
 
-    <xs:attributeGroup name="textAttributes">
-        <xs:attribute name="text" type="xs:string"/>
-        <xs:attribute name="textColor" type="color"/>
-        <xs:attribute name="font" type="xs:string"/>
+    <xs:complexType name="stylesType">
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="ViewStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="viewStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="LabelStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="labelStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TestFieldStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="textFieldStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ButtonStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="buttonStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ImageStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="imageStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="StackViewStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="stackViewStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:attributeGroup name="styleAttributes">
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="extend" type="xs:string" />
     </xs:attributeGroup>
 
-    <xs:attributeGroup name="labelAttributes">
-        <xs:attributeGroup ref="textAttributes" />
+    <xs:attributeGroup name="viewStyleAttributes">
+        <xs:attribute name="backgroundColor" type="color"/>
+        <xs:attribute name="clipsToBounds" type="xs:boolean"/>
+        <xs:attribute name="cornerRadius" type="xs:decimal"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="stackViewStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="axis" type="layoutAxis" />
+        <xs:attribute name="distribution" type="layoutDistribution" />
+        <xs:attribute name="alignment" type="layoutAlignment" />
+        <xs:attribute name="spacing" type="xs:decimal" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="imageStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="contentMode" type="contentMode"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="textStyleAttributes">
+        <xs:attribute name="textColor" type="color"/>
+        <xs:attribute name="font" type="xs:string"/>
         <xs:attribute name="numberOfLines" type="xs:nonNegativeInteger" />
         <xs:attribute name="textAlignment" type="textAlignment" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="textFieldStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attributeGroup ref="textStyleAttributes" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="labelStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attributeGroup ref="textStyleAttributes" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="buttonStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attributeGroup ref="textStyleAttributes" />
+        <xs:attribute name="titleColor" type="color" />
     </xs:attributeGroup>
 
     <xs:complexType name="assignable">
@@ -138,9 +213,7 @@
                 <xs:annotation>
                     <xs:documentation>The color attribute group indicates the color of an element.</xs:documentation>
                 </xs:annotation>
-                <xs:attribute name="backgroundColor" type="color"/>
-                <xs:attribute name="clipsToBounds" type="xs:boolean"/>
-                <xs:attribute name="cornerRadius" type="xs:decimal"/>
+                <xs:attributeGroup ref="viewStyleAttributes" />
                 <xs:attributeGroup ref="layout:layoutAttributes" />
             </xs:extension>
         </xs:complexContent>

@@ -8,12 +8,11 @@
     extend="all"
     rootView="true">
 
-    <!--<styles>
-        <style type="UILabel">
-            <textColor>#AABBCC</textColor>
-            <font>System(10)</font>
-        </style>
-    </styles>-->
+    <styles>
+        <ViewStyle name="base" backgroundColor="white" />
+        <ViewStyle name="black" backgroundColor="black" />
+        <LabelStyle name="a-style" extend="base black" />
+    </styles>
 
     <ImageView
         layout:edges="super"
