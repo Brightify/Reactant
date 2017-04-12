@@ -214,7 +214,11 @@ public class ReactantLiveUIApplier {
         let view: UIView
         if let field = element.field {
             name = "\(field)"
-            view = instance.value(forKey: field) as! UIView
+            if instance.responds(to: Selector("\(field)")) {
+                view = instance.value(forKey: field) as! UIView
+            } else {
+                throw LiveUIError(message: "Undefined field \(field)")
+            }
         } else if let layoutId = element.layout.id {
             name = "named_\(layoutId)"
             view = element.initialize()

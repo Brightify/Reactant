@@ -27,7 +27,7 @@
             <Label
                 layout:id="helloWorldLabel"
                 textColor="white"
-                text="Falcon 9"
+                text="Falcon 99"
                 font=":bold@30"
                 numberOfLines="0"
                 style="a-style"
@@ -37,7 +37,7 @@
 
             <Label
                 layout:id="prdel"
-                text="Keep your rocket safe"
+                text="Keep your rocket safes"
                 font=":regular@14"
                 numberOfLines="0"
                 textAlignment="center"

@@ -57,8 +57,7 @@ public class View: XMLIndexerDeserializable, UIElement {
             } else if elementName == "styles" {
                 // Intentionally ignored as these are parsed directly
                 return nil
-             }
-            else {
+            } else {
                 throw TokenizationError(message: "Unknown tag `\(elementName)`")
             }
         }
