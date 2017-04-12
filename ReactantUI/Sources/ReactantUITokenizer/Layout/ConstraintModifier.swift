@@ -14,22 +14,22 @@ public enum ConstraintModifier {
         let lowercased = string.lowercased()
         if lowercased.hasPrefix("multiplied(by:") {
             let value = lowercased.replacingOccurrences(of: "multiplied(by:", with: "")
-                .replacingOccurrences(of: ")", with: "")
+                .replacingOccurrences(of: ")", with: "").trimmingCharacters(in: CharacterSet.whitespaces)
             self = .multiplied(by: try parseFloat(value))
 
         } else if lowercased.hasPrefix("divided(by:") {
             let value = lowercased.replacingOccurrences(of: "divided(by:", with: "")
-                .replacingOccurrences(of: ")", with: "")
+                .replacingOccurrences(of: ")", with: "").trimmingCharacters(in: CharacterSet.whitespaces)
             self = .divided(by: try parseFloat(value))
 
         } else if lowercased.hasPrefix("offset(") {
             let value = lowercased.replacingOccurrences(of: "offset(", with: "")
-                .replacingOccurrences(of: ")", with: "")
+                .replacingOccurrences(of: ")", with: "").trimmingCharacters(in: CharacterSet.whitespaces)
             self = .offset(by: try parseFloat(value))
 
         } else if lowercased.hasPrefix("inset(") {
             let value = lowercased.replacingOccurrences(of: "inset(", with: "")
-                .replacingOccurrences(of: ")", with: "")
+                .replacingOccurrences(of: ")", with: "").trimmingCharacters(in: CharacterSet.whitespaces)
             self = .inset(by: try parseFloat(value))
 
         } else {
