@@ -129,7 +129,7 @@
                     <xs:attributeGroup ref="labelStyleAttributes" />
                 </xs:complexType>
             </xs:element>
-            <xs:element name="TestFieldStyle">
+            <xs:element name="TextFieldStyle">
                 <xs:complexType>
                     <xs:attributeGroup ref="styleAttributes" />
                     <xs:attributeGroup ref="textFieldStyleAttributes" />
@@ -141,7 +141,7 @@
                     <xs:attributeGroup ref="buttonStyleAttributes" />
                 </xs:complexType>
             </xs:element>
-            <xs:element name="ImageStyle">
+            <xs:element name="ImageViewStyle">
                 <xs:complexType>
                     <xs:attributeGroup ref="styleAttributes" />
                     <xs:attributeGroup ref="imageStyleAttributes" />
@@ -213,6 +213,7 @@
                 <xs:annotation>
                     <xs:documentation>The color attribute group indicates the color of an element.</xs:documentation>
                 </xs:annotation>
+                <xs:attribute name="style" type="xs:string" />
                 <xs:attributeGroup ref="viewStyleAttributes" />
                 <xs:attributeGroup ref="layout:layoutAttributes" />
             </xs:extension>

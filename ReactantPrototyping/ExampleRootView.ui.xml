@@ -9,9 +9,9 @@
     rootView="true">
 
     <styles>
-        <ViewStyle name="base" backgroundColor="white" />
-        <ViewStyle name="black" backgroundColor="black" />
-        <LabelStyle name="a-style" extend="base black" />
+        <LabelStyle name="base" backgroundColor="white" />
+        <LabelStyle name="black" backgroundColor="black" textColor="#ff0000" />
+        <LabelStyle name="a-style" extend="black" />
     </styles>
 
     <ImageView
@@ -30,6 +30,7 @@
                 text="Falcon 9"
                 font=":bold@30"
                 numberOfLines="0"
+                style="a-style"
                 textAlignment="center"
                 layout:fillHorizontally="super inset(20)"
                 layout:top="super offset(60)"/>

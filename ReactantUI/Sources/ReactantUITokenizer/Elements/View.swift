@@ -18,6 +18,7 @@ public class View: XMLIndexerDeserializable, UIElement {
     ]
 
     public let field: String?
+    public let styles: [String]
     public let layout: Layout
     public let properties: [Property]
 
@@ -34,6 +35,8 @@ public class View: XMLIndexerDeserializable, UIElement {
     public required init(node: XMLIndexer) throws {
         field = node.value(ofAttribute: "field")
         layout = try node.value()
+        styles = (node.value(ofAttribute: "style") as String?)?
+            .components(separatedBy: CharacterSet.whitespacesAndNewlines) ?? []
 
         if let element = node.element {
             properties = View.deserializeSupportedProperties(properties: type(of: self).availableProperties, in: element)
@@ -51,12 +54,10 @@ public class View: XMLIndexerDeserializable, UIElement {
             guard let elementName = node.element?.name else { return nil }
             if let elementType = Element.elementMapping[elementName] {
                 return try elementType.init(node: node)
-            }
-            /* /* Not yet implemented and not sure if will be */
-            else if elementName == "styles" {
+            } else if elementName == "styles" {
                 // Intentionally ignored as these are parsed directly
                 return nil
-             }*/
+             }
             else {
                 throw TokenizationError(message: "Unknown tag `\(elementName)`")
             }

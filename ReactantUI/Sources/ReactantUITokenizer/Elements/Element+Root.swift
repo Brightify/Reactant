@@ -30,7 +30,7 @@ extension Element {
             return try Root(
                 type: node.value(ofAttribute: "type"),
                 isRootView: node.value(ofAttribute: "rootView") ?? false,
-                styles: node["styles"]["style"].value() ?? [],
+                styles: node["styles"].children.flatMap { try? $0.value() },
                 children: View.deserialize(nodes: node.children),
                 edgesForExtendedLayout: (node.element?.attribute(by: "extend")?.text).map(RectEdge.parse) ?? [])
         }

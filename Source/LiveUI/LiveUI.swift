@@ -174,8 +174,12 @@ public class ReactantLiveUIApplier {
             view = element.initialize()
         }
 
-        for property in element.properties {
-            property.apply(property, view)
+        do {
+            for property in try root.styles.resolveStyle(for: element) {
+                property.apply(property, view)
+            }
+        } catch let error {
+            print(error)
         }
 
         // FIXME This is a workaround, should not be doing it here (could move to the UIContainer)

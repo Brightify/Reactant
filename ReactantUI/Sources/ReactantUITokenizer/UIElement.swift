@@ -6,6 +6,7 @@ import UIKit
 public protocol UIElement: Assignable {
     var layout: Layout { get }
     var properties: [Property] { get }
+    var styles: [String] { get }
 
     var initialization: String { get }
 
