@@ -38,6 +38,126 @@ extension UIWindow {
     }
 }
 
+final class LiveUIErrorMessageItem: ViewBase<(file: String, message: String), Void> {
+    private let message = UILabel()
+    private let path = UILabel()
+
+    override func update() {
+        message.text = componentState.message
+        path.text = "in: \(componentState.file)"
+    }
+
+    override func loadView() {
+        children(
+            message,
+            path
+        )
+
+        Styles.message(label: message)
+        Styles.path(label: path)
+    }
+
+    override func setupConstraints() {
+        message.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.top.equalToSuperview()
+        }
+
+        path.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview()
+            make.top.equalTo(message.snp.bottom).offset(8)
+            make.bottom.equalToSuperview()
+        }
+    }
+}
+
+extension LiveUIErrorMessageItem {
+    fileprivate struct Styles {
+        static func path(label: UILabel) {
+            label.textColor = .white
+            label.numberOfLines = 0
+            label.font = UIFont.monospacedDigitSystemFont(ofSize: 14, weight: UIFontWeightRegular)
+        }
+
+        static func message(label: UILabel) {
+            label.textColor = .white
+            label.numberOfLines = 0
+            label.font = UIFont.boldSystemFont(ofSize: 16)
+        }
+    }
+}
+
+final class LiveUIErrorMessage: ViewBase<[String: String], Void> {
+    private let scrollView = UIScrollView()
+    private let stackView = UIStackView()
+
+    override func update() {
+        let state = componentState
+
+        stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        for (index, item) in state.enumerated() {
+            if index > 0 {
+                let divider = UIView()
+                Styles.divider(view: divider)
+                stackView.addArrangedSubview(divider)
+                divider.snp.makeConstraints { make in
+                    make.height.equalTo(1)
+                }
+            }
+
+            let itemView = LiveUIErrorMessageItem().with(state: (file: item.key, message: item.value))
+            stackView.addArrangedSubview(itemView)
+        }
+
+        isHidden = state.isEmpty
+    }
+
+    override func loadView() {
+        children(
+            scrollView.children(
+                stackView
+            )
+        )
+
+        Styles.base(view: self)
+
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .fill
+        stackView.spacing = 10
+    }
+
+    override func setupConstraints() {
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        stackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 40, left: 20, bottom: 20, right: 20))
+            make.width.equalToSuperview().inset(20)
+        }
+    }
+}
+
+extension LiveUIErrorMessage {
+    fileprivate struct Styles {
+        static func base(view: LiveUIErrorMessage) {
+            view.backgroundColor = UIColor(red:0.800, green: 0.000, blue: 0.000, alpha:1)
+        }
+
+        static func divider(view: UIView) {
+            view.backgroundColor = .white
+        }
+
+        static func stack(label: UILabel) {
+            label.textColor = .white
+            label.numberOfLines = 0
+        }
+    }
+}
+
 public class ReactantLiveUIManager {
     
     public static let shared = ReactantLiveUIManager()
@@ -45,38 +165,18 @@ public class ReactantLiveUIManager {
     private var watchers: [String: (watcher: FileWatcherProtocol, uis: [WeakUIBox])] = [:]
     private var extendedEdges: [String: UIRectEdge] = [:]
 
-    private let scrollView = UIScrollView()
-    private let errorLabel = UILabel()
+    private let errorView = LiveUIErrorMessage().with(state: [:])
 
-    init() {
-        let errorContainer = ContainerView()
-        scrollView.addSubview(errorContainer)
-        scrollView.backgroundColor = .red
+    private weak var activeWindow: UIWindow?
 
-        errorContainer.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.width.equalToSuperview()
-        }
-        errorLabel.textColor = .white
-        errorLabel.numberOfLines = 0
-        errorLabel.textAlignment = .center
-        errorContainer.addSubview(errorLabel)
-        errorLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(16)
-            make.trailing.equalToSuperview().inset(16)
+    private init() { }
 
-            make.top.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().inset(16)
-        }
-        UIApplication.shared.keyWindow?.addSubview(scrollView)
-        scrollView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-
-            make.top.equalToSuperview()
-            make.bottom.equalToSuperview().priority(UILayoutPriorityDefaultLow)
-        }
-        scrollView.visibility = .collapsed
+    public func setActiveWindow(_ window: UIWindow) {
+        self.activeWindow = window
+        errorView.removeFromSuperview()
+        errorView.translatesAutoresizingMaskIntoConstraints = true
+        window.addSubview(errorView)
+        errorView.frame = window.bounds
     }
 
     public func extendedEdges<UI: UIView>(of view: UI) -> UIRectEdge where UI: ReactantUI {
@@ -106,7 +206,7 @@ public class ReactantLiveUIManager {
                 case .noChanges:
                     break
                 case .updated(let data):
-                    self.scrollView.visibility = .collapsed
+                    self.logError(nil, in: xmlPath)
                     guard let watcher = self.watchers[xmlPath] else {
                         fatalError("Probably inconsistent state, got a file update with")
                     }
@@ -119,7 +219,7 @@ public class ReactantLiveUIManager {
     public func unregister<UI: UIView>(_ ui: UI) where UI: ReactantUI {
         let xmlPath = ui.__rui.xmlPath
         guard let watcher = watchers[xmlPath] else {
-            error("ERROR: attempting to remove not registered UI")
+            logError("ERROR: attempting to remove not registered UI", in: xmlPath)
             return
         }
         if watcher.uis.count == 1 {
@@ -130,12 +230,25 @@ public class ReactantLiveUIManager {
         }
     }
 
-    public func error(_ error: String) {
-        print(error)
-        errorLabel.text = error
+    public func logError(_ error: Error, in path: String) {
+        switch error {
+        case let liveUiError as LiveUIError:
+            logError(liveUiError.message, in: path)
+        case let tokenizationError as TokenizationError:
+            logError(tokenizationError.message, in: path)
+        default:
+            logError(error.localizedDescription, in: path)
+        }
+    }
 
-        scrollView.visibility = .visible
-        UIApplication.shared.keyWindow?.bringSubview(toFront: scrollView)
+    public func logError(_ error: String?, in path: String) {
+        print(error ?? "")
+
+        if let error = error {
+            errorView.componentState[path] = error
+        } else {
+            errorView.componentState.removeValue(forKey: path)
+        }
     }
 
     private func apply(data: Data, views: [UIView], xmlPath: String) {
@@ -148,8 +261,8 @@ public class ReactantLiveUIManager {
             } else {
                 extendedEdges.removeValue(forKey: xmlPath)
             }
-            views.forEach {
-                apply(root: root, view: $0)
+            try views.forEach {
+                try apply(root: root, view: $0)
                 if let window = $0.window, !windows.contains(window) {
                     windows.append(window)
                 }
@@ -158,20 +271,14 @@ public class ReactantLiveUIManager {
                 $0.topViewController()?.updateViewConstraints()
             }
         } catch let error {
-            print(error)
+            logError(error, in: xmlPath)
         }
     }
     
-    private func apply(root: Element.Root, view: UIView) {
-        do {
-            try ReactantLiveUIApplier(root: root, instance: view).apply()
-            if let invalidable = view as? Invalidable {
-                invalidable.invalidate()
-            }
-        } catch let error {
-            if let uiError = error as? LiveUIError {
-                ReactantLiveUIManager.shared.error(uiError.message)
-            }
+    private func apply(root: Element.Root, view: UIView) throws {
+        try ReactantLiveUIApplier(root: root, instance: view).apply()
+        if let invalidable = view as? Invalidable {
+            invalidable.invalidate()
         }
     }
     
@@ -179,7 +286,7 @@ public class ReactantLiveUIManager {
         let xmlPath = view.__rui.xmlPath
         let url = URL(fileURLWithPath: xmlPath)
         guard let data = try? Data(contentsOf: url, options: .uncached) else {
-            error("ERROR: file not found")
+            logError("ERROR: file not found", in: xmlPath)
             return
         }
         
@@ -231,12 +338,8 @@ public class ReactantLiveUIApplier {
             view = element.initialize()
         }
 
-        do {
-            for property in try root.styles.resolveStyle(for: element) {
-                property.apply(property, view)
-            }
-        } catch let error {
-            print(error)
+        for property in try root.styles.resolveStyle(for: element) {
+            property.apply(property, view)
         }
 
         // FIXME This is a workaround, should not be doing it here (could move to the UIContainer)
@@ -268,7 +371,6 @@ public class ReactantLiveUIApplier {
 
         guard let view = views.named(name) else {
             throw LiveUIError(message: "Couldn't find view with name \(name) in view hierarchy")
-            return
         }
 
         var error: LiveUIError?

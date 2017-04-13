@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import ReactantLiveUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var window: UIWindow? = UIWindow()
+    var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        window?.backgroundColor = .white
-        window?.makeKeyAndVisible()
-        window?.rootViewController = ViewController()
+        let window = UIWindow()
+        self.window = window
+        window.backgroundColor = .white
+        window.rootViewController = ViewController()
+        window.makeKeyAndVisible()
+        ReactantLiveUIManager.shared.setActiveWindow(window)
         return true
     }
 }
