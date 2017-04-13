@@ -104,7 +104,7 @@ public class Generator {
         }
 
         for style in element.styles {
-            l("\(name).apply(Styles.\(style))")
+            l("\(name).apply(ReactantUIStyles.\(style))")
         }
 
         // FIXME This is a workaround, it should be done elsethere (possibly UIContainer)
@@ -192,11 +192,11 @@ public class Generator {
     }
 
     private func generateStyles(styles: [Style]) {
-        l("struct Styles") {
+        l("struct ReactantUIStyles") {
             for style in styles {
                 l("static func \(style.name)(_ view: \(Element.elementToUIKitNameMapping[style.type] ?? "UIView"))") {
                     for extendedStyle in style.extend {
-                        l("Styles.\(extendedStyle)(view)")
+                        l("ReactantUIStyles.\(extendedStyle)(view)")
                     }
                     for property in style.properties {
                         l(property.application(property, "view"))
