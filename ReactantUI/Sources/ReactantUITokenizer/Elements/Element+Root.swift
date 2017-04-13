@@ -6,6 +6,7 @@ extension Element {
         public let type: String
         public let isRootView: Bool
         public let styles: [Style]
+        public let stylesName: String
         public let children: [UIElement]
         public let edgesForExtendedLayout: [RectEdge]
 
@@ -31,6 +32,7 @@ extension Element {
                 type: node.value(ofAttribute: "type"),
                 isRootView: node.value(ofAttribute: "rootView") ?? false,
                 styles: node["styles"].children.flatMap { try? $0.value() },
+                stylesName: node["styles"].element?.attribute(by: "name")?.text ?? "Styles",
                 children: View.deserialize(nodes: node.children),
                 edgesForExtendedLayout: (node.element?.attribute(by: "extend")?.text).map(RectEdge.parse) ?? [])
         }

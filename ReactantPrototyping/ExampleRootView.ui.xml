@@ -8,7 +8,7 @@
     extend="all"
     rootView="true">
 
-    <styles>
+    <styles name="ReactantStyles">
         <LabelStyle name="base" backgroundColor="white" />
         <LabelStyle name="black" backgroundColor="black" textColor="#ff0000" />
         <LabelStyle name="astyle" extend="black" />

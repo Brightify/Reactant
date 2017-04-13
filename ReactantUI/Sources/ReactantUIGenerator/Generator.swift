@@ -82,7 +82,7 @@ public class Generator {
             l("final class LayoutContainer") {
                 root.children.forEach(generateLayoutField)
             }
-            generateStyles(styles: root.styles)
+            generateStyles()
         }
     }
 
@@ -104,7 +104,7 @@ public class Generator {
         }
 
         for style in element.styles {
-            l("\(name).apply(ReactantUIStyles.\(style))")
+            l("\(name).apply(\(root.stylesName).\(style))")
         }
 
         // FIXME This is a workaround, it should be done elsethere (possibly UIContainer)
@@ -191,12 +191,12 @@ public class Generator {
         }
     }
 
-    private func generateStyles(styles: [Style]) {
-        l("struct ReactantUIStyles") {
-            for style in styles {
+    private func generateStyles() {
+        l("struct \(root.stylesName)") {
+            for style in root.styles {
                 l("static func \(style.name)(_ view: \(Element.elementToUIKitNameMapping[style.type] ?? "UIView"))") {
                     for extendedStyle in style.extend {
-                        l("ReactantUIStyles.\(extendedStyle)(view)")
+                        l("\(root.stylesName).\(extendedStyle)(view)")
                     }
                     for property in style.properties {
                         l(property.application(property, "view"))
