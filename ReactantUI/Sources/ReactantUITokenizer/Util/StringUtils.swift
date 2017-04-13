@@ -4,4 +4,5 @@ extension String {
         let other = String(characters.dropFirst())
         return first + other
     }
+
 }

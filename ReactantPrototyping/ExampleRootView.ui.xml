@@ -28,13 +28,13 @@
             <Label
                 layout:id="helloWorldLabel"
                 textColor="white"
-                text="Falcon 99"
+                text="localizable(NAME.NAME)"
                 font=":bold@30"
                 numberOfLines="0"
                 style="astyle"
                 textAlignment="center"
                 layout:fillHorizontally="super inset(20)"
-                layout:top="super offset(60)"/>
+                layout:top="super offset(61)"/>
 
             <Label
                 layout:id="prdel"
@@ -60,7 +60,7 @@
                 titleColor="white"
                 titleColor.highlighted="black"
                 font=":medium@20"
-                numberOfLines="0"
+                numberOfLines="1"
                 backgroundColor="black"
                 backgroundColor.highlighted="white"
                 field="send"

@@ -26,7 +26,13 @@ public enum SupportedPropertyValue {
         case .namedColor(let colorName):
             return "UIColor.\(colorName)"
         case .string(let string):
-            return "\"\(string)\""
+            if string.hasPrefix("localizable(") {
+                let key = string.replacingOccurrences(of: "localizable(", with: "")
+                    .replacingOccurrences(of: ")", with: "").trimmingCharacters(in: CharacterSet.whitespaces)
+                return "NSLocalizedString(\"\(key)\", comment: \"\")"
+            } else {
+                return "\"\(string)\""
+            }
         case .font(let font):
             switch font {
             case .system(let weight, let size):
@@ -63,7 +69,13 @@ public enum SupportedPropertyValue {
         case .namedColor(let colorName):
             return UIColor.value(forKeyPath: "\(colorName)Color")
         case .string(let string):
-            return string
+            if string.hasPrefix("localizable(") {
+                let key = string.replacingOccurrences(of: "localizable(", with: "")
+                    .replacingOccurrences(of: ")", with: "").trimmingCharacters(in: CharacterSet.whitespaces)
+                return NSLocalizedString(key, comment: "")
+            } else {
+                return string
+            }
         case .font(let font):
             switch font {
             case .system(let weight, let size):
