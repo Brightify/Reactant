@@ -53,9 +53,9 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Reactant:
-    :path: "./"
+    :path: ./
   ReactantLiveUI:
-    :path: "./"
+    :path: ./
 
 SPEC CHECKSUMS:
   FileKit: 1ea916f594bc0bb9a3951f80edf92b52bb7f883c

@@ -11,7 +11,8 @@
     <styles>
         <LabelStyle name="base" backgroundColor="white" />
         <LabelStyle name="black" backgroundColor="black" textColor="#ff0000" />
-        <LabelStyle name="a-style" extend="black" />
+        <LabelStyle name="astyle" extend="black" />
+        <ButtonStyle name="buttona" backgroundColor.highlighted="white"/>
     </styles>
 
     <ImageView
@@ -30,7 +31,7 @@
                 text="Falcon 99"
                 font=":bold@30"
                 numberOfLines="0"
-                style="a-style"
+                style="astyle"
                 textAlignment="center"
                 layout:fillHorizontally="super inset(20)"
                 layout:top="super offset(60)"/>
@@ -44,8 +45,7 @@
                 textColor="#ffffff"
                 backgroundColor="blue"
                 layout:below="id:helloWorldLabel offset(10)"
-                layout:centerX="super"
-                layout:size="100"/>
+                layout:centerX="super"/>
 
             <TextField
                 placeholder="E-mail"
@@ -73,6 +73,7 @@
                 title="Forgotten password?"
                 backgroundColor="#FFddaa"
                 cornerRadius="10"
+                style="buttona"
                 layout:fillHorizontally="super inset(60)"
                 layout:height="50"
                 layout:below="send offset(70)"/>

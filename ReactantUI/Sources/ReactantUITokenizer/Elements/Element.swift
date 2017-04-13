@@ -9,4 +9,15 @@ public struct Element {
         "ScrollView": ScrollView.self,
         "StackView": StackView.self,
     ]
+
+    public static let elementToUIKitNameMapping: [String: String] = [
+        "Component": "UIView",
+        "Container": "UIView",
+        "Label": "UILabel",
+        "TextField": "UITextField",
+        "Button": "UIButton",
+        "ImageView": "UIImageView",
+        "ScrollView": "UIScrollView",
+        "StackView": "UIStackView",
+        ]
 }
