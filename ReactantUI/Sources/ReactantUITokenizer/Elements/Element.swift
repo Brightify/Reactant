@@ -1,5 +1,6 @@
 public struct Element {
     static let elementMapping: [String: View.Type] = [
+        "View": View.self,
         "Component": ComponentReference.self,
         "Container": Container.self,
         "Label": Label.self,

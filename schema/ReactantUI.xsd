@@ -35,6 +35,18 @@
                 </xs:complexType>
             </xs:element>
 
+            <xs:element name="View" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                <xs:group ref="ViewGroup"/>
+                            </xs:choice>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
             <xs:element name="Container" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                     <xs:complexContent>
