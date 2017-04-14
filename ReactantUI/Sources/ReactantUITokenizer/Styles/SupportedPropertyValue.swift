@@ -18,6 +18,7 @@ public enum SupportedPropertyValue {
     case float(Float)
     case bool(Bool)
     case rectEdge([RectEdge])
+    case activityIndicatorStyle(ActivityIndicatorStyle)
 
     public var generated: String {
         switch self {
@@ -58,6 +59,8 @@ public enum SupportedPropertyValue {
             return value ? "true" : "false"
         case .rectEdge(let rectEdges):
             return "[\(rectEdges.map { "UIRectEdge.\($0.rawValue)" }.joined(separator: ", "))]"
+        case .activityIndicatorStyle(let style):
+            return "UIActivityIndicatorViewStyle.\(style.rawValue)"
         }
     }
 
@@ -141,6 +144,15 @@ public enum SupportedPropertyValue {
             return value
         case .rectEdge(let rectEdges):
             return rectEdges.resolveUnion().rawValue
+        case .activityIndicatorStyle(let style):
+            switch style {
+            case .whiteLarge:
+                return UIActivityIndicatorViewStyle.whiteLarge.rawValue
+            case .white:
+                return UIActivityIndicatorViewStyle.white.rawValue
+            case .gray:
+                return UIActivityIndicatorViewStyle.gray.rawValue
+            }
         }
     }
     #endif

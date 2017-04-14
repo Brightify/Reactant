@@ -12,6 +12,7 @@ public enum SupportedPropertyType {
     case float
     case bool
     case rectEdge
+    case activityIndicatorStyle
 
     public func value(of text: String) -> SupportedPropertyValue? {
         switch self {
@@ -45,6 +46,8 @@ public enum SupportedPropertyType {
             return Bool(text).map(SupportedPropertyValue.bool)
         case .rectEdge:
             return SupportedPropertyValue.rectEdge(RectEdge.parse(text: text))
+        case .activityIndicatorStyle:
+            return ActivityIndicatorStyle(rawValue: text).map(SupportedPropertyValue.activityIndicatorStyle)
         }
     }
 }

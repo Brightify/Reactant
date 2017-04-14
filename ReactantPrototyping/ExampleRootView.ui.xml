@@ -25,6 +25,8 @@
             layout:edges="super"
             layout:width="super">
 
+            <ActivityIndicator indicatorStyle="white"/>
+
             <Label
                 layout:id="helloWorldLabel"
                 textColor="white"
