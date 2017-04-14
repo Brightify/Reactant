@@ -9,7 +9,8 @@ public struct Element {
         "ImageView": ImageView.self,
         "ScrollView": ScrollView.self,
         "StackView": StackView.self,
-        "ActivityIndicator": ActivityIndicator.self,
+        "ActivityIndicator": ActivityIndicatorElement.self,
+        "TextView": TextView.self
     ]
 
     public static let elementToUIKitNameMapping: [String: String] = [
@@ -22,5 +23,6 @@ public struct Element {
         "ScrollView": "UIScrollView",
         "StackView": "UIStackView",
         "ActivityIndicator": "UIActivityIndicatorView",
+        "TextView": "UITextView",
         ]
 }

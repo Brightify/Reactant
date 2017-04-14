@@ -24,6 +24,7 @@
         <xs:attribute name="below" type="constraint" />
         <xs:attribute name="centerX" type="constraint" />
         <xs:attribute name="centerY" type="constraint" />
+        <xs:attribute name="center" type="constraint" />
         <xs:attribute name="firstBaseline" type="constraint" />
         <xs:attribute name="lastBaseline" type="constraint" />
         <xs:attribute name="edges" type="constraint" />

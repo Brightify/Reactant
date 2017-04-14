@@ -4,7 +4,7 @@ import SWXMLHash
     import UIKit
 #endif
 
-public class ActivityIndicator: View {
+public class ActivityIndicatorElement: View {
     override class var availableProperties: [PropertyDescription] {
         return [
                 assignable(name: "color", type: .color),

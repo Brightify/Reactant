@@ -38,6 +38,14 @@
                 layout:fillHorizontally="super inset(20)"
                 layout:top="super offset(61)"/>
 
+            <TextView
+                layout:id="textView"
+                text="prdel"
+                textColor="black"
+                layout:below="id:helloWorldLabel"
+                layout:height="50"
+                layout:fillHorizontally="super"/>
+
             <Label
                 layout:id="prdel"
                 text="Keep your rocket safes"
@@ -46,7 +54,7 @@
                 textAlignment="center"
                 textColor="#ffffff"
                 backgroundColor="blue"
-                layout:below="id:helloWorldLabel offset(10)"
+                layout:below="id:textView offset(10)"
                 layout:centerX="super"/>
 
             <TextField

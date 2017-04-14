@@ -107,6 +107,17 @@
                 </xs:complexType>
             </xs:element>
 
+            <xs:element name="TextView" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="textViewStyleAttributes" />
+                            <xs:attribute name="text" type="xs:string"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
             <xs:element name="Button" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                     <xs:complexContent>
@@ -122,6 +133,16 @@
                 <xs:complexType>
                     <xs:attribute name="type" type="xs:string" />
                     <xs:attributeGroup ref="layout:layoutAttributes" />
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="ActivityIndicator" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="activityIndicatorStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
                 </xs:complexType>
             </xs:element>
         </xs:choice>
@@ -145,6 +166,18 @@
                 <xs:complexType>
                     <xs:attributeGroup ref="styleAttributes" />
                     <xs:attributeGroup ref="textFieldStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="TextViewStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="textViewStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ActivityIndicatorStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="activityIndicatorStyleAttributes" />
                 </xs:complexType>
             </xs:element>
             <xs:element name="ButtonStyle">
@@ -204,6 +237,11 @@
         <xs:attributeGroup ref="textStyleAttributes" />
     </xs:attributeGroup>
 
+    <xs:attributeGroup name="textViewStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attributeGroup ref="textStyleAttributes" />
+    </xs:attributeGroup>
+
     <xs:attributeGroup name="labelStyleAttributes">
         <xs:attributeGroup ref="viewStyleAttributes" />
         <xs:attributeGroup ref="textStyleAttributes" />
@@ -213,6 +251,13 @@
         <xs:attributeGroup ref="viewStyleAttributes" />
         <xs:attributeGroup ref="textStyleAttributes" />
         <xs:attribute name="titleColor" type="color" />
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="activityIndicatorStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="color" type="color" />
+        <xs:attribute name="hidesWhenStopped" type="xs:boolean" />
+        <xs:attribute name="indicatorStyle" type="activityIndicatorStyle" />
     </xs:attributeGroup>
 
     <xs:complexType name="assignable">
@@ -281,6 +326,14 @@
     <xs:simpleType name="color">
         <!-- should contain hexColor, but autocomplete-xml crashes -->
         <xs:union memberTypes="namedColor hexColor"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="activityIndicatorStyle">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="white" />
+            <xs:enumeration value="whiteLarge" />
+            <xs:enumeration value="gray" />
+        </xs:restriction>
     </xs:simpleType>
 
     <xs:simpleType name="hexColor">

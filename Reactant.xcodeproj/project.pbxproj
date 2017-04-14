@@ -215,6 +215,8 @@
 		2224FE541E9FD3060094ADDC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		227B03631E9AD3EE000BC6D9 /* LayoutDistribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDistribution.swift; sourceTree = "<group>"; };
 		227B03651E9AD411000BC6D9 /* LayoutAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAlignment.swift; sourceTree = "<group>"; };
+		2297B5631EA1143300736CF1 /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		2297B5671EA114EF00736CF1 /* ActivityIndicatorElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorElement.swift; sourceTree = "<group>"; };
 		50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975037688AFED52D683D2F3 /* Pods-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A648916F85EF94ED93EB6F6 /* Pods-Reactant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.release.xcconfig"; sourceTree = "<group>"; };
@@ -450,6 +452,8 @@
 		186C3CFF1E9ABBB00077C52F /* Elements */ = {
 			isa = PBXGroup;
 			children = (
+				2297B5671EA114EF00736CF1 /* ActivityIndicatorElement.swift */,
+				2297B5631EA1143300736CF1 /* TextView.swift */,
 				186C3D001E9ABBB00077C52F /* Button.swift */,
 				186C3D011E9ABBB00077C52F /* ComponentReference.swift */,
 				186C3D021E9ABBB00077C52F /* Container.swift */,
