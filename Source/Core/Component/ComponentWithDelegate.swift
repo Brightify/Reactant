@@ -43,7 +43,9 @@ extension ComponentWithDelegate {
     }
     
     public func invalidate() {
-        componentDelegate.needsUpdate = true
+        if componentDelegate.hasComponentState {
+            componentDelegate.needsUpdate = true
+        }
     }
     
     public func perform(action: ActionType) {

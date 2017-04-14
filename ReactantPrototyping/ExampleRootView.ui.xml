@@ -40,7 +40,7 @@
 
             <TextView
                 layout:id="textView"
-                text="prdel"
+                text="text"
                 textColor="black"
                 layout:below="id:helloWorldLabel"
                 layout:height="50"
