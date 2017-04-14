@@ -8,7 +8,8 @@ public class View: XMLIndexerDeserializable, UIElement {
     class var availableProperties: [PropertyDescription] {
         return [
             assignable(name: "backgroundColor", type: .color),
-            assignable(name: "clipsToBounds", type: .bool)
+            assignable(name: "clipsToBounds", type: .bool),
+            assignable(name: "isUserInteractionEnabled", key: "userInteractionEnabled", type: .bool)
         ] + nested(field: "layer", properties: View.layerAvailableProperties)
     }
 

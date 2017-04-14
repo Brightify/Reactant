@@ -209,6 +209,7 @@
     <xs:attributeGroup name="viewStyleAttributes">
         <xs:attribute name="backgroundColor" type="color"/>
         <xs:attribute name="clipsToBounds" type="xs:boolean"/>
+        <xs:attribute name="isUserInteractionEnabled" type="xs:boolean"/>
         <xs:attribute name="cornerRadius" type="xs:decimal"/>
     </xs:attributeGroup>
 

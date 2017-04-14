@@ -74,6 +74,9 @@
                 backgroundColor="black"
                 backgroundColor.highlighted="white"
                 field="send"
+                clipsToBounds="true"
+                cornerRadius="4"
+                isUserInteractionEnabled="false"
                 layout:leading="buttonLeadingConstraint = super inset(40)"
                 layout:trailing="super inset(40)"
                 layout:height="buttonHeightConstraint = 50" />

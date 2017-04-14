@@ -26,7 +26,7 @@ struct AssignablePropertyDescription: PropertyDescription {
             return
         }
 
-        guard object.responds(to: Selector(key)) else {
+        guard object.responds(to: Selector("set\(key.capitalizingFirstLetter()):")) else {
             print("!! Object `\(object)` doesn't respond to selector `\(key)` to set value `\(property.value)`")
             return
         }
