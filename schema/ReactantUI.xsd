@@ -199,6 +199,7 @@
                 </xs:complexType>
             </xs:element>
         </xs:choice>
+        <xs:attribute name="name" type="xs:string" />
     </xs:complexType>
 
     <xs:attributeGroup name="styleAttributes">
