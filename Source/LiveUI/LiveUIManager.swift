@@ -29,7 +29,6 @@ public class ReactantLiveUIManager {
     private var watchers: [String: (watcher: FileWatcherProtocol, uis: [WeakUIBox])] = [:]
     private var extendedEdges: [String: UIRectEdge] = [:]
 
-    private var styleWatchers: [String: FileWatcher] = [:]
     private var styles: [String: StyleGroup] = [:]
 
     private let errorView = LiveUIErrorMessage().with(state: [:])
