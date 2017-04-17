@@ -1,18 +1,45 @@
 import ReactantUITokenizer
 
 public class Generator {
-    public let root: Element.Root
-    public let localXmlPath: String
 
-    private var nestLevel: Int = 0
+    let localXmlPath: String
+
+    var nestLevel: Int = 0
+
+    init(localXmlPath: String) {
+        self.localXmlPath = localXmlPath
+    }
+
+    func generate(imports: Bool) {
+
+    }
+
+    func l(_ line: String = "") {
+        print((0..<nestLevel).map { _ in "    " }.joined() + line)
+    }
+
+    func l(_ line: String = "", _ f: () -> Void) {
+        print((0..<nestLevel).map { _ in "    " }.joined() + line, terminator: "")
+
+        nestLevel += 1
+        print(" {")
+        f()
+        nestLevel -= 1
+        l("}")
+    }
+}
+
+public class UIGenerator: Generator {
+    public let root: Element.Root
+
     private var tempCounter: Int = 1
 
     public init(root: Element.Root, localXmlPath: String) {
         self.root = root
-        self.localXmlPath = localXmlPath
+        super.init(localXmlPath: localXmlPath)
     }
 
-    public func generate(imports: Bool) {
+    public override func generate(imports: Bool) {
         if imports {
             l("import UIKit")
             l("import Reactant")
@@ -59,6 +86,7 @@ public class Generator {
                 l("func setupReactantUI()") {
                     l("guard let target = self.target else { /* FIXME Should we fatalError here? */ return }")
                     l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
+                    l("ReactantLiveUIManager.shared.loadStyles(ReactantCommonStyles.commonStyles)")
                     for type in root.componentTypes {
                         l("ReactantLiveUIManager.shared.register(component: \(type).self, named: \"\(type)\")")
                     }
@@ -99,12 +127,23 @@ public class Generator {
             l("let \(name) = \(element.initialization)")
         }
 
-        for property in element.properties {
-            l(property.application(property, name))
+        for style in element.styles {
+            if style.hasPrefix(":") {
+                let components = style.substring(from: style.index(style.startIndex, offsetBy: 1)).components(separatedBy: ":")
+                if components.count != 2 {
+                    print("// Global style \(style) assignment has wrong format.")
+                }
+                let stylesName = components[0].capitalizingFirstLetter() + "Styles"
+                let style = components[1]
+
+                l("\(name).apply(\(stylesName).\(style))")
+            } else {
+                l("\(name).apply(\(root.stylesName).\(style))")
+            }
         }
 
-        for style in element.styles {
-            l("\(name).apply(\(root.stylesName).\(style))")
+        for property in element.properties {
+            l(property.application(property, name))
         }
 
         // FIXME This is a workaround, it should be done elsethere (possibly UIContainer)
@@ -204,19 +243,5 @@ public class Generator {
                 }
             }
         }
-    }
-
-    func l(_ line: String = "") {
-        print((0..<nestLevel).map { _ in "    " }.joined() + line)
-    }
-
-    func l(_ line: String = "", _ f: () -> Void) {
-        print((0..<nestLevel).map { _ in "    " }.joined() + line, terminator: "")
-
-        nestLevel += 1
-        print(" {")
-        f()
-        nestLevel -= 1
-        l("}")
     }
 }

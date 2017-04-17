@@ -3,11 +3,14 @@ import SWXMLHash
 
 public struct Style: XMLIndexerDeserializable {
     public let type: String
+    // this is name with group
     public let name: String
+    // this is name of the style without group name
+    public let styleName: String
     public let extend: [String]
     public let properties: [Property]
 
-    public static func deserialize(_ node: XMLIndexer) throws -> Style {
+    init(node: XMLIndexer, groupName: String? = nil) throws {
         guard let element = node.element else {
             throw TokenizationError(message: "Style has to be an element, was \(node).")
         }
@@ -37,12 +40,21 @@ public struct Style: XMLIndexerDeserializable {
             throw TokenizationError(message: "Unknown style \(element.name). (\(node))")
         }
 
-        return try Style(
-            // FIXME The name has to be done some other way
-            type: type,
-            name: node.value(ofAttribute: "name"),
-            extend: (node.value(ofAttribute: "extend") as String?)?.components(separatedBy: " ") ?? [],
-            properties: properties)
+        self.type = type
+        // FIXME The name has to be done some other way
+        let name = try node.value(ofAttribute: "name") as String
+        self.styleName = name
+        if let groupName = groupName {
+            self.name = ":\(groupName):\(name)"
+        } else {
+            self.name = name
+        }
+        self.extend = (node.value(ofAttribute: "extend") as String?)?.components(separatedBy: " ") ?? []
+        self.properties = properties
+    }
+
+    public static func deserialize(_ node: XMLIndexer) throws -> Style {
+        return try Style(node: node, groupName: nil)
     }
 }
 

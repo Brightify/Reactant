@@ -1,0 +1,3 @@
+<styleGroup name="common">
+    <LabelStyle name="whiteLabel" textColor="white" numberOfLines="0" />
+</styleGroup>

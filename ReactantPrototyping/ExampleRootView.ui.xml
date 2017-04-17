@@ -50,10 +50,10 @@
                 layout:id="prdel"
                 text="Keep your rocket safes"
                 font=":regular@14"
+                style=":common:whiteLabel"
                 numberOfLines="0"
                 textAlignment="center"
-                textColor="#ffffff"
-                backgroundColor="blue"
+                backgroundColor="red"
                 layout:below="id:textView offset(10)"
                 layout:centerX="super"/>
 

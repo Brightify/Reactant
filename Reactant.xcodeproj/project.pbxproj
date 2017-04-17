@@ -19,6 +19,7 @@
 		18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */; };
 		18BAF6F81E8C6B0C00C92AB9 /* ReactantLiveUI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */; };
 		2224FE551E9FD3060094ADDC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2224FE541E9FD3060094ADDC /* Localizable.strings */; };
+		2297B5741EA4C5DF00736CF1 /* CommonStyles.styles.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2297B5731EA4C5DF00736CF1 /* CommonStyles.styles.xml */; };
 		45444ED1E71FEFA1D6A84E08 /* Pods_ReactantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711603479E5441514316A7F3 /* Pods_ReactantTests.framework */; };
 		DC0785841DD383E50063AB96 /* UINavigationController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785831DD383E50063AB96 /* UINavigationController+Navigation.swift */; };
 		DC0785861DD3879B0063AB96 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785851DD3879B0063AB96 /* Wireframe.swift */; };
@@ -217,6 +218,9 @@
 		227B03651E9AD411000BC6D9 /* LayoutAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAlignment.swift; sourceTree = "<group>"; };
 		2297B5631EA1143300736CF1 /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		2297B5671EA114EF00736CF1 /* ActivityIndicatorElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorElement.swift; sourceTree = "<group>"; };
+		2297B5731EA4C5DF00736CF1 /* CommonStyles.styles.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CommonStyles.styles.xml; sourceTree = "<group>"; };
+		2297B5751EA4C65C00736CF1 /* StyleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleGenerator.swift; sourceTree = "<group>"; };
+		2297B5771EA5070100736CF1 /* StyleGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleGroup.swift; sourceTree = "<group>"; };
 		50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5975037688AFED52D683D2F3 /* Pods-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
 		5A648916F85EF94ED93EB6F6 /* Pods-Reactant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.release.xcconfig"; sourceTree = "<group>"; };
@@ -430,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				186C3CFC1E9A71BC0077C52F /* Generator.swift */,
+				2297B5751EA4C65C00736CF1 /* StyleGenerator.swift */,
 			);
 			path = ReactantUIGenerator;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 		186C3D181E9ABBB00077C52F /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				2297B5771EA5070100736CF1 /* StyleGroup.swift */,
 				186C3D191E9ABBB00077C52F /* Style+Property.swift */,
 				186C3D1A1E9ABBB00077C52F /* Style.swift */,
 				186C3D1B1E9ABBB00077C52F /* StyleContainer.swift */,
@@ -913,6 +919,7 @@
 				DC79F6C31E55FAA70033AE51 /* LaunchScreen.storyboard */,
 				DC79F6C61E55FAA70033AE51 /* Info.plist */,
 				2224FE541E9FD3060094ADDC /* Localizable.strings */,
+				2297B5731EA4C5DF00736CF1 /* CommonStyles.styles.xml */,
 			);
 			path = ReactantPrototyping;
 			sourceTree = "<group>";
@@ -1133,6 +1140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2224FE551E9FD3060094ADDC /* Localizable.strings in Resources */,
+				2297B5741EA4C5DF00736CF1 /* CommonStyles.styles.xml in Resources */,
 				18685FDB1E998B9F00DD2318 /* ExampleRootView.ui.xml in Resources */,
 				DC79F6C51E55FAA70033AE51 /* LaunchScreen.storyboard in Resources */,
 				DC79F6C21E55FAA70033AE51 /* Assets.xcassets in Resources */,
