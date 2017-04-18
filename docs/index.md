@@ -30,6 +30,19 @@ pod 'Reactant/CollectionView'
 pod 'Reactant/Validation'
 ```
 
+## Features
+* [Architecture](architecture.html)
+* [Component](component.html)
+* [Controller](controller.html)
+* [RootView](rootview.html)
+* [Wireframe](wireframe.html)
+* [TableView](tableview.html)
+* [CollectionView](collectionview.html)
+* [Validation](validation.html)
+* [ActivityIndicator](activityindicator.html)
+* [Properties](properties.html)
+* [StaticMap](staticmap.html)
+
 ## Usage
 Reactant is extremely easy to use once you get to know the way it works and then it can save you thousands of lines of code.
 
