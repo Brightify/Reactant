@@ -10,15 +10,15 @@ language: objective-c
 # - gem install cocoapods # Since Travis is not always on latest version
 # - pod install --project-directory=Example
 before_install:
-- nvm install 4
+    - nvm install 4
 
 script:
-- set -o pipefail && xcodebuild test -workspace Example/ProjectBase.xcworkspace -scheme ProjectBase-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
-- pod lib lint
-- npm install docpress && ./node_modules/.bin/docpress build
+    - set -o pipefail && xcodebuild test -workspace Example/ProjectBase.xcworkspace -scheme ProjectBase-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
+    - pod lib lint
+    - npm install docpress && ./node_modules/.bin/docpress build
 
 after_success:
-- if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm install git-update-ghpages && ./node_modules/.bin/git-update-ghpages -e; fi
+    - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm install git-update-ghpages && ./node_modules/.bin/git-update-ghpages -e; fi
 
 env:
   global:
@@ -27,4 +27,4 @@ env:
     - GITHUB_REPO: Brightify/Reactant
     - GIT_SOURCE: _docpress
     - GIT_BRANCH: master
-    secure: v+IgW8S37iAEswh8ErQAlfaOgUd5IrTcUASmhdT5ZzZ7tC2TBdJF3TAWxbSKVHdGj+2RXhCxK3YJr5yzn78Sdjsu8TGzvOY6fmJ4ch0u1vwFY/fEvFoxTHeEbjnSQSqYAafWzzhwAPnlve7ZPqIlvo/i3Wdz9U6vmDAESoMlrX10d2ptgh2++GB3663MloOVbCmRUrBJ5W2A09dIswdJSJ2/lrkAR3xgh2iVJiUDcbSogiyJJsC2MZw7+Kh/sRTin/KebbbVQHXk1c5sDpa5NZn8QayjglHjGbtoC9s9gc3HeCLrFTy5U+VBf9UlWPZ3QTnJBabbqUCIMOfYeGBnpgaQiIxvPBukkJSYc+FXvTmnqeFAN8z3fVA4Jptkjr9b8AeP3LcrFl4pddCZD1rtkz+utghNJr+fuJq813ip3RTwQq9DcsCNfGFbwxFlzHsMgA2Y7EDuVPvWCsPrSqUjQO5RLB0nJo07ajv4ACtr7H6mLdBOR8MNurDiVGaqgn4PEdHQ/TgTYT5C8P9hPKknXyJP1wVYWBjkbR0u9OHzLw+4J8KIqFQ3XTKMyle153IOJLaLqwFJn0JPp+ASXISZr5SIaRAxh6DnRNQ3NKKUqUDQ6E9ixaig6zAot5Kz8lnbXzReb2JJ+fc3/piVOfbrSNh+8dwLL3f/oh24friY14Y=
+  secure: v+IgW8S37iAEswh8ErQAlfaOgUd5IrTcUASmhdT5ZzZ7tC2TBdJF3TAWxbSKVHdGj+2RXhCxK3YJr5yzn78Sdjsu8TGzvOY6fmJ4ch0u1vwFY/fEvFoxTHeEbjnSQSqYAafWzzhwAPnlve7ZPqIlvo/i3Wdz9U6vmDAESoMlrX10d2ptgh2++GB3663MloOVbCmRUrBJ5W2A09dIswdJSJ2/lrkAR3xgh2iVJiUDcbSogiyJJsC2MZw7+Kh/sRTin/KebbbVQHXk1c5sDpa5NZn8QayjglHjGbtoC9s9gc3HeCLrFTy5U+VBf9UlWPZ3QTnJBabbqUCIMOfYeGBnpgaQiIxvPBukkJSYc+FXvTmnqeFAN8z3fVA4Jptkjr9b8AeP3LcrFl4pddCZD1rtkz+utghNJr+fuJq813ip3RTwQq9DcsCNfGFbwxFlzHsMgA2Y7EDuVPvWCsPrSqUjQO5RLB0nJo07ajv4ACtr7H6mLdBOR8MNurDiVGaqgn4PEdHQ/TgTYT5C8P9hPKknXyJP1wVYWBjkbR0u9OHzLw+4J8KIqFQ3XTKMyle153IOJLaLqwFJn0JPp+ASXISZr5SIaRAxh6DnRNQ3NKKUqUDQ6E9ixaig6zAot5Kz8lnbXzReb2JJ+fc3/piVOfbrSNh+8dwLL3f/oh24friY14Y=
