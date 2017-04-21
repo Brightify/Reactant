@@ -210,8 +210,8 @@
 		186C3D281E9ABBB00077C52F /* Dictionary+Merge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Merge.swift"; sourceTree = "<group>"; };
 		186C3D291E9ABBB00077C52F /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		186C3D2A1E9ABBB00077C52F /* TokenizationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizationError.swift; sourceTree = "<group>"; };
-		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
-		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterTableView.swift; sourceTree = "<group>"; };
+		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderTableView.swift; path = Implementation/HeaderTableView.swift; sourceTree = "<group>"; };
+		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterTableView.swift; path = Implementation/FooterTableView.swift; sourceTree = "<group>"; };
 		18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReactantLiveUI.podspec; sourceTree = "<group>"; };
 		2224FE541E9FD3060094ADDC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		227B03631E9AD3EE000BC6D9 /* LayoutDistribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDistribution.swift; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 		DC0785E91DDB2C860063AB96 /* CollectionSupplementaryViewIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionSupplementaryViewIdentifier.swift; sourceTree = "<group>"; };
 		DC0785EB1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCollectionSupplementaryViewIdentifier.swift; sourceTree = "<group>"; };
 		DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewState.swift; sourceTree = "<group>"; };
-		DC0785F01DDC6A400063AB96 /* PlainTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainTableView.swift; sourceTree = "<group>"; };
+		DC0785F01DDC6A400063AB96 /* PlainTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlainTableView.swift; path = Implementation/PlainTableView.swift; sourceTree = "<group>"; };
 		DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTableView.swift; sourceTree = "<group>"; };
 		DC137F6B1E4C636A00A0516F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DC137F6C1E4C638000A0516F /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
@@ -694,12 +694,9 @@
 		DC0785791DC884BB0063AB96 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				DC0785D61DDB176A0063AB96 /* Identifier */,
-				DC2B5D731DE437E300F9C9D7 /* Internal */,
 				18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */,
 				18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */,
 				DC0785F01DDC6A400063AB96 /* PlainTableView.swift */,
-				DC2B5D661DE2F90D00F9C9D7 /* ReactantTableView.swift */,
 				DC79F6AE1E54AB170033AE51 /* Properties+TableView.swift */,
 				DC79F6CA1E560A5A0033AE51 /* ReactantTableView.swift */,
 				DC6940761E509E0700C99380 /* ReactantTableView+Delegates.swift */,
@@ -875,9 +872,6 @@
 		DC6940691E4F727500C99380 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */,
-				18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */,
-				DC0785F01DDC6A400063AB96 /* PlainTableView.swift */,
 				DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */,
 				DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */,
 			);

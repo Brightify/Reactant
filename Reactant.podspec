@@ -6,12 +6,12 @@
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
 #
 
-Pod::Spec.new do |s|
-  s.name             = 'Reactant'
-  s.version          = '0.6.0'
-  s.summary          = 'Imagine React Native in Swift and you get Reactant'
+Pod::Spec.new do |spec|
+  spec.name             = 'Reactant'
+  spec.version          = '0.6.0'
+  spec.summary          = 'Imagine React Native in Swift and you get Reactant'
 
-  s.description      = <<-DESC
+  spec.description      = <<-DESC
                         We combined the strength of RxSwift with pure swift and
                         made a framework for highly reusable and clean views.
                        DESC
