@@ -46,6 +46,43 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="components">Components</h1>
+<p>Reactant&apos;s core principle is that everything is a <code>Component</code> and such component has a <code>state</code> and an <code>actions</code>. The component itself is supposed to update itself based on the state and inform parent component about it&apos;s change using an action.</p>
+<p>Let&apos;s have a look at a simple component that is a view and has a label containing some text in it.</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">LabelView</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">String</span>, <span class="pl-ent">Void</span>&gt; </span>{
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> label = <span class="hljs-type">UILabel</span>()
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+        label.text = componentState
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">loadView</span><span class="hljs-params">()</span></span> {
+        children(
+            label
+        )
+
+        label.backgroundColor = .black
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">setupConstraints</span><span class="hljs-params">()</span></span> {
+        label.snp.makeConstraints { make <span class="pl-k">in</span>
+            make.edges.equalToSuperview()
+        }
+    }
+}
+</code></pre>
+<p>As you can see all <code>UIView</code> components inherit from <code>ViewBase</code> (there is a special class <code>ButtonBase</code> for buttons with view structure inside). The <code>ViewBase</code> has two generic parameters, first one is <code>StateType</code> which determines type of this component&apos;s state, in this case it is a <code>String</code>, since we only want to display a text in a label, and second one is <code>ActionType</code> that determines type of an action this view produces, this example has no action, so the specified type is <code>Void</code> (more on actions will be explained later). We strongly recommend that the <code>StateType</code> is value type, because whenever it changes, the <code>Component</code> will call <code>update</code> method, this way if the <code>StateType</code> is a <code>struct</code> or <code>tuple</code>, whenever you update any field of these types, the <code>Component</code> will update its contents.</p>
+<p>Method <code>update</code> is responsible for updating your <code>Component</code>&apos;s views etc. In this case it sets <code>componentState</code> which is a <code>String</code> to the <code>label</code>&apos;s text.</p>
+<p>In <code>loadView</code> the views are added to view hierarchy using <code>children</code> method. This method is an extension of UIView and it is possible to nest children calls. Like this:</p>
+<pre><code class="lang-swift">children(
+    label1.children(
+        label2,
+        label3
+        ),
+    label4
+)
+</code></pre>
+<p>Method <code>setupConstraints</code> is responsible for layouting. Reactant uses SnapKit to do this, but other layouting engines (such as <code>NSLayoutAnchor</code>) should work.</p>
 
         </div>
         <div class="footer-nav">
