@@ -11,11 +11,12 @@ language: objective-c
 # - pod install --project-directory=Example
 before_install:
     - nvm install 4
+    # - gem install cocoapods -v '1.2.1'
     - pod repo update --silent
 
 script:
     #- set -o pipefail && xcodebuild test -workspace Example/Reactant.xcworkspace -scheme Reactant-Example -sdk iphonesimulator10.3 ONLY_ACTIVE_ARCH=NO | xcpretty
-    - pod lib lint
+    - travis_wait pod lib lint
     - npm install docpress && ./node_modules/.bin/docpress build
 
 after_success:
