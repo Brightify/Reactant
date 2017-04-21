@@ -9,16 +9,16 @@
 import Foundation
 
 internal func degreesToRadians(_ value: Double) -> Double {
-    return value * M_PI / 180.0
+    return value * Double.pi / 180.0
 }
 
 internal func radiansToDegrees(_ value: Double) -> Double {
-    return value * 180.0 / M_PI
+    return value * 180.0 / Double.pi
 }
 
 extension Double {
     
-    internal func equal(to value: Double, precision: Double = DBL_EPSILON) -> Bool {
+    internal func equal(to value: Double, precision: Double = Double.ulpOfOne) -> Bool {
         return abs(self - value) <= precision
     }
 }

@@ -75,7 +75,7 @@ public struct Constraint {
             }
 
             guard layoutAttributes.count < 2 || targetAnchor == nil else {
-                throw TokenizationError(message: "Multiple attribute declaration `\(name)` can't have target anchor set! (\(targetAnchor)")
+                throw TokenizationError(message: "Multiple attribute declaration `\(name)` can't have target anchor set! (\(String(describing: targetAnchor))")
             }
 
             return layoutAttributes.map { layoutAttribute in

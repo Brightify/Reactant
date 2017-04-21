@@ -1,11 +1,12 @@
 import Foundation
 #if ReactantRuntime
 import UIKit
+import Reactant
 #endif
 
 public enum SupportedPropertyValue {
-    case color(Color)
-    case namedColor(String)
+    case color(Color, Color.RuntimeType)
+    case namedColor(String, Color.RuntimeType)
     case string(String)
     case font(Font)
     case integer(Int)
@@ -19,13 +20,17 @@ public enum SupportedPropertyValue {
     case bool(Bool)
     case rectEdge([RectEdge])
     case activityIndicatorStyle(ActivityIndicatorStyle)
+    case visibility(ViewVisibility)
+    case collapseAxis(ViewCollapseAxis)
 
     public var generated: String {
         switch self {
-        case .color(let color):
-            return "UIColor(red: \(color.red), green: \(color.green), blue: \(color.blue), alpha: \(color.alpha))"
-        case .namedColor(let colorName):
-            return "UIColor.\(colorName)"
+        case .color(let color, let type):
+            let result = "UIColor(red: \(color.red), green: \(color.green), blue: \(color.blue), alpha: \(color.alpha))"
+            return type == .uiColor ? result : result + ".cgColor"
+        case .namedColor(let colorName, let type):
+            let result = "UIColor.\(colorName)"
+            return type == .uiColor ? result : result + ".cgColor"
         case .string(let string):
             if string.hasPrefix("localizable(") {
                 let key = string.replacingOccurrences(of: "localizable(", with: "")
@@ -61,16 +66,22 @@ public enum SupportedPropertyValue {
             return "[\(rectEdges.map { "UIRectEdge.\($0.rawValue)" }.joined(separator: ", "))]"
         case .activityIndicatorStyle(let style):
             return "UIActivityIndicatorViewStyle.\(style.rawValue)"
+        case .visibility(let visibility):
+            return "Visibility.\(visibility.rawValue)"
+        case .collapseAxis(let axis):
+            return "CollapseAxis.\(axis.rawValue)"
         }
     }
 
     #if ReactantRuntime
     public var value: Any? {
         switch self {
-        case .color(let color):
-            return UIColor(red: color.red, green: color.green, blue: color.blue, alpha: color.alpha)
-        case .namedColor(let colorName):
-            return UIColor.value(forKeyPath: "\(colorName)Color")
+        case .color(let color, let type):
+            let result = UIColor(red: color.red, green: color.green, blue: color.blue, alpha: color.alpha)
+            return type == .uiColor ? result : result.cgColor
+        case .namedColor(let colorName, let type):
+            let result = UIColor.value(forKeyPath: "\(colorName)Color") as? UIColor
+            return type == .uiColor ? result : result?.cgColor
         case .string(let string):
             if string.hasPrefix("localizable(") {
                 let key = string.replacingOccurrences(of: "localizable(", with: "")
@@ -152,6 +163,24 @@ public enum SupportedPropertyValue {
                 return UIActivityIndicatorViewStyle.white.rawValue
             case .gray:
                 return UIActivityIndicatorViewStyle.gray.rawValue
+            }
+        case .visibility(let visibility):
+            switch visibility {
+            case .visible:
+                return Visibility.visible.rawValue
+            case .collapsed:
+                return Visibility.collapsed.rawValue
+            case .hidden:
+                return Visibility.hidden.rawValue
+            }
+        case .collapseAxis(let axis):
+            switch axis {
+            case .both:
+                return CollapseAxis.both.rawValue
+            case .horizontal:
+                return CollapseAxis.horizontal.rawValue
+            case .vertical:
+                return CollapseAxis.vertical.rawValue
             }
         }
     }

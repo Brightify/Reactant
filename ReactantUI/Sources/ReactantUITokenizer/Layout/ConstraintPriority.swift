@@ -1,4 +1,5 @@
 import Foundation
+import SWXMLHash
 
 public enum ConstraintPriority {
     case required
@@ -25,6 +26,7 @@ public enum ConstraintPriority {
     init(_ value: String) throws {
         if let floatValue = Float(value) {
             self = .custom(floatValue)
+            return
         }
 
         switch value {
@@ -39,5 +41,11 @@ public enum ConstraintPriority {
         default:
             throw TokenizationError(message: "Unknown constraint priority \(value)")
         }
+    }
+}
+
+extension ConstraintPriority: XMLAttributeDeserializable {
+    public static func deserialize(_ attribute: XMLAttribute) throws -> ConstraintPriority {
+        return try ConstraintPriority(attribute.text)
     }
 }

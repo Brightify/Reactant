@@ -22,6 +22,8 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="styleGroup" type="stylesType"/>
+
     <xs:group name="ViewGroup">
         <xs:choice>
             <xs:element name="ImageView" maxOccurs="unbounded" minOccurs="0">
@@ -212,6 +214,8 @@
         <xs:attribute name="clipsToBounds" type="xs:boolean"/>
         <xs:attribute name="isUserInteractionEnabled" type="xs:boolean"/>
         <xs:attribute name="cornerRadius" type="xs:decimal"/>
+        <xs:attribute name="borderWidth" type="xs:decimal"/>
+        <xs:attribute name="borderColor" type="color"/>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="stackViewStyleAttributes">

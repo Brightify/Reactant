@@ -8,8 +8,8 @@ public class Button: Container {
     override class var availableProperties: [PropertyDescription] {
         return [
             controlState(name: "title", type: .string),
-            controlState(name: "titleColor", type: .color),
-            controlState(name: "backgroundColor", type: .color),
+            controlState(name: "titleColor", type: .color(.uiColor)),
+            controlState(name: "backgroundColor", type: .color(.uiColor)),
         ] + super.availableProperties
           + nested(field: "titleLabel", optional: true, properties: Label.availableProperties)
 

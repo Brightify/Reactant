@@ -1,5 +1,5 @@
 public enum SupportedPropertyType {
-    case color
+    case color(Color.RuntimeType)
     case string
     case font
     case integer
@@ -13,14 +13,16 @@ public enum SupportedPropertyType {
     case bool
     case rectEdge
     case activityIndicatorStyle
+    case visibility
+    case collapseAxis
 
     public func value(of text: String) -> SupportedPropertyValue? {
         switch self {
-        case .color:
+        case .color(let type):
             if Color.supportedNames.contains(text) {
-                return .namedColor(text)
+                return .namedColor(text, type)
             } else {
-                return Color(hex: text).map(SupportedPropertyValue.color)
+                return Color(hex: text).map { SupportedPropertyValue.color($0, type) }
             }
         case .string:
             return .string(text)
@@ -48,6 +50,10 @@ public enum SupportedPropertyType {
             return SupportedPropertyValue.rectEdge(RectEdge.parse(text: text))
         case .activityIndicatorStyle:
             return ActivityIndicatorStyle(rawValue: text).map(SupportedPropertyValue.activityIndicatorStyle)
+        case .visibility:
+            return ViewVisibility(rawValue: text).map(SupportedPropertyValue.visibility)
+        case .collapseAxis:
+            return ViewCollapseAxis(rawValue: text).map(SupportedPropertyValue.collapseAxis)
         }
     }
 }

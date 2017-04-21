@@ -10,7 +10,7 @@ public class TextField: View {
             assignable(name: "text", type: .string),
             assignable(name: "placeholder", type: .string),
             assignable(name: "font", type: .font),
-            assignable(name: "textColor", type: .color),
+            assignable(name: "textColor", type: .color(.uiColor)),
             ] + super.availableProperties
     }
 

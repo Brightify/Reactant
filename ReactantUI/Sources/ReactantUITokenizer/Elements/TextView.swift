@@ -9,7 +9,7 @@ public class TextView: View {
         return [
             assignable(name: "text", type: .string),
             assignable(name: "font", type: .font),
-            assignable(name: "textColor", type: .color),
+            assignable(name: "textColor", type: .color(.uiColor)),
             assignable(name: "textAlignment", type: .textAlignment),
             // add edge inset
 //            assignable(name: "textContainerInset", type: .rectEdge)

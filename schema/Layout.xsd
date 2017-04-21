@@ -30,7 +30,12 @@
         <xs:attribute name="edges" type="constraint" />
         <xs:attribute name="fillHorizontally" type="constraint" />
         <xs:attribute name="fillVertically" type="constraint" />
-        <xs:attribute name="size" type="constraint" />
+        <xs:attribute name="compressionPriority" type="constraint" />
+        <xs:attribute name="compressionPriority.horizontal" type="constraint" />
+        <xs:attribute name="compressionPriority.vertical" type="constraint" />
+        <xs:attribute name="huggingPriority" type="constraint" />
+        <xs:attribute name="huggingPriority.horizontal" type="constraint" />
+        <xs:attribute name="huggingPriority.vertical" type="constraint" />
     </xs:attributeGroup>
 
     <xs:simpleType name="constraint">

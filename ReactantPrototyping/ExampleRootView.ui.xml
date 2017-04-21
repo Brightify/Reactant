@@ -12,12 +12,18 @@
         <LabelStyle name="base" backgroundColor="white" />
         <LabelStyle name="black" backgroundColor="black" textColor="#ff0000" />
         <LabelStyle name="astyle" extend="black" />
-        <ButtonStyle name="buttona" backgroundColor.highlighted="white"/>
+        <ButtonStyle name="buttona"
+            backgroundColor.highlighted="white"
+            isUserInteractionEnabled="true" />
     </styles>
 
     <ImageView
         layout:edges="super"
         image="falcon"
+        visibility="visible"
+        clipsToBounds="true"
+        layout:compressionPriority="high"
+        layout:huggingPriority="low"
         contentMode="scaleAspectFill" />
 
     <ScrollView layout:edges="super">
@@ -53,6 +59,7 @@
                 style=":common:whiteLabel"
                 numberOfLines="0"
                 textAlignment="center"
+                clipsToBounds="true"
                 backgroundColor="red"
                 layout:below="id:textView offset(10)"
                 layout:centerX="super"/>
@@ -75,8 +82,9 @@
                 backgroundColor.highlighted="white"
                 field="send"
                 clipsToBounds="true"
-                cornerRadius="4"
-                isUserInteractionEnabled="false"
+                layer.cornerRadius="4"
+                layer.borderWidth="3"
+                layer.borderColor="red"
                 layout:leading="buttonLeadingConstraint = super inset(40)"
                 layout:trailing="super inset(40)"
                 layout:height="buttonHeightConstraint = 50" />
@@ -85,7 +93,8 @@
                 layout:id="neco"
                 title="Forgotten password?"
                 backgroundColor="#FFddaa"
-                cornerRadius="10"
+                layer.cornerRadius="10"
+                clipsToBounds="true"
                 style="buttona"
                 layout:fillHorizontally="super inset(60)"
                 layout:height="50"

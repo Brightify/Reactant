@@ -54,7 +54,7 @@ public class ReactantLiveUIApplier {
 
 
         for property in try (commonStyles + root.styles).resolveStyle(for: element) {
-            property.apply(property, view)
+            try property.apply(property, view)
         }
 
         // FIXME This is a workaround, should not be doing it here (could move to the UIContainer)
@@ -74,18 +74,43 @@ public class ReactantLiveUIApplier {
     }
 
     private func applyConstraints(views: [(String, UIView)], element: UIElement, superview: UIView) throws {
+        let elementType = type(of: element)
         let name: String
         if let field = element.field {
             name = "\(field)"
         } else if let layoutId = element.layout.id {
             name = "named_\(layoutId)"
         } else {
-            name = "temp_\(type(of: element))_\(tempCounter)"
+            name = "temp_\(elementType)_\(tempCounter)"
             tempCounter += 1
         }
 
         guard let view = views.named(name) else {
             throw LiveUIError(message: "Couldn't find view with name \(name) in view hierarchy")
+        }
+
+        if let horizontalCompressionPriority = element.layout.contentCompressionPriorityHorizontal {
+            view.setContentCompressionResistancePriority(horizontalCompressionPriority.numeric, for: .horizontal)
+        } else {
+            view.setContentCompressionResistancePriority(elementType.defaultContentCompression.horizontal.numeric, for: .horizontal)
+        }
+
+        if let verticalCompressionPriority = element.layout.contentCompressionPriorityVertical {
+            view.setContentCompressionResistancePriority(verticalCompressionPriority.numeric, for: .vertical)
+        } else {
+            view.setContentCompressionResistancePriority(elementType.defaultContentCompression.vertical.numeric, for: .vertical)
+        }
+
+        if let horizontalHuggingPriority = element.layout.contentHuggingPriorityHorizontal {
+            view.setContentHuggingPriority(horizontalHuggingPriority.numeric, for: .horizontal)
+        } else {
+            view.setContentHuggingPriority(elementType.defaultContentHugging.horizontal.numeric, for: .horizontal)
+        }
+
+        if let verticalHuggingPriority = element.layout.contentHuggingPriorityVertical {
+            view.setContentHuggingPriority(verticalHuggingPriority.numeric, for: .vertical)
+        } else {
+            view.setContentHuggingPriority(elementType.defaultContentHugging.vertical.numeric, for: .vertical)
         }
 
         var error: LiveUIError?

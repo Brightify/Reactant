@@ -17,7 +17,8 @@ public extension UIView {
         static var zeroHeightConstraints: UInt8 = 0
         static var collapsibleConstraints: UInt8 = 0
     }
-  
+
+    @objc
     public var collapseAxis: CollapseAxis {
         get {
             return associatedObject(self, key: &AssociatedKey.collapseAxis, defaultValue: .vertical)
@@ -35,7 +36,8 @@ public extension UIView {
             }
         }
     }
-    
+
+    @objc
     public var visibility: Visibility {
         get {
             return associatedObject(self, key: &AssociatedKey.visibility, defaultValue: isHidden ? .hidden : .visible)

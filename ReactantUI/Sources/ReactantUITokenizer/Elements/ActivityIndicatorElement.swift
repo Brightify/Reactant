@@ -7,10 +7,14 @@ import SWXMLHash
 public class ActivityIndicatorElement: View {
     override class var availableProperties: [PropertyDescription] {
         return [
-                assignable(name: "color", type: .color),
+                assignable(name: "color", type: .color(.uiColor)),
                 assignable(name: "hidesWhenStopped", type: .bool),
                 assignable(name: "indicatorStyle", key: "activityIndicatorViewStyle", type: .activityIndicatorStyle)
             ] + super.availableProperties
+    }
+
+    public static var defaultContentHugging: (horizontal: ConstraintPriority, vertical: ConstraintPriority) {
+        return (.high, .high)
     }
 
     public override var initialization: String {

@@ -18,23 +18,25 @@ public struct Style: XMLIndexerDeserializable {
         let type: String
         switch element.name {
         case "ViewStyle":
-            // FIXME This should be `"View"`
-            properties = View.deserializeSupportedProperties(properties: View.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: View.availableProperties, in: element)
+            type = "View"
+        case "ContainerStyle":
+            properties = try View.deserializeSupportedProperties(properties: Container.availableProperties, in: element)
             type = "Container"
         case "LabelStyle":
-            properties = View.deserializeSupportedProperties(properties: Label.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: Label.availableProperties, in: element)
             type = "Label"
         case "ButtonStyle":
-            properties = View.deserializeSupportedProperties(properties: Button.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: Button.availableProperties, in: element)
             type = "Button"
         case "TextFieldStyle":
-            properties = View.deserializeSupportedProperties(properties: TextField.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: TextField.availableProperties, in: element)
             type = "TextField"
         case "ImageViewStyle":
-            properties = View.deserializeSupportedProperties(properties: ImageView.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: ImageView.availableProperties, in: element)
             type = "ImageView"
         case "StackViewStyle":
-            properties = View.deserializeSupportedProperties(properties: StackView.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: StackView.availableProperties, in: element)
             type = "StackView"
         default:
             throw TokenizationError(message: "Unknown style \(element.name). (\(node))")

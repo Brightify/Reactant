@@ -9,6 +9,6 @@ public struct Property {
     public var application: (Property, String) -> String
 
     #if ReactantRuntime
-    public var apply: (Property, AnyObject) -> Void
+    public var apply: (Property, AnyObject) throws -> Void
     #endif
 }

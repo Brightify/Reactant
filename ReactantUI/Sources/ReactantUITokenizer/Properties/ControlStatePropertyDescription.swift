@@ -30,15 +30,13 @@ struct ControlStatePropertyDescription: PropertyDescription {
     }
 
     #if ReactantRuntime
-    func apply(_ property: Property, on object: AnyObject) {
+    func apply(_ property: Property, on object: AnyObject) throws {
         let selector = Selector("set\(key.capitalizingFirstLetter()):forState:")
         guard object.responds(to: selector) else {
-            print("!! Object \(object) doesn't respond to \(selector) (property: \(property)")
-            return
+            throw LiveUIError(message: "!! Object \(object) doesn't respond to \(selector) (property: \(property)")
         }
         guard let resolvedValue = property.value.value else {
-            print("!! Value `\(property.value)` couldn't be resolved in runtime for key `\(key)`")
-            return
+            throw LiveUIError(message: "!! Value `\(property.value)` couldn't be resolved in runtime for key `\(key)`")
         }
         let signature = object.method(for: selector)
 

@@ -170,6 +170,22 @@ public class UIGenerator: Generator {
             tempCounter += 1
         }
 
+        if let horizontalCompressionPriority = element.layout.contentCompressionPriorityHorizontal {
+            l("\(name).setContentCompressionResistancePriority(\(horizontalCompressionPriority.numeric), forAxis: .horizontal)")
+        }
+
+        if let verticalCompressionPriority = element.layout.contentCompressionPriorityVertical {
+            l("\(name).setContentCompressionResistancePriority(\(verticalCompressionPriority.numeric), forAxis: .vertical)")
+        }
+
+        if let horizontalHuggingPriority = element.layout.contentHuggingPriorityHorizontal {
+            l("\(name).setContentHuggingResistancePriority(\(horizontalHuggingPriority.numeric), forAxis: .horizontal)")
+        }
+
+        if let verticalHuggingPriority = element.layout.contentHuggingPriorityVertical {
+            l("\(name).setContentHuggingResistancePriority(\(verticalHuggingPriority.numeric), forAxis: .vertical)")
+        }
+
         l("\(name).snp.makeConstraints") {
             l("make in")
             for constraint in element.layout.constraints {

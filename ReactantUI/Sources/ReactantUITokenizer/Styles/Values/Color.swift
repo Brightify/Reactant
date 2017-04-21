@@ -1,6 +1,11 @@
 import Foundation
 
 public struct Color {
+    public enum RuntimeType {
+        case uiColor
+        case cgColor
+    }
+
     public var red: CGFloat
     public var green: CGFloat
     public var blue: CGFloat
