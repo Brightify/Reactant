@@ -1,0 +1,221 @@
+{
+  "toc": {
+    "sections": [
+      {
+        "title": "Reactant",
+        "source": "README.md",
+        "url": "index.html",
+        "slug": "index",
+        "headings": [
+          {
+            "title": "Requirements",
+            "depth": 2,
+            "id": "requirements"
+          },
+          {
+            "title": "Communication",
+            "depth": 2,
+            "id": "communication"
+          },
+          {
+            "title": "Installation",
+            "depth": 2,
+            "id": "installation"
+          },
+          {
+            "title": "Author",
+            "depth": 2,
+            "id": "author"
+          },
+          {
+            "title": "License",
+            "depth": 2,
+            "id": "license"
+          }
+        ]
+      },
+      {
+        "title": "Architecture",
+        "source": "docs/architecture.md",
+        "url": "architecture.html",
+        "slug": "architecture"
+      },
+      {
+        "title": "Component",
+        "source": "docs/component.md",
+        "url": "component.html",
+        "slug": "component"
+      },
+      {
+        "title": "Controller",
+        "source": "docs/controller.md",
+        "url": "controller.html",
+        "slug": "controller"
+      },
+      {
+        "title": "RootView",
+        "source": "docs/rootview.md",
+        "url": "rootview.html",
+        "slug": "rootview"
+      },
+      {
+        "title": "Wireframe",
+        "source": "docs/wireframe.md",
+        "url": "wireframe.html",
+        "slug": "wireframe"
+      },
+      {
+        "title": "TableView",
+        "source": "docs/tableview.md",
+        "url": "tableview.html",
+        "slug": "tableview"
+      },
+      {
+        "title": "CollectionView",
+        "source": "docs/collectionview.md",
+        "url": "collectionview.html",
+        "slug": "collectionview"
+      },
+      {
+        "title": "Validation",
+        "source": "docs/validation.md",
+        "url": "validation.html",
+        "slug": "validation"
+      },
+      {
+        "title": "ActivityIndicator",
+        "source": "docs/activityindicator.md",
+        "url": "activityindicator.html",
+        "slug": "activityindicator"
+      },
+      {
+        "title": "Properties",
+        "source": "docs/properties.md",
+        "url": "properties.html",
+        "slug": "properties"
+      },
+      {
+        "title": "StaticMap",
+        "source": "docs/staticmap.md",
+        "url": "staticmap.html",
+        "slug": "staticmap"
+      }
+    ]
+  },
+  "index": {
+    "index.html": {
+      "source": "README.md",
+      "title": "Reactant",
+      "pageTitle": "Reactant",
+      "slug": "index",
+      "headings": [
+        {
+          "title": "Requirements",
+          "depth": 2,
+          "id": "requirements"
+        },
+        {
+          "title": "Communication",
+          "depth": 2,
+          "id": "communication"
+        },
+        {
+          "title": "Installation",
+          "depth": 2,
+          "id": "installation"
+        },
+        {
+          "title": "Author",
+          "depth": 2,
+          "id": "author"
+        },
+        {
+          "title": "License",
+          "depth": 2,
+          "id": "license"
+        }
+      ]
+    },
+    "architecture.html": {
+      "source": "docs/architecture.md",
+      "title": "Architecture - Reactant",
+      "pageTitle": "Architecture",
+      "slug": "architecture"
+    },
+    "component.html": {
+      "source": "docs/component.md",
+      "title": "Component - Reactant",
+      "pageTitle": "Component",
+      "slug": "component"
+    },
+    "controller.html": {
+      "source": "docs/controller.md",
+      "title": "Controller - Reactant",
+      "pageTitle": "Controller",
+      "slug": "controller"
+    },
+    "rootview.html": {
+      "source": "docs/rootview.md",
+      "title": "RootView - Reactant",
+      "pageTitle": "RootView",
+      "slug": "rootview"
+    },
+    "wireframe.html": {
+      "source": "docs/wireframe.md",
+      "title": "Wireframe - Reactant",
+      "pageTitle": "Wireframe",
+      "slug": "wireframe"
+    },
+    "tableview.html": {
+      "source": "docs/tableview.md",
+      "title": "TableView - Reactant",
+      "pageTitle": "TableView",
+      "slug": "tableview"
+    },
+    "collectionview.html": {
+      "source": "docs/collectionview.md",
+      "title": "CollectionView - Reactant",
+      "pageTitle": "CollectionView",
+      "slug": "collectionview"
+    },
+    "validation.html": {
+      "source": "docs/validation.md",
+      "title": "Validation - Reactant",
+      "pageTitle": "Validation",
+      "slug": "validation"
+    },
+    "activityindicator.html": {
+      "source": "docs/activityindicator.md",
+      "title": "ActivityIndicator - Reactant",
+      "pageTitle": "ActivityIndicator",
+      "slug": "activityindicator"
+    },
+    "properties.html": {
+      "source": "docs/properties.md",
+      "title": "Properties - Reactant",
+      "pageTitle": "Properties",
+      "slug": "properties"
+    },
+    "staticmap.html": {
+      "source": "docs/staticmap.md",
+      "title": "StaticMap - Reactant",
+      "pageTitle": "StaticMap",
+      "slug": "staticmap"
+    }
+  },
+  "sources": {
+    "README.md": "index.html",
+    "docs/architecture.md": "architecture.html",
+    "docs/component.md": "component.html",
+    "docs/controller.md": "controller.html",
+    "docs/rootview.md": "rootview.html",
+    "docs/wireframe.md": "wireframe.html",
+    "docs/tableview.md": "tableview.html",
+    "docs/collectionview.md": "collectionview.html",
+    "docs/validation.md": "validation.html",
+    "docs/activityindicator.md": "activityindicator.html",
+    "docs/properties.md": "properties.html",
+    "docs/staticmap.md": "staticmap.html",
+    "docs/_config.yml": "_config.yml"
+  }
+}

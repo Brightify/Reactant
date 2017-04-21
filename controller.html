@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/style.css?t=615badd5">
+    <script src="assets/script.js?t=36f3d457"></script>
+    <title>Controller - Reactant</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1"><a class="link title  link-index" href="index.html">Reactant</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-architecture" href="architecture.html">Architecture</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-component" href="component.html">Component</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title -active link-controller" href="controller.html">Controller</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-rootview" href="rootview.html">RootView</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-wireframe" href="wireframe.html">Wireframe</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-tableview" href="tableview.html">TableView</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-collectionview" href="collectionview.html">CollectionView</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-validation" href="validation.html">Validation</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-activityindicator" href="activityindicator.html">ActivityIndicator</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-properties" href="properties.html">Properties</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-staticmap" href="staticmap.html">StaticMap</a>
+            </li>
+          </ul>
+        </li>
+      </div>
+      <div class="body page-controller">
+        <div class="header-nav">
+          <div class="right">
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="controllers">Controllers</h1>
+<p>Controllers are <code>Components</code> in Reactant. Reactant was designed in a way that controller should never interact directly with any views it contains. Its only purpose is to somehow obtain state (from API, database etc.) and set this state to its <code>RootView</code> that takes care of displaying data. RootView is also responsible for notifying the controller about actions and the controller should respond to them accordingly i.e. by sending data to API, updating database etc.</p>
+<p>Let&apos;s say that we have <code>MainController</code> and <code>MainRootView</code>.</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainViewController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">MainRootView</span>&gt; </span>{
+
+    <span class="pl-k">init</span>() {
+        <span class="pl-c">// this needs to be called like this, because of a bug in Swift</span>
+        <span class="pl-k">super</span>.<span class="pl-k">init</span>(title: <span class="pl-s">&quot;Main&quot;</span>)
+
+        <span class="pl-c">// set inital state of RootView</span>
+        rootView.componentState = <span class="hljs-type">Date</span>()
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+        <span class="pl-c">// do nothing since this controller has void state</span>
+    }
+
+    <span class="pl-c">// Act according to action from RootView</span>
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">act</span><span class="hljs-params">(on action: MainRootView.ActionType)</span></span> {
+        <span class="pl-k">switch</span> action {
+        <span class="pl-k">case</span> .updateLabel:
+            <span class="pl-c">// when this action is sent from RootView, set new state to RootView&apos;s componentState</span>
+            rootView.componentState = <span class="hljs-type">Date</span>()
+            <span class="pl-k">break</span>
+        <span class="pl-c">// just a dummy action</span>
+        <span class="pl-k">case</span> .openTable:
+            <span class="pl-k">break</span>
+        }
+    }
+}
+
+<span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">MainAction</span> </span>{
+    <span class="pl-k">case</span> updateLabel
+    <span class="pl-k">case</span> openTable
+}
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainRootView</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">Date</span>, <span class="pl-ent">MainAction</span>&gt;, <span class="pl-ent">RootView</span> </span>{
+
+    <span class="pl-c">// this property gather&apos;s producers of all actions that should be propagated to parent component</span>
+    <span class="pl-k">override</span> <span class="pl-k">var</span> actions: [<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">MainAction</span>&gt;] {
+        <span class="pl-k">return</span> [
+            updateButton.rx.tap.rewrite(with: .updateLabel)
+        ]
+    }
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> label = <span class="hljs-type">LabelView</span>()
+    <span class="pl-k">private</span> <span class="pl-k">let</span> updateButton = <span class="hljs-type">UIButton</span>()
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> dateFormatter = <span class="hljs-type">DateFormatter</span>()
+
+    <span class="pl-k">override</span> <span class="pl-k">init</span>() {
+        <span class="pl-k">super</span>.<span class="pl-k">init</span>()
+
+        dateFormatter.timeStyle = .long
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+        label.componentState = dateFormatter.string(from: componentState)
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">loadView</span><span class="hljs-params">()</span></span> {
+        children(
+            label,
+            updateButton
+        )
+
+        updateButton.setTitleColor(.white, <span class="pl-k">for</span>: .normal)
+        updateButton.setTitle(<span class="pl-s">&quot;Update&quot;</span>, <span class="pl-k">for</span>: .normal)
+        updateButton.backgroundColor = .blue
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">setupConstraints</span><span class="hljs-params">()</span></span> {
+        label.snp.makeConstraints { make <span class="pl-k">in</span>
+            make.center.equalToSuperview()
+        }
+
+        updateButton.snp.makeConstraints { make <span class="pl-k">in</span>
+            make.centerX.equalToSuperview()
+            make.leading.greaterThanOrEqualToSuperview().offset(<span class="hljs-number">20</span>)
+            make.trailing.lessThanOrEqualToSuperview().inset(<span class="hljs-number">20</span>)
+
+            make.top.equalTo(label.snp.bottom).offset(<span class="hljs-number">20</span>)
+        }
+    }
+}
+</code></pre>
+<p>In this case RootView is responsible for displaying <code>Date</code> in a label. It also has a button, which whenever user clicks, invokes it&apos;s <code>rx.tap</code> event and this event is propagated to controller using <code>actions</code> property. Controller react&apos;s to such event using method <code>act</code>, so whenever <code>.updateLabel</code> value is passed to this method, new <code>Date</code> is set to RootView&apos;s <code>componentState</code>.</p>
+<p><code>ActionType</code> of RootView is in this case an <code>enum</code> <code>MainAction</code>. But it can be any other data type. Important advantage of using enums is that you can relatively easily add more action types, pass parameters to these actions and even <strong>nest</strong> enum values, which is very handy when propagating actions using <code>action</code> field of nested view.</p>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="component.html"><span class="title">Component</span></a></div>
+          <div class="right"><a href="rootview.html"><span class="label">Next: </span><span class="title">RootView</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/style.css?t=615badd5">
+    <script src="assets/script.js?t=36f3d457"></script>
+    <title>TableView - Reactant</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1"><a class="link title  link-index" href="index.html">Reactant</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-architecture" href="architecture.html">Architecture</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-component" href="component.html">Component</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-controller" href="controller.html">Controller</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-rootview" href="rootview.html">RootView</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-wireframe" href="wireframe.html">Wireframe</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title -active link-tableview" href="tableview.html">TableView</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-collectionview" href="collectionview.html">CollectionView</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-validation" href="validation.html">Validation</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-activityindicator" href="activityindicator.html">ActivityIndicator</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-properties" href="properties.html">Properties</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-staticmap" href="staticmap.html">StaticMap</a>
+            </li>
+          </ul>
+        </li>
+      </div>
+      <div class="body page-tableview">
+        <div class="header-nav">
+          <div class="right">
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="tableview">TableView</h1>
+<p>In Reactant, using table views is extremely simple. There are TableView classes prepared for drop-in use suiting most of the use cases. The TableViews are Components so they have their component State and actions depending on the type of TableView.</p>
+<p>Every TableView&apos;s component State is a <code>TableViewState</code> which is an enum containing these cases:</p>
+<pre><code class="lang-swift"><span class="pl-k">public</span> <span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">TableViewState</span>&lt;<span class="pl-ent">MODEL</span>&gt; </span>{
+
+    <span class="pl-k">case</span> items([<span class="hljs-type">MODEL</span>])
+    <span class="pl-k">case</span> empty(message: <span class="hljs-type">String</span>)
+    <span class="pl-k">case</span> loading
+}
+</code></pre>
+<p>In <code>init</code> of every TableView, you can configure if the TableView is reloadable and other properties depending on TableView type.</p>
+<h4 id="simpletableview">SimpleTableView</h4>
+<p><code>SimpleTableView</code> is the most generic TableView of them all. Its purpose is to display table with footers and headers. It has three generic parameters: <code>HEADER</code> - View component used as headers, <code>CELL</code> View component used as cells, <code>FOOTER</code> view component used as footers. <code>MODEL</code> parameter in this case is a <code>SectionModel</code> which binds together component State of section header, array of component States of cells and component State of section footer.</p>
+<h4 id="plaintableview">PlainTableView</h4>
+<p><code>PlainTableView</code> is used for displaying plain table view consisting of cells only. <code>MODEL</code> parameter of this TableView&apos;s <code>TableViewState</code> is component State of the cell.</p>
+<p>Example of using this type of TableView directly as RootView is shown here.</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">TableViewRootView</span>: <span class="pl-ent">PlainTableView</span>&lt;<span class="pl-ent">LabelView</span>&gt;, <span class="pl-ent">RootView</span> </span>{
+
+   <span class="pl-k">override</span> <span class="pl-k">var</span> edgesForExtendedLayout: <span class="hljs-type">UIRectEdge</span> {
+       <span class="pl-k">return</span> .all
+   }
+
+   <span class="pl-k">init</span>() {
+       <span class="pl-k">super</span>.<span class="pl-k">init</span>(cellFactory: <span class="hljs-type">LabelView</span>.<span class="pl-k">init</span>,
+                  style: .plain,
+                  reloadable: <span class="pl-c1">false</span>)
+   }
+
+}
+</code></pre>
+<h4 id="headertableview-and-footertableview">HeaderTableView and FooterTableView</h4>
+<p>These two TableViews are TableViews that show sections with headers only or footers only.</p>
+<h4 id="simulatedseparatortableview">SimulatedSeparatorTableView</h4>
+<p>This TableView is used for displaying TableView with separators of bigger height than default are.</p>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="wireframe.html"><span class="title">Wireframe</span></a></div>
+          <div class="right"><a href="collectionview.html"><span class="label">Next: </span><span class="title">CollectionView</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

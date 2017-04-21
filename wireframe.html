@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/style.css?t=615badd5">
+    <script src="assets/script.js?t=36f3d457"></script>
+    <title>Wireframe - Reactant</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1"><a class="link title  link-index" href="index.html">Reactant</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-architecture" href="architecture.html">Architecture</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-component" href="component.html">Component</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-controller" href="controller.html">Controller</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-rootview" href="rootview.html">RootView</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title -active link-wireframe" href="wireframe.html">Wireframe</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-tableview" href="tableview.html">TableView</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-collectionview" href="collectionview.html">CollectionView</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-validation" href="validation.html">Validation</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-activityindicator" href="activityindicator.html">ActivityIndicator</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-properties" href="properties.html">Properties</a>
+            </li>
+            <li class="menu-item -level-1"><a class="link title  link-staticmap" href="staticmap.html">StaticMap</a>
+            </li>
+          </ul>
+        </li>
+      </div>
+      <div class="body page-wireframe">
+        <div class="header-nav">
+          <div class="right">
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="wireframe">Wireframe</h1>
+<p>Wireframe is our way of handling navigation in the whole app as well as dependency management. Controllers have Dependencies and Reactions, which are closures or <code>Observables</code> they use to pass data to other controllers and/or open them.</p>
+<p>Let&apos;s have a look at <code>MainViewController</code> from previous example, now with Wireframe support.</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainViewController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">MainRootView</span>&gt; </span>{
+
+    <span class="pl-c">// Define Reactions</span>
+    <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Reactions</span> </span>{
+        <span class="pl-k">let</span> openTable: () -&gt; <span class="hljs-type">Void</span>
+    }
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> reactions: <span class="hljs-type">Reactions</span>
+
+    <span class="pl-k">init</span>(reactions: <span class="hljs-type">Reactions</span>) {
+        <span class="pl-k">self</span>.reactions = reactions
+        <span class="pl-c">// this needs to be called like this, because of a bug in Swift</span>
+        <span class="pl-k">super</span>.<span class="pl-k">init</span>(title: <span class="pl-s">&quot;Main&quot;</span>)
+
+        <span class="pl-c">// set inital state of RootView</span>
+        rootView.componentState = <span class="hljs-type">Date</span>()
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+        <span class="pl-c">// do nothing since this controller has void state</span>
+    }
+
+    <span class="pl-c">// Act according to action from RootView</span>
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">act</span><span class="hljs-params">(on action: MainRootView.ActionType)</span></span> {
+        <span class="pl-k">switch</span> action {
+        <span class="pl-k">case</span> .updateLabel:
+            <span class="pl-c">// when this action is sent from RootView, set new state to RootView&apos;s componentState</span>
+            rootView.componentState = <span class="hljs-type">Date</span>()
+            <span class="pl-k">break</span>
+        <span class="pl-k">case</span> .openTable:
+            <span class="pl-c">// when this action is sent from RootView, call function openTable defined in reactions</span>
+            reactions.openTable()
+            <span class="pl-k">break</span>
+        }
+    }
+}
+</code></pre>
+<p>As you can see, it has only <code>Reactions</code> which define a closure that should be called when table is to be opened. The controller that should be opened when this closure is invoked is <code>TableViewController</code>.</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">TableViewController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">TableViewRootView</span>&gt; </span>{
+
+    <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Dependencies</span> </span>{
+        <span class="pl-k">let</span> nameService: <span class="hljs-type">NameService</span>
+    }
+
+    <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Reactions</span> </span>{
+        <span class="pl-k">let</span> displayName: (<span class="hljs-type">String</span>) -&gt; <span class="hljs-type">Void</span>
+    }
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> dependencies: <span class="hljs-type">Dependencies</span>
+    <span class="pl-k">private</span> <span class="pl-k">let</span> reactions: <span class="hljs-type">Reactions</span>
+
+    <span class="pl-k">init</span>(dependencies: <span class="hljs-type">Dependencies</span>, reactions: <span class="hljs-type">Reactions</span>) {
+        <span class="pl-k">self</span>.dependencies = dependencies
+        <span class="pl-k">self</span>.reactions = reactions
+        <span class="pl-k">super</span>.<span class="pl-k">init</span>()
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+        rootView.componentState = .items(dependencies.nameService.names())
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">act</span><span class="hljs-params">(on action: TableViewRootView.ActionType)</span></span> {
+        <span class="pl-k">switch</span> action {
+        <span class="pl-k">case</span> .selected(<span class="pl-k">let</span> name):
+            reactions.displayName(name)
+        <span class="pl-k">default</span>:
+            <span class="pl-k">break</span>
+        }
+    }
+}
+</code></pre>
+<p>As you can see, it has both <code>Dependencies</code> and <code>Reactions</code>. In this case <code>Dependencies</code> contains service responsible for getting a list of names and is used in <code>update</code> method. <code>Reactions</code> are used to open <code>UIAlertController</code> when an item is selected.</p>
+<p>Now we have all the prerequisities, so let&apos;s have a look at what ties all of the controllers together - the Wireframe itself.</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainWireframe</span>: <span class="pl-ent">Wireframe</span> </span>{
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> dependencyModule: <span class="hljs-type">DependencyModule</span>
+
+    <span class="pl-k">init</span>(dependencyModule: <span class="hljs-type">DependencyModule</span>) {
+        <span class="pl-k">self</span>.dependencyModule = dependencyModule
+    }
+
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">entrypoint</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">UIViewController</span> {
+        <span class="pl-k">return</span> <span class="hljs-type">UINavigationController</span>(rootViewController: mainController())
+    }
+
+    <span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">mainController</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">UIViewController</span> {
+        <span class="pl-k">return</span> create { provider <span class="pl-k">in</span>
+            <span class="pl-k">let</span> reactions = <span class="hljs-type">MainViewController</span>.<span class="hljs-type">Reactions</span>(openTable: {
+                provider.navigation?.push(controller: <span class="pl-k">self</span>.tableViewController())
+            })
+
+            <span class="pl-k">return</span> <span class="hljs-type">MainViewController</span>(reactions: reactions)
+        }
+    }
+
+    <span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">tableViewController</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">UIViewController</span> {
+        <span class="pl-k">return</span> create { provider <span class="pl-k">in</span>
+            <span class="pl-k">let</span> dependencies = <span class="hljs-type">TableViewController</span>.<span class="hljs-type">Dependencies</span>(nameService: dependencyModule.nameService)
+            <span class="pl-k">let</span> reactions = <span class="hljs-type">TableViewController</span>.<span class="hljs-type">Reactions</span>(displayName: { name <span class="pl-k">in</span>
+                provider.navigation?.present(controller: <span class="pl-k">self</span>.nameAlertController(name: name))
+            })
+            <span class="pl-k">return</span> <span class="hljs-type">TableViewController</span>(dependencies: dependencies, reactions: reactions)
+        }
+    }
+
+    <span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">nameAlertController</span><span class="hljs-params">(name: String)</span></span> -&gt; <span class="hljs-type">UIViewController</span> {
+        <span class="pl-k">let</span> controller = <span class="hljs-type">UIAlertController</span>(title: <span class="pl-s">&quot;This is a name&quot;</span>, message: name, preferredStyle: .actionSheet)
+        controller.addAction(<span class="hljs-type">UIAlertAction</span>(title: <span class="pl-s">&quot;Close&quot;</span>, style: .cancel, handler: { <span class="hljs-number">_</span> <span class="pl-k">in</span> controller.dismiss() }))
+        <span class="pl-k">return</span> controller
+    }
+}
+</code></pre>
+<p>This wireframe has one init parameter - DependencyModule which is responsible for creating dependencies for controllers. Each of the wireframe&apos;s method is responsible for creating controllers, their Reactions and Dependencies. Important method is entrypoint that is called in <code>AppDelegate</code> and its result is assigned to application window. Method <code>create</code> is used to simplify working with navigation as its parameter <code>provider</code> has field <code>navigationController: UINavigationController</code>.
+Another important method, that is however not used in this sample is <code>branchNavigation</code> that creates new <code>UINavigationController</code> which can have a close button and then it can be used as a modal controller.</p>
+<p>Wireframe is then used in <code>AppDelegate</code> like this:</p>
+<pre><code class="lang-swift">        <span class="pl-k">let</span> module = <span class="hljs-type">AppModule</span>()
+
+        <span class="pl-k">let</span> wireframe = <span class="hljs-type">MainWireframe</span>(dependencyModule: module)
+
+        window?.rootViewController = wireframe.entrypoint()
+</code></pre>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="rootview.html"><span class="title">RootView</span></a></div>
+          <div class="right"><a href="tableview.html"><span class="label">Next: </span><span class="title">TableView</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
