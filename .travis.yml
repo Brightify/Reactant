@@ -11,6 +11,7 @@ language: objective-c
 # - pod install --project-directory=Example
 before_install:
     - nvm install 4
+    - pod repo update
 
 script:
     - set -o pipefail && xcodebuild test -workspace Example/ProjectBase.xcworkspace -scheme ProjectBase-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
