@@ -18,9 +18,11 @@ public class ComponentReference: View {
     }
 
     #if ReactantRuntime
-    public override func initialize() -> UIView {
-        // FIXME should not force unwrap
-        return ReactantLiveUIManager.shared.type(named: type)!.init() // ?? UIView()
+    public override func initialize() throws -> UIView {
+        guard let type = ReactantLiveUIManager.shared.type(named: type) else {
+            throw TokenizationError(message: "Couldn't find type mapping for \(self.type)")
+        }
+        return type.init()
     }
     #endif
 }

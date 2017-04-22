@@ -42,7 +42,7 @@ public class View: XMLIndexerDeserializable, UIElement {
     }
 
     #if ReactantRuntime
-    public func initialize() -> UIView {
+    public func initialize() throws -> UIView {
         return UIView()
     }
     #endif

@@ -44,11 +44,11 @@ public class ReactantLiveUIApplier {
             }
         } else if let layoutId = element.layout.id {
             name = "named_\(layoutId)"
-            view = element.initialize()
+            view = try element.initialize()
         } else {
             name = "temp_\(type(of: element))_\(tempCounter)"
             tempCounter += 1
-            view = element.initialize()
+            view = try element.initialize()
         }
 
 

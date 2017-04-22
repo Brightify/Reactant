@@ -18,10 +18,15 @@ PODS:
     - Result (~> 3.0)
     - RxOptional (~> 3.0)
     - RxSwift (~> 3.0)
+  - Reactant/TableView (0.6.0):
+    - Reactant/Core
+    - RxCocoa (~> 3.0)
+    - RxDataSources (~> 1.0)
   - ReactantLiveUI (0.0.1):
     - FileKit
     - KZFileWatchers
     - Reactant
+    - Reactant/TableView
     - SnapKit
     - SWXMLHash
   - Result (3.0.0)
@@ -53,9 +58,9 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Reactant:
-    :path: ./
+    :path: "./"
   ReactantLiveUI:
-    :path: ./
+    :path: "./"
 
 SPEC CHECKSUMS:
   FileKit: 1ea916f594bc0bb9a3951f80edf92b52bb7f883c
@@ -64,7 +69,7 @@ SPEC CHECKSUMS:
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
   Reactant: 6c3e1dbec3897170a89efce69d24bcad78ed8f38
-  ReactantLiveUI: 5bf62bff99e84e0fe60e04f83a9ad3f6ec961b28
+  ReactantLiveUI: 05151d5656e8638e7d7018cceb900545c3587ba7
   Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
   RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
   RxDataSources: 824693e84d00781d0a5e5cedc1ff95ce9250aacd

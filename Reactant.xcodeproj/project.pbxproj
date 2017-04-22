@@ -213,6 +213,7 @@
 		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderTableView.swift; path = Implementation/HeaderTableView.swift; sourceTree = "<group>"; };
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterTableView.swift; path = Implementation/FooterTableView.swift; sourceTree = "<group>"; };
 		18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReactantLiveUI.podspec; sourceTree = "<group>"; };
+		18E3CB401EAB86AC008F8B59 /* PlainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainTableView.swift; sourceTree = "<group>"; };
 		2224FE541E9FD3060094ADDC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		227B03631E9AD3EE000BC6D9 /* LayoutDistribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDistribution.swift; sourceTree = "<group>"; };
 		227B03651E9AD411000BC6D9 /* LayoutAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAlignment.swift; sourceTree = "<group>"; };
@@ -470,6 +471,7 @@
 				186C3D081E9ABBB00077C52F /* StackView.swift */,
 				186C3D091E9ABBB00077C52F /* TextField.swift */,
 				186C3D0A1E9ABBB00077C52F /* View.swift */,
+				18E3CB401EAB86AC008F8B59 /* PlainTableView.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -1172,7 +1174,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "OLD_PWD=$(pwd)\ncd $PROJECT_DIR/ReactantUI\nenv -i HOME=$HOME PATH=$PATH swift build\ncd \"$OLD_PWD\"\n$PROJECT_DIR/ReactantUI/.build/debug/reactant-ui > $PROJECT_DIR/ReactantPrototyping/GeneratedUI.swift";
+			shellScript = "pushd $PROJECT_DIR/ReactantUI\nenv -i HOME=$HOME PATH=$PATH swift build\npopd\n$PROJECT_DIR/ReactantUI/.build/debug/reactant-ui > $PROJECT_DIR/ReactantPrototyping/GeneratedUI.swift";
 		};
 		25A3365583A940DBEF28AC2C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

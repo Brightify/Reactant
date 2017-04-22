@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<UI xmlns="http://www.brightify.org"
+    xmlns:layout="http://www.brightify.org/layout"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.brightify.org ../schema/ReactantUI.xsd
+                        http://www.brightify.org/layout ../schema/Layout.xsd"
+    type="ExampleCell"
+    anonymous="true">
+
+    <Label
+        text="Test"
+        backgroundColor="cyan"
+        layout:fillHorizontally="super inset(20)"
+        layout:fillVertically="super inset(0)" />
+
+</UI>

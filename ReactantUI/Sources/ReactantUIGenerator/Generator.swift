@@ -47,6 +47,9 @@ public class UIGenerator: Generator {
             l("import ReactantLiveUI")
         }
         l()
+        if root.isAnonymous {
+            l("final class \(root.type): ViewBase<Void, Void>") { }
+        }
         l("extension \(root.type): ReactantUI" + (root.isRootView ? ", RootView" : "")) {
             if root.isRootView {
                 l("var edgesForExtendedLayout: UIRectEdge") {

@@ -9,6 +9,7 @@ extension Element {
         public let stylesName: String
         public let children: [UIElement]
         public let edgesForExtendedLayout: [RectEdge]
+        public let isAnonymous: Bool
 
         public var componentTypes: [String] {
             return [type] + Root.componentTypes(in: children)
@@ -19,6 +20,8 @@ extension Element {
                 switch element {
                 case let ref as ComponentReference:
                     return [ref.type]
+                case let tableView as PlainTableView:
+                    return [tableView.cellType]
                 case let container as UIContainer:
                     return componentTypes(in: container.children)
                 default:
@@ -34,7 +37,8 @@ extension Element {
                 styles: node["styles"].children.flatMap { try? $0.value() },
                 stylesName: node["styles"].element?.attribute(by: "name")?.text ?? "Styles",
                 children: View.deserialize(nodes: node.children),
-                edgesForExtendedLayout: (node.element?.attribute(by: "extend")?.text).map(RectEdge.parse) ?? [])
+                edgesForExtendedLayout: (node.element?.attribute(by: "extend")?.text).map(RectEdge.parse) ?? [],
+                isAnonymous: node.value(ofAttribute: "anonymous") ?? false)
         }
     }
 }

@@ -129,6 +129,8 @@ public class ReactantLiveUIManager {
             logError(liveUiError.message, in: path)
         case let tokenizationError as TokenizationError:
             logError(tokenizationError.message, in: path)
+        case let deserializationError as XMLDeserializationError:
+            logError(deserializationError.description, in: path)
         default:
             logError(error.localizedDescription, in: path)
         }

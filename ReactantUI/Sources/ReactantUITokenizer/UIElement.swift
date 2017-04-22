@@ -14,7 +14,7 @@ public protocol UIElement: Assignable {
     var initialization: String { get }
 
     #if ReactantRuntime
-    func initialize() -> UIView
+    func initialize() throws -> UIView
     #endif
 }
 

@@ -26,7 +26,11 @@
         layout:huggingPriority="low"
         contentMode="scaleAspectFill" />
 
-    <ScrollView layout:edges="super">
+    <PlainTableView
+        cell="ExampleCell"
+        layout:edges="super" />
+
+    <!-- <ScrollView layout:edges="super">
         <Container
             layout:edges="super"
             layout:width="super">
@@ -105,7 +109,7 @@
                 layout:below="id:neco offset(20)"
                 layout:fillHorizontally="super inset(20)"
                 layout:bottom="super inset(20)">
-                <Component type="ExampleView2" />
+                <Component type="ExampleCell" />
                 <Component type="ExampleView2" />
                 <Component type="ExampleView2" />
                 <Component type="ExampleView2" />
@@ -119,5 +123,5 @@
                 <Component type="ExampleView2" />
             </StackView>
         </Container>
-    </ScrollView>
+    </ScrollView> -->
 </UI>
