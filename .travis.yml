@@ -19,6 +19,7 @@ script:
     # - xctool -workspace Reactant.xcworkspace -scheme Reactant -sdk iphonesimulator run-tests
     # - travis_wait pod lib lint --allow-warnings
     - npm install docpress && ./node_modules/.bin/docpress build
+    - cp CNAME ./_docpress/CNAME
 
 after_success:
     - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm install git-update-ghpages && ./node_modules/.bin/git-update-ghpages -e; fi
