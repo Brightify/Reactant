@@ -19,7 +19,7 @@ Feel free to reach us on Slack! http://swiftkit.brightify.org/
 
 ## Installation
 
-Reactant is available through [CocoaPods](http://cocoapods.org). To install 
+Reactant is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your test target in your Podfile:
 
 ```ruby
@@ -55,7 +55,3 @@ This library uses semantic versioning. Until the version 1.0 API breaking change
 
 * [Quick](https://github.com/Quick/Quick)
 * [Nimble](https://github.com/Quick/Nimble)
-
-## License
-
-Reactant is available under the [MIT License](LICENSE).
