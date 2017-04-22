@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # references:
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
@@ -13,7 +12,7 @@ language: objective-c
 before_install:
     - nvm install 4
     # - gem install cocoapods -v '1.2.1'
-    - pod repo update --silent
+    # - pod repo update --silent
 
 script:
     # - (xcodebuild -workspace Reactant.xcworkspace -scheme Reactant -sdk iphonesimulator build-for-testing | egrep -A 3 "(error|warning|note):\ "; exit ${PIPESTATUS[0]})
