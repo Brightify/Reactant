@@ -12,6 +12,9 @@ public struct Element {
         "ActivityIndicator": ActivityIndicatorElement.self,
         "TextView": TextView.self,
         "PlainTableView": PlainTableView.self,
+        "DatePicker": DatePicker.self,
+        "NavigationBar": NavigationBar.self,
+        "PageControl": PageControl.self,
     ]
 
     public static let elementToUIKitNameMapping: [String: String] = [
@@ -26,6 +29,9 @@ public struct Element {
         "StackView": "UIStackView",
         "ActivityIndicator": "UIActivityIndicatorView",
         "TextView": "UITextView",
-        "PlainTableView": "UITableView"
+        "PlainTableView": "UITableView",
+        "DatePicker": "UIDatePicker",
+        "NavigationBar": "UINavigationBar",
+        "PageControl": "UIPageControl",
         ]
 }

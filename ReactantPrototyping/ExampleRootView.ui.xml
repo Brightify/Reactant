@@ -27,7 +27,25 @@
         layout:huggingPriority="low"
         contentMode="scaleAspectFill" />
 
-    <PlainTableView
+        <DatePicker
+            mode="countDownTimer"
+            layout:fillHorizontally="super inset(20)"
+            />
+
+            <NavigationBar
+                barTintColor="blue"
+                layout:fillHorizontally="super inset(20)"
+                layout:height="50"
+                />
+
+                <PageControl
+                    numberOfPages="10"
+                    pageIndicatorTintColor="red"
+                    layout:fillHorizontally="super inset(20)"
+                    layout:height="50"
+                    />
+
+    <!-- <PlainTableView
         cell="ExampleCell2"
         layout:edges="super">
         <cell anonymous="true">
@@ -37,7 +55,7 @@
                 layout:fillHorizontally="super inset(20)"
                 layout:fillVertically="super inset(0)" />
         </cell>
-    </PlainTableView>
+    </PlainTableView> -->
 
     <!-- <ScrollView layout:edges="super">
         <Container

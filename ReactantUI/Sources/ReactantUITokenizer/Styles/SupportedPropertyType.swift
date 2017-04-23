@@ -19,6 +19,8 @@ public enum SupportedPropertyType {
     case size
     case point
     case edgeInsets
+    case datePickerMode
+    case barStyle
 
     public func value(of text: String) -> SupportedPropertyValue? {
         switch self {
@@ -77,6 +79,10 @@ public enum SupportedPropertyType {
                 return .edgeInsets(EdgeInsets(top: parts[0], left: parts[1], bottom: parts[2], right: parts[3]))
             }
             return .edgeInsets(EdgeInsets(top: parts[1], left: parts[0], bottom: parts[1], right: parts[0]))
+        case .datePickerMode:
+            return DatePickerMode(rawValue: text).map(SupportedPropertyValue.datePickerMode)
+        case .barStyle:
+            return BarStyle(rawValue: text).map(SupportedPropertyValue.barStyle)
         }
     }
 }

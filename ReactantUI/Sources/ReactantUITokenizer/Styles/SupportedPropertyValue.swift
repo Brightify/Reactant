@@ -26,6 +26,8 @@ public enum SupportedPropertyValue {
     case size(Size)
     case point(Point)
     case edgeInsets(EdgeInsets)
+    case datePickerMode(DatePickerMode)
+    case barStyle(BarStyle)
 
     public var generated: String {
         switch self {
@@ -82,6 +84,10 @@ public enum SupportedPropertyValue {
             return "CGSize(width: \(size.width.cgFloat), height: \(size.height.cgFloat))"
         case .edgeInsets(let insets):
             return "UIEdgeInsetsMake(\(insets.top.cgFloat), \(insets.left.cgFloat), \(insets.bottom.cgFloat), \(insets.right.cgFloat))"
+        case .datePickerMode(let mode):
+            return "UIDatePickerMode.\(mode.rawValue)"
+        case .barStyle(let style):
+            return "UIBarStyle.\(style.rawValue)"
         }
     }
 
@@ -204,44 +210,27 @@ public enum SupportedPropertyValue {
             return CGSize(width: size.width.cgFloat, height: size.height.cgFloat)
         case .edgeInsets(let insets):
             return UIEdgeInsetsMake(insets.top.cgFloat, insets.left.cgFloat, insets.bottom.cgFloat, insets.right.cgFloat)
+        case .datePickerMode(let mode):
+            switch mode {
+            case .time:
+                return UIDatePickerMode.time.rawValue
+            case .date:
+                return UIDatePickerMode.date.rawValue
+            case .dateAndTime:
+                return UIDatePickerMode.dateAndTime.rawValue
+            case .countDownTimer:
+                return UIDatePickerMode.countDownTimer.rawValue
+            }
+        case .barStyle(let style):
+            switch style {
+            case .`default`:
+                return UIBarStyle.default.rawValue
+            case .black:
+                return UIBarStyle.black.rawValue
+            case .blackTranslucent:
+                return UIBarStyle.blackTranslucent.rawValue
+            }
         }
     }
     #endif
-}
-
-public struct Rect {
-    let origin: Point
-    let size: Size
-
-    init(origin: Point, size: Size) {
-        self.origin = origin
-        self.size = size
-    }
-
-    init(x: Float, y: Float, width: Float, height: Float) {
-        self.init(origin: Point(x: x, y: y), size: Size(width: width, height: height))
-    }
-}
-
-public struct Size {
-    let width: Float
-    let height: Float
-}
-
-public struct Point {
-    let x: Float
-    let y: Float
-}
-
-public struct EdgeInsets {
-    let top: Float
-    let left: Float
-    let bottom: Float
-    let right: Float
-}
-
-extension Float {
-    var cgFloat: CGFloat {
-        return CGFloat(self)
-    }
 }

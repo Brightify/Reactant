@@ -214,6 +214,16 @@
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterTableView.swift; path = Implementation/FooterTableView.swift; sourceTree = "<group>"; };
 		18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReactantLiveUI.podspec; sourceTree = "<group>"; };
 		18E3CB401EAB86AC008F8B59 /* PlainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainTableView.swift; sourceTree = "<group>"; };
+		22190C6E1EAD4D5F008B93D8 /* DatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
+		22190C701EAD4EAC008B93D8 /* Rect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rect.swift; sourceTree = "<group>"; };
+		22190C721EAD4EC1008B93D8 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		22190C741EAD4EE4008B93D8 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		22190C761EAD4F2B008B93D8 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
+		22190C781EAD4F68008B93D8 /* Float+CGFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Float+CGFloat.swift"; sourceTree = "<group>"; };
+		22190C7A1EAD54B1008B93D8 /* DatePickerMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerMode.swift; sourceTree = "<group>"; };
+		22190C7C1EAD5520008B93D8 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		22190C7D1EAD584E008B93D8 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		22190C7E1EAD596B008B93D8 /* BarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarStyle.swift; sourceTree = "<group>"; };
 		2224FE541E9FD3060094ADDC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		227B03631E9AD3EE000BC6D9 /* LayoutDistribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDistribution.swift; sourceTree = "<group>"; };
 		227B03651E9AD411000BC6D9 /* LayoutAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAlignment.swift; sourceTree = "<group>"; };
@@ -472,6 +482,9 @@
 				186C3D091E9ABBB00077C52F /* TextField.swift */,
 				186C3D0A1E9ABBB00077C52F /* View.swift */,
 				18E3CB401EAB86AC008F8B59 /* PlainTableView.swift */,
+				22190C6E1EAD4D5F008B93D8 /* DatePicker.swift */,
+				22190C7C1EAD5520008B93D8 /* NavigationBar.swift */,
+				22190C7D1EAD584E008B93D8 /* PageControl.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -526,6 +539,12 @@
 				186C3D241E9ABBB00077C52F /* TextAlignment.swift */,
 				227B03631E9AD3EE000BC6D9 /* LayoutDistribution.swift */,
 				227B03651E9AD411000BC6D9 /* LayoutAlignment.swift */,
+				22190C701EAD4EAC008B93D8 /* Rect.swift */,
+				22190C721EAD4EC1008B93D8 /* Point.swift */,
+				22190C741EAD4EE4008B93D8 /* Size.swift */,
+				22190C761EAD4F2B008B93D8 /* EdgeInsets.swift */,
+				22190C7A1EAD54B1008B93D8 /* DatePickerMode.swift */,
+				22190C7E1EAD596B008B93D8 /* BarStyle.swift */,
 			);
 			path = Values;
 			sourceTree = "<group>";
@@ -536,6 +555,7 @@
 				186C3D281E9ABBB00077C52F /* Dictionary+Merge.swift */,
 				186C3D291E9ABBB00077C52F /* StringUtils.swift */,
 				186C3D2A1E9ABBB00077C52F /* TokenizationError.swift */,
+				22190C781EAD4F68008B93D8 /* Float+CGFloat.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
