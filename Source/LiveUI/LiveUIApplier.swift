@@ -11,23 +11,23 @@ extension Array where Element == (String, UIView) {
 }
 
 public class ReactantLiveUIApplier {
-    let root: Element.Root
+    let definition: ComponentDefinition
     let instance: UIView
     let commonStyles: [Style]
 
     private var tempCounter: Int = 1
 
-    public init(root: Element.Root, commonStyles: [Style], instance: UIView) {
-        self.root = root
+    public init(definition: ComponentDefinition, commonStyles: [Style], instance: UIView) {
+        self.definition = definition
         self.commonStyles = commonStyles
         self.instance = instance
     }
 
     public func apply() throws {
         instance.subviews.forEach { $0.removeFromSuperview() }
-        let views = try root.children.flatMap { try apply(element: $0, superview: instance) }
+        let views = try definition.children.flatMap { try apply(element: $0, superview: instance) }
         tempCounter = 1
-        try root.children.forEach { try applyConstraints(views: views, element: $0, superview: instance) }
+        try definition.children.forEach { try applyConstraints(views: views, element: $0, superview: instance) }
     }
 
     private func apply(element: UIElement, superview: UIView) throws -> [(String, UIView)] {
@@ -53,7 +53,7 @@ public class ReactantLiveUIApplier {
 
 
 
-        for property in try (commonStyles + root.styles).resolveStyle(for: element) {
+        for property in try (commonStyles + definition.styles).resolveStyle(for: element) {
             try property.apply(property, view)
         }
 

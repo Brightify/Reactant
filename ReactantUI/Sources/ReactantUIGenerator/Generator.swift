@@ -30,12 +30,12 @@ public class Generator {
 }
 
 public class UIGenerator: Generator {
-    public let root: Element.Root
+    public let root: ComponentDefinition
 
     private var tempCounter: Int = 1
 
-    public init(root: Element.Root, localXmlPath: String) {
-        self.root = root
+    public init(definition: ComponentDefinition, localXmlPath: String) {
+        self.root = definition
         super.init(localXmlPath: localXmlPath)
     }
 
@@ -90,9 +90,6 @@ public class UIGenerator: Generator {
                     l("guard let target = self.target else { /* FIXME Should we fatalError here? */ return }")
                     l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
                     l("ReactantLiveUIManager.shared.loadStyles(ReactantCommonStyles.commonStyles)")
-                    for type in root.componentTypes {
-                        l("ReactantLiveUIManager.shared.register(component: \(type).self, named: \"\(type)\")")
-                    }
                     // This will register `self` to remove `deinit` from ViewBase
                     l("ReactantLiveUIManager.shared.register(target)")
                     l("#else")

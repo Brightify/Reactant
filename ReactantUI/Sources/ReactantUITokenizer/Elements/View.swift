@@ -4,7 +4,43 @@ import SWXMLHash
 import UIKit
 #endif
 
-public class View: XMLIndexerDeserializable, UIElement {
+public typealias XMLElement = SWXMLHash.XMLElement
+
+extension XMLElement {
+    func value<T: XMLElementDeserializable>() throws -> T {
+        return try T.deserialize(self)
+    }
+
+    var indexer: XMLIndexer {
+        return XMLIndexer(self)
+    }
+
+    var xmlChildren: [XMLElement] {
+        return children.map { $0 as? XMLElement }.flatMap { $0 }
+    }
+
+    func elements(named: String) -> [XMLElement] {
+        return xmlChildren.filter { $0.name == named }
+    }
+
+    func singleElement(named: String) throws -> XMLElement {
+        let allNamedElements = elements(named: named)
+        guard allNamedElements.count == 1 else {
+            throw TokenizationError(message: "Requires element named `\(named)` to be defined!")
+        }
+        return allNamedElements[0]
+    }
+
+    func singleOrNoElement(named: String) throws -> XMLElement? {
+        let allNamedElements = elements(named: named)
+        guard allNamedElements.count <= 1 else {
+            throw TokenizationError(message: "Maximum number of elements named `\(named)` is 1!")
+        }
+        return allNamedElements.first
+    }
+}
+
+public class View: XMLElementDeserializable, UIElement {
     class var availableProperties: [PropertyDescription] {
         return [
             assignable(name: "backgroundColor", type: .color(.uiColor)),
@@ -47,33 +83,28 @@ public class View: XMLIndexerDeserializable, UIElement {
     }
     #endif
 
-    public required init(node: XMLIndexer) throws {
+    public required init(node: XMLElement) throws {
         field = node.value(ofAttribute: "field")
         layout = try node.value()
         styles = (node.value(ofAttribute: "style") as String?)?
             .components(separatedBy: CharacterSet.whitespacesAndNewlines) ?? []
 
-        if let element = node.element {
-            properties = try View.deserializeSupportedProperties(properties: type(of: self).availableProperties, in: element)
-        } else {
-            properties = []
-        }
+        properties = try View.deserializeSupportedProperties(properties: type(of: self).availableProperties, in: node)
     }
 
-    public static func deserialize(_ node: XMLIndexer) throws -> Self {
+    public static func deserialize(_ node: XMLElement) throws -> Self {
         return try self.init(node: node)
     }
 
-    public static func deserialize(nodes: [XMLIndexer]) throws -> [UIElement] {
+    public static func deserialize(nodes: [XMLElement]) throws -> [UIElement] {
         return try nodes.flatMap { node -> UIElement? in
-            guard let elementName = node.element?.name else { return nil }
-            if let elementType = Element.elementMapping[elementName] {
+            if let elementType = Element.elementMapping[node.name] {
                 return try elementType.init(node: node)
-            } else if elementName == "styles" {
+            } else if node.name == "styles" {
                 // Intentionally ignored as these are parsed directly
                 return nil
             } else {
-                throw TokenizationError(message: "Unknown tag `\(elementName)`")
+                throw TokenizationError(message: "Unknown tag `\(node.name)`")
             }
         }
     }

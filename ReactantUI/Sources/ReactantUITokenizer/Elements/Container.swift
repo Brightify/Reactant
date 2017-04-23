@@ -8,8 +8,8 @@ import Reactant
 public class Container: View, UIContainer {
     public let children: [UIElement]
 
-    public required init(node: XMLIndexer) throws {
-        children = try View.deserialize(nodes: node.children)
+    public required init(node: SWXMLHash.XMLElement) throws {
+        children = try View.deserialize(nodes: node.xmlChildren)
 
         try super.init(node: node)
     }

@@ -13,21 +13,36 @@ import UIKit
 import Reactant
 #endif
 
-public class PlainTableView: View {
+public class PlainTableView: View, ComponentDefinitionContainer {
     override class var availableProperties: [PropertyDescription] {
         return super.availableProperties
     }
 
     public let cellType: String
+    public let cellDefinition: ComponentDefinition?
     public let exampleCount: Int
+
+    public var componentTypes: [String] {
+        return cellDefinition?.componentTypes ?? [cellType]
+    }
+
+    public var componentDefinitions: [ComponentDefinition] {
+        return cellDefinition?.componentDefinitions ?? []
+    }
 
     public override var initialization: String {
         return "PlainTableView<\(cellType)>()"
     }
 
-    public required init(node: XMLIndexer) throws {
+    public required init(node: SWXMLHash.XMLElement) throws {
         cellType = try node.value(ofAttribute: "cell")
         exampleCount = node.value(ofAttribute: "examples") ?? 5
+        if let cellElement = try node.singleOrNoElement(named: "cell") {
+            cellDefinition = try ComponentDefinition(node: cellElement, type: cellType)
+        } else {
+            cellDefinition = nil
+        }
+
         try super.init(node: node)
     }
 

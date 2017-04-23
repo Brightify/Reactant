@@ -27,8 +27,11 @@
         contentMode="scaleAspectFill" />
 
     <PlainTableView
-        cell="ExampleCell"
-        layout:edges="super" />
+        cell="ExampleCell2"
+        layout:edges="super">
+        <cell>
+        </cell>
+    </PlainTableView>
 
     <!-- <ScrollView layout:edges="super">
         <Container
@@ -106,9 +109,13 @@
             <StackView
                 axis="vertical"
                 backgroundColor="black"
-                layout:below="id:neco offset(20)"
+                layout:below="id:neco offset(0)"
                 layout:fillHorizontally="super inset(20)"
                 layout:bottom="super inset(20)">
+                <Component type="ExampleCell" />
+                <Component type="AnonymousTestView" anonymous="true" backgroundColor="white">
+                    <Label text="Anon" layout:edges="super inset(20)" />
+                </Component>
                 <Component type="ExampleCell" />
                 <Component type="ExampleView2" />
                 <Component type="ExampleView2" />

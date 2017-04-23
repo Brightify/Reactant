@@ -1,7 +1,7 @@
 import Foundation
 import SWXMLHash
 
-public struct Style: XMLIndexerDeserializable {
+public struct Style: XMLElementDeserializable {
     public let type: String
     // this is name with group
     public let name: String
@@ -10,36 +10,33 @@ public struct Style: XMLIndexerDeserializable {
     public let extend: [String]
     public let properties: [Property]
 
-    init(node: XMLIndexer, groupName: String? = nil) throws {
-        guard let element = node.element else {
-            throw TokenizationError(message: "Style has to be an element, was \(node).")
-        }
+    init(node: XMLElement, groupName: String? = nil) throws {
         let properties: [Property]
         let type: String
-        switch element.name {
+        switch node.name {
         case "ViewStyle":
-            properties = try View.deserializeSupportedProperties(properties: View.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: View.availableProperties, in: node)
             type = "View"
         case "ContainerStyle":
-            properties = try View.deserializeSupportedProperties(properties: Container.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: Container.availableProperties, in: node)
             type = "Container"
         case "LabelStyle":
-            properties = try View.deserializeSupportedProperties(properties: Label.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: Label.availableProperties, in: node)
             type = "Label"
         case "ButtonStyle":
-            properties = try View.deserializeSupportedProperties(properties: Button.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: Button.availableProperties, in: node)
             type = "Button"
         case "TextFieldStyle":
-            properties = try View.deserializeSupportedProperties(properties: TextField.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: TextField.availableProperties, in: node)
             type = "TextField"
         case "ImageViewStyle":
-            properties = try View.deserializeSupportedProperties(properties: ImageView.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: ImageView.availableProperties, in: node)
             type = "ImageView"
         case "StackViewStyle":
-            properties = try View.deserializeSupportedProperties(properties: StackView.availableProperties, in: element)
+            properties = try View.deserializeSupportedProperties(properties: StackView.availableProperties, in: node)
             type = "StackView"
         default:
-            throw TokenizationError(message: "Unknown style \(element.name). (\(node))")
+            throw TokenizationError(message: "Unknown style \(node.name). (\(node))")
         }
 
         self.type = type
@@ -55,7 +52,7 @@ public struct Style: XMLIndexerDeserializable {
         self.properties = properties
     }
 
-    public static func deserialize(_ node: XMLIndexer) throws -> Style {
+    public static func deserialize(_ node: XMLElement) throws -> Style {
         return try Style(node: node, groupName: nil)
     }
 }

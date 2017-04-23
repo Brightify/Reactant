@@ -1,7 +1,7 @@
 import Foundation
 import SWXMLHash
 
-public struct Layout: XMLIndexerDeserializable {
+public struct Layout: XMLElementDeserializable {
 
     static let nonConstraintables = ["layout:id",
                                      "layout:compressionPriority.vertical",
@@ -18,8 +18,8 @@ public struct Layout: XMLIndexerDeserializable {
     public let contentHuggingPriorityVertical: ConstraintPriority?
     public let constraints: [Constraint]
 
-    public static func deserialize(_ node: XMLIndexer) throws -> Layout {
-        let layoutAttributes = node.element?.allAttributes
+    public static func deserialize(_ node: XMLElement) throws -> Layout {
+        let layoutAttributes = node.allAttributes
             .filter { $0.key.hasPrefix("layout:") && nonConstraintables.contains($0.key) == false }
             .map { ($0.replacingOccurrences(of: "layout:", with: ""), $1) }
 
@@ -62,6 +62,6 @@ public struct Layout: XMLIndexerDeserializable {
             contentCompressionPriorityVertical: contentCompressionPriorityVertical,
             contentHuggingPriorityHorizontal: contentHuggingPriorityHorizontal,
             contentHuggingPriorityVertical: contentHuggingPriorityVertical,
-            constraints: layoutAttributes?.flatMap(Constraint.constraints) ?? [])
+            constraints: layoutAttributes.flatMap(Constraint.constraints))
     }
 }

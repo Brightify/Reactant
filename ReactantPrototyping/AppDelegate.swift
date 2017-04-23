@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.backgroundColor = .white
         window.rootViewController = ViewController()
         window.makeKeyAndVisible()
-        ReactantLiveUIManager.shared.setActiveWindow(window)
+        ReactantLiveUIManager.shared.activate(in: window, configuration: GeneratedReactantLiveUIConfiguration())
         return true
     }
 }
