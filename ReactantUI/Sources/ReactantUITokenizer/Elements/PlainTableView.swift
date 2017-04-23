@@ -26,6 +26,10 @@ public class PlainTableView: View, ComponentDefinitionContainer {
         return cellDefinition?.componentTypes ?? [cellType]
     }
 
+    public var isAnonymous: Bool {
+        return cellDefinition?.isAnonymous ?? false
+    }
+
     public var componentDefinitions: [ComponentDefinition] {
         return cellDefinition?.componentDefinitions ?? []
     }
@@ -48,11 +52,19 @@ public class PlainTableView: View, ComponentDefinitionContainer {
 
     #if ReactantRuntime
     public override func initialize() throws -> UIView {
-        guard let cellType = ReactantLiveUIManager.shared.type(named: cellType) else {
+        let createCell: () -> UIView
+        if isAnonymous {
+            guard let definition = cellDefinition else {
+                throw TokenizationError(message: "Component is marked as anonymous but no definition was provided! \(self.cellType)")
+            }
+            createCell = { try! AnonymousComponent(definition: definition) }
+        } else if let cellType = ReactantLiveUIManager.shared.type(named: cellType) {
+            createCell = cellType.init
+        } else {
             throw TokenizationError(message: "Couldn't find type mapping for \(self.cellType)")
         }
         return Reactant.PlainTableView<CellHack>(cellFactory: {
-            CellHack(wrapped: cellType.init())
+            CellHack(wrapped: createCell())
         }).with(state: .items(Array(repeating: (), count: exampleCount)))
     }
 
