@@ -58,14 +58,42 @@ public class View: XMLElementDeserializable, UIElement {
             assignable(name: "preservesSuperviewLayoutMargins", type: .bool),
             assignable(name: "tag", type: .integer),
             assignable(name: "canBecomeFocused", type: .bool),
-            assignable(name: "visibility", type: .visibility)
+            assignable(name: "visibility", type: .visibility),
+            assignable(name: "frame", type: .rect),
+            assignable(name: "bounds", type: .rect),
+            assignable(name: "layoutMargins", type: .edgeInsets)
             ] + nested(field: "layer", namespace: "layer", properties: View.layerAvailableProperties)
     }
 
     static let layerAvailableProperties: [PropertyDescription] = [
         assignable(name: "cornerRadius", type: .float),
         assignable(name: "borderWidth", type: .float),
-        assignable(name: "borderColor", type: .color(.cgColor))
+        assignable(name: "borderColor", type: .color(.cgColor)),
+        assignable(name: "opacity", type: .float),
+        assignable(name: "isHidden", type: .bool),
+        assignable(name: "masksToBounds", type: .bool),
+        assignable(name: "isDoubleSided", key: "doubleSided", type: .bool),
+        assignable(name: "backgroundColor", type: .color(.cgColor)),
+        assignable(name: "shadowOpacity", type: .float),
+        assignable(name: "shadowRadius", type: .float),
+        assignable(name: "shadowColor", type: .color(.cgColor)),
+        assignable(name: "allowsEdgeAntialiasing", type: .bool),
+        assignable(name: "allowsGroupOpacity", type: .bool),
+        assignable(name: "isOpaque", key: "opaque", type: .bool),
+        assignable(name: "isGeometryFlipped", key: "geometryFlipped", type: .bool),
+        assignable(name: "shouldRasterize", type: .bool),
+        assignable(name: "rasterizationScale", type: .float),
+        assignable(name: "contentsFormat", type: .string),
+        assignable(name: "contentsScale", type: .float),
+        assignable(name: "zPosition", type: .float),
+        assignable(name: "name", type: .string),
+        assignable(name: "contentsRect", type: .rect),
+        assignable(name: "contentsCenter", type: .rect),
+        assignable(name: "shadowOffset", type: .size),
+        assignable(name: "frame", type: .rect),
+        assignable(name: "bounds", type: .rect),
+        assignable(name: "position", type: .point),
+        assignable(name: "anchorPoint", type: .point),
     ]
 
     public let field: String?

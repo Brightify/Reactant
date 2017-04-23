@@ -15,6 +15,10 @@ public enum SupportedPropertyType {
     case activityIndicatorStyle
     case visibility
     case collapseAxis
+    case rect
+    case size
+    case point
+    case edgeInsets
 
     public func value(of text: String) -> SupportedPropertyValue? {
         switch self {
@@ -54,6 +58,25 @@ public enum SupportedPropertyType {
             return ViewVisibility(rawValue: text).map(SupportedPropertyValue.visibility)
         case .collapseAxis:
             return ViewCollapseAxis(rawValue: text).map(SupportedPropertyValue.collapseAxis)
+        case .rect:
+            let parts = text.components(separatedBy: ",").flatMap(Float.init)
+            guard parts.count == 4 else { return nil }
+            return .rect(Rect(x: parts[0], y: parts[1], width: parts[2], height: parts[3]))
+        case .point:
+            let parts = text.components(separatedBy: ",").flatMap(Float.init)
+            guard parts.count == 2 else { return nil }
+            return .point(Point(x: parts[0], y: parts[1]))
+        case .size:
+            let parts = text.components(separatedBy: ",").flatMap(Float.init)
+            guard parts.count == 2 else { return nil }
+            return .size(Size(width: parts[0], height: parts[1]))
+        case .edgeInsets:
+            let parts = text.components(separatedBy: ",").flatMap(Float.init)
+            guard parts.count == 4 || parts.count == 2 else { return nil }
+            if parts.count == 4 {
+                return .edgeInsets(EdgeInsets(top: parts[0], left: parts[1], bottom: parts[2], right: parts[3]))
+            }
+            return .edgeInsets(EdgeInsets(top: parts[1], left: parts[0], bottom: parts[1], right: parts[0]))
         }
     }
 }

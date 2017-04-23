@@ -19,6 +19,7 @@
 
     <ImageView
         layout:edges="super"
+        layoutMargins="10,10,10,10"
         image="falcon"
         visibility="visible"
         clipsToBounds="true"

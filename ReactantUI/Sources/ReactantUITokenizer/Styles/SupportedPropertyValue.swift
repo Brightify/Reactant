@@ -22,6 +22,10 @@ public enum SupportedPropertyValue {
     case activityIndicatorStyle(ActivityIndicatorStyle)
     case visibility(ViewVisibility)
     case collapseAxis(ViewCollapseAxis)
+    case rect(Rect)
+    case size(Size)
+    case point(Point)
+    case edgeInsets(EdgeInsets)
 
     public var generated: String {
         switch self {
@@ -70,6 +74,14 @@ public enum SupportedPropertyValue {
             return "Visibility.\(visibility.rawValue)"
         case .collapseAxis(let axis):
             return "CollapseAxis.\(axis.rawValue)"
+        case .rect(let rect):
+            return "CGRect(origin: CGPoint(x: \(rect.origin.x.cgFloat), y: \(rect.origin.y.cgFloat)), size: CGSize(width: \(rect.size.width.cgFloat), height: \(rect.size.height.cgFloat)))"
+        case .point(let point):
+            return "CGPoint(x: \(point.x.cgFloat), y: \(point.y.cgFloat))"
+        case .size(let size):
+            return "CGSize(width: \(size.width.cgFloat), height: \(size.height.cgFloat))"
+        case .edgeInsets(let insets):
+            return "UIEdgeInsetsMake(\(insets.top.cgFloat), \(insets.left.cgFloat), \(insets.bottom.cgFloat), \(insets.right.cgFloat))"
         }
     }
 
@@ -182,7 +194,54 @@ public enum SupportedPropertyValue {
             case .vertical:
                 return CollapseAxis.vertical.rawValue
             }
+        case .rect(let rect):
+            let origin = CGPoint(x: rect.origin.x.cgFloat, y: rect.origin.y.cgFloat)
+            let size = CGSize(width: rect.size.width.cgFloat, height: rect.size.height.cgFloat)
+            return CGRect(origin: origin, size: size)
+        case .point(let point):
+            return CGPoint(x: point.x.cgFloat, y: point.y.cgFloat)
+        case .size(let size):
+            return CGSize(width: size.width.cgFloat, height: size.height.cgFloat)
+        case .edgeInsets(let insets):
+            return UIEdgeInsetsMake(insets.top.cgFloat, insets.left.cgFloat, insets.bottom.cgFloat, insets.right.cgFloat)
         }
     }
     #endif
+}
+
+public struct Rect {
+    let origin: Point
+    let size: Size
+
+    init(origin: Point, size: Size) {
+        self.origin = origin
+        self.size = size
+    }
+
+    init(x: Float, y: Float, width: Float, height: Float) {
+        self.init(origin: Point(x: x, y: y), size: Size(width: width, height: height))
+    }
+}
+
+public struct Size {
+    let width: Float
+    let height: Float
+}
+
+public struct Point {
+    let x: Float
+    let y: Float
+}
+
+public struct EdgeInsets {
+    let top: Float
+    let left: Float
+    let bottom: Float
+    let right: Float
+}
+
+extension Float {
+    var cgFloat: CGFloat {
+        return CGFloat(self)
+    }
 }
