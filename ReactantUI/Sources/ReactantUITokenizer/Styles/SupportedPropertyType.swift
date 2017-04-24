@@ -10,6 +10,7 @@ public enum SupportedPropertyType {
     case layoutDistribution
     case layoutAlignment
     case float
+    case double
     case bool
     case rectEdge
     case activityIndicatorStyle
@@ -21,6 +22,9 @@ public enum SupportedPropertyType {
     case edgeInsets
     case datePickerMode
     case barStyle
+    case searchBarStyle
+    case visualEffect
+    case mapType
 
     public func value(of text: String) -> SupportedPropertyValue? {
         switch self {
@@ -50,6 +54,8 @@ public enum SupportedPropertyType {
             return LayoutAlignment(rawValue: text).map(SupportedPropertyValue.layoutAlignment)
         case .float:
             return Float(text).map(SupportedPropertyValue.float)
+        case .double:
+            return Double(text).map(SupportedPropertyValue.double)
         case .bool:
             return Bool(text).map(SupportedPropertyValue.bool)
         case .rectEdge:
@@ -83,6 +89,15 @@ public enum SupportedPropertyType {
             return DatePickerMode(rawValue: text).map(SupportedPropertyValue.datePickerMode)
         case .barStyle:
             return BarStyle(rawValue: text).map(SupportedPropertyValue.barStyle)
+        case .searchBarStyle:
+            return SearchBarStyle(rawValue: text).map(SupportedPropertyValue.searchBarStyle)
+        case .visualEffect:
+            let parts = text.components(separatedBy: ":")
+            guard parts.count == 2 && (parts.first == "blur" || parts.first == "vibrancy") else { return nil }
+            guard let effect = BlurEffect(rawValue: parts[1]) else { return nil }
+            return parts.first == "blur" ? .blurEffect(effect) : .vibrancyEffect(effect)
+        case .mapType:
+            return MapType(rawValue: text).map(SupportedPropertyValue.mapType)
         }
     }
 }

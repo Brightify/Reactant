@@ -18,6 +18,7 @@
 		18B4BF7D1E294E7A00D39EEA /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */; };
 		18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */; };
 		18BAF6F81E8C6B0C00C92AB9 /* ReactantLiveUI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 18BAF6F71E8C6B0C00C92AB9 /* ReactantLiveUI.podspec */; };
+		22190C921EADF1FD008B93D8 /* MapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22190C911EADF1FD008B93D8 /* MapType.swift */; };
 		2224FE551E9FD3060094ADDC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2224FE541E9FD3060094ADDC /* Localizable.strings */; };
 		2297B5741EA4C5DF00736CF1 /* CommonStyles.styles.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2297B5731EA4C5DF00736CF1 /* CommonStyles.styles.xml */; };
 		45444ED1E71FEFA1D6A84E08 /* Pods_ReactantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711603479E5441514316A7F3 /* Pods_ReactantTests.framework */; };
@@ -224,6 +225,21 @@
 		22190C7C1EAD5520008B93D8 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		22190C7D1EAD584E008B93D8 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		22190C7E1EAD596B008B93D8 /* BarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarStyle.swift; sourceTree = "<group>"; };
+		22190C7F1EADDC68008B93D8 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		22190C801EADDD1D008B93D8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		22190C811EADE0FD008B93D8 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		22190C831EADE117008B93D8 /* SearchBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarStyle.swift; sourceTree = "<group>"; };
+		22190C841EADE24D008B93D8 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
+		22190C851EADE4CF008B93D8 /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
+		22190C861EADE695008B93D8 /* Switch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
+		22190C871EADE741008B93D8 /* TabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		22190C891EADE842008B93D8 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		22190C8A1EADE8FE008B93D8 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
+		22190C8B1EADE9BE008B93D8 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
+		22190C8C1EADEFD9008B93D8 /* WebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		22190C8E1EADF141008B93D8 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		22190C901EADF1E0008B93D8 /* VisualEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffect.swift; sourceTree = "<group>"; };
+		22190C911EADF1FD008B93D8 /* MapType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapType.swift; sourceTree = "<group>"; };
 		2224FE541E9FD3060094ADDC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		227B03631E9AD3EE000BC6D9 /* LayoutDistribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDistribution.swift; sourceTree = "<group>"; };
 		227B03651E9AD411000BC6D9 /* LayoutAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAlignment.swift; sourceTree = "<group>"; };
@@ -485,6 +501,18 @@
 				22190C6E1EAD4D5F008B93D8 /* DatePicker.swift */,
 				22190C7C1EAD5520008B93D8 /* NavigationBar.swift */,
 				22190C7D1EAD584E008B93D8 /* PageControl.swift */,
+				22190C7F1EADDC68008B93D8 /* PickerView.swift */,
+				22190C801EADDD1D008B93D8 /* SearchBar.swift */,
+				22190C811EADE0FD008B93D8 /* SegmentedControl.swift */,
+				22190C841EADE24D008B93D8 /* Slider.swift */,
+				22190C851EADE4CF008B93D8 /* Stepper.swift */,
+				22190C861EADE695008B93D8 /* Switch.swift */,
+				22190C871EADE741008B93D8 /* TabBar.swift */,
+				22190C891EADE842008B93D8 /* TableView.swift */,
+				22190C8A1EADE8FE008B93D8 /* Toolbar.swift */,
+				22190C8B1EADE9BE008B93D8 /* VisualEffectView.swift */,
+				22190C8C1EADEFD9008B93D8 /* WebView.swift */,
+				22190C8E1EADF141008B93D8 /* MapView.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -545,6 +573,9 @@
 				22190C761EAD4F2B008B93D8 /* EdgeInsets.swift */,
 				22190C7A1EAD54B1008B93D8 /* DatePickerMode.swift */,
 				22190C7E1EAD596B008B93D8 /* BarStyle.swift */,
+				22190C831EADE117008B93D8 /* SearchBarStyle.swift */,
+				22190C901EADF1E0008B93D8 /* VisualEffect.swift */,
+				22190C911EADF1FD008B93D8 /* MapType.swift */,
 			);
 			path = Values;
 			sourceTree = "<group>";
@@ -1387,6 +1418,7 @@
 				DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */,
 				DC137FA71E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift in Sources */,
 				DC79F6AD1E54A5880033AE51 /* Properties+CollectionView.swift in Sources */,
+				22190C921EADF1FD008B93D8 /* MapType.swift in Sources */,
 				DC0785A11DD3ADB60063AB96 /* ComponentWithDelegate.swift in Sources */,
 				DCC98CE51E62CEFE0018757E /* InternalUtils.swift in Sources */,
 				DC69408E1E53595400C99380 /* Properties.swift in Sources */,

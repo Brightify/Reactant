@@ -15,6 +15,18 @@ public struct Element {
         "DatePicker": DatePicker.self,
         "NavigationBar": NavigationBar.self,
         "PageControl": PageControl.self,
+        "PickerView": PickerView.self,
+        "SearchBar": SearchBar.self,
+        "SegmentedControl": SegmentedControl.self,
+        "Slider": Slider.self,
+        "Stepper": Stepper.self,
+        "Switch": Switch.self,
+        "TabBar": TabBar.self,
+        "TableView": TableView.self,
+        "Toolbar": Toolbar.self,
+        "VisualEffectView": VisualEffectView.self,
+        "WebView": WebView.self,
+        "MapView": MapView.self,
     ]
 
     public static let elementToUIKitNameMapping: [String: String] = [
@@ -33,5 +45,17 @@ public struct Element {
         "DatePicker": "UIDatePicker",
         "NavigationBar": "UINavigationBar",
         "PageControl": "UIPageControl",
+        "PickerView": "UIPickerView",
+        "SearchBar": "UISearchBar",
+        "SegmentedControl": "UISegmentedControl",
+        "Slider": "UISlider",
+        "Stepper": "UIStepper",
+        "Switch": "UISwitch",
+        "TabBar": "UITabBar",
+        "TableView": "UITableView",
+        "Toolbar": "UIToolbar",
+        "VisualEffectView": "UIVisualEffectView",
+        "WebView": "WKWebView",
+        "MapView": "MKMapView"
         ]
 }

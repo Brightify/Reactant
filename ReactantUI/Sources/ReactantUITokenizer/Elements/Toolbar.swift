@@ -4,26 +4,22 @@ import SWXMLHash
     import UIKit
 #endif
 
-public class NavigationBar: View {
+public class Toolbar: View {
     override class var availableProperties: [PropertyDescription] {
         return [
-            assignable(name: "barTintColor", type: .color(.uiColor)),
-            assignable(name: "backIndicatorImage", type: .image),
-            assignable(name: "backIndicatorTransitionMaskImage", type: .image),
-            assignable(name: "shadowImage", type: .image),
             assignable(name: "isTranslucent", key: "translucent", type: .bool),
             assignable(name: "barStyle", type: .barStyle),
-            // FIXME add backgroundImage
+            assignable(name: "barTintColor", type: .color(.uiColor)),
             ] + super.availableProperties
     }
 
     public override var initialization: String {
-        return "UINavigationBar()"
+        return "UIToolbar()"
     }
 
     #if ReactantRuntime
     public override func initialize() -> UIView {
-    return UINavigationBar()
+    return UIToolbar()
     }
     #endif
 }

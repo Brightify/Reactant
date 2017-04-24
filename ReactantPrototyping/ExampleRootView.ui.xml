@@ -27,23 +27,48 @@
         layout:huggingPriority="low"
         contentMode="scaleAspectFill" />
 
+        <VisualEffectView
+            effect="blur:regular"
+            layout:edges="super" />
+
         <DatePicker
-            mode="countDownTimer"
+            layout:id="picker"
+            mode="time"
+            layout:top="super"
+            layout:fillHorizontally="super inset(20)"/>
+
+        <NavigationBar
+            barTintColor="blue"
             layout:fillHorizontally="super inset(20)"
-            />
+            layout:height="50" />
 
-            <NavigationBar
-                barTintColor="blue"
-                layout:fillHorizontally="super inset(20)"
-                layout:height="50"
-                />
+        <PageControl
+            numberOfPages="5"
+            pageIndicatorTintColor="red"
+            layout:fillHorizontally="super inset(20)"
+            layout:height="50" />
 
-                <PageControl
-                    numberOfPages="10"
-                    pageIndicatorTintColor="red"
-                    layout:fillHorizontally="super inset(20)"
-                    layout:height="50"
-                    />
+        <MapView
+            layout:id="map"
+            mapType="hybrid"
+            layout:fillHorizontally="super inset(20)"
+            layout:below="id:picker"
+            layout:height="200"/>
+
+        <Switch
+            layout:id="switch"
+            layout:below="id:map"/>
+        <Slider
+            layout:id="slider"
+            layout:below="id:switch"
+            layout:fillHorizontally="super inset(20)"/>
+        <Stepper
+            layout:below="id:slider"
+            value="10"
+            minimumValue="0"
+            maximumValue="100"
+            stepValue="5"
+            layout:fillHorizontally="super inset(20)"/>
 
     <!-- <PlainTableView
         cell="ExampleCell2"

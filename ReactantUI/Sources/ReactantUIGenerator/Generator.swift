@@ -45,6 +45,9 @@ public class UIGenerator: Generator {
             l("import Reactant")
             l("import SnapKit")
             l("import ReactantLiveUI")
+            // FIXME solve this
+            l("import WebKit")
+            l("import MapKit")
         }
         l()
         if root.isAnonymous {

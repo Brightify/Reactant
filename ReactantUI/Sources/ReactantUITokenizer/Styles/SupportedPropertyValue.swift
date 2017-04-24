@@ -1,6 +1,7 @@
 import Foundation
 #if ReactantRuntime
 import UIKit
+import MapKit
 import Reactant
 #endif
 
@@ -17,6 +18,7 @@ public enum SupportedPropertyValue {
     case layoutDistribution(LayoutDistribution)
     case layoutAlignment(LayoutAlignment)
     case float(Float)
+    case double(Double)
     case bool(Bool)
     case rectEdge([RectEdge])
     case activityIndicatorStyle(ActivityIndicatorStyle)
@@ -28,6 +30,10 @@ public enum SupportedPropertyValue {
     case edgeInsets(EdgeInsets)
     case datePickerMode(DatePickerMode)
     case barStyle(BarStyle)
+    case searchBarStyle(SearchBarStyle)
+    case blurEffect(BlurEffect)
+    case vibrancyEffect(BlurEffect)
+    case mapType(MapType)
 
     public var generated: String {
         switch self {
@@ -62,6 +68,8 @@ public enum SupportedPropertyValue {
             return vertical ? "UILayoutConstraintAxis.vertical" : "UILayoutConstraintAxis.horizontal"
         case .float(let value):
             return "\(value)"
+        case .double(let value):
+            return "\(value)"
         case .layoutDistribution(let distribution):
             return "UIStackViewDistribution.\(distribution.rawValue)"
         case .layoutAlignment(let alignment):
@@ -88,6 +96,14 @@ public enum SupportedPropertyValue {
             return "UIDatePickerMode.\(mode.rawValue)"
         case .barStyle(let style):
             return "UIBarStyle.\(style.rawValue)"
+        case .searchBarStyle(let style):
+            return "UISearchBarStyle.\(style.rawValue)"
+        case .blurEffect(let effect):
+            return "UIBlurEffect(style: .\(effect.rawValue))"
+        case .vibrancyEffect(let effect):
+            return "UIVibrancyEffect(blurEffect: .\(effect.rawValue))"
+        case .mapType(let type):
+            return "MKMapType.\(type.rawValue)"
         }
     }
 
@@ -140,6 +156,8 @@ public enum SupportedPropertyValue {
         case .layoutAxis(let vertical):
             return vertical ? UILayoutConstraintAxis.vertical.rawValue : UILayoutConstraintAxis.horizontal.rawValue
         case .float(let value):
+            return value
+        case .double(let value):
             return value
         case .layoutDistribution(let distribution):
             switch distribution {
@@ -229,6 +247,73 @@ public enum SupportedPropertyValue {
                 return UIBarStyle.black.rawValue
             case .blackTranslucent:
                 return UIBarStyle.blackTranslucent.rawValue
+            }
+        case .searchBarStyle(let style):
+            switch style {
+            case .`default`:
+                return UISearchBarStyle.default.rawValue
+            case .minimal:
+                return UISearchBarStyle.minimal.rawValue
+            case .prominent:
+                return UISearchBarStyle.prominent.rawValue
+            }
+        // FIXME refactor
+        case .blurEffect(let effect):
+            switch effect {
+            case .extraLight:
+                return UIBlurEffect(style: .extraLight)
+            case .light:
+                return UIBlurEffect(style: .light)
+            case .dark:
+                return UIBlurEffect(style: .dark)
+            case .prominent:
+                if #available(iOS 10.0, *) {
+                    return UIBlurEffect(style: .prominent)
+                } else {
+                    // FIXME check default values
+                    return UIBlurEffect(style: .light)
+                }
+            case .regular:
+                if #available(iOS 10.0, *) {
+                    return UIBlurEffect(style: .regular)
+                } else {
+                    return UIBlurEffect(style: .light)
+                }
+            }
+        case .vibrancyEffect(let effect):
+            switch effect {
+            case .extraLight:
+                return UIVibrancyEffect(blurEffect: UIBlurEffect(style: .extraLight))
+            case .light:
+                return UIVibrancyEffect(blurEffect: UIBlurEffect(style: .light))
+            case .dark:
+                return UIVibrancyEffect(blurEffect: UIBlurEffect(style: .dark))
+            case .prominent:
+                if #available(iOS 10.0, *) {
+                    return UIVibrancyEffect(blurEffect: UIBlurEffect(style: .prominent))
+                } else {
+                    // FIXME check default values
+                    return UIVibrancyEffect(blurEffect: UIBlurEffect(style: .light))
+                }
+            case .regular:
+                if #available(iOS 10.0, *) {
+                    return UIVibrancyEffect(blurEffect: UIBlurEffect(style: .regular))
+                } else {
+                    return UIVibrancyEffect(blurEffect: UIBlurEffect(style: .light))
+                }
+            }
+        case .mapType(let type):
+            switch type {
+            case .standard:
+                return MKMapType.standard.rawValue
+            case .satellite:
+                return MKMapType.satellite.rawValue
+            case .hybrid:
+                return MKMapType.hybrid.rawValue
+            case .satelliteFlyover:
+                return MKMapType.satelliteFlyover.rawValue
+            case .hybridFlyover:
+                return MKMapType.hybridFlyover.rawValue
             }
         }
     }
