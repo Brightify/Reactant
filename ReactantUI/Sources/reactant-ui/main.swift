@@ -26,12 +26,6 @@ for (index, path) in styleFiles.enumerated() {
 
 // FIXME create generator
 
-print("final class ReactantCommonStyles {\n\tstatic let commonStyles: [String] = [")
-for path in stylePaths {
-    print("     \"\(path)\",")
-}
-print("\t]\n}")
-
 var componentTypes: [String] = []
 for (index, path) in uiFiles.enumerated() {
     print("// Generated from \(path)")
@@ -47,6 +41,13 @@ for (index, path) in uiFiles.enumerated() {
 }
 print("struct GeneratedReactantLiveUIConfiguration: ReactantLiveUIConfiguration {")
 print("    let rootDir = \"\(Path.current)\"")
+
+print("    let commonStylePaths: [String] = [")
+for path in stylePaths {
+print("        \"\(path)\",")
+}
+print("    ]")
+
 print("    let componentTypes: [String: UIView.Type] = [")
 for type in Set(componentTypes) {
 print("        \"\(type)\": \(type).self,")

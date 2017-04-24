@@ -70,18 +70,6 @@
             stepValue="5"
             layout:fillHorizontally="super inset(20)"/>
 
-    <!-- <PlainTableView
-        cell="ExampleCell2"
-        layout:edges="super">
-        <cell anonymous="true">
-            <Label
-                text="Test"
-                backgroundColor="cyan"
-                layout:fillHorizontally="super inset(20)"
-                layout:fillVertically="super inset(0)" />
-        </cell>
-    </PlainTableView> -->
-
     <!-- <ScrollView layout:edges="super">
         <Container
             layout:edges="super"

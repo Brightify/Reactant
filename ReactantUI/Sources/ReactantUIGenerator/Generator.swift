@@ -81,6 +81,10 @@ public class UIGenerator: Generator {
                     l("return \"\(localXmlPath)\"")
                 }
                 l()
+                l("var typeName: String") {
+                    l("return \"\(root.type)\"")
+                }
+                l()
                 l("let constraints = \(root.type).LayoutContainer()")
                 l()
                 l("private weak var target: \(root.type)?")
@@ -92,7 +96,6 @@ public class UIGenerator: Generator {
                 l("func setupReactantUI()") {
                     l("guard let target = self.target else { /* FIXME Should we fatalError here? */ return }")
                     l("#if (arch(i386) || arch(x86_64)) && os(iOS)")
-                    l("ReactantLiveUIManager.shared.loadStyles(ReactantCommonStyles.commonStyles)")
                     // This will register `self` to remove `deinit` from ViewBase
                     l("ReactantLiveUIManager.shared.register(target)")
                     l("#else")

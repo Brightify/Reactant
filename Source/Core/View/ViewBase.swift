@@ -17,6 +17,8 @@ public protocol ReactantUI: class {
 public protocol ReactantUIContainer: class {
     var xmlPath: String { get }
 
+    var typeName: String { get }
+
     func setupReactantUI()
 
     func destroyReactantUI()

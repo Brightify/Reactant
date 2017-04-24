@@ -33,17 +33,7 @@ public class ComponentReference: View, ComponentDefinitionContainer {
 
     #if ReactantRuntime
     public override func initialize() throws -> UIView {
-        if isAnonymous {
-            guard let definition = definition else {
-                throw TokenizationError(message: "Component is marked as anonymous but no definition was provided! \(self.type)")
-            }
-            return try AnonymousComponent(definition: definition)
-        }
-
-        guard let type = ReactantLiveUIManager.shared.type(named: type) else {
-            throw TokenizationError(message: "Couldn't find type mapping for \(self.type)")
-        }
-        return type.init()
+        return try ReactantLiveUIManager.shared.componentInstantiation(named: type)()
     }
     #endif
 }
