@@ -19,7 +19,7 @@ end
 
 target 'ReactantTests' do
     shared
-    
+
     pod 'Quick', '~> 1.0'
     pod 'Nimble', '~> 5.0'
 end
@@ -28,6 +28,4 @@ target 'ReactantPrototyping' do
     shared
 
     pod 'Reactant', :path => './'
-    pod 'ReactantLiveUI', :path => './', :configuration => 'Debug'
-    pod 'KZFileWatchers', :configuration => 'Debug'
 end
