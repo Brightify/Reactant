@@ -35,6 +35,51 @@ public struct Style: XMLElementDeserializable {
         case "StackViewStyle":
             properties = try View.deserializeSupportedProperties(properties: StackView.availableProperties, in: node)
             type = "StackView"
+        case "ActivityIndicatorStyle":
+            properties = try View.deserializeSupportedProperties(properties: ActivityIndicatorElement.availableProperties, in: node)
+            type = "ActivityIndicator"
+        case "DatePickerStyle":
+            properties = try View.deserializeSupportedProperties(properties: DatePicker.availableProperties, in: node)
+            type = "DatePicker"
+        case "NavigationBarStyle":
+            properties = try View.deserializeSupportedProperties(properties: NavigationBar.availableProperties, in: node)
+            type = "NavigationBar"
+        case "PageControlStyle":
+            properties = try View.deserializeSupportedProperties(properties: PageControl.availableProperties, in: node)
+            type = "PageControl"
+        case "PickerViewStyle":
+            properties = try View.deserializeSupportedProperties(properties: PickerView.availableProperties, in: node)
+            type = "PickerView"
+        case "SearchBarStyle":
+            properties = try View.deserializeSupportedProperties(properties: SearchBar.availableProperties, in: node)
+            type = "SearchBar"
+        case "SegmentedControlStyle":
+            properties = try View.deserializeSupportedProperties(properties: SegmentedControl.availableProperties, in: node)
+            type = "SegmentedControl"
+        case "SliderStyle":
+            properties = try View.deserializeSupportedProperties(properties: Slider.availableProperties, in: node)
+            type = "Slider"
+        case "StepperStyle":
+            properties = try View.deserializeSupportedProperties(properties: Stepper.availableProperties, in: node)
+            type = "Stepper"
+        case "SwitchStyle":
+            properties = try View.deserializeSupportedProperties(properties: Switch.availableProperties, in: node)
+            type = "Switch"
+        case "TableViewStyle":
+            properties = try View.deserializeSupportedProperties(properties: TableView.availableProperties, in: node)
+            type = "TableView"
+        case "ToolbarStyle":
+            properties = try View.deserializeSupportedProperties(properties: Toolbar.availableProperties, in: node)
+            type = "Toolbar"
+        case "VisualEffectViewStyle":
+            properties = try View.deserializeSupportedProperties(properties: VisualEffectView.availableProperties, in: node)
+            type = "VisualEffectView"
+        case "WebViewStyle":
+            properties = try View.deserializeSupportedProperties(properties: WebView.availableProperties, in: node)
+            type = "WebView"
+        case "MapViewStyle":
+            properties = try View.deserializeSupportedProperties(properties: MapView.availableProperties, in: node)
+            type = "MapView"
         default:
             throw TokenizationError(message: "Unknown style \(node.name). (\(node))")
         }

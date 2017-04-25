@@ -28,7 +28,7 @@ public class Slider: View {
 
     #if ReactantRuntime
     public override func initialize() -> UIView {
-    return UISlider()
+        return UISlider()
     }
     #endif
 }

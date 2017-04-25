@@ -147,6 +147,146 @@
                     </xs:complexContent>
                 </xs:complexType>
             </xs:element>
+
+            <xs:element name="DatePicker" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="datePickerStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="NavigationBar" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="navigationBarStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="PageControl" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="pageControlStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="PickerView" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="SearchBar" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="searchBarStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="SegmentedControl" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="segmentedControlStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Slider" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="sliderStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Stepper" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="stepperStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Switch" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="switchStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="TabBar" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="tabBarStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Toolbar" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="toolbarStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="VisualEffectView" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="visualEffectViewStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="WebView" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="webViewStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="MapView" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="viewType">
+                            <xs:attributeGroup ref="mapViewStyleAttributes" />
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+
         </xs:choice>
     </xs:group>
 
@@ -200,6 +340,89 @@
                     <xs:attributeGroup ref="stackViewStyleAttributes" />
                 </xs:complexType>
             </xs:element>
+            <xs:element name="ActivityIndicatorStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="activityIndicatorStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DatePickerStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="datePickerStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="NavigationBarStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="navigationBarStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PageControlStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="pageControlStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PickerViewStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SearchBarStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="searchBarStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SegmentedControlStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="segmentedControlStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SliderStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="sliderStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="StepperStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="stepperStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SwitchStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="switchStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ToolbarStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="toolbarStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="VisualEffectViewStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="visualEffectViewStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="WebViewStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="webViewStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="MapViewStyle">
+                <xs:complexType>
+                    <xs:attributeGroup ref="styleAttributes" />
+                    <xs:attributeGroup ref="mapViewStyleAttributes" />
+                </xs:complexType>
+            </xs:element>
         </xs:choice>
         <xs:attribute name="name" type="xs:string" />
     </xs:complexType>
@@ -213,9 +436,52 @@
         <xs:attribute name="backgroundColor" type="color"/>
         <xs:attribute name="clipsToBounds" type="xs:boolean"/>
         <xs:attribute name="isUserInteractionEnabled" type="xs:boolean"/>
-        <xs:attribute name="cornerRadius" type="xs:decimal"/>
-        <xs:attribute name="borderWidth" type="xs:decimal"/>
-        <xs:attribute name="borderColor" type="color"/>
+        <xs:attribute name="tintColor" type="color"/>
+        <xs:attribute name="isHidden" type="xs:boolean"/>
+        <xs:attribute name="alpha" type="xs:decimal"/>
+        <xs:attribute name="isOpaque" type="xs:boolean"/>
+        <xs:attribute name="isMultipleTouchEnabled" type="xs:boolean"/>
+        <xs:attribute name="isExclusiveTouch" type="xs:boolean"/>
+        <xs:attribute name="autoresizesSubviews" type="xs:boolean"/>
+        <xs:attribute name="contentMode" type="contentMode"/>
+        <xs:attribute name="translatesAutoresizingMaskIntoConstraints" type="xs:boolean"/>
+        <xs:attribute name="tag" type="xs:decimal"/>
+        <xs:attribute name="canBecomeFocused" type="xs:boolean"/>
+        <xs:attribute name="visibility" type="visibility"/>
+        <xs:attribute name="frame" type="xs:string"/>
+        <xs:attribute name="bounds" type="xs:string"/>
+        <xs:attribute name="layoutMargins" type="xs:string"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="layerStyleAttributes">
+        <xs:attribute name="layer.cornerRadius" type="xs:decimal"/>
+        <xs:attribute name="layer.borderWidth" type="xs:decimal"/>
+        <xs:attribute name="layer.opacity" type="xs:decimal"/>
+        <xs:attribute name="layer.isHidden" type="xs:boolean"/>
+        <xs:attribute name="layer.masksToBounds" type="xs:boolean"/>
+        <xs:attribute name="layer.isDoubleSided" type="xs:boolean"/>
+        <xs:attribute name="layer.backgroundColor" type="color"/>
+        <xs:attribute name="layer.shadowOpacity" type="xs:decimal"/>
+        <xs:attribute name="layer.shadowRadius" type="xs:decimal"/>
+        <xs:attribute name="layer.shadowColor" type="color"/>
+        <xs:attribute name="layer.allowsEdgeAntialiasing" type="xs:boolean"/>
+        <xs:attribute name="layer.allowsGroupOpacity" type="xs:boolean"/>
+        <xs:attribute name="layer.isOpaque" type="xs:boolean"/>
+        <xs:attribute name="layer.isGeometryFlipped" type="xs:boolean"/>
+        <xs:attribute name="layer.shouldRasterize" type="xs:boolean"/>
+        <xs:attribute name="layer.rasterizationScale" type="xs:decimal"/>
+        <xs:attribute name="layer.contentsFormat" type="xs:string"/>
+        <xs:attribute name="layer.contentsScale" type="xs:decimal"/>
+        <xs:attribute name="layer.zPosition" type="xs:decimal"/>
+        <xs:attribute name="layer.name" type="xs:string"/>
+        <xs:attribute name="layer.contentsRect" type="xs:string"/>
+        <xs:attribute name="layer.contentsCenter" type="xs:string"/>
+        <xs:attribute name="layer.shadowOffset" type="xs:string"/>
+        <xs:attribute name="layer.frame" type="xs:string"/>
+        <xs:attribute name="layer.bounds" type="xs:string"/>
+        <xs:attribute name="layer.position" type="xs:string"/>
+        <xs:attribute name="layer.anchorPoint" type="xs:string"/>
+
     </xs:attributeGroup>
 
     <xs:attributeGroup name="stackViewStyleAttributes">
@@ -224,14 +490,153 @@
         <xs:attribute name="distribution" type="layoutDistribution" />
         <xs:attribute name="alignment" type="layoutAlignment" />
         <xs:attribute name="spacing" type="xs:decimal" />
+        <xs:attribute name="isBaselineRelativeArrangement" type="xs:boolean" />
+        <xs:attribute name="isLayoutMarginsRelativeArrangement" type="xs:boolean" />
+    </xs:attributeGroup>
+    
+    <xs:attributeGroup name="datePickerStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="minuteInterval" type="xs:decimal"/>
+        <xs:attribute name="mode" type="datePickerMode"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="navigationBarStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="barTintColor" type="color"/>
+        <xs:attribute name="isTranslucent" type="xs:boolean"/>
+        <xs:attribute name="barStyle" type="barStyle"/>
+        <xs:attribute name="backIndicatorImage" type="xs:string"/>
+        <xs:attribute name="backIndicatorTransitionMaskImage" type="xs:string"/>
+        <xs:attribute name="shadowImage" type="xs:string"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="pageControlStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="currentPage" type="xs:decimal"/>
+        <xs:attribute name="numberOfPages" type="xs:decimal"/>
+        <xs:attribute name="hidesForSinglePage" type="xs:boolean"/>
+        <xs:attribute name="pageIndicatorTintColor" type="xs:string"/>
+        <xs:attribute name="currentPageIndicatorTintColor" type="xs:string"/>
+        <xs:attribute name="defersCurrentPageDisplay" type="xs:boolean"/>
+    </xs:attributeGroup>
+    
+    <xs:attributeGroup name="searchBarStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="text" type="xs:string"/>
+        <xs:attribute name="placeholder" type="xs:string"/>
+        <xs:attribute name="prompt" type="xs:string"/>
+        <xs:attribute name="barTintColor" type="xs:string"/>
+        <xs:attribute name="barStyle" type="barStyle"/>
+        <xs:attribute name="searchBarStyle" type="searchBarStyle"/>
+        <xs:attribute name="isTranslucent" type="xs:boolean"/>
+        <xs:attribute name="showsBookmarkButton" type="xs:boolean"/>
+        <xs:attribute name="showsCancelButton" type="xs:boolean"/>
+        <xs:attribute name="showsSearchResultsButton" type="xs:boolean"/>
+        <xs:attribute name="isSearchResultsButtonSelected" type="xs:boolean"/>
+        <xs:attribute name="selectedScopeButtonIndex" type="xs:decimal"/>
+        <xs:attribute name="showsScopeBar" type="xs:boolean"/>
+        <xs:attribute name="backgroundImage" type="xs:string"/>
+        <xs:attribute name="scopeBarBackgroundImage" type="xs:string"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="segmentedControlStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="selectedSegmentIndex" type="xs:decimal"/>
+        <xs:attribute name="isMomentary" type="xs:boolean"/>
+        <xs:attribute name="apportionsSegmentWidthsByContent" type="xs:boolean"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="sliderStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="value" type="xs:decimal"/>
+        <xs:attribute name="minimumValue" type="xs:decimal"/>
+        <xs:attribute name="maximumValue" type="xs:decimal"/>
+        <xs:attribute name="isContinuous" type="xs:boolean"/>
+        <xs:attribute name="minimumValueImage" type="xs:string"/>
+        <xs:attribute name="maximumValueImage" type="xs:string"/>
+        <xs:attribute name="minimumTrackTintColor" type="color"/>
+        <xs:attribute name="currentMinimumTrackImage" type="xs:string"/>
+        <xs:attribute name="currentMaximumTrackImage" type="xs:string"/>
+        <xs:attribute name="thumbTintColor" type="color"/>
+        <xs:attribute name="currentThumbImage" type="xs:string"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="stepperStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="value" type="xs:decimal"/>
+        <xs:attribute name="minimumValue" type="xs:decimal"/>
+        <xs:attribute name="maximumValue" type="xs:decimal"/>
+        <xs:attribute name="stepValue" type="xs:decimal"/>
+        <xs:attribute name="isContinuous" type="xs:boolean"/>
+        <xs:attribute name="autorepeat" type="xs:boolean"/>
+        <xs:attribute name="wraps" type="xs:boolean"/>
+    </xs:attributeGroup>
+    
+    <xs:attributeGroup name="switchStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="isOn" type="xs:boolean"/>
+        <xs:attribute name="onTintColor" type="color"/>
+        <xs:attribute name="thumbTintColor" type="color"/>
+        <xs:attribute name="onImage" type="xs:string"/>
+        <xs:attribute name="offImage" type="xs:string"/>
+    </xs:attributeGroup>
+    
+    <xs:attributeGroup name="tabBarStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="barTintColor" type="color"/>
+        <xs:attribute name="isTranslucent" type="xs:boolean"/>
+        <xs:attribute name="barStyle" type="barStyle"/>
+        <xs:attribute name="itemSpacing" type="xs:decimal"/>
+        <xs:attribute name="itemWidth" type="xs:decimal"/>
+        <xs:attribute name="backgroundImage" type="xs:string"/>
+        <xs:attribute name="shadowImage" type="xs:string"/>
+        <xs:attribute name="selectionIndicatorImage" type="xs:string"/>
+    </xs:attributeGroup>
+    
+    <xs:attributeGroup name="toolbarStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="barTintColor" type="color"/>
+        <xs:attribute name="isTranslucent" type="xs:boolean"/>
+        <xs:attribute name="barStyle" type="barStyle"/>
+    </xs:attributeGroup>
+    
+    <xs:attributeGroup name="visualEffectViewStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="effect" type="xs:string"/>
+    </xs:attributeGroup>
+
+    <xs:attributeGroup name="webViewStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="allowsMagnification" type="xs:boolean"/>
+        <xs:attribute name="magnification" type="xs:decimal"/>
+        <xs:attribute name="allowsBackForwardNavigationGestures" type="xs:boolean"/>
+    </xs:attributeGroup>
+    
+    <xs:attributeGroup name="mapViewStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
+        <xs:attribute name="mapType" type="xs:boolean"/>
+        <xs:attribute name="isZoomEnabled" type="xs:boolean"/>
+        <xs:attribute name="isScrollEnabled" type="xs:boolean"/>
+        <xs:attribute name="isPitchEnabled" type="xs:boolean"/>
+        <xs:attribute name="isRotateEnabled" type="xs:boolean"/>
+        <xs:attribute name="showsPointsOfInterest" type="xs:boolean"/>
+        <xs:attribute name="showsBuildings" type="xs:boolean"/>
+        <xs:attribute name="showsCompass" type="xs:boolean"/>
+        <xs:attribute name="showsZoomControls" type="xs:boolean"/>
+        <xs:attribute name="showsScale" type="xs:boolean"/>
+        <xs:attribute name="showsTraffic" type="xs:boolean"/>
+        <xs:attribute name="showsUserLocation" type="xs:boolean"/>
+        <xs:attribute name="isUserLocationVisible" type="xs:boolean"/>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="imageStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
         <xs:attributeGroup ref="viewStyleAttributes" />
         <xs:attribute name="contentMode" type="contentMode"/>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="textStyleAttributes">
+        <xs:attributeGroup ref="viewStyleAttributes" />
         <xs:attribute name="textColor" type="color"/>
         <xs:attribute name="font" type="xs:string"/>
         <xs:attribute name="numberOfLines" type="xs:nonNegativeInteger" />
@@ -241,6 +646,7 @@
     <xs:attributeGroup name="textFieldStyleAttributes">
         <xs:attributeGroup ref="viewStyleAttributes" />
         <xs:attributeGroup ref="textStyleAttributes" />
+        <xs:attribute name="textContainerInset" type="xs:string"/>
     </xs:attributeGroup>
 
     <xs:attributeGroup name="textViewStyleAttributes">
@@ -288,6 +694,39 @@
             <xs:enumeration value="left"/>
             <xs:enumeration value="scaleAspectFill"/>
             <xs:enumeration value="scaleAspectFit"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="visibility">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="visible"/>
+            <xs:enumeration value="hidden"/>
+            <xs:enumeration value="collapsed"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="barStyle">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="default"/>
+            <xs:enumeration value="black"/>
+            <xs:enumeration value="blackTranslucent"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="searchBarStyle">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="default"/>
+            <xs:enumeration value="minimal"/>
+            <xs:enumeration value="prominent"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="datePickerMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="date"/>
+            <xs:enumeration value="time"/>
+            <xs:enumeration value="dateAndTime"/>
+            <xs:enumeration value="countDownTimer"/>
         </xs:restriction>
     </xs:simpleType>
 

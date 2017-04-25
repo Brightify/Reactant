@@ -11,8 +11,7 @@ public class TextView: View {
             assignable(name: "font", type: .font),
             assignable(name: "textColor", type: .color(.uiColor)),
             assignable(name: "textAlignment", type: .textAlignment),
-            // add edge inset
-//            assignable(name: "textContainerInset", type: .rectEdge)
+            assignable(name: "textContainerInset", type: .edgeInsets),
             ] + super.availableProperties
     }
 
