@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/Reactant.svg?style=flat)](http://cocoapods.org/pods/Reactant)
 [![License](https://img.shields.io/cocoapods/l/Reactant.svg?style=flat)](http://cocoapods.org/pods/Reactant)
 [![Platform](https://img.shields.io/cocoapods/p/Reactant.svg?style=flat)](http://cocoapods.org/pods/Reactant)
+[![Apps](https://img.shields.io/cocoapods/at/Reactant.svg?style=flat)](http://cocoapods.org/pods/Reactant)
 [![Slack Status](http://swiftkit.brightify.org/badge.svg)](http://swiftkit.brightify.org)
 
 Reactant is a framework and architecture for developing iOS apps quickly without writing code all over again. It is based on ReactiveX and originally was inspired by React Native.
