@@ -5,142 +5,6 @@ import KZFileWatchers
 import SWXMLHash
 import RxSwift
 
-public class Watcher {
-    public struct Error: Swift.Error {
-        public let message: String
-    }
-
-    private let subject = PublishSubject<String>()
-    private let path: String
-    private let queue: DispatchQueue
-    private let source: DispatchSourceFileSystemObject
-
-    init(path: String, events: DispatchSource.FileSystemEvent = .write, queue: DispatchQueue = DispatchQueue.main) throws {
-        self.path = path
-        self.queue = queue
-
-        let handle = open(path , O_EVTONLY)
-        guard handle != -1 else {
-            throw Error(message: "Failed to open file")
-        }
-
-        source = DispatchSource.makeFileSystemObjectSource(fileDescriptor: handle, eventMask: events, queue: queue)
-        source.setEventHandler { [subject] in
-            subject.onNext(path)
-        }
-
-        source.setCancelHandler { [subject] in
-            close(handle)
-            subject.onCompleted()
-        }
-    }
-
-    func watch() -> Observable<String> {
-        source.resume()
-        return subject
-    }
-
-    deinit {
-        source.cancel()
-    }
-}
-
-class AnonymousComponent: ViewBase<Void, Void> {
-    fileprivate let _typeName: String
-    fileprivate let _xmlPath: String
-    fileprivate var _properties: [String: Any] = [:]
-    fileprivate var _selectionStyle: UITableViewCellSelectionStyle = .default
-    fileprivate var _focusStyle: UITableViewCellFocusStyle = .default
-
-    init(typeName: String, xmlPath: String) {
-        _xmlPath = xmlPath
-        _typeName = typeName
-        super.init()
-    }
-
-    override func conforms(to aProtocol: Protocol) -> Bool {
-        return super.conforms(to: aProtocol)
-    }
-
-    override func value(forUndefinedKey key: String) -> Any? {
-        return _properties[key]
-    }
-
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        _properties[key] = value
-    }
-
-    override var description: String {
-        return "AnonymousComponent: \(_typeName)"
-    }
-}
-
-extension AnonymousComponent: ReactantUI {
-    var rui: AnonymousComponent.RUIContainer {
-        return Reactant.associatedObject(self, key: &AnonymousComponent.RUIContainer.associatedObjectKey) {
-            return AnonymousComponent.RUIContainer(target: self)
-        }
-    }
-
-    var __rui: Reactant.ReactantUIContainer {
-        return rui
-    }
-
-    final class RUIContainer: Reactant.ReactantUIContainer {
-        fileprivate static var associatedObjectKey = 0 as UInt8
-
-        var xmlPath: String {
-            return target?._xmlPath ?? "n/a"
-        }
-
-        var typeName: String {
-            return target?._typeName ?? "n/a"
-        }
-
-        private weak var target: AnonymousComponent?
-
-        fileprivate init(target: AnonymousComponent) {
-            self.target = target
-        }
-
-        func setupReactantUI() {
-            guard let target = self.target else { /* FIXME Should we fatalError here? */ return }
-            ReactantLiveUIManager.shared.register(target)
-        }
-
-        func destroyReactantUI() {
-            guard let target = self.target else { /* FIXME Should we fatalError here? */ return }
-            ReactantLiveUIManager.shared.unregister(target)
-        }
-    }
-}
-
-extension AnonymousComponent: RootView {
-    var edgesForExtendedLayout: UIRectEdge {
-        return ReactantLiveUIManager.shared.extendedEdges(of: self)
-    }
-}
-
-extension AnonymousComponent: TableViewCell {
-    public var selectionStyle: UITableViewCellSelectionStyle {
-        get {
-            return _selectionStyle
-        }
-        set {
-            _selectionStyle = newValue
-        }
-    }
-
-    public var focusStyle: UITableViewCellFocusStyle {
-        get {
-            return _focusStyle
-        }
-        set {
-            _focusStyle = newValue
-        }
-    }
-}
-
 private struct WeakUIBox {
     weak var ui: ReactantUI?
     /// Workaround for non-existent class existentials
@@ -159,209 +23,11 @@ extension WeakUIBox: Equatable {
     }
 }
 
-class DebugAlertController: UIAlertController {
-    override var canBecomeFirstResponder: Bool {
-        return true
-    }
-
-    override var keyCommands: [UIKeyCommand]? {
-        return [
-            UIKeyCommand(input: "d", modifierFlags: .command, action: #selector(close), discoverabilityTitle: "Close Debug Menu")
-        ]
-    }
-
-    func close() {
-        dismiss(animated: true)
-    }
-}
-
-final class PreviewListController: ControllerBase<Void, PreviewListRootView> {
-    struct Dependencies {
-        let manager: ReactantLiveUIManager
-    }
-    struct Reactions {
-        let preview: (String) -> Void
-        let close: () -> Void
-    }
-
-    private let dependencies: Dependencies
-    private let reactions: Reactions
-
-    private let closeButton = UIBarButtonItem(title: "Close", style: .done)
-
-    init(dependencies: Dependencies, reactions: Reactions) {
-        self.dependencies = dependencies
-        self.reactions = reactions
-
-        super.init(title: "Select view to preview")
-    }
-
-    override func afterInit() {
-        navigationItem.leftBarButtonItem = closeButton
-        closeButton.rx.tap
-            .subscribe(onNext: reactions.close)
-            .addDisposableTo(lifetimeDisposeBag)
-    }
-
-    override func update() {
-        let items = dependencies.manager.allRegisteredDefinitionNames
-        rootView.componentState = .items(items)
-    }
-
-    override func act(on action: PlainTableViewAction<PreviewListCell>) {
-        switch action {
-        case .refresh:
-            dependencies.manager.reloadFiles()
-            invalidate()
-        case .selected(let path):
-            reactions.preview(path)
-        case .rowAction:
-            break
-        }
-    }
-}
-
-final class PreviewListRootView: Reactant.PlainTableView<PreviewListCell>, RootView {
-    override var edgesForExtendedLayout: UIRectEdge {
-        return .all
-    }
-
-    init() {
-        super.init(
-            cellFactory: PreviewListCell.init,
-            reloadable: true)
-
-        rowHeight = UITableViewAutomaticDimension
-        backgroundColor = .white
-    }
-}
-
-final class PreviewListCell: ViewBase<String, Void> {
-    private let name = UILabel()
-
-    override func update() {
-        name.text = componentState
-    }
-
-    override func loadView() {
-        children(
-            name
-        )
-
-        name.numberOfLines = 0
-    }
-
-    override func setupConstraints() {
-        name.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(20)
-            make.trailing.equalToSuperview().inset(20)
-            make.top.greaterThanOrEqualToSuperview().inset(10)
-            make.top.lessThanOrEqualToSuperview().inset(10)
-            make.centerY.equalToSuperview()
-        }
-    }
-}
-
-final class PreviewController: ControllerBase<Void, PreviewRootView> {
-    struct Parameters {
-        let typeName: String
-        let view: UIView
-    }
-
-    private let parameters: Parameters
-
-    init(parameters: Parameters) {
-        self.parameters = parameters
-
-        super.init(title: "Previewing: \(parameters.typeName)",
-                   root: PreviewRootView(previewing: parameters.view))
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.hidesBarsOnTap = true
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.hidesBarsOnTap = false
-    }
-}
-
-final class PreviewRootView: ViewBase<Void, Void>, RootView {
-    private let previewing: UIView
-
-    var edgesForExtendedLayout: UIRectEdge {
-        return (previewing as? RootView)?.edgesForExtendedLayout ?? []
-    }
-
-    init(previewing: UIView) {
-        self.previewing = previewing
-
-        super.init()
-    }
-
-    override func loadView() {
-        children(
-            previewing
-        )
-    }
-
-    override func setupConstraints() {
-        previewing.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.top.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().priority(UILayoutPriorityDefaultHigh)
-        }
-    }
-}
-
-extension UIWindow {
-    override open var canBecomeFirstResponder: Bool {
-        return true
-    }
-
-    override open var keyCommands: [UIKeyCommand]? {
-        return [
-            UIKeyCommand(input: "d", modifierFlags: .command, action: #selector(openDebugMenu), discoverabilityTitle: "Open Debug Menu")
-        ]
-    }
-
-    func openDebugMenu() {
-        let controller = DebugAlertController(title: "Debug menu", message: "Reactant Live UI", preferredStyle: .actionSheet)
-
-        let reloadFiles = UIAlertAction(title: "Reload files", style: .default) { _ in
-            ReactantLiveUIManager.shared.reloadFiles()
-        }
-        controller.addAction(reloadFiles)
-        let preview = UIAlertAction(title: "Preview ..", style: .default) { [weak self] _ in
-            guard let controller = self?.rootViewController else { return }
-            ReactantLiveUIManager.shared.presentPreview(in: controller)
-        }
-        controller.addAction(preview)
-        controller.addAction(UIAlertAction(title: "Close menu", style: UIAlertActionStyle.cancel))
-
-        controller.popoverPresentationController?.sourceView = self
-        controller.popoverPresentationController?.sourceRect = bounds
-
-
-        self.rootViewController?.present(controller: controller)
-    }
-
-}
-
-public protocol ReactantLiveUIConfiguration {
-    var rootDir: String { get }
-    var componentTypes: [String: UIView.Type] { get }
-    var commonStylePaths: [String] { get }
-}
-
 public class ReactantLiveUIManager {
     public static let shared = ReactantLiveUIManager()
 
     private var configuration: ReactantLiveUIConfiguration?
-    private var watchers: [String: (watcher: Watcher, views: [WeakUIBox])] = [:]
+    private var watchers: [String: (watcher: Watcher, viewCount: Int)] = [:]
     private var extendedEdges: [String: UIRectEdge] = [:]
     private var runtimeDefinitions: [String: String] = [:]
     private var definitions: [String: (definition: ComponentDefinition, loaded: Date, xmlPath: String)] = [:] {
@@ -517,7 +183,7 @@ public class ReactantLiveUIManager {
                 return
             }
 
-            watchers[xmlPath] = (watcher: watcher, views: [WeakUIBox(ui: view)])
+            watchers[xmlPath] = (watcher: watcher, viewCount: 1)
 
             watcher.watch()
                 .startWith(xmlPath)
@@ -535,7 +201,7 @@ public class ReactantLiveUIManager {
 
 
         } else {
-            watchers[xmlPath]?.views.append(WeakUIBox(ui: view))
+            watchers[xmlPath]?.viewCount += 1
         }
 
         observeDefinition(for: view.__rui.typeName)
@@ -557,10 +223,10 @@ public class ReactantLiveUIManager {
             logError("ERROR: attempting to remove not registered UI", in: xmlPath)
             return
         }
-        if watcher.views.count == 1 {
+        if watcher.viewCount == 1 {
             watchers.removeValue(forKey: xmlPath)
-        } else if let index = watchers[xmlPath]?.views.index(where: { $0.ui === ui }) {
-            watchers[xmlPath]?.views.remove(at: index)
+        } else {
+            watchers[xmlPath]?.viewCount -= 1
         }
     }
 
@@ -577,13 +243,10 @@ public class ReactantLiveUIManager {
                 case .updated(let data):
                     let xml = SWXMLHash.parse(data)
                     do {
+                        var oldStyles = self.styles
                         let group: StyleGroup = try xml["styleGroup"].value()
-                        self.styles[group.name] = group
-                        // FIXME What to do with this?
-//                        self.watchers.values.flatMap { $0.views }.forEach {
-//                            guard let view = $0.view, let ui = $0.ui else { return }
-//                            self.readAndApply(view: view, ui: ui)
-//                        }
+                        oldStyles[group.name] = group
+                        self.styles = oldStyles
                     } catch let error {
                         self.logError(error, in: path)
                     }
@@ -624,16 +287,6 @@ public class ReactantLiveUIManager {
             errorView.componentState.removeValue(forKey: path)
         }
     }
-
-//    private func readAndApply(path xmlPath: String, views: [UIView]) {
-//        let url = URL(fileURLWithPath: xmlPath)
-//        guard let data = try? Data(contentsOf: url, options: .uncached) else {
-//            logError("ERROR: file not found", in: xmlPath)
-//            return
-//        }
-//
-//        apply(data: data, views: views, xmlPath: xmlPath)
-//    }
 
     private func register(definitions: [ComponentDefinition], in file: String) {
         var currentDefinitions = self.definitions
