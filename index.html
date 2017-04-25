@@ -21,33 +21,59 @@
                 </li>
                 <li class="heading-item -depth-2"><a class="hlink link-installation" href="#installation">Installation</a>
                 </li>
+                <li class="heading-item -depth-2"><a class="hlink link-usage" href="#usage">Usage</a>
+                </li>
+                <li class="heading-item -depth-2"><a class="hlink link-versioning" href="#versioning">Versioning</a>
+                </li>
                 <li class="heading-item -depth-2"><a class="hlink link-author" href="#author">Author</a>
                 </li>
-                <li class="heading-item -depth-2"><a class="hlink link-license" href="#license">License</a>
+                <li class="heading-item -depth-2"><a class="hlink link-used-libraries" href="#used-libraries">Used libraries</a>
+                  <ul class="heading-list -depth-2">
+                    <li class="heading-item -depth-3"><a class="hlink link-tests" href="#tests">Tests</a>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </li>
-            <li class="menu-item -level-1"><a class="link title  link-architecture" href="architecture.html">Architecture</a>
+            <li class="menu-item -level-1 -parent"><span class="title">Getting started</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedquickstart" href="getting-started/quickstart.html">Quick-start guide</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedarchitecture" href="getting-started/architecture.html">Architecture</a>
+                </li>
+              </ul>
             </li>
-            <li class="menu-item -level-1"><a class="link title  link-component" href="component.html">Component</a>
+            <li class="menu-item -level-1 -parent"><span class="title">Parts</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-partscomponent" href="parts/component.html">Component</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partscontroller" href="parts/controller.html">Controller</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsrootview" href="parts/rootview.html">RootView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partswireframe" href="parts/wireframe.html">Wireframe</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partstableview" href="parts/tableview.html">TableView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partscollectionview" href="parts/collectionview.html">CollectionView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsvalidation" href="parts/validation.html">Validation</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsactivityindicator" href="parts/activityindicator.html">ActivityIndicator</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsproperties" href="parts/properties.html">Properties</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsstaticmap" href="parts/staticmap.html">StaticMap</a>
+                </li>
+              </ul>
             </li>
-            <li class="menu-item -level-1"><a class="link title  link-controller" href="controller.html">Controller</a>
-            </li>
-            <li class="menu-item -level-1"><a class="link title  link-rootview" href="rootview.html">RootView</a>
-            </li>
-            <li class="menu-item -level-1"><a class="link title  link-wireframe" href="wireframe.html">Wireframe</a>
-            </li>
-            <li class="menu-item -level-1"><a class="link title  link-tableview" href="tableview.html">TableView</a>
-            </li>
-            <li class="menu-item -level-1"><a class="link title  link-collectionview" href="collectionview.html">CollectionView</a>
-            </li>
-            <li class="menu-item -level-1"><a class="link title  link-validation" href="validation.html">Validation</a>
-            </li>
-            <li class="menu-item -level-1"><a class="link title  link-activityindicator" href="activityindicator.html">ActivityIndicator</a>
-            </li>
-            <li class="menu-item -level-1"><a class="link title  link-properties" href="properties.html">Properties</a>
-            </li>
-            <li class="menu-item -level-1"><a class="link title  link-staticmap" href="staticmap.html">StaticMap</a>
+            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="reactant-ui/introduction.html">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="reactant-ui/live-reload.html">Live Reload</a>
+                </li>
+              </ul>
             </li>
           </ul>
         </li>
@@ -75,23 +101,40 @@
 <p>Feel free to reach us on Slack! <a href="http://swiftkit.brightify.org/">http://swiftkit.brightify.org/</a></p>
 <h2 id="installation">Installation</h2>
 <p>Reactant is available through <a href="http://cocoapods.org">CocoaPods</a>. To install
-it, simply add the following line to your Podfile:</p>
+it, simply add the following line to your test target in your Podfile:</p>
 <pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant&apos;</span>
 <span class="pl-c"># these subspecs are optional, but recommended</span>
 pod <span class="pl-s">&apos;Reactant/TableView&apos;</span>
 pod <span class="pl-s">&apos;Reactant/CollectionView&apos;</span>
 pod <span class="pl-s">&apos;Reactant/Validation&apos;</span>
 </code></pre>
+<h2 id="usage">Usage</h2>
+<h2 id="versioning">Versioning</h2>
+<p>This library uses semantic versioning. Until the version 1.0 API breaking changes may occur even in minor versions. We consider the version 0.6 to be prerelease, which means that API should be stable but is not tested yet in a real project. After that testing, we make needed adjustments and bump the version to 1.0 (first release).</p>
 <h2 id="author">Author</h2>
-<p>Tadeas Kriz, <a href="mailto:tadeas@brightify.org">tadeas@brightify.org</a></p>
-<p>Filip Dolnik, <a href="mailto:filip@brightify.org">filip@brightify.org</a></p>
-<p>Matous Hybl, <a href="mailto:matous@brightify.org">matous@brightify.org</a></p>
-<h2 id="license">License</h2>
-<p>Reactant is available under the MIT license. See the LICENSE file for more info.</p>
+<ul>
+<li>Tadeas Kriz, <a href="mailto:tadeas@brightify.org">tadeas@brightify.org</a></li>
+<li>Matous Hybl, <a href="mailto:matous@brightify.org">matous@brightify.org</a></li>
+<li>Filip Doln&#xED;k, <a href="mailto:filip@brightify.org">filip@brightify.org</a></li>
+</ul>
+<h2 id="used-libraries">Used libraries</h2>
+<ul>
+<li><a href="https://github.com/antitypical/Result">Result</a></li>
+<li><a href="https://github.com/SnapKit/SnapKit">SnapKit</a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxSwift</a></li>
+<li><a href="https://github.com/ReactiveX/RxSwift">RxCocoa</a></li>
+<li><a href="https://github.com/RxSwiftCommunity/RxOptional">RxOptional</a></li>
+<li><a href="https://github.com/RxSwiftCommunity/RxDataSources">RxDataSources</a></li>
+</ul>
+<h3 id="tests">Tests</h3>
+<ul>
+<li><a href="https://github.com/Quick/Quick">Quick</a></li>
+<li><a href="https://github.com/Quick/Nimble">Nimble</a></li>
+</ul>
 
         </div>
         <div class="footer-nav">
-          <div class="right"><a href="architecture.html"><span class="label">Next: </span><span class="title">Architecture</span></a></div>
+          <div class="right"><a href="getting-started/quickstart.html"><span class="label">Next: </span><span class="title">Quick-start guide</span></a></div>
         </div>
       </div>
     </div>

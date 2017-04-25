@@ -23,82 +23,154 @@
             "id": "installation"
           },
           {
+            "title": "Usage",
+            "depth": 2,
+            "id": "usage"
+          },
+          {
+            "title": "Versioning",
+            "depth": 2,
+            "id": "versioning"
+          },
+          {
             "title": "Author",
             "depth": 2,
             "id": "author"
           },
           {
-            "title": "License",
+            "title": "Used libraries",
             "depth": 2,
-            "id": "license"
+            "id": "used-libraries",
+            "headings": [
+              {
+                "title": "Tests",
+                "depth": 3,
+                "id": "tests"
+              }
+            ]
           }
         ]
       },
       {
-        "title": "Architecture",
-        "source": "docs/architecture.md",
-        "url": "architecture.html",
-        "slug": "architecture"
+        "title": "Getting started",
+        "sections": [
+          {
+            "title": "Quick-start guide",
+            "source": "docs/getting-started/quickstart.md",
+            "url": "getting-started/quickstart.html",
+            "slug": "getting-startedquickstart"
+          },
+          {
+            "title": "Architecture",
+            "source": "docs/getting-started/architecture.md",
+            "url": "getting-started/architecture.html",
+            "slug": "getting-startedarchitecture"
+          }
+        ]
       },
       {
-        "title": "Component",
-        "source": "docs/component.md",
-        "url": "component.html",
-        "slug": "component"
+        "title": "Parts",
+        "sections": [
+          {
+            "title": "Component",
+            "source": "docs/parts/component.md",
+            "url": "parts/component.html",
+            "slug": "partscomponent"
+          },
+          {
+            "title": "Controller",
+            "source": "docs/parts/controller.md",
+            "url": "parts/controller.html",
+            "slug": "partscontroller"
+          },
+          {
+            "title": "RootView",
+            "source": "docs/parts/rootview.md",
+            "url": "parts/rootview.html",
+            "slug": "partsrootview"
+          },
+          {
+            "title": "Wireframe",
+            "source": "docs/parts/wireframe.md",
+            "url": "parts/wireframe.html",
+            "slug": "partswireframe"
+          },
+          {
+            "title": "TableView",
+            "source": "docs/parts/tableview.md",
+            "url": "parts/tableview.html",
+            "slug": "partstableview"
+          },
+          {
+            "title": "CollectionView",
+            "source": "docs/parts/collectionview.md",
+            "url": "parts/collectionview.html",
+            "slug": "partscollectionview"
+          },
+          {
+            "title": "Validation",
+            "source": "docs/parts/validation.md",
+            "url": "parts/validation.html",
+            "slug": "partsvalidation"
+          },
+          {
+            "title": "ActivityIndicator",
+            "source": "docs/parts/activityindicator.md",
+            "url": "parts/activityindicator.html",
+            "slug": "partsactivityindicator"
+          },
+          {
+            "title": "Properties",
+            "source": "docs/parts/properties.md",
+            "url": "parts/properties.html",
+            "slug": "partsproperties"
+          },
+          {
+            "title": "StaticMap",
+            "source": "docs/parts/staticmap.md",
+            "url": "parts/staticmap.html",
+            "slug": "partsstaticmap"
+          }
+        ]
       },
       {
-        "title": "Controller",
-        "source": "docs/controller.md",
-        "url": "controller.html",
-        "slug": "controller"
-      },
-      {
-        "title": "RootView",
-        "source": "docs/rootview.md",
-        "url": "rootview.html",
-        "slug": "rootview"
-      },
-      {
-        "title": "Wireframe",
-        "source": "docs/wireframe.md",
-        "url": "wireframe.html",
-        "slug": "wireframe"
-      },
-      {
-        "title": "TableView",
-        "source": "docs/tableview.md",
-        "url": "tableview.html",
-        "slug": "tableview"
-      },
-      {
-        "title": "CollectionView",
-        "source": "docs/collectionview.md",
-        "url": "collectionview.html",
-        "slug": "collectionview"
-      },
-      {
-        "title": "Validation",
-        "source": "docs/validation.md",
-        "url": "validation.html",
-        "slug": "validation"
-      },
-      {
-        "title": "ActivityIndicator",
-        "source": "docs/activityindicator.md",
-        "url": "activityindicator.html",
-        "slug": "activityindicator"
-      },
-      {
-        "title": "Properties",
-        "source": "docs/properties.md",
-        "url": "properties.html",
-        "slug": "properties"
-      },
-      {
-        "title": "StaticMap",
-        "source": "docs/staticmap.md",
-        "url": "staticmap.html",
-        "slug": "staticmap"
+        "title": "Reactant UI",
+        "sections": [
+          {
+            "title": "Introduction",
+            "source": "docs/reactant-ui/introduction.md",
+            "url": "reactant-ui/introduction.html",
+            "slug": "reactant-uiintroduction",
+            "headings": [
+              {
+                "title": "Important Note",
+                "depth": 2,
+                "id": "important-note"
+              },
+              {
+                "title": "What is Reactant UI",
+                "depth": 2,
+                "id": "what-is-reactant-ui"
+              },
+              {
+                "title": "Why",
+                "depth": 2,
+                "id": "why"
+              },
+              {
+                "title": "Installation",
+                "depth": 2,
+                "id": "installation"
+              }
+            ]
+          },
+          {
+            "title": "Live Reload",
+            "source": "docs/reactant-ui/live-reload.md",
+            "url": "reactant-ui/live-reload.html",
+            "slug": "reactant-uilive-reload"
+          }
+        ]
       }
     ]
   },
@@ -125,97 +197,157 @@
           "id": "installation"
         },
         {
+          "title": "Usage",
+          "depth": 2,
+          "id": "usage"
+        },
+        {
+          "title": "Versioning",
+          "depth": 2,
+          "id": "versioning"
+        },
+        {
           "title": "Author",
           "depth": 2,
           "id": "author"
         },
         {
-          "title": "License",
+          "title": "Used libraries",
           "depth": 2,
-          "id": "license"
+          "id": "used-libraries",
+          "headings": [
+            {
+              "title": "Tests",
+              "depth": 3,
+              "id": "tests"
+            }
+          ]
         }
       ]
     },
-    "architecture.html": {
-      "source": "docs/architecture.md",
+    "getting-started/quickstart.html": {
+      "source": "docs/getting-started/quickstart.md",
+      "title": "Quick-start guide - Reactant",
+      "pageTitle": "Quick-start guide",
+      "slug": "getting-startedquickstart"
+    },
+    "getting-started/architecture.html": {
+      "source": "docs/getting-started/architecture.md",
       "title": "Architecture - Reactant",
       "pageTitle": "Architecture",
-      "slug": "architecture"
+      "slug": "getting-startedarchitecture"
     },
-    "component.html": {
-      "source": "docs/component.md",
+    "parts/component.html": {
+      "source": "docs/parts/component.md",
       "title": "Component - Reactant",
       "pageTitle": "Component",
-      "slug": "component"
+      "slug": "partscomponent"
     },
-    "controller.html": {
-      "source": "docs/controller.md",
+    "parts/controller.html": {
+      "source": "docs/parts/controller.md",
       "title": "Controller - Reactant",
       "pageTitle": "Controller",
-      "slug": "controller"
+      "slug": "partscontroller"
     },
-    "rootview.html": {
-      "source": "docs/rootview.md",
+    "parts/rootview.html": {
+      "source": "docs/parts/rootview.md",
       "title": "RootView - Reactant",
       "pageTitle": "RootView",
-      "slug": "rootview"
+      "slug": "partsrootview"
     },
-    "wireframe.html": {
-      "source": "docs/wireframe.md",
+    "parts/wireframe.html": {
+      "source": "docs/parts/wireframe.md",
       "title": "Wireframe - Reactant",
       "pageTitle": "Wireframe",
-      "slug": "wireframe"
+      "slug": "partswireframe"
     },
-    "tableview.html": {
-      "source": "docs/tableview.md",
+    "parts/tableview.html": {
+      "source": "docs/parts/tableview.md",
       "title": "TableView - Reactant",
       "pageTitle": "TableView",
-      "slug": "tableview"
+      "slug": "partstableview"
     },
-    "collectionview.html": {
-      "source": "docs/collectionview.md",
+    "parts/collectionview.html": {
+      "source": "docs/parts/collectionview.md",
       "title": "CollectionView - Reactant",
       "pageTitle": "CollectionView",
-      "slug": "collectionview"
+      "slug": "partscollectionview"
     },
-    "validation.html": {
-      "source": "docs/validation.md",
+    "parts/validation.html": {
+      "source": "docs/parts/validation.md",
       "title": "Validation - Reactant",
       "pageTitle": "Validation",
-      "slug": "validation"
+      "slug": "partsvalidation"
     },
-    "activityindicator.html": {
-      "source": "docs/activityindicator.md",
+    "parts/activityindicator.html": {
+      "source": "docs/parts/activityindicator.md",
       "title": "ActivityIndicator - Reactant",
       "pageTitle": "ActivityIndicator",
-      "slug": "activityindicator"
+      "slug": "partsactivityindicator"
     },
-    "properties.html": {
-      "source": "docs/properties.md",
+    "parts/properties.html": {
+      "source": "docs/parts/properties.md",
       "title": "Properties - Reactant",
       "pageTitle": "Properties",
-      "slug": "properties"
+      "slug": "partsproperties"
     },
-    "staticmap.html": {
-      "source": "docs/staticmap.md",
+    "parts/staticmap.html": {
+      "source": "docs/parts/staticmap.md",
       "title": "StaticMap - Reactant",
       "pageTitle": "StaticMap",
-      "slug": "staticmap"
+      "slug": "partsstaticmap"
+    },
+    "reactant-ui/introduction.html": {
+      "source": "docs/reactant-ui/introduction.md",
+      "title": "Introduction - Reactant",
+      "pageTitle": "Introduction",
+      "slug": "reactant-uiintroduction",
+      "headings": [
+        {
+          "title": "Important Note",
+          "depth": 2,
+          "id": "important-note"
+        },
+        {
+          "title": "What is Reactant UI",
+          "depth": 2,
+          "id": "what-is-reactant-ui"
+        },
+        {
+          "title": "Why",
+          "depth": 2,
+          "id": "why"
+        },
+        {
+          "title": "Installation",
+          "depth": 2,
+          "id": "installation"
+        }
+      ]
+    },
+    "reactant-ui/live-reload.html": {
+      "source": "docs/reactant-ui/live-reload.md",
+      "title": "Live Reload - Reactant",
+      "pageTitle": "Live Reload",
+      "slug": "reactant-uilive-reload"
     }
   },
   "sources": {
     "README.md": "index.html",
-    "docs/architecture.md": "architecture.html",
-    "docs/component.md": "component.html",
-    "docs/controller.md": "controller.html",
-    "docs/rootview.md": "rootview.html",
-    "docs/wireframe.md": "wireframe.html",
-    "docs/tableview.md": "tableview.html",
-    "docs/collectionview.md": "collectionview.html",
-    "docs/validation.md": "validation.html",
-    "docs/activityindicator.md": "activityindicator.html",
-    "docs/properties.md": "properties.html",
-    "docs/staticmap.md": "staticmap.html",
+    "docs/getting-started/quickstart.md": "getting-started/quickstart.html",
+    "docs/getting-started/architecture.md": "getting-started/architecture.html",
+    "docs/parts/component.md": "parts/component.html",
+    "docs/parts/controller.md": "parts/controller.html",
+    "docs/parts/rootview.md": "parts/rootview.html",
+    "docs/parts/wireframe.md": "parts/wireframe.html",
+    "docs/parts/tableview.md": "parts/tableview.html",
+    "docs/parts/collectionview.md": "parts/collectionview.html",
+    "docs/parts/validation.md": "parts/validation.html",
+    "docs/parts/activityindicator.md": "parts/activityindicator.html",
+    "docs/parts/properties.md": "parts/properties.html",
+    "docs/parts/staticmap.md": "parts/staticmap.html",
+    "docs/reactant-ui/introduction.md": "reactant-ui/introduction.html",
+    "docs/reactant-ui/live-reload.md": "reactant-ui/live-reload.html",
     "docs/_config.yml": "_config.yml"
   }
 }

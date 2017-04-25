@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/style.css?t=615badd5">
+    <script src="../assets/script.js?t=36f3d457"></script>
+    <title>Validation - Reactant</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1"><a class="link title  link-index" href="../index.html">Reactant</a>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Getting started</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedquickstart" href="../getting-started/quickstart.html">Quick-start guide</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedarchitecture" href="../getting-started/architecture.html">Architecture</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Parts</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-partscomponent" href="../parts/component.html">Component</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partscontroller" href="../parts/controller.html">Controller</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsrootview" href="../parts/rootview.html">RootView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partswireframe" href="../parts/wireframe.html">Wireframe</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partstableview" href="../parts/tableview.html">TableView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partscollectionview" href="../parts/collectionview.html">CollectionView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title -active link-partsvalidation" href="../parts/validation.html">Validation</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsactivityindicator" href="../parts/activityindicator.html">ActivityIndicator</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsproperties" href="../parts/properties.html">Properties</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsstaticmap" href="../parts/staticmap.html">StaticMap</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+      <div class="body page-partsvalidation">
+        <div class="header-nav">
+          <div class="right">
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="validation">Validation</h1>
+<p>Validation classes can be used for extremely easy validation of for example user inputs such as emails or passwords.</p>
+<p>A good example of creating Rules for validation is in <code>StringRules</code> class. Let&apos;s have a look at <code>minLenghtRule</code>.</p>
+<pre><code class="lang-swift"><span class="pl-k">public</span> <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">minLength</span><span class="hljs-params">(<span class="hljs-number">_</span> length: Int)</span></span> -&gt; <span class="hljs-type">Rule</span>&lt;<span class="hljs-type">String</span>?, <span class="hljs-type">ValidationError</span>&gt; {
+        <span class="pl-k">return</span> <span class="hljs-type">Rule</span> { value <span class="pl-k">in</span>
+            <span class="pl-k">guard</span> <span class="pl-k">let</span> value = value, value.characters.<span class="pl-c1">count</span> &gt;= length <span class="pl-k">else</span> {
+                <span class="pl-k">return</span> .invalid
+            }
+            <span class="pl-k">return</span> <span class="pl-c1">nil</span>
+        }
+    }
+</code></pre>
+<p>If the condition for valid string is not true, then this code returns <code>ValidationError.invalid</code>, otherwise returns <code>nil</code>.</p>
+<p>Usage of this rule is simple and can look like this when being used as a part of <code>Observable</code> stream.</p>
+<pre><code class="lang-swift"><span class="hljs-type">Observable</span>.from([<span class="pl-s">&quot;this&quot;</span>, <span class="pl-s">&quot;is&quot;</span>, <span class="pl-s">&quot;a&quot;</span>, <span class="pl-s">&quot;message&quot;</span>])
+            .<span class="pl-c1">map</span> { <span class="hljs-type">StringRules</span>.minLength(<span class="hljs-number">4</span>).run($<span class="hljs-number">0</span>) }
+            .filterError()
+            .subscribe(onNext: { <span class="pl-c1">print</span>($<span class="hljs-number">0</span> ?? <span class="pl-s">&quot;&quot;</span>) })
+            .addDisposableTo(stateDisposeBag)
+</code></pre>
+<p>This code prints only <code>this</code> <code>message</code> - the strings that are valid.</p>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="../parts/collectionview.html"><span class="title">CollectionView</span></a></div>
+          <div class="right"><a href="../parts/activityindicator.html"><span class="label">Next: </span><span class="title">ActivityIndicator</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
