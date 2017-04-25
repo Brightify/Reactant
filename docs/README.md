@@ -1,14 +1,23 @@
-Documentation
-=============
+# Documentation
+
 * [Reactant](../README.md)
-* [Architecture](architecture.md)
-* [Component](component.md)
-* [Controller](controller.md)
-* [RootView](rootview.md)
-* [Wireframe](wireframe.md)
-* [TableView](tableview.md)
-* [CollectionView](collectionview.md)
-* [Validation](validation.md)
-* [ActivityIndicator](activityindicator.md)
-* [Properties](properties.md)
-* [StaticMap](staticmap.md)
+
+* Getting started
+    * [Quick-start guide](getting-started/quickstart.md)
+    * [Architecture](getting-started/architecture.md)
+
+* Parts
+    * [Component](parts/component.md)
+    * [Controller](parts/controller.md)
+    * [RootView](parts/rootview.md)
+    * [Wireframe](parts/wireframe.md)
+    * [TableView](parts/tableview.md)
+    * [CollectionView](parts/collectionview.md)
+    * [Validation](parts/validation.md)
+    * [ActivityIndicator](parts/activityindicator.md)
+    * [Properties](parts/properties.md)
+    * [StaticMap](parts/staticmap.md)
+
+* Reactant UI
+    * [Introduction](reactant-ui/introduction.md)
+    * [Live Reload](reactant-ui/live-reload.md)
