@@ -64,7 +64,8 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="staticmap">StaticMap</h1>
-<p>TBD</p>
+<p>StaticMap is one of Reactant&apos;s components. It&apos;s purpose is to display map of selected <code>MKCoordinateRegion</code> as an image without any controls. StaticMap component is very efficient since it uses cache to store the map image and to retrieve it.</p>
+<p>This component&apos;s <code>componentState</code> is <code>MKCoordinateRegion</code> and its <code>action</code> is <code>StaticMapAction</code> which is an enum with only one <code>case selected</code>,  that is propagated through <code>action</code> observable whenever the component&apos;s content are clicked.</p>
 
         </div>
         <div class="footer-nav">
