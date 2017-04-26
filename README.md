@@ -31,8 +31,6 @@ pod 'Reactant/CollectionView'
 pod 'Reactant/Validation'
 ```
 
-## Usage
-
 ## Versioning
 
 This library uses semantic versioning. Until the version 1.0 API breaking changes may occur even in minor versions. We consider the version 0.6 to be prerelease, which means that API should be stable but is not tested yet in a real project. After that testing, we make needed adjustments and bump the version to 1.0 (first release).
