@@ -25,6 +25,16 @@
                     </li>
                     <li class="heading-item -depth-3"><a class="hlink link-controller" href="#controller">Controller</a>
                     </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-dependency-injection-parameters-and-reactions" href="#dependency-injection-parameters-and-reactions">Dependency Injection, Parameters, and Reactions</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-service" href="#service">Service</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-dependency-module" href="#dependency-module">Dependency Module</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-wireframe" href="#wireframe">Wireframe</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-recommended-directory-structure" href="#recommended-directory-structure">Recommended directory structure</a>
+                    </li>
                   </ul>
                 </li>
               </ul>
@@ -70,9 +80,285 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="architecture">Architecture</h1>
+<p>We already talked about Components and Views in the <a href="quickstart.html">Quick-start</a>, but they alone are only a small part of Reactant. The magic comes when you embrace the whole architecture.</p>
 <h3 id="rootview">RootView</h3>
+<p>View hierarchy starts with a <strong>RootView</strong>. It&apos;s no more than a special case of a view component, in a sense that it&apos;s meant to fill the whole screen. <strong>RootView</strong> can contain other view components or it can consist of primitive views only (UILabel, UIButton etc.). Let&apos;s take our <code>GreeterView</code> from the previous example and make it a <strong>RootView</strong></p>
+<pre><code class="lang-swift"><span class="pl-k">import</span> RxSwift
+
+<span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">GreeterAction</span> </span>{
+    <span class="pl-k">case</span> greetingChanged(<span class="hljs-type">String</span>)
+}
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterRootView</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">String</span>, <span class="pl-ent">GreeterAction</span>&gt;, <span class="pl-ent">RootView</span> </span>{
+    <span class="pl-k">override</span> <span class="pl-k">var</span> actions: [<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">GreeterAction</span>&gt;] {
+        <span class="pl-k">return</span> [
+            <span class="pl-c">// Skipping first event as UITextField.rx.text sends first value</span>
+            <span class="pl-c">// when subscribed, but we want later changes</span>
+            nameField.rx.text.skip(<span class="hljs-number">1</span>).<span class="pl-c1">map</span> { <span class="hljs-type">GreeterAction</span>.greetingChanged($<span class="hljs-number">0</span> ?? <span class="pl-s">&quot;&quot;</span>) }
+        ]
+    }
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> greeting = <span class="hljs-type">UILabel</span>()
+    <span class="pl-k">private</span> <span class="pl-k">let</span> nameField = <span class="hljs-type">UITextField</span>()
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+        greeting.text = <span class="pl-s">&quot;Hello <span class="hljs-subst">\(componentState)</span>!&quot;</span>
+
+        <span class="pl-k">if</span> componentState != nameField.text {
+            nameField.text = componentState
+        }
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">loadView</span><span class="hljs-params">()</span></span> {
+        children(
+            greeting,
+            nameField
+        )
+
+        greeting.textColor = .red
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">setupConstraints</span><span class="hljs-params">()</span></span> {
+        greeting.snp.makeConstraints { make <span class="pl-k">in</span>
+            make.<span class="pl-k">left</span>.top.<span class="pl-k">right</span>.equalToSuperview()
+        }
+
+        nameField.snp.makeConstraints { make <span class="pl-k">in</span>
+            make.top.equalTo(greeting.snp.bottom).offset(<span class="hljs-number">10</span>)
+            make.<span class="pl-k">left</span>.bottom.<span class="pl-k">right</span>.equalToSuperview()
+            make.height.equalTo(<span class="hljs-number">50</span>)
+        }
+    }
+}
+</code></pre>
+<p>As you can see, the difference is small and we made them keep a naming convention that every <strong>RootView</strong> has that in its name. There&apos;s also the conformance to <code>RootView</code> protocol. That protocol allows you to specify <code>edgesForExtendedLayout</code> and receive view events from Controller (<code>viewWillAppear</code>, <code>viewDidAppear</code>, <code>viewWillDisappear</code>, <code>viewDidDisappear</code>).</p>
+<p>Other than that, <strong>RootViews</strong> are plain view components and you can even use any view component as a <strong>RootView</strong> without conforming to <code>RootView</code> protocol or renaming it.</p>
 <h3 id="controller">Controller</h3>
-<p>Each screen is a Controller. When you use Reactant, Controller don&apos;t contain view logic. Controller&apos;s job is to provide data for it&apos;s root</p>
+<p>Each screen is a <strong>Controller</strong> and each <strong>Controller</strong> is a <strong>Component</strong>. Controllers in Reactant don&apos;t contain view logic. Their job is to obtain data (from API, database etc.) for their <strong>RootView</strong>&apos;s <code>componentState</code> and to receive and handle actions produced by their <strong>RootView</strong>. Let&apos;s write a controller for our <code>GreeterRootView</code>.</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">GreeterRootView</span>&gt; </span>{
+    <span class="pl-k">init</span>() {
+        <span class="pl-k">super</span>.<span class="pl-k">init</span>(title: <span class="pl-s">&quot;Greeter&quot;</span>)
+
+        <span class="pl-c">// An initial state for our rootView</span>
+        rootView.componentState = <span class="pl-s">&quot;&quot;</span>
+    }
+
+    <span class="pl-c">// Act on actions produced from RootView</span>
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">act</span><span class="hljs-params">(on action: GreeterAction)</span></span> {
+        <span class="pl-k">switch</span> action {
+        <span class="pl-k">case</span> .greetingChanged(<span class="pl-k">let</span> greeting):
+            rootView.componentState = greeting
+        }
+    }
+}
+</code></pre>
+<p>The <code>ControllerBase</code> class has two generic parameters, first one is the type of the Controller&apos;s <code>componentState</code> (yes, Controllers can have a state too) and the second is the type of the <strong>RootView</strong>. The RootView is automatically initialized by the Controller, but you can do it manually by passing an instance of the RootView as <code>root</code> parameter of the Controller&apos;s initializer.</p>
+<h2 id="dependency-injection-parameters-and-reactions">Dependency Injection, Parameters, and Reactions</h2>
+<p>To be reusable and testable, Controller should get everything it needs from its caller. It&apos;s recommended that each Controller should have the following inner structures (although not every Controller will have all three):</p>
+<ul>
+<li>Dependencies</li>
+<li>Properties</li>
+<li>Reactions</li>
+</ul>
+<p>Then you just add them as parameters in the Controller&apos;s <code>init</code> and store them to private properties so you can reference them later. So an example Controller that would use all three of those would look like this:</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">ExampleController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">ExampleRootView</span>&gt; </span>{
+    <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Dependencies</span> </span>{
+        <span class="pl-k">let</span> someService: <span class="hljs-type">SomeService</span>
+    }
+    <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Properties</span> </span>{
+        <span class="pl-k">let</span> userAccount: <span class="hljs-type">UserAccount</span>
+    }
+    <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Reactions</span> </span>{
+        <span class="pl-k">let</span> openSettings: () -&gt; <span class="hljs-type">Void</span>
+    }
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> dependencies: <span class="hljs-type">Dependencies</span>
+    <span class="pl-k">private</span> <span class="pl-k">let</span> properties: <span class="hljs-type">Properties</span>
+    <span class="pl-k">private</span> <span class="pl-k">let</span> reactions: <span class="hljs-type">Reactions</span>
+
+    <span class="pl-k">init</span>(dependencies: <span class="hljs-type">Dependencies</span>, properties: <span class="hljs-type">Properties</span>, reactions: <span class="hljs-type">Reactions</span>) {
+        <span class="pl-k">self</span>.dependencies = dependencies
+        <span class="pl-k">self</span>.properties = properties
+        <span class="pl-k">self</span>.reactions = reactions
+    }
+}
+</code></pre>
+<p>We recommend keeping those three parameters alphabetically ordered, it&apos;s easiest to remember that way. You might ask, why not just pass the <code>someService</code>, <code>userAccount</code> and <code>openSettings</code> directly without those structures? Two reasons, first, as the project grows, your Controllers will need more dependencies, properties or reactions. When that happens, it&apos;s as easy as adding a new field into one of these structures and updating the call-sites to provide that new dependency. Second reason is consistency. If you stick to the alphabetic order, you&apos;ll know what to expect.</p>
+<p><strong>IMPORTANT</strong>: As you can see, the ExampleController knows nothing about any other Controller. That&apos;s an intended behavior and your Controllers should never know anything about navigation. If you need to close a Controller when a user taps a button, just add <code>let close: () -&gt; Void</code> reaction and let the caller handle the navigation. This is how you achieve perfect reusability and testability.</p>
+<h2 id="service">Service</h2>
+<p>Services are the place for business logic. They load, store and delete data. Such service might look like this example:</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterService</span> </span>{
+    <span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">Language</span> </span>{
+        <span class="pl-k">case</span> english
+        <span class="pl-k">case</span> spanish
+    }
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> language: <span class="hljs-type">Language</span>
+
+    <span class="pl-k">init</span>(language: <span class="hljs-type">Language</span>) {
+        <span class="pl-k">self</span>.language = language
+    }
+
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">greet</span><span class="hljs-params">(user: String)</span></span> -&gt; <span class="hljs-type">String</span> {
+        <span class="pl-k">switch</span> language {
+        <span class="pl-k">case</span> .english:
+            <span class="pl-k">return</span> <span class="pl-s">&quot;Hello <span class="hljs-subst">\(user)</span>!&quot;</span>
+        <span class="pl-k">case</span> .spanish:
+            <span class="pl-k">return</span> <span class="pl-s">&quot;&#xA1;Hola <span class="hljs-subst">\(user)</span>!&quot;</span>
+        }
+    }
+}
+</code></pre>
+<p><strong>NOTE</strong>: For testing purposes, it&apos;s recommended that your Services are either defined as protocols or non-final classes. You&apos;ll then be able to mock them in your tests. For that we recommend you look at our mocking framework <a href="https://github.com/Brightify/Cuckoo">Cuckoo</a>.</p>
+<h2 id="dependency-module">Dependency Module</h2>
+<p>To have one place that decides on a concrete implementation of a dependency, you should have a Dependency Module. It&apos;s just a protocol, defining properties and methods used to obtain dependencies. You&apos;ll also have one or more implementations of this protocol. For example you could have one for Debug and one for Release configuration. Or one for the app and one for the tests, there are endless possibilities. Let&apos;s look at an example.</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">protocol</span> <span class="pl-ent">DependencyModule</span> </span>{
+    <span class="pl-k">var</span> userService: <span class="hljs-type">UserService</span> { <span class="pl-k">get</span> }
+    <span class="pl-k">var</span> anotherService: <span class="hljs-type">AnotherService</span> { <span class="pl-k">get</span> }
+
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">greeterService</span><span class="hljs-params">(language: GreeterService.Language)</span></span> -&gt; <span class="hljs-type">GreeterService</span>
+
+}
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">AppModule</span>: <span class="pl-ent">DependencyModule</span> </span>{
+    <span class="pl-k">let</span> userService: <span class="hljs-type">UserService</span> = <span class="hljs-type">AnUserServiceImplementation</span>()
+    <span class="pl-k">var</span> anotherService: <span class="hljs-type">AnotherService</span> {
+        <span class="pl-k">return</span> <span class="hljs-type">AnAnotherServiceImplementation</span>()
+    }
+
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">greeterService</span><span class="hljs-params">(language: GreeterService.Language)</span></span> -&gt; <span class="hljs-type">GreeterService</span> {
+        <span class="pl-k">return</span> <span class="hljs-type">GreeterService</span>(language: language)
+    }
+}
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">TestModule</span>: <span class="pl-ent">DependencyModule</span> </span>{
+    <span class="pl-k">var</span> userService: <span class="hljs-type">UserService</span> {
+        <span class="pl-k">return</span> <span class="hljs-type">StubUserService</span>()
+    }
+    <span class="pl-k">var</span> anotherService: <span class="hljs-type">AnotherService</span> {
+        <span class="pl-k">return</span> <span class="hljs-type">StubAnotherService</span>()
+    }
+
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">greeterService</span><span class="hljs-params">(language: GreeterService.Language)</span></span> -&gt; <span class="hljs-type">GreeterService</span> {
+        <span class="pl-k">return</span> <span class="hljs-type">StubGreeterService</span>(language: language)
+    }
+}
+</code></pre>
+<p>Make sure that the types you specify in the DependencyModule protocol are the lowest possible. In our example we use <code>GreeterService</code> even though that&apos;s already an implementation we don&apos;t have any lower type to use.</p>
+<p><strong>NOTE</strong>: The DependencyModule&apos;s lifecycle should be tied to the application (you should put it into a property in AppDelegate), the <code>userService</code> in the <code>AppModule</code> becomes a singleton.</p>
+<p><strong>NOTE</strong>: Don&apos;t create unnecessary protocols for your dependencies until you need a protocol that would have at least two implementations. Having a protocol for each single implementation is an unnecessary boilerplate.</p>
+<h2 id="wireframe">Wireframe</h2>
+<p>Since Controllers don&apos;t know about navigation, there has to be something in the application that does. That something are Wireframes. Small applications can have just a single one, but most of the time you&apos;ll have multiple Wireframes and each of them will take care of a specific part of the app. Wireframes should receive a Dependency Module with services, but instantiating Controllers is their responsibility. Reactant comes with a protocol <code>Wireframe</code> and it&apos;s recommended to use it. We&apos;ll get to an example, but first let&apos;s update our <code>GreeterController</code> to use a <code>GreeterService</code> and open URL when the greeted name is <code>Reactant</code>.</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">String</span>, <span class="pl-ent">GreeterRootView</span>&gt; </span>{
+    <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Dependencies</span> </span>{
+        <span class="pl-k">let</span> greeterService: <span class="hljs-type">GreeterService</span>
+    }
+    <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Reactions</span> </span>{
+        <span class="pl-k">let</span> openUrl: (<span class="hljs-type">URL</span>) -&gt; <span class="hljs-type">Void</span>
+    }
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> dependencies: <span class="hljs-type">Dependencies</span>
+    <span class="pl-k">private</span> <span class="pl-k">let</span> reactions: <span class="hljs-type">Reactions</span>
+
+    <span class="pl-k">init</span>(dependencies: <span class="hljs-type">Dependencies</span>, reactions: <span class="hljs-type">Reactions</span>) {
+        <span class="pl-k">self</span>.dependencies = dependencies
+        <span class="pl-k">self</span>.reactions = reactions
+
+        <span class="pl-k">super</span>.<span class="pl-k">init</span>(title: <span class="pl-s">&quot;Greeter&quot;</span>)
+
+        <span class="pl-c">// Set Controller&apos;s initial state</span>
+        componentState = <span class="pl-s">&quot;&quot;</span>
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+        rootView.componentState = dependencies.greeterService.greet(user: componentState)
+    }
+
+    <span class="pl-c">// Act on actions produced from RootView</span>
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">act</span><span class="hljs-params">(on action: GreeterAction)</span></span> {
+        <span class="pl-k">switch</span> action {
+        <span class="pl-k">case</span> .greetingChanged(<span class="pl-k">let</span> greeting):
+            componentState = greeting
+
+            <span class="pl-k">if</span> greeting == <span class="pl-s">&quot;Reactant&quot;</span> {
+                reactions.openUrl(<span class="hljs-type">URL</span>(string: <span class="pl-s">&quot;http://reactant.tech&quot;</span>)!)
+            }
+        }
+    }
+}
+</code></pre>
+<p>You can see we also set <code>componentState</code> type to String in the Controller and added an <code>update()</code> method that sets <code>componentState</code> of the RootView. Let&apos;s now look at the wireframe.</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainWireframe</span>: <span class="pl-ent">Wireframe</span> </span>{
+    <span class="pl-k">private</span> <span class="pl-k">let</span> module: <span class="hljs-type">DependencyModule</span>
+
+    <span class="pl-k">init</span>(module: <span class="hljs-type">DependencyModule</span>) {
+        <span class="pl-k">self</span>.module = module
+    }
+
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">entrypoint</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">UIViewController</span> {
+        <span class="pl-k">return</span> greeter(language: .english)
+    }
+
+    <span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">greeter</span><span class="hljs-params">(language: GreeterService.Language)</span></span> -&gt; <span class="hljs-type">GreeterController</span> {
+        <span class="pl-k">return</span> create { <span class="hljs-number">_</span> <span class="pl-k">in</span>
+            <span class="pl-k">let</span> dependencies = <span class="hljs-type">GreeterController</span>.<span class="hljs-type">Dependencies</span>(
+                greeterService: module.greeterService(language: language)
+            )
+            <span class="pl-k">let</span> reactions = <span class="hljs-type">GreeterController</span>.<span class="hljs-type">Reactions</span>(
+                openUrl: { url <span class="pl-k">in</span>
+                    <span class="hljs-type">UIApplication</span>.main.open(url)
+                }
+            )
+            <span class="pl-k">return</span> <span class="hljs-type">GreeterController</span>()
+        }
+    }
+}
+</code></pre>
+<p>Of course we still need to create a window, instantiate the <code>MainWireframe</code> and set result of <code>entrypoint()</code> method as the rootViewController. This is the job of AppDelegate, so let&apos;s do that now.</p>
+<pre><code class="lang-swift"><span class="pl-k">import</span> UIKit
+
+<span class="hljs-meta">@UIApplicationMain</span>
+<span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">AppDelegate</span> : <span class="pl-ent">UIResponder</span>, <span class="pl-ent">UIApplicationDelegate</span> </span>{
+    <span class="pl-k">var</span> window : <span class="hljs-type">UIWindow</span>?
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> module = <span class="hljs-type">AppModule</span>()
+
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">application</span><span class="hljs-params">(<span class="hljs-number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?)</span></span> -&gt; <span class="hljs-type">Bool</span> {
+        <span class="pl-k">let</span> window = <span class="hljs-type">UIWindow</span>()
+        <span class="pl-k">let</span> wireframe = <span class="hljs-type">MainWireframe</span>(module: module)
+        window.rootViewController = wireframe.entrypoint()
+        window.makeKeyAndVisible()
+        <span class="pl-k">self</span>.window = window
+        <span class="pl-k">return</span> <span class="pl-c1">true</span>
+    }
+}
+</code></pre>
+<p>To learn more about the <code>Wireframe</code> protocol and the mysterious <code>create</code> function, head to page about <a href="../parts/wireframe.html">Wireframe</a>.</p>
+<h2 id="recommended-directory-structure">Recommended directory structure</h2>
+<p>Last thing about our architecture is the directory structure. After many iterations we found one that goes well with Reactant and all its parts. However this structure is not mandatory, feel free to adjust it to your liking.</p>
+<pre><code>YourProject/ (root directory with .xcodeproj)
+&#x251C;&#x2500;&#x2500; Application/ (directory for the App target)
+&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; Generated/
+&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; Resource/ (here you&apos;ll put Assets.xcasset, Localizations etc.)
+&#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; Source/
+&#x2502;&#xA0;&#xA0;     &#x251C;&#x2500;&#x2500; Component/
+&#x2502;&#xA0;&#xA0;     &#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; SomeAppPart/
+&#x2502;&#xA0;&#xA0;     &#x2502;&#xA0;&#xA0; &#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; SomeAppPartAction.swift
+&#x2502;&#xA0;&#xA0;     &#x2502;&#xA0;&#xA0; &#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; SomeAppPartController.swift
+&#x2502;&#xA0;&#xA0;     &#x2502;&#xA0;&#xA0; &#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; SomeAppPartRootView.swift
+&#x2502;&#xA0;&#xA0;     &#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; SomeOtherPart/
+&#x2502;&#xA0;&#xA0;     &#x2502;&#xA0;&#xA0;     &#x251C;&#x2500;&#x2500; CustomView.swift
+&#x2502;&#xA0;&#xA0;     &#x2502;&#xA0;&#xA0;     &#x251C;&#x2500;&#x2500; SomeOtherPartAction.swift
+&#x2502;&#xA0;&#xA0;     &#x2502;&#xA0;&#xA0;     &#x251C;&#x2500;&#x2500; SomeOtherPartController.swift
+&#x2502;&#xA0;&#xA0;     &#x2502;&#xA0;&#xA0;     &#x2514;&#x2500;&#x2500; SomeOtherPartRootView.swift
+&#x2502;&#xA0;&#xA0;     &#x251C;&#x2500;&#x2500; Model/
+&#x2502;&#xA0;&#xA0;     &#x251C;&#x2500;&#x2500; Service/
+&#x2502;&#xA0;&#xA0;     &#x251C;&#x2500;&#x2500; Util/
+&#x2502;&#xA0;&#xA0;     &#x251C;&#x2500;&#x2500; Wireframe/
+&#x2502;&#xA0;&#xA0;     &#x2514;&#x2500;&#x2500; AppDelegate.swift
+&#x251C;&#x2500;&#x2500; Tests/ (directory for unit tests target, optional)
+&#x2514;&#x2500;&#x2500; UITests/ (directory for ui tests target, optional)
+</code></pre>
 
         </div>
         <div class="footer-nav">

@@ -99,6 +99,31 @@
                 "title": "Controller",
                 "depth": 3,
                 "id": "controller"
+              },
+              {
+                "title": "Dependency Injection, Parameters, and Reactions",
+                "depth": 2,
+                "id": "dependency-injection-parameters-and-reactions"
+              },
+              {
+                "title": "Service",
+                "depth": 2,
+                "id": "service"
+              },
+              {
+                "title": "Dependency Module",
+                "depth": 2,
+                "id": "dependency-module"
+              },
+              {
+                "title": "Wireframe",
+                "depth": 2,
+                "id": "wireframe"
+              },
+              {
+                "title": "Recommended directory structure",
+                "depth": 2,
+                "id": "recommended-directory-structure"
               }
             ]
           }
@@ -306,6 +331,31 @@
           "title": "Controller",
           "depth": 3,
           "id": "controller"
+        },
+        {
+          "title": "Dependency Injection, Parameters, and Reactions",
+          "depth": 2,
+          "id": "dependency-injection-parameters-and-reactions"
+        },
+        {
+          "title": "Service",
+          "depth": 2,
+          "id": "service"
+        },
+        {
+          "title": "Dependency Module",
+          "depth": 2,
+          "id": "dependency-module"
+        },
+        {
+          "title": "Wireframe",
+          "depth": 2,
+          "id": "wireframe"
+        },
+        {
+          "title": "Recommended directory structure",
+          "depth": 2,
+          "id": "recommended-directory-structure"
         }
       ]
     },

@@ -83,10 +83,10 @@
 </code></pre>
 <p>This will integrate reactant into your project and you&apos;re good to go.</p>
 <h2 id="writing-components">Writing components</h2>
-<p><strong>Components</strong> are integral part of Reactant so let&apos;s learn more about them.</p>
+<p><strong>Components</strong> are an integral part of Reactant so let&apos;s learn more about them.</p>
 <h3 id="what&apos;s-a-component">What&apos;s a component</h3>
 <p>It&apos;s part of your application with a single mutation point. That point is <code>componentState</code>. Each time you mutate <code>componentState</code> property, Reactant will automatically call <code>update()</code> method on the <strong>Component</strong>. In this method, <strong>Component</strong> should set itself up according to the state. Let&apos;s see how that works. In the example below, we have a <strong>Component</strong> that has <code>componentState</code> of type <code>String</code> that&apos;s supposed to be a name. Our <code>GreeterComponent</code> will print a greeting to console.</p>
-<p>NOTE: Don&apos;t worry about the second generic parameter for now, we&apos;ll cover it later on.</p>
+<p><strong>NOTE</strong>: Don&apos;t worry about the second generic parameter, for now, we&apos;ll cover it later on.</p>
 <pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterComponent</span>: <span class="pl-ent">ComponentBase</span>&lt;<span class="pl-ent">String</span>, <span class="pl-ent">Void</span>&gt; </span>{
     <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
         <span class="pl-c1">print</span>(<span class="pl-s">&quot;Hello <span class="hljs-subst">\(componentState)</span>!&quot;</span>)
@@ -98,6 +98,7 @@ greeter.componentState = <span class="pl-s">&quot;John&quot;</span> <span class=
 greeter.componentState = <span class="pl-s">&quot;World&quot;</span> <span class="pl-c">// prints &quot;Hello World!&quot;</span>
 </code></pre>
 <p>As you can see, when we changed the <code>componentState</code>, the <code>update()</code> got called and it printed the greeting. This <strong>Component</strong> doesn&apos;t do much, but it&apos;s enough to illustrate the relation between <code>componentState</code> and <code>update()</code>.</p>
+<p>Remember that the type of <code>componentState</code> should always be a value type. If you use a class type, mutating its properties won&apos;t run <code>update()</code> and you would have to call <code>invalidate()</code> yourself for each change.</p>
 <h3 id="view-as-a-component">View as a Component</h3>
 <p>Let&apos;s now take a look at how we can use it with <em>UIKit</em>. In the following example, our <code>GreeterComponent</code> is now <code>GreeterView</code> and it extends class <code>ViewBase</code> which is a <code>UIView</code>.</p>
 <pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterView</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">String</span>, <span class="pl-ent">Void</span>&gt; </span>{
@@ -137,7 +138,7 @@ greeter.componentState = <span class="pl-s">&quot;World&quot;</span> <span class
         <span class="pl-k">return</span> [
             <span class="pl-c">// Skipping first event as UITextField.rx.text sends first value</span>
             <span class="pl-c">// when subscribed, but we want later changes</span>
-            nameField.rx.text.skip(<span class="hljs-number">1</span>).<span class="pl-c1">map</span>(<span class="hljs-type">GreeterAction</span>.greetingChanged)
+            nameField.rx.text.skip(<span class="hljs-number">1</span>).<span class="pl-c1">map</span> { <span class="hljs-type">GreeterAction</span>.greetingChanged($<span class="hljs-number">0</span> ?? <span class="pl-s">&quot;&quot;</span>) }
         ]
     }
 
@@ -178,7 +179,7 @@ greeter.componentState = <span class="pl-s">&quot;World&quot;</span> <span class
 greeterView.action.subscribe(onNext: greeterView.setComponentState)
 </code></pre>
 <p>Now add the <code>greeterView</code> to your view hierarchy and write into the text field. Everything you&apos;ll type into the field will change the <code>componentState</code> and get shown by the label.</p>
-<p>When you integrate Reactant architecture to your application, you won&apos;t need to subscribe to the action manually. Instead you will propagate all actions to a <strong>Controller</strong> which will process and react accordingly.</p>
+<p>When you integrate Reactant architecture to your application, you won&apos;t need to subscribe to the action manually. Instead, you will propagate all actions to a <strong>Controller</strong> which will process and react accordingly.</p>
 <p>Learn more about the architecture on the <a href="architecture.html">next page</a>.</p>
 <h3 id="optional-parts">Optional parts</h3>
 <p>Reactant also has optional subspecs that you can use so that you won&apos;t need to write some often used boilerplate. We&apos;ll continue to add more common and useful abstractions.</p>
