@@ -27,19 +27,7 @@
                         </li>
                         <li class="heading-item -depth-3"><a class="hlink link-component-action" href="#component-action">Component Action</a>
                         </li>
-                      </ul>
-                    </li>
-                    <li class="heading-item -depth-2"><a class="hlink link-optional-parts" href="#optional-parts">Optional parts</a>
-                      <ul class="heading-list -depth-2">
-                        <li class="heading-item -depth-3"><a class="hlink link-tableview(..partstableview.md)" href="#tableview(..partstableview.md)">[TableView](../parts/tableview.md)</a>
-                        </li>
-                        <li class="heading-item -depth-3"><a class="hlink link-collectionview(..partscollectionview.md)" href="#collectionview(..partscollectionview.md)">[CollectionView](../parts/collectionview.md)</a>
-                        </li>
-                        <li class="heading-item -depth-3"><a class="hlink link-validation(..partsvalidation.md)" href="#validation(..partsvalidation.md)">[Validation](../parts/validation.md)</a>
-                        </li>
-                        <li class="heading-item -depth-3"><a class="hlink link-activityindicator(..partsactivityindicator.md)" href="#activityindicator(..partsactivityindicator.md)">[ActivityIndicator](../parts/activityindicator.md)</a>
-                        </li>
-                        <li class="heading-item -depth-3"><a class="hlink link-staticmap(..partsstaticmap.md)" href="#staticmap(..partsstaticmap.md)">[StaticMap](../parts/staticmap.md)</a>
+                        <li class="heading-item -depth-3"><a class="hlink link-optional-parts" href="#optional-parts">Optional parts</a>
                         </li>
                       </ul>
                     </li>
@@ -192,21 +180,21 @@ greeterView.action.subscribe(onNext: greeterView.setComponentState)
 <p>Now add the <code>greeterView</code> to your view hierarchy and write into the text field. Everything you&apos;ll type into the field will change the <code>componentState</code> and get shown by the label.</p>
 <p>When you integrate Reactant architecture to your application, you won&apos;t need to subscribe to the action manually. Instead you will propagate all actions to a <strong>Controller</strong> which will process and react accordingly.</p>
 <p>Learn more about the architecture on the <a href="architecture.html">next page</a>.</p>
-<h2 id="optional-parts">Optional parts</h2>
+<h3 id="optional-parts">Optional parts</h3>
 <p>Reactant also has optional subspecs that you can use so that you won&apos;t need to write some often used boilerplate. We&apos;ll continue to add more common and useful abstractions.</p>
-<h3 id="tableview"><a href="../parts/tableview.html">TableView</a></h3>
+<h4 id="tableview"><a href="../parts/tableview.html">TableView</a></h4>
 <pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/TableView&apos;</span>
 </code></pre>
-<h3 id="collectionview"><a href="../parts/collectionview.html">CollectionView</a></h3>
+<h4 id="collectionview"><a href="../parts/collectionview.html">CollectionView</a></h4>
 <pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/CollectionView&apos;</span>
 </code></pre>
-<h3 id="validation"><a href="../parts/validation.html">Validation</a></h3>
+<h4 id="validation"><a href="../parts/validation.html">Validation</a></h4>
 <pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/Validation&apos;</span>
 </code></pre>
-<h3 id="activityindicator"><a href="../parts/activityindicator.html">ActivityIndicator</a></h3>
+<h4 id="activityindicator"><a href="../parts/activityindicator.html">ActivityIndicator</a></h4>
 <pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/ActivityIndicator&apos;</span>
 </code></pre>
-<h3 id="staticmap"><a href="../parts/staticmap.html">StaticMap</a></h3>
+<h4 id="staticmap"><a href="../parts/staticmap.html">StaticMap</a></h4>
 <pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/StaticMap&apos;</span>
 </code></pre>
 

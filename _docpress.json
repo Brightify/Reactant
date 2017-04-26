@@ -74,38 +74,11 @@
                     "title": "Component Action",
                     "depth": 3,
                     "id": "component-action"
-                  }
-                ]
-              },
-              {
-                "title": "Optional parts",
-                "depth": 2,
-                "id": "optional-parts",
-                "headings": [
-                  {
-                    "title": "[TableView](../parts/tableview.md)",
-                    "depth": 3,
-                    "id": "tableview(..partstableview.md)"
                   },
                   {
-                    "title": "[CollectionView](../parts/collectionview.md)",
+                    "title": "Optional parts",
                     "depth": 3,
-                    "id": "collectionview(..partscollectionview.md)"
-                  },
-                  {
-                    "title": "[Validation](../parts/validation.md)",
-                    "depth": 3,
-                    "id": "validation(..partsvalidation.md)"
-                  },
-                  {
-                    "title": "[ActivityIndicator](../parts/activityindicator.md)",
-                    "depth": 3,
-                    "id": "activityindicator(..partsactivityindicator.md)"
-                  },
-                  {
-                    "title": "[StaticMap](../parts/staticmap.md)",
-                    "depth": 3,
-                    "id": "staticmap(..partsstaticmap.md)"
+                    "id": "optional-parts"
                   }
                 ]
               }
@@ -308,38 +281,11 @@
               "title": "Component Action",
               "depth": 3,
               "id": "component-action"
-            }
-          ]
-        },
-        {
-          "title": "Optional parts",
-          "depth": 2,
-          "id": "optional-parts",
-          "headings": [
-            {
-              "title": "[TableView](../parts/tableview.md)",
-              "depth": 3,
-              "id": "tableview(..partstableview.md)"
             },
             {
-              "title": "[CollectionView](../parts/collectionview.md)",
+              "title": "Optional parts",
               "depth": 3,
-              "id": "collectionview(..partscollectionview.md)"
-            },
-            {
-              "title": "[Validation](../parts/validation.md)",
-              "depth": 3,
-              "id": "validation(..partsvalidation.md)"
-            },
-            {
-              "title": "[ActivityIndicator](../parts/activityindicator.md)",
-              "depth": 3,
-              "id": "activityindicator(..partsactivityindicator.md)"
-            },
-            {
-              "title": "[StaticMap](../parts/staticmap.md)",
-              "depth": 3,
-              "id": "staticmap(..partsstaticmap.md)"
+              "id": "optional-parts"
             }
           ]
         }
