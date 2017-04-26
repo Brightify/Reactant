@@ -13,6 +13,7 @@ This will integrate reactant into your project and you're good to go.
 **Components** are integral part of Reactant so let's learn more about them.
 
 ### What's a component
+
 It's part of your application with a single mutation point. That point is `componentState`. Each time you mutate `componentState` property, Reactant will automatically call `update()` method on the **Component**. In this method, **Component** should set itself up according to the state. Let's see how that works. In the example below, we have a **Component** that has `componentState` of type `String` that's supposed to be a name. Our `GreeterComponent` will print a greeting to console.
 
 NOTE: Don't worry about the second generic parameter for now, we'll cover it later on.
@@ -64,6 +65,7 @@ As you can see, it got more interesting. Instead of printing to console, we set 
 We'll talk about `loadView()` and `setupConstraints()` methods later on.
 
 ### Component Action
+
 When a **Component** needs to notify it's owner, it produces an **Action**. Remember the second generic parameter from earlier? That specifies the type of produced **Action**. The type can be anything, but we recommend using *enum*s. We leverage **RxSwift**'s *Observables* for actions since they are versatile and easier to use than callbacks or delegates. Let's extend our `GreeterView` with a text field.
 
 ```swift
@@ -125,31 +127,31 @@ When you integrate Reactant architecture to your application, you won't need to 
 
 Learn more about the architecture on the [next page](./architecture.md).
 
-## Optional parts
+### Optional parts
 
 Reactant also has optional subspecs that you can use so that you won't need to write some often used boilerplate. We'll continue to add more common and useful abstractions.
 
-### [TableView](../parts/tableview.md)
+#### [TableView](../parts/tableview.md)
 ```ruby
 pod 'Reactant/TableView'
 ```
 
-### [CollectionView](../parts/collectionview.md)
+#### [CollectionView](../parts/collectionview.md)
 ```ruby
 pod 'Reactant/CollectionView'
 ```
 
-### [Validation](../parts/validation.md)
+#### [Validation](../parts/validation.md)
 ```ruby
 pod 'Reactant/Validation'
 ```
 
-### [ActivityIndicator](../parts/activityindicator.md)
+#### [ActivityIndicator](../parts/activityindicator.md)
 ```ruby
 pod 'Reactant/ActivityIndicator'
 ```
 
-### [StaticMap](../parts/staticmap.md)
+#### [StaticMap](../parts/staticmap.md)
 ```ruby
 pod 'Reactant/StaticMap'
 ```
