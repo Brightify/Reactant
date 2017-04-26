@@ -139,17 +139,17 @@ pod 'Reactant/TableView'
 pod 'Reactant/CollectionView'
 ```
 
-### [Validation](..parts/validation.md)
+### [Validation](../parts/validation.md)
 ```ruby
 pod 'Reactant/Validation'
 ```
 
-### [ActivityIndicator](..parts/activityindicator.md)
+### [ActivityIndicator](../parts/activityindicator.md)
 ```ruby
 pod 'Reactant/ActivityIndicator'
 ```
 
-### [StaticMap](..parts/staticmap.md)
+### [StaticMap](../parts/staticmap.md)
 ```ruby
 pod 'Reactant/StaticMap'
 ```
