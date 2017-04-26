@@ -23,11 +23,6 @@
             "id": "installation"
           },
           {
-            "title": "Usage",
-            "depth": 2,
-            "id": "usage"
-          },
-          {
             "title": "Versioning",
             "depth": 2,
             "id": "versioning"
@@ -58,13 +53,81 @@
             "title": "Quick-start guide",
             "source": "docs/getting-started/quickstart.md",
             "url": "getting-started/quickstart.html",
-            "slug": "getting-startedquickstart"
+            "slug": "getting-startedquickstart",
+            "headings": [
+              {
+                "title": "Writing components",
+                "depth": 2,
+                "id": "writing-components",
+                "headings": [
+                  {
+                    "title": "What's a component",
+                    "depth": 3,
+                    "id": "what's-a-component"
+                  },
+                  {
+                    "title": "View as a Component",
+                    "depth": 3,
+                    "id": "view-as-a-component"
+                  },
+                  {
+                    "title": "Component Action",
+                    "depth": 3,
+                    "id": "component-action"
+                  }
+                ]
+              },
+              {
+                "title": "Optional parts",
+                "depth": 2,
+                "id": "optional-parts",
+                "headings": [
+                  {
+                    "title": "[TableView](../parts/tableview.md)",
+                    "depth": 3,
+                    "id": "tableview(..partstableview.md)"
+                  },
+                  {
+                    "title": "[CollectionView](../parts/collectionview.md)",
+                    "depth": 3,
+                    "id": "collectionview(..partscollectionview.md)"
+                  },
+                  {
+                    "title": "[Validation](../parts/validation.md)",
+                    "depth": 3,
+                    "id": "validation(..partsvalidation.md)"
+                  },
+                  {
+                    "title": "[ActivityIndicator](../parts/activityindicator.md)",
+                    "depth": 3,
+                    "id": "activityindicator(..partsactivityindicator.md)"
+                  },
+                  {
+                    "title": "[StaticMap](../parts/staticmap.md)",
+                    "depth": 3,
+                    "id": "staticmap(..partsstaticmap.md)"
+                  }
+                ]
+              }
+            ]
           },
           {
             "title": "Architecture",
             "source": "docs/getting-started/architecture.md",
             "url": "getting-started/architecture.html",
-            "slug": "getting-startedarchitecture"
+            "slug": "getting-startedarchitecture",
+            "headings": [
+              {
+                "title": "RootView",
+                "depth": 3,
+                "id": "rootview"
+              },
+              {
+                "title": "Controller",
+                "depth": 3,
+                "id": "controller"
+              }
+            ]
           }
         ]
       },
@@ -197,11 +260,6 @@
           "id": "installation"
         },
         {
-          "title": "Usage",
-          "depth": 2,
-          "id": "usage"
-        },
-        {
           "title": "Versioning",
           "depth": 2,
           "id": "versioning"
@@ -229,13 +287,81 @@
       "source": "docs/getting-started/quickstart.md",
       "title": "Quick-start guide - Reactant",
       "pageTitle": "Quick-start guide",
-      "slug": "getting-startedquickstart"
+      "slug": "getting-startedquickstart",
+      "headings": [
+        {
+          "title": "Writing components",
+          "depth": 2,
+          "id": "writing-components",
+          "headings": [
+            {
+              "title": "What's a component",
+              "depth": 3,
+              "id": "what's-a-component"
+            },
+            {
+              "title": "View as a Component",
+              "depth": 3,
+              "id": "view-as-a-component"
+            },
+            {
+              "title": "Component Action",
+              "depth": 3,
+              "id": "component-action"
+            }
+          ]
+        },
+        {
+          "title": "Optional parts",
+          "depth": 2,
+          "id": "optional-parts",
+          "headings": [
+            {
+              "title": "[TableView](../parts/tableview.md)",
+              "depth": 3,
+              "id": "tableview(..partstableview.md)"
+            },
+            {
+              "title": "[CollectionView](../parts/collectionview.md)",
+              "depth": 3,
+              "id": "collectionview(..partscollectionview.md)"
+            },
+            {
+              "title": "[Validation](../parts/validation.md)",
+              "depth": 3,
+              "id": "validation(..partsvalidation.md)"
+            },
+            {
+              "title": "[ActivityIndicator](../parts/activityindicator.md)",
+              "depth": 3,
+              "id": "activityindicator(..partsactivityindicator.md)"
+            },
+            {
+              "title": "[StaticMap](../parts/staticmap.md)",
+              "depth": 3,
+              "id": "staticmap(..partsstaticmap.md)"
+            }
+          ]
+        }
+      ]
     },
     "getting-started/architecture.html": {
       "source": "docs/getting-started/architecture.md",
       "title": "Architecture - Reactant",
       "pageTitle": "Architecture",
-      "slug": "getting-startedarchitecture"
+      "slug": "getting-startedarchitecture",
+      "headings": [
+        {
+          "title": "RootView",
+          "depth": 3,
+          "id": "rootview"
+        },
+        {
+          "title": "Controller",
+          "depth": 3,
+          "id": "controller"
+        }
+      ]
     },
     "parts/component.html": {
       "source": "docs/parts/component.md",

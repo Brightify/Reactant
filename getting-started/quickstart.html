@@ -18,6 +18,32 @@
             <li class="menu-item -level-1 -parent"><span class="title">Getting started</span>
               <ul class="submenu">
                 <li class="menu-item -level-2"><a class="link title -active link-getting-startedquickstart" href="../getting-started/quickstart.html">Quick-start guide</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-2"><a class="hlink link-writing-components" href="#writing-components">Writing components</a>
+                      <ul class="heading-list -depth-2">
+                        <li class="heading-item -depth-3"><a class="hlink link-what's-a-component" href="#what's-a-component">What's a component</a>
+                        </li>
+                        <li class="heading-item -depth-3"><a class="hlink link-view-as-a-component" href="#view-as-a-component">View as a Component</a>
+                        </li>
+                        <li class="heading-item -depth-3"><a class="hlink link-component-action" href="#component-action">Component Action</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-optional-parts" href="#optional-parts">Optional parts</a>
+                      <ul class="heading-list -depth-2">
+                        <li class="heading-item -depth-3"><a class="hlink link-tableview(..partstableview.md)" href="#tableview(..partstableview.md)">[TableView](../parts/tableview.md)</a>
+                        </li>
+                        <li class="heading-item -depth-3"><a class="hlink link-collectionview(..partscollectionview.md)" href="#collectionview(..partscollectionview.md)">[CollectionView](../parts/collectionview.md)</a>
+                        </li>
+                        <li class="heading-item -depth-3"><a class="hlink link-validation(..partsvalidation.md)" href="#validation(..partsvalidation.md)">[Validation](../parts/validation.md)</a>
+                        </li>
+                        <li class="heading-item -depth-3"><a class="hlink link-activityindicator(..partsactivityindicator.md)" href="#activityindicator(..partsactivityindicator.md)">[ActivityIndicator](../parts/activityindicator.md)</a>
+                        </li>
+                        <li class="heading-item -depth-3"><a class="hlink link-staticmap(..partsstaticmap.md)" href="#staticmap(..partsstaticmap.md)">[StaticMap](../parts/staticmap.md)</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-getting-startedarchitecture" href="../getting-started/architecture.html">Architecture</a>
                 </li>
@@ -63,7 +89,127 @@
           <div class="right">
           </div>
         </div>
-        <div class="markdown-body">
+        <div class="markdown-body"><h1 id="quick-start-guide">Quick-start guide</h1>
+<p>Reactant is available through <a href="http://cocoapods.org">CocoaPods</a>. To install it, add the following line to your application target in your Podfile:</p>
+<pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant&apos;</span>
+</code></pre>
+<p>This will integrate reactant into your project and you&apos;re good to go.</p>
+<h2 id="writing-components">Writing components</h2>
+<p><strong>Components</strong> are integral part of Reactant so let&apos;s learn more about them.</p>
+<h3 id="what&apos;s-a-component">What&apos;s a component</h3>
+<p>It&apos;s part of your application with a single mutation point. That point is <code>componentState</code>. Each time you mutate <code>componentState</code> property, Reactant will automatically call <code>update()</code> method on the <strong>Component</strong>. In this method, <strong>Component</strong> should set itself up according to the state. Let&apos;s see how that works. In the example below, we have a <strong>Component</strong> that has <code>componentState</code> of type <code>String</code> that&apos;s supposed to be a name. Our <code>GreeterComponent</code> will print a greeting to console.</p>
+<p>NOTE: Don&apos;t worry about the second generic parameter for now, we&apos;ll cover it later on.</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterComponent</span>: <span class="pl-ent">ComponentBase</span>&lt;<span class="pl-ent">String</span>, <span class="pl-ent">Void</span>&gt; </span>{
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+        <span class="pl-c1">print</span>(<span class="pl-s">&quot;Hello <span class="hljs-subst">\(componentState)</span>!&quot;</span>)
+    }
+}
+
+<span class="pl-k">let</span> greeter = <span class="hljs-type">GreeterComponent</span>() <span class="pl-c">// nothing printed yet, waiting for componentState</span>
+greeter.componentState = <span class="pl-s">&quot;John&quot;</span> <span class="pl-c">// prints &quot;Hello John!&quot;</span>
+greeter.componentState = <span class="pl-s">&quot;World&quot;</span> <span class="pl-c">// prints &quot;Hello World!&quot;</span>
+</code></pre>
+<p>As you can see, when we changed the <code>componentState</code>, the <code>update()</code> got called and it printed the greeting. This <strong>Component</strong> doesn&apos;t do much, but it&apos;s enough to illustrate the relation between <code>componentState</code> and <code>update()</code>.</p>
+<h3 id="view-as-a-component">View as a Component</h3>
+<p>Let&apos;s now take a look at how we can use it with <em>UIKit</em>. In the following example, our <code>GreeterComponent</code> is now <code>GreeterView</code> and it extends class <code>ViewBase</code> which is a <code>UIView</code>.</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterView</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">String</span>, <span class="pl-ent">Void</span>&gt; </span>{
+    <span class="pl-k">private</span> <span class="pl-k">let</span> greeting = <span class="hljs-type">UILabel</span>()
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+        greeting.text = <span class="pl-s">&quot;Hello <span class="hljs-subst">\(componentState)</span>!&quot;</span>
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">loadView</span><span class="hljs-params">()</span></span> {
+        children(
+            greeting
+        )
+
+        greeting.textColor = .red
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">setupConstraints</span><span class="hljs-params">()</span></span> {
+        greeting.snp.makeConstraints { make <span class="pl-k">in</span>
+            make.edges.equalToSuperview()
+        }
+    }
+}
+</code></pre>
+<p>As you can see, it got more interesting. Instead of printing to console, we set the <code>text</code> on a label. Notice that we don&apos;t set the <code>textColor</code> in <code>update()</code> as it&apos;s not dependent on the <code>componentState</code>. You can work with instances of <code>GreeterView</code> as with any other <code>UIView</code>. But since it has a single point of mutation, you can reuse it and always be sure it gets the input it needs to display properly.</p>
+<p>We&apos;ll talk about <code>loadView()</code> and <code>setupConstraints()</code> methods later on.</p>
+<h3 id="component-action">Component Action</h3>
+<p>When a <strong>Component</strong> needs to notify it&apos;s owner, it produces an <strong>Action</strong>. Remember the second generic parameter from earlier? That specifies the type of produced <strong>Action</strong>. The type can be anything, but we recommend using <em>enum</em>s. We leverage <strong>RxSwift</strong>&apos;s <em>Observables</em> for actions since they are versatile and easier to use than callbacks or delegates. Let&apos;s extend our <code>GreeterView</code> with a text field.</p>
+<pre><code class="lang-swift"><span class="pl-k">import</span> RxSwift
+
+<span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">GreeterAction</span> </span>{
+    <span class="pl-k">case</span> greetingChanged(<span class="hljs-type">String</span>)
+}
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterView</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">String</span>, <span class="pl-ent">GreeterAction</span>&gt; </span>{
+    <span class="pl-k">override</span> <span class="pl-k">var</span> actions: [<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">GreeterAction</span>&gt;] {
+        <span class="pl-k">return</span> [
+            <span class="pl-c">// Skipping first event as UITextField.rx.text sends first value</span>
+            <span class="pl-c">// when subscribed, but we want later changes</span>
+            nameField.rx.text.skip(<span class="hljs-number">1</span>).<span class="pl-c1">map</span>(<span class="hljs-type">GreeterAction</span>.greetingChanged)
+        ]
+    }
+
+    <span class="pl-k">private</span> <span class="pl-k">let</span> greeting = <span class="hljs-type">UILabel</span>()
+    <span class="pl-k">private</span> <span class="pl-k">let</span> nameField = <span class="hljs-type">UITextField</span>()
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+        greeting.text = <span class="pl-s">&quot;Hello <span class="hljs-subst">\(componentState)</span>!&quot;</span>
+
+        <span class="pl-k">if</span> componentState != nameField.text {
+            nameField.text = componentState
+        }
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">loadView</span><span class="hljs-params">()</span></span> {
+        children(
+            greeting,
+            nameField
+        )
+
+        greeting.textColor = .red
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">setupConstraints</span><span class="hljs-params">()</span></span> {
+        greeting.snp.makeConstraints { make <span class="pl-k">in</span>
+            make.<span class="pl-k">left</span>.top.<span class="pl-k">right</span>.equalToSuperview()
+        }
+
+        nameField.snp.makeConstraints { make <span class="pl-k">in</span>
+            make.top.equalTo(greeting.snp.bottom).offset(<span class="hljs-number">10</span>)
+            make.<span class="pl-k">left</span>.bottom.<span class="pl-k">right</span>.equalToSuperview()
+            make.height.equalTo(<span class="hljs-number">50</span>)
+        }
+    }
+}
+
+<span class="pl-k">let</span> greeterView = <span class="hljs-type">GreeterView</span>()
+greeterView.action.subscribe(onNext: greeterView.setComponentState)
+</code></pre>
+<p>Now add the <code>greeterView</code> to your view hierarchy and write into the text field. Everything you&apos;ll type into the field will change the <code>componentState</code> and get shown by the label.</p>
+<p>When you integrate Reactant architecture to your application, you won&apos;t need to subscribe to the action manually. Instead you will propagate all actions to a <strong>Controller</strong> which will process and react accordingly.</p>
+<p>Learn more about the architecture on the <a href="architecture.html">next page</a>.</p>
+<h2 id="optional-parts">Optional parts</h2>
+<p>Reactant also has optional subspecs that you can use so that you won&apos;t need to write some often used boilerplate. We&apos;ll continue to add more common and useful abstractions.</p>
+<h3 id="tableview"><a href="../parts/tableview.html">TableView</a></h3>
+<pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/TableView&apos;</span>
+</code></pre>
+<h3 id="collectionview"><a href="../parts/collectionview.html">CollectionView</a></h3>
+<pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/CollectionView&apos;</span>
+</code></pre>
+<h3 id="validation"><a href="../parts/validation.html">Validation</a></h3>
+<pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/Validation&apos;</span>
+</code></pre>
+<h3 id="activityindicator"><a href="../parts/activityindicator.html">ActivityIndicator</a></h3>
+<pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/ActivityIndicator&apos;</span>
+</code></pre>
+<h3 id="staticmap"><a href="../parts/staticmap.html">StaticMap</a></h3>
+<pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/StaticMap&apos;</span>
+</code></pre>
+
         </div>
         <div class="footer-nav">
           <div class="left"><a href="../index.html"><span class="title">Reactant</span></a></div>
