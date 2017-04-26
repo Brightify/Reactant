@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ReactantLiveUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.backgroundColor = .white
         window.rootViewController = ViewController()
         window.makeKeyAndVisible()
-        ReactantLiveUIManager.shared.activate(in: window, configuration: GeneratedReactantLiveUIConfiguration())
         return true
     }
 }

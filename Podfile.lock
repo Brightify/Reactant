@@ -1,7 +1,5 @@
 PODS:
-  - FileKit (4.0.1)
   - Kingfisher (3.0.1)
-  - KZFileWatchers (1.0.1)
   - Nimble (5.1.1)
   - Quick (1.0.0)
   - Reactant (0.6.0):
@@ -18,37 +16,23 @@ PODS:
     - Result (~> 3.0)
     - RxOptional (~> 3.0)
     - RxSwift (~> 3.0)
-  - Reactant/TableView (0.6.0):
-    - Reactant/Core
-    - RxCocoa (~> 3.0)
-    - RxDataSources (~> 1.0)
-  - ReactantLiveUI (0.0.1):
-    - FileKit
-    - KZFileWatchers
-    - Reactant
-    - Reactant/TableView
-    - SnapKit
-    - SWXMLHash
-  - Result (3.0.0)
-  - RxCocoa (3.0.1):
-    - RxSwift (~> 3.0)
-  - RxDataSources (1.0.0):
+  - Result (3.2.1)
+  - RxCocoa (3.4.0):
+    - RxSwift (~> 3.4)
+  - RxDataSources (1.0.3):
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
   - RxOptional (3.1.3):
     - RxCocoa
     - RxSwift
-  - RxSwift (3.0.1)
-  - SnapKit (3.0.2)
-  - SWXMLHash (3.0.4)
+  - RxSwift (3.4.0)
+  - SnapKit (3.2.0)
 
 DEPENDENCIES:
   - Kingfisher (~> 3.0)
-  - KZFileWatchers
   - Nimble (~> 5.0)
   - Quick (~> 1.0)
   - Reactant (from `./`)
-  - ReactantLiveUI (from `./`)
   - Result (~> 3.0)
   - RxCocoa (~> 3.0)
   - RxDataSources (~> 1.0)
@@ -59,25 +43,19 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   Reactant:
     :path: "./"
-  ReactantLiveUI:
-    :path: "./"
 
 SPEC CHECKSUMS:
-  FileKit: 1ea916f594bc0bb9a3951f80edf92b52bb7f883c
   Kingfisher: d5a491b45ea453d90a31bd2c0831d5243e73a73f
-  KZFileWatchers: 0215a3745b1822c5efb56562b5870153dee582d0
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
-  Reactant: 6c3e1dbec3897170a89efce69d24bcad78ed8f38
-  ReactantLiveUI: 05151d5656e8638e7d7018cceb900545c3587ba7
-  Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
-  RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
-  RxDataSources: 824693e84d00781d0a5e5cedc1ff95ce9250aacd
+  Reactant: ee338338e7a8dd7502192d15e8c713fe460b43de
+  Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
+  RxCocoa: d14ef6b6029e1ddc6e966508c09289090de68ff9
+  RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
-  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
-  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
-  SWXMLHash: 29d20b84692fc319ea8ed933058fe7d8d005139b
+  RxSwift: 3789a1af753002a14edecdb698a2424624296a9c
+  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: 97e196d1b80178307b4a2f106ab87cf4e28ab19e
+PODFILE CHECKSUM: a1bc5307d0d07e0699be1d9a444a74d51c18c552
 
 COCOAPODS: 1.2.1

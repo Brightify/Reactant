@@ -836,7 +836,6 @@
 			buildConfigurationList = DC79F6C71E55FAA70033AE51 /* Build configuration list for PBXNativeTarget "ReactantPrototyping" */;
 			buildPhases = (
 				A5EC77EC0E361FCF959DF778 /* [CP] Check Pods Manifest.lock */,
-				18685FDF1E998C2100DD2318 /* Run ReactantUI */,
 				DC79F6B41E55FAA60033AE51 /* Sources */,
 				DC79F6B51E55FAA60033AE51 /* Frameworks */,
 				DC79F6B61E55FAA60033AE51 /* Resources */,
@@ -938,20 +937,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		18685FDF1E998C2100DD2318 /* Run ReactantUI */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run ReactantUI";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "pushd $PROJECT_DIR/ReactantUI\nenv -i HOME=$HOME PATH=$PATH swift build\npopd\n\npushd $PROJECT_DIR/ReactantPrototyping\n$PROJECT_DIR/ReactantUI/.build/debug/reactant-ui > $PROJECT_DIR/ReactantPrototyping/GeneratedUI.swift\npopd";
 		};
 		25A3365583A940DBEF28AC2C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

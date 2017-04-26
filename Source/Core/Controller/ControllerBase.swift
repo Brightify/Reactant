@@ -39,23 +39,45 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     private var castRootView: RootView? {
         return rootView as? RootView
     }
+
+    /* The following inits are here to workaround a SegFault 11 in Swift 3.0 
+       when implementation controller don't implement own init. [It's fixed in Swift 3.1] */
+    public init() {
+        rootView = ROOT()
+
+        super.init(nibName: nil, bundle: nil)
+
+        setupController(title: "")
+    }
+
+    public init(root: ROOT) {
+        rootView = root
+
+        super.init(nibName: nil, bundle: nil)
+
+        setupController(title: "")
+    }
     
-    public init(title: String = "", root: ROOT = ROOT()) {
+    public init(title: String, root: ROOT = ROOT()) {
         rootView = root
         
         super.init(nibName: nil, bundle: nil)
-        
+
+        setupController(title: title)
+    }
+
+    private func setupController(title: String) {
         componentDelegate.ownerComponent = self
         rootView.action
             .subscribe(onNext: { [weak self] in
                 self?.act(on: $0)
             })
             .addDisposableTo(lifetimeDisposeBag)
-        
+
         self.title = title
-        
+
         reloadConfiguration()
-        
+
         afterInit()
     }
     

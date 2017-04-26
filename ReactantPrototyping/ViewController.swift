@@ -11,11 +11,11 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class ViewController: ControllerBase<Void, ExampleRootView> {
-
-    init() {
+final class ViewController: ControllerBase<Void, ExampleRootView> {
+    override init() {
         super.init()
-
-        rootView.componentState = (test: "test", 1, test2: (a: 10, b: "hello worl"))
     }
 }
+
+
+final class ExampleRootView: ViewBase<Void, Void> { }
