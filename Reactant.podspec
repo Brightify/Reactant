@@ -8,13 +8,13 @@
 
 Pod::Spec.new do |spec|
     spec.name             = 'Reactant'
-    spec.version          = '0.6.0'
+    spec.version          = '1.0.0'
     spec.summary          = 'Imagine React Native in Swift and you get Reactant'
 
     spec.description      = <<-DESC
                             We combined the strength of RxSwift with pure Swift and made a framework for highly reusable and clean views.
                             DESC
-    spec.homepage         = 'https://github.com/Brightify/Reactant'
+    spec.homepage         = 'http://reactant.tech'
     spec.license          = 'MIT'
     spec.author           = {
         'Tadeas Kriz' => 'tadeas@brightify.org',

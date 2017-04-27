@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04168232D53A3C6EC65FE3C3 /* Pods_Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */; };
+		183457891EB16B8B00C972A4 /* ReactantUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457881EB16B8B00C972A4 /* ReactantUI.swift */; };
 		185121511D834D1F002C4B08 /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
 		18650B971D8364DC00B1B2A0 /* Properties+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121061D834C5D002C4B08 /* Properties+Core.swift */; };
 		18B4BF7D1E294E7A00D39EEA /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */; };
@@ -149,6 +150,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		183457881EB16B8B00C972A4 /* ReactantUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantUI.swift; sourceTree = "<group>"; };
 		185121061D834C5D002C4B08 /* Properties+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+Core.swift"; sourceTree = "<group>"; };
 		185121471D834D1E002C4B08 /* Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1851214B1D834D1E002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 		DC07858B1DD39B5F0063AB96 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				183457881EB16B8B00C972A4 /* ReactantUI.swift */,
 				DC07858E1DD39BF60063AB96 /* Component.swift */,
 				DC07858F1DD39BF60063AB96 /* ComponentBase.swift */,
 				DC0785901DD39BF60063AB96 /* ComponentDelegate.swift */,
@@ -1113,6 +1116,7 @@
 				DC0785841DD383E50063AB96 /* UINavigationController+Navigation.swift in Sources */,
 				DC69406E1E505C3900C99380 /* SimpleCollectionView.swift in Sources */,
 				DC07859D1DD3AA870063AB96 /* RootView.swift in Sources */,
+				183457891EB16B8B00C972A4 /* ReactantUI.swift in Sources */,
 				DC69407F1E51AE9A00C99380 /* ReactantCollectionView+Delegates.swift in Sources */,
 				DC1C67F21E5C39F30081E7BD /* Sequence+Utils.swift in Sources */,
 				DC1C68011E5F574B0081E7BD /* ActivityIndicator.swift in Sources */,

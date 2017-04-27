@@ -12,9 +12,20 @@ When we created Reactant, our primary goal was maximal compile-time safety. We d
 
 ## Installation
 
-Reactant UI is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your test target in your Podfile:
+Reactant UI is available through [CocoaPods](http://cocoapods.org). To install it, add the following line to your application target in your Podfile:
 
 ```ruby
-pod 'Reactant'
+pod 'ReactantUI'
+```
+
+This will add Reactant UI to your project, but we're not done yet. Open your project in Xcode and open *Build Phases* and create a new *Run Script* phase (`+` button in top left corner -> `New Run Script Phase`). Name the phase (for example `Generate Reactant UI`) and move it just above phase named `Compile Sources (n items)`. Now add the following into the newly created phase.
+
+```sh
+pushd $PROJECT_DIR
+env -i HOME=$HOME PATH=$PATH swift build
+popd
+
+pushd $PROJECT_DIR/Example
+$PROJECT_DIR/.build/debug/reactant-ui > $PROJECT_DIR/Example/Generated/GeneratedUI.swift
+popd
 ```
