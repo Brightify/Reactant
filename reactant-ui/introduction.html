@@ -81,9 +81,17 @@
 <h2 id="why">Why</h2>
 <p>When we created Reactant, our primary goal was maximal compile-time safety. We devised an API for writing <a href="../getting-started/quickstart.html">views using Reactant</a>, but it was still constrained by Swift&apos;s syntax.</p>
 <h2 id="installation">Installation</h2>
-<p>Reactant UI is available through <a href="http://cocoapods.org">CocoaPods</a>. To install
-it, simply add the following line to your test target in your Podfile:</p>
-<pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant&apos;</span>
+<p>Reactant UI is available through <a href="http://cocoapods.org">CocoaPods</a>. To install it, add the following line to your application target in your Podfile:</p>
+<pre><code class="lang-ruby">pod <span class="pl-s">&apos;ReactantUI&apos;</span>
+</code></pre>
+<p>This will add Reactant UI to your project, but we&apos;re not done yet. Open your project in Xcode and open <em>Build Phases</em> and create a new <em>Run Script</em> phase (<code>+</code> button in top left corner -&gt; <code>New Run Script Phase</code>). Name the phase (for example <code>Generate Reactant UI</code>) and move it just above phase named <code>Compile Sources (n items)</code>. Now add the following into the newly created phase.</p>
+<pre><code class="lang-sh"><span class="pl-c1">pushd</span> <span class="hljs-variable">$PROJECT_DIR</span>
+env -i HOME=<span class="hljs-variable">$HOME</span> PATH=<span class="hljs-variable">$PATH</span> swift build
+<span class="pl-c1">popd</span>
+
+<span class="pl-c1">pushd</span> <span class="hljs-variable">$PROJECT_DIR</span>/Example
+<span class="hljs-variable">$PROJECT_DIR</span>/.build/debug/reactant-ui &gt; <span class="hljs-variable">$PROJECT_DIR</span>/Example/Generated/GeneratedUI.swift
+<span class="pl-c1">popd</span>
 </code></pre>
 
         </div>
