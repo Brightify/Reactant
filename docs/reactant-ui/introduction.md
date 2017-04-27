@@ -21,11 +21,17 @@ pod 'ReactantUI'
 This will add Reactant UI to your project, but we're not done yet. Open your project in Xcode and open *Build Phases* and create a new *Run Script* phase (`+` button in top left corner -> `New Run Script Phase`). Name the phase (for example `Generate Reactant UI`) and move it just above phase named `Compile Sources (n items)`. Now add the following into the newly created phase.
 
 ```sh
-pushd $PROJECT_DIR
-env -i HOME=$HOME PATH=$PATH swift build
+pushd "$PODS_ROOT/ReactantUI"
+env -i HOME="$HOME" PATH="$PATH" swift build
 popd
-
-pushd $PROJECT_DIR/Example
-$PROJECT_DIR/.build/debug/reactant-ui > $PROJECT_DIR/Example/Generated/GeneratedUI.swift
-popd
+# Go into directory where you'll have `.ui.xml` files.
+cd "$SRCROOT/Application/Source"
+# Run reactant-ui generator and save the output to a single `.swift` file
+"$PODS_ROOT/ReactantUI/.build/debug/reactant-ui" > "$SRCROOT/Application/Generated/GeneratedUI.swift"
 ```
+
+## Recommended editor
+
+We recommend you to download [**Atom**](https://atom.io/) editor and install [**linter-autocomplete-jing**](https://atom.io/packages/linter-autocomplete-jing) plugin. This combination will give you auto-complete support for UI XML files.
+
+## UI XML 
