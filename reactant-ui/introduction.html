@@ -6,6 +6,11 @@
     <script src="../assets/script.js?t=36f3d457"></script>
     <title>Introduction - Reactant</title>
     <meta name="viewport" content="width=device-width">
+    <script>if (false || window.location.hostname.indexOf("docs.reactant.tech") === window.location.hostname.length - 18) {
+        (function(d,o,c,p,r,e,s){d['GoogleAnalyticsObject']=r;d[r]=d[r]||function(){(d[r].q=d[r].q||[]).push(arguments)},d[r].l=1*new Date();e=o.createElement(c),s=o.getElementsByTagName(c)[0];e.async=1;e.src=p;s.parentNode.insertBefore(e,s)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create',"UA-48374666-17",'auto')
+      }
+    </script>
   </head>
   <body class="-menu-visible">
     <div class="doc-layout">
@@ -59,6 +64,10 @@
                     </li>
                     <li class="heading-item -depth-2"><a class="hlink link-installation" href="#installation">Installation</a>
                     </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-recommended-editor" href="#recommended-editor">Recommended editor</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-ui-xml" href="#ui-xml">UI XML</a>
+                    </li>
                   </ul>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
@@ -70,29 +79,33 @@
       </div>
       <div class="body page-reactant-uiintroduction">
         <div class="header-nav">
-          <div class="right">
+          <div class="right"><a class="iconlink" href="https://github.com/Brightify/Reactant" data-title="Brightify/Reactant">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
           </div>
         </div>
         <div class="markdown-body"><h1 id="reactant-ui">Reactant UI</h1>
 <h2 id="important-note">Important Note</h2>
-<p>Reactant UI is currently a preview. However we&apos;ll try to keep the number of API changes to a minimum.</p>
+<p>Reactant UI is currently a preview. However we&#x2019;ll try to keep the number of API changes to a minimum.</p>
 <h2 id="what-is-reactant-ui">What is Reactant UI</h2>
-<p><strong>Reactant UI</strong> is an extension for <strong>Reactant</strong> allowing you to declare views and layout using XML. Don&apos;t worry, there&apos;s no runtime overhead, as all those declarations are precompiled into Swift. Reactant then uses the generated code to create your UI.</p>
+<p><strong>Reactant UI</strong> is an extension for <strong>Reactant</strong> allowing you to declare views and layout using XML. Don&#x2019;t worry, there&#x2019;s no runtime overhead, as all those declarations are precompiled into Swift. Reactant then uses the generated code to create your UI.</p>
 <h2 id="why">Why</h2>
-<p>When we created Reactant, our primary goal was maximal compile-time safety. We devised an API for writing <a href="../getting-started/quickstart.html">views using Reactant</a>, but it was still constrained by Swift&apos;s syntax.</p>
+<p>When we created Reactant, our primary goal was maximal compile-time safety. We devised an API for writing <a href="../getting-started/quickstart.html">views using Reactant</a>, but it was still constrained by Swift&#x2019;s syntax.</p>
 <h2 id="installation">Installation</h2>
 <p>Reactant UI is available through <a href="http://cocoapods.org">CocoaPods</a>. To install it, add the following line to your application target in your Podfile:</p>
 <pre><code class="lang-ruby">pod <span class="pl-s">&apos;ReactantUI&apos;</span>
 </code></pre>
-<p>This will add Reactant UI to your project, but we&apos;re not done yet. Open your project in Xcode and open <em>Build Phases</em> and create a new <em>Run Script</em> phase (<code>+</code> button in top left corner -&gt; <code>New Run Script Phase</code>). Name the phase (for example <code>Generate Reactant UI</code>) and move it just above phase named <code>Compile Sources (n items)</code>. Now add the following into the newly created phase.</p>
-<pre><code class="lang-sh"><span class="pl-c1">pushd</span> <span class="hljs-variable">$PROJECT_DIR</span>
-env -i HOME=<span class="hljs-variable">$HOME</span> PATH=<span class="hljs-variable">$PATH</span> swift build
+<p>This will add Reactant UI to your project, but we&#x2019;re not done yet. Open your project in Xcode and open <em>Build Phases</em> and create a new <em>Run Script</em> phase (<code>+</code> button in top left corner -&gt; <code>New Run Script Phase</code>). Name the phase (for example <code>Generate Reactant UI</code>) and move it just above phase named <code>Compile Sources (n items)</code>. Now add the following into the newly created phase.</p>
+<pre><code class="lang-sh"><span class="pl-c1">pushd</span> <span class="pl-s">&quot;<span class="hljs-variable">$PODS_ROOT</span>/ReactantUI&quot;</span>
+env -i HOME=<span class="pl-s">&quot;<span class="hljs-variable">$HOME</span>&quot;</span> PATH=<span class="pl-s">&quot;<span class="hljs-variable">$PATH</span>&quot;</span> swift build
 <span class="pl-c1">popd</span>
-
-<span class="pl-c1">pushd</span> <span class="hljs-variable">$PROJECT_DIR</span>/Example
-<span class="hljs-variable">$PROJECT_DIR</span>/.build/debug/reactant-ui &gt; <span class="hljs-variable">$PROJECT_DIR</span>/Example/Generated/GeneratedUI.swift
-<span class="pl-c1">popd</span>
+<span class="pl-c"># Go into directory where you&apos;ll have `.ui.xml` files.</span>
+<span class="pl-c1">cd</span> <span class="pl-s">&quot;<span class="hljs-variable">$SRCROOT</span>/Application/Source&quot;</span>
+<span class="pl-c"># Run reactant-ui generator and save the output to a single `.swift` file</span>
+<span class="pl-s">&quot;<span class="hljs-variable">$PODS_ROOT</span>/ReactantUI/.build/debug/reactant-ui&quot;</span> &gt; <span class="pl-s">&quot;<span class="hljs-variable">$SRCROOT</span>/Application/Generated/GeneratedUI.swift&quot;</span>
 </code></pre>
+<h2 id="recommended-editor">Recommended editor</h2>
+<p>We recommend you to download <a href="https://atom.io/"><strong>Atom</strong></a> editor and install <a href="https://atom.io/packages/linter-autocomplete-jing"><strong>linter-autocomplete-jing</strong></a> plugin. This combination will give you auto-complete support for UI XML files.</p>
+<h2 id="ui-xml">UI XML</h2>
 
         </div>
         <div class="footer-nav">

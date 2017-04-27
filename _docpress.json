@@ -222,6 +222,16 @@
                 "title": "Installation",
                 "depth": 2,
                 "id": "installation"
+              },
+              {
+                "title": "Recommended editor",
+                "depth": 2,
+                "id": "recommended-editor"
+              },
+              {
+                "title": "UI XML",
+                "depth": 2,
+                "id": "ui-xml"
               }
             ]
           },
@@ -444,6 +454,16 @@
           "title": "Installation",
           "depth": 2,
           "id": "installation"
+        },
+        {
+          "title": "Recommended editor",
+          "depth": 2,
+          "id": "recommended-editor"
+        },
+        {
+          "title": "UI XML",
+          "depth": 2,
+          "id": "ui-xml"
         }
       ]
     },
@@ -470,6 +490,7 @@
     "docs/parts/staticmap.md": "parts/staticmap.html",
     "docs/reactant-ui/introduction.md": "reactant-ui/introduction.html",
     "docs/reactant-ui/live-reload.md": "reactant-ui/live-reload.html",
+    "docs/docpress.json": "docpress.json",
     "docs/_config.yml": "_config.yml"
   }
 }

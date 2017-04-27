@@ -6,6 +6,11 @@
     <script src="../assets/script.js?t=36f3d457"></script>
     <title>Architecture - Reactant</title>
     <meta name="viewport" content="width=device-width">
+    <script>if (false || window.location.hostname.indexOf("docs.reactant.tech") === window.location.hostname.length - 18) {
+        (function(d,o,c,p,r,e,s){d['GoogleAnalyticsObject']=r;d[r]=d[r]||function(){(d[r].q=d[r].q||[]).push(arguments)},d[r].l=1*new Date();e=o.createElement(c),s=o.getElementsByTagName(c)[0];e.async=1;e.src=p;s.parentNode.insertBefore(e,s)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create',"UA-48374666-17",'auto')
+      }
+    </script>
   </head>
   <body class="-menu-visible">
     <div class="doc-layout">
@@ -76,13 +81,14 @@
       </div>
       <div class="body page-getting-startedarchitecture">
         <div class="header-nav">
-          <div class="right">
+          <div class="right"><a class="iconlink" href="https://github.com/Brightify/Reactant" data-title="Brightify/Reactant">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
           </div>
         </div>
         <div class="markdown-body"><h1 id="architecture">Architecture</h1>
 <p>We already talked about Components and Views in the <a href="quickstart.html">Quick-start</a>, but they alone are only a small part of Reactant. The magic comes when you embrace the whole architecture.</p>
 <h3 id="rootview">RootView</h3>
-<p>View hierarchy starts with a <strong>RootView</strong>. It&apos;s no more than a special case of a view component, in a sense that it&apos;s meant to fill the whole screen. <strong>RootView</strong> can contain other view components or it can consist of primitive views only (UILabel, UIButton etc.). Let&apos;s take our <code>GreeterView</code> from the previous example and make it a <strong>RootView</strong></p>
+<p>View hierarchy starts with a <strong>RootView</strong>. It&#x2019;s no more than a special case of a view component, in a sense that it&#x2019;s meant to fill the whole screen. <strong>RootView</strong> can contain other view components or it can consist of primitive views only (UILabel, UIButton etc.). Let&#x2019;s take our <code>GreeterView</code> from the previous example and make it a <strong>RootView</strong></p>
 <pre><code class="lang-swift"><span class="pl-k">import</span> RxSwift
 
 <span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">GreeterAction</span> </span>{
@@ -131,10 +137,10 @@
     }
 }
 </code></pre>
-<p>As you can see, the difference is small and we made them keep a naming convention that every <strong>RootView</strong> has that in its name. There&apos;s also the conformance to <code>RootView</code> protocol. That protocol allows you to specify <code>edgesForExtendedLayout</code> and receive view events from Controller (<code>viewWillAppear</code>, <code>viewDidAppear</code>, <code>viewWillDisappear</code>, <code>viewDidDisappear</code>).</p>
+<p>As you can see, the difference is small and we made them keep a naming convention that every <strong>RootView</strong> has that in its name. There&#x2019;s also the conformance to <code>RootView</code> protocol. That protocol allows you to specify <code>edgesForExtendedLayout</code> and receive view events from Controller (<code>viewWillAppear</code>, <code>viewDidAppear</code>, <code>viewWillDisappear</code>, <code>viewDidDisappear</code>).</p>
 <p>Other than that, <strong>RootViews</strong> are plain view components and you can even use any view component as a <strong>RootView</strong> without conforming to <code>RootView</code> protocol or renaming it.</p>
 <h3 id="controller">Controller</h3>
-<p>Each screen is a <strong>Controller</strong> and each <strong>Controller</strong> is a <strong>Component</strong>. Controllers in Reactant don&apos;t contain view logic. Their job is to obtain data (from API, database etc.) for their <strong>RootView</strong>&apos;s <code>componentState</code> and to receive and handle actions produced by their <strong>RootView</strong>. Let&apos;s write a controller for our <code>GreeterRootView</code>.</p>
+<p>Each screen is a <strong>Controller</strong> and each <strong>Controller</strong> is a <strong>Component</strong>. Controllers in Reactant don&#x2019;t contain view logic. Their job is to obtain data (from API, database etc.) for their <strong>RootView</strong>&#x2019;s <code>componentState</code> and to receive and handle actions produced by their <strong>RootView</strong>. Let&#x2019;s write a controller for our <code>GreeterRootView</code>.</p>
 <pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">GreeterRootView</span>&gt; </span>{
     <span class="pl-k">init</span>() {
         <span class="pl-k">super</span>.<span class="pl-k">init</span>(title: <span class="pl-s">&quot;Greeter&quot;</span>)
@@ -152,15 +158,15 @@
     }
 }
 </code></pre>
-<p>The <code>ControllerBase</code> class has two generic parameters, first one is the type of the Controller&apos;s <code>componentState</code> (yes, Controllers can have a state too) and the second is the type of the <strong>RootView</strong>. The RootView is automatically initialized by the Controller, but you can do it manually by passing an instance of the RootView as <code>root</code> parameter of the Controller&apos;s initializer.</p>
+<p>The <code>ControllerBase</code> class has two generic parameters, first one is the type of the Controller&#x2019;s <code>componentState</code> (yes, Controllers can have a state too) and the second is the type of the <strong>RootView</strong>. The RootView is automatically initialized by the Controller, but you can do it manually by passing an instance of the RootView as <code>root</code> parameter of the Controller&#x2019;s initializer.</p>
 <h2 id="dependency-injection-parameters-and-reactions">Dependency Injection, Parameters, and Reactions</h2>
-<p>To be reusable and testable, Controller should get everything it needs from its caller. It&apos;s recommended that each Controller should have the following inner structures (although not every Controller will have all three):</p>
+<p>To be reusable and testable, Controller should get everything it needs from its caller. It&#x2019;s recommended that each Controller should have the following inner structures (although not every Controller will have all three):</p>
 <ul>
 <li>Dependencies</li>
 <li>Properties</li>
 <li>Reactions</li>
 </ul>
-<p>Then you just add them as parameters in the Controller&apos;s <code>init</code> and store them to private properties so you can reference them later. So an example Controller that would use all three of those would look like this:</p>
+<p>Then you just add them as parameters in the Controller&#x2019;s <code>init</code> and store them to private properties so you can reference them later. So an example Controller that would use all three of those would look like this:</p>
 <pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">ExampleController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">ExampleRootView</span>&gt; </span>{
     <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Dependencies</span> </span>{
         <span class="pl-k">let</span> someService: <span class="hljs-type">SomeService</span>
@@ -183,8 +189,8 @@
     }
 }
 </code></pre>
-<p>We recommend keeping those three parameters alphabetically ordered, it&apos;s easiest to remember that way. You might ask, why not just pass the <code>someService</code>, <code>userAccount</code> and <code>openSettings</code> directly without those structures? Two reasons, first, as the project grows, your Controllers will need more dependencies, properties or reactions. When that happens, it&apos;s as easy as adding a new field into one of these structures and updating the call-sites to provide that new dependency. Second reason is consistency. If you stick to the alphabetic order, you&apos;ll know what to expect.</p>
-<p><strong>IMPORTANT</strong>: As you can see, the ExampleController knows nothing about any other Controller. That&apos;s an intended behavior and your Controllers should never know anything about navigation. If you need to close a Controller when a user taps a button, just add <code>let close: () -&gt; Void</code> reaction and let the caller handle the navigation. This is how you achieve perfect reusability and testability.</p>
+<p>We recommend keeping those three parameters alphabetically ordered, it&#x2019;s easiest to remember that way. You might ask, why not just pass the <code>someService</code>, <code>userAccount</code> and <code>openSettings</code> directly without those structures? Two reasons, first, as the project grows, your Controllers will need more dependencies, properties or reactions. When that happens, it&#x2019;s as easy as adding a new field into one of these structures and updating the call-sites to provide that new dependency. Second reason is consistency. If you stick to the alphabetic order, you&#x2019;ll know what to expect.</p>
+<p><strong>IMPORTANT</strong>: As you can see, the ExampleController knows nothing about any other Controller. That&#x2019;s an intended behavior and your Controllers should never know anything about navigation. If you need to close a Controller when a user taps a button, just add <code>let close: () -&gt; Void</code> reaction and let the caller handle the navigation. This is how you achieve perfect reusability and testability.</p>
 <h2 id="service">Service</h2>
 <p>Services are the place for business logic. They load, store and delete data. Such service might look like this example:</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterService</span> </span>{
@@ -209,9 +215,9 @@
     }
 }
 </code></pre>
-<p><strong>NOTE</strong>: For testing purposes, it&apos;s recommended that your Services are either defined as protocols or non-final classes. You&apos;ll then be able to mock them in your tests. For that we recommend you look at our mocking framework <a href="https://github.com/Brightify/Cuckoo">Cuckoo</a>.</p>
+<p><strong>NOTE</strong>: For testing purposes, it&#x2019;s recommended that your Services are either defined as protocols or non-final classes. You&#x2019;ll then be able to mock them in your tests. For that we recommend you look at our mocking framework <a href="https://github.com/Brightify/Cuckoo">Cuckoo</a>.</p>
 <h2 id="dependency-module">Dependency Module</h2>
-<p>To have one place that decides on a concrete implementation of a dependency, you should have a Dependency Module. It&apos;s just a protocol, defining properties and methods used to obtain dependencies. You&apos;ll also have one or more implementations of this protocol. For example you could have one for Debug and one for Release configuration. Or one for the app and one for the tests, there are endless possibilities. Let&apos;s look at an example.</p>
+<p>To have one place that decides on a concrete implementation of a dependency, you should have a Dependency Module. It&#x2019;s just a protocol, defining properties and methods used to obtain dependencies. You&#x2019;ll also have one or more implementations of this protocol. For example you could have one for Debug and one for Release configuration. Or one for the app and one for the tests, there are endless possibilities. Let&#x2019;s look at an example.</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">protocol</span> <span class="pl-ent">DependencyModule</span> </span>{
     <span class="pl-k">var</span> userService: <span class="hljs-type">UserService</span> { <span class="pl-k">get</span> }
     <span class="pl-k">var</span> anotherService: <span class="hljs-type">AnotherService</span> { <span class="pl-k">get</span> }
@@ -244,11 +250,11 @@
     }
 }
 </code></pre>
-<p>Make sure that the types you specify in the DependencyModule protocol are the lowest possible. In our example we use <code>GreeterService</code> even though that&apos;s already an implementation we don&apos;t have any lower type to use.</p>
-<p><strong>NOTE</strong>: The DependencyModule&apos;s lifecycle should be tied to the application (you should put it into a property in AppDelegate), the <code>userService</code> in the <code>AppModule</code> becomes a singleton.</p>
-<p><strong>NOTE</strong>: Don&apos;t create unnecessary protocols for your dependencies until you need a protocol that would have at least two implementations. Having a protocol for each single implementation is an unnecessary boilerplate.</p>
+<p>Make sure that the types you specify in the DependencyModule protocol are the lowest possible. In our example we use <code>GreeterService</code> even though that&#x2019;s already an implementation we don&#x2019;t have any lower type to use.</p>
+<p><strong>NOTE</strong>: The DependencyModule&#x2019;s lifecycle should be tied to the application (you should put it into a property in AppDelegate), the <code>userService</code> in the <code>AppModule</code> becomes a singleton.</p>
+<p><strong>NOTE</strong>: Don&#x2019;t create unnecessary protocols for your dependencies until you need a protocol that would have at least two implementations. Having a protocol for each single implementation is an unnecessary boilerplate.</p>
 <h2 id="wireframe">Wireframe</h2>
-<p>Since Controllers don&apos;t know about navigation, there has to be something in the application that does. That something are Wireframes. Small applications can have just a single one, but most of the time you&apos;ll have multiple Wireframes and each of them will take care of a specific part of the app. Wireframes should receive a Dependency Module with services, but instantiating Controllers is their responsibility. Reactant comes with a protocol <code>Wireframe</code> and it&apos;s recommended to use it. We&apos;ll get to an example, but first let&apos;s update our <code>GreeterController</code> to use a <code>GreeterService</code> and open URL when the greeted name is <code>Reactant</code>.</p>
+<p>Since Controllers don&#x2019;t know about navigation, there has to be something in the application that does. That something are Wireframes. Small applications can have just a single one, but most of the time you&#x2019;ll have multiple Wireframes and each of them will take care of a specific part of the app. Wireframes should receive a Dependency Module with services, but instantiating Controllers is their responsibility. Reactant comes with a protocol <code>Wireframe</code> and it&#x2019;s recommended to use it. We&#x2019;ll get to an example, but first let&#x2019;s update our <code>GreeterController</code> to use a <code>GreeterService</code> and open URL when the greeted name is <code>Reactant</code>.</p>
 <pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">String</span>, <span class="pl-ent">GreeterRootView</span>&gt; </span>{
     <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Dependencies</span> </span>{
         <span class="pl-k">let</span> greeterService: <span class="hljs-type">GreeterService</span>
@@ -287,7 +293,7 @@
     }
 }
 </code></pre>
-<p>You can see we also set <code>componentState</code> type to String in the Controller and added an <code>update()</code> method that sets <code>componentState</code> of the RootView. Let&apos;s now look at the wireframe.</p>
+<p>You can see we also set <code>componentState</code> type to String in the Controller and added an <code>update()</code> method that sets <code>componentState</code> of the RootView. Let&#x2019;s now look at the wireframe.</p>
 <pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainWireframe</span>: <span class="pl-ent">Wireframe</span> </span>{
     <span class="pl-k">private</span> <span class="pl-k">let</span> module: <span class="hljs-type">DependencyModule</span>
 
@@ -314,7 +320,7 @@
     }
 }
 </code></pre>
-<p>Of course we still need to create a window, instantiate the <code>MainWireframe</code> and set result of <code>entrypoint()</code> method as the rootViewController. This is the job of AppDelegate, so let&apos;s do that now.</p>
+<p>Of course we still need to create a window, instantiate the <code>MainWireframe</code> and set result of <code>entrypoint()</code> method as the rootViewController. This is the job of AppDelegate, so let&#x2019;s do that now.</p>
 <pre><code class="lang-swift"><span class="pl-k">import</span> UIKit
 
 <span class="hljs-meta">@UIApplicationMain</span>

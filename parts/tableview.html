@@ -6,6 +6,11 @@
     <script src="../assets/script.js?t=36f3d457"></script>
     <title>TableView - Reactant</title>
     <meta name="viewport" content="width=device-width">
+    <script>if (false || window.location.hostname.indexOf("docs.reactant.tech") === window.location.hostname.length - 18) {
+        (function(d,o,c,p,r,e,s){d['GoogleAnalyticsObject']=r;d[r]=d[r]||function(){(d[r].q=d[r].q||[]).push(arguments)},d[r].l=1*new Date();e=o.createElement(c),s=o.getElementsByTagName(c)[0];e.async=1;e.src=p;s.parentNode.insertBefore(e,s)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create',"UA-48374666-17",'auto')
+      }
+    </script>
   </head>
   <body class="-menu-visible">
     <div class="doc-layout">
@@ -60,12 +65,13 @@
       </div>
       <div class="body page-partstableview">
         <div class="header-nav">
-          <div class="right">
+          <div class="right"><a class="iconlink" href="https://github.com/Brightify/Reactant" data-title="Brightify/Reactant">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
           </div>
         </div>
         <div class="markdown-body"><h1 id="tableview">TableView</h1>
 <p>In Reactant, using table views is extremely simple. There are TableView classes prepared for drop-in use suiting most of the use cases. The TableViews are Components so they have their component State and actions depending on the type of TableView.</p>
-<p>Every TableView&apos;s component State is a <code>TableViewState</code> which is an enum containing these cases:</p>
+<p>Every TableView&#x2019;s component State is a <code>TableViewState</code> which is an enum containing these cases:</p>
 <pre><code class="lang-swift"><span class="pl-k">public</span> <span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">TableViewState</span>&lt;<span class="pl-ent">MODEL</span>&gt; </span>{
 
     <span class="pl-k">case</span> items([<span class="hljs-type">MODEL</span>])
@@ -77,7 +83,7 @@
 <h4 id="simpletableview">SimpleTableView</h4>
 <p><code>SimpleTableView</code> is the most generic TableView of them all. Its purpose is to display table with footers and headers. It has three generic parameters: <code>HEADER</code> - View component used as headers, <code>CELL</code> View component used as cells, <code>FOOTER</code> view component used as footers. <code>MODEL</code> parameter in this case is a <code>SectionModel</code> which binds together component State of section header, array of component States of cells and component State of section footer.</p>
 <h4 id="plaintableview">PlainTableView</h4>
-<p><code>PlainTableView</code> is used for displaying plain table view consisting of cells only. <code>MODEL</code> parameter of this TableView&apos;s <code>TableViewState</code> is component State of the cell.</p>
+<p><code>PlainTableView</code> is used for displaying plain table view consisting of cells only. <code>MODEL</code> parameter of this TableView&#x2019;s <code>TableViewState</code> is component State of the cell.</p>
 <p>Example of using this type of TableView directly as RootView is shown here.</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">TableViewRootView</span>: <span class="pl-ent">PlainTableView</span>&lt;<span class="pl-ent">LabelView</span>&gt;, <span class="pl-ent">RootView</span> </span>{
 

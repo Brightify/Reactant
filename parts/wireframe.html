@@ -6,6 +6,11 @@
     <script src="../assets/script.js?t=36f3d457"></script>
     <title>Wireframe - Reactant</title>
     <meta name="viewport" content="width=device-width">
+    <script>if (false || window.location.hostname.indexOf("docs.reactant.tech") === window.location.hostname.length - 18) {
+        (function(d,o,c,p,r,e,s){d['GoogleAnalyticsObject']=r;d[r]=d[r]||function(){(d[r].q=d[r].q||[]).push(arguments)},d[r].l=1*new Date();e=o.createElement(c),s=o.getElementsByTagName(c)[0];e.async=1;e.src=p;s.parentNode.insertBefore(e,s)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create',"UA-48374666-17",'auto')
+      }
+    </script>
   </head>
   <body class="-menu-visible">
     <div class="doc-layout">
@@ -60,12 +65,13 @@
       </div>
       <div class="body page-partswireframe">
         <div class="header-nav">
-          <div class="right">
+          <div class="right"><a class="iconlink" href="https://github.com/Brightify/Reactant" data-title="Brightify/Reactant">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
           </div>
         </div>
         <div class="markdown-body"><h1 id="wireframe">Wireframe</h1>
 <p>Wireframe is our way of handling navigation in the whole app as well as dependency management. Controllers have Dependencies and Reactions, which are closures or <code>Observables</code> they use to pass data to other controllers and/or open them.</p>
-<p>Let&apos;s have a look at <code>MainViewController</code> from previous example, now with Wireframe support.</p>
+<p>Let&#x2019;s have a look at <code>MainViewController</code> from previous example, now with Wireframe support.</p>
 <pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainViewController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">MainRootView</span>&gt; </span>{
 
     <span class="pl-c">// Define Reactions</span>
@@ -138,7 +144,7 @@
 }
 </code></pre>
 <p>As you can see, it has both <code>Dependencies</code> and <code>Reactions</code>. In this case <code>Dependencies</code> contains service responsible for getting a list of names and is used in <code>update</code> method. <code>Reactions</code> are used to open <code>UIAlertController</code> when an item is selected.</p>
-<p>Now we have all the prerequisities, so let&apos;s have a look at what ties all of the controllers together - the Wireframe itself.</p>
+<p>Now we have all the prerequisities, so let&#x2019;s have a look at what ties all of the controllers together - the Wireframe itself.</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainWireframe</span>: <span class="pl-ent">Wireframe</span> </span>{
 
     <span class="pl-k">private</span> <span class="pl-k">let</span> dependencyModule: <span class="hljs-type">DependencyModule</span>
@@ -178,7 +184,7 @@
     }
 }
 </code></pre>
-<p>This wireframe has one init parameter - DependencyModule which is responsible for creating dependencies for controllers. Each of the wireframe&apos;s method is responsible for creating controllers, their Reactions and Dependencies. Important method is entrypoint that is called in <code>AppDelegate</code> and its result is assigned to application window. Method <code>create</code> is used to simplify working with navigation as its parameter <code>provider</code> has field <code>navigationController: UINavigationController</code>.
+<p>This wireframe has one init parameter - DependencyModule which is responsible for creating dependencies for controllers. Each of the wireframe&#x2019;s method is responsible for creating controllers, their Reactions and Dependencies. Important method is entrypoint that is called in <code>AppDelegate</code> and its result is assigned to application window. Method <code>create</code> is used to simplify working with navigation as its parameter <code>provider</code> has field <code>navigationController: UINavigationController</code>.
 Another important method, that is however not used in this sample is <code>branchNavigation</code> that creates new <code>UINavigationController</code> which can have a close button and then it can be used as a modal controller.</p>
 <p>Wireframe is then used in <code>AppDelegate</code> like this:</p>
 <pre><code class="lang-swift">        <span class="pl-k">let</span> module = <span class="hljs-type">AppModule</span>()

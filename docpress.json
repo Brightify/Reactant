@@ -1,0 +1,17 @@
+{
+  "github": "Brightify/Reactant",
+  "markdown": {
+    "typographer": true,
+    "plugins": {
+      "decorate": {}
+    }
+  },
+  "plugins": {
+    "docpress-core": {},
+    "docpress-base": {}
+  },
+  "googleAnalytics": {
+    "id": "UA-48374666-17",
+    "domain": "docs.reactant.tech"
+  }
+}
