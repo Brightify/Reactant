@@ -490,7 +490,7 @@
     "docs/parts/staticmap.md": "parts/staticmap.html",
     "docs/reactant-ui/introduction.md": "reactant-ui/introduction.html",
     "docs/reactant-ui/live-reload.md": "reactant-ui/live-reload.html",
-    "docs/docpress.json": "docpress.json",
-    "docs/_config.yml": "_config.yml"
+    "docs/_config.yml": "_config.yml",
+    "docs/docpress.json": "docpress.json"
   }
 }
