@@ -19,9 +19,9 @@ class ConfigurationTest: QuickSpec {
             describe("init") {
                 it("copies configurations preserving last value") {
                     let configuration1 = Configuration()
-                    configuration1.set(value: 1, for: Properties.int)
+                    configuration1.set(Properties.int, to: 1)
                     let configuration2 = Configuration()
-                    configuration2.set(value: 2, for: Properties.int)
+                    configuration2.set(Properties.int, to: 2)
                     
                     let configuration = Configuration(copy: configuration1, configuration2)
                     
@@ -33,8 +33,8 @@ class ConfigurationTest: QuickSpec {
                 it("gets and sets value for property") {
                     let configuration = Configuration()
                     
-                    configuration.set(value: 1, for: Properties.int)
-                    configuration.set(value: "A", for: Properties.string)
+                    configuration.set(Properties.int, to: 1)
+                    configuration.set(Properties.string, to: "A")
                     
                     expect(configuration.get(valueFor: Properties.int)) == 1
                     expect(configuration.get(valueFor: Properties.string)) == "A"

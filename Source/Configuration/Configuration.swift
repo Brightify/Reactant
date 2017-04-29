@@ -20,7 +20,7 @@ public final class Configuration {
         }
     }
     
-    public func set<T>(value: T, for property: Property<T>) {
+    public func set<T>(_ property: Property<T>, to value: T) {
         data[property.id] = value
     }
     
