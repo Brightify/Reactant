@@ -28,7 +28,8 @@ public final class ActivityIndicator: ObservableConvertibleType {
     }
     
     public func trackActivity<O: ObservableConvertibleType>(of source: O, initialMessage: String?, messageProvider: @escaping (O.E) -> String?) -> Observable<O.E> {
-        return Observable.create { [variable] subscriber in
+        // self is intentionaly captured. It is released once the Observable is disposed.
+        return Observable.create { subscriber in
             let observable = source.asObservable().shareReplay(1)
             let subscriptionDisposable = observable.subscribe(subscriber)
             
@@ -38,10 +39,10 @@ public final class ActivityIndicator: ObservableConvertibleType {
                 .startWith(initialMessage)
                 .distinctUntilChanged()
                 .subscribe(onNext: {
-                    if let index = variable.value.index(where: { $0.id == id }) {
-                        variable.value[index].message = $0
+                    if let index = self.variable.value.index(where: { $0.id == id }) {
+                        self.variable.value[index].message = $0
                     } else {
-                        variable.value.append((id: id, message: $0))
+                        self.variable.value.append((id: id, message: $0))
                     }
                 })
             
@@ -49,8 +50,8 @@ public final class ActivityIndicator: ObservableConvertibleType {
                 subscriptionDisposable.dispose()
                 messageChangeDisposable.dispose()
                 
-                if let index = variable.value.index(where: { $0.id == id }) {
-                    variable.value.remove(at: index)
+                if let index = self.variable.value.index(where: { $0.id == id }) {
+                    self.variable.value.remove(at: index)
                 }
             }
         }
@@ -67,12 +68,12 @@ public final class ActivityIndicator: ObservableConvertibleType {
 
 extension ActivityIndicator {
     
-    public func trackActivity<O: ObservableConvertibleType>(of source: O, message: String?) -> Observable<O.E> {
-        return trackActivity(of: source, initialMessage: message, messageProvider: { _ in message })
-    }
-    
     public func trackActivity<O: ObservableConvertibleType>(of source: O) -> Observable<O.E> {
         return trackActivity(of: source, message: defaultMessage)
+    }
+    
+    public func trackActivity<O: ObservableConvertibleType>(of source: O, message: String?) -> Observable<O.E> {
+        return trackActivity(of: source, initialMessage: message, messageProvider: { _ in message })
     }
     
     public func trackActivity<O: ObservableConvertibleType>(of source: O, messageProvider: @escaping (O.E) -> String?) -> Observable<O.E> {
