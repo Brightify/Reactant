@@ -53,7 +53,7 @@ We begin with creating a new file named `GreeterRootView.ui.xml`, adding a root 
 
 By default, the name of the file is used as the type name. However, you can override this behavior. To do so, add `type` attribute to the `Component` element with the name of your desired type.
 
-You might want to create all `.ui.xml` at once before writing their Swift counterparts (especially if you use [Live Reload][live-reload]). Unfortunately, Reactant UI in its current version doesn't scan your Swift files for existing types and generates Swift extensions for every `.ui.xml` in your project. If you don't have matching classes, you'll get compile errors. The current workaround is setting a value of `anonymous` attribute to `true` on the `Component` element. Reactant UI then generates an empty class which you can then use in your code. Later on you would replace it with your own class and remove the `anonymous` attribute.
+You might want to create all `.ui.xml` at once before writing their Swift counterparts (especially if you use [Live Reload](./live-reload.md)). Unfortunately, Reactant UI in its current version doesn't scan your Swift files for existing types and generates Swift extensions for every `.ui.xml` in your project. If you don't have matching classes, you'll get compile errors. The current workaround is setting a value of `anonymous` attribute to `true` on the `Component` element. Reactant UI then generates an empty class which you can then use in your code. Later on you would replace it with your own class and remove the `anonymous` attribute.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -119,5 +119,3 @@ final class GreeterRootView: ViewBase<String, GreeterAction> {
     }
 }
 ```
-
-[live-reload]: (./live-reload.md)
