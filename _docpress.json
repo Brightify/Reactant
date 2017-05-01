@@ -18,9 +18,9 @@
             "id": "communication"
           },
           {
-            "title": "Installation",
+            "title": "Get Started",
             "depth": 2,
-            "id": "installation"
+            "id": "get-started"
           },
           {
             "title": "Versioning",
@@ -28,15 +28,20 @@
             "id": "versioning"
           },
           {
-            "title": "Author",
+            "title": "Authors",
             "depth": 2,
-            "id": "author"
+            "id": "authors"
           },
           {
             "title": "Used libraries",
             "depth": 2,
             "id": "used-libraries",
             "headings": [
+              {
+                "title": "Runtime",
+                "depth": 3,
+                "id": "runtime"
+              },
               {
                 "title": "Tests",
                 "depth": 3,
@@ -91,14 +96,21 @@
             "slug": "getting-startedarchitecture",
             "headings": [
               {
-                "title": "RootView",
-                "depth": 3,
-                "id": "rootview"
-              },
-              {
-                "title": "Controller",
-                "depth": 3,
-                "id": "controller"
+                "title": "Recommended directory structure",
+                "depth": 2,
+                "id": "recommended-directory-structure",
+                "headings": [
+                  {
+                    "title": "RootView",
+                    "depth": 3,
+                    "id": "rootview"
+                  },
+                  {
+                    "title": "Controller",
+                    "depth": 3,
+                    "id": "controller"
+                  }
+                ]
               },
               {
                 "title": "Dependency Injection, Parameters, and Reactions",
@@ -121,9 +133,9 @@
                 "id": "wireframe"
               },
               {
-                "title": "Recommended directory structure",
+                "title": "Final result",
                 "depth": 2,
-                "id": "recommended-directory-structure"
+                "id": "final-result"
               }
             ]
           }
@@ -263,9 +275,9 @@
           "id": "communication"
         },
         {
-          "title": "Installation",
+          "title": "Get Started",
           "depth": 2,
-          "id": "installation"
+          "id": "get-started"
         },
         {
           "title": "Versioning",
@@ -273,15 +285,20 @@
           "id": "versioning"
         },
         {
-          "title": "Author",
+          "title": "Authors",
           "depth": 2,
-          "id": "author"
+          "id": "authors"
         },
         {
           "title": "Used libraries",
           "depth": 2,
           "id": "used-libraries",
           "headings": [
+            {
+              "title": "Runtime",
+              "depth": 3,
+              "id": "runtime"
+            },
             {
               "title": "Tests",
               "depth": 3,
@@ -333,14 +350,21 @@
       "slug": "getting-startedarchitecture",
       "headings": [
         {
-          "title": "RootView",
-          "depth": 3,
-          "id": "rootview"
-        },
-        {
-          "title": "Controller",
-          "depth": 3,
-          "id": "controller"
+          "title": "Recommended directory structure",
+          "depth": 2,
+          "id": "recommended-directory-structure",
+          "headings": [
+            {
+              "title": "RootView",
+              "depth": 3,
+              "id": "rootview"
+            },
+            {
+              "title": "Controller",
+              "depth": 3,
+              "id": "controller"
+            }
+          ]
         },
         {
           "title": "Dependency Injection, Parameters, and Reactions",
@@ -363,9 +387,9 @@
           "id": "wireframe"
         },
         {
-          "title": "Recommended directory structure",
+          "title": "Final result",
           "depth": 2,
-          "id": "recommended-directory-structure"
+          "id": "final-result"
         }
       ]
     },
@@ -491,6 +515,7 @@
     "docs/reactant-ui/introduction.md": "reactant-ui/introduction.html",
     "docs/reactant-ui/live-reload.md": "reactant-ui/live-reload.html",
     "docs/_config.yml": "_config.yml",
-    "docs/docpress.json": "docpress.json"
+    "docs/docpress.json": "docpress.json",
+    "docs/img/ReactantTutorial.png": "img/ReactantTutorial.png"
   }
 }

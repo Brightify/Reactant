@@ -70,7 +70,128 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="activityindicator">ActivityIndicator</h1>
-<p>TBD</p>
+<p><code>ActivityIndicator</code> allows you to track activity of <code>Observable</code>. It is especially useful when displaying progress of some tasks done by multiple <code>Observable</code> in a row, because it can monitor all of them and show different associated values based on the current task.</p>
+<p><code>ActivityIndicator</code> has this init: <code>init(defaultAssociatedValue: T? = nil)</code>. Meaning of <code>defaultAssociatedValue</code> will be explained later. Type <code>T</code> represents type of data associated to <code>Observable</code>. If <code>T</code> is not <code>Equatable</code>, then <code>init(defaultAssociatedValue: T? = nil, equalWhen equalFunction: @escaping (T, T) -&gt; Bool)</code> must be used.</p>
+<p>To register <code>Observable</code> to be tracked by <code>ActivityIndicator</code> use:</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">ActivityIndicator</span> </span>{
+    
+	<span class="pl-c">// defaultAssociatedValue from init will be associated to this Observable.</span>
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;O: ObservableConvertibleType&gt;<span class="hljs-params">(of source: O)</span></span>
+    
+    <span class="pl-c">// Provided associatedValue will be used instead of the default one.</span>
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;O: ObservableConvertibleType&gt;<span class="hljs-params">(of source: O, associatedValue: T?)</span></span>
+    
+    <span class="pl-c">// Associated value will be determined for each value from Observable individually by associatedValueProvider. defaultAssociatedValue will be used as the first associated value.</span>
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;O: ObservableConvertibleType&gt;<span class="hljs-params">(of source: O, associatedValueProvider: @escaping <span class="hljs-params">(O.E)</span></span></span> -&gt; <span class="hljs-type">T</span>?)
+
+	<span class="pl-c">// Same as method above, but initialAssociatedValue is provided explicitly.</span>
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;O: ObservableConvertibleType&gt;<span class="hljs-params">(of source: O, initialAssociatedValue: T?, associatedValueProvider: @escaping <span class="hljs-params">(O.E)</span></span></span> -&gt; <span class="hljs-type">T</span>?) -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">O</span>.<span class="hljs-type">E</span>&gt;
+}
+</code></pre>
+<p>For example:</p>
+<pre><code class="lang-swift"><span class="pl-k">let</span> activityIndicator = <span class="hljs-type">ActivityIndicator</span>&lt;<span class="hljs-type">String</span>&gt;()
+<span class="pl-k">let</span> observable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.interval(<span class="hljs-type">RxTimeInterval</span>(<span class="hljs-number">1</span>), scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+								.take(<span class="hljs-number">10</span>)
+
+activityIndicator.trackActivity(of: observable)
+
+observable.subscribe...
+</code></pre>
+<p>Usually you do not store <code>Observable</code> in a variable (doing so requires to break the chain of function calls). To remove this restriction use these corresponding methods from extension of <code>ObservableConvertibleType</code>:</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">ObservableConvertibleType</span> </span>{
+    
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;T&gt;<span class="hljs-params">(<span class="pl-k">in</span> activityIndicator: ActivityIndicator&lt;T&gt;)</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt; 
+    
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;T&gt;<span class="hljs-params">(<span class="pl-k">in</span> activityIndicator: ActivityIndicator&lt;T&gt;, associatedValue: T?)</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt; 
+    
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;T&gt;<span class="hljs-params">(<span class="pl-k">in</span> activityIndicator: ActivityIndicator&lt;T&gt;, associatedValueProvider: @escaping <span class="hljs-params">(E)</span></span></span> -&gt; <span class="hljs-type">T</span>?) -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt; 
+    
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;T&gt;<span class="hljs-params">(<span class="pl-k">in</span> activityIndicator: ActivityIndicator&lt;T&gt;, initialAssociatedValue: T?, associatedValueProvider: @escaping <span class="hljs-params">(E)</span></span></span> -&gt; <span class="hljs-type">T</span>?) -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt;
+}
+</code></pre>
+<p>Now we can integrate <code>ActivityIndicator</code> to existing <code>Observable</code> chain quite nicely:</p>
+<pre><code class="lang-swift"><span class="pl-k">let</span> activityIndicator = <span class="hljs-type">ActivityIndicator</span>&lt;<span class="hljs-type">String</span>&gt;()
+<span class="pl-k">let</span> observable = <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.interval(<span class="hljs-type">RxTimeInterval</span>(<span class="hljs-number">1</span>), scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+								.take(<span class="hljs-number">10</span>)
+								.trackActivity(<span class="pl-k">in</span>: activityIndicator)
+								.subscribe...
+</code></pre>
+<p>All of the <code>trackActivity</code> methods captures <code>ActivityIndicator</code> until the registered <code>Observable</code> is disposed. So you do not have to hold a reference to it.</p>
+<p>Example of <code>associatedValueProvider</code>:</p>
+<pre><code class="lang-swift"><span class="pl-k">let</span> activityIndicator = <span class="hljs-type">ActivityIndicator</span>&lt;<span class="hljs-type">String</span>&gt;()
+activityIndicator.asObservable().subscribe(onNext: {
+    <span class="pl-c1">print</span>(<span class="pl-s">&quot;loading: <span class="hljs-subst">\($<span class="hljs-number">0</span>.loading)</span>, associatedValue: <span class="hljs-subst">\($<span class="hljs-number">0</span>.associatedValue ?? &quot;Empty&quot;)</span>&quot;</span>)
+}).disposed(by: activityIndicator.disposeBag)
+
+<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.interval(<span class="hljs-type">RxTimeInterval</span>(<span class="hljs-number">1</span>), scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+            .trackActivity(<span class="pl-k">in</span>: activityIndicator, initialAssociatedValue: <span class="pl-s">&quot;-1&quot;</span>, associatedValueProvider: { <span class="pl-s">&quot;<span class="hljs-subst">\($<span class="hljs-number">0</span>)</span>&quot;</span> })
+            .subscribe(onNext: { <span class="hljs-number">_</span> <span class="pl-k">in</span> }).disposed(by: lifetimeDisposeBag)
+</code></pre>
+<p>Output:</p>
+<pre><code>loading: false, associatedValue: Empty
+loading: true, associatedValue: -1
+loading: true, associatedValue: 0
+loading: true, associatedValue: 1
+...
+</code></pre>
+<p>To access data produced by <code>ActivityIndicator</code> use <code>asDriver()</code> or <code>asObservable</code>. For example:</p>
+<pre><code class="lang-swift">activityIndicator.asObservable()
+				 .subscribe(onNext: {
+            			<span class="pl-c1">print</span>(<span class="pl-s">&quot;loading: <span class="hljs-subst">\($<span class="hljs-number">0</span>.loading)</span>, associatedValue: <span class="hljs-subst">\($<span class="hljs-number">0</span>.associatedValue ?? &quot;&quot;)</span>&quot;</span>)
+				 }).disposed(by: activityIndicator.disposeBag)
+</code></pre>
+<p>Notice the <code>activityIndicator.disposeBag</code>. It is not necessary to add <code>ActivityIndicator</code> subscriptions to a <code>DisposeBag</code> because they will be released automatically together with the instance of <code>ActivityIndicator</code> (so using <code>activityIndicator.disposeBag</code> in this case is equivalent to not using any at all). Nevertheless it is recommended to do so. It will help the code readability and also without <code>disposed(by:)</code> Xcode produces a warning.</p>
+<p><code>loading</code> is a <code>bool</code> value that tells if <code>ActivityIndicator</code> currently tracks at least one active <code>Observable</code> (once <code>Observable</code> finishes its work, it is disposed and not considered active). <code>associatedValue</code> is <code>T?</code> associated with the first active <code>Observable</code> (the order of multiple <code>Observable</code> is determined by the order they were registered to <code>ActivityIndicator</code>). If <code>loading</code> is <code>false</code>, then <code>associatedValue</code> is set to <code>nil</code>.</p>
+<p><code>onNext</code> is called only when there is a change either in <code>loading</code> or <code>associatedValue</code>.</p>
+<p>Advanced example:</p>
+<pre><code class="lang-swift"><span class="pl-k">let</span> activityIndicator = <span class="hljs-type">ActivityIndicator</span>&lt;<span class="hljs-type">Int</span>&gt;()
+activityIndicator.asObservable()
+				 .subscribe(onNext: {
+    					<span class="pl-c1">print</span>(<span class="pl-s">&quot;loading: <span class="hljs-subst">\($<span class="hljs-number">0</span>.loading)</span>, associatedValue: <span class="hljs-subst">\($<span class="hljs-number">0</span>.associatedValue ?? -<span class="hljs-number">1</span>)</span>&quot;</span>)	<span class="pl-c">// If associatedValue is nil, print -1 instead.</span>
+				 }).disposed(by: activityIndicator.disposeBag)
+
+<span class="pl-c">// Function that creates some Observable emulating long operation (fetching data from disk, etc.).</span>
+<span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">createObservable</span><span class="hljs-params">(value: Int, delay: Int)</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt; {
+    <span class="pl-k">return</span> <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt;.just(value).delay(<span class="hljs-type">RxTimeInterval</span>(delay), scheduler: <span class="hljs-type">MainScheduler</span>.instance)
+}
+
+<span class="pl-c">// Represents serial sequence of three Observable, each takes two seconds to compute. The trackActivity is called immediately so the priority of Observables is: 1, 2, 3, 10, 11 regardless of when they actually start doing something.</span>
+createObservable(value: <span class="hljs-number">1</span>, delay: <span class="hljs-number">2</span>)
+    .trackActivity(<span class="pl-k">in</span>: activityIndicator, associatedValue: <span class="hljs-number">1</span>)
+    .flatMap { value -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt; <span class="pl-k">in</span>
+        <span class="pl-c1">print</span>(<span class="pl-s">&quot;Done: <span class="hljs-subst">\(value)</span>&quot;</span>)
+        <span class="pl-k">return</span> createObservable(value: <span class="hljs-number">2</span>, delay: <span class="hljs-number">2</span>)
+    }.trackActivity(<span class="pl-k">in</span>: activityIndicator, associatedValue: <span class="hljs-number">2</span>)
+    .flatMap { value -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt; <span class="pl-k">in</span>
+        <span class="pl-c1">print</span>(<span class="pl-s">&quot;Done: <span class="hljs-subst">\(value)</span>&quot;</span>)
+        <span class="pl-k">return</span> createObservable(value: <span class="hljs-number">3</span>, delay: <span class="hljs-number">2</span>)
+    }.trackActivity(<span class="pl-k">in</span>: activityIndicator, associatedValue: <span class="hljs-number">3</span>)
+    .subscribe(onNext: { <span class="pl-c1">print</span>(<span class="pl-s">&quot;Done: <span class="hljs-subst">\($<span class="hljs-number">0</span>)</span>&quot;</span>) })
+    .disposed(by: ...)
+
+<span class="pl-c">// ActivityIndicator can track multiple Observables in parallel.</span>
+createObservable(value: <span class="hljs-number">10</span>, delay: <span class="hljs-number">3</span>)
+    .trackActivity(<span class="pl-k">in</span>: activityIndicator, associatedValue: <span class="hljs-number">10</span>)
+    .flatMap { value -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">Int</span>&gt; <span class="pl-k">in</span>
+        <span class="pl-c1">print</span>(<span class="pl-s">&quot;Done: <span class="hljs-subst">\(value)</span>&quot;</span>)
+        <span class="pl-k">return</span> createObservable(value: <span class="hljs-number">11</span>, delay: <span class="hljs-number">5</span>)
+    }.trackActivity(<span class="pl-k">in</span>: activityIndicator, associatedValue: <span class="hljs-number">11</span>)
+    .subscribe(onNext: { <span class="pl-c1">print</span>(<span class="pl-s">&quot;Done: <span class="hljs-subst">\($<span class="hljs-number">0</span>)</span>&quot;</span>) })
+    .disposed(by: ...)
+</code></pre>
+<p>The output of this code is:</p>
+<pre><code>loading: false, associatedValue: -1
+loading: true, associatedValue: 1
+Done: 1
+loading: true, associatedValue: 2 		// Observable 2 is registered before 10.
+Done: 10						        // Observable 10 finishes before 2 but that doesn&apos;t change the associatedValue.
+Done: 2
+loading: true, associatedValue: 3
+Done: 3
+loading: true, associatedValue: 11		// Observable 10 finished long ago, so the only remaining Observable is 11.
+Done: 11
+loading: false, associatedValue: -1
+</code></pre>
 
         </div>
         <div class="footer-nav">

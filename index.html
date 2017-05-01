@@ -24,14 +24,16 @@
                 </li>
                 <li class="heading-item -depth-2"><a class="hlink link-communication" href="#communication">Communication</a>
                 </li>
-                <li class="heading-item -depth-2"><a class="hlink link-installation" href="#installation">Installation</a>
+                <li class="heading-item -depth-2"><a class="hlink link-get-started" href="#get-started">Get Started</a>
                 </li>
                 <li class="heading-item -depth-2"><a class="hlink link-versioning" href="#versioning">Versioning</a>
                 </li>
-                <li class="heading-item -depth-2"><a class="hlink link-author" href="#author">Author</a>
+                <li class="heading-item -depth-2"><a class="hlink link-authors" href="#authors">Authors</a>
                 </li>
                 <li class="heading-item -depth-2"><a class="hlink link-used-libraries" href="#used-libraries">Used libraries</a>
                   <ul class="heading-list -depth-2">
+                    <li class="heading-item -depth-3"><a class="hlink link-runtime" href="#runtime">Runtime</a>
+                    </li>
                     <li class="heading-item -depth-3"><a class="hlink link-tests" href="#tests">Tests</a>
                     </li>
                   </ul>
@@ -88,39 +90,34 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="reactant">Reactant</h1>
-<p><a href="https://travis-ci.org/Brightify/Reactant"><img src="http://img.shields.io/travis/Brightify/Reactant.svg?style=flat" alt="CI Status"></a>
-<a href="http://cocoapods.org/pods/Reactant"><img src="https://img.shields.io/cocoapods/v/Reactant.svg?style=flat" alt="Version"></a>
-<a href="http://cocoapods.org/pods/Reactant"><img src="https://img.shields.io/cocoapods/l/Reactant.svg?style=flat" alt="License"></a>
-<a href="http://cocoapods.org/pods/Reactant"><img src="https://img.shields.io/cocoapods/p/Reactant.svg?style=flat" alt="Platform"></a>
-<a href="http://cocoapods.org/pods/Reactant"><img src="https://img.shields.io/cocoapods/at/Reactant.svg?style=flat" alt="Apps"></a>
-<a href="http://swiftkit.brightify.org"><img src="http://swiftkit.brightify.org/badge.svg" alt="Slack Status"></a></p>
-<p>Reactant is a framework and architecture for developing iOS apps quickly without writing code all over again. It is based on ReactiveX and originally was inspired by React Native.</p>
+<p>Reactant is a foundation for rapid and safe iOS development. It allows you to cut down your development costs by improving reusability, testability and safety of your code, especially your UI. Check our our <a href="https://docs.reactant.tech/getting-started/quickstart.html">quick-start guide</a> to learn more.</p>
+<p><a href="https://travis-ci.org/Brightify/Reactant"><img src="https://img.shields.io/travis/Brightify/Reactant.svg?style=flat" alt="CI Status"></a>
+<a href="https://cocoapods.org/pods/Reactant"><img src="https://img.shields.io/cocoapods/v/Reactant.svg?style=flat" alt="Version"></a>
+<a href="https://cocoapods.org/pods/Reactant"><img src="https://img.shields.io/cocoapods/l/Reactant.svg?style=flat" alt="License"></a>
+<a href="https://cocoapods.org/pods/Reactant"><img src="https://img.shields.io/cocoapods/p/Reactant.svg?style=flat" alt="Platform"></a>
+<a href="https://cocoapods.org/pods/Reactant"><img src="https://img.shields.io/cocoapods/at/Reactant.svg?style=flat" alt="Apps"></a>
+<a href="https://swiftkit.brightify.org/"><img src="https://swiftkit.brightify.org/badge.svg" alt="Slack Status"></a></p>
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li>iOS 8.0+ (macOS is support is experimental, watchOS most likely won&#x2019;t be supported, tvOS was not tested)</li>
+<li>iOS 9.0+</li>
 <li>Xcode 8.0+</li>
 <li>Swift 3.0+</li>
 </ul>
+<p><strong>NOTE</strong>: We have experimental support for <em>macOS</em> platform in <code>macOS</code> branch, but it&#x2019;s incomplete and definitely not recommended for production. Our plan is to add full <code>macOS</code> support in near future.</p>
 <h2 id="communication">Communication</h2>
-<p>Feel free to reach us on Slack! <a href="http://swiftkit.brightify.org/">http://swiftkit.brightify.org/</a></p>
-<h2 id="installation">Installation</h2>
-<p>Reactant is available through <a href="http://cocoapods.org">CocoaPods</a>. To install
-it, simply add the following line to your test target in your Podfile:</p>
-<pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant&apos;</span>
-<span class="pl-c"># these subspecs are optional, but recommended</span>
-pod <span class="pl-s">&apos;Reactant/TableView&apos;</span>
-pod <span class="pl-s">&apos;Reactant/CollectionView&apos;</span>
-pod <span class="pl-s">&apos;Reactant/Validation&apos;</span>
-</code></pre>
+<p>Feel free to reach us on Slack! <a href="https://swiftkit.brightify.org/">https://swiftkit.brightify.org/</a></p>
+<h2 id="get-started">Get Started</h2>
+<p>Head to our <a href="https://docs.reactant.tech/getting-started/quickstart.html">quick-start guide</a> to learn how Reactant works and what it can do to decrease your development costs!</p>
 <h2 id="versioning">Versioning</h2>
-<p>This library uses semantic versioning. Until the version 1.0 API breaking changes may occur even in minor versions. We consider the version 0.6 to be prerelease, which means that API should be stable but is not tested yet in a real project. After that testing, we make needed adjustments and bump the version to 1.0 (first release).</p>
-<h2 id="author">Author</h2>
+<p>This library uses semantic versioning. We won&#x2019;t introduce any breaking changes without releasing a new major version. Our main goal is to keep the API as stable as possible. We build our applications on top of Reactant as well and we absolutely hate any breaking changes.</p>
+<h2 id="authors">Authors</h2>
 <ul>
 <li>Tadeas Kriz, <a href="mailto:tadeas@brightify.org">tadeas@brightify.org</a></li>
 <li>Matous Hybl, <a href="mailto:matous@brightify.org">matous@brightify.org</a></li>
 <li>Filip Doln&#xED;k, <a href="mailto:filip@brightify.org">filip@brightify.org</a></li>
 </ul>
 <h2 id="used-libraries">Used libraries</h2>
+<h3 id="runtime">Runtime</h3>
 <ul>
 <li><a href="https://github.com/antitypical/Result">Result</a></li>
 <li><a href="https://github.com/SnapKit/SnapKit">SnapKit</a></li>
