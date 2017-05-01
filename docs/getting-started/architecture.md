@@ -1,19 +1,66 @@
-# Architecture
+# Architecture Walkthrough
 
 We already talked about Components and Views in the [Quick-start](./quickstart.md), but they alone are only a small part of Reactant. The magic comes when you embrace the whole architecture.
+
+We recommend that you create a new project and create a very simple app through this short guide. Creating a project compatible with Reactant requires a few steps. First create a new `Single View Application` and select `Swift` as your application's language. Once created, delete `Main.storyboard` and `ViewController.swift` files **(Reactant does not support Storyboard/Interface Builder as classes are not accessible from ObjC runtime)**. Then open your app's target `General` settings and under `Deployment info` delete the value of `Main Interface` property.
+
+Next step is adding CocoaPods to the project. Open your project's directory in *Terminal* and run a `pod init` command. This will create a `Podfile` for you. Open it in your favorite text editor and under your app's target add `pod 'Reactant'`. The file should then look like this:
+
+```ruby
+platform :ios, '9.0'
+
+target 'ReactantTutorial' do
+  use_frameworks!
+
+  pod 'Reactant'
+end
+```
+
+Once you save the file, go back into the `Terminal` and run `pod install`. When the command completes, open the newly created `.xcworkspace`. Your project is now Reactant ready!
+
+## Recommended directory structure
+
+Through this overview, you might be asking yourself what structure would be the best for this architecture. After many iterations we found one that goes well with Reactant and all its parts. However this structure is not mandatory, feel free to adjust it to your liking.
+
+```
+YourProject/ (root directory with .xcodeproj)
+├── Application/ (directory for the App target)
+│   ├── Generated/
+│   ├── Resource/ (here you'll put Assets.xcasset, Localizations etc.)
+│   └── Source/
+│       ├── Component/
+│       │   ├── SomeAppPart/
+│       │   │   ├── SomeAppPartAction.swift
+│       │   │   ├── SomeAppPartController.swift
+│       │   │   └── SomeAppPartRootView.swift
+│       │   └── SomeOtherPart/
+│       │       ├── CustomView.swift
+│       │       ├── SomeOtherPartAction.swift
+│       │       ├── SomeOtherPartController.swift
+│       │       └── SomeOtherPartRootView.swift
+│       ├── Model/
+│       ├── Service/
+│       ├── Util/
+│       ├── Wireframe/
+│       └── AppDelegate.swift
+├── Tests/ (directory for unit tests target, optional)
+└── UITests/ (directory for ui tests target, optional)
+```
 
 ### RootView
 
 View hierarchy starts with a **RootView**. It's no more than a special case of a view component, in a sense that it's meant to fill the whole screen. **RootView** can contain other view components or it can consist of primitive views only (UILabel, UIButton etc.). Let's take our `GreeterView` from the previous example and make it a **RootView**
 
 ```swift
+// GreeterRootView.swift
+import Reactant
 import RxSwift
 
 enum GreeterAction {
     case greetingChanged(String)
 }
 
-final class GreeterRootView: ViewBase<String, GreeterAction>, RootView {
+final class GreeterRootView: ViewBase<(greeting: String, name: String), GreeterAction>, RootView {
     override var actions: [Observable<GreeterAction>] {
         return [
             // Skipping first event as UITextField.rx.text sends first value
@@ -26,10 +73,10 @@ final class GreeterRootView: ViewBase<String, GreeterAction>, RootView {
     private let nameField = UITextField()
 
     override func update() {
-        greeting.text = "Hello \(componentState)!"
+        greeting.text = componentState.greeting
 
-        if componentState != nameField.text {
-            nameField.text = componentState
+        if componentState.name != nameField.text {
+            nameField.text = componentState.name
         }
     }
 
@@ -39,17 +86,19 @@ final class GreeterRootView: ViewBase<String, GreeterAction>, RootView {
             nameField
         )
 
+        backgroundColor = .white
         greeting.textColor = .red
+        nameField.placeholder = "Name to greet"
     }
 
     override func setupConstraints() {
         greeting.snp.makeConstraints { make in
-            make.left.top.right.equalToSuperview()
+            make.left.top.right.equalToSuperview().inset(20)
         }
 
         nameField.snp.makeConstraints { make in
             make.top.equalTo(greeting.snp.bottom).offset(10)
-            make.left.bottom.right.equalToSuperview()
+            make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(50)
         }
     }
@@ -65,19 +114,22 @@ Other than that, **RootViews** are plain view components and you can even use an
 Each screen is a **Controller** and each **Controller** is a **Component**. Controllers in Reactant don't contain view logic. Their job is to obtain data (from API, database etc.) for their **RootView**'s `componentState` and to receive and handle actions produced by their **RootView**. Let's write a controller for our `GreeterRootView`.
 
 ```swift
+// GreeterController.swift
+import Reactant
+
 final class GreeterController: ControllerBase<Void, GreeterRootView> {
     init() {
         super.init(title: "Greeter")
 
         // An initial state for our rootView
-        rootView.componentState = ""
+        rootView.componentState = (greeting: "" , name: "")
     }
 
     // Act on actions produced from RootView
     override func act(on action: GreeterAction) {
         switch action {
         case .greetingChanged(let greeting):
-            rootView.componentState = greeting
+            rootView.componentState = (greeting: "Hello \(greeting)!", name: greeting)
         }
     }
 }
@@ -96,6 +148,8 @@ To be reusable and testable, Controller should get everything it needs from its 
 Then you just add them as parameters in the Controller's `init` and store them to private properties so you can reference them later. So an example Controller that would use all three of those would look like this:
 
 ```swift
+import Reactant
+
 final class ExampleController: ControllerBase<Void, ExampleRootView> {
     struct Dependencies {
         let someService: SomeService
@@ -128,6 +182,7 @@ We recommend keeping those three parameters alphabetically ordered, it's easiest
 Services are the place for business logic. They load, store and delete data. Such service might look like this example:
 
 ```swift
+// GreeterService.swift
 class GreeterService {
     enum Language {
         case english
@@ -141,6 +196,8 @@ class GreeterService {
     }
 
     func greet(user: String) -> String {
+        // We are not greeting an empty string
+        guard !user.isEmpty else { return "" }
         switch language {
         case .english:
             return "Hello \(user)!"
@@ -158,15 +215,16 @@ class GreeterService {
 To have one place that decides on a concrete implementation of a dependency, you should have a Dependency Module. It's just a protocol, defining properties and methods used to obtain dependencies. You'll also have one or more implementations of this protocol. For example you could have one for Debug and one for Release configuration. Or one for the app and one for the tests, there are endless possibilities. Let's look at an example.
 
 ```swift
+// DependencyModule.swift
 protocol DependencyModule {
     var userService: UserService { get }
     var anotherService: AnotherService { get }
 
     func greeterService(language: GreeterService.Language) -> GreeterService
-
 }
 
-final class AppModule: DependencyModule {
+// ApplicationModule.swift (in Application target)
+final class ApplicationModule: DependencyModule {
     let userService: UserService = AnUserServiceImplementation()
     var anotherService: AnotherService {
         return AnAnotherServiceImplementation()
@@ -177,6 +235,7 @@ final class AppModule: DependencyModule {
     }
 }
 
+// TestModule.swift (in Test target)
 final class TestModule: DependencyModule {
     var userService: UserService {
         return StubUserService()
@@ -202,6 +261,9 @@ Make sure that the types you specify in the DependencyModule protocol are the lo
 Since Controllers don't know about navigation, there has to be something in the application that does. That something are Wireframes. Small applications can have just a single one, but most of the time you'll have multiple Wireframes and each of them will take care of a specific part of the app. Wireframes should receive a Dependency Module with services, but instantiating Controllers is their responsibility. Reactant comes with a protocol `Wireframe` and it's recommended to use it. We'll get to an example, but first let's update our `GreeterController` to use a `GreeterService` and open URL when the greeted name is `Reactant`.
 
 ```swift
+// GreeterController.swift
+import Reactant
+
 final class GreeterController: ControllerBase<String, GreeterRootView> {
     struct Dependencies {
         let greeterService: GreeterService
@@ -224,7 +286,8 @@ final class GreeterController: ControllerBase<String, GreeterRootView> {
     }
 
     override func update() {
-        rootView.componentState = dependencies.greeterService.greet(user: componentState)
+        rootView.componentState = (greeting: dependencies.greeterService.greet(user: componentState),
+                                   name: componentState)
     }
 
     // Act on actions produced from RootView
@@ -244,6 +307,10 @@ final class GreeterController: ControllerBase<String, GreeterRootView> {
 You can see we also set `componentState` type to String in the Controller and added an `update()` method that sets `componentState` of the RootView. Let's now look at the wireframe.
 
 ```swift
+// MainWireframe.swift
+import UIKit
+import Reactant
+
 final class MainWireframe: Wireframe {
     private let module: DependencyModule
 
@@ -262,10 +329,10 @@ final class MainWireframe: Wireframe {
             )
             let reactions = GreeterController.Reactions(
                 openUrl: { url in
-                    UIApplication.main.open(url)
+                    UIApplication.shared.open(url)
                 }
             )
-            return GreeterController()
+            return GreeterController(dependencies: dependencies, reactions: reactions)
         }
     }
 }
@@ -274,13 +341,14 @@ final class MainWireframe: Wireframe {
 Of course we still need to create a window, instantiate the `MainWireframe` and set result of `entrypoint()` method as the rootViewController. This is the job of AppDelegate, so let's do that now.
 
 ```swift
+// AppDelegate.swift
 import UIKit
 
 @UIApplicationMain
 class AppDelegate : UIResponder, UIApplicationDelegate {
     var window : UIWindow?
 
-    private let module = AppModule()
+    private let module = ApplicationModule()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]?) -> Bool {
         let window = UIWindow()
@@ -295,31 +363,11 @@ class AppDelegate : UIResponder, UIApplicationDelegate {
 
 To learn more about the `Wireframe` protocol and the mysterious `create` function, head to page about [Wireframe](../parts/wireframe.md).
 
-## Recommended directory structure
+## Final result
 
-Last thing about our architecture is the directory structure. After many iterations we found one that goes well with Reactant and all its parts. However this structure is not mandatory, feel free to adjust it to your liking.
+If you followed this guide, the app should open this screen ![Reactant tutorial screen](../img/ReactantTutorial.png)
 
-```
-YourProject/ (root directory with .xcodeproj)
-├── Application/ (directory for the App target)
-│   ├── Generated/
-│   ├── Resource/ (here you'll put Assets.xcasset, Localizations etc.)
-│   └── Source/
-│       ├── Component/
-│       │   ├── SomeAppPart/
-│       │   │   ├── SomeAppPartAction.swift
-│       │   │   ├── SomeAppPartController.swift
-│       │   │   └── SomeAppPartRootView.swift
-│       │   └── SomeOtherPart/
-│       │       ├── CustomView.swift
-│       │       ├── SomeOtherPartAction.swift
-│       │       ├── SomeOtherPartController.swift
-│       │       └── SomeOtherPartRootView.swift
-│       ├── Model/
-│       ├── Service/
-│       ├── Util/
-│       ├── Wireframe/
-│       └── AppDelegate.swift
-├── Tests/ (directory for unit tests target, optional)
-└── UITests/ (directory for ui tests target, optional)
-```
+You can find the code for the complete example [here][reactant-tutorial]. To see a more impressive example, be sure to check out our simple travel planner app [**Planie**][planie]
+
+[reactant-tutorial]: https://github.com/Brightify/ReactantTutorial
+[planie]: https://github.com/Brightify/Planie
