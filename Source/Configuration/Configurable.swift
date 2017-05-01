@@ -13,11 +13,13 @@ public protocol Configurable: class {
 
 extension Configurable {
     
+    /// Calls didSet on configuration.
     public func reloadConfiguration() {
         let temp = configuration
         configuration = temp
     }
     
+    /// Applies configuration to this object and returns it to allow chaining.
     public func with(configuration: Configuration) -> Self {
         self.configuration = configuration
         return self
