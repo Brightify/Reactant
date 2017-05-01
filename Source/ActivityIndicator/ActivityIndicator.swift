@@ -9,39 +9,52 @@
 import RxSwift
 import RxCocoa
 
-public final class ActivityIndicator: ObservableConvertibleType {
+public final class ActivityIndicator<T>: ObservableConvertibleType {
     
-    public typealias E = (loading: Bool, message: String?)
+    public typealias E = (loading: Bool, associatedValue: T?)
     
     public let disposeBag = DisposeBag()
     
-    private let variable: Variable<[(id: UUID, message: String?)]> = Variable([])
+    private let variable: Variable<[(id: UUID, associatedValue: T?)]> = Variable([])
     private let driver: Driver<E>
-    fileprivate let defaultMessage: String?
+    private let equalFunction: (T?, T?) -> Bool
+    fileprivate let defaultAssociatedValue: T?
     
-    public init(defaultMessage: String? = nil) {
-        self.defaultMessage = defaultMessage
+    public init(defaultAssociatedValue: T? = nil, equalWhen equalFunction: @escaping (T, T) -> Bool) {
+        self.defaultAssociatedValue = defaultAssociatedValue
+        self.equalFunction = { lhs, rhs in
+            if let lhs = lhs, let rhs = rhs {
+                return equalFunction(lhs, rhs)
+            } else {
+                return lhs == nil && rhs == nil
+            }
+        }
         
+        // self cannot be captured before all fields are initialized.
+        let equal = self.equalFunction
         driver = variable.asDriver()
-            .map { (loading: !$0.isEmpty, message: $0.flatMap { $0.message }.first) }
-            .distinctUntilChanged { lhs, rhs in lhs.loading == rhs.loading && lhs.message == rhs.message }
+            .map { (loading: !$0.isEmpty, associatedValue: $0.flatMap { $0.associatedValue }.first) }
+            .distinctUntilChanged { lhs, rhs in lhs.loading == rhs.loading &&
+                equal(lhs.associatedValue, rhs.associatedValue) }
     }
     
-    public func trackActivity<O: ObservableConvertibleType>(of source: O, initialMessage: String?, messageProvider: @escaping (O.E) -> String?) -> Observable<O.E> {
-        return Observable.create { [variable] subscriber in
+    public func trackActivity<O: ObservableConvertibleType>(of source: O, initialAssociatedValue: T?,
+                              associatedValueProvider: @escaping (O.E) -> T?) -> Observable<O.E> {
+        // self is intentionaly captured. It is released once the Observable is disposed.
+        return Observable.create { subscriber in
             let observable = source.asObservable().shareReplay(1)
             let subscriptionDisposable = observable.subscribe(subscriber)
             
             let id = UUID()
             
-            let messageChangeDisposable = observable.map(messageProvider)
-                .startWith(initialMessage)
-                .distinctUntilChanged()
+            let messageChangeDisposable = observable.map(associatedValueProvider)
+                .startWith(initialAssociatedValue)
+                .distinctUntilChanged(self.equalFunction)
                 .subscribe(onNext: {
-                    if let index = variable.value.index(where: { $0.id == id }) {
-                        variable.value[index].message = $0
+                    if let index = self.variable.value.index(where: { $0.id == id }) {
+                        self.variable.value[index].associatedValue = $0
                     } else {
-                        variable.value.append((id: id, message: $0))
+                        self.variable.value.append((id: id, associatedValue: $0))
                     }
                 })
             
@@ -49,8 +62,8 @@ public final class ActivityIndicator: ObservableConvertibleType {
                 subscriptionDisposable.dispose()
                 messageChangeDisposable.dispose()
                 
-                if let index = variable.value.index(where: { $0.id == id }) {
-                    variable.value.remove(at: index)
+                if let index = self.variable.value.index(where: { $0.id == id }) {
+                    self.variable.value.remove(at: index)
                 }
             }
         }
@@ -65,37 +78,52 @@ public final class ActivityIndicator: ObservableConvertibleType {
     }
 }
 
+extension ActivityIndicator where T: Equatable {
+    
+    public convenience init(defaultAssociatedValue: T? = nil) {
+        self.init(defaultAssociatedValue: defaultAssociatedValue, equalWhen: ==)
+    }
+}
+
 extension ActivityIndicator {
     
-    public func trackActivity<O: ObservableConvertibleType>(of source: O, message: String?) -> Observable<O.E> {
-        return trackActivity(of: source, initialMessage: message, messageProvider: { _ in message })
-    }
-    
     public func trackActivity<O: ObservableConvertibleType>(of source: O) -> Observable<O.E> {
-        return trackActivity(of: source, message: defaultMessage)
+        return trackActivity(of: source, associatedValue: defaultAssociatedValue)
     }
     
-    public func trackActivity<O: ObservableConvertibleType>(of source: O, messageProvider: @escaping (O.E) -> String?) -> Observable<O.E> {
-        return trackActivity(of: source, initialMessage: defaultMessage, messageProvider: messageProvider)
+    public func trackActivity<O: ObservableConvertibleType>(of source: O, associatedValue: T?)
+        -> Observable<O.E> {
+        return trackActivity(of: source, initialAssociatedValue: associatedValue,
+                             associatedValueProvider: { _ in associatedValue })
+    }
+    
+    public func trackActivity<O: ObservableConvertibleType>(of source: O, associatedValueProvider: @escaping (O.E) -> T?)
+        -> Observable<O.E> {
+        return trackActivity(of: source, initialAssociatedValue: defaultAssociatedValue,
+                             associatedValueProvider: associatedValueProvider)
     }
 }
 
 extension ObservableConvertibleType {
     
-    public func trackActivity(in activityIndicator: ActivityIndicator) -> Observable<E> {
-        return activityIndicator.trackActivity(of: self, message: activityIndicator.defaultMessage)
+    public func trackActivity<T>(in activityIndicator: ActivityIndicator<T>) -> Observable<E> {
+        return activityIndicator.trackActivity(of: self, associatedValue: activityIndicator.defaultAssociatedValue)
     }
     
-    public func trackActivity(in activityIndicator: ActivityIndicator, message: String?) -> Observable<E> {
-        return activityIndicator.trackActivity(of: self, message: message)
+    public func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, associatedValue: T?) -> Observable<E> {
+        return activityIndicator.trackActivity(of: self, associatedValue: associatedValue)
     }
     
-    public func trackActivity(in activityIndicator: ActivityIndicator, messageProvider: @escaping (E) -> String?) -> Observable<E> {
-        return activityIndicator.trackActivity(of: self, initialMessage: activityIndicator.defaultMessage, messageProvider: messageProvider)
+    public func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, associatedValueProvider: @escaping (E) -> T?)
+        -> Observable<E> {
+        return activityIndicator.trackActivity(of: self, initialAssociatedValue: activityIndicator.defaultAssociatedValue,
+                                               associatedValueProvider: associatedValueProvider)
     }
     
-    public func trackActivity(in activityIndicator: ActivityIndicator, initialMessage: String?, messageProvider: @escaping (E) -> String?) -> Observable<E> {
-        return activityIndicator.trackActivity(of: self, initialMessage: initialMessage, messageProvider: messageProvider)
+    public func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, initialAssociatedValue: T?,
+                              associatedValueProvider: @escaping (E) -> T?) -> Observable<E> {
+        return activityIndicator.trackActivity(of: self, initialAssociatedValue: initialAssociatedValue,
+                                               associatedValueProvider: associatedValueProvider)
     }
 }
 

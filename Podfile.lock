@@ -2,17 +2,17 @@ PODS:
   - Kingfisher (3.0.1)
   - Nimble (5.1.1)
   - Quick (1.0.0)
-  - Reactant (0.6.0):
-    - Reactant/Core (= 0.6.0)
-    - Reactant/Result (= 0.6.0)
-  - Reactant/Configuration (0.6.0):
+  - Reactant (1.0.0):
+    - Reactant/Core (= 1.0.0)
+    - Reactant/Result (= 1.0.0)
+  - Reactant/Configuration (1.0.0):
     - RxSwift (~> 3.0)
     - SnapKit (~> 3.0)
-  - Reactant/Core (0.6.0):
+  - Reactant/Core (1.0.0):
     - Reactant/Configuration
     - RxSwift (~> 3.0)
     - SnapKit (~> 3.0)
-  - Reactant/Result (0.6.0):
+  - Reactant/Result (1.0.0):
     - Result (~> 3.0)
     - RxOptional (~> 3.0)
     - RxSwift (~> 3.0)
@@ -48,7 +48,7 @@ SPEC CHECKSUMS:
   Kingfisher: d5a491b45ea453d90a31bd2c0831d5243e73a73f
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
-  Reactant: ee338338e7a8dd7502192d15e8c713fe460b43de
+  Reactant: ed2c0fe5391df1c19c3f62542785d8fd6edfa7ec
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   RxCocoa: d14ef6b6029e1ddc6e966508c09289090de68ff9
   RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
