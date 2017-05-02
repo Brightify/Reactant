@@ -24,4 +24,6 @@ extension Properties.Style {
     public static let button = style(for: UIButton.self)
     public static let container = style(for: ContainerView.self)
     public static let view = style(for: UIView.self)
+    public static let textField = style(for: TextField.self)
+
 }

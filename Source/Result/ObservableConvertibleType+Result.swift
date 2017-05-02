@@ -27,7 +27,55 @@ extension ObservableConvertibleType where E: ResultProtocol {
     public func mapError<T: Error>(_ transform: @escaping (E.Error) -> T) -> Observable<Result<E.Value, T>> {
         return asObservable().map { $0.mapError(transform) }
     }
-    
+
+    public func flatMapValue<O>(_ selector: @escaping (E.Value) -> O) -> Observable<Result<O.E, E.Error>> where O : ObservableConvertibleType {
+        return asObservable().flatMap { result -> Observable<Result<O.E, E.Error>> in
+            result.analysis(
+                ifSuccess: { value in
+                    selector(value).asObservable().map(Result.success)
+                },
+                ifFailure: { error in
+                    .just(.failure(error))
+                })
+        }
+    }
+
+    public func flatMapLatestValue<O>(_ selector: @escaping (E.Value) -> O) -> Observable<Result<O.E, E.Error>> where O : ObservableConvertibleType {
+        return asObservable().flatMapLatest { result -> Observable<Result<O.E, E.Error>> in
+            result.analysis(
+                ifSuccess: { value in
+                    selector(value).asObservable().map(Result.success)
+                },
+                ifFailure: { error in
+                    .just(.failure(error))
+                })
+        }
+    }
+
+    public func flatMapError<O>(_ selector: @escaping (E.Error) -> O) -> Observable<Result<E.Value, O.E>> where O : ObservableConvertibleType {
+        return asObservable().flatMap { result -> Observable<Result<E.Value, O.E>> in
+            result.analysis(
+                ifSuccess: { value in
+                    .just(.success(value))
+                },
+                ifFailure: { error in
+                    selector(error).asObservable().map(Result.failure)
+                })
+        }
+    }
+
+    public func flatMapLatestError<O>(_ selector: @escaping (E.Error) -> O) -> Observable<Result<E.Value, O.E>> where O : ObservableConvertibleType {
+        return asObservable().flatMapLatest { result -> Observable<Result<E.Value, O.E>> in
+            result.analysis(
+                ifSuccess: { value in
+                    .just(.success(value))
+                },
+                ifFailure: { error in
+                    selector(error).asObservable().map(Result.failure)
+                })
+        }
+    }
+
     public func rewriteValue<T>(newValue: T) -> Observable<Result<T, E.Error>> {
         return mapValue { _ in newValue }
     }
