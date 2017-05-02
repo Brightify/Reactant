@@ -142,21 +142,16 @@ greeter.componentState = <span class="pl-s">&quot;World&quot;</span> <span class
 <span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterView</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">String</span>, <span class="pl-ent">GreeterAction</span>&gt; </span>{
     <span class="pl-k">override</span> <span class="pl-k">var</span> actions: [<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">GreeterAction</span>&gt;] {
         <span class="pl-k">return</span> [
-            <span class="pl-c">// Skipping first event as UITextField.rx.text sends first value</span>
-            <span class="pl-c">// when subscribed, but we want later changes</span>
-            nameField.rx.text.skip(<span class="hljs-number">1</span>).<span class="pl-c1">map</span> { <span class="hljs-type">GreeterAction</span>.greetingChanged($<span class="hljs-number">0</span> ?? <span class="pl-s">&quot;&quot;</span>) }
+            nameField.action.<span class="pl-c1">map</span>(<span class="hljs-type">GreeterAction</span>.greetingChanged)
         ]
     }
 
     <span class="pl-k">private</span> <span class="pl-k">let</span> greeting = <span class="hljs-type">UILabel</span>()
-    <span class="pl-k">private</span> <span class="pl-k">let</span> nameField = <span class="hljs-type">UITextField</span>()
+    <span class="pl-k">private</span> <span class="pl-k">let</span> nameField = <span class="hljs-type">TextField</span>()
 
     <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
         greeting.text = <span class="pl-s">&quot;Hello <span class="hljs-subst">\(componentState)</span>!&quot;</span>
-
-        <span class="pl-k">if</span> componentState != nameField.text {
-            nameField.text = componentState
-        }
+        nameField.componentState = componentState
     }
 
     <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">loadView</span><span class="hljs-params">()</span></span> {
