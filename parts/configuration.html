@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../assets/style.css?t=615badd5">
+    <script src="../assets/script.js?t=36f3d457"></script>
+    <title>Configuration - Reactant</title>
+    <meta name="viewport" content="width=device-width">
+    <script>if (false || window.location.hostname.indexOf("docs.reactant.tech") === window.location.hostname.length - 18) {
+        (function(d,o,c,p,r,e,s){d['GoogleAnalyticsObject']=r;d[r]=d[r]||function(){(d[r].q=d[r].q||[]).push(arguments)},d[r].l=1*new Date();e=o.createElement(c),s=o.getElementsByTagName(c)[0];e.async=1;e.src=p;s.parentNode.insertBefore(e,s)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create',"UA-48374666-17",'auto')
+      }
+    </script>
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1"><a class="link title  link-index" href="../index.html">Reactant</a>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Getting started</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedquickstart" href="../getting-started/quickstart.html">Quick-start guide</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedarchitecture" href="../getting-started/architecture.html">Architecture</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Parts</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-partscomponent" href="../parts/component.html">Component</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title -active link-partsconfiguration" href="../parts/configuration.html">Configuration</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-2"><a class="hlink link-property" href="#property">Property</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-properties" href="#properties">Properties</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-global-and-custom-configuration" href="#global-and-custom-configuration">Global and custom configuration</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-configurable" href="#configurable">Configurable</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partscontroller" href="../parts/controller.html">Controller</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsrootview" href="../parts/rootview.html">RootView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partswireframe" href="../parts/wireframe.html">Wireframe</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partstableview" href="../parts/tableview.html">TableView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partscollectionview" href="../parts/collectionview.html">CollectionView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsvalidation" href="../parts/validation.html">Validation</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsactivityindicator" href="../parts/activityindicator.html">ActivityIndicator</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsstaticmap" href="../parts/staticmap.html">StaticMap</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+      <div class="body page-partsconfiguration">
+        <div class="header-nav">
+          <div class="right"><a class="iconlink" href="https://github.com/Brightify/Reactant" data-title="Brightify/Reactant">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="configuration">Configuration</h1>
+<p><code>Configuration</code> is a key-value storage. It is mainly used to set default values in classes like <code>BaseController</code> or <code>ViewBase</code>.</p>
+<p><code>Configuration</code> provides these methods for storing and retrieving values:</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">Configuration</span> </span>{
+    
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">set</span>&lt;T&gt;<span class="hljs-params">(<span class="hljs-number">_</span> property: Property&lt;T&gt;, to value: T)</span></span>
+    
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">get</span>&lt;T&gt;<span class="hljs-params">(valueFor property: Property&lt;T&gt;)</span></span> -&gt; <span class="hljs-type">T</span>
+}
+</code></pre>
+<h2 id="property">Property</h2>
+<p>As you can see, <code>Configuration</code> uses <code>Property</code> as keys.</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Property</span>&lt;<span class="pl-ent">T</span>&gt; </span>{
+    
+    <span class="pl-k">let</span> id: <span class="hljs-type">Int</span>
+    <span class="pl-k">let</span> defaultValue: <span class="hljs-type">T</span>
+    
+    <span class="pl-k">init</span>(defaultValue: <span class="hljs-type">T</span>)
+}
+</code></pre>
+<p><code>Property</code> defines type of value it points to (<code>T</code>). Field <code>id</code> is unique identifier for each object. So in order to retrieve value previously stored, you have to use the same instance of <code>Property</code> (passing <code>Property</code> by value doesn&#x2019;t change <code>id</code>).</p>
+<p>Example:</p>
+<pre><code class="lang-swift"><span class="pl-k">let</span> configuration = <span class="hljs-type">Configuration</span>()
+
+<span class="pl-k">let</span> integer = <span class="hljs-type">Property</span>(defaultValue: <span class="hljs-number">1</span>)
+<span class="pl-k">let</span> optionalInteger = <span class="hljs-type">Property</span>&lt;<span class="hljs-type">Int</span>?&gt;()
+
+configuration.<span class="pl-k">get</span>(valueFor: integer) 			<span class="pl-c">// returns 1</span>
+configuration.<span class="pl-k">get</span>(valueFor: optionalInteger) 	<span class="pl-c">// returns nil</span>
+
+configuration.<span class="pl-k">set</span>(integer, to: <span class="hljs-number">5</span>)
+configuration.<span class="pl-k">set</span>(optionalInteger, to: <span class="hljs-number">0</span>)
+
+configuration.<span class="pl-k">get</span>(valueFor: integer) 			<span class="pl-c">// returns 5</span>
+configuration.<span class="pl-k">get</span>(valueFor: optionalInteger) 	<span class="pl-c">// returns 0</span>
+</code></pre>
+<p>Notice that <code>defaultValue</code> from <code>Property.init</code> is used when no value for that <code>Property</code> was previously stored inside <code>Configuration</code>. Also <code>Optional</code> types do not require <code>defaultValue</code>, in that case it will be <code>nil</code>.</p>
+<p>To create custom property simply make a new instance of <code>Property</code>:</p>
+<pre><code class="lang-swift"><span class="pl-k">let</span> newProperty = <span class="hljs-type">Property</span>&lt;<span class="hljs-type">Int</span>&gt;(defaultValue: <span class="hljs-number">0</span>)
+</code></pre>
+<p>It is recommended to put it inside an extension of <code>Properties</code> (see below).</p>
+<h2 id="properties">Properties</h2>
+<p><code>Properties</code> is a struct used to store instances of <code>Property</code>. Each part of Reactant can define new properties by simply adding them to <code>Properties</code> by extension. For example:</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">Properties</span> </span>{
+
+	<span class="pl-k">static</span> <span class="pl-k">let</span> layoutMargins = <span class="hljs-type">Property</span>&lt;<span class="hljs-type">UIEdgeInsets</span>&gt;(defaultValue: .zero)
+}
+</code></pre>
+<p>Concrete instances of <code>Property</code> are covered in documentation for parts of Reactant which uses them.</p>
+<h2 id="global-and-custom-configuration">Global and custom configuration</h2>
+<p>Global configuration is a special instance of <code>Configuration</code> accessible by <code>Configuration.global</code>. This configuration is the default one for all things in Reactant. It is applied at the end of <code>init</code>.</p>
+<p>If you need to change configuration but only for some classes. You can create your own instance of <code>Configuration</code> by calling <code>init(copy: Configuration...)</code>. Notice the optional <code>copy</code> parameter, you can &#x201C;inherit&#x201D; the common settings for example from <code>Configuration.global</code> and then make your changes, while leaving the <code>Configuration.global</code> intact. Also it is possible to copy configuration from multiple instances of <code>Configuration</code>. Most likely that will result in conflict of some properties. In that case the priority is: <code>init(copy: leastSignificant, ..., mostSignificant)</code>. When you have your custom <code>Configuration</code> ready, assign it to instance of <code>Configurable</code> by <code>instance.configuration = customConfiguration</code>.</p>
+<h2 id="configurable">Configurable</h2>
+<p><code>Configurable</code> is a helping protocol for classes that wants to use data from <code>Configuration</code>.</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">protocol</span> <span class="pl-ent">Configurable</span>: <span class="pl-ent">class</span> </span>{
+    
+    <span class="pl-k">var</span> configuration: <span class="hljs-type">Configuration</span> { <span class="pl-k">get</span> <span class="pl-k">set</span> }
+}
+
+<span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">Configurable</span> </span>{
+    
+    <span class="pl-c">/// Calls didSet on configuration.</span>
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">reloadConfiguration</span><span class="hljs-params">()</span></span>
+    
+    <span class="pl-c">/// Applies configuration to this object and returns it to allow chaining.</span>
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">with</span><span class="hljs-params">(configuration: Configuration)</span></span> -&gt; <span class="hljs-type">Self</span>
+}
+</code></pre>
+<p>You should access <code>configuration</code> only from its <code>didSet</code> listener. This ensures, that everything is properly changed together with the instance of <code>Configuration</code>.</p>
+<p>This example part of implementation from <code>ControllerBase</code> shows how to implement <code>Configurable</code> from scratch:</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">ControllerBase</span> ... </span>{
+
+...
+
+	<span class="pl-k">var</span> configuration: <span class="hljs-type">Configuration</span> = .global { <span class="pl-c">// Default configuration is .global.</span>
+	    <span class="pl-k">didSet</span> {
+	        (rootView <span class="pl-k">as</span>? <span class="hljs-type">Configurable</span>)?.configuration = configuration <span class="pl-c">// New instance of configuration is propagated through the dependency tree.</span>
+	        ...
+	        navigationItem.backBarButtonItem = configuration.<span class="pl-k">get</span>(valueFor: <span class="hljs-type">Properties</span>.defaultBackButton) <span class="pl-c">// Accessing values.</span>
+	    }
+	}
+
+	<span class="pl-k">init</span>() {
+		...
+		reloadConfiguration() <span class="pl-c">// didSet is not called when default value is assigned. This must be called after the class is initialized.</span>
+	}
+
+...
+
+}
+</code></pre>
+<p>Usually you will inherit from some class that already implements <code>Configurable</code>. Then it is much easier to use <code>configuration</code>:</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">CustomView</span>: <span class="pl-ent">ViewBase</span>... </span>{ <span class="pl-c">// ViewBase implements Configurable</span>
+
+	<span class="pl-k">override</span> <span class="pl-k">var</span> configuration: <span class="hljs-type">Configuration</span> { <span class="pl-c">// No .global assignment (already in super class).</span>
+		<span class="pl-k">didSet</span> { <span class="pl-c">// No need to call anything from super class. Swift does that automatically.</span>
+		    ... <span class="pl-c">// Do something.</span>
+		}
+	}
+
+	<span class="pl-c">// No call of reloadConfiguration() (done in super.init).</span>
+}
+</code></pre>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="../parts/component.html"><span class="title">Component</span></a></div>
+          <div class="right"><a href="../parts/controller.html"><span class="label">Next: </span><span class="title">Controller</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

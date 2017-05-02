@@ -151,6 +151,34 @@
             "slug": "partscomponent"
           },
           {
+            "title": "Configuration",
+            "source": "docs/parts/configuration.md",
+            "url": "parts/configuration.html",
+            "slug": "partsconfiguration",
+            "headings": [
+              {
+                "title": "Property",
+                "depth": 2,
+                "id": "property"
+              },
+              {
+                "title": "Properties",
+                "depth": 2,
+                "id": "properties"
+              },
+              {
+                "title": "Global and custom configuration",
+                "depth": 2,
+                "id": "global-and-custom-configuration"
+              },
+              {
+                "title": "Configurable",
+                "depth": 2,
+                "id": "configurable"
+              }
+            ]
+          },
+          {
             "title": "Controller",
             "source": "docs/parts/controller.md",
             "url": "parts/controller.html",
@@ -191,12 +219,6 @@
             "source": "docs/parts/activityindicator.md",
             "url": "parts/activityindicator.html",
             "slug": "partsactivityindicator"
-          },
-          {
-            "title": "Properties",
-            "source": "docs/parts/properties.md",
-            "url": "parts/properties.html",
-            "slug": "partsproperties"
           },
           {
             "title": "StaticMap",
@@ -399,6 +421,34 @@
       "pageTitle": "Component",
       "slug": "partscomponent"
     },
+    "parts/configuration.html": {
+      "source": "docs/parts/configuration.md",
+      "title": "Configuration - Reactant",
+      "pageTitle": "Configuration",
+      "slug": "partsconfiguration",
+      "headings": [
+        {
+          "title": "Property",
+          "depth": 2,
+          "id": "property"
+        },
+        {
+          "title": "Properties",
+          "depth": 2,
+          "id": "properties"
+        },
+        {
+          "title": "Global and custom configuration",
+          "depth": 2,
+          "id": "global-and-custom-configuration"
+        },
+        {
+          "title": "Configurable",
+          "depth": 2,
+          "id": "configurable"
+        }
+      ]
+    },
     "parts/controller.html": {
       "source": "docs/parts/controller.md",
       "title": "Controller - Reactant",
@@ -440,12 +490,6 @@
       "title": "ActivityIndicator - Reactant",
       "pageTitle": "ActivityIndicator",
       "slug": "partsactivityindicator"
-    },
-    "parts/properties.html": {
-      "source": "docs/parts/properties.md",
-      "title": "Properties - Reactant",
-      "pageTitle": "Properties",
-      "slug": "partsproperties"
     },
     "parts/staticmap.html": {
       "source": "docs/parts/staticmap.md",
@@ -503,6 +547,7 @@
     "docs/getting-started/quickstart.md": "getting-started/quickstart.html",
     "docs/getting-started/architecture.md": "getting-started/architecture.html",
     "docs/parts/component.md": "parts/component.html",
+    "docs/parts/configuration.md": "parts/configuration.html",
     "docs/parts/controller.md": "parts/controller.html",
     "docs/parts/rootview.md": "parts/rootview.html",
     "docs/parts/wireframe.md": "parts/wireframe.html",
@@ -510,7 +555,6 @@
     "docs/parts/collectionview.md": "parts/collectionview.html",
     "docs/parts/validation.md": "parts/validation.html",
     "docs/parts/activityindicator.md": "parts/activityindicator.html",
-    "docs/parts/properties.md": "parts/properties.html",
     "docs/parts/staticmap.md": "parts/staticmap.html",
     "docs/reactant-ui/introduction.md": "reactant-ui/introduction.html",
     "docs/reactant-ui/live-reload.md": "reactant-ui/live-reload.html",

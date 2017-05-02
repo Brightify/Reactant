@@ -46,6 +46,8 @@
               <ul class="submenu">
                 <li class="menu-item -level-2"><a class="link title  link-partscomponent" href="../parts/component.html">Component</a>
                 </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsconfiguration" href="../parts/configuration.html">Configuration</a>
+                </li>
                 <li class="menu-item -level-2"><a class="link title  link-partscontroller" href="../parts/controller.html">Controller</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partsrootview" href="../parts/rootview.html">RootView</a>
@@ -59,8 +61,6 @@
                 <li class="menu-item -level-2"><a class="link title  link-partsvalidation" href="../parts/validation.html">Validation</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partsactivityindicator" href="../parts/activityindicator.html">ActivityIndicator</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-partsproperties" href="../parts/properties.html">Properties</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partsstaticmap" href="../parts/staticmap.html">StaticMap</a>
                 </li>
@@ -104,7 +104,7 @@ greeter.componentState = <span class="pl-s">&quot;John&quot;</span> <span class=
 greeter.componentState = <span class="pl-s">&quot;World&quot;</span> <span class="pl-c">// prints &quot;Hello World!&quot;</span>
 </code></pre>
 <p>As you can see, when we changed the <code>componentState</code>, the <code>update()</code> got called and it printed the greeting. This <strong>Component</strong> doesn&#x2019;t do much, but it&#x2019;s enough to illustrate the relation between <code>componentState</code> and <code>update()</code>.</p>
-<p>Remember that the type of <code>componentState</code> should always be a value type. If you use a class type, mutating its properties won&#x2019;t run <code>update()</code> and you would have to call <code>invalidate()</code> yourself for each change.</p>
+<p>Remember that the type of <code>componentState</code> should always be a value type (<code>struct</code>, <code>enum</code> and Swift primitive types). If you use a reference type (<code>class</code>), mutating its properties won&#x2019;t run <code>update()</code> and you&#x2019;ll have to call <code>invalidate()</code> yourself for each change.</p>
 <h3 id="view-as-a-component">View as a Component</h3>
 <p>Let&#x2019;s now take a look at how we can use it with <em>UIKit</em>. In the following example, our <code>GreeterComponent</code> is now <code>GreeterView</code> and it extends class <code>ViewBase</code> which is a <code>UIView</code>.</p>
 <pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterView</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">String</span>, <span class="pl-ent">Void</span>&gt; </span>{

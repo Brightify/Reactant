@@ -32,6 +32,8 @@
               <ul class="submenu">
                 <li class="menu-item -level-2"><a class="link title  link-partscomponent" href="../parts/component.html">Component</a>
                 </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsconfiguration" href="../parts/configuration.html">Configuration</a>
+                </li>
                 <li class="menu-item -level-2"><a class="link title  link-partscontroller" href="../parts/controller.html">Controller</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partsrootview" href="../parts/rootview.html">RootView</a>
@@ -45,8 +47,6 @@
                 <li class="menu-item -level-2"><a class="link title  link-partsvalidation" href="../parts/validation.html">Validation</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partsactivityindicator" href="../parts/activityindicator.html">ActivityIndicator</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-partsproperties" href="../parts/properties.html">Properties</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title -active link-partsstaticmap" href="../parts/staticmap.html">StaticMap</a>
                 </li>
@@ -70,12 +70,16 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="staticmap">StaticMap</h1>
-<p>StaticMap is one of Reactant&#x2019;s components. It&#x2019;s purpose is to display map of selected <code>MKCoordinateRegion</code> as an image without any controls. StaticMap component is very efficient since it uses cache to store the map image and to retrieve it.</p>
-<p>This component&#x2019;s <code>componentState</code> is <code>MKCoordinateRegion</code> and its <code>action</code> is <code>StaticMapAction</code> which is an enum with only one <code>case selected</code>,  that is propagated through <code>action</code> observable whenever the component&#x2019;s content are clicked.</p>
+<p>StaticMap is one of Reactant&#x2019;s prebuilt components. To integrate it into your project, you need to add <code>StaticMap</code> subspec to your <code>Podfile</code>. To do so, open your <code>Podfile</code> in your favorite text editor and add the following line to your application&#x2019;s target:</p>
+<pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/StaticMap&apos;</span>
+</code></pre>
+<p><code>StaticMap</code> is meant to be used wherever you want to display a map without a user being able to control it. Were you to use the <code>MKMapView</code>, you would get noticeable lags when pushing a controller as <code>MKMapView</code> renders on main thread. <code>StaticMap</code> renders in background and presents a loaded image.</p>
+<p>To render the map, we use <code>MKMapSnapshotter</code>, and to cache the map we use a library called <code>Kingfisher</code>.</p>
+<p><code>StaticMap</code> has a <code>componentState</code> of type <code>MKCoordinateRegion</code>. This region specifies the visible part of the map. It also has an <code>action</code> of type <code>StaticMapAction</code>. This action is just an enum, having a single case <code>selected</code>. Whenever user taps on the map, <code>StaticMap</code> sends this <code>.selected</code> action to be handled.</p>
 
         </div>
         <div class="footer-nav">
-          <div class="left"><a href="../parts/properties.html"><span class="title">Properties</span></a></div>
+          <div class="left"><a href="../parts/activityindicator.html"><span class="title">ActivityIndicator</span></a></div>
           <div class="right"><a href="../reactant-ui/introduction.html"><span class="label">Next: </span><span class="title">Introduction</span></a></div>
         </div>
       </div>
