@@ -63,21 +63,16 @@ enum GreeterAction {
 final class GreeterRootView: ViewBase<(greeting: String, name: String), GreeterAction>, RootView {
     override var actions: [Observable<GreeterAction>] {
         return [
-            // Skipping first event as UITextField.rx.text sends first value
-            // when subscribed, but we want later changes
-            nameField.rx.text.skip(1).map { GreeterAction.greetingChanged($0 ?? "") }
+            nameField.action.map(GreeterAction.greetingChanged)
         ]
     }
 
     private let greeting = UILabel()
-    private let nameField = UITextField()
+    private let nameField = TextField()
 
     override func update() {
         greeting.text = componentState.greeting
-
-        if componentState.name != nameField.text {
-            nameField.text = componentState.name
-        }
+        nameField.componentState = componentState.name
     }
 
     override func loadView() {

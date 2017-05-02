@@ -8,13 +8,60 @@
 
 import RxSwift
 
+public enum TextInputState {
+    case string(String)
+    case attributedString(NSAttributedString)
+}
+
+extension TextInputState: TextInputStateConvertible {
+    public func asTextInputState() -> TextInputState {
+        return self
+    }
+}
+
+public protocol TextInputStateConvertible {
+    func asTextInputState() -> TextInputState
+}
+
+extension TextInputStateConvertible {
+    func asString() -> String {
+        switch asTextInputState() {
+        case .string(let string):
+            return string
+        case .attributedString(let attributedString):
+            return attributedString.string
+        }
+    }
+
+    func asAttributedString() -> NSAttributedString {
+        switch asTextInputState() {
+        case .string(let string):
+            return string.attributed()
+        case .attributedString(let attributedString):
+            return attributedString
+        }
+    }
+}
+
+extension String: TextInputStateConvertible {
+    public func asTextInputState() -> TextInputState {
+        return .string(self)
+    }
+}
+
+extension NSAttributedString: TextInputStateConvertible {
+    public func asTextInputState() -> TextInputState {
+        return .attributedString(self)
+    }
+}
+
 open class TextField: UITextField, ComponentWithDelegate, Configurable {
-    public typealias StateType = String
+    public typealias StateType = TextInputStateConvertible
     public typealias ActionType = String
 
     public let lifetimeDisposeBag = DisposeBag()
 
-    public let componentDelegate = ComponentDelegate<String, String, TextField>()
+    public let componentDelegate = ComponentDelegate<TextInputStateConvertible, String, TextField>()
 
     open var actions: [Observable<String>] {
         return [
@@ -40,11 +87,14 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
     open var contentEdgeInsets: UIEdgeInsets = .zero
 
     open override var text: String? {
-        get {
-            return componentState
+        didSet {
+            componentState = text ?? ""
         }
-        set {
-            componentState = newValue ?? ""
+    }
+
+    open override var attributedText: NSAttributedString? {
+        didSet {
+            componentState = attributedText ?? NSAttributedString()
         }
     }
 
@@ -111,11 +161,23 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
     }
 
     open func update() {
-        // We have to set `super.text` because setting `self.text` would set componentState and call this methods again
-        super.text = componentState
+        let oldSelectedRange = selectedTextRange
+
+        switch componentState.asTextInputState() {
+        case .string(let string):
+            // We have to set `super.text` because setting `self.text` would set componentState and call this methods again
+            super.text = string
+        case .attributedString(let attributedString):
+            // We have to set `super.attributedText` because setting `self.attributedText` would set componentState and call this methods again
+            super.attributedText = attributedString
+        }
+
+
+        selectedTextRange = oldSelectedRange
+
     }
 
-    public func observeState(_ when: ObservableStateEvent) -> Observable<String> {
+    public func observeState(_ when: ObservableStateEvent) -> Observable<TextInputStateConvertible> {
         return componentDelegate.observeState(when)
     }
 
@@ -136,12 +198,12 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
     }
 
     open override func textRect(forBounds bounds: CGRect) -> CGRect {
-        let superBounds = textRect(forBounds: bounds)
+        let superBounds = super.textRect(forBounds: bounds)
         return UIEdgeInsetsInsetRect(superBounds, contentEdgeInsets)
     }
 
     open override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        let superBounds = editingRect(forBounds: bounds)
+        let superBounds = super.editingRect(forBounds: bounds)
         return UIEdgeInsetsInsetRect(superBounds, contentEdgeInsets)
     }
 
