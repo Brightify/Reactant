@@ -30,7 +30,7 @@ cd "$SRCROOT/Application/Source"
 
 ## Recommended editor
 
-We recommend you to download [**Atom**](https://atom.io/) editor and install [**linter-autocomplete-jing**](https://atom.io/packages/linter-autocomplete-jing) plugin. This combination will give you auto-complete support for UI XML files.
+We recommend you to download [**Atom**](https://atom.io/) editor and install [**linter-autocomplete-jing**](https://atom.io/packages/linter-autocomplete-jing) and [**xml-common-schemata](https://atom.io/packages/xml-common-schemata) plugins. This combination will give you auto-complete support for UI XML files.
 
 ## UI XML
 
@@ -55,19 +55,9 @@ By default, the name of the file is used as the type name. However, you can over
 
 You might want to create all `.ui.xml` at once before writing their Swift counterparts (especially if you use [Live Reload](./live-reload.md)). Unfortunately, Reactant UI in its current version doesn't scan your Swift files for existing types and generates Swift extensions for every `.ui.xml` in your project. If you don't have matching classes, you'll get compile errors. The current workaround is setting a value of `anonymous` attribute to `true` on the `Component` element. Reactant UI then generates an empty class which you can then use in your code. Later on you would replace it with your own class and remove the `anonymous` attribute.
 
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<Component
-    xmlns="http://schema.reactant.tech/ui"
-    xmlns:layout="http://schema.reactant.tech/layout"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://schema.reactant.tech/ui http://schema.reactant.tech/ui.xsd
-                        http://schema.reactant.tech/layout http://schema.reactant.tech/layout.xsd"
-    type="GreeterRootView">
-</Component>
-```
+Last attribute to keep an eye on for `Component` element is `rootView`. When you set it to `true`, Reactant UI will automatically add the `RootView` protocol conformity and allow you to specify `extend` attribute. This attribute sets the RootView's `edgesForExtendedLayout` which has similar behavior to [`UIViewController#edgesForExtendedLayout`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621515-edgesforextendedlayout)
 
-
+Let's go ahead and add the two children our `GreeterRootView` should have, a label and a text field.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -77,12 +67,11 @@ You might want to create all `.ui.xml` at once before writing their Swift counte
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://schema.reactant.tech/ui http://schema.reactant.tech/ui.xsd
                         http://schema.reactant.tech/layout http://schema.reactant.tech/layout.xsd"
-    type="GreeterRootView"
     rootView="true">
 
     <Label
         text="Hello World"
-        layout:id="greeting"
+        field="greeting"
         layout:left="super"
         layout:top="super"
         layout:right="super" />
@@ -91,31 +80,31 @@ You might want to create all `.ui.xml` at once before writing their Swift counte
         field="nameField"
         layout:left="super"
         layout:right="super"
-        layout:below="id:greeting offset(10)"
+        layout:below="greeting offset(10)"
         layout:bottom="super"
         layout:height="50" />
 </Component>
 ```
 
 
+
+
 ```swift
-final class GreeterRootView: ViewBase<String, GreeterAction> {
+import Reactant
+
+final class GreeterRootView: ViewBase<(greeting: String, name: String), GreeterAction> {
     override var actions: [Observable<GreeterAction>] {
         return [
-            // Skipping first event as UITextField.rx.text sends first value
-            // when subscribed, but we want later changes
-            nameField.rx.text.skip(1).map { GreeterAction.greetingChanged($0 ?? "") }
+            nameField.action.map(GreeterAction.greetingChanged)
         ]
     }
 
+    let greeting = UILabel()
     let nameField = UITextField()
 
     override func update() {
         greeting.text = "Hello \(componentState)!"
-
-        if componentState != nameField.text {
-            nameField.text = componentState
-        }
+        nameField.componentState = componentState
     }
 }
 ```

@@ -8,6 +8,7 @@
 
 * Parts
     * [Component](parts/component.md)
+    * [Configuration](parts/configuration.md)
     * [Controller](parts/controller.md)
     * [RootView](parts/rootview.md)
     * [Wireframe](parts/wireframe.md)
@@ -15,7 +16,6 @@
     * [CollectionView](parts/collectionview.md)
     * [Validation](parts/validation.md)
     * [ActivityIndicator](parts/activityindicator.md)
-    * [Properties](parts/properties.md)
     * [StaticMap](parts/staticmap.md)
 
 * Reactant UI

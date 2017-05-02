@@ -32,7 +32,7 @@ greeter.componentState = "World" // prints "Hello World!"
 
 As you can see, when we changed the `componentState`, the `update()` got called and it printed the greeting. This **Component** doesn't do much, but it's enough to illustrate the relation between `componentState` and `update()`.
 
-Remember that the type of `componentState` should always be a value type. If you use a class type, mutating its properties won't run `update()` and you would have to call `invalidate()` yourself for each change.
+Remember that the type of `componentState` should always be a value type (`struct`, `enum` and Swift primitive types). If you use a reference type (`class`), mutating its properties won't run `update()` and you'll have to call `invalidate()` yourself for each change.
 
 ### View as a Component
 
