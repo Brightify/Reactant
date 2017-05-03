@@ -71,12 +71,14 @@ Let's go ahead and add the two children our `GreeterRootView` should have, a lab
 
     <Label
         text="Hello World"
+        textColor="red"
         field="greeting"
         layout:left="super"
         layout:top="super"
         layout:right="super" />
 
     <TextField
+        placeholder="Name to greet"
         field="nameField"
         layout:left="super"
         layout:right="super"
@@ -86,8 +88,36 @@ Let's go ahead and add the two children our `GreeterRootView` should have, a lab
 </Component>
 ```
 
+Each view in the hierarchy has its own properties and we tried to keep same names they have in UIKit. In our example, we set the `text` attribute for `Label` element to setup a label with that text. The same applies to the `textColor` and `placeholder` attributes.
 
+When you need to create a connection between your Swift code and the XML, set the `field` attribute. This attribute tells Reactant UI to use field with the specified name on the view. Make sure that field (property) has an internal visibility and that the type matches. We also recommend that the field is a constant (`let` property) because it limits mutability even further.
 
+Last but not least, `layout` attributes. You will use these to declare AutoLayout constraints for your views. Each attribute from the `layout` namespace accepts a constraint declaration with the following format:
+
+`[constraintField = ][>=|<=|==] target[.targetAnchor] [modifier...][ @priority]`
+
+Parts of the declaration should be familiar to you if you use AutoLayout.
+
+* **constraintField** - makes the created constraint accessible in your Swift code
+* **\>=|<=|==** - relation of the constraint
+* **target** - The other view to constraint to. Possible values are:
+    * `id:{name}` - target a view using `layout:id` attribute of such view
+    * `{name}` - target a view using `field` attribute of such view
+    * `super` - parent container (equal to `UIView#superview`)
+    * `self` - this view, mostly useful for constraining width and height
+* **targetAnchor** - an anchor on the target view to constraint to. Defaults
+* **modifier**
+    * Supported modifiers
+        * `offset(value)` - constant space between two views
+        * `inset(value)` - constant space between parent and its child view (inside)
+        * `multiplied(by: value)` - multiplier for the constraint
+        * `divided(by: value)` - same function as a multiplier, but using it as 1/value
+    * `value` is any Float number
+* **priority**
+    * one of `required`, `high`, `medium`, `low`
+    * any float ranging from 1 to 1000
+
+To complete the example we need to write the Swift part of the `GreeterRootView`. We basically just remove the `loadView` and `setupConstraints` methods, make the `greeting` and `nameField` properties `internal` and remove the `RootView` protocol conformance. And this is what we'll get:
 
 ```swift
 import Reactant
@@ -108,3 +138,9 @@ final class GreeterRootView: ViewBase<(greeting: String, name: String), GreeterA
     }
 }
 ```
+
+As you can see, when we use the XML to declare views, our Swift code will contain only the code that decides what should be done with `componentState` in the `update()` method and it produces actions for owners to handle. At the same time the XML gives us much cleaner UI code as you can see the view's position in the layout and its properties at one place.
+
+This split to XML also allowed us to implement a live UI reloading. It's something that will save quite a lot of development time as you can see every change in the UI without recompilation and redeployment.
+
+[**Learn more about Reactant UI's Live Reload capabilities**](./live-reload.md)

@@ -1,5 +1,6 @@
 # Quick-start guide
 
+## Installation
 Reactant is available through [CocoaPods](http://cocoapods.org). To install it, add the following line to your application target in your Podfile:
 
 ```ruby
