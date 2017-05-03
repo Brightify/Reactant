@@ -28,30 +28,6 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item -level-1 -parent"><span class="title">Parts</span>
-              <ul class="submenu">
-                <li class="menu-item -level-2"><a class="link title  link-partscomponent" href="../parts/component.html">Component</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-partsconfiguration" href="../parts/configuration.html">Configuration</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-partscontroller" href="../parts/controller.html">Controller</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-partsrootview" href="../parts/rootview.html">RootView</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-partswireframe" href="../parts/wireframe.html">Wireframe</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-partstableview" href="../parts/tableview.html">TableView</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-partscollectionview" href="../parts/collectionview.html">CollectionView</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-partsvalidation" href="../parts/validation.html">Validation</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-partsactivityindicator" href="../parts/activityindicator.html">ActivityIndicator</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-partsstaticmap" href="../parts/staticmap.html">StaticMap</a>
-                </li>
-              </ul>
-            </li>
             <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
               <ul class="submenu">
                 <li class="menu-item -level-2"><a class="link title -active link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
@@ -71,6 +47,30 @@
                   </ul>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Parts</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-partsconfiguration" href="../parts/configuration.html">Configuration</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partscontroller" href="../parts/controller.html">Controller</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsrootview" href="../parts/rootview.html">RootView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partswireframe" href="../parts/wireframe.html">Wireframe</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsstyling" href="../parts/styling.html">Styling</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partstableview" href="../parts/tableview.html">TableView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partscollectionview" href="../parts/collectionview.html">CollectionView</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsvalidation" href="../parts/validation.html">Validation</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsactivityindicator" href="../parts/activityindicator.html">ActivityIndicator</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsstaticmap" href="../parts/staticmap.html">StaticMap</a>
                 </li>
               </ul>
             </li>
@@ -133,12 +133,14 @@ env -i HOME=<span class="pl-s">&quot;<span class="hljs-variable">$HOME</span>&qu
 
     <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
         <span class="hljs-attr">text</span>=<span class="pl-s">&quot;Hello World&quot;</span>
+        <span class="hljs-attr">textColor</span>=<span class="pl-s">&quot;red&quot;</span>
         <span class="hljs-attr">field</span>=<span class="pl-s">&quot;greeting&quot;</span>
         <span class="hljs-attr">layout:left</span>=<span class="pl-s">&quot;super&quot;</span>
         <span class="hljs-attr">layout:top</span>=<span class="pl-s">&quot;super&quot;</span>
         <span class="hljs-attr">layout:right</span>=<span class="pl-s">&quot;super&quot;</span> /&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-name">TextField</span>
+        <span class="hljs-attr">placeholder</span>=<span class="pl-s">&quot;Name to greet&quot;</span>
         <span class="hljs-attr">field</span>=<span class="pl-s">&quot;nameField&quot;</span>
         <span class="hljs-attr">layout:left</span>=<span class="pl-s">&quot;super&quot;</span>
         <span class="hljs-attr">layout:right</span>=<span class="pl-s">&quot;super&quot;</span>
@@ -147,6 +149,44 @@ env -i HOME=<span class="pl-s">&quot;<span class="hljs-variable">$HOME</span>&qu
         <span class="hljs-attr">layout:height</span>=<span class="pl-s">&quot;50&quot;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">Component</span>&gt;</span>
 </code></pre>
+<p>Each view in the hierarchy has its own properties and we tried to keep same names they have in UIKit. In our example, we set the <code>text</code> attribute for <code>Label</code> element to setup a label with that text. The same applies to the <code>textColor</code> and <code>placeholder</code> attributes.</p>
+<p>When you need to create a connection between your Swift code and the XML, set the <code>field</code> attribute. This attribute tells Reactant UI to use field with the specified name on the view. Make sure that field (property) has an internal visibility and that the type matches. We also recommend that the field is a constant (<code>let</code> property) because it limits mutability even further.</p>
+<p>Last but not least, <code>layout</code> attributes. You will use these to declare AutoLayout constraints for your views. Each attribute from the <code>layout</code> namespace accepts a constraint declaration with the following format:</p>
+<p><code>[constraintField = ][&gt;=|&lt;=|==] target[.targetAnchor] [modifier...][ @priority]</code></p>
+<p>Parts of the declaration should be familiar to you if you use AutoLayout.</p>
+<ul>
+<li><strong>constraintField</strong> - makes the created constraint accessible in your Swift code</li>
+<li><strong>&gt;=|&lt;=|==</strong> - relation of the constraint</li>
+<li><strong>target</strong> - The other view to constraint to. Possible values are:
+<ul>
+<li><code>id:{name}</code> - target a view using <code>layout:id</code> attribute of such view</li>
+<li><code>{name}</code> - target a view using <code>field</code> attribute of such view</li>
+<li><code>super</code> - parent container (equal to <code>UIView#superview</code>)</li>
+<li><code>self</code> - this view, mostly useful for constraining width and height</li>
+</ul>
+</li>
+<li><strong>targetAnchor</strong> - an anchor on the target view to constraint to. Defaults</li>
+<li><strong>modifier</strong>
+<ul>
+<li>Supported modifiers
+<ul>
+<li><code>offset(value)</code> - constant space between two views</li>
+<li><code>inset(value)</code> - constant space between parent and its child view (inside)</li>
+<li><code>multiplied(by: value)</code> - multiplier for the constraint</li>
+<li><code>divided(by: value)</code> - same function as a multiplier, but using it as 1/value</li>
+</ul>
+</li>
+<li><code>value</code> is any Float number</li>
+</ul>
+</li>
+<li><strong>priority</strong>
+<ul>
+<li>one of <code>required</code>, <code>high</code>, <code>medium</code>, <code>low</code></li>
+<li>any float ranging from 1 to 1000</li>
+</ul>
+</li>
+</ul>
+<p>To complete the example we need to write the Swift part of the <code>GreeterRootView</code>. We basically just remove the <code>loadView</code> and <code>setupConstraints</code> methods, make the <code>greeting</code> and <code>nameField</code> properties <code>internal</code> and remove the <code>RootView</code> protocol conformance. And this is what we&#x2019;ll get:</p>
 <pre><code class="lang-swift"><span class="pl-k">import</span> Reactant
 
 <span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">GreeterRootView</span>: <span class="pl-ent">ViewBase</span>&lt;(<span class="pl-ent">greeting</span>: <span class="pl-ent">String</span>, <span class="pl-ent">name</span>: <span class="pl-ent">String</span>), <span class="pl-ent">GreeterAction</span>&gt; </span>{
@@ -165,10 +205,13 @@ env -i HOME=<span class="pl-s">&quot;<span class="hljs-variable">$HOME</span>&qu
     }
 }
 </code></pre>
+<p>As you can see, when we use the XML to declare views, our Swift code will contain only the code that decides what should be done with <code>componentState</code> in the <code>update()</code> method and it produces actions for owners to handle. At the same time the XML gives us much cleaner UI code as you can see the view&#x2019;s position in the layout and its properties at one place.</p>
+<p>This split to XML also allowed us to implement a live UI reloading. It&#x2019;s something that will save quite a lot of development time as you can see every change in the UI without recompilation and redeployment.</p>
+<p><a href="live-reload.html"><strong>Learn more about Reactant UI&#x2019;s Live Reload capabilities</strong></a></p>
 
         </div>
         <div class="footer-nav">
-          <div class="left"><a href="../parts/staticmap.html"><span class="title">StaticMap</span></a></div>
+          <div class="left"><a href="../getting-started/architecture.html"><span class="title">Architecture</span></a></div>
           <div class="right"><a href="../reactant-ui/live-reload.html"><span class="label">Next: </span><span class="title">Live Reload</span></a></div>
         </div>
       </div>

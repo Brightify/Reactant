@@ -28,10 +28,32 @@
                 </li>
               </ul>
             </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title -active link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-2"><a class="hlink link-installation" href="#installation">Installation</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-usage" href="#usage">Usage</a>
+                      <ul class="heading-list -depth-2">
+                        <li class="heading-item -depth-3"><a class="hlink link-error-screen" href="#error-screen">Error screen</a>
+                        </li>
+                        <li class="heading-item -depth-3"><a class="hlink link-debug-menu" href="#debug-menu">Debug menu</a>
+                        </li>
+                        <li class="heading-item -depth-3"><a class="hlink link-preview" href="#preview">Preview</a>
+                        </li>
+                        <li class="heading-item -depth-3"><a class="hlink link-reload-files" href="#reload-files">Reload files</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
             <li class="menu-item -level-1 -parent"><span class="title">Parts</span>
               <ul class="submenu">
-                <li class="menu-item -level-2"><a class="link title  link-partscomponent" href="../parts/component.html">Component</a>
-                </li>
                 <li class="menu-item -level-2"><a class="link title  link-partsconfiguration" href="../parts/configuration.html">Configuration</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partscontroller" href="../parts/controller.html">Controller</a>
@@ -39,6 +61,8 @@
                 <li class="menu-item -level-2"><a class="link title  link-partsrootview" href="../parts/rootview.html">RootView</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partswireframe" href="../parts/wireframe.html">Wireframe</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsstyling" href="../parts/styling.html">Styling</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partstableview" href="../parts/tableview.html">TableView</a>
                 </li>
@@ -52,14 +76,6 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
-              <ul class="submenu">
-                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title -active link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
-                </li>
-              </ul>
-            </li>
           </ul>
         </li>
       </div>
@@ -70,10 +86,40 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="live-reload">Live Reload</h1>
+<p>Live Reload is an optional part of Reactant UI. Thanks to it, you don&#x2019;t need to recompile the whole application and find the screen you&#x2019;ve been changing to test it. It will almost magically show new changes right after you save them. Take a look at the following video, where we build a simple login screen.</p>
+<iframe width="768" height="432" src="https://www.youtube.com/embed/iZ3lA7Lyd3E" frameborder="0" allowfullscreen></iframe>
+<h2 id="installation">Installation</h2>
+<p>To enable Live Reload capabilities, you have to add the following dependency to your <code>Podfile</code> into your application&#x2019;s target.</p>
+<pre><code class="lang-ruby">pod <span class="pl-s">&apos;ReactantLiveUI&apos;</span>, <span class="hljs-symbol">:configuration</span> =&gt; <span class="pl-s">&apos;Debug&apos;</span>
+</code></pre>
+<p>Notice the <code>:configuration =&gt; &apos;Debug&apos;</code>. This means that the <code>ReactantLiveUI</code> will be linked only to your <code>Debug</code> build configuration. This is important to not carry this code into your release build.</p>
+<p>Afterwards, run <code>pod install</code> to install it, then open your project and locate the <code>Generate Reactant UI</code> build phase we set up in the <a href="introduction.html">Reactant UI introduction</a>. On the last line, where you run the <code>reactant-ui</code> command, add a parameter <code>--enable-live</code>. The line should look similar to the following one:</p>
+<pre><code class="lang-sh"><span class="pl-s">&quot;<span class="hljs-variable">$PODS_ROOT</span>/ReactantUI/.build/debug/reactant-ui&quot;</span> --enable-live &gt; <span class="pl-s">&quot;<span class="hljs-variable">$SRCROOT</span>/Application/Generated/GeneratedUI.swift&quot;</span>
+</code></pre>
+<p>Last step, open your <code>AppDelegate.swift</code> and in <code>application(_:didFinishLaunchingWithOptions:)</code> method add line:</p>
+<pre><code class="lang-swift">activateLiveReload(<span class="pl-k">in</span>: window)
+</code></pre>
+<p>This <code>activateLiveReload(in:)</code> method gets generated by the <code>reactant-ui</code> command and you need to give it an instance of your key <code>UIWindow</code>. If you followed our <a href="../getting-started/architecture.html">architecture guide</a>, you should have access to it in the <code>AppDelegate.swift</code>.</p>
+<h2 id="usage">Usage</h2>
+<p>After the installation, you can build and run your application on iOS Simulator and edit your XML files containing the UI. You&#x2019;ll see it reload instantaneously after saving.</p>
+<p><strong>NOTE</strong>: Support for Live Reload is currently limited to iOS Simulator. We plan to add support for running on iOS devices in the near future.</p>
+<h3 id="error-screen">Error screen</h3>
+<p>If you change your UI XML file in a way that&#x2019;s not compatible with Reactant UI, you&#x2019;ll see a red error screen to know what&#x2019;s wrong.</p>
+<p><img src="../img/ReactantLiveUIError.png" alt="ReactantLiveUI error screen"></p>
+<h3 id="debug-menu">Debug menu</h3>
+<p>ReactantLiveUI also comes with a debug menu. At this moment it allows preview and reloading all XML UI files. To open it, press <code>Cmd+D</code> shortcut.</p>
+<p><img src="../img/ReactantLiveUIDebug.png" alt="ReactantLiveUI error screen"></p>
+<h3 id="preview">Preview</h3>
+<p>ReactantLiveUI allows you to show a list of all view components in your codebase that use Reactant UI and let you preview each one of them.</p>
+<p><img src="../img/ReactantLiveUIPreview.png" alt="ReactantLiveUI error screen"></p>
+<p>In this list you can select a specific view component and have it displayed. This will allow you to preview parts of your application without the need to go through the whole application to find it.</p>
+<h3 id="reload-files">Reload files</h3>
+<p>When you create new <code>.ui.xml</code> file, ReactantLiveUI doesn&#x2019;t know about it until you either build and run the app again, or run the <code>Reload files</code> through the Debug menu.</p>
 
         </div>
         <div class="footer-nav">
           <div class="left"><a href="../reactant-ui/introduction.html"><span class="title">Introduction</span></a></div>
+          <div class="right"><a href="../parts/configuration.html"><span class="label">Next: </span><span class="title">Configuration</span></a></div>
         </div>
       </div>
     </div>

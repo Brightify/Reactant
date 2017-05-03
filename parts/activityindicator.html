@@ -28,10 +28,16 @@
                 </li>
               </ul>
             </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
+                </li>
+              </ul>
+            </li>
             <li class="menu-item -level-1 -parent"><span class="title">Parts</span>
               <ul class="submenu">
-                <li class="menu-item -level-2"><a class="link title  link-partscomponent" href="../parts/component.html">Component</a>
-                </li>
                 <li class="menu-item -level-2"><a class="link title  link-partsconfiguration" href="../parts/configuration.html">Configuration</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partscontroller" href="../parts/controller.html">Controller</a>
@@ -39,6 +45,8 @@
                 <li class="menu-item -level-2"><a class="link title  link-partsrootview" href="../parts/rootview.html">RootView</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partswireframe" href="../parts/wireframe.html">Wireframe</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsstyling" href="../parts/styling.html">Styling</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partstableview" href="../parts/tableview.html">TableView</a>
                 </li>
@@ -49,14 +57,6 @@
                 <li class="menu-item -level-2"><a class="link title -active link-partsactivityindicator" href="../parts/activityindicator.html">ActivityIndicator</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partsstaticmap" href="../parts/staticmap.html">StaticMap</a>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
-              <ul class="submenu">
-                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
                 </li>
               </ul>
             </li>
@@ -74,13 +74,13 @@
 <p><code>ActivityIndicator</code> has this init: <code>init(defaultAssociatedValue: T? = nil)</code>. Meaning of <code>defaultAssociatedValue</code> will be explained later. Type <code>T</code> represents type of data associated to <code>Observable</code>. If <code>T</code> is not <code>Equatable</code>, then <code>init(defaultAssociatedValue: T? = nil, equalWhen equalFunction: @escaping (T, T) -&gt; Bool)</code> must be used.</p>
 <p>To register <code>Observable</code> to be tracked by <code>ActivityIndicator</code> use:</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">ActivityIndicator</span> </span>{
-    
+
 	<span class="pl-c">// defaultAssociatedValue from init will be associated to this Observable.</span>
     <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;O: ObservableConvertibleType&gt;<span class="hljs-params">(of source: O)</span></span>
-    
+
     <span class="pl-c">// Provided associatedValue will be used instead of the default one.</span>
     <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;O: ObservableConvertibleType&gt;<span class="hljs-params">(of source: O, associatedValue: T?)</span></span>
-    
+
     <span class="pl-c">// Associated value will be determined for each value from Observable individually by associatedValueProvider. defaultAssociatedValue will be used as the first associated value.</span>
     <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;O: ObservableConvertibleType&gt;<span class="hljs-params">(of source: O, associatedValueProvider: @escaping <span class="hljs-params">(O.E)</span></span></span> -&gt; <span class="hljs-type">T</span>?)
 
@@ -99,13 +99,13 @@ observable.subscribe...
 </code></pre>
 <p>Usually you do not store <code>Observable</code> in a variable (doing so requires to break the chain of function calls). To remove this restriction use these corresponding methods from extension of <code>ObservableConvertibleType</code>:</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">ObservableConvertibleType</span> </span>{
-    
-    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;T&gt;<span class="hljs-params">(<span class="pl-k">in</span> activityIndicator: ActivityIndicator&lt;T&gt;)</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt; 
-    
-    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;T&gt;<span class="hljs-params">(<span class="pl-k">in</span> activityIndicator: ActivityIndicator&lt;T&gt;, associatedValue: T?)</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt; 
-    
-    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;T&gt;<span class="hljs-params">(<span class="pl-k">in</span> activityIndicator: ActivityIndicator&lt;T&gt;, associatedValueProvider: @escaping <span class="hljs-params">(E)</span></span></span> -&gt; <span class="hljs-type">T</span>?) -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt; 
-    
+
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;T&gt;<span class="hljs-params">(<span class="pl-k">in</span> activityIndicator: ActivityIndicator&lt;T&gt;)</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt;
+
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;T&gt;<span class="hljs-params">(<span class="pl-k">in</span> activityIndicator: ActivityIndicator&lt;T&gt;, associatedValue: T?)</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt;
+
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;T&gt;<span class="hljs-params">(<span class="pl-k">in</span> activityIndicator: ActivityIndicator&lt;T&gt;, associatedValueProvider: @escaping <span class="hljs-params">(E)</span></span></span> -&gt; <span class="hljs-type">T</span>?) -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt;
+
     <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">trackActivity</span>&lt;T&gt;<span class="hljs-params">(<span class="pl-k">in</span> activityIndicator: ActivityIndicator&lt;T&gt;, initialAssociatedValue: T?, associatedValueProvider: @escaping <span class="hljs-params">(E)</span></span></span> -&gt; <span class="hljs-type">T</span>?) -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">E</span>&gt;
 }
 </code></pre>

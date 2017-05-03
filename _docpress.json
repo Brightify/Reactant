@@ -61,6 +61,11 @@
             "slug": "getting-startedquickstart",
             "headings": [
               {
+                "title": "Installation",
+                "depth": 2,
+                "id": "installation"
+              },
+              {
                 "title": "Writing components",
                 "depth": 2,
                 "id": "writing-components",
@@ -142,14 +147,91 @@
         ]
       },
       {
-        "title": "Parts",
+        "title": "Reactant UI",
         "sections": [
           {
-            "title": "Component",
-            "source": "docs/parts/component.md",
-            "url": "parts/component.html",
-            "slug": "partscomponent"
+            "title": "Introduction",
+            "source": "docs/reactant-ui/introduction.md",
+            "url": "reactant-ui/introduction.html",
+            "slug": "reactant-uiintroduction",
+            "headings": [
+              {
+                "title": "Important Note",
+                "depth": 2,
+                "id": "important-note"
+              },
+              {
+                "title": "What is Reactant UI",
+                "depth": 2,
+                "id": "what-is-reactant-ui"
+              },
+              {
+                "title": "Why",
+                "depth": 2,
+                "id": "why"
+              },
+              {
+                "title": "Installation",
+                "depth": 2,
+                "id": "installation"
+              },
+              {
+                "title": "Recommended editor",
+                "depth": 2,
+                "id": "recommended-editor"
+              },
+              {
+                "title": "UI XML",
+                "depth": 2,
+                "id": "ui-xml"
+              }
+            ]
           },
+          {
+            "title": "Live Reload",
+            "source": "docs/reactant-ui/live-reload.md",
+            "url": "reactant-ui/live-reload.html",
+            "slug": "reactant-uilive-reload",
+            "headings": [
+              {
+                "title": "Installation",
+                "depth": 2,
+                "id": "installation"
+              },
+              {
+                "title": "Usage",
+                "depth": 2,
+                "id": "usage",
+                "headings": [
+                  {
+                    "title": "Error screen",
+                    "depth": 3,
+                    "id": "error-screen"
+                  },
+                  {
+                    "title": "Debug menu",
+                    "depth": 3,
+                    "id": "debug-menu"
+                  },
+                  {
+                    "title": "Preview",
+                    "depth": 3,
+                    "id": "preview"
+                  },
+                  {
+                    "title": "Reload files",
+                    "depth": 3,
+                    "id": "reload-files"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Parts",
+        "sections": [
           {
             "title": "Configuration",
             "source": "docs/parts/configuration.md",
@@ -221,7 +303,109 @@
             "title": "Wireframe",
             "source": "docs/parts/wireframe.md",
             "url": "parts/wireframe.html",
-            "slug": "partswireframe"
+            "slug": "partswireframe",
+            "headings": [
+              {
+                "title": "create",
+                "depth": 2,
+                "id": "create"
+              },
+              {
+                "title": "branchNavigation",
+                "depth": 2,
+                "id": "branchnavigation"
+              }
+            ]
+          },
+          {
+            "title": "Styling",
+            "source": "docs/parts/styling.md",
+            "url": "parts/styling.html",
+            "slug": "partsstyling",
+            "headings": [
+              {
+                "title": "Usage",
+                "depth": 2,
+                "id": "usage",
+                "headings": [
+                  {
+                    "title": "Styleable",
+                    "depth": 3,
+                    "id": "styleable"
+                  },
+                  {
+                    "title": "CGAffineTransform",
+                    "depth": 3,
+                    "id": "cgaffinetransform"
+                  },
+                  {
+                    "title": "CGPoint",
+                    "depth": 3,
+                    "id": "cgpoint"
+                  },
+                  {
+                    "title": "CGRect",
+                    "depth": 3,
+                    "id": "cgrect"
+                  },
+                  {
+                    "title": "CGSize",
+                    "depth": 3,
+                    "id": "cgsize"
+                  },
+                  {
+                    "title": "NSAttributedString",
+                    "depth": 3,
+                    "id": "nsattributedstring"
+                  },
+                  {
+                    "title": "Percent",
+                    "depth": 3,
+                    "id": "percent"
+                  },
+                  {
+                    "title": "UIButton",
+                    "depth": 3,
+                    "id": "uibutton"
+                  },
+                  {
+                    "title": "UICollectionView",
+                    "depth": 3,
+                    "id": "uicollectionview"
+                  },
+                  {
+                    "title": "UIColor",
+                    "depth": 3,
+                    "id": "uicolor"
+                  },
+                  {
+                    "title": "UIEdgeInsets",
+                    "depth": 3,
+                    "id": "uiedgeinsets"
+                  },
+                  {
+                    "title": "UIFont",
+                    "depth": 3,
+                    "id": "uifont"
+                  },
+                  {
+                    "title": "UILabel",
+                    "depth": 3,
+                    "id": "uilabel"
+                  },
+                  {
+                    "title": "UIOffset",
+                    "depth": 3,
+                    "id": "uioffset"
+                  },
+                  {
+                    "title": "UITableView",
+                    "depth": 3,
+                    "id": "uitableview"
+                  }
+                ]
+              }
+            ]
           },
           {
             "title": "TableView",
@@ -252,55 +436,6 @@
             "source": "docs/parts/staticmap.md",
             "url": "parts/staticmap.html",
             "slug": "partsstaticmap"
-          }
-        ]
-      },
-      {
-        "title": "Reactant UI",
-        "sections": [
-          {
-            "title": "Introduction",
-            "source": "docs/reactant-ui/introduction.md",
-            "url": "reactant-ui/introduction.html",
-            "slug": "reactant-uiintroduction",
-            "headings": [
-              {
-                "title": "Important Note",
-                "depth": 2,
-                "id": "important-note"
-              },
-              {
-                "title": "What is Reactant UI",
-                "depth": 2,
-                "id": "what-is-reactant-ui"
-              },
-              {
-                "title": "Why",
-                "depth": 2,
-                "id": "why"
-              },
-              {
-                "title": "Installation",
-                "depth": 2,
-                "id": "installation"
-              },
-              {
-                "title": "Recommended editor",
-                "depth": 2,
-                "id": "recommended-editor"
-              },
-              {
-                "title": "UI XML",
-                "depth": 2,
-                "id": "ui-xml"
-              }
-            ]
-          },
-          {
-            "title": "Live Reload",
-            "source": "docs/reactant-ui/live-reload.md",
-            "url": "reactant-ui/live-reload.html",
-            "slug": "reactant-uilive-reload"
           }
         ]
       }
@@ -363,6 +498,11 @@
       "pageTitle": "Quick-start guide",
       "slug": "getting-startedquickstart",
       "headings": [
+        {
+          "title": "Installation",
+          "depth": 2,
+          "id": "installation"
+        },
         {
           "title": "Writing components",
           "depth": 2,
@@ -442,11 +582,83 @@
         }
       ]
     },
-    "parts/component.html": {
-      "source": "docs/parts/component.md",
-      "title": "Component - Reactant",
-      "pageTitle": "Component",
-      "slug": "partscomponent"
+    "reactant-ui/introduction.html": {
+      "source": "docs/reactant-ui/introduction.md",
+      "title": "Introduction - Reactant",
+      "pageTitle": "Introduction",
+      "slug": "reactant-uiintroduction",
+      "headings": [
+        {
+          "title": "Important Note",
+          "depth": 2,
+          "id": "important-note"
+        },
+        {
+          "title": "What is Reactant UI",
+          "depth": 2,
+          "id": "what-is-reactant-ui"
+        },
+        {
+          "title": "Why",
+          "depth": 2,
+          "id": "why"
+        },
+        {
+          "title": "Installation",
+          "depth": 2,
+          "id": "installation"
+        },
+        {
+          "title": "Recommended editor",
+          "depth": 2,
+          "id": "recommended-editor"
+        },
+        {
+          "title": "UI XML",
+          "depth": 2,
+          "id": "ui-xml"
+        }
+      ]
+    },
+    "reactant-ui/live-reload.html": {
+      "source": "docs/reactant-ui/live-reload.md",
+      "title": "Live Reload - Reactant",
+      "pageTitle": "Live Reload",
+      "slug": "reactant-uilive-reload",
+      "headings": [
+        {
+          "title": "Installation",
+          "depth": 2,
+          "id": "installation"
+        },
+        {
+          "title": "Usage",
+          "depth": 2,
+          "id": "usage",
+          "headings": [
+            {
+              "title": "Error screen",
+              "depth": 3,
+              "id": "error-screen"
+            },
+            {
+              "title": "Debug menu",
+              "depth": 3,
+              "id": "debug-menu"
+            },
+            {
+              "title": "Preview",
+              "depth": 3,
+              "id": "preview"
+            },
+            {
+              "title": "Reload files",
+              "depth": 3,
+              "id": "reload-files"
+            }
+          ]
+        }
+      ]
     },
     "parts/configuration.html": {
       "source": "docs/parts/configuration.md",
@@ -519,7 +731,109 @@
       "source": "docs/parts/wireframe.md",
       "title": "Wireframe - Reactant",
       "pageTitle": "Wireframe",
-      "slug": "partswireframe"
+      "slug": "partswireframe",
+      "headings": [
+        {
+          "title": "create",
+          "depth": 2,
+          "id": "create"
+        },
+        {
+          "title": "branchNavigation",
+          "depth": 2,
+          "id": "branchnavigation"
+        }
+      ]
+    },
+    "parts/styling.html": {
+      "source": "docs/parts/styling.md",
+      "title": "Styling - Reactant",
+      "pageTitle": "Styling",
+      "slug": "partsstyling",
+      "headings": [
+        {
+          "title": "Usage",
+          "depth": 2,
+          "id": "usage",
+          "headings": [
+            {
+              "title": "Styleable",
+              "depth": 3,
+              "id": "styleable"
+            },
+            {
+              "title": "CGAffineTransform",
+              "depth": 3,
+              "id": "cgaffinetransform"
+            },
+            {
+              "title": "CGPoint",
+              "depth": 3,
+              "id": "cgpoint"
+            },
+            {
+              "title": "CGRect",
+              "depth": 3,
+              "id": "cgrect"
+            },
+            {
+              "title": "CGSize",
+              "depth": 3,
+              "id": "cgsize"
+            },
+            {
+              "title": "NSAttributedString",
+              "depth": 3,
+              "id": "nsattributedstring"
+            },
+            {
+              "title": "Percent",
+              "depth": 3,
+              "id": "percent"
+            },
+            {
+              "title": "UIButton",
+              "depth": 3,
+              "id": "uibutton"
+            },
+            {
+              "title": "UICollectionView",
+              "depth": 3,
+              "id": "uicollectionview"
+            },
+            {
+              "title": "UIColor",
+              "depth": 3,
+              "id": "uicolor"
+            },
+            {
+              "title": "UIEdgeInsets",
+              "depth": 3,
+              "id": "uiedgeinsets"
+            },
+            {
+              "title": "UIFont",
+              "depth": 3,
+              "id": "uifont"
+            },
+            {
+              "title": "UILabel",
+              "depth": 3,
+              "id": "uilabel"
+            },
+            {
+              "title": "UIOffset",
+              "depth": 3,
+              "id": "uioffset"
+            },
+            {
+              "title": "UITableView",
+              "depth": 3,
+              "id": "uitableview"
+            }
+          ]
+        }
+      ]
     },
     "parts/tableview.html": {
       "source": "docs/parts/tableview.md",
@@ -550,70 +864,29 @@
       "title": "StaticMap - Reactant",
       "pageTitle": "StaticMap",
       "slug": "partsstaticmap"
-    },
-    "reactant-ui/introduction.html": {
-      "source": "docs/reactant-ui/introduction.md",
-      "title": "Introduction - Reactant",
-      "pageTitle": "Introduction",
-      "slug": "reactant-uiintroduction",
-      "headings": [
-        {
-          "title": "Important Note",
-          "depth": 2,
-          "id": "important-note"
-        },
-        {
-          "title": "What is Reactant UI",
-          "depth": 2,
-          "id": "what-is-reactant-ui"
-        },
-        {
-          "title": "Why",
-          "depth": 2,
-          "id": "why"
-        },
-        {
-          "title": "Installation",
-          "depth": 2,
-          "id": "installation"
-        },
-        {
-          "title": "Recommended editor",
-          "depth": 2,
-          "id": "recommended-editor"
-        },
-        {
-          "title": "UI XML",
-          "depth": 2,
-          "id": "ui-xml"
-        }
-      ]
-    },
-    "reactant-ui/live-reload.html": {
-      "source": "docs/reactant-ui/live-reload.md",
-      "title": "Live Reload - Reactant",
-      "pageTitle": "Live Reload",
-      "slug": "reactant-uilive-reload"
     }
   },
   "sources": {
     "README.md": "index.html",
     "docs/getting-started/quickstart.md": "getting-started/quickstart.html",
     "docs/getting-started/architecture.md": "getting-started/architecture.html",
-    "docs/parts/component.md": "parts/component.html",
+    "docs/reactant-ui/introduction.md": "reactant-ui/introduction.html",
+    "docs/reactant-ui/live-reload.md": "reactant-ui/live-reload.html",
     "docs/parts/configuration.md": "parts/configuration.html",
     "docs/parts/controller.md": "parts/controller.html",
     "docs/parts/rootview.md": "parts/rootview.html",
     "docs/parts/wireframe.md": "parts/wireframe.html",
+    "docs/parts/styling.md": "parts/styling.html",
     "docs/parts/tableview.md": "parts/tableview.html",
     "docs/parts/collectionview.md": "parts/collectionview.html",
     "docs/parts/validation.md": "parts/validation.html",
     "docs/parts/activityindicator.md": "parts/activityindicator.html",
     "docs/parts/staticmap.md": "parts/staticmap.html",
-    "docs/reactant-ui/introduction.md": "reactant-ui/introduction.html",
-    "docs/reactant-ui/live-reload.md": "reactant-ui/live-reload.html",
     "docs/_config.yml": "_config.yml",
     "docs/docpress.json": "docpress.json",
+    "docs/img/ReactantLiveUIDebug.png": "img/ReactantLiveUIDebug.png",
+    "docs/img/ReactantLiveUIError.png": "img/ReactantLiveUIError.png",
+    "docs/img/ReactantLiveUIPreview.png": "img/ReactantLiveUIPreview.png",
     "docs/img/ReactantTutorial.png": "img/ReactantTutorial.png"
   }
 }

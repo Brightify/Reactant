@@ -28,10 +28,16 @@
                 </li>
               </ul>
             </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
+                </li>
+              </ul>
+            </li>
             <li class="menu-item -level-1 -parent"><span class="title">Parts</span>
               <ul class="submenu">
-                <li class="menu-item -level-2"><a class="link title  link-partscomponent" href="../parts/component.html">Component</a>
-                </li>
                 <li class="menu-item -level-2"><a class="link title -active link-partsconfiguration" href="../parts/configuration.html">Configuration</a>
                   <ul class="headings heading-list">
                     <li class="heading-item -depth-2"><a class="hlink link-property" href="#property">Property</a>
@@ -50,6 +56,8 @@
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partswireframe" href="../parts/wireframe.html">Wireframe</a>
                 </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsstyling" href="../parts/styling.html">Styling</a>
+                </li>
                 <li class="menu-item -level-2"><a class="link title  link-partstableview" href="../parts/tableview.html">TableView</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partscollectionview" href="../parts/collectionview.html">CollectionView</a>
@@ -59,14 +67,6 @@
                 <li class="menu-item -level-2"><a class="link title  link-partsactivityindicator" href="../parts/activityindicator.html">ActivityIndicator</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partsstaticmap" href="../parts/staticmap.html">StaticMap</a>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
-              <ul class="submenu">
-                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
                 </li>
               </ul>
             </li>
@@ -83,19 +83,19 @@
 <p><code>Configuration</code> is a key-value storage. It is mainly used to set default values in classes like <code>BaseController</code> or <code>ViewBase</code>.</p>
 <p><code>Configuration</code> provides these methods for storing and retrieving values:</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">Configuration</span> </span>{
-    
+
     <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">set</span>&lt;T&gt;<span class="hljs-params">(<span class="hljs-number">_</span> property: Property&lt;T&gt;, to value: T)</span></span>
-    
+
     <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">get</span>&lt;T&gt;<span class="hljs-params">(valueFor property: Property&lt;T&gt;)</span></span> -&gt; <span class="hljs-type">T</span>
 }
 </code></pre>
 <h2 id="property">Property</h2>
 <p>As you can see, <code>Configuration</code> uses <code>Property</code> as keys.</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Property</span>&lt;<span class="pl-ent">T</span>&gt; </span>{
-    
+
     <span class="pl-k">let</span> id: <span class="hljs-type">Int</span>
     <span class="pl-k">let</span> defaultValue: <span class="hljs-type">T</span>
-    
+
     <span class="pl-k">init</span>(defaultValue: <span class="hljs-type">T</span>)
 }
 </code></pre>
@@ -134,15 +134,15 @@ configuration.<span class="pl-k">get</span>(valueFor: optionalInteger) 	<span cl
 <h2 id="configurable">Configurable</h2>
 <p><code>Configurable</code> is a helping protocol for classes that wants to use data from <code>Configuration</code>.</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">protocol</span> <span class="pl-ent">Configurable</span>: <span class="pl-ent">class</span> </span>{
-    
+
     <span class="pl-k">var</span> configuration: <span class="hljs-type">Configuration</span> { <span class="pl-k">get</span> <span class="pl-k">set</span> }
 }
 
 <span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">Configurable</span> </span>{
-    
+
     <span class="pl-c">/// Calls didSet on configuration.</span>
     <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">reloadConfiguration</span><span class="hljs-params">()</span></span>
-    
+
     <span class="pl-c">/// Applies configuration to this object and returns it to allow chaining.</span>
     <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">with</span><span class="hljs-params">(configuration: Configuration)</span></span> -&gt; <span class="hljs-type">Self</span>
 }
@@ -185,7 +185,7 @@ configuration.<span class="pl-k">get</span>(valueFor: optionalInteger) 	<span cl
 
         </div>
         <div class="footer-nav">
-          <div class="left"><a href="../parts/component.html"><span class="title">Component</span></a></div>
+          <div class="left"><a href="../reactant-ui/live-reload.html"><span class="title">Live Reload</span></a></div>
           <div class="right"><a href="../parts/controller.html"><span class="label">Next: </span><span class="title">Controller</span></a></div>
         </div>
       </div>

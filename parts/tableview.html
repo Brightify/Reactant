@@ -28,10 +28,16 @@
                 </li>
               </ul>
             </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
+                </li>
+              </ul>
+            </li>
             <li class="menu-item -level-1 -parent"><span class="title">Parts</span>
               <ul class="submenu">
-                <li class="menu-item -level-2"><a class="link title  link-partscomponent" href="../parts/component.html">Component</a>
-                </li>
                 <li class="menu-item -level-2"><a class="link title  link-partsconfiguration" href="../parts/configuration.html">Configuration</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partscontroller" href="../parts/controller.html">Controller</a>
@@ -39,6 +45,8 @@
                 <li class="menu-item -level-2"><a class="link title  link-partsrootview" href="../parts/rootview.html">RootView</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partswireframe" href="../parts/wireframe.html">Wireframe</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsstyling" href="../parts/styling.html">Styling</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title -active link-partstableview" href="../parts/tableview.html">TableView</a>
                 </li>
@@ -52,14 +60,6 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
-              <ul class="submenu">
-                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
-                </li>
-              </ul>
-            </li>
           </ul>
         </li>
       </div>
@@ -70,10 +70,9 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="tableview">TableView</h1>
-<p>In Reactant, using table views is extremely simple. There are TableView classes prepared for drop-in use suiting most of the use cases. The TableViews are Components so they have their component State and actions depending on the type of TableView.</p>
+<p>In Reactant, using table views is simple. There are TableView classes prepared for drop-in use, suiting most of the use cases. The TableViews are Components so they have their <code>componentState</code> and actions depending on the type of TableView.</p>
 <p>Every TableView&#x2019;s component State is a <code>TableViewState</code> which is an enum containing these cases:</p>
 <pre><code class="lang-swift"><span class="pl-k">public</span> <span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">TableViewState</span>&lt;<span class="pl-ent">MODEL</span>&gt; </span>{
-
     <span class="pl-k">case</span> items([<span class="hljs-type">MODEL</span>])
     <span class="pl-k">case</span> empty(message: <span class="hljs-type">String</span>)
     <span class="pl-k">case</span> loading
@@ -106,7 +105,7 @@
 
         </div>
         <div class="footer-nav">
-          <div class="left"><a href="../parts/wireframe.html"><span class="title">Wireframe</span></a></div>
+          <div class="left"><a href="../parts/styling.html"><span class="title">Styling</span></a></div>
           <div class="right"><a href="../parts/collectionview.html"><span class="label">Next: </span><span class="title">CollectionView</span></a></div>
         </div>
       </div>

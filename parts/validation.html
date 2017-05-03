@@ -28,10 +28,16 @@
                 </li>
               </ul>
             </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
+                </li>
+              </ul>
+            </li>
             <li class="menu-item -level-1 -parent"><span class="title">Parts</span>
               <ul class="submenu">
-                <li class="menu-item -level-2"><a class="link title  link-partscomponent" href="../parts/component.html">Component</a>
-                </li>
                 <li class="menu-item -level-2"><a class="link title  link-partsconfiguration" href="../parts/configuration.html">Configuration</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partscontroller" href="../parts/controller.html">Controller</a>
@@ -39,6 +45,8 @@
                 <li class="menu-item -level-2"><a class="link title  link-partsrootview" href="../parts/rootview.html">RootView</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partswireframe" href="../parts/wireframe.html">Wireframe</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-partsstyling" href="../parts/styling.html">Styling</a>
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-partstableview" href="../parts/tableview.html">TableView</a>
                 </li>
@@ -52,14 +60,6 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item -level-1 -parent"><span class="title">Reactant UI</span>
-              <ul class="submenu">
-                <li class="menu-item -level-2"><a class="link title  link-reactant-uiintroduction" href="../reactant-ui/introduction.html">Introduction</a>
-                </li>
-                <li class="menu-item -level-2"><a class="link title  link-reactant-uilive-reload" href="../reactant-ui/live-reload.html">Live Reload</a>
-                </li>
-              </ul>
-            </li>
           </ul>
         </li>
       </div>
@@ -70,8 +70,8 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="validation">Validation</h1>
-<p>Validation classes can be used for extremely easy validation of for example user inputs such as emails or passwords.</p>
-<p>A good example of creating Rules for validation is in <code>StringRules</code> class. Let&#x2019;s have a look at <code>minLenghtRule</code>.</p>
+<p>Validation classes can be used for an easy validation of for user inputs such as emails or passwords.</p>
+<p>A good example of creating Rules for validation is in <code>Rules.String</code> class. Let&#x2019;s have a look at <code>minLenght</code> Rule.</p>
 <pre><code class="lang-swift"><span class="pl-k">public</span> <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">minLength</span><span class="hljs-params">(<span class="hljs-number">_</span> length: Int)</span></span> -&gt; <span class="hljs-type">Rule</span>&lt;<span class="hljs-type">String</span>?, <span class="hljs-type">ValidationError</span>&gt; {
         <span class="pl-k">return</span> <span class="hljs-type">Rule</span> { value <span class="pl-k">in</span>
             <span class="pl-k">guard</span> <span class="pl-k">let</span> value = value, value.characters.<span class="pl-c1">count</span> &gt;= length <span class="pl-k">else</span> {
@@ -82,9 +82,9 @@
     }
 </code></pre>
 <p>If the condition for valid string is not true, then this code returns <code>ValidationError.invalid</code>, otherwise returns <code>nil</code>.</p>
-<p>Usage of this rule is simple and can look like this when being used as a part of <code>Observable</code> stream.</p>
+<p>Usage of this rule can look like this, when we use it as a part of <code>Observable</code> stream.</p>
 <pre><code class="lang-swift"><span class="hljs-type">Observable</span>.from([<span class="pl-s">&quot;this&quot;</span>, <span class="pl-s">&quot;is&quot;</span>, <span class="pl-s">&quot;a&quot;</span>, <span class="pl-s">&quot;message&quot;</span>])
-            .<span class="pl-c1">map</span> { <span class="hljs-type">StringRules</span>.minLength(<span class="hljs-number">4</span>).run($<span class="hljs-number">0</span>) }
+            .<span class="pl-c1">map</span> { <span class="hljs-type">Rules</span>.<span class="hljs-type">String</span>.minLength(<span class="hljs-number">4</span>).run($<span class="hljs-number">0</span>) }
             .filterError()
             .subscribe(onNext: { <span class="pl-c1">print</span>($<span class="hljs-number">0</span> ?? <span class="pl-s">&quot;&quot;</span>) })
             .addDisposableTo(stateDisposeBag)
