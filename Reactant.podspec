@@ -57,6 +57,8 @@ Pod::Spec.new do |spec|
         subspec.frameworks = 'UIKit'
         subspec.dependency 'Reactant/Configuration'
         rxSwift(subspec)
+        rxCocoa(subspec)
+        rxOptional(subspec)
         snapKit(subspec)
         subspec.source_files = [
             'Source/Core/**/*.swift',
@@ -110,6 +112,7 @@ Pod::Spec.new do |spec|
 
     spec.subspec 'StaticMap' do |subspec|
         subspec.frameworks = ['UIKit', 'MapKit']
+        subspec.dependency 'Reactant/Core'
         rxCocoa(subspec)
         kingfisher(subspec)
         subspec.source_files = 'Source/StaticMap/**/*.swift'
