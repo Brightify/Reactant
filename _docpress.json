@@ -188,7 +188,34 @@
             "title": "RootView",
             "source": "docs/parts/rootview.md",
             "url": "parts/rootview.html",
-            "slug": "partsrootview"
+            "slug": "partsrootview",
+            "headings": [
+              {
+                "title": "edgesForExtendedLayout",
+                "depth": 2,
+                "id": "edgesforextendedlayout"
+              },
+              {
+                "title": "viewWillAppear()",
+                "depth": 2,
+                "id": "viewwillappear()"
+              },
+              {
+                "title": "viewDidAppear()",
+                "depth": 2,
+                "id": "viewdidappear()"
+              },
+              {
+                "title": "viewWillDisappear()",
+                "depth": 2,
+                "id": "viewwilldisappear()"
+              },
+              {
+                "title": "viewDidDisappear()",
+                "depth": 2,
+                "id": "viewdiddisappear()"
+              }
+            ]
           },
           {
             "title": "Wireframe",
@@ -459,7 +486,34 @@
       "source": "docs/parts/rootview.md",
       "title": "RootView - Reactant",
       "pageTitle": "RootView",
-      "slug": "partsrootview"
+      "slug": "partsrootview",
+      "headings": [
+        {
+          "title": "edgesForExtendedLayout",
+          "depth": 2,
+          "id": "edgesforextendedlayout"
+        },
+        {
+          "title": "viewWillAppear()",
+          "depth": 2,
+          "id": "viewwillappear()"
+        },
+        {
+          "title": "viewDidAppear()",
+          "depth": 2,
+          "id": "viewdidappear()"
+        },
+        {
+          "title": "viewWillDisappear()",
+          "depth": 2,
+          "id": "viewwilldisappear()"
+        },
+        {
+          "title": "viewDidDisappear()",
+          "depth": 2,
+          "id": "viewdiddisappear()"
+        }
+      ]
     },
     "parts/wireframe.html": {
       "source": "docs/parts/wireframe.md",
