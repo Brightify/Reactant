@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxOptional
 
 public enum TextInputState {
     case string(String)
