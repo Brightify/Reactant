@@ -1,5 +1,4 @@
-ActivityIndicator
-=================
+# ActivityIndicator
 
 `ActivityIndicator` allows you to track activity of `Observable`. It is especially useful when displaying progress of some tasks done by multiple `Observable` in a row, because it can monitor all of them and show different associated values based on the current task.
 
@@ -9,13 +8,13 @@ To register `Observable` to be tracked by `ActivityIndicator` use:
 
 ```swift
 extension ActivityIndicator {
-    
+
 	// defaultAssociatedValue from init will be associated to this Observable.
     func trackActivity<O: ObservableConvertibleType>(of source: O)
-    
+
     // Provided associatedValue will be used instead of the default one.
     func trackActivity<O: ObservableConvertibleType>(of source: O, associatedValue: T?)
-    
+
     // Associated value will be determined for each value from Observable individually by associatedValueProvider. defaultAssociatedValue will be used as the first associated value.
     func trackActivity<O: ObservableConvertibleType>(of source: O, associatedValueProvider: @escaping (O.E) -> T?)
 
@@ -26,7 +25,7 @@ extension ActivityIndicator {
 
 For example:
 
-```swift 
+```swift
 let activityIndicator = ActivityIndicator<String>()
 let observable = Observable<Int>.interval(RxTimeInterval(1), scheduler: MainScheduler.instance)
 								.take(10)
@@ -40,20 +39,20 @@ Usually you do not store `Observable` in a variable (doing so requires to break 
 
 ```swift
 extension ObservableConvertibleType {
-    
-    func trackActivity<T>(in activityIndicator: ActivityIndicator<T>) -> Observable<E> 
-    
-    func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, associatedValue: T?) -> Observable<E> 
-    
-    func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, associatedValueProvider: @escaping (E) -> T?) -> Observable<E> 
-    
+
+    func trackActivity<T>(in activityIndicator: ActivityIndicator<T>) -> Observable<E>
+
+    func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, associatedValue: T?) -> Observable<E>
+
+    func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, associatedValueProvider: @escaping (E) -> T?) -> Observable<E>
+
     func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, initialAssociatedValue: T?, associatedValueProvider: @escaping (E) -> T?) -> Observable<E>
 }
 ```
 
 Now we can integrate `ActivityIndicator` to existing `Observable` chain quite nicely:
 
-```swift 
+```swift
 let activityIndicator = ActivityIndicator<String>()
 let observable = Observable<Int>.interval(RxTimeInterval(1), scheduler: MainScheduler.instance)
 								.take(10)
@@ -154,4 +153,3 @@ loading: true, associatedValue: 11		// Observable 10 finished long ago, so the o
 Done: 11
 loading: false, associatedValue: -1
 ```
-

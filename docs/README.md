@@ -11,7 +11,6 @@
     * [Live Reload](reactant-ui/live-reload.md)
 
 * Parts
-    * [Component](parts/component.md)
     * [Configuration](parts/configuration.md)
     * [Controller](parts/controller.md)
     * [RootView](parts/rootview.md)

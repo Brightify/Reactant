@@ -1,34 +1,33 @@
-Configuration
-=================
+# Configuration
 
-`Configuration` is a key-value storage. It is mainly used to set default values in classes like `BaseController` or `ViewBase`. 
+`Configuration` is a key-value storage. It is mainly used to set default values in classes like `BaseController` or `ViewBase`.
 
 `Configuration` provides these methods for storing and retrieving values:
 
 ```swift
 class Configuration {
-    
+
     func set<T>(_ property: Property<T>, to value: T)
-    
+
     func get<T>(valueFor property: Property<T>) -> T
 }
 ```
 
 ## Property
 
-As you can see, `Configuration` uses `Property` as keys. 
+As you can see, `Configuration` uses `Property` as keys.
 
 ```swift
 struct Property<T> {
-    
+
     let id: Int
     let defaultValue: T
-    
+
     init(defaultValue: T)
 }
 ```
 
-`Property` defines type of value it points to (`T`). Field `id` is unique identifier for each object. So in order to retrieve value previously stored, you have to use the same instance of `Property` (passing `Property` by value doesn't change `id`). 
+`Property` defines type of value it points to (`T`). Field `id` is unique identifier for each object. So in order to retrieve value previously stored, you have to use the same instance of `Property` (passing `Property` by value doesn't change `id`).
 
 Example:
 
@@ -50,7 +49,7 @@ configuration.get(valueFor: optionalInteger) 	// returns 0
 
 Notice that `defaultValue` from `Property.init` is used when no value for that `Property` was previously stored inside `Configuration`. Also `Optional` types do not require `defaultValue`, in that case it will be `nil`.
 
-To create custom property simply make a new instance of `Property`: 
+To create custom property simply make a new instance of `Property`:
 
 ```swift
 let newProperty = Property<Int>(defaultValue: 0)
@@ -83,15 +82,15 @@ If you need to change configuration but only for some classes. You can create yo
 
 ```swift
 protocol Configurable: class {
-    
+
     var configuration: Configuration { get set }
 }
 
 extension Configurable {
-    
+
     /// Calls didSet on configuration.
     func reloadConfiguration()
-    
+
     /// Applies configuration to this object and returns it to allow chaining.
     func with(configuration: Configuration) -> Self
 }
