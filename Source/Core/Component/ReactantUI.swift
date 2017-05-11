@@ -1,5 +1,3 @@
-import UIKit
-
 public protocol ReactantUI: class {
     var __rui: ReactantUIContainer { get }
 }
@@ -11,5 +9,5 @@ public protocol ReactantUIContainer: class {
 
     func setupReactantUI()
 
-    static func destroyReactantUI(target: UIView)
+    static func destroyReactantUI(target: View)
 }

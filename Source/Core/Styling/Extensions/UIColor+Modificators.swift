@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 extension UIColor {
@@ -74,3 +75,4 @@ extension UIColor {
         return min(max(0, value + value * amount), 1)
     }
 }
+#endif

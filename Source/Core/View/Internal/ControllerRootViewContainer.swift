@@ -57,12 +57,15 @@ public final class ControllerRootViewContainer: View, Configurable {
 
     private func loadView() {
         #if os(iOS)
-        autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            if frame == CGRect.zero {
+                frame = window?.frame ?? .zero
+            }
         #elseif os(macOS)
+            if frame == CGRect.zero {
+                frame = window?.frame ?? .zero
+            }
         autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
         #endif
-        if frame == CGRect.zero {
-            frame = window?.frame ?? .zero
-        }
     }
 }

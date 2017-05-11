@@ -64,6 +64,7 @@ Pod::Spec.new do |spec|
             'Source/Core/**/*.swift',
             'Source/Utils/**/*.swift'
         ]
+        subspec.osx.source_files = 'SourceMacOS/Core/**/*.swift'
     end
 
     spec.subspec 'Configuration' do |subspec|
@@ -106,7 +107,6 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'ActivityIndicator' do |subspec|
-        subspec.frameworks = 'UIKit'
         rxCocoa(subspec)
         subspec.source_files = 'Source/ActivityIndicator/**/*.swift'
     end

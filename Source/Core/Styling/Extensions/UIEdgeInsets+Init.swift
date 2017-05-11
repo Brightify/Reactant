@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 extension UIEdgeInsets {
@@ -42,3 +43,4 @@ extension UIEdgeInsets {
         self.init(top: vertical, left: left, bottom: vertical, right: right)
     }
 }
+#endif

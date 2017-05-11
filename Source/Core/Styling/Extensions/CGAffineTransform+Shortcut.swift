@@ -6,7 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 public func + (lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransform {
     return lhs.concatenating(rhs)

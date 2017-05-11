@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import RxSwift
 import RxOptional
 
@@ -221,3 +222,4 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
     }
 
 }
+#endif
