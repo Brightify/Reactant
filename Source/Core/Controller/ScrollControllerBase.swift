@@ -7,13 +7,24 @@
 //
 
 open class ScrollControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> where ROOT: Component {
-
-    public let scrollView = ScrollView()
+    #if os(iOS)
+    public let scrollView = UIScrollView()
+    #elseif os(macOS)
+    public let scrollView: ScrollView<ROOT>
+    #endif
 
     open override var configuration: Configuration {
         didSet {
+            #if os(iOS)
             configuration.get(valueFor: Properties.Style.scroll)(scrollView)
+            #endif
         }
+    }
+
+    public override init(title: String = "", root: ROOT = ROOT()) {
+        scrollView = ScrollView(contentView: root)
+
+        super.init(title: title, root: root)
     }
 
     open override func loadView() {
@@ -23,15 +34,9 @@ open class ScrollControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> 
             scrollView
         )
 
-        #if os(macOS)
-        scrollView.documentView = rootView
-        #elseif os(iOS)
+        #if os(iOS)
         scrollView.children(rootView)
         #endif
-    }
-
-    public override init(title: String = "", root: ROOT = ROOT()) {
-        super.init(title: title, root: root)
     }
 
     open override func updateRootViewConstraints() {
@@ -61,10 +66,11 @@ open class ScrollControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> 
     }
     #endif
 }
-
+#if os(iOS)
 extension ScrollControllerBase: Scrollable {
 
     public func scrollToTop(animated: Bool) {
         scrollView.scrollToTop(animated: animated)
     }
 }
+#endif

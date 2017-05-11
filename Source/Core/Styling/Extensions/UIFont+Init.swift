@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 extension UIFont {
@@ -14,3 +15,4 @@ extension UIFont {
         self.init(descriptor: UIFontDescriptor(name: name, size: size), size: 0)
     }
 }
+#endif

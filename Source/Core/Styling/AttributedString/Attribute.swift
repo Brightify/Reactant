@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 /// Enum which represents NS attributes for NSAttributedString (like NSStrokeColorAttributeName). Each case has value and assigned name.
@@ -148,3 +149,4 @@ public extension Sequence where Iterator.Element == Attribute {
         return attributeDictionary
     }
 }
+#endif

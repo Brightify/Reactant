@@ -15,7 +15,7 @@
                 return stringValue
             }
             set {
-                stringValue = text
+                stringValue = newValue
             }
         }
 
@@ -30,6 +30,12 @@
                     self.font = NSFont.systemFont(ofSize: newValue)
                 }
             }
+        }
+
+        public convenience init(text: String) {
+            self.init()
+
+            self.text = text
         }
 
         public required init?(coder: NSCoder) {

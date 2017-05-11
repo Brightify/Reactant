@@ -6,11 +6,9 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-import UIKit
-
 public protocol Styleable { }
 
-extension UIView: Styleable { }
+extension View: Styleable { }
 
 public typealias Style<T> = (T) -> Void
 

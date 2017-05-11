@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 extension UIOffset {
@@ -22,3 +23,4 @@ extension UIOffset {
         self.init(horizontal: 0, vertical: vertical)
     }
 }
+#endif

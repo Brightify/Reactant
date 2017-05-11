@@ -1,5 +1,3 @@
-import UIKit
-
 public protocol ReactantUI: class {
     var __rui: ReactantUIContainer { get }
 }
