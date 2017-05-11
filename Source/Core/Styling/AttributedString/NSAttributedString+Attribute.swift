@@ -6,7 +6,8 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-import UIKit
+#if os(iOS)
+import Foundation
 
 public func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
     let mutableString = NSMutableAttributedString(attributedString: lhs)
@@ -50,3 +51,4 @@ extension String {
         return attributed(attributes)
     }
 }
+#endif

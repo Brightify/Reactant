@@ -13,7 +13,6 @@
     public typealias Button = UIButton
     public typealias View = UIView
     public typealias ImageView = UIImageView
-    public typealias ScrollView = UIScrollView
     public typealias ProgressIndicator = UIActivityIndicatorView
     public typealias ViewController = UIViewController
 #elseif os(macOS)
@@ -23,7 +22,6 @@
     public typealias Button = NSButton
     public typealias View = NSView
     public typealias ImageView = NSImageView
-    public typealias ScrollView = NSScrollView
     public typealias ProgressIndicator = NSProgressIndicator
     public typealias ViewController = NSViewController
 #endif

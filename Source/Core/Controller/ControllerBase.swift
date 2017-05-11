@@ -17,6 +17,10 @@ open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDeleg
     open var navigationBarHidden: Bool {
         return false
     }
+    #elseif os(macOS)
+    open var initialSize: CGSize? {
+        return nil
+    }
     #endif
 
     public let lifetimeDisposeBag = DisposeBag()
@@ -49,7 +53,11 @@ open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDeleg
     public init() {
         rootView = ROOT()
 
+        #if os(iOS)
         super.init(nibName: nil, bundle: nil)
+        #elseif os(macOS)
+        super.init(nibName: nil, bundle: nil)!
+        #endif
 
         setupController(title: "")
     }
@@ -57,7 +65,11 @@ open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDeleg
     public init(root: ROOT) {
         rootView = root
 
+        #if os(iOS)
         super.init(nibName: nil, bundle: nil)
+        #elseif os(macOS)
+        super.init(nibName: nil, bundle: nil)!
+        #endif
 
         setupController(title: "")
     }
@@ -110,7 +122,9 @@ open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDeleg
 
     open override func loadView() {
         view = ControllerRootViewContainer().with(configuration: configuration)
-
+        if let initialSize = initialSize {
+            view.frame.size = initialSize
+        }
         view.addSubview(rootView)
     }
 
@@ -137,6 +151,8 @@ open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDeleg
             }
         }
         #elseif os(macOS)
+            rootView.setContentHuggingPriority(499, for: .horizontal)
+            rootView.setContentHuggingPriority(499, for: .vertical)
             rootView.snp.remakeConstraints { make in
                 make.leading.equalTo(view)
                 make.trailing.equalTo(view)
