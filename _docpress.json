@@ -887,6 +887,7 @@
     "docs/img/ReactantLiveUIDebug.png": "img/ReactantLiveUIDebug.png",
     "docs/img/ReactantLiveUIError.png": "img/ReactantLiveUIError.png",
     "docs/img/ReactantLiveUIPreview.png": "img/ReactantLiveUIPreview.png",
-    "docs/img/ReactantTutorial.png": "img/ReactantTutorial.png"
+    "docs/img/ReactantTutorial.png": "img/ReactantTutorial.png",
+    "docs/scripts/zopim.js": "scripts/zopim.js"
   }
 }
