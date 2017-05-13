@@ -33,7 +33,6 @@ open class ButtonBase<STATE, ACTION>: Button, ComponentWithDelegate, Configurabl
     }
     #endif
 
-
     open var action: Observable<ACTION> {
         return componentDelegate.action
     }
@@ -45,10 +44,6 @@ open class ButtonBase<STATE, ACTION>: Button, ComponentWithDelegate, Configurabl
             #endif
             configuration.get(valueFor: Properties.Style.button)(self)
         }
-    }
-
-    open override class var requiresConstraintBasedLayout: Bool {
-        return true
     }
 
     #if ENABLE_SAFEAREAINSETS_FALLBACK
