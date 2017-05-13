@@ -15,7 +15,7 @@ target 'Reactant' do
     platform :ios, '9.0'
     shared
 
-    # pod 'RxDataSources', '~> 1.0'
+    pod 'RxDataSources', '~> 1.0'
 end
 
 target 'ReactantTests' do

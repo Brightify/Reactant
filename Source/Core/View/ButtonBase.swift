@@ -46,10 +46,6 @@ open class ButtonBase<STATE, ACTION>: Button, ComponentWithDelegate, Configurabl
         }
     }
 
-    open override class var requiresConstraintBasedLayout: Bool {
-        return true
-    }
-
     public init() {
         super.init(frame: CGRect.zero)
 

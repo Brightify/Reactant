@@ -5,6 +5,11 @@
 //  Created by Tadeáš Kříž on 09/09/16.
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
+#if os(iOS)
+import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 open class ScrollControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> where ROOT: Component {
     #if os(iOS)
@@ -22,8 +27,9 @@ open class ScrollControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> 
     }
 
     public override init(title: String = "", root: ROOT = ROOT()) {
+        #if os(macOS)
         scrollView = ScrollView(contentView: root)
-
+        #endif
         super.init(title: title, root: root)
     }
 

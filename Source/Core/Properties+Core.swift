@@ -31,7 +31,7 @@ extension Properties.Style {
     public static let container = style(for: ContainerView.self)
     public static let view = style(for: View.self)
     #if os(iOS)
-    public static let scroll = style(for: ScrollView.self)
+    public static let scroll = style(for: UIScrollView.self)
     public static let textField = style(for: TextField.self)
     #endif
 

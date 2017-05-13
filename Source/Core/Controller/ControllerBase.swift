@@ -121,9 +121,11 @@ open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDeleg
 
     open override func loadView() {
         view = ControllerRootViewContainer().with(configuration: configuration)
+        #if os(macOS)
         if let initialSize = initialSize {
             view.frame.size = initialSize
         }
+        #endif
         view.addSubview(rootView)
     }
 

@@ -21,6 +21,9 @@ PODS:
   - Result (3.2.1)
   - RxCocoa (3.4.1):
     - RxSwift (~> 3.4)
+  - RxDataSources (1.0.3):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
   - RxOptional (3.1.3):
     - RxCocoa
     - RxSwift
@@ -35,6 +38,7 @@ DEPENDENCIES:
   - Reactant/Core (from `./`)
   - Result (~> 3.0)
   - RxCocoa (~> 3.0)
+  - RxDataSources (~> 1.0)
   - RxOptional (~> 3.0)
   - RxSwift (~> 3.0)
   - SnapKit (~> 3.0)
@@ -50,10 +54,11 @@ SPEC CHECKSUMS:
   Reactant: 19de30a91b8c55d51be7c51a13e854c11cc3fa20
   Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
   RxCocoa: a8a5f1d061d0043e28f56976829f31ce63e8eb09
+  RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
   RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: d42f4e6d524ade59e5e8013cfcf2006e63a4c141
+PODFILE CHECKSUM: 5782c503ce2d4cfddf21024732362edea7bd31aa
 
 COCOAPODS: 1.2.1
