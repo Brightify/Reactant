@@ -10,6 +10,9 @@
     "docpress-core": {},
     "docpress-base": {}
   },
+  "scripts": [
+    "scripts/zopim.js"
+  ],
   "googleAnalytics": {
     "id": "UA-48374666-17",
     "domain": "docs.reactant.tech"
