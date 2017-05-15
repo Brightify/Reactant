@@ -1,49 +1,30 @@
 PODS:
-  - Kingfisher (3.5.2)
-  - Reactant (0.5.10):
-    - Reactant/Core (= 0.5.10)
-    - Reactant/Result (= 0.5.10)
-    - Reactant/Staging (= 0.5.10)
-    - Result (~> 3.0.0)
-    - RxOptional (~> 3.1)
-    - RxSwift (~> 3.0.0)
-  - Reactant/CollectionView (0.5.10):
+  - Reactant (1.0.0):
+    - Reactant/Core (= 1.0.0)
+    - Reactant/Result (= 1.0.0)
+  - Reactant/CollectionView (1.0.0):
     - Reactant/Core
-    - Reactant/TableView
-    - Result (~> 3.0.0)
-    - RxCocoa (~> 3.0.0)
-    - RxDataSources (~> 1.0.0)
-    - RxOptional (~> 3.1)
-    - RxSwift (~> 3.0.0)
-  - Reactant/Core (0.5.10):
-    - Result (~> 3.0.0)
-    - RxCocoa (~> 3.0.0)
-    - RxOptional (~> 3.1)
-    - RxSwift (~> 3.0.0)
+    - RxCocoa (~> 3.0)
+    - RxDataSources (~> 1.0)
+  - Reactant/Configuration (1.0.0):
+    - RxSwift (~> 3.0)
     - SnapKit (~> 3.0)
-  - Reactant/Result (0.5.10):
-    - Result (~> 3.0.0)
-    - RxOptional (~> 3.1)
-    - RxSwift (~> 3.0.0)
-  - Reactant/Staging (0.5.10):
-    - Kingfisher (~> 3.1)
-    - Reactant/Core
-    - Result (~> 3.0.0)
-    - RxCocoa (~> 3.0.0)
-    - RxOptional (~> 3.1)
-    - RxSwift (~> 3.0.0)
+  - Reactant/Core (1.0.0):
+    - Reactant/Configuration
+    - RxCocoa (~> 3.0)
+    - RxOptional (~> 3.0)
+    - RxSwift (~> 3.0)
     - SnapKit (~> 3.0)
-  - Reactant/TableView (0.5.10):
+  - Reactant/Result (1.0.0):
+    - Result (~> 3.0)
+    - RxOptional (~> 3.0)
+    - RxSwift (~> 3.0)
+  - Reactant/TableView (1.0.0):
     - Reactant/Core
-    - Result (~> 3.0.0)
-    - RxCocoa (~> 3.0.0)
-    - RxDataSources (~> 1.0.0)
-    - RxOptional (~> 3.1)
-    - RxSwift (~> 3.0.0)
-  - Reactant/Validation (0.5.10):
-    - Result (~> 3.0.0)
-    - RxOptional (~> 3.1)
-    - RxSwift (~> 3.0.0)
+    - RxCocoa (~> 3.0)
+    - RxDataSources (~> 1.0)
+  - Reactant/Validation (1.0.0):
+    - Result (~> 3.0)
   - Result (3.0.0)
   - RxCocoa (3.0.1):
     - RxSwift (~> 3.0)
@@ -67,8 +48,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Kingfisher: 9950e382c500b6834ce004c7c4131c444e90c3a1
-  Reactant: f6f25d7748951c91ab3a08dee00feb4b1df62824
+  Reactant: 4062d70c2ad431246e45e4cde2d3ac265bb7252f
   Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
   RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
   RxDataSources: a021a0e944ba5f7991259829d973afdbfa719c0b
@@ -78,4 +58,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8b14c208eae1cb2624c4f57db51a67aca61a132f
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

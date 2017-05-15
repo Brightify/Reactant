@@ -8,13 +8,13 @@
 
 Pod::Spec.new do |spec|
     spec.name             = 'Reactant'
-    spec.version          = '1.0.0'
-    spec.summary          = 'Imagine React Native in Swift and you get Reactant'
+    spec.version          = '1.0.1'
+    spec.summary          = 'Reactant is a reactive architecture for iOS'
 
     spec.description      = <<-DESC
-                            We combined the strength of RxSwift with pure Swift and made a framework for highly reusable and clean views.
+                            Reactant is a foundation for rapid and safe iOS development. It allows you to cut down your development costs by improving reusability, testability and safety of your code, especially your UI.
                             DESC
-    spec.homepage         = 'http://reactant.tech'
+    spec.homepage         = 'https://www.reactant.tech'
     spec.license          = 'MIT'
     spec.author           = {
         'Tadeas Kriz' => 'tadeas@brightify.org',

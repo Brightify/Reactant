@@ -11,6 +11,6 @@ import Foundation
 struct NameService {
 
     func names() -> [String] {
-        return ["Tadeas", "Filip", "Majk"]
+        return ["Tadeas", "Filip", "Matous"]
     }
 }

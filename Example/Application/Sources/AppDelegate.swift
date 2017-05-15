@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
 
-        ReactantConfiguration.global.controllerRootStyle = {
+        Configuration.global.set(Properties.Style.controllerRoot) {
             $0.backgroundColor = .white
         }
 
