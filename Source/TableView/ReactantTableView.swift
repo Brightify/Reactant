@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public protocol ReactantTableView: class, Scrollable {
@@ -24,3 +25,4 @@ extension ReactantTableView {
         tableView.scrollToTop(animated: animated)
     }
 }
+#endif

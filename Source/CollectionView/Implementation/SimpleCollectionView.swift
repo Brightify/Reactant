@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import RxSwift
 
 public enum SimpleCollectionViewAction<CELL: Component> {
@@ -57,3 +58,4 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
             .disposed(by: lifetimeDisposeBag)
     }
 }
+#endif

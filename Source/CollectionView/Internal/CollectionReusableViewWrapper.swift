@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import RxSwift
 
@@ -56,3 +57,4 @@ public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReus
         return wrappedView
     }
 }
+#endif

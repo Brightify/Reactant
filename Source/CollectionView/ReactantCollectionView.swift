@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public protocol ReactantCollectionView: class, Scrollable {
@@ -28,3 +29,4 @@ extension ReactantCollectionView {
         collectionView.scrollToTop(animated: animated)
     }
 }
+#endif

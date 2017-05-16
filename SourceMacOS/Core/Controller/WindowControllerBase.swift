@@ -12,7 +12,7 @@ import RxSwift
 open class WindowController: NSWindowController, Configurable, NSWindowDelegate {
     open var configuration: Configuration = .global {
         didSet {
-            (view as? Configurable)?.configuration = configuration
+            (contentViewController as? Configurable)?.configuration = configuration
         }
     }
 
@@ -44,73 +44,25 @@ open class WindowController: NSWindowController, Configurable, NSWindowDelegate 
 
     open func afterInit() { }
 
-    open func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
-        return frameSize
-    }
-
-    open override func windowWillLoad() {
-        super.windowWillLoad()
-
-        print(#function)
-    }
-
-    open override func windowDidLoad() {
-        super.windowDidLoad()
-
-        print(#function)
-    }
-
-    open override func loadWindow() {
-        super.loadWindow()
-
-        print(#function)
-    }
-    //    open override func loadView() {
-    //        view = ControllerRootViewContainer().with(configuration: configuration)
-    //
-    //        view.addSubview(rootView)
-    //    }
-
-    //    open override func updateViewConstraints() {
-    //        updateRootViewConstraints()
-    //
-    //        super.updateViewConstraints()
-    //    }
-
-//    open func updateRootViewConstraints() {
-        //        rootView.snp.remakeConstraints { make in
-        //            make.leading.equalTo(view)
-        //            make.trailing.equalTo(view)
-        //            make.top.equalTo(view)
-        //            make.bottom.equalTo(view).priority(NSLayoutPriorityDefaultHigh)
-        //        }
+//    open func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
+//        return frameSize
 //    }
-
-    //    open override func viewWillAppear() {
-    //        super.viewWillAppear()
-    //
-    //        componentDelegate.canUpdate = true
-    //
-    //        castRootView?.viewWillAppear()
-    //    }
-    //
-    //    open override func viewDidAppear() {
-    //        super.viewDidAppear()
-    //
-    //        castRootView?.viewDidAppear()
-    //    }
-    //
-    //    open override func viewWillDisappear() {
-    //        super.viewWillDisappear()
-    //
-    //        componentDelegate.canUpdate = false
-    //
-    //        castRootView?.viewWillDisappear()
-    //    }
-    //
-    //    open override func viewDidDisappear() {
-    //        super.viewDidDisappear()
-    //        
-    //        castRootView?.viewDidDisappear()
-    //    }
+//
+//    open override func windowWillLoad() {
+//        super.windowWillLoad()
+//
+//        print(#function)
+//    }
+//
+//    open override func windowDidLoad() {
+//        super.windowDidLoad()
+//
+//        print(#function)
+//    }
+//
+//    open override func loadWindow() {
+//        super.loadWindow()
+//
+//        print(#function)
+//    }
 }
