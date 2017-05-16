@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 extension Properties.Style {
@@ -18,3 +19,4 @@ extension Properties.Style {
         public static let pageControl = Properties.Style.style(for: UIPageControl.self)
     }
 }
+#endif

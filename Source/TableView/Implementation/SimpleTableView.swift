@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import RxSwift
 import RxDataSources
 
@@ -81,3 +82,4 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
                                    model: model, mapAction: { SimpleTableViewAction.footerAction(model, $0) })
     }
 }
+#endif

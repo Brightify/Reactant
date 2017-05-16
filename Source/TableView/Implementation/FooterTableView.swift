@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import RxSwift
 import RxDataSources
 
@@ -69,3 +70,4 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
                                    model: section, mapAction: { FooterTableViewAction.footerAction(section, $0) })
     }
 }
+#endif

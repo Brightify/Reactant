@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import RxSwift
 
 public struct CollectionViewCellIdentifier<T: UIView> {
@@ -46,3 +47,4 @@ extension UICollectionView {
         return rx.items(cellIdentifier: identifier.name)
     }
 }
+#endif
