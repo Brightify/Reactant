@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import RxSwift
 
@@ -82,3 +83,4 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
         return cell
     }
 }
+#endif

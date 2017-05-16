@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import RxSwift
 import RxDataSources
 
@@ -93,3 +94,4 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
                                    model: section, mapAction: { HeaderTableViewAction.headerAction(section, $0) })
     }
 }
+#endif

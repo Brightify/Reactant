@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public struct CollectionSupplementaryViewIdentifier<T: UIView> {
@@ -43,3 +44,4 @@ extension UICollectionView {
         return dequeue(identifier: identifier, for: IndexPath(row: row, section: section))
     }
 }
+#endif

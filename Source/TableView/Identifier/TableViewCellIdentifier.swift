@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import RxSwift
 
 public struct TableViewCellIdentifier<T: UIView> {
@@ -53,3 +54,4 @@ extension UITableView {
         return dequeue(identifier: identifier, for: IndexPath(row: row, section: section))
     }
 }
+#endif

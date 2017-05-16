@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public struct AnyCollectionViewCellIdentifier {
@@ -31,3 +32,4 @@ extension UICollectionView {
         register(nil as AnyClass?, forCellWithReuseIdentifier: identifier.name)
     }
 }
+#endif

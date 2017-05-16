@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 extension Properties.Style {
@@ -17,3 +18,4 @@ extension Properties.Style {
         public static let cellWrapper = Properties.Style.style(for: UITableViewCell.self)
     }
 }
+#endif

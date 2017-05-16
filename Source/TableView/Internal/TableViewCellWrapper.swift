@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 import RxSwift
 
@@ -102,3 +103,4 @@ public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell, Configur
         return cell
     }
 }
+#endif

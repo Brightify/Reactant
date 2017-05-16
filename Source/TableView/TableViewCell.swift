@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public protocol TableViewCell {
@@ -47,3 +48,4 @@ extension TableViewCell {
     public func setHighlighted(_ highlighted: Bool, animated: Bool) {
     }
 }
+#endif
