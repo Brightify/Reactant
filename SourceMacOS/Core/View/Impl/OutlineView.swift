@@ -105,9 +105,7 @@ open class OutlineView<T>: ViewBase<[OutlineViewItem<T>], OutlineViewAction<T>>,
     }
 
     public func outlineViewSelectionDidChange(_ notification: Notification) {
-        let selectedIndex = outlineView.selectedRow
-        guard componentState.indices ~= selectedIndex else { return }
-        let item = componentState[selectedIndex]
+        guard let item = outlineView.item(atRow: outlineView.selectedRow) as? OutlineViewItem<T> else { return }
         perform(action: .selected(item))
     }
 }
