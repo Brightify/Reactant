@@ -192,12 +192,6 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
         return true
     }
 
-    open override func addSubview(_ view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        super.addSubview(view)
-    }
-
     open override func textRect(forBounds bounds: CGRect) -> CGRect {
         let superBounds = super.textRect(forBounds: bounds)
         return UIEdgeInsetsInsetRect(superBounds, contentEdgeInsets)

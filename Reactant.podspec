@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
     spec.name             = 'Reactant'
-    spec.version          = '1.0.2'
+    spec.version          = '1.0.3'
     spec.summary          = 'Reactant is a reactive architecture for iOS'
 
     spec.description      = <<-DESC
