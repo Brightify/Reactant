@@ -8,19 +8,21 @@
 
 import Foundation
 
+/**
+ * A definition of a configurable property. It defines its type and a default value. 
+ */
 public struct Property<T> {
     
     public let id: Int
     public let defaultValue: T
     
     public init(defaultValue: T) {
-        id = PropertyIdProvider.nextId
+        id = PropertyIdProvider.nextId()
         self.defaultValue = defaultValue
     }
 }
 
 extension Property where T: OptionalType {
-    
     public init() {
         self.init(defaultValue: T.null)
     }
@@ -32,7 +34,7 @@ private struct PropertyIdProvider {
     
     private static let syncQueue = DispatchQueue(label: "PropertyIdProvider_syncQueue")
     
-    fileprivate static var nextId: Int {
+    fileprivate static func nextId() -> Int {
         return syncQueue.sync {
             lastUsedId += 1
             return lastUsedId

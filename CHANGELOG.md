@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.4
+* Improved documentation
+
 ## 1.0.3
 * Fixed `TextField` where placeholder didn't have correct position
 
