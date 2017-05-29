@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.5
+* Add create to Wireframe with controller result helper
+* Add default implementation to DialogDismissalController
+* Add option to have present dialog with result in UINavigationController
+
 ## 1.0.4
 * Improved documentation
 

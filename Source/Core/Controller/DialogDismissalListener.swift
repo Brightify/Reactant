@@ -12,3 +12,10 @@ public protocol DialogDismissalListener {
     
     func dialogDidDismiss()
 }
+
+extension DialogDismissalListener {
+
+    func dialogWillDismiss() { }
+
+    func dialogDidDismiss() { }
+}

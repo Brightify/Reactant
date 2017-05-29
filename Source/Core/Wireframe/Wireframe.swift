@@ -7,17 +7,26 @@
 //
 
 import UIKit
+import RxSwift
 
 public protocol Wireframe {
 }
 
 extension Wireframe {
     
-    public func create<T>(factory: (FutureControllerProvider<T>) -> T) -> T {
+    public func create<T: UIViewController>(factory: (FutureControllerProvider<T>) -> T) -> T {
         let futureControllerProvider = FutureControllerProvider<T>()
         let controller = factory(futureControllerProvider)
         futureControllerProvider.controller = controller
         return controller
+    }
+
+    public func create<T: UIViewController, U>(factory: (FutureControllerProvider<T>, AnyObserver<U>) -> T) -> (T, Observable<U>) {
+        let futureControllerProvider = FutureControllerProvider<T>()
+        let subject = PublishSubject<U>()
+        let controller = factory(futureControllerProvider, subject.asObserver())
+        futureControllerProvider.controller = controller
+        return (controller, subject)
     }
     
     public func branchNavigation(controller: UIViewController, closeButtonTitle: String?) -> UINavigationController {
