@@ -15,7 +15,7 @@ public protocol DialogDismissalListener {
 
 extension DialogDismissalListener {
 
-    func dialogWillDismiss() { }
+    public func dialogWillDismiss() { }
 
-    func dialogDidDismiss() { }
+    public func dialogDidDismiss() { }
 }

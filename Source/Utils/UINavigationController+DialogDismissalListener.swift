@@ -6,7 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-import Reactant
+import UIKit
 
 extension UINavigationController: DialogDismissalListener {
 

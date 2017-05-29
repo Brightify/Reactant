@@ -609,7 +609,6 @@
 				DC0785851DD3879B0063AB96 /* Wireframe.swift */,
 				DC0785961DD3A1F40063AB96 /* FutureControllerProvider.swift */,
 				DC2B5D711DE4377800F9C9D7 /* Internal */,
-				2210BAD21EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift */,
 			);
 			path = Wireframe;
 			sourceTree = "<group>";
@@ -706,6 +705,7 @@
 		DC137F811E4E251200A0516F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2210BAD21EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift */,
 				DC137F831E4E29DA00A0516F /* Array+Utils.swift */,
 				DC137F881E4E29DA00A0516F /* AssociatedObject.swift */,
 				DC1C67F31E5C3C900081E7BD /* Collection+Utils.swift */,
