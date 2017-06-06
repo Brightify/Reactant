@@ -15,7 +15,7 @@ class CGRectInitTest: QuickSpec {
     override func spec() {
         describe("CGRect init") {
             it("creates CGRect") {
-                expect(CGRect(x: 0, y: 0, width: 0, height: 0)) == CGRect()
+                expect(CGRect(x: 0 as CGFloat, y: 0 as CGFloat, width: 0 as CGFloat, height: 0 as CGFloat)) == CGRect()
                 expect(CGRect(x: 1, y: 1, width: 2, height: 2)) == CGRect(origin: CGPoint(1), size: CGSize(2))
                     
                 expect(CGRect(x: 1, y: 1, width: 0, height: 0)) == CGRect(origin: CGPoint(1))
