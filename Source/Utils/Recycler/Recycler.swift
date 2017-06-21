@@ -6,20 +6,22 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-public class Recycler<T: Reusable> {
+public class Recycler<T: AnyObject> {
     
     private var instancesInUse: [T] = []
     private var recycledInstances: [T]
 
+    private let prepareForReuse: (T) -> Void
     private let itemFactory: () -> T
     private let capacity: Int
 
-    init(capacity: Int = Int.max, initialInstances: Int = 0, factory: @escaping () -> T) {
+    public init(capacity: Int = Int.max, initialInstances: Int = 0, prepareForReuse: @escaping (T) -> Void, factory: @escaping () -> T) {
         precondition(capacity > 0, "Capacity cannot be negative. Use Int.max to disable instance limit.")
         precondition(initialInstances >= 0, "Number of initial instances cannot be negative.")
         self.capacity = capacity
 
-        itemFactory = factory
+        self.prepareForReuse = prepareForReuse
+        self.itemFactory = factory
 
         if initialInstances > 0 {
             recycledInstances = (1...initialInstances).map { _ in factory() }
@@ -48,7 +50,7 @@ public class Recycler<T: Reusable> {
             fatalError("Trying to recycle an unknown instance! You can recycle only instances previously obtained using `obtain` method. Instance: \(instance)")
         }
 
-        instance.prepareForReuse()
+        prepareForReuse(instance)
 
         if recycledInstances.count < capacity {
             recycledInstances.append(instance)
@@ -59,11 +61,21 @@ public class Recycler<T: Reusable> {
         let instancesToRecycle = instancesInUse
         instancesInUse.removeAll(keepingCapacity: true)
 
-        instancesToRecycle.forEach { $0.prepareForReuse() }
+        instancesToRecycle.forEach(prepareForReuse)
 
         let unusedCapacity = capacity - recycledInstances.count
         if unusedCapacity > 0 {
             recycledInstances.append(contentsOf: instancesToRecycle.prefix(unusedCapacity))
         }
+    }
+}
+
+extension Recycler where T: Reusable {
+    public convenience init(capacity: Int = Int.max, initialInstances: Int = 0, factory: @escaping () -> T) {
+        self.init(
+            capacity: capacity,
+            initialInstances: initialInstances,
+            prepareForReuse: { $0.prepareForReuse() },
+            factory: factory)
     }
 }
