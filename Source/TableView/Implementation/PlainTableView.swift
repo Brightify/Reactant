@@ -47,7 +47,7 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
     
     open override func bind(items: [CELL.StateType]) {
         Observable.just(items)
-            .bindTo(tableView.items(with: cellIdentifier)) { [unowned self] _, model, cell in
+            .bind(to: tableView.items(with: cellIdentifier)) { [unowned self] _, model, cell in
                 self.configure(cell: cell, factory: self.cellFactory, model: model, mapAction: { PlainTableViewAction.rowAction(model, $0) })
             }
             .addDisposableTo(stateDisposeBag)

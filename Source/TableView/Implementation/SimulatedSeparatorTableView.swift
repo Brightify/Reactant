@@ -71,7 +71,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
     
     open override func bind(items: [MODEL]) {
         Observable.just(items.map { SectionModel(model: Void(), items: [$0]) })
-            .bindTo(tableView.rx.items(dataSource: dataSource))
+            .bind(to: tableView.rx.items(dataSource: dataSource))
             .addDisposableTo(stateDisposeBag)
     }
 

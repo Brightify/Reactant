@@ -59,7 +59,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
     
     open override func bind(items: [SECTION]) {
         Observable.just(items)
-            .bindTo(tableView.rx.items(dataSource: dataSource))
+            .bind(to: tableView.rx.items(dataSource: dataSource))
             .addDisposableTo(stateDisposeBag)
     }
 

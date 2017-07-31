@@ -15,7 +15,11 @@ public extension ObservableConvertibleType {
             .filter { $0.current != nil }
             .map { ($0, $1!) }
     }
-    
+
+    public func rewrite() -> Observable<Void> {
+        return asObservable().rewrite(with: Void())
+    }
+
     public func rewrite<T>(with value: T) -> Observable<T> {
         return asObservable().map { _ in value }
     }

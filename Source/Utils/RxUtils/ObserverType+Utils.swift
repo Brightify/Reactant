@@ -20,3 +20,9 @@ public extension ObserverType {
         on(.completed)
     }
 }
+
+public extension ObserverType where E == Void {
+    public func onLast() {
+        onLast(())
+    }
+}

@@ -41,8 +41,8 @@ open class StaticMap: ViewBase<MKCoordinateRegion, StaticMapAction> {
     }
 
     open override func setupConstraints() {
-        image.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .horizontal)
-        image.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .vertical)
+        image.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
+        image.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .vertical)
         image.snp.makeConstraints { make in
             make.edges.equalTo(self)
         }

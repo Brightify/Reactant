@@ -30,7 +30,7 @@ extension UITableView {
 
 extension UITableView {
     
-    public func items<S: Sequence, Cell: UIView, O: ObservableType>(with identifier: TableViewCellIdentifier<Cell>) ->
+    public func items<S: Sequence, Cell, O: ObservableType>(with identifier: TableViewCellIdentifier<Cell>) ->
         (_ source: O) -> (_ configureCell: @escaping (Int, S.Iterator.Element, TableViewCellWrapper<Cell>) -> Void) -> Disposable where O.E == S {
             return rx.items(cellIdentifier: identifier.name)
     }

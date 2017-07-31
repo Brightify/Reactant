@@ -65,7 +65,7 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
     
     open override func bind(items: [SECTION]) {
         Observable.just(items)
-            .bindTo(tableView.rx.items(dataSource: dataSource))
+            .bind(to: tableView.rx.items(dataSource: dataSource))
             .addDisposableTo(stateDisposeBag)
     }
     

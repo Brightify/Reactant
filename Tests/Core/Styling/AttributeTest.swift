@@ -17,8 +17,8 @@ class AttributeTest: QuickSpec {
             it("creates dictionary from array of attributes") {
                 let attributes = [Attribute.baselineOffset(1), Attribute.expansion(2)].toDictionary()
                 
-                expect(attributes[NSBaselineOffsetAttributeName] as? Float) == 1
-                expect(attributes[NSExpansionAttributeName] as? Float) == 2
+                expect(attributes[NSAttributedStringKey.baselineOffset] as? Float) == 1
+                expect(attributes[NSAttributedStringKey.expansion] as? Float) == 2
             }
         }
     }

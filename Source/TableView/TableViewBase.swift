@@ -187,8 +187,8 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         view.translatesAutoresizingMaskIntoConstraints = false
         let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
         let size = view.systemLayoutSizeFitting(targetSize,
-                                                withHorizontalFittingPriority: UILayoutPriorityRequired,
-                                                verticalFittingPriority: UILayoutPriorityDefaultLow)
+                                                withHorizontalFittingPriority: UILayoutPriority.required,
+                                                verticalFittingPriority: UILayoutPriority.defaultLow)
         view.translatesAutoresizingMaskIntoConstraints = true
         view.frame.size = CGSize(width: targetSize.width, height: size.height)
     }

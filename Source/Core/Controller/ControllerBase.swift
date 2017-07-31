@@ -122,9 +122,9 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
             }
             make.trailing.equalTo(view)
             if castRootView?.edgesForExtendedLayout.contains(.bottom) == true {
-                make.bottom.equalTo(view).priority(UILayoutPriorityDefaultHigh)
+                make.bottom.equalTo(view).priority(UILayoutPriority.defaultHigh.rawValue)
             } else {
-                make.bottom.equalTo(bottomLayoutGuide.snp.top).priority(UILayoutPriorityDefaultHigh)
+                make.bottom.equalTo(bottomLayoutGuide.snp.top).priority(UILayoutPriority.defaultHigh.rawValue)
             }
         }
     }

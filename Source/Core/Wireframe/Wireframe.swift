@@ -14,14 +14,14 @@ public protocol Wireframe {
 
 extension Wireframe {
     
-    public func create<T: UIViewController>(factory: (FutureControllerProvider<T>) -> T) -> T {
+    public func create<T>(factory: (FutureControllerProvider<T>) -> T) -> T {
         let futureControllerProvider = FutureControllerProvider<T>()
         let controller = factory(futureControllerProvider)
         futureControllerProvider.controller = controller
         return controller
     }
 
-    public func create<T: UIViewController, U>(factory: (FutureControllerProvider<T>, AnyObserver<U>) -> T) -> (T, Observable<U>) {
+    public func create<T, U>(factory: (FutureControllerProvider<T>, AnyObserver<U>) -> T) -> (T, Observable<U>) {
         let futureControllerProvider = FutureControllerProvider<T>()
         let subject = PublishSubject<U>()
         let controller = factory(futureControllerProvider, subject.asObserver())
@@ -32,7 +32,7 @@ extension Wireframe {
     public func branchNavigation(controller: UIViewController, closeButtonTitle: String?) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: controller)
         if let closeButtonTitle = closeButtonTitle {
-            controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: closeButtonTitle, style: .done) { _ in
+            controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: closeButtonTitle, style: .done) {
                 navigationController.dismiss(animated: true, completion: nil)
             }
         }

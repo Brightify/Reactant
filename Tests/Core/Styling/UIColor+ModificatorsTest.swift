@@ -84,11 +84,11 @@ class UIColorModificatorsTest: QuickSpec {
         expected.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
         actual.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
         
-        let accuracy = CGFloat(FLT_EPSILON)
+        let accuracy = CGFloat.ulpOfOne
         let message = "\(expected) is not equal to \(actual)"
-        XCTAssertEqualWithAccuracy(r1, r2, accuracy: accuracy, message, file: file, line: line)
-        XCTAssertEqualWithAccuracy(g1, g2, accuracy: accuracy, message, file: file, line: line)
-        XCTAssertEqualWithAccuracy(b1, b2, accuracy: accuracy, message, file: file, line: line)
-        XCTAssertEqualWithAccuracy(a1, a2, accuracy: accuracy, message, file: file, line: line)
+        XCTAssertEqual(r1, r2, accuracy: accuracy, message, file: file, line: line)
+        XCTAssertEqual(g1, g2, accuracy: accuracy, message, file: file, line: line)
+        XCTAssertEqual(b1, b2, accuracy: accuracy, message, file: file, line: line)
+        XCTAssertEqual(a1, a2, accuracy: accuracy, message, file: file, line: line)
     }
 }

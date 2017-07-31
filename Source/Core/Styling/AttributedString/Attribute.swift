@@ -33,53 +33,58 @@ public enum Attribute {
     case writingDirection(NSWritingDirection)
     case verticalGlyphForm(Int)
 
-    public var name: String {
+    public var key: NSAttributedStringKey {
         switch self {
         case .font:
-            return NSFontAttributeName
+            return NSAttributedStringKey.font
         case .paragraphStyle:
-            return NSParagraphStyleAttributeName
+            return NSAttributedStringKey.paragraphStyle
         case .foregroundColor:
-            return NSForegroundColorAttributeName
+            return NSAttributedStringKey.foregroundColor
         case .backgroundColor:
-            return NSBackgroundColorAttributeName
+            return NSAttributedStringKey.backgroundColor
         case .ligature:
-            return NSLigatureAttributeName
+            return NSAttributedStringKey.ligature
         case .kern:
-            return NSKernAttributeName
+            return NSAttributedStringKey.kern
         case .striketroughStyle:
-            return NSStrikethroughStyleAttributeName
+            return NSAttributedStringKey.strikethroughStyle
         case .underlineStyle:
-            return NSUnderlineStyleAttributeName
+            return NSAttributedStringKey.underlineStyle
         case .strokeColor:
-            return NSStrokeColorAttributeName
+            return NSAttributedStringKey.strokeColor
         case .strokeWidth:
-            return NSStrokeWidthAttributeName
+            return NSAttributedStringKey.strokeWidth
         case .shadow:
-            return NSShadowAttributeName
+            return NSAttributedStringKey.shadow
         case .textEffect:
-            return NSTextEffectAttributeName
+            return NSAttributedStringKey.textEffect
         case .attachment:
-            return NSAttachmentAttributeName
+            return NSAttributedStringKey.attachment
         case .linkURL:
-            return NSLinkAttributeName
+            return NSAttributedStringKey.link
         case .link:
-            return NSLinkAttributeName
+            return NSAttributedStringKey.link
         case .baselineOffset:
-            return NSBaselineOffsetAttributeName
+            return NSAttributedStringKey.baselineOffset
         case .underlineColor:
-            return NSUnderlineColorAttributeName
+            return NSAttributedStringKey.underlineColor
         case .strikethroughColor:
-            return NSStrikethroughColorAttributeName
+            return NSAttributedStringKey.strikethroughColor
         case .obliqueness:
-            return NSObliquenessAttributeName
+            return NSAttributedStringKey.obliqueness
         case .expansion:
-            return NSExpansionAttributeName
+            return NSAttributedStringKey.expansion
         case .writingDirection:
-            return NSWritingDirectionAttributeName
+            return NSAttributedStringKey.writingDirection
         case .verticalGlyphForm:
-            return NSVerticalGlyphFormAttributeName
+            return NSAttributedStringKey.verticalGlyphForm
         }
+    }
+
+    @available(*, deprecated, message: "Attribute name is deprecated, use `key` instead.")
+    public var name: String {
+        return key.rawValue
     }
 
     public var value: AnyObject {
@@ -135,10 +140,10 @@ public enum Attribute {
 public extension Sequence where Iterator.Element == Attribute {
 
     /// Creates dictionary from sequence of attributes by merging them together. String is name of case and AnyObject value corresponding to it.
-    public func toDictionary() -> [String: AnyObject] {
-        var attributeDictionary: [String: AnyObject] = [:]
+    public func toDictionary() -> [NSAttributedStringKey: AnyObject] {
+        var attributeDictionary: [NSAttributedStringKey: AnyObject] = [:]
         for attribute in self {
-            attributeDictionary[attribute.name] = attribute.value
+            attributeDictionary[attribute.key] = attribute.value
         }
         return attributeDictionary
     }
