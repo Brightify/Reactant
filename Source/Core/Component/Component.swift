@@ -50,13 +50,20 @@ public protocol Component: Invalidable {
 }
 
 extension Component {
-    
+
     public var setComponentState: (StateType) -> Void {
         return { [unowned self] in
             self.componentState = $0
         }
     }
-    
+
+    /**
+    Function that lets you set initial **componentState** of the Component during initialization.
+    # Example
+     ```
+     let component = AwesomeDateComponent(locale: Locale.US).with(state: Date.today)
+     ```
+    */
     public func with(state: StateType) -> Self {
         componentState = state
         return self

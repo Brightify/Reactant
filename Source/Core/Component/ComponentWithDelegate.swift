@@ -24,15 +24,15 @@ extension ComponentWithDelegate {
     public var stateDisposeBag: DisposeBag {
         return componentDelegate.stateDisposeBag
     }
-    
+
     public var observableState: Observable<StateType> {
         return componentDelegate.observableState
     }
-    
+
     public var previousComponentState: StateType? {
         return componentDelegate.previousComponentState
     }
-    
+
     public var componentState: StateType {
         get {
             return componentDelegate.componentState
@@ -41,7 +41,11 @@ extension ComponentWithDelegate {
             componentDelegate.componentState = newValue
         }
     }
-    
+
+    /**
+    Prepares everything needed and calls **update**.
+    - Note: Should be used sparingly, for most situations update called automatically by changing **componentState** should suffice.
+    */
     public func invalidate() {
         if componentDelegate.hasComponentState {
             componentDelegate.needsUpdate = true
