@@ -11,31 +11,15 @@ import RxSwift
 // COMPONENT and ACTION cannot have restriction to StateType because then it is impossible to use ComponentWithDelegate (associatedtype cannot be used with where).
 public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
 
-    /**
-    Dispose bag for Observables, it disposes before every **update** call and should be used when subscribing in **update**.
-    - Note: For subscribing outside of update use **lifetimeDisposeBag**.
-    */
     public var stateDisposeBag = DisposeBag()
 
-    /// `Observable` equivalent of the **componentState**.
-    /// - Note: For more info, see [RxSwift](https://github.com/ReactiveX/RxSwift).
     public var observableState: Observable<STATE> {
         return observableStateSubject
     }
     
     // TODO Check for memory corruption on 32 bit system.
-    /**
-     Every time **componentState** changes, its old value is saved into **previousComponentState**.
-     - Note: Its value is `nil` in first **update** call and can be used for running code only once.
-    */
     public var previousComponentState: STATE? = nil
 
-    /**
-     Every time its value changes, **update** function is called.
-
-     You can regulate under which conditions **update** is called by overriding **needsUpdate** or **canUpdate**, both need to be **true** in order for `update` to be called on next `componentState` change.
-     - Warning: A **class** is not suitable as a `componentState` because there's no way to see if it changed. More info: [Components and everything about them](https://docs.reactant.tech/getting-started/quickstart.html#writing-components).
-    */
     public var componentState: STATE {
         get {
             if let state = stateStorage {
@@ -58,9 +42,13 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
         return actionSubject
     }
 
-    /// Variable which is used internally by Reactant to call **update**
-    /// - Note: See **canUpdate**.
-    /// - Warning: This variable shouldn't be changed by hand, it's used for syncing Reactant and calling **update**.
+    /**
+     * Variable which is used internally by Reactant to call **update**
+     *
+     * It's automatically set to false when the view is not shown. You can set it to `true` manually if you need **update()** called even if the view is not shown.
+     * - NOTE: See **canUpdate**.
+     * - WARNING: This variable shouldn't be changed by hand, it's used for syncing Reactant and calling **update**.
+     */
     public var needsUpdate: Bool = false {
         didSet {
             if needsUpdate && canUpdate {
@@ -71,7 +59,7 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
         }
     }
 
-    /// Variable which controls whether the **update** function is called when **componentState** is changed.
+    /// Variable which controls whether the **update()** function is called when **componentState** is changed.
     public var canUpdate: Bool = false {
         didSet {
             if canUpdate && needsUpdate {
@@ -81,25 +69,15 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
             }
         }
     }
-    
+
+    /// The Component which owns the current Component.
     public weak var ownerComponent: COMPONENT? {
         didSet {
             needsUpdate = stateStorage != nil
         }
     }
 
-    /** 
-    Array of observables through which the Component communicates with outside world.
-    - Attention: Each of the `Observable`s need to be *rewritten* or *mapped* to be of the correct type - the ACTION.
-    - **rewrite** is used on the Observable if it's `Void` and **map** if it carries a value
-    - a good idea is to create an `enum`, cases without value should be used with function **rewrite** and cases with should be used with function **map**
-    # Example
-     button.rx.tap.rewrite(with: MyRootViewAction.loginTapped)
-
-     textField.rx.text.skip(1).map(MyRootViewAction.emailChanged)
-     
-    For more info, see [Component Action](https://docs.reactant.tech/getting-started/quickstart.html#component-action)
-    */
+    
     public var actions: [Observable<ACTION>] = [] {
         didSet {
             actionsDisposeBag = DisposeBag()
@@ -108,10 +86,10 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     }
 
     /**
-    Get-only variable through which you can safely check whether `componentState` is set.
-    
-    Good for guarding `componentState` read when not in `update`
-    */
+     * Get-only variable through which you can safely check whether **componentState** is set.
+     *
+     * Useful for guarding `componentState` access when not in **update()**
+     */
     public var hasComponentState: Bool {
         return stateStorage != nil
     }
@@ -139,16 +117,10 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
         observableStateAfterUpdate.onCompleted()
     }
 
-    /**
-    Function that manually sends an `action` of type ACTION, although the preferred way is to use `Observable`s in the `actions` array.
-    - parameter action: ACTION model you wish to send
-    - Note: An `action` sent with this function gets merged with the `action` `Observable`. For more info, see [Component Action](https://docs.reactant.tech/getting-started/quickstart.html#component-action).
-    */
     public func perform(action: ACTION) {
         actionSubject.onNext(action)
     }
 
-    
     public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
         switch when {
         case .beforeUpdate:
