@@ -10,7 +10,11 @@ import UIKit
 
 extension UIColor {
 
-    /// Increases color's brightness.
+    /**
+     * Increases color's brightness.
+     * - parameter percent: determines by how much will the color get lighter
+     * Expected values between 0.0-1.0
+     */
     public func lighter(by percent: CGFloat) -> UIColor {
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
@@ -24,13 +28,21 @@ extension UIColor {
             return self
         }
     }
-    
-    /// Reduces color's brightness.
+
+    /**
+     * Reduces color's brightness.
+     * - parameter percent: determines by how much will the color get darker
+     * Expected values between 0.0-1.0
+     */
     public func darker(by percent: CGFloat) -> UIColor {
         return lighter(by: -percent)
     }
-    
-    /// Increases color's saturation.
+
+    /**
+     * Increases color's saturation.
+     * - parameter percent: determines by how much will the color get saturated
+     * Expected values between 0.0-1.0
+     */
     public func saturated(by percent: CGFloat) -> UIColor {
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
@@ -44,13 +56,21 @@ extension UIColor {
             return self
         }
     }
-    
-    /// Reduces color's saturation.
+
+    /**
+     * Reduces color's saturation.
+     * - parameter percent: determines by how much will the color get desaturated
+     * Expected values between 0.0-1.0
+     */
     public func desaturated(by percent: CGFloat) -> UIColor {
         return saturated(by: -percent)
     }
-    
-    /// Increases color's alpha.
+
+    /**
+     * Increases color's alpha.
+     * - parameter percent: determines by how much will the color's alpha increase
+     * Expected values between 0.0-1.0
+     */
     public func fadedIn(by percent: CGFloat) -> UIColor {
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
@@ -64,8 +84,12 @@ extension UIColor {
             return self
         }
     }
-    
-    /// Reduces color's alpha.
+
+    /**
+     * Reduces color's alpha.
+     * - parameter percent: determines by how much will the color's alpha decrease
+     * Expected values between 0.0-1.0
+     */
     public func fadedOut(by percent: CGFloat) -> UIColor {
         return fadedIn(by: -percent)
     }

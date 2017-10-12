@@ -30,7 +30,7 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
             }
         }
         
-        // self cannot be captured before all fields are initialized.
+        // `self` cannot be captured before all fields are initialized.
         let equal = self.equalFunction
         driver = variable.asDriver()
             .map { (loading: !$0.isEmpty, associatedValue: $0.flatMap { $0.associatedValue }.first) }
@@ -40,7 +40,7 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
     
     public func trackActivity<O: ObservableConvertibleType>(of source: O, initialAssociatedValue: T?,
                               associatedValueProvider: @escaping (O.E) -> T?) -> Observable<O.E> {
-        // self is intentionaly captured. It is released once the Observable is disposed.
+        // `self` is intentionally captured. It is released once the Observable is disposed.
         return Observable.create { subscriber in
             let observable = source.asObservable().share(replay: 1, scope: .forever)
             let subscriptionDisposable = observable.subscribe(subscriber)

@@ -11,7 +11,8 @@ import UIKit
 open class FlowCollectionViewBase<MODEL, ACTION>: CollectionViewBase<MODEL, ACTION> {
     
     public let collectionViewLayout = UICollectionViewFlowLayout()
-    
+
+    /// - parameter reloadable: determines whether the **FlowCollectionViewBase** should be reloadable by pulling
     public init(reloadable: Bool = true) {
         super.init(layout: collectionViewLayout, reloadable: reloadable)
     }

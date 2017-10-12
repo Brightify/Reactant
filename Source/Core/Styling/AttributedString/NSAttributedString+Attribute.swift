@@ -24,10 +24,22 @@ public func + (lhs: NSAttributedString, rhs: String) -> NSAttributedString {
 
 extension String {
 
+    /**
+     * Allows you to easily create an `NSAttributedString` out of regular `String`
+     * For available attributes see **Attribute**.
+     * ## Example
+     *     let attributedString = "Beautiful String".attributed(.kern(1.2), .strokeWidth(1), .strokeColor(.red))
+     */
     public func attributed(_ attributes: [Attribute]) -> NSAttributedString {
         return NSAttributedString(string: self, attributes: attributes.toDictionary())
     }
 
+    /**
+     * Allows you to easily create an `NSAttributedString` out of regular `String`
+     * For available attributes see **Attribute**.
+     * ## Example
+     *     let attributedString = "Beautiful String".attributed(.kern(1.2), .strokeWidth(1), .strokeColor(.red))
+     */
     public func attributed(_ attributes: Attribute...) -> NSAttributedString {
         return attributed(attributes)
     }

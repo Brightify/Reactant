@@ -19,7 +19,11 @@ public protocol ReactantCollectionView: class, Scrollable {
 }
 
 extension ReactantCollectionView {
-    
+
+    /**
+     * Scroll the Reactant Collection View to top.
+     * - parameter animated: determines whether the scroll to top is animated
+     */
     public func scrollToTop(animated: Bool) {
         collectionView.scrollToTop(animated: animated)
     }

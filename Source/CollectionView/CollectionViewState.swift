@@ -11,7 +11,10 @@ public enum CollectionViewState<MODEL> {
     case items([MODEL])
     case empty(message: String)
     case loading
-    
+
+    /**
+     * Used to transform items from MODEL to generic T of the same enum **CollectionViewState** using provided closure.
+     */
     public func mapItems<T>(transform: (MODEL) -> T) -> CollectionViewState<T> {
         switch self {
         case .items(let items):
