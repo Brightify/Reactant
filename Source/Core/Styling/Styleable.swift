@@ -16,28 +16,70 @@ public typealias Style<T> = (T) -> Void
 
 extension Styleable {
 
+    /**
+     * Applies a function destructively. Recommended to be used on views to synchronize their appearance.
+     * ## Example
+     *     struct Styles {
+     *         static func infoLabel(label: UILabel) {
+     *             label.textColor = .white
+     *             label.fontSize = 12
+     *         }
+     *     }
+     *
+     *     emailLabel.apply(style: Styles.infoLabel)
+     *     passwordLabel.apply(style: Styles.infoLabel)
+     */
     public func apply(style: Style<Self>) {
         style(self)
     }
 
+    /**
+     * Applies multiple functions destructively. Recommended to be used on views to synchronize their appearance.
+     * - NOTE: For an example, see **apply(style:)**.
+     */
     public func apply(styles: Style<Self>...) {
         styles.forEach(apply(style:))
     }
 
+    /**
+     * Applies multiple functions destructively. Recommended to be used on views to synchronize their appearance.
+     * - NOTE: For an example, see **apply(style:)**.
+     */
     public func apply(styles: [Style<Self>]) {
         styles.forEach(apply(style:))
     }
 
+    /**
+     * Applies multiple functions non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
+     * - NOTE: For an example, see **with(style:)**.
+     */
     public func styled(using styles: Style<Self>...) -> Self {
         styles.forEach(apply(style:))
         return self
     }
 
+    /**
+     * Applies multiple functions non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
+     * - NOTE: For an example, see **with(style:)**.
+     */
     public func styled(using styles: [Style<Self>]) -> Self {
         apply(styles: styles)
         return self
     }
 
+    /**
+     * Applies a function non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
+     * ## Example
+     *     struct Styles {
+     *         static func infoLabel(label: UILabel) {
+     *             label.textColor = .white
+     *             label.fontSize = 12
+     *         }
+     *     }
+     *
+     *     emailLabel = UILabel(text: "Email").apply(style: Styles.infoLabel)
+     *     passwordLabel = UILabel(text: "Password").apply(style: Styles.infoLabel)
+     */
     public func with(_ style: Style<Self>) -> Self {
         apply(style: style)
         return self
