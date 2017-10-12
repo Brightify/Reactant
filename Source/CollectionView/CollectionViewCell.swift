@@ -16,10 +16,11 @@ public protocol CollectionViewCell {
 }
 
 extension CollectionViewCell {
-    
+    /// Called after the user lifts the finger after tapping the cell.
     public func setSelected(_ selected: Bool) {
     }
-    
+
+    /// Called when user taps the cell.
     public func setHighlighted(_ highlighted: Bool) {
     }
 }

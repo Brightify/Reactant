@@ -77,8 +77,8 @@ extension Styleable {
      *         }
      *     }
      *
-     *     emailLabel = UILabel(text: "Email").apply(style: Styles.infoLabel)
-     *     passwordLabel = UILabel(text: "Password").apply(style: Styles.infoLabel)
+     *     let emailLabel = UILabel(text: "Email").apply(style: Styles.infoLabel)
+     *     let passwordLabel = UILabel(text: "Password").apply(style: Styles.infoLabel)
      */
     public func with(_ style: Style<Self>) -> Self {
         apply(style: style)
