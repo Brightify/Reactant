@@ -186,10 +186,10 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
 
         switch componentState.asTextInputState() {
         case .string(let string):
-            // We have to set `super.text` because setting `self.text` would set componentState and call this methods again
+            // We have to set `super.text` because setting `self.text` would set componentState and call this method again
             super.text = string
         case .attributedString(let attributedString):
-            // We have to set `super.attributedText` because setting `self.attributedText` would set componentState and call this methods again
+            // We have to set `super.attributedText` because setting `self.attributedText` would set componentState and call this method again
             super.attributedText = attributedString
         }
 
@@ -233,7 +233,7 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
         }
 
         if attributes.isEmpty {
-            // We have to set `super.placeholder` because setting `self.placeholder` would call this methods again
+            // We have to set `super.placeholder` because setting `self.placeholder` would call this method again
             super.placeholder = placeholder
         } else {
             attributedPlaceholder = placeholder.attributed(attributes)
