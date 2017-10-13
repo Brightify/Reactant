@@ -1,6 +1,6 @@
 //
 //  UIButton+Utils.swift
-//  Lipstick
+//  Reactant
 //
 //  Created by Tadeas Kriz on 31/03/16.
 //  Copyright © 2016 Brightify. All rights reserved.

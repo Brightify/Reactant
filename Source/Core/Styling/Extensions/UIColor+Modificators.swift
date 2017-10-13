@@ -1,6 +1,6 @@
 //
 //  UIColor+Modificators.swift
-//  Lipstick
+//  Reactant
 //
 //  Created by Filip Dolnik on 16.10.16.
 //  Copyright © 2016 Brightify. All rights reserved.

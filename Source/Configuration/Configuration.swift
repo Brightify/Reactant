@@ -1,5 +1,5 @@
 //
-//  DefaultConfiguration.swift
+//  Configuration.swift
 //  Reactant
 //
 //  Created by Filip Dolnik on 14.02.17.
