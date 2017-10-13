@@ -16,7 +16,8 @@ public enum ObservableStateEvent {
 public protocol Invalidable: class {
     /**
      * Used for manually calling `Component.update()`. As opposed to `componentState = componentState` this preserves `previousComponentState`.
-     * - NOTE: For most situations update called automatically by changing `Component.componentState` should suffice. However if you're dealing with **reference type** as `componentState`, manually calling `invalidate()` lets you update manually.
+     * - NOTE: For most situations update called automatically by changing `Component.componentState` should suffice.
+     *  However if you're dealing with **reference type** as `componentState`, manually calling `invalidate()` lets you update manually.
      */
     func invalidate()
 }
@@ -54,25 +55,31 @@ public protocol Component: Invalidable {
     var previousComponentState: StateType? { get }
 
     /**
-     * The recommended single point of mutation in the Reactant architecture. Usually a `Struct` containing multiple values, but it can be any **value type**, even **reference type**, though those are not suitable for `componentState`.
+     * The recommended single point of mutation in the Reactant architecture. Usually a `Struct` containing multiple values,
+     *  but it can be any **value type**, even **reference type**, though those are not suitable for `componentState`.
      *
      * Every time modified, `update()` is called if `ComponentDelegate.needsUpdate` and `ComponentDelegate.canUpdate` are `true`.
      *
-     * You can control the conditions under which `update()` is called by overriding `Component.needsUpdate()` or `ComponentDelegate.canUpdate`, both need to return **true** in order for `update()` to be called on next `componentState` change.
-     * - WARNING: **Reference type** is not suitable as a `componentState` because there's no way to detect changes, using such a type is feasible by calling `Invalidable.invalidate()` manually. More info: [Components and everything about them](https://docs.reactant.tech/getting-started/quickstart.html#writing-components).
+     * You can control the conditions under which `update()` is called by overriding `Component.needsUpdate()` or
+     *  `ComponentDelegate.canUpdate`, both need to return **true** in order for `update()` to be called on next `componentState` change.
+     * - WARNING: **Reference type** is not suitable as a `componentState` because there's no way to detect changes,
+     *  using such a type is feasible by calling `Invalidable.invalidate()` manually.
+     *  More info: [Components and everything about them](https://docs.reactant.tech/getting-started/quickstart.html#writing-components).
      */
     var componentState: StateType { get set }
 
     /**
      * The `Observable` into which all Component's actions and `perform(action:)` calls are merged.
-     * - NOTE: When listening to Component's actions, using `action` is strongly recommended instead of `actions`. This is because `actions` contains only `Observable`s, so any `perform(action:)` will be ignored.
+     * - NOTE: When listening to Component's actions, using `action` is strongly recommended instead of `actions`.
+     *  This is because `actions` contains only `Observable`s, so any `perform(action:)` will be ignored.
      */
     var action: Observable<ActionType> { get }
 
     /**
      * After overriding this method, it can be used for additional setup independent of **init**.
      *
-     * Recommended setup inside this method is subscribing to all observables that you need subscribed only once; alternatively if the subscription is meant to last the whole existence of the Component. We recommend `lifetimeDisposeBag` as the `DisposeBag` of choice.
+     * Recommended setup inside this method is subscribing to all observables that you need subscribed only once; 
+     * alternatively if the subscription is meant to last the whole existence of the Component. We recommend `lifetimeDisposeBag` as the `DisposeBag` of choice.
      *
      * As the name implies, this method is called only once after **init**.
      * - WARNING: `componentState` is not set in this method and trying to access it will result in a crash.
@@ -97,7 +104,8 @@ public protocol Component: Invalidable {
      *
      * Useful when dealing with something that is hard to make into an `Observable`.
      * - parameter action: ACTION model you wish to send
-     * - NOTE: An action sent with this method gets merged with the `action` `Observable`. For more info, see [Component Action](https://docs.reactant.tech/getting-started/quickstart.html#component-action).
+     * - NOTE: An action sent with this method gets merged with the `action` `Observable`.
+     *  For more info, see [Component Action](https://docs.reactant.tech/getting-started/quickstart.html#component-action).
      */
     func perform(action: ActionType)
 

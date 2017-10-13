@@ -45,7 +45,8 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     /**
      * Variable which is used internally by Reactant to call `Component.update()`.
      *
-     * It's automatically set to false when the view is not shown. You can set it to `true` manually if you need `Component.update()` called even if the view is not shown.
+     * It's automatically set to false when the view is not shown. You can set it to `true` manually
+     *  if you need `Component.update()` called even if the view is not shown.
      * - NOTE: See `canUpdate`.
      * - WARNING: This variable shouldn't be changed by hand, it's used for syncing Reactant and calling `Component.update()`.
      */

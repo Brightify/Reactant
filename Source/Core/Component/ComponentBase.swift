@@ -22,9 +22,9 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
     }
 
     /**
-    Collection of Component's `Observable`s which are merged into `Component.action`.
-    - Note: When listening to Component's actions, using `action` is preferred to `actions`.
-    */
+     * Collection of Component's `Observable`s which are merged into `Component.action`.
+     * - Note: When listening to Component's actions, using `action` is preferred to `actions`.
+     */
     open var actions: [Observable<ACTION>] {
         return []
     }
