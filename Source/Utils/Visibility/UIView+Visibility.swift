@@ -18,6 +18,10 @@ public extension UIView {
         static var collapsibleConstraints: UInt8 = 0
     }
 
+    /**
+     * Axis on which setting `visibility` to `.collapsed` should the view collapse.
+     * - NOTE: The **UIView** will still retain the dimension of the other axis
+     */
     @objc
     public var collapseAxis: CollapseAxis {
         get {
@@ -37,6 +41,12 @@ public extension UIView {
         }
     }
 
+    /**
+     * Sets the visibility of the **UIView**, honoring `collapseAxis`.
+     *
+     * Recommended to use instead of standard `isHidden`.
+     * - NOTE: See `Visibility` for info about available values.
+     */
     @objc
     public var visibility: Visibility {
         get {
@@ -82,7 +92,11 @@ public extension UIView {
             associateObject(self, key: &AssociatedKey.visibility, value: newValue)
         }
     }
-    
+
+    /**
+     * Collection of tuples (Constraint, ConstraintAction) holding all collapsible constraints.
+     * - ATTENTION: We recommend method `addCollapsible(constraint:action:)` for adding constraints to it.
+     */
     public var collapsibleConstraints: [(constraint: Constraint, action: ConstraintAction)] {
         get {
             return associatedObject(self, key: &AssociatedKey.collapsibleConstraints, defaultValue: [])
@@ -91,7 +105,13 @@ public extension UIView {
             associateObject(self, key: &AssociatedKey.collapsibleConstraints, value: newValue)
         }
     }
-    
+
+    /**
+     * Convenience method for adding a collapsible constraint into `collapsibleConstraints` variable.
+     * - parameter constraint: `Constraint` to be added as collapsible
+     * - parameter action: determines the action of the constraint
+     * - NOTE: For available actions see `ConstraintAction`.
+     */
     public func addCollapsible(constraint: Constraint, action: ConstraintAction) {
         collapsibleConstraints = collapsibleConstraints.filter { $0.constraint !== constraint }
             .arrayByAppending((constraint: constraint, action: action))

@@ -8,6 +8,15 @@
 
 import UIKit
 
+/**
+ * ## Set Constant
+ * Sets constants to `Constraint` in its visible and collapsed form.
+ * ## Install
+ * Activates the constraint.
+ * ## Uninstall
+ * Deactivates the constraint.
+ * - NOTE: Deactivated constraint is not taken into account when AutoLayouting.
+ */
 public enum ConstraintAction {
     case setConstant(visible: CGFloat, collapsed: CGFloat)
     case install
