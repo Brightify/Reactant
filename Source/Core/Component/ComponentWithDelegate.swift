@@ -18,7 +18,7 @@ public protocol ComponentWithDelegate: Component {
      * Array of observables through which the Component communicates with outside world.
      * - ATTENTION: Each of the `Observable`s need to be *rewritten* or *mapped* to be of the correct type - the ACTION.
      * - **rewrite** is used on the Observable if it's `Void` and **map** if it carries a value
-     * - a good idea is to create an `enum`, cases without value should be used with function **rewrite** and cases with should be used with function **map**
+     * - a good idea is to create an `enum`, cases without value should be used with method **rewrite** and cases with should be used with method **map**
      * ## Example
      *     button.rx.tap.rewrite(with: MyRootViewAction.loginTapped)
      *

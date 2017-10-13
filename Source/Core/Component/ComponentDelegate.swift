@@ -59,7 +59,7 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
         }
     }
 
-    /// Variable which controls whether the **update()** function is called when **componentState** is changed.
+    /// Variable which controls whether the **update()** method is called when **componentState** is changed.
     public var canUpdate: Bool = false {
         didSet {
             if canUpdate && needsUpdate {

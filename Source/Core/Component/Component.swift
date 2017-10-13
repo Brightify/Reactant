@@ -70,34 +70,34 @@ public protocol Component: Invalidable {
     var action: Observable<ActionType> { get }
 
     /**
-     * After overriding this function, it can be used for additional setup independent of **init**.
+     * After overriding this method, it can be used for additional setup independent of **init**.
      *
-     * Recommended setup inside this function is subscribing to all observables that you need subscribed only once; alternatively if the subscription is meant to last the whole existence of the Component. We recommend **lifetimeDisposeBag** as the `DisposeBag` of choice.
+     * Recommended setup inside this method is subscribing to all observables that you need subscribed only once; alternatively if the subscription is meant to last the whole existence of the Component. We recommend **lifetimeDisposeBag** as the `DisposeBag` of choice.
      *
-     * As the name implies, this function is called only once after **init**.
+     * As the name implies, this method is called only once after **init**.
      * - WARNING: **componentState** is not set in this method and trying to access it will result in a crash.
      */
     func afterInit()
 
     /**
-     * Overriding this function lets you control whether **update** will be called on next **componentState** modification.
+     * Overriding this method lets you control whether **update** will be called on next **componentState** modification.
      */
     func needsUpdate() -> Bool
 
     /**
-     * The **update()** function that gets called whenever **componentState** changes as long as **needsUpdate** and **canUpdate** are both `true`.
+     * The **update()** method that gets called whenever **componentState** changes as long as **needsUpdate** and **canUpdate** are both `true`.
      *
-     * Recommended usage of this function is updating UI and/or passing **componentState** to subviews.
-     * - WARNING: This function is NOT to be called directly, if you need to, use **invalidate()** function.
+     * Recommended usage of this method is updating UI and/or passing **componentState** to subviews.
+     * - WARNING: This method is NOT to be called directly, if you need to, use **invalidate()** method.
      */
     func update()
 
     /**
-     * Function that manually sends an `action` of type ACTION.
+     * Method that manually sends an `action` of type ACTION.
      *
      * Useful when dealing with something that is hard to make into an `Observable`.
      * - parameter action: ACTION model you wish to send
-     * - NOTE: An `action` sent with this function gets merged with the **action** `Observable`. For more info, see [Component Action](https://docs.reactant.tech/getting-started/quickstart.html#component-action).
+     * - NOTE: An `action` sent with this method gets merged with the **action** `Observable`. For more info, see [Component Action](https://docs.reactant.tech/getting-started/quickstart.html#component-action).
      */
     func perform(action: ActionType)
 
@@ -117,7 +117,7 @@ extension Component {
     }
 
     /**
-     * Function that lets you set initial **componentState** of the Component during initialization.
+     * Method that lets you set initial **componentState** of the Component during initialization.
      * ## Example
      *     let component = AwesomeDateComponent(locale: Locale.US).with(state: Date.today)
      */

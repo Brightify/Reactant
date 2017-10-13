@@ -17,7 +17,7 @@ public typealias Style<T> = (T) -> Void
 extension Styleable {
 
     /**
-     * Applies a function destructively. Recommended to be used on views to synchronize their appearance.
+     * Applies a method destructively. Recommended to be used on views to synchronize their appearance.
      * ## Example
      *     struct Styles {
      *         static func infoLabel(label: UILabel) {
@@ -34,7 +34,7 @@ extension Styleable {
     }
 
     /**
-     * Applies multiple functions destructively. Recommended to be used on views to synchronize their appearance.
+     * Applies multiple methods destructively. Recommended to be used on views to synchronize their appearance.
      * - NOTE: For an example, see **apply(style:)**.
      */
     public func apply(styles: Style<Self>...) {
@@ -42,7 +42,7 @@ extension Styleable {
     }
 
     /**
-     * Applies multiple functions destructively. Recommended to be used on views to synchronize their appearance.
+     * Applies multiple methods destructively. Recommended to be used on views to synchronize their appearance.
      * - NOTE: For an example, see **apply(style:)**.
      */
     public func apply(styles: [Style<Self>]) {
@@ -50,7 +50,7 @@ extension Styleable {
     }
 
     /**
-     * Applies multiple functions non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
+     * Applies multiple methods non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
      * - NOTE: For an example, see **with(style:)**.
      */
     public func styled(using styles: Style<Self>...) -> Self {
@@ -59,7 +59,7 @@ extension Styleable {
     }
 
     /**
-     * Applies multiple functions non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
+     * Applies multiple methods non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
      * - NOTE: For an example, see **with(style:)**.
      */
     public func styled(using styles: [Style<Self>]) -> Self {
@@ -68,7 +68,7 @@ extension Styleable {
     }
 
     /**
-     * Applies a function non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
+     * Applies a method non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
      * ## Example
      *     struct Styles {
      *         static func infoLabel(label: UILabel) {
