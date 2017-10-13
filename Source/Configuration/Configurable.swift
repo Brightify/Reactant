@@ -12,14 +12,21 @@ public protocol Configurable: class {
 }
 
 extension Configurable {
-    
-    /// Calls didSet on configuration.
+
+    /**
+     * Reloads object's configuration. Essentially just calls `didSet` on its configuration.
+     */
     public func reloadConfiguration() {
         let temp = configuration
         configuration = temp
     }
-    
-    /// Applies configuration to this object and returns it to allow chaining.
+
+    /**
+     * Applies passed `Configuration` to this object.
+     * This function is destructive, but also returns itself to allow chaining.
+     * - parameter configuration: new configuration to set to the object
+     * - returns: self with new configuration set
+     */
     public func with(configuration: Configuration) -> Self {
         self.configuration = configuration
         return self
