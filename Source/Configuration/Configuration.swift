@@ -15,14 +15,15 @@
  */
 public final class Configuration {
 
-    /// Global configuration instance. It's used as a default configuration in every throughout Reactant.
+    /// Global configuration instance. It's used as a default configuration in every component throughout Reactant.
     public static var global = Configuration()
     
     private var data: [Int: Any] = [:]
 
     /** 
-     * Initializes configuration as a merge of provided configurations. 
+     * Initializes configuration as a combination of provided configurations.
      * If no configuration is provided, an empty Configuration is created.
+     * - parameter copy: variadic parameter, passing in multiple `Configuration`s merges them into one
      */
     public init(copy: Configuration...) {
         self.data = copy.reduce([:]) { acc, value in
@@ -32,12 +33,20 @@ public final class Configuration {
         }
     }
 
-    /// Sets a value for a property.
+    /**
+     * Standard setter for a value for passed property.
+     * - parameter property: property to which you want to set the `Configuration`
+     * - parameter value: value to set for specified property
+     */
     public func set<T>(_ property: Property<T>, to value: T) {
         data[property.id] = value
     }
 
-    /// Returns a value for specified property or a property's default value if it hasn't been set in this Configuration.
+    /**
+     * Standard getter for configuration properties.
+     * - parameter property: property from which you want to get the `Configuration`
+     * - returns: value for specified property or a property's default value if it hasn't been set in this `Configuration`
+     */
     public func get<T>(valueFor property: Property<T>) -> T {
         return (data[property.id] as? T) ?? property.defaultValue
     }
