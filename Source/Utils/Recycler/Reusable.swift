@@ -7,6 +7,9 @@
 //
 
 public protocol Reusable: class {
-    
+    /**
+     * Called during recyclation. Usually resets the Component's state.
+     * NOTE: For more info see `Recycler`.
+     */
     func prepareForReuse()
 }
