@@ -7,7 +7,7 @@
 //
 
 public protocol Configurable: class {
-    /// See **Configuration** for more info.
+    /// See `Configuration` for more info.
     var configuration: Configuration { get set }
 }
 

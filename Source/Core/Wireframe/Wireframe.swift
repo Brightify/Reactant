@@ -16,10 +16,10 @@ extension Wireframe {
 
     /**
      * Method used for flexible and convenient **UIViewController** initializing without the need to pass UINavigationController around.
+     * 
+     * As well as giving you an easy way to interact with navigation controller through **provider.navigation**, `create(factory:)` also lets you define a *reaction* using the controller without you having to initialize it beforehand. Both approaches are used in the simplified example below.
      *
-     * As well as giving you an easy way to interact with navigation controller through **provider.navigation**, **create** also lets you define a *reaction* using the controller without you having to initialize it beforehand. Both approaches are used in the simplified example below.
-     *
-     * To gain access to this function, your wireframe needs to conform to the **Wireframe** protocol.
+     * To gain access to this function, your wireframe needs to conform to the `Wireframe` protocol.
      *
      * ## Example
      * From Wireframe:

@@ -8,7 +8,7 @@
 
 import RxSwift
 
-// COMPONENT and ACTION cannot have restriction to StateType because then it is impossible to use ComponentWithDelegate (associatedtype cannot be used with where).
+// COMPONENT and ACTION cannot have restriction to StateType because then it is impossible to use `ComponentWithDelegate` (associatedtype cannot be used with where).
 public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
 
     public var stateDisposeBag = DisposeBag()
@@ -43,11 +43,11 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     }
 
     /**
-     * Variable which is used internally by Reactant to call **update**
+     * Variable which is used internally by Reactant to call `Component.update()`.
      *
-     * It's automatically set to false when the view is not shown. You can set it to `true` manually if you need **update()** called even if the view is not shown.
-     * - NOTE: See **canUpdate**.
-     * - WARNING: This variable shouldn't be changed by hand, it's used for syncing Reactant and calling **update**.
+     * It's automatically set to false when the view is not shown. You can set it to `true` manually if you need `Component.update()` called even if the view is not shown.
+     * - NOTE: See `canUpdate`.
+     * - WARNING: This variable shouldn't be changed by hand, it's used for syncing Reactant and calling `Component.update()`.
      */
     public var needsUpdate: Bool = false {
         didSet {
@@ -59,7 +59,7 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
         }
     }
 
-    /// Variable which controls whether the **update()** method is called when **componentState** is changed.
+    /// Variable which controls whether the `Component.update()` method is called when `Component.componentState` is changed.
     public var canUpdate: Bool = false {
         didSet {
             if canUpdate && needsUpdate {
@@ -86,9 +86,9 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     }
 
     /**
-     * Get-only variable through which you can safely check whether **componentState** is set.
+     * Get-only variable through which you can safely check whether `Component.componentState` is set.
      *
-     * Useful for guarding `componentState` access when not in **update()**
+     * Useful for guarding `Component.componentState` access when not in `Component.update()`
      */
     public var hasComponentState: Bool {
         return stateStorage != nil

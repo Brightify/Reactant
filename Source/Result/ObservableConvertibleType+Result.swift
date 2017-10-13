@@ -19,7 +19,7 @@ extension ObservableConvertibleType where E: ResultProtocol {
      *       .do(onNext: { response in
      *         // no need to create a switch to check whether Result is .success or .failure
      *       }
-     * - NOTE: It's considered good practice to error-handle properly (using a switch), but in combination with **errorOnly()** it can be used for simple and elegant error-handling.
+     * - NOTE: It's considered good practice to error-handle properly (using a switch), but in combination with `errorOnly()` it can be used for simple and elegant error-handling.
      */
     public func filterError() -> Observable<E.Value> {
         return asObservable().map { $0.value }.filterNil()
@@ -32,7 +32,7 @@ extension ObservableConvertibleType where E: ResultProtocol {
      *       .do(onNext: { error in
      *         // no need to create a switch to check whether Result is .success or .failure
      *       }
-     * - NOTE: It's considered good practice to error-handle properly (using a switch), but in combination with **filterError()** it can be used for simple and elegant error-handling.
+     * - NOTE: It's considered good practice to error-handle properly (using a switch), but in combination with `filterError()` it can be used for simple and elegant error-handling.
      */
     public func errorOnly() -> Observable<E.Error> {
         return asObservable().map { $0.error }.filterNil()
@@ -52,7 +52,7 @@ extension ObservableConvertibleType where E: ResultProtocol {
      *           // error is untouched by the closure
      *         }
      *       }
-     * - NOTE: For mapping error on `.failure`, see **mapError**.
+     * - NOTE: For mapping error on `.failure`, see `mapError(_:)`.
      */
     public func mapValue<T>(_ transform: @escaping (E.Value) -> T) -> Observable<Result<T, E.Error>> {
         return asObservable().map { $0.map(transform) }
@@ -72,7 +72,7 @@ extension ObservableConvertibleType where E: ResultProtocol {
      *           // error here is modified using the closure passed to mapError()
      *         }
      *       }
-     * - NOTE: For mapping value on `.success`, see **mapValue**.
+     * - NOTE: For mapping value on `.success`, see `mapValue(_:)`.
      */
     public func mapError<T: Error>(_ transform: @escaping (E.Error) -> T) -> Observable<Result<E.Value, T>> {
         return asObservable().map { $0.mapError(transform) }
@@ -80,7 +80,7 @@ extension ObservableConvertibleType where E: ResultProtocol {
 
     /**
      * `Result` equivalent of `Observable`'s `flatMap` only affecting `.success` value.
-     * - NOTE: See **mapValue** and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
+     * - NOTE: See `mapValue(_:)` and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
      */
     public func flatMapValue<O>(_ selector: @escaping (E.Value) -> O) -> Observable<Result<O.E, E.Error>> where O : ObservableConvertibleType {
         return asObservable().flatMap { result -> Observable<Result<O.E, E.Error>> in
@@ -96,7 +96,7 @@ extension ObservableConvertibleType where E: ResultProtocol {
 
     /**
      * `Result` equivalent of `Observable`'s `flatMapLatest` only affecting `.success` value.
-     * - NOTE: See **mapValue** and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
+     * - NOTE: See `mapValue(_:)` and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
      */
     public func flatMapLatestValue<O>(_ selector: @escaping (E.Value) -> O) -> Observable<Result<O.E, E.Error>> where O : ObservableConvertibleType {
         return asObservable().flatMapLatest { result -> Observable<Result<O.E, E.Error>> in
@@ -112,7 +112,7 @@ extension ObservableConvertibleType where E: ResultProtocol {
 
     /**
      * `Result` equivalent of `Observable`'s `flatMap` only affecting `.failure` error.
-     * - NOTE: See **mapError** and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
+     * - NOTE: See `mapError(_:)` and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
      */
     public func flatMapError<O>(_ selector: @escaping (E.Error) -> O) -> Observable<Result<E.Value, O.E>> where O : ObservableConvertibleType {
         return asObservable().flatMap { result -> Observable<Result<E.Value, O.E>> in
@@ -128,7 +128,7 @@ extension ObservableConvertibleType where E: ResultProtocol {
 
     /**
      * `Result` equivalent of `Observable`'s `flatMap` only affecting `.failure` error.
-     * - NOTE: See **mapError** and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
+     * - NOTE: See `mapError(_:)` and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
      */
     public func flatMapLatestError<O>(_ selector: @escaping (E.Error) -> O) -> Observable<Result<E.Value, O.E>> where O : ObservableConvertibleType {
         return asObservable().flatMapLatest { result -> Observable<Result<E.Value, O.E>> in

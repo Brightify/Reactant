@@ -50,7 +50,7 @@ extension UINavigationController {
      * Conveys essentially the same functionality as method **replaceAll**, but provides a transition animation showing that navigation stack is being emptied and replaced with new controller.
      * - parameter controller: **UIViewController** which is supposed to replace the navigation stack
      * - returns: Collection of popped controllers of type **UIViewController**.
-     * - NOTE: See **replaceAll**.
+     * - NOTE: See `replaceAll(with:animated:)`.
      */
     @discardableResult
     public func popAllAndReplace(with controller: UIViewController) -> [UIViewController] {
