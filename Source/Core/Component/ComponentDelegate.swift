@@ -17,7 +17,6 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
         return observableStateSubject
     }
     
-    // TODO Check for memory corruption on 32 bit system.
     public var previousComponentState: STATE? = nil
 
     public var componentState: STATE {
