@@ -40,12 +40,12 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
         
         collectionView.register(identifier: cellIdentifier)
     }
-    
-    open override func bind(items: [MODEL]) {
-        Observable.just(items)
+
+    open override func bind(items: Observable<[MODEL]>) {
+        items
             .bind(to: collectionView.items(with: cellIdentifier)) { [unowned self] row, model, cell in
                 self.configure(cell: cell, factory: self.cellFactory, model: model, mapAction: { SimpleCollectionViewAction.cellAction(model, $0) })
             }
-            .addDisposableTo(stateDisposeBag)
+            .disposed(by: lifetimeDisposeBag)
     }
 }

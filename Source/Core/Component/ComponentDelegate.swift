@@ -71,7 +71,7 @@ public final class ComponentDelegate<STATE, ACTION, COMPONENT: Component> {
     public var actions: [Observable<ACTION>] = [] {
         didSet {
             actionsDisposeBag = DisposeBag()
-            Observable.from(actions).merge().subscribe(onNext: perform).addDisposableTo(actionsDisposeBag)
+            Observable.from(actions).merge().subscribe(onNext: perform).disposed(by: actionsDisposeBag)
         }
     }
 

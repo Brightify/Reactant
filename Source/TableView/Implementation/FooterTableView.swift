@@ -32,7 +32,7 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
     }
 
     private let footerFactory: (() -> FOOTER)
-    private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
+    private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>(configureCell: { _,_,_,_  in UITableViewCell() })
 
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
@@ -57,10 +57,10 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
         tableView.register(identifier: footerIdentifier)
     }
 
-    open override func bind(items: [SECTION]) {
-        Observable.just(items)
+    open override func bind(items: Observable<[SECTION]>) {
+        items
             .bind(to: tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(stateDisposeBag)
+            .disposed(by: lifetimeDisposeBag)
     }
 
     @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

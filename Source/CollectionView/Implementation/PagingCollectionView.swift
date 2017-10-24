@@ -52,11 +52,13 @@ open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where 
             make.bottom.equalTo(8)
         }
     }
-    
-    open override func bind(items: [MODEL]) {
+
+    open override func bind(items: Observable<[CELL.StateType]>) {
         super.bind(items: items)
-        
-        pageControl.numberOfPages = items.count
+
+        items.subscribe(onNext: { [pageControl] items in
+            pageControl.numberOfPages = items.count
+        }).disposed(by: lifetimeDisposeBag)
     }
     
     open override func layoutSubviews() {

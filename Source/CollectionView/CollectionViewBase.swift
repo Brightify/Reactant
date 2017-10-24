@@ -29,9 +29,10 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView()
     
+    private let items = PublishSubject<[MODEL]>()
     // Optimization that prevents configuration reloading each time cell is dequeued.
     private var configurationChangeTime: clock_t = clock()
-    
+
     public init(layout: UICollectionViewLayout, reloadable: Bool = true) {
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         self.refreshControl = reloadable ? UIRefreshControl() : nil
@@ -55,7 +56,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         loadingIndicator.hidesWhenStopped = true
         
         collectionView.backgroundColor = .clear
-        collectionView.rx.setDelegate(self).addDisposableTo(lifetimeDisposeBag)
+        collectionView.rx.setDelegate(self).disposed(by: lifetimeDisposeBag)
     }
     
     open override func setupConstraints() {
@@ -77,7 +78,16 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
             .subscribe(onNext: { [collectionView] in
                 collectionView.deselectItem(at: $0, animated: true)
             })
-            .addDisposableTo(lifetimeDisposeBag)
+            .disposed(by: lifetimeDisposeBag)
+
+        bind(items: items)
+    }
+
+    open func bind(items: Observable<[MODEL]>) {
+    }
+
+    @available(*, unavailable, message: "RxSwift 3.0 changed behavior of DataSources so we have to bind only once. Use bind(items: Observable<MODEL>)")
+    open func bind(items: [MODEL]) {
     }
     
     open override func update() {
@@ -109,13 +119,10 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
                 loadingIndicator.stopAnimating()
             }
         }
-        
-        bind(items: items)
-        
+
+        self.items.onNext(items)
+
         setNeedsLayout()
-    }
-    
-    open func bind(items: [MODEL]) {
     }
     
     open func configure<T: Component>(cell: CollectionViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
@@ -128,7 +135,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         component.componentState = model
         component.action.map(mapAction)
             .subscribe(onNext: perform)
-            .addDisposableTo(component.stateDisposeBag)
+            .disposed(by: component.stateDisposeBag)
     }
     
     open func dequeueAndConfigure<T: Component>(identifier: CollectionViewCellIdentifier<T>, forRow row: Int, factory: @escaping () -> T,
@@ -148,7 +155,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         component.componentState = model
         component.action.map(mapAction)
             .subscribe(onNext: perform)
-            .addDisposableTo(component.stateDisposeBag)
+            .disposed(by: component.stateDisposeBag)
     }
     
     open func dequeueAndConfigure<T: Component>(identifier: CollectionSupplementaryViewIdentifier<T>, forRow row: Int, factory: @escaping () -> T,

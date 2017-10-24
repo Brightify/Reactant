@@ -28,7 +28,8 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     public let refreshControl: UIRefreshControl?
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView()
-    
+
+    private let items = PublishSubject<[MODEL]>()
     // Optimization that prevents configuration reloading each time cell is dequeued.
     private var configurationChangeTime: clock_t = clock()
     
@@ -57,7 +58,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         tableView.backgroundView = nil
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .singleLine
-        tableView.rx.setDelegate(self).addDisposableTo(lifetimeDisposeBag)
+        tableView.rx.setDelegate(self).disposed(by: lifetimeDisposeBag)
     }
     
     open override func setupConstraints() {
@@ -79,7 +80,16 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
             .subscribe(onNext: { [tableView] in
                 tableView.deselectRow(at: $0, animated: true)
             })
-            .addDisposableTo(lifetimeDisposeBag)
+            .disposed(by: lifetimeDisposeBag)
+
+        bind(items: items)
+    }
+
+    open func bind(items: Observable<[MODEL]>) {
+    }
+
+    @available(*, unavailable, message: "RxSwift 3.0 changed behavior of DataSources so we have to bind only once. Use bind(items: Observable<MODEL>)")
+    open func bind(items: [MODEL]) {
     }
     
     open override func layoutSubviews() {
@@ -118,15 +128,12 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
                 loadingIndicator.stopAnimating()
             }
         }
-        
-        bind(items: items)
+
+        self.items.onNext(items)
         
         setNeedsLayout()
     }
 
-    open func bind(items: [MODEL]) {
-    }
-    
     open func configure<T: Component>(cell: TableViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         if configurationChangeTime != cell.configurationChangeTime {
@@ -138,7 +145,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         (component as? Configurable)?.configuration = configuration
         component.action.map(mapAction)
             .subscribe(onNext: perform)
-            .addDisposableTo(component.stateDisposeBag)
+            .disposed(by: component.stateDisposeBag)
     }
     
     open func dequeueAndConfigure<T: Component>(identifier: TableViewCellIdentifier<T>, factory: @escaping () -> T,
@@ -159,7 +166,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         (component as? Configurable)?.configuration = configuration
         component.action.map(mapAction)
             .subscribe(onNext: perform)
-            .addDisposableTo(component.stateDisposeBag)
+            .disposed(by: component.stateDisposeBag)
     }
     
     open func dequeueAndConfigure<T: Component>(identifier: TableViewHeaderFooterIdentifier<T>, factory: @escaping () -> T,

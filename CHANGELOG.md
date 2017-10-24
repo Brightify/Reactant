@@ -4,6 +4,8 @@
 * Add create to Wireframe with controller result helper
 * Add default implementation to DialogDismissalController
 * Add option to have present dialog with result in UINavigationController
+* Add styling for DialogControllerBase's `view`
+* Possibly breaking: changed `bind(items: [MODEL])` to `bind(items: Observable<[MODEL]>)` in both `TableViewBase` and `CollectionViewBase`. This change was made because RxSwift changed the internals of delegates and dataSources and each `update` caused the TableView/CollectionView to scroll to the beginning.
 
 ## 1.0.4
 * Improved documentation

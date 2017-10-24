@@ -45,11 +45,11 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
         tableView.register(identifier: cellIdentifier)
     }
     
-    open override func bind(items: [CELL.StateType]) {
-        Observable.just(items)
+    open override func bind(items: Observable<[CELL.StateType]>) {
+        items
             .bind(to: tableView.items(with: cellIdentifier)) { [unowned self] _, model, cell in
                 self.configure(cell: cell, factory: self.cellFactory, model: model, mapAction: { PlainTableViewAction.rowAction(model, $0) })
             }
-            .addDisposableTo(stateDisposeBag)
+            .disposed(by: lifetimeDisposeBag)
     }
 }

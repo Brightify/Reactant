@@ -42,7 +42,7 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
                               associatedValueProvider: @escaping (O.E) -> T?) -> Observable<O.E> {
         // self is intentionaly captured. It is released once the Observable is disposed.
         return Observable.create { subscriber in
-            let observable = source.asObservable().shareReplay(1)
+            let observable = source.asObservable().share(replay: 1, scope: .forever)
             let subscriptionDisposable = observable.subscribe(subscriber)
             
             let id = UUID()

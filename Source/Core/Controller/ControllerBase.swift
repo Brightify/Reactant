@@ -72,7 +72,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
             .subscribe(onNext: { [weak self] in
                 self?.act(on: $0)
             })
-            .addDisposableTo(lifetimeDisposeBag)
+            .disposed(by: lifetimeDisposeBag)
 
         self.title = title
 

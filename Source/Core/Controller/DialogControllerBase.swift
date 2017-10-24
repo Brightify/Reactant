@@ -9,12 +9,14 @@
 import UIKit
 
 open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
-    
+
+    private let rootViewContainer = ControllerRootViewContainer()
     public var dialogView: DialogView
     
     open override var configuration: Configuration {
         didSet {
             dialogView.configuration = configuration
+            configuration.get(valueFor: Properties.Style.dialogControllerRoot)(rootViewContainer)
         }
     }
 
@@ -28,7 +30,7 @@ open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
     }
     
     open override func loadView() {
-        view = ControllerRootViewContainer().with(configuration: configuration)
+        view = rootViewContainer
         
         view.addSubview(dialogView)
     }

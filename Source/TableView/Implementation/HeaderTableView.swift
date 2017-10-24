@@ -32,7 +32,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
     }
 
     private let headerFactory: (() -> HEADER)
-    private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
+    private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>(configureCell: { _,_,_,_  in UITableViewCell() })
 
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
@@ -56,11 +56,11 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
         tableView.register(identifier: cellIdentifier)
         tableView.register(identifier: headerIdentifier)
     }
-    
-    open override func bind(items: [SECTION]) {
-        Observable.just(items)
+
+    open override func bind(items: Observable<[SectionModel<HEADER.StateType, CELL.StateType>]>) {
+        items
             .bind(to: tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(stateDisposeBag)
+            .disposed(by: lifetimeDisposeBag)
     }
 
     @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

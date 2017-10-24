@@ -18,6 +18,11 @@ extension Properties {
 extension Properties.Style {
     
     public static let controllerRoot = style(for: ControllerRootViewContainer.self)
+
+    /// NOTE: Applied after `controllerRoot` style
+    public static let dialogControllerRoot = style(for: ControllerRootViewContainer.self) { root in
+        root.backgroundColor = UIColor.black.fadedOut(by: 20%)
+    }
     public static let dialog = style(for: UIView.self)
     public static let dialogContentContainer = style(for: UIView.self)
     public static let scroll = style(for: UIScrollView.self)

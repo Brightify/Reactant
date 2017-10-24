@@ -45,7 +45,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
         }
     }
 
-    private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
+    private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>(configureCell: { _,_,_,_  in UITableViewCell() })
 
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
@@ -69,10 +69,12 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
         tableView.register(identifier: footerIdentifier)
     }
     
-    open override func bind(items: [MODEL]) {
-        Observable.just(items.map { SectionModel(model: Void(), items: [$0]) })
+    open override func bind(items: Observable<[MODEL]>) {
+        items.map {
+                $0.map { SectionModel(model: Void(), items: [$0]) }
+            }
             .bind(to: tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(stateDisposeBag)
+            .disposed(by: lifetimeDisposeBag)
     }
 
     @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

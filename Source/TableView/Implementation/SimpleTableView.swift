@@ -35,7 +35,7 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
     
     private let headerFactory: (() -> HEADER)
     private let footerFactory: (() -> FOOTER)
-    private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
+    private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>(configureCell: { _,_,_,_  in UITableViewCell() })
     
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
@@ -63,10 +63,10 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
         tableView.register(identifier: footerIdentifier)
     }
     
-    open override func bind(items: [SECTION]) {
-        Observable.just(items)
+    open override func bind(items: Observable<[SECTION]>) {
+        items
             .bind(to: tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(stateDisposeBag)
+            .disposed(by: lifetimeDisposeBag)
     }
     
     @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

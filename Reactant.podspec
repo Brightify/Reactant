@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
     spec.name             = 'Reactant'
-    spec.version          = '1.0.3'
+    spec.version          = '1.0.5'
     spec.summary          = 'Reactant is a reactive architecture for iOS'
 
     spec.description      = <<-DESC
@@ -32,25 +32,25 @@ Pod::Spec.new do |spec|
     spec.default_subspec = 'Core', 'Result'
 
     def self.rxSwift(subspec)
-        subspec.dependency 'RxSwift', '~> 3.0'
+        subspec.dependency 'RxSwift', '~> 4.0'
     end
     def self.snapKit(subspec)
-        subspec.dependency 'SnapKit', '~> 3.0'
+        subspec.dependency 'SnapKit', '~> 4.0'
     end
     def self.result(subspec)
         subspec.dependency 'Result', '~> 3.0'
     end
     def self.rxCocoa(subspec)
-        subspec.dependency 'RxCocoa', '~> 3.0'
+        subspec.dependency 'RxCocoa', '~> 4.0'
     end
     def self.rxDataSources(subspec)
-        subspec.dependency 'RxDataSources', '~> 1.0'
+        subspec.dependency 'RxDataSources', '~> 3.0'
     end
     def self.rxOptional(subspec)
         subspec.dependency 'RxOptional', '~> 3.0'
     end
     def self.kingfisher(subspec)
-        subspec.dependency 'Kingfisher', '~> 3.0'
+        subspec.dependency 'Kingfisher', '~> 4.0'
     end
 
     spec.subspec 'Core' do |subspec|
