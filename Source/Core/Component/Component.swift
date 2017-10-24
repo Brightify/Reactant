@@ -71,7 +71,7 @@ public protocol Component: Invalidable {
     /**
      * The `Observable` into which all Component's actions and `perform(action:)` calls are merged.
      * - NOTE: When listening to Component's actions, using `action` is strongly recommended instead of `actions`.
-     *  This is because `actions` contains only `Observable`s, so any `perform(action:)` will be ignored.
+     *  This is because `ComponentBase.actions` contains only `Observable`s, so any `perform(action:)` will be ignored.
      */
     var action: Observable<ActionType> { get }
 
