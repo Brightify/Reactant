@@ -23,23 +23,26 @@ extension Wireframe {
      *
      * ## Example
      * From Wireframe:
-     *     private func login() -> LoginController {
-     *       return create { provider in
-     *         let dependencies = LoginController.Dependencies(accountService: module.accountService)
-     *         let reactions = LoginController.Reactions(
-     *           promptTouchID: {
-     *             provider.controller?.present(self.touchIDPrompt())
-     *           },
-     *           enterApplication: {
-     *             provider.navigation?.replaceAll(with: self.mainScreen())
-     *           },
-     *           openPasswordRecovery: { email in
-     *             provider.navigation?.push(controller: self.passwordRecovery(email: email))
-     *           }
-     *         )
-     *         return LoginController(dependencies: dependencies, reactions: reactions)
-     *        }
-     *      }
+     * ```
+     * private func login() -> LoginController {
+     *   return create { provider in
+     *     let dependencies = LoginController.Dependencies(accountService: module.accountService)
+     *     let reactions = LoginController.Reactions(
+     *       promptTouchID: {
+     *         provider.controller?.present(self.touchIDPrompt())
+     *       },
+     *       enterApplication: {
+     *         provider.navigation?.replaceAll(with: self.mainScreen())
+     *       },
+     *       openPasswordRecovery: { email in
+     *         provider.navigation?.push(controller: self.passwordRecovery(email: email))
+     *       }
+     *     )
+     *   return LoginController(dependencies: dependencies, reactions: reactions)
+     *   }
+     * }
+     * ```
+     *
      * - NOTE: For more info see: [Dependencies and everything about them](TODO), [Reactions, how do they work?](TODO), [Properties for flexible passing of variables to controllers](TODO)
      */
     public func create<T>(factory: (FutureControllerProvider<T>) -> T) -> T {

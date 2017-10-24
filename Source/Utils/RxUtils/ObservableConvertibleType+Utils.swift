@@ -55,11 +55,14 @@ public extension ObservableConvertibleType {
      * - parameter resultSelector: determines how the value and current `Observable` will be arranged
      * - returns: `Observable` tuple containing the passed value depending on how it was arranged in the closure
      * ## Example
-     *     // this will put the value to the right, $0 is current Observable, $1 is the value
-     *     httpRequest.with(authToken) { ($0, $1) }
+     * ```
+     * // this will put the value to the right, $0 is current Observable, $1 is the value
+     * httpRequest.with(authToken) { ($0, $1) }
      *
-     *     // equivalent to:
-     *     httpRequest.with(right: authToken)
+     * // equivalent to:
+     * httpRequest.with(right: authToken)
+     * ```
+     *
      */
     public func with<T, U>(_ value: T, resultSelector: @escaping (E, T) -> U) -> Observable<U> {
         return asObservable().withLatestFrom(Observable.just(value), resultSelector: resultSelector)

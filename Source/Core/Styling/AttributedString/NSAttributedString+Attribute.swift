@@ -29,7 +29,9 @@ extension String {
      * For available attributes see `Attribute`.
      * parameter attributes: passed attributes with which NSAttributedString is created
      * ## Example
-     *     let attributedString = "Beautiful String".attributed(.kern(1.2), .strokeWidth(1), .strokeColor(.red))
+     * ```
+     * let attributedString = "Beautiful String".attributed(.kern(1.2), .strokeWidth(1), .strokeColor(.red))
+     * ```
      */
     public func attributed(_ attributes: [Attribute]) -> NSAttributedString {
         return NSAttributedString(string: self, attributes: attributes.toDictionary())
@@ -40,7 +42,9 @@ extension String {
      * For available attributes see `Attribute`.
      * parameter attributes: passed attributes with which NSAttributedString is created
      * ## Example
-     *     let attributedString = "Beautiful String".attributed(.kern(1.2), .strokeWidth(1), .strokeColor(.red))
+     * ```
+     * let attributedString = "Beautiful String".attributed(.kern(1.2), .strokeWidth(1), .strokeColor(.red))
+     * ```
      */
     public func attributed(_ attributes: Attribute...) -> NSAttributedString {
         return attributed(attributes)

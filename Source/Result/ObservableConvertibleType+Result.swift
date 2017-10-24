@@ -15,10 +15,13 @@ extension ObservableConvertibleType where E: ResultProtocol {
     /**
      * Filters `Observable` to block erroneous `Result`s while mapping the `Observable` to the value of `.success` that pass.
      * ## Example
-     *     httpObservable.filterError()
-     *       .do(onNext: { response in
-     *         // no need to create a switch to check whether Result is .success or .failure
-     *       }
+     * ```
+     * httpObservable.filterError()
+     *   .do(onNext: { response in
+     *     // no need to create a switch to check whether Result is .success or .failure
+     *   }
+     * ```
+     *
      * - NOTE: It's considered good practice to error-handle properly (using a switch), but in combination with `errorOnly()` it can be used for simple and elegant error-handling.
      */
     public func filterError() -> Observable<E.Value> {
@@ -28,10 +31,13 @@ extension ObservableConvertibleType where E: ResultProtocol {
     /**
      * Filters `Observable` to block successful `Result`s while mapping the `Observable` to the error of `.failure` that pass.
      * ## Example
-     *     httpObservable.errorOnly()
-     *       .do(onNext: { error in
-     *         // no need to create a switch to check whether Result is .success or .failure
-     *       }
+     * ```
+     * httpObservable.errorOnly()
+     *   .do(onNext: { error in
+     *     // no need to create a switch to check whether Result is .success or .failure
+     *   }
+     * ```
+     *
      * - NOTE: It's considered good practice to error-handle properly (using a switch), but in combination with `filterError()` it can be used for simple and elegant error-handling.
      */
     public func errorOnly() -> Observable<E.Error> {
@@ -40,18 +46,22 @@ extension ObservableConvertibleType where E: ResultProtocol {
 
     /**
      * Maps `Observable`'s value if the `Result` is `.success` while ignoring `Error` accompanied with `.failure`.
+     * - parameter transform: prdel
      * ## Example
-     *     httpObservable.mapValue { response in
-     *         return modifyResponse(response)
-     *       }
-     *       .do(onNext: { result in
-     *         switch result {
-     *         case .success(let modifiedResponse):
-     *           // value here is modified using the closure passed to mapValue()
-     *         case .failure(let error):
-     *           // error is untouched by the closure
-     *         }
-     *       }
+     * ```
+     * httpObservable.mapValue { response in
+     *   return modifyResponse(response)
+     * }
+     * .do(onNext: { result in
+     *   switch result {
+     *   case .success(let modifiedResponse):
+     *     // value here is modified using the closure passed to mapValue()
+     *   case .failure(let error):
+     *     // error is untouched by the closure
+     *   }
+     * }
+     * ```
+     *
      * - NOTE: For mapping error on `.failure`, see `mapError(_:)`.
      */
     public func mapValue<T>(_ transform: @escaping (E.Value) -> T) -> Observable<Result<T, E.Error>> {
@@ -61,17 +71,20 @@ extension ObservableConvertibleType where E: ResultProtocol {
     /**
      * Maps `Observable`'s error if the `Result` is `.failure` while ignoring value accompanied with `.success`.
      * ## Example
-     *     httpObservable.mapError { error in
-     *         return modifyError(error)
-     *       }
-     *       .do(onNext: { result in
-     *         switch result {
-     *         case .success(let response):
-     *           // value is untouched by the closure
-     *         case .failure(let modifiedError):
-     *           // error here is modified using the closure passed to mapError()
-     *         }
-     *       }
+     * ```
+     * httpObservable.mapError { error in
+     *   return modifyError(error)
+     * }
+     * .do(onNext: { result in
+     *   switch result {
+     *   case .success(let response):
+     *     // value is untouched by the closure
+     *   case .failure(let modifiedError):
+     *     // error here is modified using the closure passed to mapError()
+     *   }
+     * }
+     * ```
+     *
      * - NOTE: For mapping value on `.success`, see `mapValue(_:)`.
      */
     public func mapError<T: Error>(_ transform: @escaping (E.Error) -> T) -> Observable<Result<E.Value, T>> {

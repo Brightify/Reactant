@@ -19,12 +19,14 @@ extension Styleable {
     /**
      * Applies a method destructively. Recommended to be used on views to synchronize their appearance.
      * ## Example
-     *     struct Styles {
-     *         static func infoLabel(label: UILabel) {
-     *             label.textColor = .white
-     *             label.fontSize = 12
-     *         }
-     *     }
+     * ```
+     * struct Styles {
+     *   static func infoLabel(label: UILabel) {
+     *     label.textColor = .white
+     *     label.fontSize = 12
+     *   }
+     * }
+     * ```
      *
      *     emailLabel.apply(style: Styles.infoLabel)
      *     passwordLabel.apply(style: Styles.infoLabel)
@@ -70,15 +72,17 @@ extension Styleable {
     /**
      * Applies a method non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
      * ## Example
-     *     struct Styles {
-     *         static func infoLabel(label: UILabel) {
-     *             label.textColor = .white
-     *             label.fontSize = 12
-     *         }
-     *     }
+     * ```
+     * struct Styles {
+     *   static func infoLabel(label: UILabel) {
+     *     label.textColor = .white
+     *     label.fontSize = 12
+     *   }
+     * }
      *
-     *     let emailLabel = UILabel(text: "Email").apply(style: Styles.infoLabel)
-     *     let passwordLabel = UILabel(text: "Password").apply(style: Styles.infoLabel)
+     * let emailLabel = UILabel(text: "Email").apply(style: Styles.infoLabel)
+     * let passwordLabel = UILabel(text: "Password").apply(style: Styles.infoLabel)
+     * ```
      */
     public func with(_ style: Style<Self>) -> Self {
         apply(style: style)

@@ -21,9 +21,11 @@ public protocol ComponentWithDelegate: Component {
      * - a good idea is to create an `enum`, cases without value should be used with method
      *  `ObservableConvertibleType.rewrite` and cases with should be used with method `ObservableConvertibleType.map`
      * ## Example
-     *     button.rx.tap.rewrite(with: MyRootViewAction.loginTapped)
+     * ```
+     * button.rx.tap.rewrite(with: MyRootViewAction.loginTapped)
      *
-     *     textField.rx.text.skip(1).map(MyRootViewAction.emailChanged)
+     * textField.rx.text.skip(1).map(MyRootViewAction.emailChanged)
+     * ```
      *
      * For more info, see [Component Action](https://docs.reactant.tech/getting-started/quickstart.html#component-action)
      * - WARNING: When listening to Component's actions, subscribe to `Component.action` instead of this variable.
