@@ -29,7 +29,7 @@ public protocol Component: Invalidable {
 
     /**
      * Dispose bag for `Observable`s, it disposes at Component's **deinit** and can be used for subscribing anywhere else but `update()`.
-     * - Note: For subscribing inside of update use `stateDisposeBag`.
+     * - NOTE: For subscribing inside of update use `stateDisposeBag`.
      */
     var lifetimeDisposeBag: DisposeBag { get }
 
