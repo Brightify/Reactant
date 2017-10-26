@@ -27,6 +27,7 @@ import Result
  * let friends = people.filter { potentialFriend in
  *   friendRule.test(potentialFriend)
  * }
+ * - NOTE: There is a ready-made `ValidationError` with `case invalid` ready for you to use if you don't feel like creating your own `Error` enum.
  * ```
  */
 public struct Rule<T, E: Error> {
