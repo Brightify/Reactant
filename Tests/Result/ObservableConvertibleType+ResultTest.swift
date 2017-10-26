@@ -32,7 +32,7 @@ class ObservableConvertibleType_ResultTest: QuickSpec {
                             called += 1
                             
                             expect(value) == 0
-                        }).addDisposableTo(disposeBag)
+                        }).disposed(by: disposeBag)
                     
                     expect(called) == 1
                 }
@@ -45,7 +45,7 @@ class ObservableConvertibleType_ResultTest: QuickSpec {
                             called += 1
                             
                             expect(error) == ErrorStub.unknown
-                        }).addDisposableTo(disposeBag)
+                        }).disposed(by: disposeBag)
                     
                     expect(called) == 1
                 }
@@ -63,7 +63,7 @@ class ObservableConvertibleType_ResultTest: QuickSpec {
                                 called += 2
                                 expect(error) == ErrorStub.unknown
                             }
-                        }).addDisposableTo(disposeBag)
+                        }).disposed(by: disposeBag)
                     
                     expect(called) == 3
                 }
@@ -81,7 +81,7 @@ class ObservableConvertibleType_ResultTest: QuickSpec {
                                 called += 2
                                 expect(error) == AnotherErrorStub.custom
                             }
-                        }).addDisposableTo(disposeBag)
+                        }).disposed(by: disposeBag)
                     
                     expect(called) == 3
                 }
@@ -99,7 +99,7 @@ class ObservableConvertibleType_ResultTest: QuickSpec {
                                 called += 2
                                 expect(error) == ErrorStub.unknown
                             }
-                        }).addDisposableTo(disposeBag)
+                        }).disposed(by: disposeBag)
                     
                     expect(called) == 3
                 }
@@ -116,7 +116,7 @@ class ObservableConvertibleType_ResultTest: QuickSpec {
                             } else {
                                 fail()
                             }
-                        }).addDisposableTo(disposeBag)
+                        }).disposed(by: disposeBag)
                     
                     expect(called) == 3
                 }
@@ -133,7 +133,7 @@ class ObservableConvertibleType_ResultTest: QuickSpec {
                             } else {
                                 fail()
                             }
-                        }).addDisposableTo(disposeBag)
+                        }).disposed(by: disposeBag)
                     
                     expect(called) == 3
                 }
