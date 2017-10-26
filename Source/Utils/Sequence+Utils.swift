@@ -62,3 +62,23 @@ extension Sequence where Iterator.Element: Equatable {
         return distinct(where: ==)
     }
 }
+
+extension Sequence where Iterator.Element: Hashable {
+
+    /**
+     * Returns an array with duplicates removed, keeping the first element it reaches and discarding others that are equal to it.
+     * - complexity: This method uses a set making this algorithm O(n).
+     * - returns: array with only distinct elements, honoring position of each element
+     */
+    public func distinct() -> [Iterator.Element] {
+        var set = [] as Set<Iterator.Element>
+        var result = [] as [Iterator.Element]
+
+        for element in self where !set.contains(element) {
+            set.insert(element)
+            result.append(element)
+        }
+
+        return result
+    }
+}
