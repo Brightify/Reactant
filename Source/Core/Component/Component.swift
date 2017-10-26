@@ -118,6 +118,25 @@ public protocol Component: Invalidable {
 
 extension Component {
 
+    /**
+     * Closure letting you conveniently set component state through `Observable` subscription without memory leaks.
+     * ## Example
+     * ```
+     * override func afterInit() {
+     *   myImportantObservable
+     *     .subscribe(onNext: setComponentState)
+     *     .disposed(by: lifetimeDisposeBag)
+     *
+     *   // is equivalent to
+     *
+     *   myImportantObservable
+     *     .subscribe(onNext: { [unowned self] newValue in
+     *       self.componentState = newValue
+     *     }
+     *     .disposed(by: lifetimeDisposeBag)
+     * }
+     * ```
+     */
     public var setComponentState: (StateType) -> Void {
         return { [unowned self] in
             self.componentState = $0
