@@ -36,7 +36,17 @@ extension Sequence {
     public func any(predicate: (Iterator.Element) -> Bool) -> Bool {
         return first(where: predicate) != nil
     }
-    
+
+    /**
+     * Returns an array that is stripped away from duplicates. Always keeps the first value and discards others.
+     * - parameter comparator: closure used to compare two `Element`s to produce `Bool` (`true` if equal)
+     * - parameter lhs: left hand-side element
+     * - parameter rhs: right hand-side element
+     * - complexity: This method uses the comparator and thus needs to iterate through the array as well as always 
+     * check using the comparator on the newly formed array to check for duplicates, therefore using an O(n^2) algorithm.
+     * - NOTE: This method is not very efficient and should be avoided for large arrays.
+     * If your `Element` can conform to `Hashable`, using a `Set` is a better idea.
+     */
     public func distinct(where comparator: (_ lhs: Iterator.Element, _ rhs: Iterator.Element) -> Bool) -> [Iterator.Element] {
         var result: [Iterator.Element] = []
         for item in self where result.contains(where: { comparator(item, $0) }) == false {
