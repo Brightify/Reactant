@@ -144,7 +144,7 @@ extension Component {
     }
 
     /**
-     * Method that lets you set initial `componentState` of the Component during initialization.
+     * Method that lets you set initial `componentState` of the Component, usually during initialization.
      * ## Example
      * ```
      * let component = AwesomeDateComponent(locale: Locale.US).with(state: Date.today)
