@@ -60,7 +60,7 @@ public protocol Component: Invalidable {
      *
      * Every time modified, `update()` is called if `ComponentDelegate.needsUpdate` and `ComponentDelegate.canUpdate` are `true`.
      *
-     * You can control the conditions under which `update()` is called by overriding `Component.needsUpdate()` or
+     * You can control the conditions under which `update()` is called by overriding `needsUpdate()` or
      *  `ComponentDelegate.canUpdate`, both need to return **true** in order for `update()` to be called on next `componentState` change.
      * - WARNING: **Reference type** is not suitable as a `componentState` because there's no way to detect changes,
      *  using such a type is feasible by calling `Invalidable.invalidate()` manually.
