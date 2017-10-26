@@ -9,7 +9,7 @@
 import Foundation
 
 extension Sequence {
-    
+
     public func take(until: (Iterator.Element) -> Bool) -> [Iterator.Element] {
         var result: [Iterator.Element] = []
         for item in self {

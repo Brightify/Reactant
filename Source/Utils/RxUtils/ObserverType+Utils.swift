@@ -12,7 +12,6 @@ public extension ObserverType {
     
     /**
      * Convenience method equivalent to `on(.Next(element: E))` and `on(.Completed)`
-     *
      * - parameter element: Next element to send to observer(s)
      */
     public func onLast(_ element: E) {

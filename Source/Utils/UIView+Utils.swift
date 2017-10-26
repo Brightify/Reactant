@@ -35,7 +35,7 @@ extension UIView {
 
     /**
      * Adds subviews to the view that this method is called upon.
-     * Convenience method working the same as `addSubview(_:)` but letting you pass multiple UIViews at once.
+     * Convenience method working the same as `addSubview(_:)` but letting you pass an array of UIViews.
      * - parameter children: `UIView`s to be added as subviews
      * ## Example
      * ```

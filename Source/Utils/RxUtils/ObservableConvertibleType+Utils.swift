@@ -13,8 +13,7 @@ public extension ObservableConvertibleType {
     /**
      * Creates an `Observable` tuple `(previous, current)`, both are of the same type, `previous` is `Optional`,
      * because the first value has no predecessor.
-     *
-     * - returns: An `Observable` tuple with current value and its `Optional` predecessor
+     * - returns: `Observable` tuple with current value and its `Optional` predecessor
      */
     public func lag() -> Observable<(previous: E?, current: E)> {
         return asObservable().scan((previous: nil as E?, current: nil as E?)) { ($0.current, current: $1) }
