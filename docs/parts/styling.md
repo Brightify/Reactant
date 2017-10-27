@@ -1,10 +1,10 @@
 # Styling
 
-Reactant also contains some convenience inits, helper methods etc. and protocol `Stylable` which allows easy style application to `UIView`. This is just a syntactic sugar, but allows you to have cleaner code.
+Reactant also contains some convenience `init`s, helper methods, operator overloads, etc.. Protocol `Stylable` which allows easy you to easily apply style to your `UIView`. It's just syntactic sugar, but allows for cleaner code with less duplicates.
 
 ## Usage
 
-The best way to learn how all of this is used is to look at the tests in `Tests/Core/Styling` directory or directly into the source code. For convenience we decided to list the API below (sorted alphabetically except for Stylable) for quick reference.
+The best way to master all these styling methods is to check out the tests in `Tests/Core/Styling` directory or the source code itself. For convenience we decided to list the API below (sorted alphabetically except for `Stylable`) for quick reference.
 
 Note: Inits for all structs like CGRect are created so that any parameter can be omitted (has default value of 0). For example: `CGRect(x: 1)`, `CGRect(origin: origin, width: 1)` and `CGRect(x: 1, size: size)` are all valid and these possibilities are skipped from this documentation.   
 
@@ -12,7 +12,7 @@ Note: Inits for all structs like CGRect are created so that any parameter can be
 
 `Styleable` allows you to easily separate code defining view appearance from the rest. It is basically syntax sugar for using closures which modify passed object.
 
-```Swift
+```swift
 protocol Styleable { }
 
 extension UIView: Styleable { }
@@ -35,15 +35,15 @@ extension Styleable {
 }
 ```
 
-We recommend to put these styles into struct `Styles` and nest it to extension like this:
+We recommend storing all of your subclassed `UIView` styles into a fileprivate struct `Styles` that is inside an extension for better code readability, like this:
 
-```Swift
+```swift
 class SomeView: UIView {
 
     private let label = UILabel().styled(using: Styles.blueBackground)
 }
 
-fileprivate extension SomeView {
+extension SomeView {
 
     fileprivate struct Styles {
 
@@ -60,7 +60,7 @@ fileprivate extension SomeView {
 
 To later change the appearance of view do:
 
-```Swift
+```swift
 class SomeView: UIView {
 
     private let label ...
@@ -73,7 +73,7 @@ class SomeView: UIView {
 
 It is possible to use static var with closure instead of function like this:
 
-```Swift
+```swift
 static var style: Style<UILabel> = { view in
     view.backgroundColor = UIColor.blue
 }
@@ -83,7 +83,7 @@ Or any other syntax that you are happy with.
 
 You can also define some base styles globally and then call them from another styles like so:
 
-```Swift
+```swift
 struct BaseStyles {
 
     static func blueBackground(_ view: UIView) {
@@ -103,8 +103,8 @@ struct LabelStyles {
 
 ### CGAffineTransform
 
-```Swift
-func + (lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransform
+```swift
+func +(lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransform
 
 func rotate(_ degrees: CGFloat) -> CGAffineTransform
 
@@ -117,7 +117,7 @@ Notes: `rotate`, `translate` and `scale` are all global functions. They create c
 
 ### CGPoint
 
-```Swift
+```swift
 extension CGPoint {
 
     init(_ both: CGFloat)
@@ -128,7 +128,7 @@ extension CGPoint {
 
 ### CGRect
 
-```Swift
+```swift
 extension CGRect {
 
     init(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat)
@@ -141,7 +141,7 @@ extension CGRect {
 
 ### CGSize
 
-```Swift
+```swift
 extension CGSize {
 
     init(_ both: CGFloat)
@@ -154,7 +154,7 @@ extension CGSize {
 
 #### `+` operator
 
-```Swift
+```swift
 func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString
 
 func + (lhs: String, rhs: NSAttributedString) -> NSAttributedString
@@ -164,7 +164,7 @@ func + (lhs: NSAttributedString, rhs: String) -> NSAttributedString
 
 #### Attribute
 
-```Swift
+```swift
 /// Enum which represents NS attributes for NSAttributedString (like NSStrokeColorAttributeName). Each case has value and assigned name.
 enum Attribute {
 
@@ -178,17 +178,17 @@ enum Attribute {
 }
 ```
 
-```Swift
+```swift
 extension Sequence where Iterator.Element == Attribute {
 
-    /// Creates dictionary from sequence of attributes by merging them together. String is name of case and AnyObject value corresponding to it.
-    func toDictionary() -> [String: AnyObject]
+    /// Creates dictionary from sequence of attributes by merging them together. NSAttributedStringKey is name of case and AnyObject value corresponding to it.
+    func toDictionary() -> [NSAttributedStringKey: AnyObject]
 }
 ```
 
 #### String
 
-```Swift
+```swift
 extension String {
 
     func attributed(_ attributes: [Attribute]) -> NSAttributedString
@@ -199,14 +199,14 @@ extension String {
 
 ### Percent
 
-```Swift
+```swift
 /// Returns input / 100.
 postfix func %(input: CGFloat) -> CGFloat
 ```
 
 ### UIButton
 
-```Swift
+```swift
 extension UIButton {
 
     init(title: String)
@@ -217,7 +217,7 @@ extension UIButton {
 
 ### UICollectionView
 
-```Swift
+```swift
 extension UICollectionView {
 
     init(collectionViewLayout layout: UICollectionViewLayout)
@@ -226,14 +226,16 @@ extension UICollectionView {
 
 ### UIColor
 
-```Swift
+```swift
 extension UIColor {
 
     /// Accepted formats: "#RRGGBB" and "#RRGGBBAA".
     init(hex: String)
 
+    /// Accepted format: "0xRRGGBB".
     init(rgb: UInt)
 
+    /// Accepted format: "0xRRGGBBAA".
     init(rgba: UInt)
 
     /// Increases color's brightness.
@@ -258,7 +260,7 @@ extension UIColor {
 
 ### UIEdgeInsets
 
-```Swift
+```swift
 extension UIEdgeInsets {
 
     init(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat)
@@ -275,7 +277,7 @@ extension UIEdgeInsets {
 
 ### UIFont
 
-```Swift
+```swift
 extension UIFont {
 
     init(_ name: String, _ size: CGFloat)
@@ -284,7 +286,7 @@ extension UIFont {
 
 ### UILabel
 
-```Swift
+```swift
 extension UILabel {
 
     init(text: String)
@@ -293,7 +295,7 @@ extension UILabel {
 
 ### UIOffset
 
-```Swift
+```swift
 extension UIOffset {
 
     init(_ all: CGFloat)
@@ -306,7 +308,7 @@ extension UIOffset {
 
 ### UITableView
 
-```Swift
+```swift
 extension UITableView {
 
     init(style: UITableViewStyle)
