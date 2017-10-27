@@ -10,7 +10,8 @@ import Foundation
 
 extension Sequence {
 
-    // TODO: Remove from Reactant 2.0
+    // TODO: Make sure no one is using it and remove from Reactant ASAP
+    /// - WARNING: Although the name implies that this function takes elements *until* the condition is `true`, it's quite the opposite. Tread carefully when using this function as it does the same job as `prefix(while:)` with the difference that `prefix(while:)` needs to be converted to array like so: `Array(prefix(while: { /* condition */ }))`
     @available(*, deprecated, message: "This method will be removed in Reactant 2.0 as it doesn't provide any value to Reactant Architecture itself.")
     public func take(until: (Iterator.Element) -> Bool) -> [Iterator.Element] {
         var result: [Iterator.Element] = []
@@ -21,7 +22,7 @@ extension Sequence {
         return result
     }
 
-    // TODO: Remove from Reactant 2.0
+    // TODO: Make sure no one is using it and remove from Reactant ASAP
     @available(*, deprecated, message: "This method will be removed in Reactant 2.0 as it doesn't provide any value to Reactant Architecture itself.")
     public func all(predicate: (Iterator.Element) -> Bool) -> Bool {
         for element in self where !predicate(element) {
@@ -30,7 +31,7 @@ extension Sequence {
         return true
     }
 
-    // TODO: Remove from Reactant 2.0
+    // TODO: Make sure no one is using it and remove from Reactant ASAP
     @available(*, deprecated, message: "This method will be removed in Reactant 2.0 as it doesn't provide any value to Reactant Architecture itself.")
     public func any(predicate: (Iterator.Element) -> Bool) -> Bool {
         return first(where: predicate) != nil
