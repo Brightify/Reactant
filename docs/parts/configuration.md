@@ -74,11 +74,11 @@ Concrete instances of `Property` are covered in documentation for parts of React
 
 Global configuration is a special instance of `Configuration` accessible by `Configuration.global`. This configuration is the default one for all things in Reactant. It is applied at the end of `init`.
 
-If you need to change configuration but only for some classes. You can create your own instance of `Configuration` by calling `init(copy: Configuration...)`. Notice the optional `copy` parameter, you can "inherit" the common settings for example from `Configuration.global` and then make your changes, while leaving the `Configuration.global` intact. Also it is possible to copy configuration from multiple instances of `Configuration`. Most likely that will result in conflict of some properties. In that case the priority is: `init(copy: leastSignificant, ..., mostSignificant)`. When you have your custom `Configuration` ready, assign it to instance of `Configurable` by `instance.configuration = customConfiguration`.
+If you need to change configuration but only for certain classes. You can create your own instance of `Configuration` by calling `init(copy: Configuration...)`. Notice the optional `copy` parameter through which you can "inherit" the common settings for example from `Configuration.global`. After that you can make your changes, while leaving the `Configuration.global` intact. It's variadic as well, allowing you to copy configuration from multiple `Configuration` instances. Most likely that will result in conflict of some properties. In that case the priority is: `init(copy: leastSignificant, ..., mostSignificant)`. When you have your custom `Configuration` ready, assign it to instance of `Configurable` by `instance.configuration = customConfiguration`.
 
 ## Configurable
 
-`Configurable` is a helping protocol for classes that wants to use data from `Configuration`.
+`Configurable` is a helping protocol for classes that want to use data from `Configuration`.
 
 ```swift
 protocol Configurable: class {
@@ -96,9 +96,9 @@ extension Configurable {
 }
 ```
 
-You should access `configuration` only from its `didSet` listener. This ensures, that everything is properly changed together with the instance of `Configuration`.
+You should access `configuration` only from its `didSet` listener. This ensures that everything is properly changed together with the `Configuration` instance.
 
-This example part of implementation from `ControllerBase` shows how to implement `Configurable` from scratch:
+This exempt from `ControllerBase` shows how to implement `Configurable` from scratch:
 
 ```swift
 class ControllerBase ... {
@@ -123,13 +123,13 @@ class ControllerBase ... {
 }
 ```
 
-Usually you will inherit from some class that already implements `Configurable`. Then it is much easier to use `configuration`:
+You will usually inherit from some class that already implements `Configurable` making it much easier for you to use `configuration`:
 
 ```swift
 class CustomView: ViewBase... { // ViewBase implements Configurable
 
 	override var configuration: Configuration { // No .global assignment (already in super class).
-		didSet { // No need to call anything from super class. Swift does that automatically.
+		didSet {
 		    ... // Do something.
 		}
 	}
