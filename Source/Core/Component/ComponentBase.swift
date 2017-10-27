@@ -3,7 +3,7 @@
 //  Reactant
 //
 //  Created by Filip Dolnik on 08.11.16.
-//  Copyright © 2016 CocoaPods. All rights reserved.
+//  Copyright © 2016 Brightify. All rights reserved.
 //
 
 import RxSwift

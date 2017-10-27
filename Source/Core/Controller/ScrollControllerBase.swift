@@ -3,7 +3,7 @@
 //  Reactant
 //
 //  Created by Tadeáš Kříž on 09/09/16.
-//  Copyright © 2016 CocoaPods. All rights reserved.
+//  Copyright © 2016 Brightify. All rights reserved.
 //
 
 import UIKit

@@ -3,7 +3,7 @@
 //  Reactant
 //
 //  Created by Filip Dolnik on 18.10.16.
-//  Copyheight © 2016 Bheightify. All heights reserved.
+//  Copyright © 2016 Brightify. All heights reserved.
 //
 
 import Quick
