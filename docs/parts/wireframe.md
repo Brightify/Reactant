@@ -1,12 +1,12 @@
 # Wireframe
 
-In Reactant, Wireframe is meant to handle transitions between controllers, in a way that no controller knows about other controllers. To learn more, head to our [architecture guide](../getting-started/architecture.md).
+In Reactant, Wireframe is meant to handle transitions between controllers, so that no controller knows about any other controllers. To learn more, head to our [Reactant Architecture Guide](../getting-started/architecture.md).
 
 To make this a little easier we include a protocol `Wireframe` with two helper methods:
 
 ## create
 
-Use create to get access to enclosing `UINavigationController` and the created controller in reaction closures you provide the controller. This let's you break the dependency cycle.
+Use create to get access to enclosing `UINavigationController` and the created controller in reaction closures you provide the controller. This lets you break the dependency cycle.
 
 The `create` method has following signature:
 
@@ -40,7 +40,7 @@ class MainWireframe: Wireframe {
 
 ## branchNavigation
 
-Navigation branching is especially useful, when you need to present a controller modally and want to display a navigation bar (with the possibility to dismiss the controller). When that happens, you can use the `branchNavigation` to wrap your controller inside `UINavigationController`. It will also set `leftBarButtonItem` for you that will dismiss the modal controller.
+Navigation branching is especially useful when you need to present a controller modally and want to display a navigation bar (with the possibility to dismiss the controller). When that happens, you can use the `branchNavigation` to wrap your controller inside `UINavigationController`. It will also set `leftBarButtonItem` for you that will dismiss the modal controller.
 
 ```swift
 public func branchNavigation(controller: UIViewController, closeButtonTitle: String?) -> UINavigationController
