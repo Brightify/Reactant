@@ -69,7 +69,7 @@ We'll talk about `loadView()` and `setupConstraints()` methods later on.
 
 ### Component Action
 
-When a **Component** needs to notify it's owner, it produces an **Action**. Remember the second generic parameter from earlier? That specifies the type of produced **Action**. The type can be anything, but we recommend using *enum*s. We leverage **RxSwift**'s *Observables* for actions since they are versatile and easier to use than callbacks or delegates. Let's extend our `GreeterView` with a text field.
+When a **Component** needs to notify its owner, it produces an **Action**. Remember the second generic parameter from earlier? That specifies the type of produced **Action**. The type can be anything, but we recommend using *enum*s. We leverage **RxSwift**'s *Observables* for actions since they are versatile and easier to use than callbacks or delegates. Let's extend our `GreeterView` with a text field.
 
 ```swift
 import RxSwift
