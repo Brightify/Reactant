@@ -16,7 +16,7 @@ In `init` of every TableView, you can configure if the TableView is reloadable a
 #### SimpleTableView
  `SimpleTableView` is the most generic TableView of them all. Its purpose is to display table with footers and headers. It has three generic parameters: `HEADER` - View component used as headers, `CELL` View component used as cells, `FOOTER` view component used as footers. `MODEL` parameter in this case is a `SectionModel` which binds together component State of section header, array of component States of cells and component State of section footer.
 
- #### PlainTableView
+#### PlainTableView
  `PlainTableView` is used for displaying plain table view consisting of cells only. `MODEL` parameter of this TableView's `TableViewState` is component State of the cell.
 
  Example of using this type of TableView directly as RootView is shown here.
