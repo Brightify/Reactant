@@ -60,7 +60,7 @@ let observable = Observable<Int>.interval(RxTimeInterval(1), scheduler: MainSche
 								.subscribe...
 ```
 
-All of the `trackActivity` methods captures `ActivityIndicator` until the registered `Observable` is disposed. So you do not have to hold a reference to it.
+All of the `trackActivity` methods capture `ActivityIndicator` until the registered `Observable` is disposed, so that you do not have to hold a reference to it.
 
 Example of `associatedValueProvider`:
 
@@ -71,8 +71,9 @@ activityIndicator.asObservable().subscribe(onNext: {
 }).disposed(by: activityIndicator.disposeBag)
 
 Observable<Int>.interval(RxTimeInterval(1), scheduler: MainScheduler.instance)
-            .trackActivity(in: activityIndicator, initialAssociatedValue: "-1", associatedValueProvider: { "\($0)" })
-            .subscribe(onNext: { _ in }).disposed(by: lifetimeDisposeBag)
+    .trackActivity(in: activityIndicator, initialAssociatedValue: "-1", associatedValueProvider: { "\($0)" })
+    .subscribe(onNext: { _ in })
+    .disposed(by: lifetimeDisposeBag)
 ```
 
 Output:
@@ -94,9 +95,9 @@ activityIndicator.asObservable()
 				 }).disposed(by: activityIndicator.disposeBag)
 ```
 
-Notice the `activityIndicator.disposeBag`. It is not necessary to add `ActivityIndicator` subscriptions to a `DisposeBag` because they will be released automatically together with the instance of `ActivityIndicator` (so using `activityIndicator.disposeBag` in this case is equivalent to not using any at all). Nevertheless it is recommended to do so. It will help the code readability and also without `disposed(by:)` Xcode produces a warning.
+Notice the `activityIndicator.disposeBag`. It is not necessary to add `ActivityIndicator` subscriptions to a `DisposeBag` because they will be released automatically together with the instance of `ActivityIndicator` (so using `activityIndicator.disposeBag` in this case is equivalent to not using any at all). However it is recommended to do so as it will help improve code readability and also without `disposed(by:)` Xcode produces a warning.
 
-`loading` is a `bool` value that tells if `ActivityIndicator` currently tracks at least one active `Observable` (once `Observable` finishes its work, it is disposed and not considered active). `associatedValue` is `T?` associated with the first active `Observable` (the order of multiple `Observable` is determined by the order they were registered to `ActivityIndicator`). If `loading` is `false`, then `associatedValue` is set to `nil`.
+`loading` is a `bool` value that tells you if `ActivityIndicator` currently tracks at least one active `Observable` (once `Observable` finishes its work, it is disposed and not considered active). `associatedValue` is `T?` associated with the first active `Observable` (the order of multiple `Observable` sequences is determined by the order they were registered to `ActivityIndicator`). If `loading` is `false`, then `associatedValue` is set to `nil`.
 
 `onNext` is called only when there is a change either in `loading` or `associatedValue`.
 
@@ -114,7 +115,7 @@ func createObservable(value: Int, delay: Int) -> Observable<Int> {
     return Observable<Int>.just(value).delay(RxTimeInterval(delay), scheduler: MainScheduler.instance)
 }
 
-// Represents serial sequence of three Observable, each takes two seconds to compute. The trackActivity is called immediately so the priority of Observables is: 1, 2, 3, 10, 11 regardless of when they actually start doing something.
+// Represents serial sequence of three Observables, each takes two seconds to compute. The trackActivity is called immediately so the priority of Observables is: 1, 2, 3, 10, 11 regardless of when they actually start doing something.
 createObservable(value: 1, delay: 2)
     .trackActivity(in: activityIndicator, associatedValue: 1)
     .flatMap { value -> Observable<Int> in
