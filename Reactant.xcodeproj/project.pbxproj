@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00E342101FA242A1005D3740 /* Sequence+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E3420E1FA22F70005D3740 /* Sequence+Utils.swift */; };
+		00E342151FA26CE7005D3740 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E342131FA2694E005D3740 /* Rule.swift */; };
 		04168232D53A3C6EC65FE3C3 /* Pods_Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */; };
 		183457891EB16B8B00C972A4 /* ReactantUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457881EB16B8B00C972A4 /* ReactantUI.swift */; };
 		183E0CAE1EB88062006CF52A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0CAD1EB88062006CF52A /* TextField.swift */; };
@@ -189,6 +190,7 @@
 /* Begin PBXFileReference section */
 		16BEF3BAB0B302A550911EA7 /* Pods-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
 		00E3420E1FA22F70005D3740 /* Sequence+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Utils.swift"; sourceTree = "<group>"; };
+		00E342131FA2694E005D3740 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		183457881EB16B8B00C972A4 /* ReactantUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantUI.swift; sourceTree = "<group>"; };
 		183E0CAD1EB88062006CF52A /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		183E0CB11EB888E5006CF52A /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
@@ -1025,6 +1027,7 @@
 		DCC98CEE1E62E9CD0018757E /* Validation */ = {
 			isa = PBXGroup;
 			children = (
+				00E342131FA2694E005D3740 /* Rule.swift */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -1610,6 +1613,7 @@
 				183E0CFD1EB88F0D006CF52A /* ConfigurationTest.swift in Sources */,
 				183E0D101EB88F17006CF52A /* UITableView+InitTest.swift in Sources */,
 				183E0D0E1EB88F17006CF52A /* UILabel+InitTest.swift in Sources */,
+				00E342151FA26CE7005D3740 /* Rule.swift in Sources */,
 				183E0D0A1EB88F17006CF52A /* UIColor+InitTest.swift in Sources */,
 				183E0D121EB88F3B006CF52A /* ObservableConvertibleType+ResultTest.swift in Sources */,
 				183E0CFF1EB88F11006CF52A /* PropertyTest.swift in Sources */,
