@@ -2,7 +2,10 @@
 
 We already talked about Components and Views in the [Quick-start](./quickstart.md), but they alone are only a small part of Reactant. The magic comes when you embrace the whole architecture.
 
-We recommend that you create a new project and create a very simple app through this short guide. Creating a project compatible with Reactant requires a few steps. First create a new `Single View Application` and select `Swift` as your application's language. Once created, delete `Main.storyboard` and `ViewController.swift` files **(Reactant does not support Storyboard/Interface Builder as classes are not accessible from ObjC runtime)**. Then open your app's target `General` settings and under `Deployment info` delete the value of `Main Interface` property.
+We recommend creating a new project and going along with us through this short guide before you venture out on your own. Creating a project compatible with Reactant requires a few steps.
+- First create a new `Single View Application` and select `Swift` as your application's language.
+- Once created, delete `Main.storyboard` and `ViewController.swift` files **(Reactant does not support Storyboard/Interface Builder as classes are not accessible from ObjC runtime)**.
+- Then open your app's target `General` settings and under `Deployment info` delete the value of `Main Interface` property.
 
 Next step is adding CocoaPods to the project. Open your project's directory in *Terminal* and run a `pod init` command. This will create a `Podfile` for you. Open it in your favorite text editor and under your app's target add `pod 'Reactant'`. The file should then look like this:
 
@@ -16,7 +19,7 @@ target 'ReactantTutorial' do
 end
 ```
 
-Once you save the file, go back into the `Terminal` and run `pod install`. When the command completes, open the newly created `.xcworkspace`. Your project is now Reactant ready!
+Once you save the file, pop up the `Terminal` and run `pod install`. When the command completes, open the newly created `.xcworkspace`. Your project is now Reactant ready!
 
 ## Recommended directory structure
 
@@ -26,9 +29,9 @@ Through this overview, you might be asking yourself what structure would be the 
 YourProject/ (root directory with .xcodeproj)
 ├── Application/ (directory for the App target)
 │   ├── Generated/
-│   ├── Resource/ (here you'll put Assets.xcasset, Localizations etc.)
-│   └── Source/
-│       ├── Component/
+│   ├── Resources/ (here you'll put Assets.xcasset, Localizations etc.)
+│   └── Sources/
+│       ├── Components/
 │       │   ├── SomeAppPart/
 │       │   │   ├── SomeAppPartAction.swift
 │       │   │   ├── SomeAppPartController.swift
@@ -38,10 +41,10 @@ YourProject/ (root directory with .xcodeproj)
 │       │       ├── SomeOtherPartAction.swift
 │       │       ├── SomeOtherPartController.swift
 │       │       └── SomeOtherPartRootView.swift
-│       ├── Model/
-│       ├── Service/
-│       ├── Util/
-│       ├── Wireframe/
+│       ├── Models/
+│       ├── Services/
+│       ├── Utils/
+│       ├── Wireframes/
 │       └── AppDelegate.swift
 ├── Tests/ (directory for unit tests target, optional)
 └── UITests/ (directory for ui tests target, optional)
@@ -49,7 +52,7 @@ YourProject/ (root directory with .xcodeproj)
 
 ### RootView
 
-View hierarchy starts with a **RootView**. It's no more than a special case of a view component, in a sense that it's meant to fill the whole screen. **RootView** can contain other view components or it can consist of primitive views only (UILabel, UIButton etc.). Let's take our `GreeterView` from the previous example and make it a **RootView**
+View hierarchy starts with a **RootView**. It's nothing more than a special case of a view component, the only difference is that it's meant to fill the whole screen. **RootView** can contain other view components or it can consist of primitive views only (UILabel, UIButton etc.). Let's take our `GreeterView` from the previous example and make it a **RootView**.
 
 ```swift
 // GreeterRootView.swift
@@ -100,13 +103,13 @@ final class GreeterRootView: ViewBase<(greeting: String, name: String), GreeterA
 }
 ```
 
-As you can see, the difference is small and we made them keep a naming convention that every **RootView** has that in its name. There's also the conformance to `RootView` protocol. That protocol allows you to specify `edgesForExtendedLayout` and receive view events from Controller (`viewWillAppear`, `viewDidAppear`, `viewWillDisappear`, `viewDidDisappear`).
+Conformity to `RootView` protocol allows you to specify `edgesForExtendedLayout` and receive view events from Controller (`viewWillAppear`, `viewDidAppear`, `viewWillDisappear`, `viewDidDisappear`).
 
-Other than that, **RootViews** are plain view components and you can even use any view component as a **RootView** without conforming to `RootView` protocol or renaming it.
+Other than that, **RootViews** are plain view components and your view doesn't have to conform to `RootView` to be used as a **RootView**.
 
 ### Controller
 
-Each screen is a **Controller** and each **Controller** is a **Component**. Controllers in Reactant don't contain view logic. Their job is to obtain data (from API, database etc.) for their **RootView**'s `componentState` and to receive and handle actions produced by their **RootView**. Let's write a controller for our `GreeterRootView`.
+Each screen is a **Controller** and each **Controller** is a **Component**. Controllers in Reactant don't contain view logic. Their job is to obtain data (from API, database etc.) for their **RootView**'s `componentState` and to receive and handle actions produced by said **RootView**. Let's create a controller for our `GreeterRootView`.
 
 ```swift
 // GreeterController.swift
@@ -134,13 +137,13 @@ The `ControllerBase` class has two generic parameters, first one is the type of 
 
 ## Dependency Injection, Parameters, and Reactions
 
-To be reusable and testable, Controller should get everything it needs from its caller. It's recommended that each Controller should have the following inner structures (although not every Controller will have all three):
+To be reusable and testable, Controller should get everything it needs from its caller. It's recommended that each Controller has the following inner structures (although not every Controller needs to have all three):
 
 * Dependencies
 * Properties
 * Reactions
 
-Then you just add them as parameters in the Controller's `init` and store them to private properties so you can reference them later. So an example Controller that would use all three of those would look like this:
+Then you just add them as parameters in the Controller's `init` and store them to private properties so you can reference them later. An example Controller that would use all three of these would look like this:
 
 ```swift
 import Reactant
@@ -168,7 +171,11 @@ final class ExampleController: ControllerBase<Void, ExampleRootView> {
 }
 ```
 
-We recommend keeping those three parameters alphabetically ordered, it's easiest to remember that way. You might ask, why not just pass the `someService`, `userAccount` and `openSettings` directly without those structures? Two reasons, first, as the project grows, your Controllers will need more dependencies, properties or reactions. When that happens, it's as easy as adding a new field into one of these structures and updating the call-sites to provide that new dependency. Second reason is consistency. If you stick to the alphabetic order, you'll know what to expect.
+We recommend keeping those three parameters alphabetically ordered, it's easiest to remember that way.
+
+You might ask why not just pass the `someService`, `userAccount` and `openSettings` directly without those structures? Two reasons:
+- as the project grows, your Controllers will need more dependencies, properties or reactions and when that happens, it's as easy as adding a new field into one of these structures and updating the call-sites to provide that new dependency
+- consistency, if you stick to the alphabetic order, you'll know what to expect
 
 **IMPORTANT**: As you can see, the ExampleController knows nothing about any other Controller. That's an intended behavior and your Controllers should never know anything about navigation. If you need to close a Controller when a user taps a button, just add `let close: () -> Void` reaction and let the caller handle the navigation. This is how you achieve perfect reusability and testability.
 
@@ -203,7 +210,7 @@ class GreeterService {
 }
 ```
 
-**NOTE**: For testing purposes, it's recommended that your Services are either defined as protocols or non-final classes. You'll then be able to mock them in your tests. For that we recommend you look at our mocking framework [Cuckoo](https://github.com/Brightify/Cuckoo).
+**NOTE**: For testing purposes, it's recommended that your Services are either defined as protocols or non-final classes. You'll then be able to mock them in your tests. For that we recommend you take a look at our mocking framework [Cuckoo](https://github.com/Brightify/Cuckoo).
 
 ## Dependency Module
 
@@ -249,11 +256,11 @@ Make sure that the types you specify in the DependencyModule protocol are the lo
 
 **NOTE**: The DependencyModule's lifecycle should be tied to the application (you should put it into a property in AppDelegate), the `userService` in the `AppModule` becomes a singleton.
 
-**NOTE**: Don't create unnecessary protocols for your dependencies until you need a protocol that would have at least two implementations. Having a protocol for each single implementation is an unnecessary boilerplate.
+**NOTE**: Don't create unnecessary protocols for your dependencies until you need a protocol that would have at least two implementations. Having a protocol for each single implementation creates unnecessary boilerplate.
 
 ## Wireframe
 
-Since Controllers don't know about navigation, there has to be something in the application that does. That something are Wireframes. Small applications can have just a single one, but most of the time you'll have multiple Wireframes and each of them will take care of a specific part of the app. Wireframes should receive a Dependency Module with services, but instantiating Controllers is their responsibility. Reactant comes with a protocol `Wireframe` and it's recommended to use it. We'll get to an example, but first let's update our `GreeterController` to use a `GreeterService` and open URL when the greeted name is `Reactant`.
+Since Controllers don't know about navigation, there has to be something in the application that does. That something are Wireframes. Small applications can make do with a single one, but most of the time you'll have multiple Wireframes and each of them will take care of a specific part of the app. Wireframes should receive a Dependency Module with services, but instantiating Controllers is their responsibility. Reactant comes with a protocol `Wireframe` and we recommend taking advatange of the enhancements it provides. We'll get to an example, but first let's update our `GreeterController` to use a `GreeterService` and open URL when the greeted name is `Reactant`.
 
 ```swift
 // GreeterController.swift
@@ -356,13 +363,13 @@ class AppDelegate : UIResponder, UIApplicationDelegate {
 }
 ```
 
-To learn more about the `Wireframe` protocol and the mysterious `create` function, head to page about [Wireframe](../parts/wireframe.md).
+To learn more about the `Wireframe` protocol and the mysterious `create` function, head to a page about [Wireframe](../parts/wireframe.md).
 
 ## Final result
 
-If you followed this guide, the app should open this screen ![Reactant tutorial screen](../img/ReactantTutorial.png)
-
 You can find the code for the complete example [here][reactant-tutorial]. To see a more impressive example, be sure to check out our simple travel planner app [**Planie**][planie]
+
+If you followed this guide, the app should open this screen ![Reactant tutorial screen](../img/ReactantTutorial.png)
 
 [reactant-tutorial]: https://github.com/Brightify/ReactantTutorial
 [planie]: https://github.com/Brightify/Planie
