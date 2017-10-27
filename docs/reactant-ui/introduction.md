@@ -4,7 +4,7 @@
 Reactant UI is currently a preview. However we'll try to keep the number of API changes to a minimum.
 
 ## What is Reactant UI
-**Reactant UI** is an extension for **Reactant** allowing you to declare views and layout using XML. Don't worry, there's no runtime overhead, as all those declarations are precompiled into Swift. Reactant then uses the generated code to create your UI.
+**Reactant UI** is an extension of **Reactant** allowing you to declare views and layout using XML. Don't worry, there's no runtime overhead, as all those declarations are precompiled into Swift. Reactant then uses the generated code to create your UI.
 
 ## Why
 When we created Reactant, our primary goal was maximal compile-time safety. We devised an API for writing [views using Reactant](../getting-started/quickstart.md), but it was still constrained by Swift's syntax.
@@ -16,7 +16,11 @@ Reactant UI is available through [CocoaPods](http://cocoapods.org). To install i
 pod 'ReactantUI'
 ```
 
-This will add Reactant UI to your project, but we're not done yet. Open your project in Xcode and open *Build Phases* and create a new *Run Script* phase (`+` button in top left corner -> `New Run Script Phase`). Name the phase (for example `Generate Reactant UI`) and move it just above phase named `Compile Sources (n items)`. Now add the following into the newly created phase.
+This will add Reactant UI source files to your project. After that open your Xcode project, go to *Build Phases*, and create a new *Run Script* phase (`+` button in top left corner -> `New Run Script Phase`).
+
+Give the new phase a name (for example *"Generate Reactant UI"*) and move it just above phase called `Compile Sources (n items)`.
+
+Last step is putting the following shell script into the newly created phase:
 
 ```sh
 pushd "$PODS_ROOT/ReactantUI"
@@ -30,11 +34,11 @@ cd "$SRCROOT/Application/Source"
 
 ## Recommended editor
 
-We recommend you to download [**Atom**](https://atom.io/) editor and install [**linter-autocomplete-jing**](https://atom.io/packages/linter-autocomplete-jing) and [**xml-common-schemata](https://atom.io/packages/xml-common-schemata) plugins. This combination will give you auto-complete support for UI XML files.
+We recommend downloading [**Atom**](https://atom.io/) editor and installing [**linter-autocomplete-jing**](https://atom.io/packages/linter-autocomplete-jing) and [**xml-common-schemata](https://atom.io/packages/xml-common-schemata) plugins. This combination will give you auto-complete support for Reactant's UI XML files.
 
 ## UI XML
 
-Reactant UI loads view declarations from XML files ending with `.ui.xml`. The location of these files is up to you, but we recommend putting them alongside your `.swift` view files. In [Reactant architecture guide](../getting-started/architecture.md) we made a very simple, single-screen application with one input and one textfield. Let's now recreate the `GreeterRootView` using Reactant UI.
+Reactant UI loads view declarations from XML files ending with `.ui.xml`. The location of these files is up to you, although we recommend putting them alongside your `.swift` view files for better file navigation. In [Reactant Architecture Guide](../getting-started/architecture.md) we create a very simple, single-screen application with one input and one textfield. Let's now recreate the `GreeterRootView` using Reactant UI.
 
 We begin with creating a new file named `GreeterRootView.ui.xml`, adding a root element called `Component` and setting namespace attributes to enable autocompletion.
 
@@ -55,7 +59,7 @@ By default, the name of the file is used as the type name. However, you can over
 
 You might want to create all `.ui.xml` at once before writing their Swift counterparts (especially if you use [Live Reload](./live-reload.md)). Unfortunately, Reactant UI in its current version doesn't scan your Swift files for existing types and generates Swift extensions for every `.ui.xml` in your project. If you don't have matching classes, you'll get compile errors. The current workaround is setting a value of `anonymous` attribute to `true` on the `Component` element. Reactant UI then generates an empty class which you can then use in your code. Later on you would replace it with your own class and remove the `anonymous` attribute.
 
-Last attribute to keep an eye on for `Component` element is `rootView`. When you set it to `true`, Reactant UI will automatically add the `RootView` protocol conformity and allow you to specify `extend` attribute. This attribute sets the RootView's `edgesForExtendedLayout` which has similar behavior to [`UIViewController#edgesForExtendedLayout`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621515-edgesforextendedlayout)
+Last `Component` attribute to keep an eye on is `rootView`. Setting it to `true` automatically adds the `RootView` protocol conformity which allows you to specify `extend` attribute. This attribute sets the RootView's `edgesForExtendedLayout` which has similar behavior to [`UIViewController#edgesForExtendedLayout`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621515-edgesforextendedlayout).
 
 Let's go ahead and add the two children our `GreeterRootView` should have, a label and a text field.
 
@@ -90,15 +94,15 @@ Let's go ahead and add the two children our `GreeterRootView` should have, a lab
 
 Each view in the hierarchy has its own properties and we tried to keep same names they have in UIKit. In our example, we set the `text` attribute for `Label` element to setup a label with that text. The same applies to the `textColor` and `placeholder` attributes.
 
-When you need to create a connection between your Swift code and the XML, set the `field` attribute. This attribute tells Reactant UI to use field with the specified name on the view. Make sure that field (property) has an internal visibility and that the type matches. We also recommend that the field is a constant (`let` property) because it limits mutability even further.
+When you need to create a connection between your Swift code and the UI XML, set the `field` attribute. This attribute tells Reactant UI to use field with the specified name in the view. Make sure that field (property) has an internal visibility and that the type matches. We also recommend that the field is a constant (`let` property) because it limits mutability even further.
 
-Last but not least, `layout` attributes. You will use these to declare AutoLayout constraints for your views. Each attribute from the `layout` namespace accepts a constraint declaration with the following format:
+Last but not least, `layout` attributes. They are used to declare AutoLayout constraints for your views. Each attribute from the `layout` namespace accepts a constraint declaration with the following format:
 
 `[constraintField = ][>=|<=|==] target[.targetAnchor] [modifier...][ @priority]`
 
 Parts of the declaration should be familiar to you if you use AutoLayout.
 
-* **constraintField** - makes the created constraint accessible in your Swift code
+* **constraintField** - makes the created constraint accessible in your Swift code (e.g. )
 * **\>=|<=|==** - relation of the constraint
 * **target** - The other view to constraint to. Possible values are:
     * `id:{name}` - target a view using `layout:id` attribute of such view
