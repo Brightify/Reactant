@@ -14,12 +14,8 @@ class UIColorModificatorsTest: QuickSpec {
     
     override func spec() {
         describe("UIColor") {
-            var color: UIColor!
-            var grey: UIColor!
-            beforeEach {
-                color = UIColor(red: 0.5, green: 0.1, blue: 0.1, alpha: 0.5)
-                grey = UIColor(white: 0.5, alpha: 0.5)
-            }
+            let color = UIColor(red: 0.5, green: 0.1, blue: 0.1, alpha: 0.5)
+            let grey = UIColor(white: 0.5, alpha: 0.5)
             describe("darker") {
                 it("works with rgb") {
                     self.assert(UIColor(red: 0.25, green: 0.05, blue: 0.05, alpha: 0.5), color.darker(by: 50%))
