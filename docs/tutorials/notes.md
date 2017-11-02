@@ -9,6 +9,8 @@ First and foremost, you will need:
 
 That's right, with just these few things you, too, can become fluent in Reactant! We won't touch the Terminal much, so if you're not used to hacking out command after command, it's okay, you can always come back and use this tutorial as a reference guide.
 
+The whole project can be found on GitHub [here](https://github.com/MatyasKriz/reactant-notes).
+
 In this particular tutorial we'll create a simple (but useful) application for keeping your precious ideas safe (until you wipe them, that is).
 
 ##### Let's get started.
@@ -59,23 +61,86 @@ Passing information to `RootView` is done by setting `RootView`'s `componentStat
 
 We don't have any notes ready, so we need to create some from scratch and pass them to the `RootView`.
 ```swift
-
+final class MainController: ControllerBase<Void, MainRootView> {
+  override func afterInit() {
+    let notes = [
+      Note(title: "Groceries", body: "Milk, honey, 2 lemons, 3 melons, a cat"),
+      Note(title: "TODO", body: "Workout, take Casey on a date, workout some more"),
+      Note(title: "Dear Diary", body: "Today I found out that I'm gonna be promoted tomorrow! I'm so excited as I don't know what to expect from the new job position. Looking forward to it though.")
+    ]
+    rootView.componentState = notes
+  }
+}
 ```
+Doing so we passed the notes we prepared in advance to the `RootView`. Right now Xcode will complain that `[Note]` and `Void` are incompatible. Shall we head over to a file called **MainRootView** and fix it?
 
 #### RootView
-Let's head over to a file called **MainRootView**. We can see `Reactant CLI` generated a class for us that we will use as our `RootView`. However, I don't think we want our notes to be lying all over the place, a table (not the four-legs type) is more appropriate. We'll transform our **MainRootView** into a simple `TableView` by changing what we're subclassing like so:
+If we were to think of the `Controller` as a puppeteer, `RootView` and all its subviews would be the puppets. They show whatever `Controller` asks them to show. They should not know anything about the application logic.
+
+We can see `Reactant CLI` generated a class for us that we will use as our `RootView`.
+
+However, I don't think we want our notes to be lying all over the place; a table (not the four-leg type) is more appropriate. We'll mark our **MainRootView** as `RootView` and transform it into a simple `TableView` by changing what we're subclassing like so:
 ```swift
-final class MainRootView: PlainTableView<NoteCell> {
-  // we'll fill this up in no time
+final class MainRootView: PlainTableView<NoteCell>, RootView {
+  // we'll fill this up in a second
 }
 ```
 
+Having done that, by
+
 **NOTE**: For more `TableView` variations see [Reactant's TableView classes](https://docs.reactant.tech/parts/tableview.html).
 
-Now we have a `TableView`, but compiler has no idea what `NoteCell` means. We need to create one.
+Now we have a `TableView`, but the compiler has no idea what `NoteCell` means. For us it means that we need to create one.
+
+Creating new file in the `Main` folder and choosing `Swift file`. You can name the file however you want, though it's good practice to always name it after the class that's going to reside in the file.
+```swift
+final class NoteCell: ViewBase<Note, Void>, Reactant.TableViewCell {
+  static let height: CGFloat = 80
+}
+```
+This is the declaration of our cell. It's good practice to explicitly set the height of your table cell - ($INPUT_NEEDED). Next we need to add some labels that will tell us what the note is about without tapping on it.
+
+```swift
+final class NoteCell: ViewBase<Note, Void>, Reactant.TableViewCell {
+  static let height: CGFloat = 80
+
+  private let title = UILabel()
+  private let body = UILabel()
+
+  override func update() {
+    title.text = componentState.title
+    preview.text = componentState.body
+  }
+
+  override func loadView() {
+    children(
+      title,
+      preview
+    )
+  }
+}
+```
+
+**NOTE**: I'm using 2-space tabs in these short and cute snippets to achieve better readability. Try reading 4-space tab code on a phone! If you want to inspect the code in its full glory, the whole project can be found  [here](https://github.com/MatyasKriz/reactant-notes). Pasting the code to Xcode from the snippets should automatically convert indentation to your preferred size, if it does not, use `Ctrl+I` on selected code to indent it correctly.
+
+Okay, lots of new code, so I owe you an explanation.
+
+The `update()` method gets called every time `componentState` is modified. What is `componentState` you ask? It's the single mutable state of the Component. Ideally there should be no more `var` fields in the component, only the `componentState` should be mutable. The type of `componentState` is defined as the first generic parameter (between the `<` and `>`), you can see it's `Note` here.
+
+Inside `update()` and only there you should read `componentState`. If you try reading from it before anything is set in there, an error is thrown.
+
+As you can see, here we are using `componentState` to update the view based on the `MODEL` we receive. `Note` has `title` and `body` fields and we copy those into the `UILabel` views.
+
+**ADVANCED**: If, for some reason, you don't want the `update()` method called, overriding method `needsUpdate()` gives you that control. Returning `false` from `needsUpdate()` means that `update()` doesn't get called when `componentState` is modified, default is `true`.
+
+Second, the `loadView()` method. In this method you should setup your view and add subviews. It gets called only once after `afterInit()`.
+
+We are using `children(_:)` which also comes from Reactant to conveniently add all the subviews. Keep in mind that views added first will be under the views added last.
+
+**NOTE**: One more thing, even though these methods are overridden, calling super.*method*() is not needed.
 
 ### Part 3: layouting
-As you may or may not know, on iOS `AutoLayout` is the reigning king of taking care of your layout on any kind of device. Be it phone or tablet. We sure want to get in on the fun using it.
+As you may or may not know, the reigning king of taking care of your layout on any kind of Apple device is `AutoLayout`. We sure want to get in on the fun using it.
 
 **ReactantUI** uses what `AutoLayout` offers in an easy-to-understand way. You can either use anonymous components or connect your UI to your code giving you even more control over the component.
 
@@ -89,18 +154,6 @@ We're not gonna need the Label, so we can get rid of it.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 .
 
 .
@@ -130,3 +183,15 @@ We're not gonna need the Label, so we can get rid of it.
 .
 
 .
+
+.
+
+.
+
+.
+
+.
+
+.
+
+**NOTE**: You may notice that most (if not all classes) we use are marked `final`. If you are sure they won't need to be subclassed in the near future, it's good practice to mark them so, plus it helps the performance a bit.
