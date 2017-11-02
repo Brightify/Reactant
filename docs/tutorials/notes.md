@@ -168,6 +168,8 @@ As you may or may not know, the reigning king of laying out your views on any ki
 
 TODO LEARN TO USE `reactant add` to create NoteCell.ui.xml
 
+TODO DELETE MainRootView.ui.xml because it's a tableview subclass
+
 Open a file called **NoteCell.ui.xml**. First thing you'll notice is that there's a lot of complex text in the header. That's actually defining the `RootView` component you're creating right now, that's why the file ends with `</Component>` and every `ui.xml` file has to have this structure (except for the `rootView="true"` if you don't want the view to be a `RootView`).
 
 We're not gonna need the Label, so we can safely get rid of it.
