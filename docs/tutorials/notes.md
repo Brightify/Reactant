@@ -1,5 +1,5 @@
 # ($NAME)
-Welcome to our first tutorial that will help you get your feet wet with Reactant architecture!
+Welcome to our first tutorial! My name's Matt and I will help you get your feet wet with the Reactant architecture!
 
 First and foremost, you will need:
 - an **Xcode** (AppCode might work as well, but it's not tested),
