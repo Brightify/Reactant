@@ -9,7 +9,8 @@
 import UIKit
 
 extension ReactantTableView {
-    
+
+    #if os(iOS)
     public var refreshControlTintColor: UIColor? {
         get {
             return refreshControl?.tintColor
@@ -18,6 +19,7 @@ extension ReactantTableView {
             refreshControl?.tintColor = newValue
         }
     }
+    #endif
     
     public var activityIndicatorStyle: UIActivityIndicatorViewStyle {
         get {
@@ -46,6 +48,7 @@ extension ReactantTableView {
         }
     }
     
+    #if os(iOS)
     public var separatorStyle: UITableViewCellSeparatorStyle {
         get {
             return tableView.separatorStyle
@@ -54,6 +57,7 @@ extension ReactantTableView {
             tableView.separatorStyle = newValue
         }
     }
+    #endif
     
     public var estimatedRowHeight: CGFloat {
         get {

@@ -24,8 +24,9 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     }
     
     public let tableView: UITableView
-    
+    #if os(iOS)
     public let refreshControl: UIRefreshControl?
+    #endif
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView()
 
@@ -35,7 +36,9 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     
     public init(style: UITableViewStyle = .plain, reloadable: Bool = true) {
         self.tableView = UITableView(frame: CGRect.zero, style: style)
+        #if os(iOS)
         self.refreshControl = reloadable ? UIRefreshControl() : nil
+        #endif
         
         super.init()
     }
@@ -46,18 +49,22 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
             emptyLabel,
             loadingIndicator
         )
-        
+
+        #if os(iOS)
         if let refreshControl = refreshControl {
             tableView.children(
                 refreshControl
             )
         }
+        #endif
         
         loadingIndicator.hidesWhenStopped = true
         
         tableView.backgroundView = nil
         tableView.backgroundColor = .clear
+        #if os(iOS)
         tableView.separatorStyle = .singleLine
+        #endif
         tableView.rx.setDelegate(self).disposed(by: lifetimeDisposeBag)
     }
     
@@ -114,7 +121,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         }
         
         emptyLabel.text = emptyMessage
-        
+        #if os(iOS)
         if let refreshControl = refreshControl {
             if loading {
                 refreshControl.beginRefreshing()
@@ -128,6 +135,13 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
                 loadingIndicator.stopAnimating()
             }
         }
+        #else
+            if loading {
+                loadingIndicator.startAnimating()
+            } else {
+                loadingIndicator.stopAnimating()
+            }
+        #endif
 
         self.items.onNext(items)
         

@@ -24,10 +24,16 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
     private let footerIdentifier = TableViewHeaderFooterIdentifier<UITableViewHeaderFooterView>(name: "Separator")
 
     open override var actions: [Observable<SimulatedSeparatorTableViewAction<CELL>>] {
+        #if os(iOS)
         return [
             tableView.rx.modelSelected(MODEL.self).map(SimulatedSeparatorTableViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: SimulatedSeparatorTableViewAction.refresh)
         ].flatMap { $0 }
+        #else
+        return [
+            tableView.rx.modelSelected(MODEL.self).map(SimulatedSeparatorTableViewAction.selected)
+        ]
+        #endif
     }
 
     open var separatorColor: UIColor? = nil {

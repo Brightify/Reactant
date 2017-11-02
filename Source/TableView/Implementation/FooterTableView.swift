@@ -25,10 +25,16 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
     private let footerIdentifier = TableViewHeaderFooterIdentifier<FOOTER>()
 
     open override var actions: [Observable<FooterTableViewAction<CELL, FOOTER>>] {
+        #if os(iOS)
         return [
             tableView.rx.modelSelected(MODEL.self).map(FooterTableViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: FooterTableViewAction.refresh)
         ].flatMap { $0 }
+        #else
+        return [
+            tableView.rx.modelSelected(MODEL.self).map(FooterTableViewAction.selected)
+        ]
+        #endif
     }
 
     private let footerFactory: (() -> FOOTER)

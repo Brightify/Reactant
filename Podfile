@@ -1,5 +1,4 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
 use_frameworks!
 inhibit_all_warnings!
 
@@ -14,10 +13,14 @@ def shared
 end
 
 target 'Reactant' do
+    platform :ios, '9.0'
+
     shared
 end
 
 target 'ReactantTests' do
+    platform :ios, '9.0'
+
     shared
 
     pod 'Quick', '~> 1.1'
@@ -25,9 +28,20 @@ target 'ReactantTests' do
 end
 
 target 'ReactantPrototyping' do
+    platform :ios, '9.0'
+
     shared
 
     pod 'Reactant', :path => './'
+end
+
+target 'TVPrototyping' do
+    platform :tvos, '9.0'
+    shared
+
+    pod 'Reactant', :path => './'
+    pod 'Reactant/TableView', :path => './'
+    pod 'Reactant/CollectionView', :path => './'
 end
 
 # Required until CocoaPods adds support for targets with multiple Swift versions or when all dependencies support Swift 4.0

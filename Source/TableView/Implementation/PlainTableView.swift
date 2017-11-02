@@ -21,10 +21,16 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
 
     open override var actions: [Observable<PlainTableViewAction<CELL>>] {
+        #if os(iOS)
         return [
             tableView.rx.modelSelected(MODEL.self).map(PlainTableViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: PlainTableViewAction.refresh)
         ].flatMap { $0 }
+        #else
+        return [
+            tableView.rx.modelSelected(MODEL.self).map(PlainTableViewAction.selected)
+        ]
+        #endif
     }
 
     private let cellFactory: () -> CELL

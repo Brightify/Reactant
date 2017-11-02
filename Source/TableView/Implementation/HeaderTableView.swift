@@ -25,10 +25,16 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
     private let headerIdentifier = TableViewHeaderFooterIdentifier<HEADER>()
 
     open override var actions: [Observable<HeaderTableViewAction<HEADER, CELL>>] {
+        #if os(iOS)
         return [
             tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: HeaderTableViewAction.refresh)
         ].flatMap { $0 }
+        #else
+        return [
+            tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected)
+        ]
+        #endif
     }
 
     private let headerFactory: (() -> HEADER)

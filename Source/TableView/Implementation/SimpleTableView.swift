@@ -27,10 +27,16 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
     private let footerIdentifier = TableViewHeaderFooterIdentifier<FOOTER>()
     
     open override var actions: [Observable<SimpleTableViewAction<HEADER, CELL, FOOTER>>] {
+        #if os(iOS)
         return [
             tableView.rx.modelSelected(MODEL.self).map(SimpleTableViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: SimpleTableViewAction.refresh)
         ].flatMap { $0 }
+        #else
+            return [
+                tableView.rx.modelSelected(MODEL.self).map(SimpleTableViewAction.selected)
+            ]
+        #endif
     }
     
     private let headerFactory: (() -> HEADER)
