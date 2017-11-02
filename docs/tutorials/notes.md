@@ -166,13 +166,45 @@ As you may or may not know, the reigning king of laying out your views on any ki
 
 **ReactantUI** uses what `AutoLayout` offers in an easy-to-understand way. You can either use anonymous components or connect your UI to your code giving you even more control over the component.
 
-TODO LEARN TO USE `reactant add` to create NoteCell.ui.xml
+Rename **MainRootView.ui.xml** to **NoteCell.ui.xml** (`MainRootView` won't need a `ui.xml` because it's a `TableView` and nothing can be changed about that) and open the file afterwards.
 
-TODO DELETE MainRootView.ui.xml because it's a tableview subclass
+First thing you'll notice is that there's a lot of complex text in the header. That's actually defining the `RootView` component you're creating right now, that's why the file ends with `</Component>` and every `ui.xml` file has to have this structure (except for the `rootView="true"` if you don't want the view to be a `RootView`).
 
-Open a file called **NoteCell.ui.xml**. First thing you'll notice is that there's a lot of complex text in the header. That's actually defining the `RootView` component you're creating right now, that's why the file ends with `</Component>` and every `ui.xml` file has to have this structure (except for the `rootView="true"` if you don't want the view to be a `RootView`).
+We don't want our `NoteCell` to take up the whole screen, so we'll get rid of
 
-We're not gonna need the Label, so we can safely get rid of it.
+```swift
+rootView="true"
+```
+
+in the header.
+
+Next up, let's define how our cells should look like. You can of course define your cell however you like. Your wildest dreams can become real (as long as they are about layouting).
+
+My `NoteCell` is going to have Title on top and Preview of the note right under it. The Preview is going to be at most 2 lines long, Title only 1.
+
+A good idea is to run what we have so far
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<Component
+  HEADER-STUFF REDACTED>
+  <Label
+    field="title"
+    layout:leading="super inset(6)"
+    layout:trailing="super inset(10)"
+    layout:top="super inset(6)" />
+
+  <Label
+    field="preview"
+    layout:fillHorizontally="super inset(10)"
+    layout:top="super inset(6)"
+    layout:bottom=":gt super inset(6)" />
+</Component>
+```
+
+The `layout:` prefix is used for layouting attributes. Others are used to directly change the attributes of the element you are creating.
+
+Saving the file at any time of you changing the values (assuming it is syntactically and semantically correct) will update the screen on your simulator.
 
 ### Part 4: Creating New Notes
 
@@ -180,7 +212,29 @@ We're not gonna need the Label, so we can safely get rid of it.
 
 ### Part 5: Finishing Touches
 
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<Component
+  HEADER-STUFF REDACTED>
+  <Label
+    field="title"
+    font="16"
+    numberOfLines="1"
+    lineBreakMode="byTruncatingTail"
+    layout:leading="super inset(6)"
+    layout:trailing="super inset(10)"
+    layout:top="super inset(6)" />
 
+  <Label
+    field="preview"
+    font="12"
+    numberOfLines="2"
+    lineBreakMode="byTruncatingTail"
+    layout:fillHorizontally="super inset(10)"
+    layout:top="super inset(6)"
+    layout:bottom=":gt super inset(6)" />
+</Component>
+```
 
 
 
