@@ -25,9 +25,11 @@ After following instructions in **Reactant CLI** repo's README you'll be equippe
 How to create a project using **Reactant CLI**:
 - select a favorable root folder (project folder will be created automatically in it)
 - simply hack
+
 ```
 reactant init
 ```
+
 into the Terminal, we're gonna be using this configuration: ![-REACTANT INIT TERMINAL IMAGE-]()
 - wait for Cocoapods to do its job bringing in the dependencies
 
@@ -46,12 +48,14 @@ You may notice that we have some things prepared in advance. We will certainly t
 `Models` is the folder for our **Models** \*gasp\*. These include `struct`, `enum`, `protocol` or `class` types that we use everywhere else in our program.
 
 ($NAME) will probably make use of some complex model we will come up with. We'll create a new file `Note.swift` (by clicking right on the `Models` folder and choosing `New file...` and selecting `Swift file`, we'll only use these from now on) and a `struct` inside it named `Note`, simple and clean.
+
 ```swift
 struct Note {
   let title: String
   let body: String
 }
 ```
+
 We have the `MODEL`, now onto the `CONTROLLER`.
 
 #### Controller
@@ -60,6 +64,7 @@ Moving on to the **MainController** file. `ControllerBase` is what any controlle
 Passing information to `RootView` is done by setting `RootView`'s `componentState` (yes, every component has a `componentState`). This is usually done in `update()` method, as it's called every time `componentState` changes (and once at the beginning, even if it's `Void`).
 
 We don't have any notes ready, so we need to create some from scratch and pass them to the `RootView`.
+
 ```swift
 final class MainController: ControllerBase<Void, MainRootView> {
   override func afterInit() {
@@ -68,10 +73,13 @@ final class MainController: ControllerBase<Void, MainRootView> {
       Note(title: "TODO", body: "Workout, take Casey on a date, workout some more"),
       Note(title: "Dear Diary", body: "Today I found out that I'm gonna be promoted tomorrow! I'm so excited as I don't know what to expect from the new job position. Looking forward to it though.")
     ]
-    rootView.componentState = notes
+    rootView.componentState = .items(notes)
   }
 }
 ```
+
+The `.items` TODO.
+
 Doing so we passed the notes we prepared in advance to the `RootView`. Right now Xcode will complain that `[Note]` and `Void` are incompatible. Shall we head over to a file called **MainRootView** and fix it?
 
 #### RootView
@@ -80,25 +88,39 @@ If we were to think of the `Controller` as a puppeteer, `RootView` and all its s
 We can see `Reactant CLI` generated a class for us that we will use as our `RootView`.
 
 However, I don't think we want our notes to be lying all over the place; a table (not the four-leg type) is more appropriate. We'll mark our **MainRootView** as `RootView` and transform it into a simple `TableView` by changing what we're subclassing like so:
+
 ```swift
 final class MainRootView: PlainTableView<NoteCell>, RootView {
   // we'll fill this up in a second
 }
 ```
 
-Having done that, by
+Having done that, we can customize our `TableView` a bit in `init()`.
+
+```swift
+  init() {
+    super.init()
+
+    footerView = UIView() // this is so that cell dividers end after the last cell
+    rowHeight = NoteCell.height
+    separatorStyle = .singleLine
+    tableView.contentInset.bottom = 0
+  }
+```
 
 **NOTE**: For more `TableView` variations see [Reactant's TableView classes](https://docs.reactant.tech/parts/tableview.html).
 
 Now we have a `TableView`, but the compiler has no idea what `NoteCell` means. For us it means that we need to create one.
 
 Creating new file in the `Main` folder and choosing `Swift file`. You can name the file however you want, though it's good practice to always name it after the class that's going to reside in the file.
+
 ```swift
 final class NoteCell: ViewBase<Note, Void>, Reactant.TableViewCell {
   static let height: CGFloat = 80
 }
 ```
-This is the declaration of our cell. It's good practice to explicitly set the height of your table cell - ($INPUT_NEEDED). Next we need to add some labels that will tell us what the note is about without tapping on it.
+
+This is the declaration of our cell. It's good practice to explicitly set the height of your table cell. Next we need to add some labels that will tell us what the note is about without us tapping on it.
 
 ```swift
 final class NoteCell: ViewBase<Note, Void>, Reactant.TableViewCell {
@@ -121,7 +143,7 @@ final class NoteCell: ViewBase<Note, Void>, Reactant.TableViewCell {
 }
 ```
 
-**NOTE**: I'm using 2-space tabs in these short and cute snippets to achieve better readability. Try reading 4-space tab code on a phone! If you want to inspect the code in its full glory, the whole project can be found  [here](https://github.com/MatyasKriz/reactant-notes). Pasting the code to Xcode from the snippets should automatically convert indentation to your preferred size, if it does not, use `Ctrl+I` on selected code to indent it correctly.
+**NOTE**: I'm using 2-space tabs in these cute short snippets to achieve better readability. Try reading 4-space tab code on a phone! If you want to inspect the code in its full glory, the whole project can be found  [here](https://github.com/MatyasKriz/reactant-notes). Pasting the code to Xcode from the snippets should automatically convert indentation to your preferred size, if it does not, use `Ctrl+I` on selected code to indent it correctly.
 
 Okay, lots of new code, so I owe you an explanation.
 
@@ -139,16 +161,22 @@ We are using `children(_:)` which also comes from Reactant to conveniently add a
 
 **NOTE**: One more thing, even though these methods are overridden, calling super.*method*() is not needed.
 
-### Part 3: layouting
-As you may or may not know, the reigning king of taking care of your layout on any kind of Apple device is `AutoLayout`. We sure want to get in on the fun using it.
+### Part 3: Layouting
+As you may or may not know, the reigning king of laying out your views on any kind of Apple device is `AutoLayout`. We sure want to get in on the fun using it.
 
 **ReactantUI** uses what `AutoLayout` offers in an easy-to-understand way. You can either use anonymous components or connect your UI to your code giving you even more control over the component.
 
-Open a file called **MainRootView.ui.xml**. First thing you'll notice is that there's some gibberish in the header. That's actually defining the `RootView` component you're creating right now, that's why the file ends with `</Component>` and every `ui.xml` file has to have this structure (except for the `rootView="true"` if you don't want the view to be a `RootView`).
+TODO LEARN TO USE `reactant add` to create NoteCell.ui.xml
 
-We're not gonna need the Label, so we can get rid of it.
+Open a file called **NoteCell.ui.xml**. First thing you'll notice is that there's a lot of complex text in the header. That's actually defining the `RootView` component you're creating right now, that's why the file ends with `</Component>` and every `ui.xml` file has to have this structure (except for the `rootView="true"` if you don't want the view to be a `RootView`).
+
+We're not gonna need the Label, so we can safely get rid of it.
+
+### Part 4: Creating New Notes
 
 
+
+### Part 5: Finishing Touches
 
 
 
