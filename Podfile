@@ -43,6 +43,10 @@ target 'TVPrototyping' do
     pod 'Reactant/TableView', :path => './'
     pod 'Reactant/CollectionView', :path => './'
     pod 'Reactant/StaticMap', :path => './'
+    pod 'Reactant/Configuration', :path => './'
+    pod 'Reactant/Result', :path => './'
+    pod 'Reactant/Validation', :path => './'
+    pod 'Reactant/ActivityIndicator', :path => './'
 end
 
 # Required until CocoaPods adds support for targets with multiple Swift versions or when all dependencies support Swift 4.0

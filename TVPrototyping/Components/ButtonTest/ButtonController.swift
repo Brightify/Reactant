@@ -23,7 +23,7 @@ final class ButtonRootView: ViewBase<Void, Void>, RootView {
         children(button)
 
         button.setTitleColor(.black, for: .normal)
-        button.setBackgroundColor(.white, for: .normal)
+        button.setBackgroundColor(.blue, for: .normal)
         button.setBackgroundColor(.red, for: .focused)
     }
 
@@ -32,5 +32,18 @@ final class ButtonRootView: ViewBase<Void, Void>, RootView {
             make.center.equalToSuperview()
             make.size.equalTo(CGSize(width: 300, height: 100))
         }
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        coordinator.addCoordinatedAnimations({
+            UIView.animate(withDuration: 0.3, animations: {
+                if self.button.isFocused {
+                    self.button.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                } else {
+                    self.button.transform = .identity
+                }
+            })
+
+        }, completion: nil)
     }
 }
