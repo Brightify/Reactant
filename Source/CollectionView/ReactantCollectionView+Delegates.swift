@@ -9,7 +9,7 @@
 import UIKit
 
 extension ReactantCollectionView {
-    
+    #if os(iOS)
     public var refreshControlTintColor: UIColor? {
         get {
             return refreshControl?.tintColor
@@ -18,6 +18,7 @@ extension ReactantCollectionView {
             refreshControl?.tintColor = newValue
         }
     }
+    #endif
     
     public var activityIndicatorStyle: UIActivityIndicatorViewStyle {
         get {

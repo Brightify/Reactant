@@ -37,8 +37,10 @@ open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where 
         children(
             pageControl
         )
-        
+
+        #if os(iOS)
         collectionView.isPagingEnabled = true
+        #endif
         collectionView.showsHorizontalScrollIndicator = false
         collectionViewLayout.scrollDirection = .horizontal
         collectionViewLayout.minimumLineSpacing = 0

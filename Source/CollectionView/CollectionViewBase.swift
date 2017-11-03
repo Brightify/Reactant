@@ -24,8 +24,9 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     }
     
     public let collectionView: UICollectionView
-    
+    #if os(iOS)
     public let refreshControl: UIRefreshControl?
+    #endif
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView()
     
@@ -35,7 +36,9 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
 
     public init(layout: UICollectionViewLayout, reloadable: Bool = true) {
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        #if os(iOS)
         self.refreshControl = reloadable ? UIRefreshControl() : nil
+        #endif
         
         super.init()
     }
@@ -46,12 +49,13 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
             emptyLabel,
             loadingIndicator
         )
-        
+        #if os(iOS)
         if let refreshControl = refreshControl {
             collectionView.children(
                 refreshControl
             )
         }
+        #endif
         
         loadingIndicator.hidesWhenStopped = true
         
@@ -105,7 +109,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         }
         
         emptyLabel.text = emptyMessage
-        
+        #if os(iOS)
         if let refreshControl = refreshControl {
             if loading {
                 refreshControl.beginRefreshing()
@@ -119,6 +123,13 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
                 loadingIndicator.stopAnimating()
             }
         }
+        #else
+        if loading {
+            loadingIndicator.startAnimating()
+        } else {
+            loadingIndicator.stopAnimating()
+        }
+        #endif
 
         self.items.onNext(items)
 

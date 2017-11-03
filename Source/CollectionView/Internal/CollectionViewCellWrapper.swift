@@ -40,7 +40,11 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
             collectionViewCell?.setHighlighted(isHighlighted)
         }
     }
-    
+
+    public override var preferredFocusedView: UIView? {
+        return cell
+    }
+
     public override func updateConstraints() {
         super.updateConstraints()
         
@@ -48,6 +52,7 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
             make.edges.equalTo(contentView)
         }
     }
+
     
     public func cachedCellOrCreated(factory: () -> CELL) -> CELL {
         if let cell = cell {

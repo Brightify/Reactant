@@ -11,7 +11,9 @@ import UIKit
 public protocol ReactantCollectionView: class, Scrollable {
     
     var collectionView: UICollectionView { get }
+    #if os(iOS)
     var refreshControl: UIRefreshControl? { get }
+    #endif
     var emptyLabel: UILabel  { get }
     var loadingIndicator: UIActivityIndicatorView { get }
 }

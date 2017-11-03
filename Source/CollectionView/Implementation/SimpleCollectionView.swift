@@ -21,10 +21,16 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
     private let cellIdentifier = CollectionViewCellIdentifier<CELL>()
     
     open override var actions: [Observable<SimpleCollectionViewAction<CELL>>] {
+        #if os(iOS)
         return [
             collectionView.rx.modelSelected(MODEL.self).map(SimpleCollectionViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: SimpleCollectionViewAction.refresh)
         ].flatMap { $0 }
+        #else
+        return [
+            collectionView.rx.modelSelected(MODEL.self).map(SimpleCollectionViewAction.selected)
+        ]
+        #endif
     }
     
     private let cellFactory: () -> CELL
