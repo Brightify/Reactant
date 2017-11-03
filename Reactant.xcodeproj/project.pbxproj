@@ -53,8 +53,12 @@
 		18B4BF7D1E294E7A00D39EEA /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */; };
 		18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */; };
 		2210BAD31EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BAD21EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift */; };
+		2284DA9F1FAC6D2F00D231D3 /* ButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DA9E1FAC6D2F00D231D3 /* ButtonController.swift */; };
+		2284DAA11FAC6D5500D231D3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA01FAC6D5500D231D3 /* TableViewController.swift */; };
+		2284DAA41FAC6DBA00D231D3 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA31FAC6DBA00D231D3 /* TabController.swift */; };
+		2284DAA61FAC6DD500D231D3 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA51FAC6DD500D231D3 /* CollectionViewController.swift */; };
+		2284DAA81FAC6E0700D231D3 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA71FAC6E0700D231D3 /* MapController.swift */; };
 		22F48FE71FAB0EE900E736C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F48FE61FAB0EE900E736C8 /* AppDelegate.swift */; };
-		22F48FE91FAB0EE900E736C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F48FE81FAB0EE900E736C8 /* ViewController.swift */; };
 		22F48FEE1FAB0EE900E736C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F48FED1FAB0EE900E736C8 /* Assets.xcassets */; };
 		45444ED1E71FEFA1D6A84E08 /* Pods_ReactantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711603479E5441514316A7F3 /* Pods_ReactantTests.framework */; };
 		9BD784DEF24B1F1ABA1833F3 /* Pods_TVPrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4261408CC5E011A11D02934 /* Pods_TVPrototyping.framework */; };
@@ -246,9 +250,13 @@
 		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderTableView.swift; path = Implementation/HeaderTableView.swift; sourceTree = "<group>"; };
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterTableView.swift; path = Implementation/FooterTableView.swift; sourceTree = "<group>"; };
 		2210BAD21EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+DialogDismissalListener.swift"; sourceTree = "<group>"; };
+		2284DA9E1FAC6D2F00D231D3 /* ButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonController.swift; sourceTree = "<group>"; };
+		2284DAA01FAC6D5500D231D3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		2284DAA31FAC6DBA00D231D3 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
+		2284DAA51FAC6DD500D231D3 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		2284DAA71FAC6E0700D231D3 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		22F48FE41FAB0EE800E736C8 /* TVPrototyping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVPrototyping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F48FE61FAB0EE900E736C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		22F48FE81FAB0EE900E736C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		22F48FED1FAB0EE900E736C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22F48FEF1FAB0EE900E736C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22F48FF41FAB0EE900E736C8 /* TVPrototypingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVPrototypingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -513,11 +521,63 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		2284DA991FAC6CE500D231D3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2284DAA21FAC6DA500D231D3 /* TabController */,
+				2284DA9D1FAC6D0800D231D3 /* StaticMap */,
+				2284DA9C1FAC6D0100D231D3 /* CollectionView */,
+				2284DA9B1FAC6CFA00D231D3 /* ButtonTest */,
+				2284DA9A1FAC6CF000D231D3 /* TableView */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		2284DA9A1FAC6CF000D231D3 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				2284DAA01FAC6D5500D231D3 /* TableViewController.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		2284DA9B1FAC6CFA00D231D3 /* ButtonTest */ = {
+			isa = PBXGroup;
+			children = (
+				2284DA9E1FAC6D2F00D231D3 /* ButtonController.swift */,
+			);
+			path = ButtonTest;
+			sourceTree = "<group>";
+		};
+		2284DA9C1FAC6D0100D231D3 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				2284DAA51FAC6DD500D231D3 /* CollectionViewController.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		2284DA9D1FAC6D0800D231D3 /* StaticMap */ = {
+			isa = PBXGroup;
+			children = (
+				2284DAA71FAC6E0700D231D3 /* MapController.swift */,
+			);
+			path = StaticMap;
+			sourceTree = "<group>";
+		};
+		2284DAA21FAC6DA500D231D3 /* TabController */ = {
+			isa = PBXGroup;
+			children = (
+				2284DAA31FAC6DBA00D231D3 /* TabController.swift */,
+			);
+			path = TabController;
+			sourceTree = "<group>";
+		};
 		22F48FE51FAB0EE900E736C8 /* TVPrototyping */ = {
 			isa = PBXGroup;
 			children = (
+				2284DA991FAC6CE500D231D3 /* Components */,
 				22F48FE61FAB0EE900E736C8 /* AppDelegate.swift */,
-				22F48FE81FAB0EE900E736C8 /* ViewController.swift */,
 				22F48FED1FAB0EE900E736C8 /* Assets.xcassets */,
 				22F48FEF1FAB0EE900E736C8 /* Info.plist */,
 			);
@@ -1314,7 +1374,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxOptional-tvOS/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-tvOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-tvOS/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Reactant.common-CollectionView-TableView/Reactant.framework",
+				"${BUILT_PRODUCTS_DIR}/Reactant.common-CollectionView-StaticMap-TableView/Reactant.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1586,7 +1646,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22F48FE91FAB0EE900E736C8 /* ViewController.swift in Sources */,
+				2284DAA61FAC6DD500D231D3 /* CollectionViewController.swift in Sources */,
+				2284DAA81FAC6E0700D231D3 /* MapController.swift in Sources */,
+				2284DAA41FAC6DBA00D231D3 /* TabController.swift in Sources */,
+				2284DAA11FAC6D5500D231D3 /* TableViewController.swift in Sources */,
+				2284DA9F1FAC6D2F00D231D3 /* ButtonController.swift in Sources */,
 				22F48FE71FAB0EE900E736C8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

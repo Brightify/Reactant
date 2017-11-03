@@ -36,12 +36,13 @@ target 'ReactantPrototyping' do
 end
 
 target 'TVPrototyping' do
-    platform :tvos, '9.0'
+    platform :tvos, '9.2'
     shared
 
     pod 'Reactant', :path => './'
     pod 'Reactant/TableView', :path => './'
     pod 'Reactant/CollectionView', :path => './'
+    pod 'Reactant/StaticMap', :path => './'
 end
 
 # Required until CocoaPods adds support for targets with multiple Swift versions or when all dependencies support Swift 4.0
