@@ -24,6 +24,14 @@ public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell, Configur
     public override class var requiresConstraintBasedLayout: Bool {
         return true
     }
+
+    public override var preferredFocusedView: UIView? {
+        return cell
+    }
+
+    public override var preferredFocusEnvironments: [UIFocusEnvironment] {
+        return cell.map { [$0] } ?? []
+    }
     
     private var tableViewCell: TableViewCell? {
         return cell as? TableViewCell

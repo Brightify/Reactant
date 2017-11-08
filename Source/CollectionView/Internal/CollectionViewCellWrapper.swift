@@ -24,6 +24,14 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
     public override class var requiresConstraintBasedLayout: Bool {
         return true
     }
+
+    public override var preferredFocusedView: UIView? {
+        return cell
+    }
+
+    public override var preferredFocusEnvironments: [UIFocusEnvironment] {
+        return cell.map { [$0] } ?? []
+    }
     
     private var collectionViewCell: CollectionViewCell? {
         return cell as? CollectionViewCell
@@ -39,10 +47,6 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
         didSet {
             collectionViewCell?.setHighlighted(isHighlighted)
         }
-    }
-
-    public override var preferredFocusedView: UIView? {
-        return cell
     }
 
     public override func updateConstraints() {
