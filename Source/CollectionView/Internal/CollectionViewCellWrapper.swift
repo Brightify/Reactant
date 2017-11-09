@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell, Configurable {
     
@@ -42,6 +43,8 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
             collectionViewCell?.setSelected(isSelected)
         }
     }
+
+    public var configureDisposeBag = DisposeBag()
     
     public override var isHighlighted: Bool {
         didSet {

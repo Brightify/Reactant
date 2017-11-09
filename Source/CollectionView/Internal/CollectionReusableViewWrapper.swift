@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReusableView, Configurable {
     
@@ -20,6 +21,8 @@ public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReus
             configuration.get(valueFor: Properties.Style.CollectionView.reusableViewWrapper)(self)
         }
     }
+
+    public var configureDisposeBag = DisposeBag()
     
     public override class var requiresConstraintBasedLayout: Bool {
         return true

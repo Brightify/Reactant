@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell, Configurable {
     
@@ -20,6 +21,8 @@ public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell, Configur
             configuration.get(valueFor: Properties.Style.TableView.cellWrapper)(self)
         }
     }
+
+    public var configureDisposeBag = DisposeBag()
     
     public override class var requiresConstraintBasedLayout: Bool {
         return true

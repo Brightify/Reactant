@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeaderFooterView, Configurable {
     
@@ -20,6 +21,8 @@ public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeader
             configuration.get(valueFor: Properties.Style.TableView.headerFooterWrapper)(self)
         }
     }
+
+    public var configureDisposeBag = DisposeBag()
     
     public override class var requiresConstraintBasedLayout: Bool {
         return true
