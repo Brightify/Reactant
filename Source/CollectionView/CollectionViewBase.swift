@@ -148,7 +148,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
             .subscribe(onNext: { [weak self] in
                 self?.perform(action: $0)
             })
-            .disposed(by: component.stateDisposeBag)
+            .disposed(by: stateDisposeBag)
     }
     
     open func dequeueAndConfigure<T: Component>(identifier: CollectionViewCellIdentifier<T>, forRow row: Int, factory: @escaping () -> T,
@@ -170,7 +170,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
             .subscribe(onNext: { [weak self] in
                 self?.perform(action: $0)
             })
-            .disposed(by: component.stateDisposeBag)
+            .disposed(by: stateDisposeBag)
     }
     
     open func dequeueAndConfigure<T: Component>(identifier: CollectionSupplementaryViewIdentifier<T>, forRow row: Int, factory: @escaping () -> T,
