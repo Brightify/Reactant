@@ -3,7 +3,6 @@ PODS:
   - Kingfisher (4.5.0)
   - Nimble (7.0.3)
   - Quick (1.2.0)
-<<<<<<< HEAD
   - Reactant/All-iOS (1.1.0):
     - Reactant/CollectionView
     - Reactant/Configuration
@@ -28,27 +27,14 @@ PODS:
     - RxSwift (~> 4.0)
     - SnapKit (~> 4.0)
   - Reactant/Core (1.1.0):
-=======
-  - Reactant (1.0.5):
-    - Reactant/Core (= 1.0.5)
-    - Reactant/Result (= 1.0.5)
-  - Reactant/Configuration (1.0.5):
-    - RxSwift (~> 4.0)
-    - SnapKit (~> 4.0)
-  - Reactant/Core (1.0.5):
->>>>>>> Update podfile.
     - Reactant/Configuration
     - RxCocoa (~> 4.0)
     - RxOptional (~> 3.0)
     - RxSwift (~> 4.0)
     - SnapKit (~> 4.0)
-<<<<<<< HEAD
   - Reactant/FallbackSafeAreaInsets (1.1.0):
     - Reactant/Core
   - Reactant/Result (1.1.0):
-=======
-  - Reactant/Result (1.0.5):
->>>>>>> Update podfile.
     - Result (~> 3.0)
     - RxOptional (~> 3.0)
     - RxSwift (~> 4.0)
@@ -76,6 +62,7 @@ PODS:
   - SnapKit (4.0.0)
 
 DEPENDENCIES:
+  - Cuckoo (from `https://github.com/Brightify/Cuckoo.git`, branch `master`)
   - Kingfisher (~> 4.0)
   - Nimble (~> 7.0)
   - Quick (~> 1.1)
@@ -90,19 +77,23 @@ DEPENDENCIES:
   - SnapKit (~> 4.0)
 
 EXTERNAL SOURCES:
+  Cuckoo:
+    :branch: master
+    :git: https://github.com/Brightify/Cuckoo.git
   Reactant:
     :path: ./
+
+CHECKOUT OPTIONS:
+  Cuckoo:
+    :commit: 0f52ceef7ea7e16af4b6b90da39a2c6034bc29e5
+    :git: https://github.com/Brightify/Cuckoo.git
 
 SPEC CHECKSUMS:
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   Kingfisher: 26ae0473102b77b575da51960c932431e3745407
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-<<<<<<< HEAD
   Reactant: b94af04013acb83e6f952699c29f272d29bf88d9
-=======
-  Reactant: 8fa80fe4e3bca9933b79aa1bcde1173f3416f60a
->>>>>>> Update podfile.
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
