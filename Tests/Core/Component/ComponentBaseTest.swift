@@ -12,13 +12,6 @@ import Reactant
 import RxSwift
 import Cuckoo
 
-enum ComponentTestAction {
-    case none
-    case one
-    case two
-    case three
-}
-
 class ComponentBaseTest: QuickSpec {
     override func spec() {
         describe("initialization") {
