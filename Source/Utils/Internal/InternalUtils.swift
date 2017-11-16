@@ -22,3 +22,21 @@ extension Double {
         return abs(self - value) <= precision
     }
 }
+
+#if DEBUG
+    func fatalError(_ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) -> Never {
+        #if _runtime(_ObjC)
+            NSException(name: .internalInconsistencyException, reason: message(), userInfo: nil).raise()
+        #endif
+
+        Swift.fatalError(message(), file: file, line: line)
+    }
+
+    public func preconditionFailure(_ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) -> Never {
+        #if _runtime(_ObjC)
+            NSException(name: .internalInconsistencyException, reason: message(), userInfo: nil).raise()
+        #endif
+
+        Swift.fatalError(message(), file: file, line: line)
+    }
+#endif
