@@ -27,10 +27,10 @@ enum TestingEnum {
 extension Sequence where Iterator.Element == TestingEnum {
     func testEquality(to other: [TestingEnum]) {
         for element in self {
-            expect(other.contains { $0.value == element.value }).to(beTruthy())
+            expect(other.contains { $0.value == element.value }).to(beTrue())
         }
         for element in other {
-            expect(self.contains { $0.value == element.value }).to(beTruthy())
+            expect(self.contains { $0.value == element.value }).to(beTrue())
         }
     }
 }
@@ -66,50 +66,50 @@ class SequenceExtensionsTest: QuickSpec {
             describe("all(predicate:)") {
                 it("returns true for an empty array") {
                     let array = [] as [Int]
-                    expect(array.all(predicate: { _ in false })).to(beTruthy())
-                    expect(array.all(predicate: { $0 % 42 == 0 })).to(beTruthy())
-                    expect(array.all(predicate: { _ in true })).to(beTruthy())
+                    expect(array.all(predicate: { _ in false })).to(beTrue())
+                    expect(array.all(predicate: { $0 % 42 == 0 })).to(beTrue())
+                    expect(array.all(predicate: { _ in true })).to(beTrue())
                 }
                 it("returns false for predicate that doesn't match the array") {
                     let array = Array(1...42) as [Int]
-                    expect(array.all(predicate: { $0 % 2 == 0 })).to(beFalsy())
-                    expect(array.all(predicate: { $0 % 3 == 0 })).to(beFalsy())
-                    expect(array.all(predicate: { $0 % 4 == 0 })).to(beFalsy())
-                    expect(array.all(predicate: { $0 % 5 == 0 })).to(beFalsy())
-                    expect(array.all(predicate: { $0 == 5 })).to(beFalsy())
+                    expect(array.all(predicate: { $0 % 2 == 0 })).to(beFalse())
+                    expect(array.all(predicate: { $0 % 3 == 0 })).to(beFalse())
+                    expect(array.all(predicate: { $0 % 4 == 0 })).to(beFalse())
+                    expect(array.all(predicate: { $0 % 5 == 0 })).to(beFalse())
+                    expect(array.all(predicate: { $0 == 5 })).to(beFalse())
                 }
                 it("returns true for predicate that matches the array") {
                     let array = [1, 3, 5, 7, 9, 11]
-                    expect(array.all(predicate: { $0 % 2 != 0 })).to(beTruthy())
+                    expect(array.all(predicate: { $0 % 2 != 0 })).to(beTrue())
                 }
             }
             describe("any(predicate:)") {
                 it("returns false for an empty array, no element that could fit the predicate") {
                     let array = [] as [Int]
-                    expect(array.any(predicate: { _ in false })).to(beFalsy())
-                    expect(array.any(predicate: { $0 % 42 == 0 })).to(beFalsy())
-                    expect(array.any(predicate: { _ in true })).to(beFalsy())
+                    expect(array.any(predicate: { _ in false })).to(beFalse())
+                    expect(array.any(predicate: { $0 % 42 == 0 })).to(beFalse())
+                    expect(array.any(predicate: { _ in true })).to(beFalse())
                 }
                 it("returns true for predicate that matches only one element of the array") {
                     let array = Array(1...42)
 
                     for integer in array {
-                        expect(array.any(predicate: { $0 == integer })).to(beTruthy())
+                        expect(array.any(predicate: { $0 == integer })).to(beTrue())
                     }
                 }
                 it("returns true for predicate that matches some of the elements of the array") {
                     let array = Array(1...42)
 
-                    expect(array.any(predicate: { $0 % 2 == 0 })).to(beTruthy())
-                    expect(array.any(predicate: { $0 % 3 == 0 })).to(beTruthy())
-                    expect(array.any(predicate: { $0 % 4 == 0 })).to(beTruthy())
-                    expect(array.any(predicate: { $0 % 5 == 0 })).to(beTruthy())
+                    expect(array.any(predicate: { $0 % 2 == 0 })).to(beTrue())
+                    expect(array.any(predicate: { $0 % 3 == 0 })).to(beTrue())
+                    expect(array.any(predicate: { $0 % 4 == 0 })).to(beTrue())
+                    expect(array.any(predicate: { $0 % 5 == 0 })).to(beTrue())
                 }
                 it("returns true for predicate that matches all elements of the array") {
                     let array = Array(1...42)
 
-                    expect(array.any(predicate: { $0 % 1 == 0 })).to(beTruthy())
-                    expect(array.any(predicate: { _ in true })).to(beTruthy())
+                    expect(array.any(predicate: { $0 % 1 == 0 })).to(beTrue())
+                    expect(array.any(predicate: { _ in true })).to(beTrue())
                 }
             }
             describe("distinct(comparator:)") {
