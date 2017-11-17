@@ -14,60 +14,76 @@ import Cuckoo
 
 class ComponentDelegateTest: QuickSpec {
     override func spec() {
-        let mockComponent = MockComponentBase<Int, ComponentTestAction>()
-        var delegate: ComponentDelegate<Int, ComponentTestAction, MockComponentBase<Int, ComponentTestAction>>!
-        var delegateVoidState: ComponentDelegate<Void, ComponentTestAction, MockComponentBase<Void, ComponentTestAction>>!
-        var testDisposeBag: DisposeBag!
-        beforeEach {
-            delegate = ComponentDelegate<Int, ComponentTestAction, MockComponentBase<Int, ComponentTestAction>>()
-            delegateVoidState = ComponentDelegate<Void, ComponentTestAction, MockComponentBase<Void, ComponentTestAction>>()
-            testDisposeBag = DisposeBag()
-        }
-        describe("observableState tests") {
-            it("contains componentState when set") {
-                var received = false
-
-                delegate.observableState.subscribe(onNext: { state in
-                    received = state == 42
-                })
-                .disposed(by: testDisposeBag)
-
-                delegate.componentState = 42
-                expect(received).to(beTrue())
+        describe("ComponentDelegate") {
+            let mockComponent = MockComponentBase<Int, ComponentTestAction>()
+            var delegate: ComponentDelegate<Int, ComponentTestAction, MockComponentBase<Int, ComponentTestAction>>!
+            var delegateVoidState: ComponentDelegate<Void, ComponentTestAction, MockComponentBase<Void, ComponentTestAction>>!
+            var testDisposeBag: DisposeBag!
+            beforeEach {
+                delegate = ComponentDelegate<Int, ComponentTestAction, MockComponentBase<Int, ComponentTestAction>>()
+                delegateVoidState = ComponentDelegate<Void, ComponentTestAction, MockComponentBase<Void, ComponentTestAction>>()
+                testDisposeBag = DisposeBag()
             }
-            it("can observe componentState before or after update") {
-                var received = ComponentTestAction.none
+            describe("observableState tests") {
+                it("contains componentState when set") {
+                    var received = false
 
-                delegate.observeState(.beforeUpdate).subscribe(onNext: { state in
-                    guard state == 42 else { return }
-                    received = .one
-                })
-                .disposed(by: testDisposeBag)
+                    delegate.observableState.subscribe(onNext: { state in
+                        received = state == 42
+                    })
+                    .disposed(by: testDisposeBag)
 
-                delegate.observeState(.afterUpdate).subscribe(onNext: { state in
-                    guard state == 42 else { return }
-                    received = .two
-                })
-                .disposed(by: testDisposeBag)
+                    delegate.componentState = 42
+                    expect(received).to(beTrue())
+                }
+                it("can observe componentState before or after update") {
+                    var received = ComponentTestAction.none
 
-                delegate.ownerComponent = mockComponent
-                delegate.componentState = 42
-                expect(received).to(equal(ComponentTestAction.one))
-                delegate.canUpdate = true
-                expect(received).to(equal(ComponentTestAction.two))
+                    delegate.observeState(.beforeUpdate).subscribe(onNext: { state in
+                        guard state == 42 else { return }
+                        received = .one
+                    })
+                    .disposed(by: testDisposeBag)
+
+                    delegate.observeState(.afterUpdate).subscribe(onNext: { state in
+                        guard state == 42 else { return }
+                        received = .two
+                    })
+                    .disposed(by: testDisposeBag)
+
+                    delegate.ownerComponent = mockComponent
+                    delegate.componentState = 42
+                    expect(received).to(equal(ComponentTestAction.one))
+                    delegate.canUpdate = true
+                    expect(received).to(equal(ComponentTestAction.two))
+                }
             }
-        }
-        describe("componentState existence") {
-            it("delegate with Void componentState type always has componentState") {
-                expect(delegateVoidState.hasComponentState).to(beTrue())
+            describe("componentState existence") {
+                it("delegate with Void componentState type always has componentState") {
+                    expect(delegateVoidState.hasComponentState).to(beTrue())
+                }
+                it("has no componentState to begin with") {
+                    expect(delegate.hasComponentState).to(beFalse())
+                    delegate.componentState = 0
+                    expect(delegate.hasComponentState).to(beTrue())
+                }
+                it("crashes when there's no componentState") {
+                    expect(delegate.componentState).to(raiseException())
+                }
             }
-            it("has no componentState to begin with") {
-                expect(delegate.hasComponentState).to(beFalse())
-                delegate.componentState = 0
-                expect(delegate.hasComponentState).to(beTrue())
-            }
-            it("crashes when there's no componentState") {
-                expect(delegate.componentState).to(raiseException())
+            describe("previousComponentState") {
+                it("is nil on first update and before it") {
+                    expect(delegate.previousComponentState).to(beNil())
+                    delegate.componentState = 1
+                    expect(delegate.previousComponentState).to(beNil())
+                }
+                it("contains old componentState when componentState changes") {
+                    delegate.componentState = 1
+                    delegate.componentState = 0
+                    expect(delegate.previousComponentState).to(equal(1))
+                    delegate.componentState = 100000
+                    expect(delegate.previousComponentState).to(equal(0))
+                }
             }
         }
     }
