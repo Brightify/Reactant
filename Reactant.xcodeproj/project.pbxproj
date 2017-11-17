@@ -12,6 +12,7 @@
 		002D35E71FBE0FE800A0401D /* ComponentDelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D35E51FBE0FE500A0401D /* ComponentDelegateTest.swift */; };
 		002D35E91FBE115800A0401D /* ComponentTestParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D35E81FBE115800A0401D /* ComponentTestParts.swift */; };
 		00B632E91FBF2AC400D83926 /* Rx+recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B632E81FBF2AC400D83926 /* Rx+recording.swift */; };
+		00B632EC1FBF5B1300D83926 /* WireframeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B632EB1FBF5B1300D83926 /* WireframeTest.swift */; };
 		00E342101FA242A1005D3740 /* Sequence+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E3420E1FA22F70005D3740 /* Sequence+Utils.swift */; };
 		00E342151FA26CE7005D3740 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E342131FA2694E005D3740 /* Rule.swift */; };
 		00EB11081FBEE016006A1FAA /* Array+UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB11071FBEE016006A1FAA /* Array+UtilsTest.swift */; };
@@ -200,6 +201,7 @@
 		002D35E51FBE0FE500A0401D /* ComponentDelegateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentDelegateTest.swift; sourceTree = "<group>"; };
 		002D35E81FBE115800A0401D /* ComponentTestParts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentTestParts.swift; sourceTree = "<group>"; };
 		00B632E81FBF2AC400D83926 /* Rx+recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+recording.swift"; sourceTree = "<group>"; };
+		00B632EB1FBF5B1300D83926 /* WireframeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireframeTest.swift; sourceTree = "<group>"; };
 		00E3420E1FA22F70005D3740 /* Sequence+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Utils.swift"; sourceTree = "<group>"; };
 		00E342131FA2694E005D3740 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		00EB11071FBEE016006A1FAA /* Array+UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+UtilsTest.swift"; sourceTree = "<group>"; };
@@ -441,6 +443,14 @@
 			path = TestUtils;
 			sourceTree = "<group>";
 		};
+		00B632EA1FBF5AF200D83926 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+				00B632EB1FBF5B1300D83926 /* WireframeTest.swift */,
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
 		10B68A63379DA3294E15D42D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,6 +674,7 @@
 				DCC98CEC1E62E9BC0018757E /* TableView */,
 				DCC98CED1E62E9C80018757E /* Utils */,
 				DCC98CEE1E62E9CD0018757E /* Validation */,
+				00B632EA1FBF5AF200D83926 /* Wireframe */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1646,6 +1657,7 @@
 				183E0D0F1EB88F17006CF52A /* UIOffset+InitTest.swift in Sources */,
 				183E0D0B1EB88F17006CF52A /* UIColor+ModificatorsTest.swift in Sources */,
 				002D35E71FBE0FE800A0401D /* ComponentDelegateTest.swift in Sources */,
+				00B632EC1FBF5B1300D83926 /* WireframeTest.swift in Sources */,
 				183E0CFE1EB88F11006CF52A /* ConfigurableTest.swift in Sources */,
 				002D35E21FBDCA1600A0401D /* MockComponentBase.swift in Sources */,
 				183E0D001EB88F17006CF52A /* AttributeTest.swift in Sources */,
