@@ -255,6 +255,33 @@ class ComponentDelegateTest: QuickSpec {
                     expect(recorded.elements).to(equal([.one]))
                 }
             }
+
+            describe("ownerComponent") {
+                var mockComponent: MockComponentBase<Int, ComponentTestAction>!
+
+                beforeEach {
+                    mockComponent = MockComponentBase()
+                }
+                context("when componentState is set") {
+                    context("and setting canUpdate to true") {
+                        it("throws NSException") {
+                            delegate.componentState = 0
+
+                            expect(delegate.canUpdate = true).to(raiseException())
+                            verify(mockComponent, never()).update()
+                        }
+                    }
+                    context("and setting ownerComponent") {
+                        it("calls update") {
+                            delegate.componentState = 1
+                            delegate.ownerComponent = mockComponent
+                            delegate.canUpdate = true
+
+                            verify(mockComponent).update()
+                        }
+                    }
+                }
+            }
         }
 
         // MARK:- Value Type Testing
@@ -421,6 +448,33 @@ class ComponentDelegateTest: QuickSpec {
                     }
                 }
             }
+
+            describe("ownerComponent") {
+                var mockComponent: MockComponentBase<ComponentTestState, ComponentTestAction>!
+
+                beforeEach {
+                    mockComponent = MockComponentBase()
+                }
+                context("when componentState is set") {
+                    context("and setting canUpdate to true") {
+                        it("throws NSException") {
+                            delegate.componentState = ComponentTestState(primitive: 0, tuple: ("hello", 1), classy: ComponentTestClass())
+
+                            expect(delegate.canUpdate = true).to(raiseException())
+                            verify(mockComponent, never()).update()
+                        }
+                    }
+                    context("and setting ownerComponent") {
+                        it("calls update") {
+                            delegate.componentState = ComponentTestState(primitive: 0, tuple: ("hello", 1), classy: ComponentTestClass())
+                            delegate.ownerComponent = mockComponent
+                            delegate.canUpdate = true
+
+                            verify(mockComponent).update()
+                        }
+                    }
+                }
+            }
         }
 
         // MARK:- Reference Type Testing
@@ -578,6 +632,33 @@ class ComponentDelegateTest: QuickSpec {
                         expect(delegate.previousComponentState?.primitive).to(equal(0))
                         delegate.componentState = ComponentTestClass(primitive: 3, structy: true)
                         expect(delegate.previousComponentState?.primitive).to(equal(1))
+                    }
+                }
+            }
+
+            describe("ownerComponent") {
+                var mockComponent: MockComponentBase<ComponentTestClass, ComponentTestAction>!
+
+                beforeEach {
+                    mockComponent = MockComponentBase()
+                }
+                context("when componentState is set") {
+                    context("and setting canUpdate to true") {
+                        it("throws NSException") {
+                            delegate.componentState = ComponentTestClass(primitive: 0)
+
+                            expect(delegate.canUpdate = true).to(raiseException())
+                            verify(mockComponent, never()).update()
+                        }
+                    }
+                    context("and setting ownerComponent") {
+                        it("calls update") {
+                            delegate.componentState = ComponentTestClass(primitive: 0)
+                            delegate.ownerComponent = mockComponent
+                            delegate.canUpdate = true
+
+                            verify(mockComponent).update()
+                        }
                     }
                 }
             }
