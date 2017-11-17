@@ -38,7 +38,6 @@ class ComponentDelegateTest: QuickSpec {
             beforeEach {
                 delegate = ComponentDelegate()
             }
-            
             describe("observableState") {
                 context("when componentState is never set") {
                     it("is empty") {
@@ -63,6 +62,7 @@ class ComponentDelegateTest: QuickSpec {
 
             describe("observeState(when: .beforeUpdate)") {
                 var mockComponent: MockComponentBase<Int, ComponentTestAction>!
+
                 beforeEach {
                     mockComponent = MockComponentBase()
                 }
@@ -91,6 +91,7 @@ class ComponentDelegateTest: QuickSpec {
 
             describe("observeState(when: .afterUpdate)") {
                 var mockComponent: MockComponentBase<Int, ComponentTestAction>!
+
                 beforeEach {
                     mockComponent = MockComponentBase()
                 }
@@ -146,6 +147,7 @@ class ComponentDelegateTest: QuickSpec {
 
             describe("componentState") {
                 var mockComponent: MockComponentBase<Int, ComponentTestAction>!
+
                 beforeEach {
                     mockComponent = MockComponentBase()
                 }
@@ -339,6 +341,7 @@ class ComponentDelegateTest: QuickSpec {
 
             describe("componentState") {
                 var mockComponent: MockComponentBase<ComponentTestState, ComponentTestAction>!
+
                 beforeEach {
                     mockComponent = MockComponentBase()
                 }
@@ -498,6 +501,7 @@ class ComponentDelegateTest: QuickSpec {
 
             describe("componentState") {
                 var mockComponent: MockComponentBase<ComponentTestClass, ComponentTestAction>!
+
                 beforeEach {
                     mockComponent = MockComponentBase()
                 }
