@@ -36,7 +36,6 @@ extension Sequence where Iterator.Element == TestingEnum {
 }
 
 class SequenceExtensionsTest: QuickSpec {
-
     override func spec() {
         describe("Sequence extension methods") {
             describe("take(until:)") {
