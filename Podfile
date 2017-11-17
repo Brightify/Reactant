@@ -26,6 +26,8 @@ target 'ReactantTests' do
     pod 'Quick', '~> 1.1'
     pod 'Nimble', '~> 7.0'
     pod 'Cuckoo', :git => 'https://github.com/Brightify/Cuckoo.git', :branch => 'master'
+    pod 'RxNimble'
+    pod 'RxTest'
 end
 
 target 'ReactantPrototyping' do
