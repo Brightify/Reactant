@@ -20,9 +20,9 @@ class RuleTest: QuickSpec {
                 return string.count % 2 == 0 ? nil : .invalid
             }
             describe("anything should pass permissive rule") {
-                expect(permissiveRule.test("value")).to(beTruthy())
-                expect(permissiveRule.test("")).to(beTruthy())
-                expect(permissiveRule.test(nil)).to(beTruthy())
+                expect(permissiveRule.test("value")).to(beTrue())
+                expect(permissiveRule.test("")).to(beTrue())
+                expect(permissiveRule.test(nil)).to(beTrue())
 
                 if case .failure = permissiveRule.run("value") {
                     fail()
@@ -32,9 +32,9 @@ class RuleTest: QuickSpec {
                 }
             }
             describe("nothing should pass restrictive rule") {
-                expect(restrictiveRule.test("value")).to(beFalsy())
-                expect(restrictiveRule.test("")).to(beFalsy())
-                expect(restrictiveRule.test(nil)).to(beFalsy())
+                expect(restrictiveRule.test("value")).to(beFalse())
+                expect(restrictiveRule.test("")).to(beFalse())
+                expect(restrictiveRule.test(nil)).to(beFalse())
 
                 if case .success = restrictiveRule.run("value") {
                     fail()
@@ -44,10 +44,10 @@ class RuleTest: QuickSpec {
                 }
             }
             describe("strings appropriate should pass \"div by 2 string length rule\" and others should not") {
-                expect(divBy2StringLengthRule.test("")).to(beTruthy())
-                expect(divBy2StringLengthRule.test("nilu")).to(beTruthy())
-                expect(divBy2StringLengthRule.test("value")).to(beFalsy())
-                expect(divBy2StringLengthRule.test("valueueueueueueue")).to(beFalsy())
+                expect(divBy2StringLengthRule.test("")).to(beTrue())
+                expect(divBy2StringLengthRule.test("nilu")).to(beTrue())
+                expect(divBy2StringLengthRule.test("value")).to(beFalse())
+                expect(divBy2StringLengthRule.test("valueueueueueueue")).to(beFalse())
 
                 if case .failure = divBy2StringLengthRule.run("") {
                     fail()
