@@ -12,8 +12,8 @@ extension UIColor {
     
     /// Accepted formats: "#RRGGBB" and "#RRGGBBAA".
     public convenience init(hex: String) {
-        let hexNumber = String(hex.characters.dropFirst())
-        let length = hexNumber.characters.count
+        let hexNumber = String(hex.dropFirst())
+        let length = hexNumber.count
         guard length == 6 || length == 8 else {
             preconditionFailure("Hex string \(hex) has to be in format #RRGGBB or #RRGGBBAA !")
         }

@@ -134,7 +134,9 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         let component = cell.cachedCellOrCreated(factory: factory)
         component.componentState = model
         component.action.map(mapAction)
-            .subscribe(onNext: perform)
+            .subscribe(onNext: { [weak self] in
+                self?.perform(action: $0)
+            })
             .disposed(by: component.stateDisposeBag)
     }
     
@@ -154,7 +156,9 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         let component = view.cachedViewOrCreated(factory: factory)
         component.componentState = model
         component.action.map(mapAction)
-            .subscribe(onNext: perform)
+            .subscribe(onNext: { [weak self] in
+                self?.perform(action: $0)
+            })
             .disposed(by: component.stateDisposeBag)
     }
     

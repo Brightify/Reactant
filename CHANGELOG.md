@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.6
+* Fix TableViewBase and CollectionViewBase memory leak.
+
 ## 1.0.5
 * Add create to Wireframe with controller result helper
 * Add default implementation to DialogDismissalController

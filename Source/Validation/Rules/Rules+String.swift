@@ -15,7 +15,7 @@ extension Rules {
         private static let emailPredicate = NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}")
         
         public static let notEmpty = Rule<Swift.String?, ValidationError> { value in
-            guard let value = value, value.characters.isEmpty == false else {
+            guard let value = value, value.isEmpty == false else {
                 return .invalid
             }
             
@@ -24,7 +24,7 @@ extension Rules {
         
         public static func minLength(_ length: Int) -> Rule<Swift.String?, ValidationError> {
             return Rule { value in
-                guard let value = value, value.characters.count >= length else {
+                guard let value = value, value.count >= length else {
                     return .invalid
                 }
                 return nil

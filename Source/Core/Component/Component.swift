@@ -17,7 +17,7 @@ public protocol Invalidable: class {
     func invalidate()
 }
 
-public protocol Component: class, Invalidable {
+public protocol Component: Invalidable {
 
     associatedtype StateType
     associatedtype ActionType

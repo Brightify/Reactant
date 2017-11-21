@@ -144,7 +144,9 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         component.componentState = model
         (component as? Configurable)?.configuration = configuration
         component.action.map(mapAction)
-            .subscribe(onNext: perform)
+            .subscribe(onNext: { [weak self] in
+                self?.perform(action: $0)
+            })
             .disposed(by: component.stateDisposeBag)
     }
     
@@ -165,7 +167,9 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         component.componentState = model
         (component as? Configurable)?.configuration = configuration
         component.action.map(mapAction)
-            .subscribe(onNext: perform)
+            .subscribe(onNext: { [weak self] in
+                self?.perform(action: $0)
+            })
             .disposed(by: component.stateDisposeBag)
     }
     
