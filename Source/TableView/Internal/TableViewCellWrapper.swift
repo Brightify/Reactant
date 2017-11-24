@@ -32,6 +32,7 @@ public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell, Configur
         return cell
     }
 
+    @available(iOS 9.0, tvOS 9.0, *)
     public override var preferredFocusEnvironments: [UIFocusEnvironment] {
         return cell.map { [$0] } ?? []
     }

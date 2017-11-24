@@ -36,7 +36,7 @@ target 'ReactantPrototyping' do
 end
 
 target 'TVPrototyping' do
-    platform :tvos, '9.2'
+    platform :tvos, '9.0'
     shared
 
     pod 'Reactant', :path => './'
