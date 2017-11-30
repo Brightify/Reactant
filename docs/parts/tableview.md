@@ -32,12 +32,11 @@ In `init` of every TableView, you can configure if the TableView is reloadable a
                    style: .plain,
                    reloadable: false)
     }
-
 }
 ```
 
 #### HeaderTableView and FooterTableView
-These two TableViews are TableViews that show sections with headers only or footers only.
+These two TableViews show sections with headers only or footers only.
 
 #### SimulatedSeparatorTableView
-This TableView is used for displaying TableView with separators of bigger height than default are.
+This TableView is used for displaying TableView with separators of bigger height than default.
