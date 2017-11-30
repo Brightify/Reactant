@@ -1,6 +1,6 @@
 # StaticMap
 
-StaticMap is one of Reactant's prebuilt components. To integrate it into your project, you need to add `StaticMap` subspec to your `Podfile`. To do so, open your `Podfile` in your favorite text editor and add the following line to your application's target:
+StaticMap is one of Reactant's prebuilt components. To integrate it into your project, you need to add `StaticMap` subspec to your `Podfile`. To do so, open your `Podfile` in a text editor and add the following line to your application's target:
 
 ```ruby
 pod 'Reactant/StaticMap'
