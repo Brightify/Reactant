@@ -1,13 +1,13 @@
 # Architecture Walkthrough
 
-We already talked about Components and Views in the [Quick-start](./quickstart.md), but they alone are only a small part of Reactant. The magic comes when you embrace the whole architecture.
+We already talked about Components and Views in the [Quick-start](./quickstart.md), but they alone are only a small part of **Reactant**. The magic comes when you embrace the whole architecture.
 
 We recommend creating a new project and going along with us through this short guide before you venture out on your own. Creating a project compatible with Reactant requires a few steps.
-- First create a new `Single View Application` and select `Swift` as your application's language.
+- First, create a new `Single View Application` and select `Swift` as your application's language.
 - Once created, delete `Main.storyboard` and `ViewController.swift` files **(Reactant does not support Storyboard/Interface Builder as classes are not accessible from ObjC runtime)**.
 - Then open your app's target `General` settings and under `Deployment info` delete the value of `Main Interface` property.
 
-Next step is adding CocoaPods to the project. Open your project's directory in *Terminal* and run a `pod init` command. This will create a `Podfile` for you. Open it in your favorite text editor and under your app's target add `pod 'Reactant'`. The file should then look like this:
+Next step is adding CocoaPods to the project. Open your project's directory in *Terminal* and run a `pod init` command. This will create a `Podfile` for you. Open it in a text editor and under your app's target add `pod 'Reactant'`. The file should then look like this:
 
 ```ruby
 platform :ios, '9.0'
@@ -19,7 +19,7 @@ target 'ReactantTutorial' do
 end
 ```
 
-Once you save the file, pop up the `Terminal` and run `pod install`. When the command completes, open the newly created `.xcworkspace`. Your project is now Reactant ready!
+Once you save the file, pop up the `Terminal` again and run `pod install`. When the command completes, open the newly created `.xcworkspace` file. Your project is now Reactant ready!
 
 ## Recommended directory structure
 
@@ -133,7 +133,7 @@ final class GreeterController: ControllerBase<Void, GreeterRootView> {
 }
 ```
 
-The `ControllerBase` class has two generic parameters, first one is the type of the Controller's `componentState` (yes, Controllers can have a state too) and the second is the type of the **RootView**. The RootView is automatically initialized by the Controller, but you can do it manually by passing an instance of the RootView as `root` parameter of the Controller's initializer.
+The `ControllerBase` class has two generic parameters, first one is the type of the Controller's `componentState` (Controllers can have a state too) and the second is the type of the **RootView**. The RootView is automatically initialized by the Controller, but you can do it manually by passing an instance of the RootView as `root` parameter of the Controller's initializer.
 
 ## Dependency Injection, Parameters, and Reactions
 
