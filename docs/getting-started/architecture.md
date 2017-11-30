@@ -19,7 +19,7 @@ target 'ReactantTutorial' do
 end
 ```
 
-Once you save the file, pop up the `Terminal` again and run `pod install`. When the command completes, open the newly created `.xcworkspace` file. Your project is now Reactant ready!
+Once you save the file, pop up the `Terminal` again and run `pod install`. When the command completes, open the newly created `.xcworkspace`. Your project is now Reactant ready!
 
 ## Recommended directory structure
 
