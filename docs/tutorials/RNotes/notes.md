@@ -5,6 +5,7 @@
 
 <!-- relative paths -->
 [table-view]: ../../parts/tableview.md
+[troubleshooting]: ../../getting-started/troubleshooting.md
 
 # RNotes
 Welcome to our first introductory tutorial to the Reactant architecture.
@@ -41,7 +42,7 @@ into the Terminal, we're gonna be using this configuration:
 
 Xcode workspace should open after this if everything went smooth. If it doesn't, open it manually, the suffix is `.xcworkspace`
 
-Click the **RUN** button (![-RUN BUTTON-](../RunButton.png)) so that we see what we've got so far. We're doing this step mainly to check if nothing went wrong. You should get **Hello World!** text on white background.
+Click the **RUN** button (![-RUN BUTTON-](../RunButton.png)) so that we see what we've got so far. We're doing this step mainly to check if nothing went wrong. You should get **Hello World!** text on white background. If you don't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
 
 There are two Xcode projects in the left sidebar. The first is our project (RNotes in this case) and the second is `Pods`, our dependencies lie there.
 
