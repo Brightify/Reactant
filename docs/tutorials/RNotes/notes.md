@@ -39,7 +39,7 @@ into the Terminal, we're gonna be using this configuration:
 
 - wait for Cocoapods to do its job bringing in the dependencies
 
-Xcode workspace should open after this if everything went smooth. If it doesn't, open it manually, the file suffix is `.xcworkspace`
+Xcode workspace should open after this if everything went smooth. If it doesn't, open it manually, the suffix is `.xcworkspace`
 
 Click the **RUN** button (![-RUN BUTTON-](../RunButton.png)) so that we see what we've got so far. We're doing this step mainly to check if nothing went wrong. You should get **Hello World!** text on white background.
 
