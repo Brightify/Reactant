@@ -1,10 +1,10 @@
-# ($NAME)
+# RNotes
 Welcome to our first introductory tutorial to the Reactant architecture.
 
 First and foremost, prerequisites:
 - **Xcode** (AppCode might work as well, but it's not tested),
 - **Terminal**,
-- [Cocoapods](http://cocoapods.org) dependency manager.
+- **[Cocoapods](http://cocoapods.org)** dependency manager.
 
 The whole project can be found on GitHub [here](https://github.com/MatyasKriz/reactant-notes).
 
@@ -25,22 +25,25 @@ How to create a project using **Reactant CLI**:
 reactant init
 ```
 
-into the Terminal, we're gonna be using this configuration: ![-REACTANT INIT TERMINAL IMAGE-]()
+into the Terminal, we're gonna be using this configuration:
+
+<p style="text-align:center;"><img src="Reactant-init-console.png" alt="Terminal" /></p>
+
 - wait for Cocoapods to do its job bringing in the dependencies
 
 Xcode workspace should open after this if everything went smooth. If it doesn't, open it manually, the file suffix is `.xcworkspace`
 
-Click the **RUN** button ![-RUN BUTTON-]() so that we see what we've got so far. We're doing this step mainly to check if nothing went wrong. You should get **Hello World!** text on white background.
+Click the **RUN** button (![-RUN BUTTON-](RunButton.png)) so that we see what we've got so far. We're doing this step mainly to check if nothing went wrong. You should get **Hello World!** text on white background.
 
-There are two Xcode projects in the left sidebar. The first is our project (($NAME) in this case) and the second is `Pods`, our dependencies lie there.
+There are two Xcode projects in the left sidebar. The first is our project (RNotes in this case) and the second is `Pods`, our dependencies lie there.
 
-Open our new project folder by clicking the arrow to the left of ($NAME). We are going all the way through folders called `Application` -> `Sources`. Our project won't be large, so open all the subfolders for better navigation later on.
+Open our new project folder by clicking the arrow to the left of RNotes. We are going all the way through folders called `Application` -> `Sources`. Our project won't be large, so open all the subfolders for better navigation later on.
 
 ### Part 2: Preparing The Insides
 #### Model
 `Models` is the folder for our `MODEL`s. These include `struct`, `enum`, `protocol` or `class` types that we use everywhere else in our program.
 
-($NAME) will need a `MODEL` of its own. We'll create a new file `Note.swift` (by clicking right on the `Models` folder and choosing `New file...` and selecting `Swift file`, we'll only use these from now on) and a `struct` inside it named `Note`.
+RNotes will need a `MODEL` of its own. We'll create a new file `Note.swift` (by clicking right on the `Models` folder and choosing `New file...` and selecting `Swift file`, we'll only use these from now on) and a `struct` inside it named `Note`.
 
 ```swift
 struct Note {
@@ -255,7 +258,7 @@ Saving the file at any time (assuming the `XML` is syntactically and semanticall
 
 The app should now look something like this:
 
-![-RNotes APP MAIN SCREEN-]()
+<p style="text-align:center;"><img src="Simulator1.png" alt="Simulator screen 1" style="width: 350px;" /></p>
 
 ### Part 4: Creating New Notes
 We need to create a new `Controller` and `RootView` for editing notes. It can be named `NoteModificationController.swift` and `NoteModificationRootView.swift` for example. `NoteModificationRootView.ui.xml` will be needed as well.
@@ -658,6 +661,8 @@ extension NoteCell.Styles {
 The styling parts that cannot be declared using Reactant UI are defined like this. In our case (`Reactant.TableViewCell`) the `Component` has its own `Styles`, so we are just extending them instead of creating our own `fileprivate struct`.
 
 Try to add a **Wipe** button in the MainController navigation bar that deletes all notes when tapped. You can then compare it to the project's `Wipe` on GitHub.
+
+<p style="text-align:center;"><img src="Simulator2.png" alt="Simulator screen 2" style="width: 350px;" /></p>
 
 Another thing that the user would surely appreciate is showing an alert controller in case loading/saving notes fails. It would probably work through letting the `Wireframe` know through `Reactions` to show an alert controller.
 
