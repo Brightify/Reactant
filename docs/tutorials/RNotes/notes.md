@@ -41,7 +41,7 @@ into the Terminal, we're gonna be using this configuration:
 
 Xcode workspace should open after this if everything went smooth. If it doesn't, open it manually, the file suffix is `.xcworkspace`
 
-Click the **RUN** button (![-RUN BUTTON-](RunButton.png)) so that we see what we've got so far. We're doing this step mainly to check if nothing went wrong. You should get **Hello World!** text on white background.
+Click the **RUN** button (![-RUN BUTTON-](../RunButton.png)) so that we see what we've got so far. We're doing this step mainly to check if nothing went wrong. You should get **Hello World!** text on white background.
 
 There are two Xcode projects in the left sidebar. The first is our project (RNotes in this case) and the second is `Pods`, our dependencies lie there.
 
