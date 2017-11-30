@@ -1,10 +1,10 @@
 # Wireframe
 
-In Reactant, Wireframe is meant to handle transitions between controllers, so that no controller knows about any other controllers. To learn more, head to our [Reactant Architecture Guide](../getting-started/architecture.md).
+In Reactant, Wireframe is meant to handle transitions between controllers, so that no controller knows about any other controllers. To learn more, head over to our [Reactant Architecture Guide](../getting-started/architecture.md).
 
 To make this a little easier we include a protocol `Wireframe` with two helper methods:
 
-## create
+## `create(factory:)`
 
 Use create to get access to enclosing `UINavigationController` and the created controller in reaction closures you provide the controller. This lets you break the dependency cycle.
 
@@ -38,7 +38,7 @@ class MainWireframe: Wireframe {
 ```
 
 
-## branchNavigation
+## `branchNavigation(controller:)`
 
 Navigation branching is especially useful when you need to present a controller modally and want to display a navigation bar (with the possibility to dismiss the controller). When that happens, you can use the `branchNavigation` to wrap your controller inside `UINavigationController`. It will also set `leftBarButtonItem` for you that will dismiss the modal controller.
 
