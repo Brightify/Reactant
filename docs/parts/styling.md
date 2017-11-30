@@ -1,6 +1,6 @@
 # Styling
 
-Reactant also contains some convenience `init`s, helper methods, operator overloads, etc.. Protocol `Stylable` which allows easy you to easily apply style to your `UIView`. It's just syntactic sugar, but allows for cleaner code with less duplicates.
+Reactant also contains some convenience `init`s, helper methods, operator overloads, etc.. Protocol `Stylable` allows you to easily apply style to any `UIView`. It's just syntactic sugar, but allows for cleaner code with less duplicates.
 
 ## Usage
 
@@ -35,51 +35,51 @@ extension Styleable {
 }
 ```
 
-We recommend storing all of your subclassed `UIView` styles into a fileprivate struct `Styles` that is inside an extension for better code readability, like this:
+We recommend storing all of your subclassed `UIView` styles in a `fileprivate` struct `Styles` that is inside an extension for better code readability, it should look something like this:
 
 ```swift
 class SomeView: UIView {
 
-    private let label = UILabel().styled(using: Styles.blueBackground)
+    private let login = UILabel().styled(using: Styles.textFieldLabel)
+    private let password = UILabel().styled(using: Styles.textFieldLabel)
 }
 
 extension SomeView {
 
     fileprivate struct Styles {
 
-        static func blueBackground(_ view: UILabel) {
-            view.backgroundColor = UIColor.blue
+        static func textFieldLabel(_ label: UILabel) {
+            label.fontColor = UIColor.white
         }
 
-        static func whiteBackground(_ view: UILabel) {
-            view.backgroundColor = UIColor.whiteBackground
+        static func redTextFieldLabel(_ label: UILabel) {
+            label.fontColor = UIColor.red
         }
     }
 }
 ```
 
-To later change the appearance of view do:
+To change the appearance of the view later rather than on initialization (although you can do both), call `apply(style:)` method on it:
 
 ```swift
 class SomeView: UIView {
 
-    private let label ...
+    private let login ...
+    private let password ...
 
-    func changeAppearanceOfLabel() {
-        label.apply(style: Styles.whiteBackground)
+    func incorrectPassword() {
+        password.apply(style: Styles.redTextFieldLabel)
     }
 }
 ```
 
-It is possible to use static var with closure instead of function like this:
+It is also possible to use a static variable with closure instead of a method:
 
 ```swift
 static var style: Style<UILabel> = { view in
     view.backgroundColor = UIColor.blue
 }
 ```
-
-Or any other syntax that you are happy with.
 
 You can also define some base styles globally and then call them from another styles like so:
 
@@ -113,7 +113,7 @@ func translate(x: CGFloat, y: CGFloat) -> CGAffineTransform
 func scale(x: CGFloat, y: CGFloat) -> CGAffineTransform
 ```
 
-Notes: `rotate`, `translate` and `scale` are all global functions. They create corresponding `CGAffineTransform`. All of them have default values (`scale` has as default values 1).
+Notes: `rotate`, `translate` and `scale` are all global functions. They create corresponding `CGAffineTransform`. All of them have default values (`scale` uses 1 as default values).
 
 ### CGPoint
 
@@ -313,3 +313,4 @@ extension UITableView {
 
     init(style: UITableViewStyle)
 }
+```
