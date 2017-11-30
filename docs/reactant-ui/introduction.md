@@ -4,7 +4,7 @@
 Reactant UI is currently a preview. However we'll try to keep the number of API changes to a minimum.
 
 ## What is Reactant UI
-**Reactant UI** is an extension of **Reactant** allowing you to declare views and layout using XML. Don't worry, there's no runtime overhead, as all those declarations are precompiled into Swift. Reactant then uses the generated code to create your UI.
+**Reactant UI** is an extension of **Reactant** allowing you to declare views and layout using XML. Don't worry, there's no runtime overhead as all those declarations are precompiled into Swift. Reactant then uses the generated code to create your UI.
 
 ## Why
 When we created Reactant, our primary goal was maximal compile-time safety. We devised an API for writing [views using Reactant](../getting-started/quickstart.md), but it was still constrained by Swift's syntax.
@@ -34,11 +34,11 @@ cd "$SRCROOT/Application/Source"
 
 ## Recommended editor
 
-We recommend downloading [**Atom**](https://atom.io/) editor and installing [**linter-autocomplete-jing**](https://atom.io/packages/linter-autocomplete-jing) and [**xml-common-schemata](https://atom.io/packages/xml-common-schemata) plugins. This combination will give you auto-complete support for Reactant's UI XML files.
+We recommend downloading [**Atom**](https://atom.io/) editor and installing [**linter-autocomplete-jing**](https://atom.io/packages/linter-autocomplete-jing) and [**xml-common-schemata** ](https://atom.io/packages/xml-common-schemata) plugins. This combination will give you auto-complete support for Reactant's UI XML files.
 
 ## UI XML
 
-Reactant UI loads view declarations from XML files ending with `.ui.xml`. The location of these files is up to you, although we recommend putting them alongside your `.swift` view files for better file navigation. In [Reactant Architecture Guide](../getting-started/architecture.md) we create a very simple, single-screen application with one input and one textfield. Let's now recreate the `GreeterRootView` using Reactant UI.
+Reactant UI loads view declarations from XML files ending with `.ui.xml`. The location of these files is up to you, although we recommend putting them alongside your `.swift` view files for better file navigation. In [Reactant Architecture Guide](../getting-started/architecture.md) we create a very simple, single-screen application with one input and one textfield. Let's recreate the `GreeterRootView` using Reactant UI.
 
 We begin with creating a new file named `GreeterRootView.ui.xml`, adding a root element called `Component` and setting namespace attributes to enable autocompletion.
 
