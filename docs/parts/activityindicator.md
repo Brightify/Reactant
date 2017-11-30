@@ -1,8 +1,8 @@
 # ActivityIndicator
 
-`ActivityIndicator` allows you to track activity of `Observable`. It is especially useful when displaying progress of some tasks done by multiple `Observable` in a row, because it can monitor all of them and show different associated values based on the current task.
+`ActivityIndicator` allows you to track the activity of an `Observable`. It is especially useful when displaying progress of some tasks done by multiple `Observable` in a row because it can monitor all of them and show different associated values based on the current task.
 
-`ActivityIndicator` has this init: `init(defaultAssociatedValue: T? = nil)`. Meaning of `defaultAssociatedValue` will be explained later. Type `T` represents type of data associated to `Observable`. If `T` is not `Equatable`, then `init(defaultAssociatedValue: T? = nil, equalWhen equalFunction: @escaping (T, T) -> Bool)` must be used.
+To construct an `ActivityIndicator`, use this init: `init(defaultAssociatedValue: T? = nil)`. Meaning of `defaultAssociatedValue` will be explained in a short while. Type `T` represents type of data associated to `Observable`. If `T` is not `Equatable`, then `init(defaultAssociatedValue: T? = nil, equalWhen equalFunction: @escaping (T, T) -> Bool)` must be used.
 
 To register `Observable` to be tracked by `ActivityIndicator` use:
 
