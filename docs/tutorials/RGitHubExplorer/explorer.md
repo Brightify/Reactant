@@ -22,9 +22,12 @@ Let's create a project using [**Reactant CLI**][reactant-CLI] with `reactant ini
 
 Click the **RUN** button (![-RUN BUTTON-](../RunButton.png)) to check that everything is running smooth. If it doesn't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
 
-TODO add `Fetcher` to Podfile so we can
+TODO add `Fetcher` to Podfile so we can use GitHub's API
 
-### Part 2: Preparing the Insides
+### Part 2: Communicating with GitHub
+
+
+### Part 3: Preparing the Insides
 #### Model
 We will need a `User` and `Repository` models. As we'll be only tracking user's followers and number of repositories, this `User.swift` is enough:
 ```swift
