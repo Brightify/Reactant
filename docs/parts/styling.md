@@ -73,7 +73,7 @@ class SomeView: UIView {
 }
 ```
 
-It is also possible to use a static variable with closure instead of a method:
+It is also possible to use a static variable with closure instead of a function:
 
 ```swift
 static var style: Style<UILabel> = { view in
