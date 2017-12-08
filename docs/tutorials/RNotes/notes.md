@@ -463,19 +463,13 @@ final class NoteService {
     try save(notes: notes)
   }
 
-  func save(note: Note) {
-    var notes = allNotes
-    if let index = notes.index(where: { $0.id == note.id }) {
-      notes[index] = note
-    } else {
-      notes.append(note)
-    }
-    allNotes = notes
+  private func save(notes: [Note]) throws {
+    let data = try encoder.encode(notes)
+    UserDefaults.standard.set(data, forKey: "notes")
   }
 
-  private func save(notes: [Note]) throws {
-      let data = try encoder.encode(notes)
-      UserDefaults.standard.set(data, forKey: "notes")
+  func deleteNotes() throws {
+    try save(notes: [])
   }
 }
 ```
