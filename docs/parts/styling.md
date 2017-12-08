@@ -232,10 +232,10 @@ extension UIColor {
     /// Accepted formats: "#RRGGBB" and "#RRGGBBAA".
     init(hex: String)
 
-    /// Accepted format: "0xRRGGBB".
+    /// Accepted format: 0xRRGGBB.
     init(rgb: UInt)
 
-    /// Accepted format: "0xRRGGBBAA".
+    /// Accepted format: 0xRRGGBBAA.
     init(rgba: UInt)
 
     /// Increases color's brightness.
