@@ -22,7 +22,7 @@ In this particular tutorial we'll create a small (but useful) application for wr
 ##### Let's get started.
 
 ### Part 1: Setting Up a Project
-There are many ways to go about creating a new Reactant project. Creating it by hand can be overwhelming at first, so we're using [Reactant CLI][reactant-CLI] to build it for us this time.
+There are many ways to go about creating a new Reactant project. Creating it by hand can be overwhelming at first, so we're using [Reactant CLI][reactant-CLI] to create it for us this time.
 
 After following instructions in **Reactant CLI** repo's README you'll be equipped with a very valuable tool for creating new Reactant projects.
 
