@@ -118,4 +118,24 @@ Pod::Spec.new do |spec|
         kingfisher(subspec)
         subspec.source_files = 'Source/StaticMap/**/*.swift'
     end
+
+    spec.subspec 'All-iOS' do |subspec|
+        subspec.dependency 'Reactant/Core'
+        subspec.dependency 'Reactant/Configuration'
+        subspec.dependency 'Reactant/Result'
+        subspec.dependency 'Reactant/Validation'
+        subspec.dependency 'Reactant/TableView'
+        subspec.dependency 'Reactant/CollectionView'
+        subspec.dependency 'Reactant/StaticMap'
+    end
+
+    spec.subspec 'All-tvOS' do |subspec|
+        subspec.dependency 'Reactant/Core'
+        subspec.dependency 'Reactant/Configuration'
+        subspec.dependency 'Reactant/Result'
+        subspec.dependency 'Reactant/Validation'
+        subspec.dependency 'Reactant/TableView'
+        subspec.dependency 'Reactant/CollectionView'
+        subspec.dependency 'Reactant/StaticMap'
+    end
 end
