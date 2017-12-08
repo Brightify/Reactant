@@ -238,10 +238,10 @@ Our `NoteCell` is going to have Title on top and Preview of the note right under
 <?xml version="1.0" encoding="UTF-8" ?>
 <Component
   xmlns="http://schema.reactant.tech/ui"
-    xmlns:layout="http://schema.reactant.tech/layout"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://schema.reactant.tech/ui https://schema.reactant.tech/ui.xsd
-    http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd">
+  xmlns:layout="http://schema.reactant.tech/layout"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://schema.reactant.tech/ui https://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd">
 
   <Label
     field="title"
