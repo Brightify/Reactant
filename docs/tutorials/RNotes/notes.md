@@ -360,7 +360,7 @@ The insides of `NoteModificationRootView.ui.xml` should look like this:
 
 Now we have another screen ready, but we have no way to go from the main screen to here. This leads us to an introduction to **Wireframes**.
 
-`Wireframe`'s main purpose is to switch between controllers based on `Reactions` they call. It takes care of navigation as well as providing **Services** to the controllers.
+`Wireframe`'s main purpose is to switch between controllers based on `Reactions` they call. It takes care of navigation as well as providing `Dependencies` to the controllers.
 
 You can find the **MainWireframe.swift** we'll be working with in the `Wireframes` folder.
 
