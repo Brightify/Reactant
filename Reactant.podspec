@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
     spec.name             = 'Reactant'
-    spec.version          = '1.0.6'
+    spec.version          = '1.1.0'
     spec.summary          = 'Reactant is a reactive architecture for iOS'
 
     spec.description      = <<-DESC
@@ -117,6 +117,16 @@ Pod::Spec.new do |spec|
         rxCocoa(subspec)
         kingfisher(subspec)
         subspec.source_files = 'Source/StaticMap/**/*.swift'
+    end
+
+    spec.subspec 'FallbackSafeAreaInsets' do |subspec|
+        subspec.ios.deployment_target = '9.0'
+        subspec.tvos.deployment_target = '9.0'
+
+        subspec.dependency 'Reactant/Core'
+        subspec.pod_target_xcconfig = {
+            'OTHER_SWIFT_FLAGS' => '-DENABLE_SAFEAREAINSETS_FALLBACK'
+        }
     end
 
     spec.subspec 'All-iOS' do |subspec|

@@ -131,7 +131,15 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
             }
         }
     }
-    
+
+    #if ENABLE_SAFEAREAINSETS_FALLBACK
+    open override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        fallback_setViewSafeAreaInests()
+    }
+    #endif
+
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

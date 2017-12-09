@@ -52,6 +52,7 @@
 		18650B971D8364DC00B1B2A0 /* Properties+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121061D834C5D002C4B08 /* Properties+Core.swift */; };
 		18B4BF7D1E294E7A00D39EEA /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */; };
 		18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */; };
+		18C3CB9C1FDC516C00C9248D /* FallbackSafeAreaInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CB9B1FDC516C00C9248D /* FallbackSafeAreaInsets.swift */; };
 		2210BAD31EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BAD21EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift */; };
 		2284DA9F1FAC6D2F00D231D3 /* ButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DA9E1FAC6D2F00D231D3 /* ButtonController.swift */; };
 		2284DAA11FAC6D5500D231D3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA01FAC6D5500D231D3 /* TableViewController.swift */; };
@@ -114,8 +115,6 @@
 		DC137FAA1E4E29DA00A0516F /* ConstraintAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F971E4E29DA00A0516F /* ConstraintAction.swift */; };
 		DC137FAB1E4E29DA00A0516F /* UIView+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F981E4E29DA00A0516F /* UIView+Visibility.swift */; };
 		DC137FAC1E4E29DA00A0516F /* Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F991E4E29DA00A0516F /* Visibility.swift */; };
-		DC1C67EA1E56F3000081E7BD /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
-		DC1C67EB1E56F3000081E7BD /* Reactant.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC1C67F01E5C2F800081E7BD /* SynchronizedRecycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C67EF1E5C2F800081E7BD /* SynchronizedRecycler.swift */; };
 		DC1C67F21E5C39F30081E7BD /* Sequence+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C67F11E5C39F30081E7BD /* Sequence+Utils.swift */; };
 		DC1C67F41E5C3C900081E7BD /* Collection+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C67F31E5C3C900081E7BD /* Collection+Utils.swift */; };
@@ -177,28 +176,7 @@
 			remoteGlobalIDString = 22F48FE31FAB0EE800E736C8;
 			remoteInfo = TVPrototyping;
 		};
-		DC1C67EC1E56F3000081E7BD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 185121461D834D1E002C4B08;
-			remoteInfo = Reactant;
-		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		DC1C67EE1E56F3000081E7BD /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				DC1C67EB1E56F3000081E7BD /* Reactant.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		16BEF3BAB0B302A550911EA7 /* Pods-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -250,6 +228,7 @@
 		18650BA51D83671B00B1B2A0 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
 		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderTableView.swift; path = Implementation/HeaderTableView.swift; sourceTree = "<group>"; };
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterTableView.swift; path = Implementation/FooterTableView.swift; sourceTree = "<group>"; };
+		18C3CB9B1FDC516C00C9248D /* FallbackSafeAreaInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallbackSafeAreaInsets.swift; sourceTree = "<group>"; };
 		2210BAD21EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+DialogDismissalListener.swift"; sourceTree = "<group>"; };
 		2284DA9E1FAC6D2F00D231D3 /* ButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonController.swift; sourceTree = "<group>"; };
 		2284DAA01FAC6D5500D231D3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -413,7 +392,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC1C67EA1E56F3000081E7BD /* Reactant.framework in Frameworks */,
 				677138D6038E38CF1E2AB7C6 /* Pods_ReactantPrototyping.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -893,6 +871,7 @@
 			children = (
 				DC2B5D6A1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift */,
 				DC2B5D6B1DE2FFC000F9C9D7 /* DialogView.swift */,
+				18C3CB9B1FDC516C00C9248D /* FallbackSafeAreaInsets.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -1140,14 +1119,12 @@
 				DC79F6B41E55FAA60033AE51 /* Sources */,
 				DC79F6B51E55FAA60033AE51 /* Frameworks */,
 				DC79F6B61E55FAA60033AE51 /* Resources */,
-				DC1C67EE1E56F3000081E7BD /* Embed Frameworks */,
 				6BCD29849ECBD4BF68960412 /* [CP] Embed Pods Frameworks */,
 				F0C0F82FDC7FD7492451D241 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DC1C67ED1E56F3000081E7BD /* PBXTargetDependency */,
 			);
 			name = ReactantPrototyping;
 			productName = ReactantPrototyping;
@@ -1338,7 +1315,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxOptional-iOS/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Reactant-55bc31ed/Reactant.framework",
+				"${BUILT_PRODUCTS_DIR}/Reactant-ceab2c80/Reactant.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1387,7 +1364,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxOptional-tvOS/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-tvOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-tvOS/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Reactant-7fe313c9/Reactant.framework",
+				"${BUILT_PRODUCTS_DIR}/Reactant-46731188/Reactant.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1556,6 +1533,7 @@
 				DC0785E81DDB2C290063AB96 /* AnyCollectionViewCellIdentifier.swift in Sources */,
 				DC6940911E5359BD00C99380 /* OptionalType.swift in Sources */,
 				DC0785E41DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
+				18C3CB9C1FDC516C00C9248D /* FallbackSafeAreaInsets.swift in Sources */,
 				DC1C67F81E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift in Sources */,
 				183E0CAE1EB88062006CF52A /* TextField.swift in Sources */,
 				DC2B5D691DE2FD6800F9C9D7 /* CollectionViewBase.swift in Sources */,
@@ -1684,11 +1662,6 @@
 			target = 22F48FE31FAB0EE800E736C8 /* TVPrototyping */;
 			targetProxy = 22F48FF51FAB0EE900E736C8 /* PBXContainerItemProxy */;
 		};
-		DC1C67ED1E56F3000081E7BD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 185121461D834D1E002C4B08 /* Reactant */;
-			targetProxy = DC1C67EC1E56F3000081E7BD /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1720,6 +1693,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DENABLE_SAFEAREAINSETS_FALLBACK";
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.Reactant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1747,6 +1721,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DENABLE_SAFEAREAINSETS_FALLBACK";
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.Reactant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

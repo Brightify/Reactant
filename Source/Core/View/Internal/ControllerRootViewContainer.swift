@@ -20,10 +20,27 @@ public final class ControllerRootViewContainer: UIView, Configurable {
     
     public override var frame: CGRect {
         didSet {
+            #if ENABLE_SAFEAREAINSETS_FALLBACK
+            fallback_computeSafeAreaInsets()
+            #endif
             wrappedView?.frame = bounds
         }
     }
-    
+
+    #if ENABLE_SAFEAREAINSETS_FALLBACK
+    public override var bounds: CGRect {
+        didSet {
+            fallback_computeSafeAreaInsets()
+        }
+    }
+
+    public override var center: CGPoint {
+        didSet {
+            fallback_computeSafeAreaInsets()
+        }
+    }
+    #endif
+
     public required init?(coder aDecoder: NSCoder) {
         wrappedView = nil
         

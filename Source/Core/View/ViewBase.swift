@@ -36,6 +36,26 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         return true
     }
 
+    #if ENABLE_SAFEAREAINSETS_FALLBACK
+    open override var frame: CGRect {
+        didSet {
+            fallback_computeSafeAreaInsets()
+        }
+    }
+
+    open override var bounds: CGRect {
+        didSet {
+            fallback_computeSafeAreaInsets()
+        }
+    }
+
+    open override var center: CGPoint {
+        didSet {
+            fallback_computeSafeAreaInsets()
+        }
+    }
+    #endif
+
     public init() {
         super.init(frame: CGRect.zero)
 
