@@ -129,10 +129,6 @@ Having done that, we can customize our `noteTableView` a bit in `loadView()`. Ad
 ```swift
 // inside MainRootView
 override func loadView() {
-  children(
-    noteTableView
-  )
-
   noteTableView.footerView = UIView() // this is so that cell dividers end after the last cell
   noteTableView.rowHeight = NoteCell.height
   noteTableView.separatorStyle = .singleLine
@@ -164,19 +160,12 @@ import Reactant
 final class NoteCell: ViewBase<Note, Void> {
   static let height: CGFloat = 80
 
-  private let title = UILabel()
-  private let preview = UILabel()
+  let title = UILabel()
+  let preview = UILabel()
 
   override func update() {
     title.text = componentState.title
     preview.text = componentState.body
-  }
-
-  override func loadView() {
-    children(
-      title,
-      preview
-    )
   }
 }
 ```
@@ -191,7 +180,7 @@ As you can see, here we are using `componentState` to update the view based on t
 
 **ADVANCED**: If, for some reason, you don't want the `update()` method called, overriding method `needsUpdate()` gives you that control. Returning `false` from `needsUpdate()` means that `update()` doesn't get called when `componentState` is modified, default is `true`.
 
-Second, the `loadView()` method. In this method you should setup your view and add subviews. It gets called only once after `afterInit()`.
+Second, the `loadView()` method. In this method you should setup your view and add subviews if you don't add them through ReactantUI. It gets called only once after `afterInit()`.
 
 We are using `children(_:)` which also comes from Reactant to conveniently add all the subviews. Keep in mind that views added first will be under the views added last.
 
@@ -325,13 +314,6 @@ final class NoteModificationRootView: ViewBase<Note, NoteModificationAction> {
   override func update() {
     titleTextField.text = componentState.title
     bodyTextView.text = componentState.body
-  }
-
-  override func loadView() {
-    children(
-      titleTextField,
-      bodyTextView
-    )
   }
 }
 ```
