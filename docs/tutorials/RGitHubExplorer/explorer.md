@@ -1,5 +1,5 @@
 <!-- URLs -->
-[reactant-explorer]: https://github.com/MatyasKriz/reactant-explorer
+[project-url]: https://github.com/MatyasKriz/reactant-explorer
 [reactant-CLI]: https://github.com/Brightify/ReactantCLI
 [fetcher]: https://github.com/Brightify/Fetcher
 [what-are-dtos]: https://en.wikipedia.org/wiki/Data_transfer_object
@@ -8,12 +8,12 @@
 [table-view]: ../../parts/tableview.md
 [troubleshooting]: ../../getting-started/troubleshooting.md
 
-# ($NAME)
+# GitXplorer
 Welcome to our second introductory tutorial to the Reactant architecture.
 
 In this tutorial we'll create an explorer that will find some random GitHub users (sorted by most followers). If you tap on any of them, their repositories are shown along with number of stars in each one.
 
-The whole project can be found on GitHub [here][reactant-explorer].
+The whole project can be found on GitHub [here][project-url].
 
 ##### Let's get started.
 
@@ -22,7 +22,7 @@ Let's create our project using [**Reactant CLI**][reactant-CLI] with `reactant i
 
 Click the **RUN** button (![-RUN BUTTON-](../RunButton.png)) to check that everything is running smooth. If it doesn't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
 
-After testing the project and seeing that everything works as expected, we need to use an HTTP networking library. Any such library will suffice, though we will be using Fetcher as our choice here. [Fetcher][fetcher] is light-weight and comes from Brightify as well.
+After testing the project and seeing that everything works as expected, we need to use an HTTP networking library. Any such library will suffice, though we will be using Fetcher as our choice here. [Fetcher][fetcher] is light-weight and is brought to you by Brightify.
 
 It's pretty straightforward to add a new library to a project using Cocoapods. Open the `Podfile` in the root folder of your project and add these two lines under the default pods:
 ```ruby
@@ -50,6 +50,23 @@ As stated in the brief description of this project, we have to be able to:
 - find random users, for that we will use `GET /users` with query `since=:random_number`;
 - look at their repositories, where `GET /users/:username/repos` will help;
 - open repositories in Safari, GitHub API is not needed for this, we just need a URL.
+
+We'll also prepare the constants we'll be using for communication with GitHub. These are placed in the `Utils` folder.
+```swift
+// Constants.swift
+
+import Fetcher
+
+public struct Constants {
+  public static let apiUrl = BaseUrl(baseUrl: "https://api.github.com/")
+  public static let usersPerPage = 15
+  public static let randomNumberLimit = 34340000 as UInt32
+}
+```
+
+`apiUrl` is a request modifier. Using these modifiers we can easily modify `Fetcher`'s requests and rest assured that `Fetcher` will use them according to their purpose. `BaseUrl` modifier in this case tells `Fetcher` to start every request with the passed URL.
+
+`randomNumberLimit` was tested by trial and error and as of now there are not many more users than that.
 
 ### Part 3: Preparing the Insides
 #### Model
@@ -101,7 +118,7 @@ struct RepositoryDTO: Codable {
 
 **NOTE**: Creating a separate file for each model/component promotes better code navigation and readability.
 
-We will need a `User` and `Repository` models. As we can only receive user's general info from the `GET /users` request, this `User.swift` is enough:
+We will also need `User` and `Repository` models. As we can only receive user's general info from the `GET /users` request, this `User.swift` is enough:
 ```swift
 // User.swift
 
@@ -115,7 +132,7 @@ struct User {
 }
 ```
 
-`GET /users/:username/repos` gives us much more info about each of the repositories, so our `Repository` model will be a bit more complex. It could look like this:
+`GET /users/:username/repos` gives us much more info about each of the repositories, so our `Repository` model will be a bit more complex.
 ```swift
 // Repository.swift
 
@@ -157,7 +174,7 @@ final class MainController: ControllerBase<Void, MainRootView> {
   init(dependencies: Dependencies, reactions: Reactions) {
     self.dependencies = dependencies
     self.reactions = reactions
-    super.init(title: "RExplorer")
+    super.init(title: "GitXplorer")
   }
 
   override func afterInit() {
@@ -228,6 +245,8 @@ final class MainRootView: ViewBase<[User]?, PlainTableViewAction<UserCell>> {
 
 Its `.ui.xml` side:
 ```xml
+<!-- MainRootView.ui.xml -->
+
 <?xml version="1.0" encoding="UTF-8" ?>
 <Component
   xmlns="http://schema.reactant.tech/ui"
@@ -284,6 +303,8 @@ extension UserCell.Styles {
 
 Here is the `ui.xml` of the cell defining its layout and styling:
 ```xml
+<!-- UserCell.ui.xml -->
+
 <?xml version="1.0" encoding="UTF-8" ?>
 <Component
   xmlns="http://schema.reactant.tech/ui"
@@ -338,7 +359,11 @@ final class UserDetailsView: ViewBase<UserAccount, Void> {
     if let repositories = componentState.repositories {
       totalStars.text = "🌟 \(repositories.filter { $0.name != "None" }.reduce(0) { $0 + $1.stars })"
       totalRepositories.text = "📖 \(repositories.count)"
-      favoriteLanguage.text = "❤️ \(repositories.map { $0.language }.mostFrequent ?? "None")"
+      if let language = repositories.map({ $0.language }).filter({ $0 != "None" }).mostFrequentElement {
+        favoriteLanguage.text = "❤️ \(language)"
+      } else {
+        favoriteLanguage.text = nil
+      }
     } else {
       totalStars.text = nil
       totalRepositories.text = nil
@@ -348,8 +373,12 @@ final class UserDetailsView: ViewBase<UserAccount, Void> {
 }
 ```
 
+`UserAccount` is not defined yet, but we will define it in `RepositoryRootView.swift` later.
+
 Its `.ui.xml` counterpart like this:
 ```xml
+<!-- UserDetailsView.ui.xml -->
+
 <?xml version="1.0" encoding="UTF-8" ?>
 <Component
   xmlns="http://schema.reactant.tech/ui"
@@ -411,72 +440,410 @@ Its `.ui.xml` counterpart like this:
 </Component>
 ```
 
+The variable `mostFrequentElement` is not in Swift by default, so we'll define it in the `Utils` folder.
+```swift
+// Array+mostFrequentElement.swift
+
+import Foundation
+
+extension Array {
+  var mostFrequentElement: Element? {
+    let countedSet = NSCountedSet(array: self)
+    guard let mostFrequent = (countedSet.max { countedSet.count(for: $0) < countedSet.count(for: $1) } as? Element) else { return nil }
+    return mostFrequent
+  }
+}
+```
+
 The header will look like this:
 
 ![header image]()
 
 We will integrate it as a header of the `Repositories` screen.
 
-.
+For that `RepositoryCell` component needs to be created.
 
-.
+```swift
+// RepositoryCell.swift
 
-.
+import Reactant
+import UIKit
 
-.
+final class RepositoryCell: ViewBase<Repository, Void>, Reactant.TableViewCell {
+  static let height: CGFloat = 60
 
-.
+  let name = UILabel()
+  let starCount = UILabel()
+  let language = UILabel()
 
-.
+  override func update() {
+    name.text = componentState.name
+    starCount.text = "🌟 \(componentState.stars)"
+    if let repositoryLanguage = componentState.language {
+      language.visibility = .visible
+      language.text = "Language: \(repositoryLanguage)"
+    } else {
+      language.visibility = .collapsed
+      language.text = nil
+    }
+  }
 
-.
+  func setHighlighted(_ highlighted: Bool, animated: Bool) {
+    let style = { self.apply(style: highlighted ? Styles.highlightedBackground : Styles.normalBackground) }
+    if animated {
+      UIView.animate(withDuration: 0.7, animations: style)
+    } else {
+      style()
+    }
+  }
+}
 
-.
+extension RepositoryCell.Styles {
+  static func normalBackground(_ cell: RepositoryCell) {
+    cell.backgroundColor = nil
+  }
 
-.
+  static func highlightedBackground(_ cell: RepositoryCell) {
+    cell.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+  }
+}
+```
 
-.
+Here you can see we used `Reactant`'s `UIView.visibility` variable. Its values are `.visible`, `.collapsed`, and `.hidden`. The difference between `.hidden` and `.collapsed` is that `.hidden` preserves the view's dimensions whereas `.collapsed` uses `UIView.collapseAxis` to determine on which axis (it can even be both) to collapse the view so that the dimension on the chosen axis is equal to zero.
 
-.
+We are using it here because if a particular repository has no language, we don't want to show the language label at all, but as we want the text centered, we need to *collapse* the language label.
 
-.
+This is how it's represented using `ReactantUI`:
+```xml
+<!-- RepositoryCell.ui.xml -->
 
-.
+<?xml version="1.0" encoding="UTF-8" ?>
+<Component
+  xmlns="http://schema.reactant.tech/ui"
+  xmlns:layout="http://schema.reactant.tech/layout"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://schema.reactant.tech/ui https://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd">
 
-.
+  <Container
+    layout:id="text"
+    layout:leading="super inset(8)"
+    layout:top="super inset(8)"
+    layout:bottom="super inset(8)"
+    layout:centerY="super" >
 
-.
+    <Label
+      field="name"
+      font=":bold@20"
+      numberOfLines="1"
+      layout:leading="super"
+      layout:trailing="super"
+      layout:top="super" />
 
-.
+    <Label
+      field="language"
+      font="14"
+      numberOfLines="1"
+      layout:leading="super"
+      layout:trailing="super"
+      layout:below="name offset(8)"
+      layout:bottom="super" />
+  </Container>
 
-.
+  <Label
+    field="starCount"
+    font="14"
+    numberOfLines="1"
+    layout:after=":gt id:text offset(10)"
+    layout:trailing="super inset(10)"
+    layout:centerY="super" />
+</Component>
+```
 
-.
+Of course Putting this all together in `RepositoryRootView.swift` will look like this:
+```swift
+// RepositoryRootView.swift
 
-.
+import Reactant
+import RxSwift
 
-.
+typealias UserAccount = (user: User, repositories: [Repository]?)
 
-.
+final class RepositoriesRootView: ViewBase<UserAccount, PlainTableViewAction<RepositoryCell>> {
+  let repositoryTableView = PlainTableView<RepositoryCell>(reloadable: false)
+  let activityIndicator = UIActivityIndicatorView()
+  private let userDetails = UserDetailsView()
 
-.
+  override var actions: [Observable<PlainTableViewAction<RepositoryCell>>] {
+    return [
+      repositoryTableView.action
+    ]
+  }
 
-.
+  override func update() {
+    if let repositories = componentState.repositories {
+      activityIndicator.stopAnimating()
+      repositoryTableView.componentState = repositories.isEmpty ? .empty(message: "No repositories found.") : .items(repositories)
+    } else {
+      activityIndicator.startAnimating()
+      repositoryTableView.componentState = .loading
+    }
+    userDetails.componentState = componentState
+  }
 
-.
+  override func loadView() {
+    activityIndicator.activityIndicatorViewStyle = .gray
 
-.
+    repositoryTableView.headerView = userDetails
+    repositoryTableView.footerView = UIView()
+    repositoryTableView.rowHeight = RepositoryCell.height
+    repositoryTableView.separatorStyle = .singleLine
+    repositoryTableView.tableView.contentInset.bottom = 0
+  }
+}
+```
 
-.
+The `ui.xml` side looks like this:
+```xml
+<!-- RepositoryRootView.ui.xml -->
 
-.
+<?xml version="1.0" encoding="UTF-8" ?>
+<Component
+  xmlns="http://schema.reactant.tech/ui"
+  xmlns:layout="http://schema.reactant.tech/layout"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://schema.reactant.tech/ui http://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout http://schema.reactant.tech/layout.xsd"
+  rootView="true">
 
-.
+  <View
+    field="repositoryTableView"
+    layout:edges="super" />
 
-.
+  <View
+    field="activityIndicator"
+    layout:center="super" />
+</Component>
+```
 
-.
+The controller that controls it looks like this:
+```swift
+// RepositoryController.swift
 
-.
+import Reactant
 
-.
+final class RepositoriesController: ControllerBase<Void, RepositoriesRootView> {
+  struct Dependencies {
+    let dataService: DataService
+  }
+  struct Properties {
+    let user: User
+  }
+  struct Reactions {
+    let repositorySelected: (URL) -> Void
+  }
+
+  private let dependencies: Dependencies
+  private let properties: Properties
+  private let reactions: Reactions
+
+  init(dependencies: Dependencies, properties: Properties, reactions: Reactions) {
+    self.dependencies = dependencies
+    self.properties = properties
+    self.reactions = reactions
+    super.init(title: "Repositories")
+  }
+
+  override func afterInit() {
+    self.rootView.componentState = (self.properties.user, nil)
+    dependencies.dataService.repositories(login: properties.user.login)
+      .subscribe(onNext: { [unowned self] repositories in
+        self.rootView.componentState = (self.properties.user, repositories)
+      })
+      .disposed(by: lifetimeDisposeBag)
+  }
+
+  override func act(on action: PlainTableViewAction<RepositoryCell>) {
+    switch action {
+    case .selected(let repository):
+      reactions.repositorySelected(repository.url)
+    case .refresh, .rowAction(_, _):
+      break
+    }
+  }
+}
+```
+
+#### Service
+Now that the components are complete, you have seen `DataService` in the controllers' `Dependencies`. This service will bring us the models we declared by converting DTO's to models that we'll work with in our application.
+
+```swift
+// DataService.swift
+
+import Fetcher
+import class RxSwift.Observable
+
+private struct Endpoints: EndpointProvider {
+  static func users(position: Int, perPage: Int) -> GET<Void, Data> {
+    return create("users?since=\(position)&per_page=\(perPage)", modifiers: Constants.apiUrl)
+  }
+
+  static func repositories(userLogin: String) -> GET<Void, Data> {
+    return create("users/\(userLogin)/repos", modifiers: Constants.apiUrl)
+  }
+
+  static func avatar(url: URL) -> GET<Void, Data> {
+    return create(url.absoluteString)
+  }
+}
+```
+
+Endpoints are used by **Fetcher** to make requests to the desired URL. Request type is determined by the return value of each function where the first generic parameter is the data sent to the server and the second generic parameter is the type you want to receive. We only want to receive `Data` here, because we will do the deserializing ourselves.
+
+To see all of Fetcher's qualities, head over to [its GitHub page][fetcher].
+
+Add the service itself under the endpoints.
+
+```swift
+// under Endpoints in DataService.swift
+
+final class DataService {
+  private let fetcher: Fetcher
+
+  init(fetcher: Fetcher) {
+    self.fetcher = fetcher
+  }
+
+  func users(perPage: Int = Constants.usersPerPage) -> Observable<[User]> {
+    let randomPosition = Int(arc4random_uniform(Constants.randomNumberLimit))
+    return fetcher.rx.request(Endpoints.users(position: randomPosition, perPage: perPage))
+      .map { response -> [UserDTO] in
+        guard let data = response.rawData else { return [] }
+        return (try? JSONDecoder().decode([UserDTO].self, from: data)) ?? []
+      }
+      .flatMapLatest { [unowned self] userDTOs -> Observable<[User]> in
+        return Observable.from(
+          userDTOs.map { userDTO in
+            return self.avatar(url: userDTO.avatarUrl).map { User(avatar: $0, login: userDTO.login, accountUrl: userDTO.accountUrl) }
+          }).merge().toArray()
+      }
+  }
+
+  func repositories(login: String) -> Observable<[Repository]> {
+    return fetcher.rx.request(Endpoints.repositories(userLogin: login))
+      .map { response in
+        guard let data = response.rawData else { return [] }
+        return ((try? JSONDecoder().decode([RepositoryDTO].self, from: data)) ?? [])
+          .map { repositoryDTO in
+            return Repository(name: repositoryDTO.name, stars: repositoryDTO.stars, language: repositoryDTO.language, url: repositoryDTO.url)
+          }
+      }
+  }
+
+  private func avatar(url: URL) -> Observable<UIImage?> {
+    return fetcher.rx.request(Endpoints.avatar(url: url))
+      .map { response in
+        guard let data = response.rawData else { return nil }
+        return UIImage(data: data)
+      }
+  }
+}
+```
+
+This service may be a little hard to understand at first, but this notation using `Observables` helps especially INPUT NEEDED
+
+When debugging HTTP requests/responses with **Fetcher**, it's very easy to have it print out everything that is happening by registering a logger request enhancer.
+```swift
+fetcher.register(requestEnhancers: RequestLogger(defaultOptions: .all))
+```
+
+Having done the service that brings us the much needed data. We can move on to the `DependencyModule` protocol and `ApplicationModule` conforming to it.
+
+```swift
+// DependencyModule.swift
+
+protocol DependencyModule {
+  var dataService: DataService { get }
+}
+```
+
+```swift
+// ApplicationModule.swift
+
+import Fetcher
+
+final class ApplicationModule: DependencyModule {
+  let fetcher: Fetcher
+  let dataService: DataService
+
+  init() {
+    fetcher = Fetcher(requestPerformer: AlamofireRequestPerformer())
+    dataService = DataService(fetcher: fetcher)
+  }
+}
+```
+
+The `AlamofireRequestPerformer` is already in `Fetcher` and doesn't need to be included.
+
+#### Wireframe
+Now the only thing that is left is to connect the controllers together and add a navigation controller so that the user can easily return back from viewing repositories.
+
+```swift
+// MainWireframe.swift
+
+import UIKit
+import Reactant
+
+final class MainWireframe: Wireframe {
+  private let module: DependencyModule
+
+  init(module: DependencyModule) {
+    self.module = module
+  }
+
+  func entrypoint() -> UIViewController {
+    let mainController = main()
+    return UINavigationController(rootViewController: mainController)
+  }
+
+  private func main() -> MainController {
+    return create { provider in
+      let dependencies = MainController.Dependencies(dataService: module.dataService)
+      let reactions = MainController.Reactions(
+        userSelected: { user in
+          provider.navigation?.push(controller: self.repositories(user: user))
+        })
+
+      return MainController(dependencies: dependencies, reactions: reactions)
+    }
+  }
+
+  private func repositories(user: User) -> RepositoriesController {
+    return create { provider in
+      let dependencies = RepositoriesController.Dependencies(dataService: module.dataService)
+      let properties = RepositoriesController.Properties(user: user)
+      let reactions = RepositoriesController.Reactions(
+        repositorySelected: { url in
+          if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url)
+          } else {
+            UIApplication.shared.openURL(url)
+          }
+        })
+
+      return RepositoriesController(dependencies: dependencies, properties: properties, reactions: reactions)
+    }
+  }
+}
+```
+
+`provider` is used in reactions when you need to either interact with the navigation controller or when you need a reference to the controller that will be initialized at the end of `create(factory:)` method.
+
+## Wrap Up
+That concludes the functionality we set out to implement! To hone your Reactant skills further, try implementing the proposed `UPGRADES` below. As always you can find the whole project [HERE][project-url].
+
+**UPGRADE**: Right now we are ignoring request failures, but adding a feature that opens the user's profile when a repository list request fails is a good alternative to showing `No Repositories Found!` after the request limit is reached.
+
+**UPGRADE**: Try adding a `Search` button to the Navigation Bar that lets you search for users. GitHub's search API doesn't count towards the requests we are making now, so it's really going to improve our application.
+
+**UPGRADE**: You might have noticed during testing our explorer application that after a while you get `No users found!` even though you have perfectly fine internet connection. This is because you have reached GitHub's request limit. If you're interested in expanding it, consider adding a `Log In` possibility to the application.
