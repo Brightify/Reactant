@@ -1,5 +1,5 @@
 <!-- URLs -->
-[project-url]: https://github.com/MatyasKriz/reactant-explorer
+[project-url]: https://github.com/MatyasKriz/git-explorer
 [reactant-CLI]: https://github.com/Brightify/ReactantCLI
 [fetcher]: https://github.com/Brightify/Fetcher
 [what-are-dtos]: https://en.wikipedia.org/wiki/Data_transfer_object
