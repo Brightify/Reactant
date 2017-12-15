@@ -258,7 +258,7 @@ The app should now look something like this:
 
 <p style="text-align:center;"><img src="Simulator1.png" alt="Simulator screen 1" style="width: 350px;" /></p>
 
-### Part 4: Creating New Notes
+### Creating New Notes
 We need to create a new `Controller` and `RootView` for editing notes. It can be named `NoteModificationController.swift` and `NoteModificationRootView.swift` for example. `NoteModificationRootView.ui.xml` will be needed as well.
 
 `NoteModificationController.swift` should look like this:
@@ -412,7 +412,7 @@ override func act(on action: PlainTableViewAction<NoteCell>) {
 
 This concludes our transitioning to editing/creating notes and returning back (navigation controller takes care of returning for us). However we still do not have note-saving capability, everything returns to the same state as it was before the moment we leave the editing screen. That leads us to the next part.
 
-### Part 5: Saving Our Notes
+### Saving Our Notes
 Any type of a request for data should be going through **Services**. We're going to only save our notes locally, although this abstraction allows you to switch saving and loading from `UserDefaults` to the cloud only changing the `Service`, nothing else.
 
 We'll create only one service, because our application is not very big, but there are usually many `Services`, just as there are plenty of `Wireframe`s.
@@ -609,7 +609,7 @@ private func noteModification(note: Note?) -> NoteModificationController {
 
 This concludes the functionality part of this tutorial! We can still tweak the application a bit on the beauty side.
 
-### Part 6: Finishing Touches
+### Finishing Touches
 If we make the `NoteCell` in **NoteCell.swift** conform to `Reactant.TableViewCell`,
 
 ```swift
