@@ -440,7 +440,9 @@ The `AlamofireRequestPerformer` is already in `Fetcher` and doesn't need to be i
 
 After doing all this, the result should be of similar image, of course the users are random, so the chance that you'll see the exact same developers is really slim.
 
-<p style="text-align:center;"><img src="Users.png" alt="Users" style="width: 350px;" /></p>
+<p align="center">
+    <img src="Users.png" alt="Users" width="350" />
+</p>
 
 For viewing developer's repositories we'll use another PlainTableView, but as the user might forget whose repositories he's viewing, a header showing a quick overview will be helpful.
 
@@ -561,7 +563,9 @@ extension Array {
 
 The header will look like this:
 
-<p style="text-align:center;"><img src="UserHeader.png" alt="Header" style="width: 350px;" /></p>
+<p align="center">
+    <img src="UserHeader.png" alt="Header" width="350" />
+</p>
 
 We will integrate it as a header of the `Repositories` screen.
 
@@ -844,8 +848,11 @@ func entrypoint() -> UIViewController {
 }
 ```
 
-User's repository screen now looks like this:
-<p style="text-align:center;"><img src="Repositories.png" alt="Header" style="width: 350px;" /></p>
+
+<p align="center">
+    User's repository screen now looks like this:<br><br>
+    <img src="Repositories.png" alt="Repositories" width="350" />
+</p>
 
 ## Wrap Up
 That concludes the functionality we set out to implement! To hone your Reactant skills further, try implementing the proposed `UPGRADES` below. As always you can find the whole project [here][project-url].
