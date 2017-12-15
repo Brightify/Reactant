@@ -605,6 +605,8 @@ private func noteModification(note: Note?) -> NoteModificationController {
 }
 ```
 
+`provider` is used in reactions when you need to either interact with the navigation controller or when you need a reference to the controller that will be initialized at the end of `create(factory:)` method.
+
 This concludes the functionality part of this tutorial! We can still tweak the application a bit on the beauty side.
 
 ### Part 6: Finishing Touches
