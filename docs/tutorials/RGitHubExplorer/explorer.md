@@ -17,7 +17,7 @@ The whole project can be found on GitHub [here][project-url].
 
 ##### Let's get started.
 
-### Part 1: Setting Up a Project
+### Setting Up the Project
 Let's create our project using [**Reactant CLI**][reactant-CLI] with `reactant init`.
 
 Click the **RUN** button (![-RUN BUTTON-](../RunButton.png)) to check that everything is running smooth. If it doesn't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
@@ -43,7 +43,7 @@ target 'GitXplorer' do
 end
 ```
 
-### Part 2: Communicating with GitHub
+### Communicating with GitHub
 GitHub has its own API that we are going to be using in order to communicate with it. The full API can be found [here](https://developer.github.com/v3/). But unless you want to study it thoroughly, you needn't follow the link as we will guide you through the usage.
 
 As stated in the brief description of this project, we have to be able to:
@@ -68,7 +68,7 @@ public struct Constants {
 
 `randomNumberLimit` was tested by trial and error and as of now there are not many more users than that.
 
-### Part 3: Preparing the Insides
+### Preparing the Insides
 #### Model
 When working with network, creating [DTO][what-are-dtos]'s is considered best practice. Our DTO's `UserDTO` and `RepositoryDTO` will look like this:
 ```swift

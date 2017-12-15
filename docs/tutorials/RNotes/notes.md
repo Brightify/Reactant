@@ -21,7 +21,7 @@ In this particular tutorial we'll create a small (but useful) application for wr
 
 ##### Let's get started.
 
-### Part 1: Setting Up a Project
+### Setting Up the Project
 There are many ways to go about creating a new Reactant project. Creating it by hand can be overwhelming at first, so we're using [Reactant CLI][reactant-CLI] to create it for us this time.
 
 After following instructions in **Reactant CLI** repo's README you'll be equipped with a very valuable tool for creating new Reactant projects.
@@ -48,7 +48,7 @@ There are two Xcode projects in the left sidebar. The first is our project (RNot
 
 Open our new project folder by clicking the arrow to the left of RNotes. We are going all the way through folders called `Application` -> `Sources`. Our project won't be large, so open all the subfolders for better navigation later on.
 
-### Part 2: Preparing The Insides
+### Preparing The Insides
 #### Model
 `Models` is the folder for our `MODEL`s. These include `struct`, `enum`, `protocol` or `class` types that we use everywhere else in our program.
 
@@ -186,7 +186,7 @@ We are using `children(_:)` which also comes from Reactant to conveniently add a
 
 **NOTE**: Even though Reactant's methods are overridden, calling super.*method*() is not needed.
 
-### Part 3: Layouting
+### Layouting
 **ReactantUI** uses what `AutoLayout` offers in a pretty straightforward way. You can either use anonymous components or connect your UI to your code giving you even more control over the component.
 
 Open file **MainRootView.ui.xml**, we're going to be doing a few changes. The `Label` with "Hello World!" is redundant in our case, but we do need to layout our `noteTableView`.
