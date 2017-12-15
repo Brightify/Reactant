@@ -11,7 +11,7 @@
 # GitXplorer
 Welcome to our second introductory tutorial to the Reactant architecture.
 
-In this tutorial we'll create an explorer that will find some random GitHub users (sorted by most followers). If you tap on any of them, their repositories are shown along with number of stars in each one.
+In this tutorial we'll create an explorer that will find some random GitHub users. If you tap on any of them, their repositories (sorted by most stars) are shown along with number of stars in each one.
 
 The whole project can be found on GitHub [here][project-url].
 
@@ -33,7 +33,7 @@ pod 'Fetcher/RxFetcher'
 The whole file should look something like this:
 ```ruby
 platform :ios, '9.0'
-target 'Reactant Explorer' do
+target 'GitXplorer' do
   use_frameworks!
   pod 'Reactant'
   pod 'ReactantUI'
@@ -102,7 +102,6 @@ struct RepositoryDTO: Codable {
   let url: URL
   let name: String
   let stars: Int
-  let license: String
   let language: String
 
   enum CodingKeys: String, CodingKey {
@@ -110,7 +109,6 @@ struct RepositoryDTO: Codable {
     case url
     case name
     case stars = "stargazers_count"
-    case license
     case language
   }
 }
@@ -252,8 +250,8 @@ Its `.ui.xml` side:
   xmlns="http://schema.reactant.tech/ui"
   xmlns:layout="http://schema.reactant.tech/layout"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://schema.reactant.tech/ui http://schema.reactant.tech/ui.xsd
-                      http://schema.reactant.tech/layout http://schema.reactant.tech/layout.xsd"
+  xsi:schemaLocation="http://schema.reactant.tech/ui https://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd"
   rootView="true">
 
   <View
@@ -301,7 +299,7 @@ extension UserCell.Styles {
 }
 ```
 
-Here is the `ui.xml` of the cell defining its layout and styling:
+With the `ui.xml` of the cell defining its layout and styling:
 ```xml
 <!-- UserCell.ui.xml -->
 
@@ -337,6 +335,121 @@ Here is the `ui.xml` of the cell defining its layout and styling:
     layout:fillVertically="super inset(10)" />
 </Component>
 ```
+
+We need to connect this to the `MainWireframe` and pass it the `Dependencies` and `Reactions`.
+
+```swift
+// MainWireframe.swift inside MainWireframe class
+
+private func main() -> MainController {
+  return create { provider in
+    let dependencies = MainController.Dependencies(dataService: module.dataService)
+    let reactions = MainController.Reactions(
+      userSelected: { user in
+        provider.navigation?.push(controller: self.repositories(user: user))
+      })
+
+    return MainController(dependencies: dependencies, reactions: reactions)
+  }
+}
+```
+
+```swift
+// DataService.swift
+
+Now that the components are complete, you have seen `DataService` in the MainController's `Dependencies`. This service will bring us the models we declared by converting DTO's to models that we'll work with in our application.
+
+```swift
+// DataService.swift
+
+import Fetcher
+import class RxSwift.Observable
+
+private struct Endpoints: EndpointProvider {
+  static func users(position: Int, perPage: Int) -> GET<Void, Data> {
+    return create("users?since=\(position)&per_page=\(perPage)", modifiers: Constants.apiUrl)
+  }
+
+  static func avatar(url: URL) -> GET<Void, Data> {
+    return create(url.absoluteString)
+  }
+}
+```
+
+Endpoints are used by **Fetcher** to make requests to the desired URL. Request type is determined by the return value of each function where the first generic parameter is the data sent to the server and the second generic parameter is the type you want to receive. We only want to receive `Data` here, because we will do the deserializing ourselves.
+
+To see all of Fetcher's qualities, head over to [its GitHub page][fetcher].
+
+Add the service itself under the endpoints.
+
+```swift
+// DataService.swift under Endpoints struct
+
+final class DataService {
+  private let fetcher: Fetcher
+
+  init(fetcher: Fetcher) {
+    self.fetcher = fetcher
+  }
+
+  func users(perPage: Int = Constants.usersPerPage) -> Observable<[User]> {
+    let randomPosition = Int(arc4random_uniform(Constants.randomNumberLimit))
+    return fetcher.rx.request(Endpoints.users(position: randomPosition, perPage: perPage))
+      .map { response -> [UserDTO] in
+        guard let data = response.rawData else { return [] }
+        return (try? JSONDecoder().decode([UserDTO].self, from: data)) ?? []
+      }
+      .flatMapLatest { [unowned self] userDTOs -> Observable<[User]> in
+        return Observable.from(
+          userDTOs.map { userDTO in
+            return self.avatar(url: userDTO.avatarUrl).map { User(avatar: $0, login: userDTO.login, accountUrl: userDTO.accountUrl) }
+          }).merge().toArray()
+      }
+  }
+
+  private func avatar(url: URL) -> Observable<UIImage?> {
+    return fetcher.rx.request(Endpoints.avatar(url: url))
+      .map { response in
+        guard let data = response.rawData else { return nil }
+        return UIImage(data: data)
+      }
+  }
+}
+```
+
+Some parts may be a little hard to understand at first, but this notation using `Observables` helps especially [TODO] INPUT NEEDED
+
+Having created the service that brings us the much needed data. We can move on to the `DependencyModule` protocol and `ApplicationModule` conforming to it.
+
+```swift
+// DependencyModule.swift
+
+protocol DependencyModule {
+  var dataService: DataService { get }
+}
+```
+
+```swift
+// ApplicationModule.swift
+
+import Fetcher
+
+final class ApplicationModule: DependencyModule {
+  let fetcher: Fetcher
+  let dataService: DataService
+
+  init() {
+    fetcher = Fetcher(requestPerformer: AlamofireRequestPerformer())
+    dataService = DataService(fetcher: fetcher)
+  }
+}
+```
+
+The `AlamofireRequestPerformer` is already in `Fetcher` and doesn't need to be included.
+
+After doing all this, the result should be of similar image, of course the users are random, so the chance that you'll see the exact same developers is really slim.
+
+<p style="text-align:center;"><img src="Users.png" alt="Users" style="width: 350px;" /></p>
 
 For viewing developer's repositories we'll use another PlainTableView, but as the user might forget whose repositories he's viewing, a header showing a quick overview will be helpful.
 
@@ -457,7 +570,7 @@ extension Array {
 
 The header will look like this:
 
-![header image]()
+<p style="text-align:center;"><img src="UserHeader.png" alt="Header" style="width: 350px;" /></p>
 
 We will integrate it as a header of the `Repositories` screen.
 
@@ -658,7 +771,7 @@ final class RepositoriesController: ControllerBase<Void, RepositoriesRootView> {
     self.rootView.componentState = (self.properties.user, nil)
     dependencies.dataService.repositories(login: properties.user.login)
       .subscribe(onNext: { [unowned self] repositories in
-        self.rootView.componentState = (self.properties.user, repositories)
+        self.rootView.componentState = (self.properties.user, repositories.sorted(by: { $0.stars > $1.stars }))
       })
       .disposed(by: lifetimeDisposeBag)
   }
@@ -674,173 +787,75 @@ final class RepositoriesController: ControllerBase<Void, RepositoriesRootView> {
 }
 ```
 
-#### Service
-Now that the components are complete, you have seen `DataService` in the controllers' `Dependencies`. This service will bring us the models we declared by converting DTO's to models that we'll work with in our application.
-
 ```swift
-// DataService.swift
+// DataService inside Endpoints struct
 
-import Fetcher
-import class RxSwift.Observable
-
-private struct Endpoints: EndpointProvider {
-  static func users(position: Int, perPage: Int) -> GET<Void, Data> {
-    return create("users?since=\(position)&per_page=\(perPage)", modifiers: Constants.apiUrl)
-  }
-
-  static func repositories(userLogin: String) -> GET<Void, Data> {
-    return create("users/\(userLogin)/repos", modifiers: Constants.apiUrl)
-  }
-
-  static func avatar(url: URL) -> GET<Void, Data> {
-    return create(url.absoluteString)
-  }
+static func repositories(userLogin: String) -> GET<Void, Data> {
+  return create("users/\(userLogin)/repos", modifiers: Constants.apiUrl)
 }
 ```
 
-Endpoints are used by **Fetcher** to make requests to the desired URL. Request type is determined by the return value of each function where the first generic parameter is the data sent to the server and the second generic parameter is the type you want to receive. We only want to receive `Data` here, because we will do the deserializing ourselves.
-
-To see all of Fetcher's qualities, head over to [its GitHub page][fetcher].
-
-Add the service itself under the endpoints.
-
 ```swift
-// under Endpoints in DataService.swift
+// DataService inside DataService class
 
-final class DataService {
-  private let fetcher: Fetcher
-
-  init(fetcher: Fetcher) {
-    self.fetcher = fetcher
-  }
-
-  func users(perPage: Int = Constants.usersPerPage) -> Observable<[User]> {
-    let randomPosition = Int(arc4random_uniform(Constants.randomNumberLimit))
-    return fetcher.rx.request(Endpoints.users(position: randomPosition, perPage: perPage))
-      .map { response -> [UserDTO] in
-        guard let data = response.rawData else { return [] }
-        return (try? JSONDecoder().decode([UserDTO].self, from: data)) ?? []
-      }
-      .flatMapLatest { [unowned self] userDTOs -> Observable<[User]> in
-        return Observable.from(
-          userDTOs.map { userDTO in
-            return self.avatar(url: userDTO.avatarUrl).map { User(avatar: $0, login: userDTO.login, accountUrl: userDTO.accountUrl) }
-          }).merge().toArray()
-      }
-  }
-
-  func repositories(login: String) -> Observable<[Repository]> {
-    return fetcher.rx.request(Endpoints.repositories(userLogin: login))
-      .map { response in
-        guard let data = response.rawData else { return [] }
-        return ((try? JSONDecoder().decode([RepositoryDTO].self, from: data)) ?? [])
-          .map { repositoryDTO in
-            return Repository(name: repositoryDTO.name, stars: repositoryDTO.stars, language: repositoryDTO.language, url: repositoryDTO.url)
-          }
-      }
-  }
-
-  private func avatar(url: URL) -> Observable<UIImage?> {
-    return fetcher.rx.request(Endpoints.avatar(url: url))
-      .map { response in
-        guard let data = response.rawData else { return nil }
-        return UIImage(data: data)
-      }
-  }
+func repositories(login: String) -> Observable<[Repository]> {
+  return fetcher.rx.request(Endpoints.repositories(userLogin: login))
+    .map { response in
+      guard let data = response.rawData else { return [] }
+      return ((try? JSONDecoder().decode([RepositoryDTO].self, from: data)) ?? [])
+        .map { repositoryDTO in
+          return Repository(name: repositoryDTO.name, stars: repositoryDTO.stars, language: repositoryDTO.language, url: repositoryDTO.url)
+        }
+    }
 }
 ```
-
-This service may be a little hard to understand at first, but this notation using `Observables` helps especially INPUT NEEDED
 
 When debugging HTTP requests/responses with **Fetcher**, it's very easy to have it print out everything that is happening by registering a logger request enhancer.
 ```swift
 fetcher.register(requestEnhancers: RequestLogger(defaultOptions: .all))
 ```
 
-Having done the service that brings us the much needed data. We can move on to the `DependencyModule` protocol and `ApplicationModule` conforming to it.
+Now the only thing left to do is to connect the new controller into the `Wireframe` and add a navigation controller so that the user can easily return back from viewing repositories. TODO NAVCONTROLLER
 
 ```swift
-// DependencyModule.swift
+// MainWireframe.swift inside MainWireframe class
 
-protocol DependencyModule {
-  var dataService: DataService { get }
-}
-```
+private func repositories(user: User) -> RepositoriesController {
+  return create { provider in
+    let dependencies = RepositoriesController.Dependencies(dataService: module.dataService)
+    let properties = RepositoriesController.Properties(user: user)
+    let reactions = RepositoriesController.Reactions(
+      repositorySelected: { url in
+        if #available(iOS 10.0, *) {
+          UIApplication.shared.open(url)
+        } else {
+          UIApplication.shared.openURL(url)
+        }
+      })
 
-```swift
-// ApplicationModule.swift
-
-import Fetcher
-
-final class ApplicationModule: DependencyModule {
-  let fetcher: Fetcher
-  let dataService: DataService
-
-  init() {
-    fetcher = Fetcher(requestPerformer: AlamofireRequestPerformer())
-    dataService = DataService(fetcher: fetcher)
-  }
-}
-```
-
-The `AlamofireRequestPerformer` is already in `Fetcher` and doesn't need to be included.
-
-#### Wireframe
-Now the only thing that is left is to connect the controllers together and add a navigation controller so that the user can easily return back from viewing repositories.
-
-```swift
-// MainWireframe.swift
-
-import UIKit
-import Reactant
-
-final class MainWireframe: Wireframe {
-  private let module: DependencyModule
-
-  init(module: DependencyModule) {
-    self.module = module
-  }
-
-  func entrypoint() -> UIViewController {
-    let mainController = main()
-    return UINavigationController(rootViewController: mainController)
-  }
-
-  private func main() -> MainController {
-    return create { provider in
-      let dependencies = MainController.Dependencies(dataService: module.dataService)
-      let reactions = MainController.Reactions(
-        userSelected: { user in
-          provider.navigation?.push(controller: self.repositories(user: user))
-        })
-
-      return MainController(dependencies: dependencies, reactions: reactions)
-    }
-  }
-
-  private func repositories(user: User) -> RepositoriesController {
-    return create { provider in
-      let dependencies = RepositoriesController.Dependencies(dataService: module.dataService)
-      let properties = RepositoriesController.Properties(user: user)
-      let reactions = RepositoriesController.Reactions(
-        repositorySelected: { url in
-          if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url)
-          } else {
-            UIApplication.shared.openURL(url)
-          }
-        })
-
-      return RepositoriesController(dependencies: dependencies, properties: properties, reactions: reactions)
-    }
+    return RepositoriesController(dependencies: dependencies, properties: properties, reactions: reactions)
   }
 }
 ```
 
 `provider` is used in reactions when you need to either interact with the navigation controller or when you need a reference to the controller that will be initialized at the end of `create(factory:)` method.
 
+We also need to add a navigation controller to let the user easily return back to the main screen. This is done in the `entrypoint()` method of `MainWireframe`.
+
+```swift
+// MainWireframe.swift inside MainWireframe class
+
+func entrypoint() -> UIViewController {
+  let mainController = main()
+  return UINavigationController(rootViewController: mainController)
+}
+```
+
+User's repository screen now looks like this:
+<p style="text-align:center;"><img src="Repositories.png" alt="Header" style="width: 350px;" /></p>
+
 ## Wrap Up
-That concludes the functionality we set out to implement! To hone your Reactant skills further, try implementing the proposed `UPGRADES` below. As always you can find the whole project [HERE][project-url].
+That concludes the functionality we set out to implement! To hone your Reactant skills further, try implementing the proposed `UPGRADES` below. As always you can find the whole project [here][project-url].
 
 **UPGRADE**: Right now we are ignoring request failures, but adding a feature that opens the user's profile when a repository list request fails is a good alternative to showing `No Repositories Found!` after the request limit is reached.
 
