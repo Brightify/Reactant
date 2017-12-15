@@ -374,17 +374,19 @@ Add the service itself under the endpoints.
 
 final class DataService {
   private let fetcher: Fetcher
+  private let decoder: JSONDecoder
 
-  init(fetcher: Fetcher) {
+  init(fetcher: Fetcher, decoder: JSONDecoder) {
     self.fetcher = fetcher
+    self.decoder = decoder
   }
 
   func users(perPage: Int = Constants.usersPerPage) -> Observable<[User]> {
     let randomPosition = Int(arc4random_uniform(Constants.randomNumberLimit))
     return fetcher.rx.request(Endpoints.users(position: randomPosition, perPage: perPage))
-      .map { response -> [UserDTO] in
+      .map { [decoder] response -> [UserDTO] in
         guard let data = response.rawData else { return [] }
-        return (try? JSONDecoder().decode([UserDTO].self, from: data)) ?? []
+        return (try? decoder.decode([UserDTO].self, from: data)) ?? []
       }
       .flatMapLatest { [unowned self] userDTOs -> Observable<[User]> in
         return Observable.from(
@@ -404,7 +406,9 @@ final class DataService {
 }
 ```
 
-Some parts may be a little hard to understand at first, but this notation using `Observables` helps especially [TODO] INPUT NEEDED
+Some parts may be a little hard to understand at first. Let's step through the `users(perPage:)` method. After generating a random number we make the request by calling `fetcher.rx.request(endpoint:)`, this returns `Observable<Data>` which means we need to deserialize the `Data` using `JSONDecoder`. If the deserializing fails, we want to return only an empty array. After this we make a request for the avatar image for every user in the array through the `avatar(url:)` method which gives us back the `Observable<UIImage?>` which we're using to construct a `User` model. As this is done for every user in the array, `merge()` makes all the request at once (for smaller servers you might use `concat()` which makes requests one by one) and `toArray()` makes sure that we will return an array of users.
+
+Having said that, this notation using `Observables` is very well suited for callbacks and HTTP requests are a good example of that. Everything is handled in this service and the controller that subscribes to get a specific model doesn't need to do any more work.
 
 Having created the service that brings us the much needed data. We can move on to the `DependencyModule` protocol and `ApplicationModule` conforming to it.
 
@@ -660,7 +664,7 @@ This is how it's represented using `ReactantUI`:
 </Component>
 ```
 
-Of course Putting this all together in `RepositoryRootView.swift` will look like this:
+Putting this all together in `RepositoryRootView.swift` will look like this:
 ```swift
 // RepositoryRootView.swift
 
@@ -774,6 +778,8 @@ final class RepositoriesController: ControllerBase<Void, RepositoriesRootView> {
 }
 ```
 
+We also need to add a new endpoint and a method to the `DataService.swift` file.
+
 ```swift
 // DataService inside Endpoints struct
 
@@ -787,9 +793,9 @@ static func repositories(userLogin: String) -> GET<Void, Data> {
 
 func repositories(login: String) -> Observable<[Repository]> {
   return fetcher.rx.request(Endpoints.repositories(userLogin: login))
-    .map { response in
+    .map { [decoder] response in
       guard let data = response.rawData else { return [] }
-      return ((try? JSONDecoder().decode([RepositoryDTO].self, from: data)) ?? [])
+      return ((try? decoder.decode([RepositoryDTO].self, from: data)) ?? [])
         .map { repositoryDTO in
           return Repository(name: repositoryDTO.name, stars: repositoryDTO.stars, language: repositoryDTO.language, url: repositoryDTO.url)
         }
@@ -802,7 +808,7 @@ When debugging HTTP requests/responses with **Fetcher**, it's very easy to have 
 fetcher.register(requestEnhancers: RequestLogger(defaultOptions: .all))
 ```
 
-Now the only thing left to do is to connect the new controller into the `Wireframe` and add a navigation controller so that the user can easily return back from viewing repositories. TODO NAVCONTROLLER
+Now the only thing left to do is to connect the new controller into the `Wireframe` and add a navigation controller so that the user can easily return back from viewing repositories.
 
 ```swift
 // MainWireframe.swift inside MainWireframe class
