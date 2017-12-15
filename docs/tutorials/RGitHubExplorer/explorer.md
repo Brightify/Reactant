@@ -30,19 +30,6 @@ pod 'Fetcher'
 pod 'Fetcher/RxFetcher'
 ```
 
-The whole file should look something like this:
-```ruby
-platform :ios, '9.0'
-target 'GitXplorer' do
-  use_frameworks!
-  pod 'Reactant'
-  pod 'ReactantUI'
-  pod 'ReactantLiveUI', :configuration => 'Debug'
-  pod 'Fetcher'
-  pod 'Fetcher/RxFetcher'
-end
-```
-
 ### Communicating with GitHub
 GitHub has its own API that we are going to be using in order to communicate with it. The full API can be found [here](https://developer.github.com/v3/). But unless you want to study it thoroughly, you needn't follow the link as we will guide you through the usage.
 
