@@ -1,5 +1,5 @@
 <!-- URLs -->
-[reactant-notes]: https://github.com/MatyasKriz/reactant-notes
+[project-url]: https://github.com/MatyasKriz/reactant-notes
 [reactant-CLI]: https://github.com/Brightify/ReactantCLI
 [cocoapods]: http://cocoapods.org
 
@@ -15,7 +15,7 @@ First and foremost, prerequisites:
 - **Terminal**,
 - **[Cocoapods][cocoapods]** dependency manager.
 
-The whole project can be found on GitHub [here][reactant-notes].
+The whole project can be found on GitHub [here][project-url].
 
 In this particular tutorial we'll create a small (but useful) application for writing notes and saving them for future use, allowing you to wipe them if you so please.
 
@@ -170,7 +170,7 @@ final class NoteCell: ViewBase<Note, Void> {
 }
 ```
 
-**NOTE**: We're using 2-space tabs in these short snippets to achieve better readability. If you want to inspect the code in full, the project can be found  [here][reactant-notes]. Pasting the code to Xcode from the snippets should automatically convert indentation to your preferred size, if it does not, use `Ctrl+I` on selected code to indent it correctly.
+**NOTE**: We're using 2-space tabs in these short snippets to achieve better readability. If you want to inspect the code in full, the project can be found  [here][project-url]. Pasting the code to Xcode from the snippets should automatically convert indentation to your preferred size, if it does not, use `Ctrl+I` on selected code to indent it correctly.
 
 The `update()` method gets called every time `componentState` is modified. `componentState` is the single mutable state of any Component. Ideally there should be no more `var` fields in the component, only the `componentState` should be mutable. The type of `componentState` is defined as the first generic parameter (between the `<` and `>`), you can see that it's `Note` here.
 
@@ -645,7 +645,7 @@ extension NoteCell.Styles {
 
 The styling parts that cannot be declared using Reactant UI are defined like this. In our case (`Reactant.TableViewCell`) the `Component` has its own `Styles`, so we are just extending them instead of creating our own `fileprivate struct`.
 
-Try to add a **Wipe** button in the MainController navigation bar that deletes all notes when tapped. You can then compare it to the [project][reactant-notes]'s `Wipe` on GitHub.
+Try to add a **Wipe** button in the MainController navigation bar that deletes all notes when tapped. You can then compare it to the [project][project-url]'s `Wipe` on GitHub.
 
 <p style="text-align:center;"><img src="Simulator2.png" alt="Simulator screen 2" style="width: 350px;" /></p>
 
