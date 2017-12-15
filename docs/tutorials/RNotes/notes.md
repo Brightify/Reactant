@@ -34,9 +34,12 @@ How to create a project using **Reactant CLI**:
 reactant init
 ```
 
-into the Terminal, we're gonna be using this configuration:
+into the Terminal.
 
-<p style="text-align:center;"><img src="Reactant-init-console.png" alt="Terminal" /></p>
+<p align="center">
+    We will use this configuration:<br><br>
+    <img img src="Reactant-init-console.png" alt="Terminal" />
+</p>
 
 - wait for Cocoapods to do its job bringing in the dependencies
 
@@ -254,9 +257,10 @@ The `layout:` prefix is used for layouting attributes. Others are used to direct
 
 Saving the file at any time (assuming the `XML` is syntactically and semantically correct) will update the screen on your simulator to represent the `UI XML`.
 
-The app should now look something like this:
-
-<p style="text-align:center;"><img src="Simulator1.png" alt="Simulator screen 1" style="width: 350px;" /></p>
+<p align="center">
+    The app should now look something like this:<br><br>
+    <img img src="Simulator1.png" alt="Simulator screen 1" width="350" />
+</p>
 
 ### Creating New Notes
 We need to create a new `Controller` and `RootView` for editing notes. It can be named `NoteModificationController.swift` and `NoteModificationRootView.swift` for example. `NoteModificationRootView.ui.xml` will be needed as well.
@@ -649,7 +653,9 @@ The styling parts that cannot be declared using Reactant UI are defined like thi
 
 Try to add a **Wipe** button in the MainController navigation bar that deletes all notes when tapped. You can then compare it to the [project][project-url]'s `Wipe` on GitHub.
 
-<p style="text-align:center;"><img src="Simulator2.png" alt="Simulator screen 2" style="width: 350px;" /></p>
+<p align="center">
+    <img img src="Simulator2.png" alt="Simulator screen 2" width="350" />
+</p>
 
 Another thing that the user would surely appreciate is showing an alert controller in case loading/saving notes fails. It would probably work through letting the `Wireframe` know through `Reactions` to show an alert controller.
 
