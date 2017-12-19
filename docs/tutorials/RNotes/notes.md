@@ -290,8 +290,6 @@ final class NoteModificationController: ControllerBase<Note, NoteModificationRoo
 }
 ```
 
-`Reactions` are called when something happens that should involve some `Wireframe` action. Here we are telling the `Wireframe` to do something when back button in the navigation bar is tapped.
-
 `Properties` takes over the information that is used to setup a `Controller` in some way (i.e. there should only be constants). This makes it easier to change the fields later on as they are grouped and you don't have to think about changing the `init()` parameters.
 
 `NoteModificationRootView.swift` should have this structure:
@@ -535,6 +533,8 @@ final class MainController: ControllerBase<Void, MainRootView> {
 **NOTE**: `viewWillAppear(_:)` gets called every time a view is about to get shown. This is not a Reactant method, so we need to call `super.viewWillAppear(_:)`.
 
 We added `Dependencies`. This struct marks any `Service` classes the controller needs to function properly. The controller also needs a `dependencies` field which holds the passed services through `init(dependencies:reactions:)`.
+
+`Reactions` are called when something happens that should involve some `Wireframe` action.
 
 **NoteModificationController.swift** also needs to be modified. In order to save notes correctly, we need to give it the dependency `NoteService` as well. It should look like this:
 
