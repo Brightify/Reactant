@@ -102,8 +102,9 @@ We'll mark **MainRootView** as `RootView` and add a `PlainTableView` as a field 
 
 ```swift
 import Reactant
+import RxSwift
 
-final class MainRootView: ViewBase<[Note], PlainTableViewAction<NoteCell>>, RootView {
+final class MainRootView: ViewBase<[Note], PlainTableViewAction<NoteCell>> {
   let noteTableView = PlainTableView<NoteCell>(reloadable: false)
 
   override var actions: [Observable<PlainTableViewAction<NoteCell>>] {
