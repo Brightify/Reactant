@@ -309,8 +309,8 @@ final class NoteModificationRootView: ViewBase<Note, NoteModificationAction> {
 
   override var actions: [Observable<NoteModificationAction>] {
     return [
-      titleTextField.rx.text.skip(1).map(NoteModificationAction.titleChanged),
-      bodyTextView.rx.text.skip(1).map(NoteModificationAction.bodyChanged),
+      titleTextField.rx.text.skip(1).replaceNilWith("").map(NoteModificationAction.titleChanged),
+      bodyTextView.rx.text.skip(1).replaceNilWith("").map(NoteModificationAction.bodyChanged),
     ]
   }
 
