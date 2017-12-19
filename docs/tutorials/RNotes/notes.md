@@ -338,18 +338,20 @@ The insides of `NoteModificationRootView.ui.xml` should look like this:
   rootView="true">
 
 <TextField
-    field="titleTextField"
-    font="bold@24"
-    placeholder="Title"
-    layout:fillHorizontally="super inset(24)"
-    layout:top="super inset(24)" />
+  field="titleTextField"
+  font="bold@24"
+  placeholder="Title"
+  layout:fillHorizontally="super inset(24)"
+  layout:top="super inset(24)" />
 
 <TextView
-    field="bodyTextView"
-    font="16"
-    layout:fillHorizontally="super inset(20)"
-    layout:below="titleTextField offset(20)"
-    layout:bottom="super inset(24)" />
+  field="bodyTextView"
+  font="16"
+  layout:fillHorizontally="super inset(20)"
+  layout:below="titleTextField offset(20)"
+  layout:bottom="super inset(24)" />
+
+</Component>
 ```
 
 Now we have another screen ready, but we have no way to go from the main screen to here. This leads us to an introduction to **Wireframes**.
@@ -492,50 +494,50 @@ Our `MainController` should look like this now:
 
 ```swift
 final class MainController: ControllerBase<Void, MainRootView> {
-    struct Dependencies {
-        let noteService: NoteService
-    }
-    struct Reactions {
-        let newNote: () -> Void
-        let modifyNote: (Note) -> Void
-    }
+  struct Dependencies {
+    let noteService: NoteService
+  }
+  struct Reactions {
+    let newNote: () -> Void
+    let modifyNote: (Note) -> Void
+  }
 
-    private let dependencies: Dependencies
-    private let reactions: Reactions
+  private let dependencies: Dependencies
+  private let reactions: Reactions
 
-    init(dependencies: Dependencies, reactions: Reactions) {
-        self.dependencies = dependencies
-        self.reactions = reactions
-        super.init(title: "RNotes")
-    }
+  init(dependencies: Dependencies, reactions: Reactions) {
+    self.dependencies = dependencies
+    self.reactions = reactions
+    super.init(title: "RNotes")
+  }
 
-    override func afterInit() {
-      navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .plain) { [reactions] in
-          reactions.newNote()
-      }
+  override func afterInit() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .plain) { [reactions] in
+      reactions.newNote()
     }
+  }
 
-    override func update() {
-      do {
-          rootView.componentState = try dependencies.noteService.loadNotes()
-      } catch let error {
-          print("Failed to load saved notes:", error.localizedDescription)
-      }
+  override func update() {
+    do {
+      rootView.componentState = try dependencies.noteService.loadNotes()
+    } catch let error {
+      print("Failed to load saved notes:", error.localizedDescription)
     }
+  }
 
-    override func act(on action: PlainTableViewAction<NoteCell>) {
-        switch action {
-        case .selected(let note):
-            reactions.modifyNote(note)
-        case .refresh, .rowAction(_, _):
-            break
-        }
+  override func act(on action: PlainTableViewAction<NoteCell>) {
+    switch action {
+    case .selected(let note):
+      reactions.modifyNote(note)
+    case .refresh, .rowAction(_, _):
+      break
     }
+  }
 
-    override func viewWillAppear(_ animated: Bool) {
-        invalidate()
-        super.viewWillAppear(animated)
-    }
+  override func viewWillAppear(_ animated: Bool) {
+    invalidate()
+    super.viewWillAppear(animated)
+  }
 }
 ```
 
