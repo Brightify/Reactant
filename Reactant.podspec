@@ -121,7 +121,7 @@ Pod::Spec.new do |spec|
 
     spec.subspec 'FallbackSafeAreaInsets' do |subspec|
         subspec.ios.deployment_target = '9.0'
-        subspec.tvos.deployment_target = '9.0'
+        subspec.tvos.deployment_target = '9.2'
 
         subspec.dependency 'Reactant/Core'
         subspec.pod_target_xcconfig = {

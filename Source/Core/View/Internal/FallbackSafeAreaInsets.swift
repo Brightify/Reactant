@@ -67,7 +67,7 @@ public extension UIView {
     }
 
     public var fallback_safeAreaLayoutGuide: UILayoutGuide {
-        if #available(iOS 11.0, *) {
+        if #available(iOS 11.0, tvOS 11.0, *) {
             return safeAreaLayoutGuide
         }
 
