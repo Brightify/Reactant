@@ -6,6 +6,11 @@
     * [Quick-start guide](getting-started/quickstart.md)
     * [Architecture](getting-started/architecture.md)
 
+* Tutorials
+    * [Simple note taking app](tutorials/RNotes/notes.md)
+    * [Random GitHub users explorer](tutorials/GitXplorer/explorer.md)
+
+
 * Reactant UI
     * [Introduction](reactant-ui/introduction.md)
     * [Live Reload](reactant-ui/live-reload.md)

@@ -8,7 +8,7 @@
 [table-view]: ../../parts/tableview.md
 [troubleshooting]: ../../getting-started/troubleshooting.md
 
-# GitXplorer
+# Tutorial: Random GitHub users explorer
 Welcome to our second introductory tutorial to the Reactant architecture.
 
 In this tutorial we'll create an explorer that will find some random GitHub users. If you tap on any of them, their repositories (sorted by most stars) are shown along with number of stars in each one.

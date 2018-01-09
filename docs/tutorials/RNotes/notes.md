@@ -7,7 +7,7 @@
 [table-view]: ../../parts/tableview.md
 [troubleshooting]: ../../getting-started/troubleshooting.md
 
-# RNotes
+# Tutorial: Simple note taking app
 Welcome to our first introductory tutorial to the Reactant architecture.
 
 First and foremost, prerequisites:
