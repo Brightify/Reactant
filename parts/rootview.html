@@ -83,22 +83,22 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="rootview">RootView</h1>
-<p>As we mentioned in the <a href="../getting-started/architecture.html">Reactant architecture guide</a>, <code>RootView</code> is a protocol and a marker for views that should be the root of a screen (filling the whole screen). Apart from being a marker, it&#x2019;s also used for communication between its parent controller.</p>
+<p>As forementioned in the <a href="../getting-started/architecture.html">Reactant architecture guide</a>, <code>RootView</code> is a protocol and a marker for views that should be the root of a screen (filling the whole screen). Apart from being a marker, it&#x2019;s also used for communication with its parent controller.</p>
 <h2 id="edgesforextendedlayout">edgesForExtendedLayout</h2>
-<p>This property is very similar to <code>UIViewController#edgesForExtendedLayout</code>. It specified whether the view should be positioned behind translucent bars like the <code>UINavigationBar</code> and <code>UITabBar</code>. If you set <code>.all</code> (or .top / .bottom), the parent controller will make sure the view is under those bars. This is often used for root views that contain scroll views or tables.</p>
+<p>This property is very similar to <code>UIViewController#edgesForExtendedLayout</code>. It specifies whether the view should be positioned behind translucent bars like the <code>UINavigationBar</code> and <code>UITabBar</code>. If you set <code>.all</code> (or <code>.top</code> / <code>.bottom</code>), the parent controller will make sure the view is under those bars. This is often used for root views that contain scroll views or tables.</p>
 <p>The default value is <code>[]</code> (or none), meaning that the root view will not be extended under those bars and thus no part of the view will be obstructed.</p>
 <h2 id="viewwillappear()">viewWillAppear()</h2>
 <p>Called by the parent Controller when the screen will appear.</p>
-<p>For more information look at <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621510-viewwillappear"><code>UIViewController#viewWillAppear</code></a></p>
+<p>For more information take a look at <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621510-viewwillappear"><code>UIViewController#viewWillAppear</code></a></p>
 <h2 id="viewdidappear()">viewDidAppear()</h2>
 <p>Called by the parent Controller when the screen did appear.</p>
-<p>For more information look at <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621423-viewdidappear"><code>UIViewController#viewDidAppear</code></a></p>
+<p>For more information take a look at <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621423-viewdidappear"><code>UIViewController#viewDidAppear</code></a></p>
 <h2 id="viewwilldisappear()">viewWillDisappear()</h2>
 <p>Called by the parent Controller when the screen will disappear.</p>
-<p>For more information look at <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621485-viewwilldisappear"><code>UIViewController#viewWillDisappear</code></a></p>
+<p>For more information take a look at <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621485-viewwilldisappear"><code>UIViewController#viewWillDisappear</code></a></p>
 <h2 id="viewdiddisappear()">viewDidDisappear()</h2>
 <p>Called by the parent Controller when the screen did disappear.</p>
-<p>For more information look at <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621477-viewdiddisappear"><code>UIViewController#viewDidDisappear</code></a></p>
+<p>For more information take a look at <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621477-viewdiddisappear"><code>UIViewController#viewDidDisappear</code></a></p>
 
         </div>
         <div class="footer-nav">

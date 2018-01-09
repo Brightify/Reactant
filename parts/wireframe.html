@@ -47,9 +47,9 @@
                 </li>
                 <li class="menu-item -level-2"><a class="link title -active link-partswireframe" href="../parts/wireframe.html">Wireframe</a>
                   <ul class="headings heading-list">
-                    <li class="heading-item -depth-2"><a class="hlink link-create" href="#create">create</a>
+                    <li class="heading-item -depth-2"><a class="hlink link-create(factory:)" href="#create(factory:)">`create(factory:)`</a>
                     </li>
-                    <li class="heading-item -depth-2"><a class="hlink link-branchnavigation" href="#branchnavigation">branchNavigation</a>
+                    <li class="heading-item -depth-2"><a class="hlink link-branchnavigation(controller:)" href="#branchnavigation(controller:)">`branchNavigation(controller:)`</a>
                     </li>
                   </ul>
                 </li>
@@ -77,10 +77,10 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="wireframe">Wireframe</h1>
-<p>In Reactant, Wireframe is meant to handle transitions between controllers, in a way that no controller knows about other controllers. To learn more, head to our <a href="../getting-started/architecture.html">architecture guide</a>.</p>
+<p>In Reactant, Wireframe is meant to handle transitions between controllers, so that no controller knows about any other controllers. To learn more, head over to our <a href="../getting-started/architecture.html">Reactant Architecture Guide</a>.</p>
 <p>To make this a little easier we include a protocol <code>Wireframe</code> with two helper methods:</p>
-<h2 id="create">create</h2>
-<p>Use create to get access to enclosing <code>UINavigationController</code> and the created controller in reaction closures you provide the controller. This let&#x2019;s you break the dependency cycle.</p>
+<h2 id="create(factory:)"><code>create(factory:)</code></h2>
+<p>Use create to get access to enclosing <code>UINavigationController</code> and the created controller in reaction closures you provide the controller. This lets you break the dependency cycle.</p>
 <p>The <code>create</code> method has following signature:</p>
 <pre><code class="lang-swift"><span class="pl-k">public</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">create</span>&lt;T&gt;<span class="hljs-params">(factory: <span class="hljs-params">(FutureControllerProvider&lt;T&gt;)</span></span></span> -&gt; <span class="hljs-type">T</span>) -&gt; <span class="hljs-type">T</span>
 </code></pre>
@@ -104,8 +104,8 @@
     }
 }
 </code></pre>
-<h2 id="branchnavigation">branchNavigation</h2>
-<p>Navigation branching is especially useful, when you need to present a controller modally and want to display a navigation bar (with the possibility to dismiss the controller). When that happens, you can use the <code>branchNavigation</code> to wrap your controller inside <code>UINavigationController</code>. It will also set <code>leftBarButtonItem</code> for you that will dismiss the modal controller.</p>
+<h2 id="branchnavigation(controller:)"><code>branchNavigation(controller:)</code></h2>
+<p>Navigation branching is especially useful when you need to present a controller modally and want to display a navigation bar (with the possibility to dismiss the controller). When that happens, you can use the <code>branchNavigation</code> to wrap your controller inside <code>UINavigationController</code>. It will also set <code>leftBarButtonItem</code> for you that will dismiss the modal controller.</p>
 <pre><code class="lang-swift"><span class="pl-k">public</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">branchNavigation</span><span class="hljs-params">(controller: UIViewController, closeButtonTitle: String?)</span></span> -&gt; <span class="hljs-type">UINavigationController</span>
 
 <span class="pl-k">public</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">branchNavigation</span>&lt;S, T&gt;<span class="hljs-params">(controller: ControllerBase&lt;S, T&gt;)</span></span> -&gt; <span class="hljs-type">UINavigationController</span>

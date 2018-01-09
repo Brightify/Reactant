@@ -71,24 +71,24 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="validation">Validation</h1>
-<p>Validation classes can be used for an easy validation of for user inputs such as emails or passwords.</p>
-<p>A good example of creating Rules for validation is in <code>Rules.String</code> class. Let&#x2019;s have a look at <code>minLenght</code> Rule.</p>
+<p>Validation classes can be used for an easy validation of user input such as emails or passwords.</p>
+<p>A good example of creating Rules for validation is in <code>Rules.String</code> class. Let&#x2019;s have a look at the <code>minLength</code> Rule.</p>
 <pre><code class="lang-swift"><span class="pl-k">public</span> <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">minLength</span><span class="hljs-params">(<span class="hljs-number">_</span> length: Int)</span></span> -&gt; <span class="hljs-type">Rule</span>&lt;<span class="hljs-type">String</span>?, <span class="hljs-type">ValidationError</span>&gt; {
-        <span class="pl-k">return</span> <span class="hljs-type">Rule</span> { value <span class="pl-k">in</span>
-            <span class="pl-k">guard</span> <span class="pl-k">let</span> value = value, value.characters.<span class="pl-c1">count</span> &gt;= length <span class="pl-k">else</span> {
-                <span class="pl-k">return</span> .invalid
-            }
-            <span class="pl-k">return</span> <span class="pl-c1">nil</span>
+    <span class="pl-k">return</span> <span class="hljs-type">Rule</span> { value <span class="pl-k">in</span>
+        <span class="pl-k">guard</span> <span class="pl-k">let</span> value = value, value.<span class="pl-c1">count</span> &gt;= length <span class="pl-k">else</span> {
+            <span class="pl-k">return</span> .invalid
         }
+        <span class="pl-k">return</span> <span class="pl-c1">nil</span>
     }
+}
 </code></pre>
-<p>If the condition for valid string is not true, then this code returns <code>ValidationError.invalid</code>, otherwise returns <code>nil</code>.</p>
+<p>If the condition for valid string is not true, then this code returns <code>ValidationError.invalid</code>, <code>nil</code> otherwise.</p>
 <p>Usage of this rule can look like this, when we use it as a part of <code>Observable</code> stream.</p>
 <pre><code class="lang-swift"><span class="hljs-type">Observable</span>.from([<span class="pl-s">&quot;this&quot;</span>, <span class="pl-s">&quot;is&quot;</span>, <span class="pl-s">&quot;a&quot;</span>, <span class="pl-s">&quot;message&quot;</span>])
-            .<span class="pl-c1">map</span> { <span class="hljs-type">Rules</span>.<span class="hljs-type">String</span>.minLength(<span class="hljs-number">4</span>).run($<span class="hljs-number">0</span>) }
-            .filterError()
-            .subscribe(onNext: { <span class="pl-c1">print</span>($<span class="hljs-number">0</span> ?? <span class="pl-s">&quot;&quot;</span>) })
-            .addDisposableTo(stateDisposeBag)
+    .<span class="pl-c1">map</span> { <span class="hljs-type">Rules</span>.<span class="hljs-type">String</span>.minLength(<span class="hljs-number">4</span>).run($<span class="hljs-number">0</span>) }
+    .filterError()
+    .subscribe(onNext: { <span class="pl-c1">print</span>($<span class="hljs-number">0</span> ?? <span class="pl-s">&quot;&quot;</span>) })
+    .disposed(by: stateDisposeBag)
 </code></pre>
 <p>This code prints only <code>this</code> <code>message</code> - the strings that are valid.</p>
 

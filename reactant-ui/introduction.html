@@ -88,14 +88,16 @@
 <h2 id="important-note">Important Note</h2>
 <p>Reactant UI is currently a preview. However we&#x2019;ll try to keep the number of API changes to a minimum.</p>
 <h2 id="what-is-reactant-ui">What is Reactant UI</h2>
-<p><strong>Reactant UI</strong> is an extension for <strong>Reactant</strong> allowing you to declare views and layout using XML. Don&#x2019;t worry, there&#x2019;s no runtime overhead, as all those declarations are precompiled into Swift. Reactant then uses the generated code to create your UI.</p>
+<p><strong>Reactant UI</strong> is an extension of <strong>Reactant</strong> allowing you to declare views and layout using XML. Don&#x2019;t worry, there&#x2019;s no runtime overhead as all those declarations are precompiled into Swift. Reactant then uses the generated code to create your UI.</p>
 <h2 id="why">Why</h2>
 <p>When we created Reactant, our primary goal was maximal compile-time safety. We devised an API for writing <a href="../getting-started/quickstart.html">views using Reactant</a>, but it was still constrained by Swift&#x2019;s syntax.</p>
 <h2 id="installation">Installation</h2>
 <p>Reactant UI is available through <a href="http://cocoapods.org">CocoaPods</a>. To install it, add the following line to your application target in your <code>Podfile</code>:</p>
 <pre><code class="lang-ruby">pod <span class="pl-s">&apos;ReactantUI&apos;</span>
 </code></pre>
-<p>This will add Reactant UI to your project, but we&#x2019;re not done yet. Open your project in Xcode and open <em>Build Phases</em> and create a new <em>Run Script</em> phase (<code>+</code> button in top left corner -&gt; <code>New Run Script Phase</code>). Name the phase (for example <code>Generate Reactant UI</code>) and move it just above phase named <code>Compile Sources (n items)</code>. Now add the following into the newly created phase.</p>
+<p>This will add Reactant UI source files to your project. After that open your Xcode project, go to <em>Build Phases</em>, and create a new <em>Run Script</em> phase (<code>+</code> button in top left corner -&gt; <code>New Run Script Phase</code>).</p>
+<p>Give the new phase a name (for example <em>&#x201C;Generate Reactant UI&#x201D;</em>) and move it just above phase called <code>Compile Sources (n items)</code>.</p>
+<p>Last step is putting the following shell script into the newly created phase:</p>
 <pre><code class="lang-sh"><span class="pl-c1">pushd</span> <span class="pl-s">&quot;<span class="hljs-variable">$PODS_ROOT</span>/ReactantUI&quot;</span>
 env -i HOME=<span class="pl-s">&quot;<span class="hljs-variable">$HOME</span>&quot;</span> PATH=<span class="pl-s">&quot;<span class="hljs-variable">$PATH</span>&quot;</span> swift build
 <span class="pl-c1">popd</span>
@@ -105,9 +107,9 @@ env -i HOME=<span class="pl-s">&quot;<span class="hljs-variable">$HOME</span>&qu
 <span class="pl-s">&quot;<span class="hljs-variable">$PODS_ROOT</span>/ReactantUI/.build/debug/reactant-ui&quot;</span> &gt; <span class="pl-s">&quot;<span class="hljs-variable">$SRCROOT</span>/Application/Generated/GeneratedUI.swift&quot;</span>
 </code></pre>
 <h2 id="recommended-editor">Recommended editor</h2>
-<p>We recommend you to download <a href="https://atom.io/"><strong>Atom</strong></a> editor and install <a href="https://atom.io/packages/linter-autocomplete-jing"><strong>linter-autocomplete-jing</strong></a> and <a href="https://atom.io/packages/xml-common-schemata">**xml-common-schemata</a> plugins. This combination will give you auto-complete support for UI XML files.</p>
+<p>We recommend downloading <a href="https://atom.io/"><strong>Atom</strong></a> editor and installing <a href="https://atom.io/packages/linter-autocomplete-jing"><strong>linter-autocomplete-jing</strong></a> and <a href="https://atom.io/packages/xml-common-schemata"><strong>xml-common-schemata</strong> </a> plugins. This combination will give you auto-complete support for Reactant&#x2019;s UI XML files.</p>
 <h2 id="ui-xml">UI XML</h2>
-<p>Reactant UI loads view declarations from XML files ending with <code>.ui.xml</code>. The location of these files is up to you, but we recommend putting them alongside your <code>.swift</code> view files. In <a href="../getting-started/architecture.html">Reactant architecture guide</a> we made a very simple, single-screen application with one input and one textfield. Let&#x2019;s now recreate the <code>GreeterRootView</code> using Reactant UI.</p>
+<p>Reactant UI loads view declarations from XML files ending with <code>.ui.xml</code>. The location of these files is up to you, although we recommend putting them alongside your <code>.swift</code> view files for better file navigation. In <a href="../getting-started/architecture.html">Reactant Architecture Guide</a> we create a very simple, single-screen application with one input and one textfield. Let&#x2019;s recreate the <code>GreeterRootView</code> using Reactant UI.</p>
 <p>We begin with creating a new file named <code>GreeterRootView.ui.xml</code>, adding a root element called <code>Component</code> and setting namespace attributes to enable autocompletion.</p>
 <pre><code class="lang-xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="pl-s">&quot;1.0&quot;</span> encoding=<span class="pl-s">&quot;UTF-8&quot;</span> <span class="hljs-meta">?&gt;</span></span>
 <span class="hljs-tag">&lt;<span class="hljs-name">Component</span>
@@ -121,7 +123,7 @@ env -i HOME=<span class="pl-s">&quot;<span class="hljs-variable">$HOME</span>&qu
 <p><strong>NOTE</strong>: Once we release Reactant UI beta, we will freeze schema definitions and release plugin for Atom that will allow omission of <code>xmlns:xsi</code> and <code>xsi:schemaLocation</code> attributes. This will result in simpler declarations.</p>
 <p>By default, the name of the file is used as the type name. However, you can override this behavior. To do so, add <code>type</code> attribute to the <code>Component</code> element with the name of your desired type.</p>
 <p>You might want to create all <code>.ui.xml</code> at once before writing their Swift counterparts (especially if you use <a href="live-reload.html">Live Reload</a>). Unfortunately, Reactant UI in its current version doesn&#x2019;t scan your Swift files for existing types and generates Swift extensions for every <code>.ui.xml</code> in your project. If you don&#x2019;t have matching classes, you&#x2019;ll get compile errors. The current workaround is setting a value of <code>anonymous</code> attribute to <code>true</code> on the <code>Component</code> element. Reactant UI then generates an empty class which you can then use in your code. Later on you would replace it with your own class and remove the <code>anonymous</code> attribute.</p>
-<p>Last attribute to keep an eye on for <code>Component</code> element is <code>rootView</code>. When you set it to <code>true</code>, Reactant UI will automatically add the <code>RootView</code> protocol conformity and allow you to specify <code>extend</code> attribute. This attribute sets the RootView&#x2019;s <code>edgesForExtendedLayout</code> which has similar behavior to <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621515-edgesforextendedlayout"><code>UIViewController#edgesForExtendedLayout</code></a></p>
+<p>Last <code>Component</code> attribute to keep an eye on is <code>rootView</code>. Setting it to <code>true</code> automatically adds the <code>RootView</code> protocol conformity which allows you to specify <code>extend</code> attribute. This attribute sets the RootView&#x2019;s <code>edgesForExtendedLayout</code> which has similar behavior to <a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621515-edgesforextendedlayout"><code>UIViewController#edgesForExtendedLayout</code></a>.</p>
 <p>Let&#x2019;s go ahead and add the two children our <code>GreeterRootView</code> should have, a label and a text field.</p>
 <pre><code class="lang-xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="pl-s">&quot;1.0&quot;</span> encoding=<span class="pl-s">&quot;UTF-8&quot;</span> <span class="hljs-meta">?&gt;</span></span>
 <span class="hljs-tag">&lt;<span class="hljs-name">Component</span>
@@ -151,12 +153,12 @@ env -i HOME=<span class="pl-s">&quot;<span class="hljs-variable">$HOME</span>&qu
 <span class="hljs-tag">&lt;/<span class="hljs-name">Component</span>&gt;</span>
 </code></pre>
 <p>Each view in the hierarchy has its own properties and we tried to keep same names they have in UIKit. In our example, we set the <code>text</code> attribute for <code>Label</code> element to setup a label with that text. The same applies to the <code>textColor</code> and <code>placeholder</code> attributes.</p>
-<p>When you need to create a connection between your Swift code and the XML, set the <code>field</code> attribute. This attribute tells Reactant UI to use field with the specified name on the view. Make sure that field (property) has an internal visibility and that the type matches. We also recommend that the field is a constant (<code>let</code> property) because it limits mutability even further.</p>
-<p>Last but not least, <code>layout</code> attributes. You will use these to declare AutoLayout constraints for your views. Each attribute from the <code>layout</code> namespace accepts a constraint declaration with the following format:</p>
+<p>When you need to create a connection between your Swift code and the UI XML, set the <code>field</code> attribute. This attribute tells Reactant UI to use field with the specified name in the view. Make sure that field (property) has an internal visibility and that the type matches. We also recommend that the field is a constant (<code>let</code> property) because it limits mutability even further.</p>
+<p>Last but not least, <code>layout</code> attributes. They are used to declare AutoLayout constraints for your views. Each attribute from the <code>layout</code> namespace accepts a constraint declaration with the following format:</p>
 <p><code>[constraintField = ][&gt;=|&lt;=|==] target[.targetAnchor] [modifier...][ @priority]</code></p>
 <p>Parts of the declaration should be familiar to you if you use AutoLayout.</p>
 <ul>
-<li><strong>constraintField</strong> - makes the created constraint accessible in your Swift code</li>
+<li><strong>constraintField</strong> - makes the created constraint accessible in your Swift code (e.g. )</li>
 <li><strong>&gt;=|&lt;=|==</strong> - relation of the constraint</li>
 <li><strong>target</strong> - The other view to constraint to. Possible values are:
 <ul>

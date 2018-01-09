@@ -131,9 +131,9 @@ configuration.<span class="pl-k">get</span>(valueFor: optionalInteger) 	<span cl
 <p>Concrete instances of <code>Property</code> are covered in documentation for parts of Reactant which uses them.</p>
 <h2 id="global-and-custom-configuration">Global and custom configuration</h2>
 <p>Global configuration is a special instance of <code>Configuration</code> accessible by <code>Configuration.global</code>. This configuration is the default one for all things in Reactant. It is applied at the end of <code>init</code>.</p>
-<p>If you need to change configuration but only for some classes. You can create your own instance of <code>Configuration</code> by calling <code>init(copy: Configuration...)</code>. Notice the optional <code>copy</code> parameter, you can &#x201C;inherit&#x201D; the common settings for example from <code>Configuration.global</code> and then make your changes, while leaving the <code>Configuration.global</code> intact. Also it is possible to copy configuration from multiple instances of <code>Configuration</code>. Most likely that will result in conflict of some properties. In that case the priority is: <code>init(copy: leastSignificant, ..., mostSignificant)</code>. When you have your custom <code>Configuration</code> ready, assign it to instance of <code>Configurable</code> by <code>instance.configuration = customConfiguration</code>.</p>
+<p>If you need to change configuration but only for certain classes. You can create your own instance of <code>Configuration</code> by calling <code>init(copy: Configuration...)</code>. Notice the optional <code>copy</code> parameter through which you can &#x201C;inherit&#x201D; the common settings for example from <code>Configuration.global</code>. After that you can make your changes, while leaving the <code>Configuration.global</code> intact. It&#x2019;s variadic as well, allowing you to copy configuration from multiple <code>Configuration</code> instances. Most likely that will result in conflict of some properties. In that case the priority is: <code>init(copy: leastSignificant, ..., mostSignificant)</code>. When you have your custom <code>Configuration</code> ready, assign it to instance of <code>Configurable</code> by <code>instance.configuration = customConfiguration</code>.</p>
 <h2 id="configurable">Configurable</h2>
-<p><code>Configurable</code> is a helping protocol for classes that wants to use data from <code>Configuration</code>.</p>
+<p><code>Configurable</code> is a helping protocol for classes that want to use data from <code>Configuration</code>.</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">protocol</span> <span class="pl-ent">Configurable</span>: <span class="pl-ent">class</span> </span>{
 
     <span class="pl-k">var</span> configuration: <span class="hljs-type">Configuration</span> { <span class="pl-k">get</span> <span class="pl-k">set</span> }
@@ -148,8 +148,8 @@ configuration.<span class="pl-k">get</span>(valueFor: optionalInteger) 	<span cl
     <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">with</span><span class="hljs-params">(configuration: Configuration)</span></span> -&gt; <span class="hljs-type">Self</span>
 }
 </code></pre>
-<p>You should access <code>configuration</code> only from its <code>didSet</code> listener. This ensures, that everything is properly changed together with the instance of <code>Configuration</code>.</p>
-<p>This example part of implementation from <code>ControllerBase</code> shows how to implement <code>Configurable</code> from scratch:</p>
+<p>You should access <code>configuration</code> only from its <code>didSet</code> listener. This ensures that everything is properly changed together with the <code>Configuration</code> instance.</p>
+<p>This exempt from <code>ControllerBase</code> shows how to implement <code>Configurable</code> from scratch:</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">ControllerBase</span> ... </span>{
 
 ...
@@ -171,11 +171,11 @@ configuration.<span class="pl-k">get</span>(valueFor: optionalInteger) 	<span cl
 
 }
 </code></pre>
-<p>Usually you will inherit from some class that already implements <code>Configurable</code>. Then it is much easier to use <code>configuration</code>:</p>
+<p>You will usually inherit from some class that already implements <code>Configurable</code> making it much easier for you to use <code>configuration</code>:</p>
 <pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">CustomView</span>: <span class="pl-ent">ViewBase</span>... </span>{ <span class="pl-c">// ViewBase implements Configurable</span>
 
 	<span class="pl-k">override</span> <span class="pl-k">var</span> configuration: <span class="hljs-type">Configuration</span> { <span class="pl-c">// No .global assignment (already in super class).</span>
-		<span class="pl-k">didSet</span> { <span class="pl-c">// No need to call anything from super class. Swift does that automatically.</span>
+		<span class="pl-k">didSet</span> {
 		    ... <span class="pl-c">// Do something.</span>
 		}
 	}

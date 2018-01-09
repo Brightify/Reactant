@@ -107,13 +107,13 @@
           </div>
         </div>
         <div class="markdown-body"><h1 id="styling">Styling</h1>
-<p>Reactant also contains some convenience inits, helper methods etc. and protocol <code>Stylable</code> which allows easy style application to <code>UIView</code>. This is just a syntactic sugar, but allows you to have cleaner code.</p>
+<p>Reactant also contains some convenience <code>init</code>s, helper methods, operator overloads, etc&#x2026; Protocol <code>Stylable</code> allows you to easily apply style to any <code>UIView</code>. It&#x2019;s just syntactic sugar, but allows for cleaner code with less duplicates.</p>
 <h2 id="usage">Usage</h2>
-<p>The best way to learn how all of this is used is to look at the tests in <code>Tests/Core/Styling</code> directory or directly into the source code. For convenience we decided to list the API below (sorted alphabetically except for Stylable) for quick reference.</p>
+<p>The best way to master all these styling methods is to check out the tests in <code>Tests/Core/Styling</code> directory or the source code itself. For convenience we decided to list the API below (sorted alphabetically except for <code>Stylable</code>) for quick reference.</p>
 <p>Note: Inits for all structs like CGRect are created so that any parameter can be omitted (has default value of 0). For example: <code>CGRect(x: 1)</code>, <code>CGRect(origin: origin, width: 1)</code> and <code>CGRect(x: 1, size: size)</code> are all valid and these possibilities are skipped from this documentation.</p>
 <h3 id="styleable">Styleable</h3>
 <p><code>Styleable</code> allows you to easily separate code defining view appearance from the rest. It is basically syntax sugar for using closures which modify passed object.</p>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">protocol</span> <span class="pl-ent">Styleable</span> </span>{ }
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">protocol</span> <span class="pl-ent">Styleable</span> </span>{ }
 
 <span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UIView</span>: <span class="pl-ent">Styleable</span> </span>{ }
 
@@ -134,44 +134,45 @@
     <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">with</span><span class="hljs-params">(<span class="hljs-number">_</span> style: Style&lt;<span class="pl-k">Self</span>&gt;)</span></span> -&gt; <span class="hljs-type">Self</span>
 }
 </code></pre>
-<p>We recommend to put these styles into struct <code>Styles</code> and nest it to extension like this:</p>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">SomeView</span>: <span class="pl-ent">UIView</span> </span>{
+<p>We recommend storing all of your subclassed <code>UIView</code> styles in a <code>fileprivate</code> struct <code>Styles</code> that is inside an extension for better code readability, it should look something like this:</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">SomeView</span>: <span class="pl-ent">UIView</span> </span>{
 
-    <span class="pl-k">private</span> <span class="pl-k">let</span> label = <span class="hljs-type">UILabel</span>().styled(using: <span class="hljs-type">Styles</span>.blueBackground)
+    <span class="pl-k">private</span> <span class="pl-k">let</span> login = <span class="hljs-type">UILabel</span>().styled(using: <span class="hljs-type">Styles</span>.textFieldLabel)
+    <span class="pl-k">private</span> <span class="pl-k">let</span> password = <span class="hljs-type">UILabel</span>().styled(using: <span class="hljs-type">Styles</span>.textFieldLabel)
 }
 
-fileprivate <span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">SomeView</span> </span>{
+<span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">SomeView</span> </span>{
 
     fileprivate <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Styles</span> </span>{
 
-        <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">blueBackground</span><span class="hljs-params">(<span class="hljs-number">_</span> view: UILabel)</span></span> {
-            view.backgroundColor = <span class="hljs-type">UIColor</span>.blue
+        <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">textFieldLabel</span><span class="hljs-params">(<span class="hljs-number">_</span> label: UILabel)</span></span> {
+            label.fontColor = <span class="hljs-type">UIColor</span>.white
         }
 
-        <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">whiteBackground</span><span class="hljs-params">(<span class="hljs-number">_</span> view: UILabel)</span></span> {
-            view.backgroundColor = <span class="hljs-type">UIColor</span>.whiteBackground
+        <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">redTextFieldLabel</span><span class="hljs-params">(<span class="hljs-number">_</span> label: UILabel)</span></span> {
+            label.fontColor = <span class="hljs-type">UIColor</span>.red
         }
     }
 }
 </code></pre>
-<p>To later change the appearance of view do:</p>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">SomeView</span>: <span class="pl-ent">UIView</span> </span>{
+<p>To change the appearance of the view later rather than on initialization (although you can do both), call <code>apply(style:)</code> method on it:</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">SomeView</span>: <span class="pl-ent">UIView</span> </span>{
 
-    <span class="pl-k">private</span> <span class="pl-k">let</span> label ...
+    <span class="pl-k">private</span> <span class="pl-k">let</span> login ...
+    <span class="pl-k">private</span> <span class="pl-k">let</span> password ...
 
-    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">changeAppearanceOfLabel</span><span class="hljs-params">()</span></span> {
-        label.apply(style: <span class="hljs-type">Styles</span>.whiteBackground)
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">incorrectPassword</span><span class="hljs-params">()</span></span> {
+        password.apply(style: <span class="hljs-type">Styles</span>.redTextFieldLabel)
     }
 }
 </code></pre>
-<p>It is possible to use static var with closure instead of function like this:</p>
-<pre><code class="lang-Swift"><span class="pl-k">static</span> <span class="pl-k">var</span> style: <span class="hljs-type">Style</span>&lt;<span class="hljs-type">UILabel</span>&gt; = { view <span class="pl-k">in</span>
+<p>It is also possible to use a static variable with closure instead of a function:</p>
+<pre><code class="lang-swift"><span class="pl-k">static</span> <span class="pl-k">var</span> style: <span class="hljs-type">Style</span>&lt;<span class="hljs-type">UILabel</span>&gt; = { view <span class="pl-k">in</span>
     view.backgroundColor = <span class="hljs-type">UIColor</span>.blue
 }
 </code></pre>
-<p>Or any other syntax that you are happy with.</p>
 <p>You can also define some base styles globally and then call them from another styles like so:</p>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">BaseStyles</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">BaseStyles</span> </span>{
 
     <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">blueBackground</span><span class="hljs-params">(<span class="hljs-number">_</span> view: UIView)</span></span> {
         view.backgroundColor = <span class="hljs-type">UIColor</span>.blue
@@ -188,7 +189,7 @@ fileprivate <span class="hljs-class"><span class="pl-k">extension</span> <span c
 }
 </code></pre>
 <h3 id="cgaffinetransform">CGAffineTransform</h3>
-<pre><code class="lang-Swift"><span class="hljs-function"><span class="pl-k">func</span> + <span class="hljs-params">(lhs: CGAffineTransform, rhs: CGAffineTransform)</span></span> -&gt; <span class="hljs-type">CGAffineTransform</span>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="pl-k">func</span> +<span class="hljs-params">(lhs: CGAffineTransform, rhs: CGAffineTransform)</span></span> -&gt; <span class="hljs-type">CGAffineTransform</span>
 
 <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">rotate</span><span class="hljs-params">(<span class="hljs-number">_</span> degrees: CGFloat)</span></span> -&gt; <span class="hljs-type">CGAffineTransform</span>
 
@@ -196,9 +197,9 @@ fileprivate <span class="hljs-class"><span class="pl-k">extension</span> <span c
 
 <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">scale</span><span class="hljs-params">(x: CGFloat, y: CGFloat)</span></span> -&gt; <span class="hljs-type">CGAffineTransform</span>
 </code></pre>
-<p>Notes: <code>rotate</code>, <code>translate</code> and <code>scale</code> are all global functions. They create corresponding <code>CGAffineTransform</code>. All of them have default values (<code>scale</code> has as default values 1).</p>
+<p>Notes: <code>rotate</code>, <code>translate</code> and <code>scale</code> are all global functions. They create corresponding <code>CGAffineTransform</code>. All of them have default values (<code>scale</code> uses 1 as default values).</p>
 <h3 id="cgpoint">CGPoint</h3>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">CGPoint</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">CGPoint</span> </span>{
 
     <span class="pl-k">init</span>(<span class="hljs-number">_</span> both: <span class="hljs-type">CGFloat</span>)
 
@@ -206,7 +207,7 @@ fileprivate <span class="hljs-class"><span class="pl-k">extension</span> <span c
 }
 </code></pre>
 <h3 id="cgrect">CGRect</h3>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">CGRect</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">CGRect</span> </span>{
 
     <span class="pl-k">init</span>(x: <span class="hljs-type">CGFloat</span>, y: <span class="hljs-type">CGFloat</span>, width: <span class="hljs-type">CGFloat</span>, height: <span class="hljs-type">CGFloat</span>)
 
@@ -216,7 +217,7 @@ fileprivate <span class="hljs-class"><span class="pl-k">extension</span> <span c
 }
 </code></pre>
 <h3 id="cgsize">CGSize</h3>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">CGSize</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">CGSize</span> </span>{
 
     <span class="pl-k">init</span>(<span class="hljs-number">_</span> both: <span class="hljs-type">CGFloat</span>)
 
@@ -225,14 +226,14 @@ fileprivate <span class="hljs-class"><span class="pl-k">extension</span> <span c
 </code></pre>
 <h3 id="nsattributedstring">NSAttributedString</h3>
 <h4 id="+-operator"><code>+</code> operator</h4>
-<pre><code class="lang-Swift"><span class="hljs-function"><span class="pl-k">func</span> + <span class="hljs-params">(lhs: NSAttributedString, rhs: NSAttributedString)</span></span> -&gt; <span class="hljs-type">NSAttributedString</span>
+<pre><code class="lang-swift"><span class="hljs-function"><span class="pl-k">func</span> + <span class="hljs-params">(lhs: NSAttributedString, rhs: NSAttributedString)</span></span> -&gt; <span class="hljs-type">NSAttributedString</span>
 
 <span class="hljs-function"><span class="pl-k">func</span> + <span class="hljs-params">(lhs: String, rhs: NSAttributedString)</span></span> -&gt; <span class="hljs-type">NSAttributedString</span>
 
 <span class="hljs-function"><span class="pl-k">func</span> + <span class="hljs-params">(lhs: NSAttributedString, rhs: String)</span></span> -&gt; <span class="hljs-type">NSAttributedString</span>
 </code></pre>
 <h4 id="attribute">Attribute</h4>
-<pre><code class="lang-Swift"><span class="pl-c">/// Enum which represents NS attributes for NSAttributedString (like NSStrokeColorAttributeName). Each case has value and assigned name.</span>
+<pre><code class="lang-swift"><span class="pl-c">/// Enum which represents NS attributes for NSAttributedString (like NSStrokeColorAttributeName). Each case has value and assigned name.</span>
 <span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">Attribute</span> </span>{
 
     ...
@@ -244,14 +245,14 @@ fileprivate <span class="hljs-class"><span class="pl-k">extension</span> <span c
     <span class="pl-k">var</span> value: <span class="hljs-type">AnyObject</span>
 }
 </code></pre>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">Sequence</span> <span class="pl-ent">where</span> <span class="pl-ent">Iterator</span>.<span class="pl-ent">Element</span> == <span class="pl-ent">Attribute</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">Sequence</span> <span class="pl-ent">where</span> <span class="pl-ent">Iterator</span>.<span class="pl-ent">Element</span> == <span class="pl-ent">Attribute</span> </span>{
 
-    <span class="pl-c">/// Creates dictionary from sequence of attributes by merging them together. String is name of case and AnyObject value corresponding to it.</span>
-    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">toDictionary</span><span class="hljs-params">()</span></span> -&gt; [<span class="hljs-type">String</span>: <span class="hljs-type">AnyObject</span>]
+    <span class="pl-c">/// Creates dictionary from sequence of attributes by merging them together. NSAttributedStringKey is name of case and AnyObject value corresponding to it.</span>
+    <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">toDictionary</span><span class="hljs-params">()</span></span> -&gt; [<span class="hljs-type">NSAttributedStringKey</span>: <span class="hljs-type">AnyObject</span>]
 }
 </code></pre>
 <h4 id="string">String</h4>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">String</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">String</span> </span>{
 
     <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">attributed</span><span class="hljs-params">(<span class="hljs-number">_</span> attributes: [Attribute])</span></span> -&gt; <span class="hljs-type">NSAttributedString</span>
 
@@ -259,11 +260,11 @@ fileprivate <span class="hljs-class"><span class="pl-k">extension</span> <span c
 }
 </code></pre>
 <h3 id="percent">Percent</h3>
-<pre><code class="lang-Swift">/// Returns input / 100.
+<pre><code class="lang-swift">/// Returns input / 100.
 postfix func %(input: CGFloat) -&gt; CGFloat
 </code></pre>
 <h3 id="uibutton">UIButton</h3>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UIButton</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UIButton</span> </span>{
 
     <span class="pl-k">init</span>(title: <span class="hljs-type">String</span>)
 
@@ -271,19 +272,21 @@ postfix func %(input: CGFloat) -&gt; CGFloat
 }
 </code></pre>
 <h3 id="uicollectionview">UICollectionView</h3>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UICollectionView</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UICollectionView</span> </span>{
 
     <span class="pl-k">init</span>(collectionViewLayout layout: <span class="hljs-type">UICollectionViewLayout</span>)
 }
 </code></pre>
 <h3 id="uicolor">UIColor</h3>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UIColor</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UIColor</span> </span>{
 
     <span class="pl-c">/// Accepted formats: &quot;#RRGGBB&quot; and &quot;#RRGGBBAA&quot;.</span>
     <span class="pl-k">init</span>(hex: <span class="hljs-type">String</span>)
 
+    <span class="pl-c">/// Accepted format: 0xRRGGBB.</span>
     <span class="pl-k">init</span>(rgb: <span class="hljs-type">UInt</span>)
 
+    <span class="pl-c">/// Accepted format: 0xRRGGBBAA.</span>
     <span class="pl-k">init</span>(rgba: <span class="hljs-type">UInt</span>)
 
     <span class="pl-c">/// Increases color&apos;s brightness.</span>
@@ -306,7 +309,7 @@ postfix func %(input: CGFloat) -&gt; CGFloat
 }
 </code></pre>
 <h3 id="uiedgeinsets">UIEdgeInsets</h3>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UIEdgeInsets</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UIEdgeInsets</span> </span>{
 
     <span class="pl-k">init</span>(top: <span class="hljs-type">CGFloat</span>, <span class="pl-k">left</span>: <span class="hljs-type">CGFloat</span>, bottom: <span class="hljs-type">CGFloat</span>, <span class="pl-k">right</span>: <span class="hljs-type">CGFloat</span>)
 
@@ -320,19 +323,19 @@ postfix func %(input: CGFloat) -&gt; CGFloat
 }
 </code></pre>
 <h3 id="uifont">UIFont</h3>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UIFont</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UIFont</span> </span>{
 
     <span class="pl-k">init</span>(<span class="hljs-number">_</span> name: <span class="hljs-type">String</span>, <span class="hljs-number">_</span> size: <span class="hljs-type">CGFloat</span>)
 }
 </code></pre>
 <h3 id="uilabel">UILabel</h3>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UILabel</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UILabel</span> </span>{
 
     <span class="pl-k">init</span>(text: <span class="hljs-type">String</span>)
 }
 </code></pre>
 <h3 id="uioffset">UIOffset</h3>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UIOffset</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UIOffset</span> </span>{
 
     <span class="pl-k">init</span>(<span class="hljs-number">_</span> all: <span class="hljs-type">CGFloat</span>)
 
@@ -342,7 +345,7 @@ postfix func %(input: CGFloat) -&gt; CGFloat
 }
 </code></pre>
 <h3 id="uitableview">UITableView</h3>
-<pre><code class="lang-Swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UITableView</span> </span>{
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UITableView</span> </span>{
 
     <span class="pl-k">init</span>(style: <span class="hljs-type">UITableViewStyle</span>)
 }

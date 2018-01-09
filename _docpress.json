@@ -306,14 +306,14 @@
             "slug": "partswireframe",
             "headings": [
               {
-                "title": "create",
+                "title": "`create(factory:)`",
                 "depth": 2,
-                "id": "create"
+                "id": "create(factory:)"
               },
               {
-                "title": "branchNavigation",
+                "title": "`branchNavigation(controller:)`",
                 "depth": 2,
-                "id": "branchnavigation"
+                "id": "branchnavigation(controller:)"
               }
             ]
           },
@@ -734,14 +734,14 @@
       "slug": "partswireframe",
       "headings": [
         {
-          "title": "create",
+          "title": "`create(factory:)`",
           "depth": 2,
-          "id": "create"
+          "id": "create(factory:)"
         },
         {
-          "title": "branchNavigation",
+          "title": "`branchNavigation(controller:)`",
           "depth": 2,
-          "id": "branchnavigation"
+          "id": "branchnavigation(controller:)"
         }
       ]
     },
@@ -888,6 +888,13 @@
     "docs/img/ReactantLiveUIError.png": "img/ReactantLiveUIError.png",
     "docs/img/ReactantLiveUIPreview.png": "img/ReactantLiveUIPreview.png",
     "docs/img/ReactantTutorial.png": "img/ReactantTutorial.png",
-    "docs/scripts/zopim.js": "scripts/zopim.js"
+    "docs/scripts/zopim.js": "scripts/zopim.js",
+    "docs/tutorials/RunButton.png": "tutorials/RunButton.png",
+    "docs/tutorials/GitXplorer/Repositories.png": "tutorials/GitXplorer/Repositories.png",
+    "docs/tutorials/GitXplorer/UserHeader.png": "tutorials/GitXplorer/UserHeader.png",
+    "docs/tutorials/GitXplorer/Users.png": "tutorials/GitXplorer/Users.png",
+    "docs/tutorials/RNotes/Reactant-init-console.png": "tutorials/RNotes/Reactant-init-console.png",
+    "docs/tutorials/RNotes/Simulator1.png": "tutorials/RNotes/Simulator1.png",
+    "docs/tutorials/RNotes/Simulator2.png": "tutorials/RNotes/Simulator2.png"
   }
 }
