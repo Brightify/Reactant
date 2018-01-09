@@ -3,6 +3,10 @@
 ## 1.1.0
 * Add FallbackSafeAreaInsets subspec with a basic implementation of a `safeAreaInsets` and `safeAreaLayoutGuide` fallback for iOS 10.
 * Add support for tvOS
+* Add reference guide
+* Add more docs
+* Add tutorials
+* Add more tests
 
 ## 1.0.6
 * Fix TableViewBase and CollectionViewBase memory leak.
