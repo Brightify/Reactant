@@ -21,6 +21,10 @@ public extension ObservableConvertibleType {
             .map { ($0, $1!) }
     }
 
+    public func rewrite() -> Observable<Void> {
+        return asObservable().rewrite(with: Void())
+    }
+
     /**
      * Remap the value of the `Observable` without caring about the value it had beforehand.
      * - parameter value: value to rewrite `Observable` with

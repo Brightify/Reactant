@@ -23,6 +23,7 @@ class WireframeTest: QuickSpec {
         beforeEach {
             testWireframe = TestWireframe()
         }
+        
         describe("Create<T>") {
             context("when there's no UINavigationController") {
                 it("provider.navigation is nil") {

@@ -52,6 +52,14 @@ extension Wireframe {
         return controller
     }
 
+    public func create<T, U>(factory: (FutureControllerProvider<T>, AnyObserver<U>) -> T) -> (T, Observable<U>) {
+        let futureControllerProvider = FutureControllerProvider<T>()
+        let subject = PublishSubject<U>()
+        let controller = factory(futureControllerProvider, subject.asObserver())
+        futureControllerProvider.controller = controller
+        return (controller, subject)
+    }
+
     /**
      * Used when you need a navigation controller embedded inside a controller that is already inside a navigation controller and is supposed to have a close button.
      */

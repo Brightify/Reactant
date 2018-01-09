@@ -140,8 +140,8 @@ public enum Attribute {
 public extension Sequence where Iterator.Element == Attribute {
 
     /// Creates dictionary from sequence of attributes by merging them together. *key* is name of case and *value* the corresponding value.
-    public func toDictionary() -> [String: AnyObject] {
-        var attributeDictionary: [String: AnyObject] = [:]
+    public func toDictionary() -> [NSAttributedStringKey: AnyObject] {
+        var attributeDictionary: [NSAttributedStringKey: AnyObject] = [:]
         for attribute in self {
             attributeDictionary[attribute.key] = attribute.value
         }
