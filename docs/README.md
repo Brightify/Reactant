@@ -5,6 +5,7 @@
 * Getting started
     * [Quick-start guide](getting-started/quickstart.md)
     * [Architecture](getting-started/architecture.md)
+    * [Troubleshooting](getting-started/troubleshooting.md)
 
 * Tutorials
     * [Simple note taking app](tutorials/RNotes/notes.md)
