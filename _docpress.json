@@ -143,299 +143,400 @@
                 "id": "final-result"
               }
             ]
-          }
-        ]
-      },
-      {
-        "title": "Reactant UI",
-        "sections": [
-          {
-            "title": "Introduction",
-            "source": "docs/reactant-ui/introduction.md",
-            "url": "reactant-ui/introduction.html",
-            "slug": "reactant-uiintroduction",
-            "headings": [
-              {
-                "title": "Important Note",
-                "depth": 2,
-                "id": "important-note"
-              },
-              {
-                "title": "What is Reactant UI",
-                "depth": 2,
-                "id": "what-is-reactant-ui"
-              },
-              {
-                "title": "Why",
-                "depth": 2,
-                "id": "why"
-              },
-              {
-                "title": "Installation",
-                "depth": 2,
-                "id": "installation"
-              },
-              {
-                "title": "Recommended editor",
-                "depth": 2,
-                "id": "recommended-editor"
-              },
-              {
-                "title": "UI XML",
-                "depth": 2,
-                "id": "ui-xml"
-              }
-            ]
           },
           {
-            "title": "Live Reload",
-            "source": "docs/reactant-ui/live-reload.md",
-            "url": "reactant-ui/live-reload.html",
-            "slug": "reactant-uilive-reload",
+            "title": "Troubleshooting",
+            "source": "docs/getting-started/troubleshooting.md",
+            "url": "getting-started/troubleshooting.html",
+            "slug": "getting-startedtroubleshooting",
             "headings": [
               {
-                "title": "Installation",
+                "title": "General",
                 "depth": 2,
-                "id": "installation"
+                "id": "general"
               },
               {
-                "title": "Usage",
+                "title": "Reactant",
                 "depth": 2,
-                "id": "usage",
-                "headings": [
-                  {
-                    "title": "Error screen",
-                    "depth": 3,
-                    "id": "error-screen"
-                  },
-                  {
-                    "title": "Debug menu",
-                    "depth": 3,
-                    "id": "debug-menu"
-                  },
-                  {
-                    "title": "Preview",
-                    "depth": 3,
-                    "id": "preview"
-                  },
-                  {
-                    "title": "Reload files",
-                    "depth": 3,
-                    "id": "reload-files"
-                  }
-                ]
+                "id": "reactant"
+              },
+              {
+                "title": "ReactantUI",
+                "depth": 2,
+                "id": "reactantui"
+              },
+              {
+                "title": "ReactantCLI",
+                "depth": 2,
+                "id": "reactantcli"
               }
             ]
           }
         ]
       },
       {
-        "title": "Parts",
+        "title": "Tutorials",
         "sections": [
           {
-            "title": "Configuration",
-            "source": "docs/parts/configuration.md",
-            "url": "parts/configuration.html",
-            "slug": "partsconfiguration",
+            "title": "Simple note taking app",
+            "source": "docs/tutorials/RNotes/notes.md",
+            "url": "tutorials/RNotes/notes.html",
+            "slug": "tutorialsrnotesnotes",
             "headings": [
               {
-                "title": "Property",
-                "depth": 2,
-                "id": "property"
+                "title": "Setting Up the Project",
+                "depth": 3,
+                "id": "setting-up-the-project"
               },
               {
-                "title": "Properties",
-                "depth": 2,
-                "id": "properties"
+                "title": "Preparing The Insides",
+                "depth": 3,
+                "id": "preparing-the-insides"
               },
               {
-                "title": "Global and custom configuration",
-                "depth": 2,
-                "id": "global-and-custom-configuration"
+                "title": "Layouting",
+                "depth": 3,
+                "id": "layouting"
               },
               {
-                "title": "Configurable",
-                "depth": 2,
-                "id": "configurable"
+                "title": "Creating New Notes",
+                "depth": 3,
+                "id": "creating-new-notes"
+              },
+              {
+                "title": "Saving Our Notes",
+                "depth": 3,
+                "id": "saving-our-notes"
+              },
+              {
+                "title": "Finishing Touches",
+                "depth": 3,
+                "id": "finishing-touches"
               }
             ]
           },
           {
-            "title": "Controller",
-            "source": "docs/parts/controller.md",
-            "url": "parts/controller.html",
-            "slug": "partscontroller"
-          },
-          {
-            "title": "RootView",
-            "source": "docs/parts/rootview.md",
-            "url": "parts/rootview.html",
-            "slug": "partsrootview",
+            "title": "Random GitHub users explorer",
+            "source": "docs/tutorials/GitXplorer/explorer.md",
+            "url": "tutorials/GitXplorer/explorer.html",
+            "slug": "tutorialsgitxplorerexplorer",
             "headings": [
               {
-                "title": "edgesForExtendedLayout",
-                "depth": 2,
-                "id": "edgesforextendedlayout"
+                "title": "Setting Up the Project",
+                "depth": 3,
+                "id": "setting-up-the-project"
               },
               {
-                "title": "viewWillAppear()",
-                "depth": 2,
-                "id": "viewwillappear()"
+                "title": "Communicating with GitHub",
+                "depth": 3,
+                "id": "communicating-with-github"
               },
               {
-                "title": "viewDidAppear()",
-                "depth": 2,
-                "id": "viewdidappear()"
+                "title": "Preparing the Insides",
+                "depth": 3,
+                "id": "preparing-the-insides"
               },
               {
-                "title": "viewWillDisappear()",
+                "title": "Wrap Up",
                 "depth": 2,
-                "id": "viewwilldisappear()"
-              },
-              {
-                "title": "viewDidDisappear()",
-                "depth": 2,
-                "id": "viewdiddisappear()"
+                "id": "wrap-up"
               }
-            ]
-          },
-          {
-            "title": "Wireframe",
-            "source": "docs/parts/wireframe.md",
-            "url": "parts/wireframe.html",
-            "slug": "partswireframe",
-            "headings": [
+            ],
+            "sections": [
               {
-                "title": "`create(factory:)`",
-                "depth": 2,
-                "id": "create(factory:)"
+                "title": "Reactant UI",
+                "sections": [
+                  {
+                    "title": "Introduction",
+                    "source": "docs/reactant-ui/introduction.md",
+                    "url": "reactant-ui/introduction.html",
+                    "slug": "reactant-uiintroduction",
+                    "headings": [
+                      {
+                        "title": "Important Note",
+                        "depth": 2,
+                        "id": "important-note"
+                      },
+                      {
+                        "title": "What is Reactant UI",
+                        "depth": 2,
+                        "id": "what-is-reactant-ui"
+                      },
+                      {
+                        "title": "Why",
+                        "depth": 2,
+                        "id": "why"
+                      },
+                      {
+                        "title": "Installation",
+                        "depth": 2,
+                        "id": "installation"
+                      },
+                      {
+                        "title": "Recommended editor",
+                        "depth": 2,
+                        "id": "recommended-editor"
+                      },
+                      {
+                        "title": "UI XML",
+                        "depth": 2,
+                        "id": "ui-xml"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Live Reload",
+                    "source": "docs/reactant-ui/live-reload.md",
+                    "url": "reactant-ui/live-reload.html",
+                    "slug": "reactant-uilive-reload",
+                    "headings": [
+                      {
+                        "title": "Installation",
+                        "depth": 2,
+                        "id": "installation"
+                      },
+                      {
+                        "title": "Usage",
+                        "depth": 2,
+                        "id": "usage",
+                        "headings": [
+                          {
+                            "title": "Error screen",
+                            "depth": 3,
+                            "id": "error-screen"
+                          },
+                          {
+                            "title": "Debug menu",
+                            "depth": 3,
+                            "id": "debug-menu"
+                          },
+                          {
+                            "title": "Preview",
+                            "depth": 3,
+                            "id": "preview"
+                          },
+                          {
+                            "title": "Reload files",
+                            "depth": 3,
+                            "id": "reload-files"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               },
               {
-                "title": "`branchNavigation(controller:)`",
-                "depth": 2,
-                "id": "branchnavigation(controller:)"
-              }
-            ]
-          },
-          {
-            "title": "Styling",
-            "source": "docs/parts/styling.md",
-            "url": "parts/styling.html",
-            "slug": "partsstyling",
-            "headings": [
-              {
-                "title": "Usage",
-                "depth": 2,
-                "id": "usage",
-                "headings": [
+                "title": "Parts",
+                "sections": [
                   {
-                    "title": "Styleable",
-                    "depth": 3,
-                    "id": "styleable"
+                    "title": "Configuration",
+                    "source": "docs/parts/configuration.md",
+                    "url": "parts/configuration.html",
+                    "slug": "partsconfiguration",
+                    "headings": [
+                      {
+                        "title": "Property",
+                        "depth": 2,
+                        "id": "property"
+                      },
+                      {
+                        "title": "Properties",
+                        "depth": 2,
+                        "id": "properties"
+                      },
+                      {
+                        "title": "Global and custom configuration",
+                        "depth": 2,
+                        "id": "global-and-custom-configuration"
+                      },
+                      {
+                        "title": "Configurable",
+                        "depth": 2,
+                        "id": "configurable"
+                      }
+                    ]
                   },
                   {
-                    "title": "CGAffineTransform",
-                    "depth": 3,
-                    "id": "cgaffinetransform"
+                    "title": "Controller",
+                    "source": "docs/parts/controller.md",
+                    "url": "parts/controller.html",
+                    "slug": "partscontroller"
                   },
                   {
-                    "title": "CGPoint",
-                    "depth": 3,
-                    "id": "cgpoint"
+                    "title": "RootView",
+                    "source": "docs/parts/rootview.md",
+                    "url": "parts/rootview.html",
+                    "slug": "partsrootview",
+                    "headings": [
+                      {
+                        "title": "edgesForExtendedLayout",
+                        "depth": 2,
+                        "id": "edgesforextendedlayout"
+                      },
+                      {
+                        "title": "viewWillAppear()",
+                        "depth": 2,
+                        "id": "viewwillappear()"
+                      },
+                      {
+                        "title": "viewDidAppear()",
+                        "depth": 2,
+                        "id": "viewdidappear()"
+                      },
+                      {
+                        "title": "viewWillDisappear()",
+                        "depth": 2,
+                        "id": "viewwilldisappear()"
+                      },
+                      {
+                        "title": "viewDidDisappear()",
+                        "depth": 2,
+                        "id": "viewdiddisappear()"
+                      }
+                    ]
                   },
                   {
-                    "title": "CGRect",
-                    "depth": 3,
-                    "id": "cgrect"
+                    "title": "Wireframe",
+                    "source": "docs/parts/wireframe.md",
+                    "url": "parts/wireframe.html",
+                    "slug": "partswireframe",
+                    "headings": [
+                      {
+                        "title": "`create(factory:)`",
+                        "depth": 2,
+                        "id": "create(factory:)"
+                      },
+                      {
+                        "title": "`branchNavigation(controller:)`",
+                        "depth": 2,
+                        "id": "branchnavigation(controller:)"
+                      }
+                    ]
                   },
                   {
-                    "title": "CGSize",
-                    "depth": 3,
-                    "id": "cgsize"
+                    "title": "Styling",
+                    "source": "docs/parts/styling.md",
+                    "url": "parts/styling.html",
+                    "slug": "partsstyling",
+                    "headings": [
+                      {
+                        "title": "Usage",
+                        "depth": 2,
+                        "id": "usage",
+                        "headings": [
+                          {
+                            "title": "Styleable",
+                            "depth": 3,
+                            "id": "styleable"
+                          },
+                          {
+                            "title": "CGAffineTransform",
+                            "depth": 3,
+                            "id": "cgaffinetransform"
+                          },
+                          {
+                            "title": "CGPoint",
+                            "depth": 3,
+                            "id": "cgpoint"
+                          },
+                          {
+                            "title": "CGRect",
+                            "depth": 3,
+                            "id": "cgrect"
+                          },
+                          {
+                            "title": "CGSize",
+                            "depth": 3,
+                            "id": "cgsize"
+                          },
+                          {
+                            "title": "NSAttributedString",
+                            "depth": 3,
+                            "id": "nsattributedstring"
+                          },
+                          {
+                            "title": "Percent",
+                            "depth": 3,
+                            "id": "percent"
+                          },
+                          {
+                            "title": "UIButton",
+                            "depth": 3,
+                            "id": "uibutton"
+                          },
+                          {
+                            "title": "UICollectionView",
+                            "depth": 3,
+                            "id": "uicollectionview"
+                          },
+                          {
+                            "title": "UIColor",
+                            "depth": 3,
+                            "id": "uicolor"
+                          },
+                          {
+                            "title": "UIEdgeInsets",
+                            "depth": 3,
+                            "id": "uiedgeinsets"
+                          },
+                          {
+                            "title": "UIFont",
+                            "depth": 3,
+                            "id": "uifont"
+                          },
+                          {
+                            "title": "UILabel",
+                            "depth": 3,
+                            "id": "uilabel"
+                          },
+                          {
+                            "title": "UIOffset",
+                            "depth": 3,
+                            "id": "uioffset"
+                          },
+                          {
+                            "title": "UITableView",
+                            "depth": 3,
+                            "id": "uitableview"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
-                    "title": "NSAttributedString",
-                    "depth": 3,
-                    "id": "nsattributedstring"
+                    "title": "TableView",
+                    "source": "docs/parts/tableview.md",
+                    "url": "parts/tableview.html",
+                    "slug": "partstableview"
                   },
                   {
-                    "title": "Percent",
-                    "depth": 3,
-                    "id": "percent"
+                    "title": "CollectionView",
+                    "source": "docs/parts/collectionview.md",
+                    "url": "parts/collectionview.html",
+                    "slug": "partscollectionview"
                   },
                   {
-                    "title": "UIButton",
-                    "depth": 3,
-                    "id": "uibutton"
+                    "title": "Validation",
+                    "source": "docs/parts/validation.md",
+                    "url": "parts/validation.html",
+                    "slug": "partsvalidation"
                   },
                   {
-                    "title": "UICollectionView",
-                    "depth": 3,
-                    "id": "uicollectionview"
+                    "title": "ActivityIndicator",
+                    "source": "docs/parts/activityindicator.md",
+                    "url": "parts/activityindicator.html",
+                    "slug": "partsactivityindicator"
                   },
                   {
-                    "title": "UIColor",
-                    "depth": 3,
-                    "id": "uicolor"
-                  },
-                  {
-                    "title": "UIEdgeInsets",
-                    "depth": 3,
-                    "id": "uiedgeinsets"
-                  },
-                  {
-                    "title": "UIFont",
-                    "depth": 3,
-                    "id": "uifont"
-                  },
-                  {
-                    "title": "UILabel",
-                    "depth": 3,
-                    "id": "uilabel"
-                  },
-                  {
-                    "title": "UIOffset",
-                    "depth": 3,
-                    "id": "uioffset"
-                  },
-                  {
-                    "title": "UITableView",
-                    "depth": 3,
-                    "id": "uitableview"
+                    "title": "StaticMap",
+                    "source": "docs/parts/staticmap.md",
+                    "url": "parts/staticmap.html",
+                    "slug": "partsstaticmap"
                   }
                 ]
               }
             ]
-          },
-          {
-            "title": "TableView",
-            "source": "docs/parts/tableview.md",
-            "url": "parts/tableview.html",
-            "slug": "partstableview"
-          },
-          {
-            "title": "CollectionView",
-            "source": "docs/parts/collectionview.md",
-            "url": "parts/collectionview.html",
-            "slug": "partscollectionview"
-          },
-          {
-            "title": "Validation",
-            "source": "docs/parts/validation.md",
-            "url": "parts/validation.html",
-            "slug": "partsvalidation"
-          },
-          {
-            "title": "ActivityIndicator",
-            "source": "docs/parts/activityindicator.md",
-            "url": "parts/activityindicator.html",
-            "slug": "partsactivityindicator"
-          },
-          {
-            "title": "StaticMap",
-            "source": "docs/parts/staticmap.md",
-            "url": "parts/staticmap.html",
-            "slug": "partsstaticmap"
           }
         ]
       }
@@ -579,6 +680,100 @@
           "title": "Final result",
           "depth": 2,
           "id": "final-result"
+        }
+      ]
+    },
+    "getting-started/troubleshooting.html": {
+      "source": "docs/getting-started/troubleshooting.md",
+      "title": "Troubleshooting - Reactant",
+      "pageTitle": "Troubleshooting",
+      "slug": "getting-startedtroubleshooting",
+      "headings": [
+        {
+          "title": "General",
+          "depth": 2,
+          "id": "general"
+        },
+        {
+          "title": "Reactant",
+          "depth": 2,
+          "id": "reactant"
+        },
+        {
+          "title": "ReactantUI",
+          "depth": 2,
+          "id": "reactantui"
+        },
+        {
+          "title": "ReactantCLI",
+          "depth": 2,
+          "id": "reactantcli"
+        }
+      ]
+    },
+    "tutorials/RNotes/notes.html": {
+      "source": "docs/tutorials/RNotes/notes.md",
+      "title": "Simple note taking app - Reactant",
+      "pageTitle": "Simple note taking app",
+      "slug": "tutorialsrnotesnotes",
+      "headings": [
+        {
+          "title": "Setting Up the Project",
+          "depth": 3,
+          "id": "setting-up-the-project"
+        },
+        {
+          "title": "Preparing The Insides",
+          "depth": 3,
+          "id": "preparing-the-insides"
+        },
+        {
+          "title": "Layouting",
+          "depth": 3,
+          "id": "layouting"
+        },
+        {
+          "title": "Creating New Notes",
+          "depth": 3,
+          "id": "creating-new-notes"
+        },
+        {
+          "title": "Saving Our Notes",
+          "depth": 3,
+          "id": "saving-our-notes"
+        },
+        {
+          "title": "Finishing Touches",
+          "depth": 3,
+          "id": "finishing-touches"
+        }
+      ]
+    },
+    "tutorials/GitXplorer/explorer.html": {
+      "source": "docs/tutorials/GitXplorer/explorer.md",
+      "title": "Random GitHub users explorer - Reactant",
+      "pageTitle": "Random GitHub users explorer",
+      "slug": "tutorialsgitxplorerexplorer",
+      "headings": [
+        {
+          "title": "Setting Up the Project",
+          "depth": 3,
+          "id": "setting-up-the-project"
+        },
+        {
+          "title": "Communicating with GitHub",
+          "depth": 3,
+          "id": "communicating-with-github"
+        },
+        {
+          "title": "Preparing the Insides",
+          "depth": 3,
+          "id": "preparing-the-insides"
+        },
+        {
+          "title": "Wrap Up",
+          "depth": 2,
+          "id": "wrap-up"
         }
       ]
     },
@@ -870,6 +1065,9 @@
     "README.md": "index.html",
     "docs/getting-started/quickstart.md": "getting-started/quickstart.html",
     "docs/getting-started/architecture.md": "getting-started/architecture.html",
+    "docs/getting-started/troubleshooting.md": "getting-started/troubleshooting.html",
+    "docs/tutorials/RNotes/notes.md": "tutorials/RNotes/notes.html",
+    "docs/tutorials/GitXplorer/explorer.md": "tutorials/GitXplorer/explorer.html",
     "docs/reactant-ui/introduction.md": "reactant-ui/introduction.html",
     "docs/reactant-ui/live-reload.md": "reactant-ui/live-reload.html",
     "docs/parts/configuration.md": "parts/configuration.html",
@@ -884,11 +1082,11 @@
     "docs/parts/staticmap.md": "parts/staticmap.html",
     "docs/_config.yml": "_config.yml",
     "docs/docpress.json": "docpress.json",
+    "docs/scripts/zopim.js": "scripts/zopim.js",
     "docs/img/ReactantLiveUIDebug.png": "img/ReactantLiveUIDebug.png",
     "docs/img/ReactantLiveUIError.png": "img/ReactantLiveUIError.png",
     "docs/img/ReactantLiveUIPreview.png": "img/ReactantLiveUIPreview.png",
     "docs/img/ReactantTutorial.png": "img/ReactantTutorial.png",
-    "docs/scripts/zopim.js": "scripts/zopim.js",
     "docs/tutorials/RunButton.png": "tutorials/RunButton.png",
     "docs/tutorials/GitXplorer/Repositories.png": "tutorials/GitXplorer/Repositories.png",
     "docs/tutorials/GitXplorer/UserHeader.png": "tutorials/GitXplorer/UserHeader.png",

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/style.css?t=615badd5">
+    <script src="../../assets/script.js?t=36f3d457"></script>
+    <script src="../../scripts/zopim.js?t=f160c13c"></script>
+    <title>Simple note taking app - Reactant</title>
+    <meta name="viewport" content="width=device-width">
+    <script>if (false || window.location.hostname.indexOf("docs.reactant.tech") === window.location.hostname.length - 18) {
+        (function(d,o,c,p,r,e,s){d['GoogleAnalyticsObject']=r;d[r]=d[r]||function(){(d[r].q=d[r].q||[]).push(arguments)},d[r].l=1*new Date();e=o.createElement(c),s=o.getElementsByTagName(c)[0];e.async=1;e.src=p;s.parentNode.insertBefore(e,s)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create',"UA-48374666-17",'auto')
+      }
+    </script>
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1"><a class="link title  link-index" href="../../index.html">Reactant</a>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Getting started</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedquickstart" href="../../getting-started/quickstart.html">Quick-start guide</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedarchitecture" href="../../getting-started/architecture.html">Architecture</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedtroubleshooting" href="../../getting-started/troubleshooting.html">Troubleshooting</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Tutorials</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title -active link-tutorialsrnotesnotes" href="../../tutorials/RNotes/notes.html">Simple note taking app</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-3"><a class="hlink link-setting-up-the-project" href="#setting-up-the-project">Setting Up the Project</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a class="hlink link-preparing-the-insides" href="#preparing-the-insides">Preparing The Insides</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a class="hlink link-layouting" href="#layouting">Layouting</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a class="hlink link-creating-new-notes" href="#creating-new-notes">Creating New Notes</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a class="hlink link-saving-our-notes" href="#saving-our-notes">Saving Our Notes</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a class="hlink link-finishing-touches" href="#finishing-touches">Finishing Touches</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item -level-2 -parent"><a class="link title  link-tutorialsgitxplorerexplorer" href="../../tutorials/GitXplorer/explorer.html">Random GitHub users explorer</a>
+                  <ul class="submenu">
+                    <li class="menu-item -level-3 -parent"><span class="title">Reactant UI</span>
+                      <ul class="submenu">
+                        <li class="menu-item -level-4"><a class="link title  link-reactant-uiintroduction" href="../../reactant-ui/introduction.html">Introduction</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-reactant-uilive-reload" href="../../reactant-ui/live-reload.html">Live Reload</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="menu-item -level-3 -parent"><span class="title">Parts</span>
+                      <ul class="submenu">
+                        <li class="menu-item -level-4"><a class="link title  link-partsconfiguration" href="../../parts/configuration.html">Configuration</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partscontroller" href="../../parts/controller.html">Controller</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partsrootview" href="../../parts/rootview.html">RootView</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partswireframe" href="../../parts/wireframe.html">Wireframe</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partsstyling" href="../../parts/styling.html">Styling</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partstableview" href="../../parts/tableview.html">TableView</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partscollectionview" href="../../parts/collectionview.html">CollectionView</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partsvalidation" href="../../parts/validation.html">Validation</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partsactivityindicator" href="../../parts/activityindicator.html">ActivityIndicator</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partsstaticmap" href="../../parts/staticmap.html">StaticMap</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+      <div class="body page-tutorialsrnotesnotes">
+        <div class="header-nav">
+          <div class="right"><a class="iconlink" href="https://github.com/Brightify/Reactant" data-title="Brightify/Reactant">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><!-- URLs -->
+<!-- relative paths -->
+<h1 id="tutorial:-simple-note-taking-app">Tutorial: Simple note taking app</h1>
+<p>Welcome to our first introductory tutorial to the Reactant architecture.</p>
+<p>First and foremost, prerequisites:</p>
+<ul>
+<li><strong>Xcode</strong> (AppCode might work as well, but it&#x2019;s not tested),</li>
+<li><strong>Terminal</strong>,</li>
+<li><strong><a href="http://cocoapods.org">Cocoapods</a></strong> dependency manager.</li>
+</ul>
+<p>The whole project can be found on GitHub <a href="https://github.com/MatyasKriz/reactant-notes">here</a>.</p>
+<p>In this particular tutorial we&#x2019;ll create a small (but useful) application for writing notes and saving them for future use, allowing you to wipe them if you so please.</p>
+<h5 id="let&apos;s-get-started.">Let&#x2019;s get started.</h5>
+<h3 id="setting-up-the-project">Setting Up the Project</h3>
+<p>There are many ways to go about creating a new Reactant project. Creating it by hand can be overwhelming at first, so we&#x2019;re using <a href="https://github.com/Brightify/ReactantCLI">Reactant CLI</a> to create it for us this time.</p>
+<p>After following instructions in <strong>Reactant CLI</strong> repo&#x2019;s README you&#x2019;ll be equipped with a very valuable tool for creating new Reactant projects.</p>
+<p>How to create a project using <strong>Reactant CLI</strong>:</p>
+<ul>
+<li>select a root folder (project folder will be created automatically in it)</li>
+<li>type the following:</li>
+</ul>
+<pre><code>reactant init
+</code></pre>
+<p>into the Terminal.</p>
+<p align="center">
+    We will use this configuration:<br><br>
+    <img img="" src="Reactant-init-console.png" alt="Terminal">
+</p>
+<ul>
+<li>wait for Cocoapods to do its job bringing in the dependencies</li>
+</ul>
+<p>Xcode workspace should open after this if everything went smooth. If it doesn&#x2019;t, open it manually, the suffix is <code>.xcworkspace</code></p>
+<p>Click the <strong>RUN</strong> button (<img src="../RunButton.png" alt="-RUN BUTTON-">) so that we see what we&#x2019;ve got so far. We&#x2019;re doing this step mainly to check if nothing went wrong. You should get <strong>Hello World!</strong> text on white background. If you don&#x2019;t, consider visiting the <a href="../../getting-started/troubleshooting.html">Troubleshooting Tips</a> section.</p>
+<p>There are two Xcode projects in the left sidebar. The first is our project (RNotes in this case) and the second is <code>Pods</code>, our dependencies lie there.</p>
+<p>Open our new project folder by clicking the arrow to the left of RNotes. We are going all the way through folders called <code>Application</code> -&gt; <code>Sources</code>. Our project won&#x2019;t be large, so open all the subfolders for better navigation later on.</p>
+<h3 id="preparing-the-insides">Preparing The Insides</h3>
+<h4 id="model">Model</h4>
+<p><code>Models</code> is the folder for our <code>MODEL</code>s. These include <code>struct</code>, <code>enum</code>, <code>protocol</code> or <code>class</code> types that we use everywhere else in our program.</p>
+<p>RNotes will need a <code>MODEL</code> of its own. We&#x2019;ll create a new file <code>Note.swift</code> (by clicking right on the <code>Models</code> folder and choosing <code>New file...</code> and selecting <code>Swift file</code>, we&#x2019;ll only use these from now on) and a <code>struct</code> inside it named <code>Note</code>.</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Note</span> </span>{
+  <span class="pl-k">let</span> id: <span class="hljs-type">String</span>
+  <span class="pl-k">var</span> title: <span class="hljs-type">String</span>
+  <span class="pl-k">var</span> body: <span class="hljs-type">String</span>
+}
+</code></pre>
+<p>That&#x2019;s it for the <code>MODEL</code> in this app for now.</p>
+<h4 id="controller">Controller</h4>
+<p>Moving on to the <strong>MainController</strong> file. <code>ControllerBase</code> is what any <code>Controller</code> will be subclassing. The first generic parameter (between the <code>&lt;</code> and <code>&gt;</code>) is for <code>componentState</code>, the second for this controller&#x2019;s <code>RootView</code>. Please make sure that for this <code>Controller</code> the second generic parameter is <strong>MainRootView</strong>.</p>
+<p>Passing information to <code>RootView</code> is done by setting <code>RootView</code>&apos;s <code>componentState</code>. This is usually done in <code>update()</code> method, as it&#x2019;s called every time <code>componentState</code> changes (and once at the beginning, even if it&#x2019;s <code>Void</code>).</p>
+<p>We don&#x2019;t have any notes ready, so we need to create some from scratch and pass them to the <code>RootView</code>.</p>
+<pre><code class="lang-swift"><span class="pl-k">import</span> Reactant
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">MainRootView</span>&gt; </span>{
+  <span class="pl-k">override</span> <span class="pl-k">init</span>() {
+    <span class="pl-k">super</span>.<span class="pl-k">init</span>(title: <span class="pl-s">&quot;RNotes&quot;</span>) <span class="pl-c">// setting the title of our main page</span>
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">afterInit</span><span class="hljs-params">()</span></span> {
+    <span class="pl-k">let</span> notes = [
+      <span class="hljs-type">Note</span>(id: <span class="pl-s">&quot;1&quot;</span>, title: <span class="pl-s">&quot;Groceries&quot;</span>, body: <span class="pl-s">&quot;Milk, honey, 2 lemons, 3 melons, a cat&quot;</span>),
+      <span class="hljs-type">Note</span>(id: <span class="pl-s">&quot;2&quot;</span>, title: <span class="pl-s">&quot;TODO&quot;</span>, body: <span class="pl-s">&quot;Workout, take Casey on a date, workout some more&quot;</span>),
+      <span class="hljs-type">Note</span>(id: <span class="pl-s">&quot;3&quot;</span>, title: <span class="pl-s">&quot;Diary&quot;</span>, body: <span class="pl-s">&quot;Today I found out that I&apos;m gonna be promoted tomorrow! I&apos;m so excited as I don&apos;t know what to expect from the new job position. Looking forward to it though.&quot;</span>)
+    ]
+    rootView.componentState = notes
+  }
+}
+</code></pre>
+<p>Doing so we passed the notes we prepared in advance to the <code>RootView</code>. Right now Xcode will report an error saying that <code>[Note]</code> and <code>Void</code> are incompatible. Let&#x2019;s head over to a file called <strong>MainRootView</strong> and fix it.</p>
+<h4 id="rootview">RootView</h4>
+<p>We can see <code>Reactant CLI</code> generated a class for us that we will use as our <code>RootView</code>.</p>
+<p>We&#x2019;ll mark <strong>MainRootView</strong> as <code>RootView</code> and add a <code>PlainTableView</code> as a field to keep our notes organized.</p>
+<pre><code class="lang-swift"><span class="pl-k">import</span> Reactant
+<span class="pl-k">import</span> RxSwift
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainRootView</span>: <span class="pl-ent">ViewBase</span>&lt;[<span class="pl-ent">Note</span>], <span class="pl-ent">PlainTableViewAction</span>&lt;<span class="pl-ent">NoteCell</span>&gt;&gt; </span>{
+  <span class="pl-k">let</span> noteTableView = <span class="hljs-type">PlainTableView</span>&lt;<span class="hljs-type">NoteCell</span>&gt;(reloadable: <span class="pl-c1">false</span>)
+
+  <span class="pl-k">override</span> <span class="pl-k">var</span> actions: [<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">PlainTableViewAction</span>&lt;<span class="hljs-type">NoteCell</span>&gt;&gt;] {
+    <span class="pl-k">return</span> [noteTableView.action]
+  }
+}
+</code></pre>
+<p>The <code>actions</code> array of <code>Observable</code> sequences is used as a means to communicate with <code>Controller</code> that a certain action took place. Here it&#x2019;s used only to propagate user&#x2019;s interaction with the table view.</p>
+<p><strong>NOTE</strong>: <code>PlainTableViewAction</code> is an enum that sends either <code>.selected(CELL.StateType)</code>, <code>.refresh</code> or <code>.rowAction(CELL.StateType, CELL.ActionType)</code>. We&#x2019;ll cover what actions are in more detail in a second.</p>
+<p>We also need to update the <code>noteTableView</code> every time <code>MainRootView</code>&apos;s componentState changes. That&#x2019;s what <code>update()</code> method is for.</p>
+<pre><code class="lang-swift"><span class="pl-c">// inside MainRootView</span>
+<span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+  noteTableView.componentState = componentState.isEmpty ? .empty(message: <span class="pl-s">&quot;You have no notes so far!&quot;</span>) : .items(componentState)
+}
+</code></pre>
+<p>The <code>.items</code> is a part of <code>CollectionViewState&lt;MODEL&gt;</code> enum. After passing an array of <code>MODEL</code>, <code>Reactant.TableView</code> automatically creates a table view.</p>
+<p>Having done that, we can customize our <code>noteTableView</code> a bit in <code>loadView()</code>. Add the following function.</p>
+<pre><code class="lang-swift"><span class="pl-c">// inside MainRootView</span>
+<span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">loadView</span><span class="hljs-params">()</span></span> {
+  noteTableView.footerView = <span class="hljs-type">UIView</span>() <span class="pl-c">// this is so that cell dividers end after the last cell</span>
+  noteTableView.rowHeight = <span class="hljs-type">NoteCell</span>.height
+  noteTableView.separatorStyle = .singleLine
+  noteTableView.tableView.contentInset.bottom = <span class="hljs-number">0</span>
+}
+</code></pre>
+<p><strong>NOTE</strong>: For more <code>TableView</code> variants see <a href="../../parts/tableview.html">Reactant&#x2019;s TableView classes</a>.</p>
+<p>Now we have a <code>PlainTableView</code>, but we still haven&#x2019;t created the cell we want to populate it with, <code>NoteCell</code>.</p>
+<p>Creating new file in the <code>Main</code> folder and choosing <code>Swift file</code>. You can name the file however you want, though it&#x2019;s good practice to always name it after the class that&#x2019;s going to reside in the file.</p>
+<pre><code class="lang-swift"><span class="pl-k">import</span> UIKit
+<span class="pl-k">import</span> Reactant
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">NoteCell</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">Note</span>, <span class="pl-ent">Void</span>&gt; </span>{
+  <span class="pl-k">static</span> <span class="pl-k">let</span> height: <span class="hljs-type">CGFloat</span> = <span class="hljs-number">80</span>
+}
+</code></pre>
+<p>This is the declaration of our cell. It&#x2019;s good practice to explicitly set the height of your table cell. Next we need to add some labels that will tell us what the note is about without us tapping on it.</p>
+<pre><code class="lang-swift"><span class="pl-k">import</span> UIKit
+<span class="pl-k">import</span> Reactant
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">NoteCell</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">Note</span>, <span class="pl-ent">Void</span>&gt; </span>{
+  <span class="pl-k">static</span> <span class="pl-k">let</span> height: <span class="hljs-type">CGFloat</span> = <span class="hljs-number">80</span>
+
+  <span class="pl-k">let</span> title = <span class="hljs-type">UILabel</span>()
+  <span class="pl-k">let</span> preview = <span class="hljs-type">UILabel</span>()
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+    title.text = componentState.title
+    preview.text = componentState.body
+  }
+}
+</code></pre>
+<p><strong>NOTE</strong>: We&#x2019;re using 2-space tabs in these short snippets to achieve better readability. If you want to inspect the code in full, the project can be found  <a href="https://github.com/MatyasKriz/reactant-notes">here</a>. Pasting the code to Xcode from the snippets should automatically convert indentation to your preferred size, if it does not, use <code>Ctrl+I</code> on selected code to indent it correctly.</p>
+<p>The <code>update()</code> method gets called every time <code>componentState</code> is modified. <code>componentState</code> is the single mutable state of any Component. Ideally there should be no more <code>var</code> fields in the component, only the <code>componentState</code> should be mutable. The type of <code>componentState</code> is defined as the first generic parameter (between the <code>&lt;</code> and <code>&gt;</code>), you can see that it&#x2019;s <code>Note</code> here.</p>
+<p>Inside <code>update()</code> and only there you should read <code>componentState</code>. If you try reading from it before anything is set in there, the app crashes.</p>
+<p>As you can see, here we are using <code>componentState</code> to update the view based on the <code>MODEL</code> we receive. <code>Note</code> has <code>title</code> and <code>body</code> fields and we copy those into the <code>UILabel</code> views.</p>
+<p><strong>ADVANCED</strong>: If, for some reason, you don&#x2019;t want the <code>update()</code> method called, overriding method <code>needsUpdate()</code> gives you that control. Returning <code>false</code> from <code>needsUpdate()</code> means that <code>update()</code> doesn&#x2019;t get called when <code>componentState</code> is modified, default is <code>true</code>.</p>
+<p>Second, the <code>loadView()</code> method. In this method you should setup your view and add subviews if you don&#x2019;t add them through ReactantUI. It gets called only once after <code>afterInit()</code>.</p>
+<p>We are using <code>children(_:)</code> which also comes from Reactant to conveniently add all the subviews. Keep in mind that views added first will be under the views added last.</p>
+<p><strong>NOTE</strong>: Even though Reactant&#x2019;s methods are overridden, calling super.<em>method</em>() is not needed.</p>
+<h3 id="layouting">Layouting</h3>
+<p><strong>ReactantUI</strong> uses what <code>AutoLayout</code> offers in a pretty straightforward way. You can either use anonymous components or connect your UI to your code giving you even more control over the component.</p>
+<p>Open file <strong>MainRootView.ui.xml</strong>, we&#x2019;re going to be doing a few changes. The <code>Label</code> with &#x201C;Hello World!&#x201D; is redundant in our case, but we do need to layout our <code>noteTableView</code>.</p>
+<pre><code class="lang-xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="pl-s">&quot;1.0&quot;</span> encoding=<span class="pl-s">&quot;UTF-8&quot;</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Component</span>
+  <span class="hljs-attr">xmlns</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui&quot;</span>
+  <span class="hljs-attr">xmlns:layout</span>=<span class="pl-s">&quot;http://schema.reactant.tech/layout&quot;</span>
+  <span class="hljs-attr">xmlns:xsi</span>=<span class="pl-s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui https://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd&quot;</span>
+  <span class="hljs-attr">rootView</span>=<span class="pl-s">&quot;true&quot;</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">View</span>
+    <span class="hljs-attr">field</span>=<span class="pl-s">&quot;noteTableView&quot;</span>
+    <span class="hljs-attr">layout:edges</span>=<span class="pl-s">&quot;super&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Component</span>&gt;</span>
+</code></pre>
+<p>First thing you&#x2019;ll notice is that there&#x2019;s a lot of complex text in the header. That&#x2019;s actually defining the component you&#x2019;re creating right now, that&#x2019;s why the file ends with <code>&lt;/Component&gt;</code> and every <code>ui.xml</code> file has to have this structure (except for the <code>rootView=&quot;true&quot;</code> if you don&#x2019;t want the view to be a <code>RootView</code>).</p>
+<p>Now create another file. For this one select <code>Empty</code> as file type, its name should be identical to the file you created for <code>NoteCell</code> but with the file suffix <code>ui.xml</code></p>
+<p>Copy the header from <code>MainRootView.ui.xml</code>, don&#x2019;t forget to add the ending <code>&lt;/Component&gt;</code> as well. We&#x2019;re going to change the header a bit because <code>NoteCell</code> shouldn&#x2019;t take up the whole screen, so we&#x2019;ll get rid of</p>
+<pre><code class="lang-swift">rootView=<span class="pl-s">&quot;true&quot;</span>
+</code></pre>
+<p>in the header.</p>
+<p>Next up, let&#x2019;s define how our cells should look like.</p>
+<p>Our <code>NoteCell</code> is going to have Title on top and Preview of the note right under it. The Preview is going to be at most 2 lines long, Title only 1.</p>
+<pre><code class="lang-xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="pl-s">&quot;1.0&quot;</span> encoding=<span class="pl-s">&quot;UTF-8&quot;</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Component</span>
+  <span class="hljs-attr">xmlns</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui&quot;</span>
+  <span class="hljs-attr">xmlns:layout</span>=<span class="pl-s">&quot;http://schema.reactant.tech/layout&quot;</span>
+  <span class="hljs-attr">xmlns:xsi</span>=<span class="pl-s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui https://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd&quot;</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
+    <span class="hljs-attr">field</span>=<span class="pl-s">&quot;title&quot;</span>
+    <span class="hljs-attr">font</span>=<span class="pl-s">&quot;:bold@20&quot;</span>
+    <span class="hljs-attr">numberOfLines</span>=<span class="pl-s">&quot;1&quot;</span>
+    <span class="hljs-attr">layout:leading</span>=<span class="pl-s">&quot;super inset(8)&quot;</span>
+    <span class="hljs-attr">layout:trailing</span>=<span class="pl-s">&quot;super inset(8)&quot;</span>
+    <span class="hljs-attr">layout:top</span>=<span class="pl-s">&quot;super inset(6)&quot;</span> /&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
+    <span class="hljs-attr">field</span>=<span class="pl-s">&quot;preview&quot;</span>
+    <span class="hljs-attr">font</span>=<span class="pl-s">&quot;14&quot;</span>
+    <span class="hljs-attr">numberOfLines</span>=<span class="pl-s">&quot;2&quot;</span>
+    <span class="hljs-attr">layout:fillHorizontally</span>=<span class="pl-s">&quot;super inset(10)&quot;</span>
+    <span class="hljs-attr">layout:below</span>=<span class="pl-s">&quot;title offset(8)&quot;</span>
+    <span class="hljs-attr">layout:bottom</span>=<span class="pl-s">&quot;:lt super inset(6)&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Component</span>&gt;</span>
+</code></pre>
+<p>The <code>layout:</code> prefix is used for layouting attributes. Others are used to directly change the attributes of the element you are creating.</p>
+<p>Saving the file at any time (assuming the <code>XML</code> is syntactically and semantically correct) will update the screen on your simulator to represent the <code>UI XML</code>.</p>
+<p align="center">
+    The app should now look something like this:<br><br>
+    <img img="" src="Simulator1.png" alt="Simulator screen 1" width="350">
+</p>
+<h3 id="creating-new-notes">Creating New Notes</h3>
+<p>We need to create a new <code>Controller</code> and <code>RootView</code> for editing notes. It can be named <code>NoteModificationController.swift</code> and <code>NoteModificationRootView.swift</code> for example. <code>NoteModificationRootView.ui.xml</code> will be needed as well.</p>
+<p><code>NoteModificationController.swift</code> should look like this:</p>
+<pre><code class="lang-swift"><span class="pl-k">import</span> Reactant
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">NoteModificationController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Note</span>, <span class="pl-ent">NoteModificationRootView</span>&gt; </span>{
+  <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Properties</span> </span>{
+    <span class="pl-k">let</span> title: <span class="hljs-type">String</span>
+  }
+
+  <span class="pl-k">private</span> <span class="pl-k">let</span> properties: <span class="hljs-type">Properties</span>
+
+  <span class="pl-k">init</span>(properties: <span class="hljs-type">Properties</span>) {
+    <span class="pl-k">self</span>.properties = properties
+
+    <span class="pl-k">super</span>.<span class="pl-k">init</span>(title: properties.title)
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+    rootView.componentState = componentState
+  }
+}
+</code></pre>
+<p><code>Properties</code> takes over the information that is used to setup a <code>Controller</code> in some way (i.e. there should only be constants). This makes it easier to change the fields later on as they are grouped and you don&#x2019;t have to think about changing the <code>init()</code> parameters.</p>
+<p><code>NoteModificationRootView.swift</code> should have this structure:</p>
+<pre><code class="lang-swift"><span class="pl-k">import</span> Reactant
+<span class="pl-k">import</span> RxSwift
+
+<span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">NoteModificationAction</span> </span>{
+  <span class="pl-k">case</span> titleChanged(<span class="hljs-type">String</span>)
+  <span class="pl-k">case</span> bodyChanged(<span class="hljs-type">String</span>)
+}
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">NoteModificationRootView</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">Note</span>, <span class="pl-ent">NoteModificationAction</span>&gt; </span>{
+  <span class="pl-k">let</span> titleTextField = <span class="hljs-type">TextField</span>()
+  <span class="pl-k">let</span> bodyTextView = <span class="hljs-type">UITextView</span>()
+
+  <span class="pl-k">override</span> <span class="pl-k">var</span> actions: [<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">NoteModificationAction</span>&gt;] {
+    <span class="pl-k">return</span> [
+      titleTextField.rx.text.skip(<span class="hljs-number">1</span>).replaceNilWith(<span class="pl-s">&quot;&quot;</span>).<span class="pl-c1">map</span>(<span class="hljs-type">NoteModificationAction</span>.titleChanged),
+      bodyTextView.rx.text.skip(<span class="hljs-number">1</span>).replaceNilWith(<span class="pl-s">&quot;&quot;</span>).<span class="pl-c1">map</span>(<span class="hljs-type">NoteModificationAction</span>.bodyChanged),
+    ]
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+    titleTextField.text = componentState.title
+    bodyTextView.text = componentState.body
+  }
+}
+</code></pre>
+<p>We&#x2019;re using the second generic parameter here to denote our own action. It&#x2019;s used when declaring <code>actions</code> array.</p>
+<p><strong>NOTE</strong>: We can move to previewing the new file by pressing <code>Cmd+D</code> inside the Simulator (this opens up a <code>ReactantUI</code> debug menu) and tapping <code>Preview..</code>.</p>
+<p>The insides of <code>NoteModificationRootView.ui.xml</code> should look like this:</p>
+<pre><code class="lang-xml"><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="pl-s">&quot;1.0&quot;</span> encoding=<span class="pl-s">&quot;UTF-8&quot;</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Component</span>
+  <span class="hljs-attr">xmlns</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui&quot;</span>
+  <span class="hljs-attr">xmlns:layout</span>=<span class="pl-s">&quot;http://schema.reactant.tech/layout&quot;</span>
+  <span class="hljs-attr">xmlns:xsi</span>=<span class="pl-s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui https://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd&quot;</span>
+  <span class="hljs-attr">rootView</span>=<span class="pl-s">&quot;true&quot;</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">TextField</span>
+  <span class="hljs-attr">field</span>=<span class="pl-s">&quot;titleTextField&quot;</span>
+  <span class="hljs-attr">font</span>=<span class="pl-s">&quot;bold@24&quot;</span>
+  <span class="hljs-attr">placeholder</span>=<span class="pl-s">&quot;Title&quot;</span>
+  <span class="hljs-attr">layout:fillHorizontally</span>=<span class="pl-s">&quot;super inset(24)&quot;</span>
+  <span class="hljs-attr">layout:top</span>=<span class="pl-s">&quot;super inset(24)&quot;</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">TextView</span>
+  <span class="hljs-attr">field</span>=<span class="pl-s">&quot;bodyTextView&quot;</span>
+  <span class="hljs-attr">font</span>=<span class="pl-s">&quot;16&quot;</span>
+  <span class="hljs-attr">layout:fillHorizontally</span>=<span class="pl-s">&quot;super inset(20)&quot;</span>
+  <span class="hljs-attr">layout:below</span>=<span class="pl-s">&quot;titleTextField offset(20)&quot;</span>
+  <span class="hljs-attr">layout:bottom</span>=<span class="pl-s">&quot;super inset(24)&quot;</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">Component</span>&gt;</span>
+</code></pre>
+<p>Now we have another screen ready, but we have no way to go from the main screen to here. This leads us to an introduction to <strong>Wireframes</strong>.</p>
+<p><code>Wireframe</code>&apos;s main purpose is to switch between controllers based on <code>Reactions</code> they call. It takes care of navigation as well as providing <code>Dependencies</code> to the controllers.</p>
+<p>You can find the <strong>MainWireframe.swift</strong> we&#x2019;ll be working with in the <code>Wireframes</code> folder.</p>
+<p>The <code>entrypoint()</code> method should be the only public one and shouldn&#x2019;t return a specific type of controller, but <code>UIViewController</code> (<code>ViewBase</code> is subclassed from it).</p>
+<p>Under it we can see <code>main()</code> method. It&#x2019;s methods like this one that we will be implementing and each of these will return a specific type of controller.</p>
+<p>Let&#x2019;s start with <code>noteModification(note:)</code>.</p>
+<pre><code class="lang-swift"><span class="pl-c">// inside MainWireframe</span>
+<span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">noteModification</span><span class="hljs-params">(note: Note?)</span></span> -&gt; <span class="hljs-type">NoteModificationController</span> {
+  <span class="pl-k">return</span> create { provider <span class="pl-k">in</span>
+    <span class="pl-k">let</span> properties = <span class="hljs-type">NoteModificationController</span>.<span class="hljs-type">Properties</span>(title: note?.title ?? <span class="pl-s">&quot;New Note&quot;</span>)
+    <span class="pl-k">return</span> <span class="hljs-type">NoteModificationController</span>(reactions: reactions, properties: properties)
+      .with(state: note ?? <span class="hljs-type">Note</span>(id: <span class="hljs-type">UUID</span>().uuidString, title: <span class="pl-s">&quot;&quot;</span>, body: <span class="pl-s">&quot;&quot;</span>))
+  }
+}
+</code></pre>
+<p><strong>NOTE</strong>: We are using <code>UUID</code> to generate IDs of our <code>Notes</code>, it will later be invaluable if we wish to not have conflicts in our saved notes.</p>
+<p>Then we need to modify <code>main()</code> so that we can begin editing a note (or create a new one).</p>
+<pre><code class="lang-swift"><span class="pl-c">// inside MainWireframe</span>
+<span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">main</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">MainController</span> {
+  <span class="pl-k">return</span> create { provider <span class="pl-k">in</span>
+    <span class="pl-k">let</span> reactions = <span class="hljs-type">MainController</span>.<span class="hljs-type">Reactions</span>(
+      newNote: {
+        provider.navigation?.push(controller: <span class="pl-k">self</span>.noteModification(note: <span class="pl-c1">nil</span>))
+      },
+      modifyNote: { note <span class="pl-k">in</span>
+        provider.navigation?.push(controller: <span class="pl-k">self</span>.noteModification(note: note))
+      })
+    <span class="pl-k">return</span> <span class="hljs-type">MainController</span>(reactions: reactions)
+  }
+}
+</code></pre>
+<p>Now that we have <code>Wireframe</code> pushing controllers when user decides to create a new or modify old note, we need to add such support to <code>MainController.swift</code>.</p>
+<p>Adding this snippet will create a button on the right side of the navigation bar and tapping on it will call our reaction.</p>
+<pre><code class="lang-swift"><span class="pl-c">// inside MainController&apos;s afterInit() method</span>
+navigationItem.rightBarButtonItem = <span class="hljs-type">UIBarButtonItem</span>(title: <span class="pl-s">&quot;New&quot;</span>, style: .plain) { [reactions]
+  reactions.newNote()
+}
+</code></pre>
+<p>But the user might as well tap a note that is already created, for that we will use the <code>act(on:)</code> method.</p>
+<pre><code class="lang-swift"><span class="pl-c">// inside MainController</span>
+<span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">act</span><span class="hljs-params">(on action: PlainTableViewAction&lt;NoteCell&gt;)</span></span> {
+  <span class="pl-k">switch</span> action {
+  <span class="pl-k">case</span> .selected(<span class="pl-k">let</span> note):
+    reactions.modifyNote(note)
+  <span class="pl-k">case</span> .refresh, .rowAction(<span class="hljs-number">_</span>, <span class="hljs-number">_</span>):
+    <span class="pl-k">break</span>
+  }
+}
+</code></pre>
+<p><code>act(on:)</code> allows the controller to do something every time <code>RootView</code> emits an <code>action</code> either through the <code>actions</code> observable or using the <code>perform(action:)</code> method.</p>
+<p>This concludes our transitioning to editing/creating notes and returning back (navigation controller takes care of returning for us). However we still do not have note-saving capability, everything returns to the same state as it was before the moment we leave the editing screen. That leads us to the next part.</p>
+<h3 id="saving-our-notes">Saving Our Notes</h3>
+<p>Any type of a request for data should be going through <strong>Services</strong>. We&#x2019;re going to only save our notes locally, although this abstraction allows you to switch saving and loading from <code>UserDefaults</code> to the cloud only changing the <code>Service</code>, nothing else.</p>
+<p>We&#x2019;ll create only one service, because our application is not very big, but there are usually many <code>Services</code>, just as there are plenty of <code>Wireframe</code>s.</p>
+<p>First of all, we need to make sure our <code>Note</code> can be serialized and deserialized. All we need to do is make <code>Note</code> conform to <code>Codable</code>, Swift takes care of everything else.</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Note</span>: <span class="pl-ent">Codable</span> </span>{ <span class="pl-c">// Note internal structure follows</span>
+</code></pre>
+<p>Having done that, create a new file <code>NoteService.swift</code> in the <code>Services</code> folder. Add this code inside:</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">NoteService</span> </span>{
+  <span class="pl-k">private</span> <span class="pl-k">let</span> encoder = <span class="hljs-type">JSONEncoder</span>()
+  <span class="pl-k">private</span> <span class="pl-k">let</span> decoder = <span class="hljs-type">JSONDecoder</span>()
+
+  <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">loadNotes</span><span class="hljs-params">()</span></span> <span class="pl-k">throws</span> -&gt; [<span class="hljs-type">Note</span>] {
+    <span class="pl-k">guard</span> <span class="pl-k">let</span> data = <span class="hljs-type">UserDefaults</span>.standard.data(forKey: <span class="pl-s">&quot;notes&quot;</span>) <span class="pl-k">else</span> { <span class="pl-k">return</span> [] }
+    <span class="pl-k">return</span> <span class="pl-k">try</span> decoder.decode(<span class="hljs-type">Array</span>&lt;<span class="hljs-type">Note</span>&gt;.<span class="pl-k">self</span>, from: data)
+  }
+
+  <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">save</span><span class="hljs-params">(note: Note)</span></span> <span class="pl-k">throws</span> {
+    <span class="pl-k">var</span> notes = <span class="pl-k">try</span> loadNotes()
+    <span class="pl-k">if</span> <span class="pl-k">let</span> index = notes.index(<span class="pl-k">where</span>: { $<span class="hljs-number">0</span>.id == note.id }) {
+      notes[index] = note
+    } <span class="pl-k">else</span> {
+      notes.append(note)
+    }
+    <span class="pl-k">try</span> save(notes: notes)
+  }
+
+  <span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">save</span><span class="hljs-params">(notes: [Note])</span></span> <span class="pl-k">throws</span> {
+    <span class="pl-k">let</span> data = <span class="pl-k">try</span> encoder.encode(notes)
+    <span class="hljs-type">UserDefaults</span>.standard.<span class="pl-k">set</span>(data, forKey: <span class="pl-s">&quot;notes&quot;</span>)
+  }
+
+  <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">deleteNotes</span><span class="hljs-params">()</span></span> <span class="pl-k">throws</span> {
+    <span class="pl-k">try</span> save(notes: [])
+  }
+}
+</code></pre>
+<p>We also need to modify <strong>DependencyModule.swift</strong> to contain our newly created service.</p>
+<pre><code class="lang-swift"><span class="hljs-class"><span class="pl-k">protocol</span> <span class="pl-ent">DependencyModule</span> </span>{
+    <span class="pl-k">var</span> noteService: <span class="hljs-type">NoteService</span> { <span class="pl-k">get</span> }
+}
+</code></pre>
+<p>Likewise, the <strong>ApplicationModule.swift</strong> which conforms to this protocol needs to create a <code>NoteService</code> to be used as a dependency.</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">ApplicationModule</span>: <span class="pl-ent">DependencyModule</span> </span>{
+    <span class="pl-k">let</span> noteService = <span class="hljs-type">NoteService</span>()
+}
+</code></pre>
+<p>Also take a moment to look at <strong>AppDelegate.swift</strong> and <strong>MainWireframe</strong> to see how <code>ApplicationModule</code> is passed from <code>AppDelegate</code> to the <code>Wireframe</code>.</p>
+<p>That marks our <code>Service</code> as complete. We have to replace the hardcoded <code>Note</code> array in <strong>MainController.swift</strong> with the newly created <code>Service</code>.</p>
+<p>Our <code>MainController</code> should look like this now:</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">MainRootView</span>&gt; </span>{
+  <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Dependencies</span> </span>{
+    <span class="pl-k">let</span> noteService: <span class="hljs-type">NoteService</span>
+  }
+  <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Reactions</span> </span>{
+    <span class="pl-k">let</span> newNote: () -&gt; <span class="hljs-type">Void</span>
+    <span class="pl-k">let</span> modifyNote: (<span class="hljs-type">Note</span>) -&gt; <span class="hljs-type">Void</span>
+  }
+
+  <span class="pl-k">private</span> <span class="pl-k">let</span> dependencies: <span class="hljs-type">Dependencies</span>
+  <span class="pl-k">private</span> <span class="pl-k">let</span> reactions: <span class="hljs-type">Reactions</span>
+
+  <span class="pl-k">init</span>(dependencies: <span class="hljs-type">Dependencies</span>, reactions: <span class="hljs-type">Reactions</span>) {
+    <span class="pl-k">self</span>.dependencies = dependencies
+    <span class="pl-k">self</span>.reactions = reactions
+    <span class="pl-k">super</span>.<span class="pl-k">init</span>(title: <span class="pl-s">&quot;RNotes&quot;</span>)
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">afterInit</span><span class="hljs-params">()</span></span> {
+    navigationItem.rightBarButtonItem = <span class="hljs-type">UIBarButtonItem</span>(title: <span class="pl-s">&quot;New&quot;</span>, style: .plain) { [reactions] <span class="pl-k">in</span>
+      reactions.newNote()
+    }
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+    <span class="pl-k">do</span> {
+      rootView.componentState = <span class="pl-k">try</span> dependencies.noteService.loadNotes()
+    } <span class="pl-k">catch</span> <span class="pl-k">let</span> error {
+      <span class="pl-c1">print</span>(<span class="pl-s">&quot;Failed to load saved notes:&quot;</span>, error.localizedDescription)
+    }
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">act</span><span class="hljs-params">(on action: PlainTableViewAction&lt;NoteCell&gt;)</span></span> {
+    <span class="pl-k">switch</span> action {
+    <span class="pl-k">case</span> .selected(<span class="pl-k">let</span> note):
+      reactions.modifyNote(note)
+    <span class="pl-k">case</span> .refresh, .rowAction(<span class="hljs-number">_</span>, <span class="hljs-number">_</span>):
+      <span class="pl-k">break</span>
+    }
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">viewWillAppear</span><span class="hljs-params">(<span class="hljs-number">_</span> animated: Bool)</span></span> {
+    invalidate()
+    <span class="pl-k">super</span>.viewWillAppear(animated)
+  }
+}
+</code></pre>
+<p><strong>NOTE</strong>: <code>viewWillAppear(_:)</code> gets called every time a view is about to get shown. This is not a Reactant method, so we need to call <code>super.viewWillAppear(_:)</code>.</p>
+<p>We added <code>Dependencies</code>. This struct marks any <code>Service</code> classes the controller needs to function properly. The controller also needs a <code>dependencies</code> field which holds the passed services through <code>init(dependencies:reactions:)</code>.</p>
+<p><code>Reactions</code> are called when something happens that should involve some <code>Wireframe</code> action.</p>
+<p><strong>NoteModificationController.swift</strong> also needs to be modified. In order to save notes correctly, we need to give it the dependency <code>NoteService</code> as well. It should look like this:</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">NoteModificationController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Note</span>, <span class="pl-ent">NoteModificationRootView</span>&gt; </span>{
+  <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Dependencies</span> </span>{
+    <span class="pl-k">let</span> noteService: <span class="hljs-type">NoteService</span>
+  }
+  <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Properties</span> </span>{
+    <span class="pl-k">let</span> title: <span class="hljs-type">String</span>
+  }
+
+  <span class="pl-k">private</span> <span class="pl-k">let</span> dependencies: <span class="hljs-type">Dependencies</span>
+  <span class="pl-k">private</span> <span class="pl-k">let</span> properties: <span class="hljs-type">Properties</span>
+
+  <span class="pl-k">init</span>(dependencies: <span class="hljs-type">Dependencies</span>, properties: <span class="hljs-type">Properties</span>) {
+    <span class="pl-k">self</span>.dependencies = dependencies
+    <span class="pl-k">self</span>.properties = properties
+
+    <span class="pl-k">super</span>.<span class="pl-k">init</span>(title: properties.title)
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+    rootView.componentState = componentState
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">act</span><span class="hljs-params">(on action: NoteModificationAction)</span></span> {
+    <span class="pl-k">switch</span> action {
+    <span class="pl-k">case</span> .titleChanged(<span class="pl-k">let</span> title):
+      componentState.title = title
+      <span class="pl-k">do</span> {
+        <span class="pl-k">try</span> dependencies.noteService.save(note: componentState)
+      } <span class="pl-k">catch</span> <span class="pl-k">let</span> error {
+        <span class="pl-c1">print</span>(<span class="pl-s">&quot;Failed to save the note:&quot;</span>, error.localizedDescription)
+      }
+    <span class="pl-k">case</span> .bodyChanged(<span class="pl-k">let</span> body):
+      componentState.body = body
+      <span class="pl-k">do</span> {
+        <span class="pl-k">try</span> dependencies.noteService.save(note: componentState)
+      } <span class="pl-k">catch</span> <span class="pl-k">let</span> error {
+        <span class="pl-c1">print</span>(<span class="pl-s">&quot;Failed to save the note:&quot;</span>, error.localizedDescription)
+      }
+    }
+  }
+}
+</code></pre>
+<p>Both of them now need their respective <code>Dependencies</code> structures passed from the <code>Wireframe</code>.</p>
+<pre><code class="lang-swift"><span class="pl-c">// inside MainWireframe</span>
+<span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">main</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">MainController</span> {
+  <span class="pl-k">return</span> create { provider <span class="pl-k">in</span>
+    <span class="pl-k">let</span> dependencies = <span class="hljs-type">MainController</span>.<span class="hljs-type">Dependencies</span>(noteService: module.noteService)
+    <span class="pl-k">let</span> reactions = <span class="hljs-type">MainController</span>.<span class="hljs-type">Reactions</span>(
+      newNote: {
+        provider.navigation?.push(controller: <span class="pl-k">self</span>.noteModification(note: <span class="pl-c1">nil</span>))
+      },
+      modifyNote: { note <span class="pl-k">in</span>
+        provider.navigation?.push(controller: <span class="pl-k">self</span>.noteModification(note: note))
+      })
+    <span class="pl-k">return</span> <span class="hljs-type">MainController</span>(dependencies: dependencies, reactions: reactions)
+  }
+}
+
+<span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">noteModification</span><span class="hljs-params">(note: Note?)</span></span> -&gt; <span class="hljs-type">NoteModificationController</span> {
+  <span class="pl-k">return</span> create { provider <span class="pl-k">in</span>
+    <span class="pl-k">let</span> dependencies = <span class="hljs-type">NoteModificationController</span>.<span class="hljs-type">Dependencies</span>(noteService: module.noteService)
+    <span class="pl-k">let</span> properties = <span class="hljs-type">NoteModificationController</span>.<span class="hljs-type">Properties</span>(title: note?.title ?? <span class="pl-s">&quot;New Note&quot;</span>)
+    <span class="pl-k">return</span> <span class="hljs-type">NoteModificationController</span>(dependencies: dependencies, properties: properties)
+      .with(state: note ?? <span class="hljs-type">Note</span>(id: <span class="hljs-type">UUID</span>().uuidString, title: <span class="pl-s">&quot;&quot;</span>, body: <span class="pl-s">&quot;&quot;</span>))
+  }
+}
+</code></pre>
+<p><code>provider</code> is used in reactions when you need to either interact with the navigation controller or when you need a reference to the controller that will be initialized at the end of <code>create(factory:)</code> method.</p>
+<p>This concludes the functionality part of this tutorial! We can still tweak the application a bit on the beauty side.</p>
+<h3 id="finishing-touches">Finishing Touches</h3>
+<p>If we make the <code>NoteCell</code> in <strong>NoteCell.swift</strong> conform to <code>Reactant.TableViewCell</code>,</p>
+<pre><code class="lang-swift"><span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">NoteCell</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">Note</span>, <span class="pl-ent">Void</span>&gt;, <span class="pl-ent">Reactant</span>.<span class="pl-ent">TableViewCell</span> </span>{
+</code></pre>
+<p>we can react to user&#x2019;s tap by highlighting the cell.</p>
+<pre><code class="lang-swift"><span class="pl-c">// inside NoteCell</span>
+<span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">setHighlighted</span><span class="hljs-params">(<span class="hljs-number">_</span> highlighted: Bool, animated: Bool)</span></span> {
+  <span class="pl-k">let</span> style = { <span class="pl-k">self</span>.apply(style: highlighted ? <span class="hljs-type">Styles</span>.highlightedBackground : <span class="hljs-type">Styles</span>.normalBackground) }
+  <span class="pl-k">if</span> animated {
+    <span class="hljs-type">UIView</span>.animate(withDuration: <span class="hljs-number">0.7</span>, animations: style)
+  } <span class="pl-k">else</span> {
+    style()
+  }
+}
+</code></pre>
+<p>We must not forget to define the <code>Styles</code>.</p>
+<pre><code class="lang-swift"><span class="pl-c">// under NoteCell</span>
+<span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">NoteCell</span>.<span class="pl-ent">Styles</span> </span>{
+  <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">normalBackground</span><span class="hljs-params">(<span class="hljs-number">_</span> cell: NoteCell)</span></span> {
+    cell.backgroundColor = <span class="pl-c1">nil</span>
+  }
+
+  <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">highlightedBackground</span><span class="hljs-params">(<span class="hljs-number">_</span> cell: NoteCell)</span></span> {
+    cell.backgroundColor = <span class="hljs-type">UIColor</span>.lightGray.withAlphaComponent(<span class="hljs-number">0.2</span>)
+  }
+}
+</code></pre>
+<p>The styling parts that cannot be declared using Reactant UI are defined like this. In our case (<code>Reactant.TableViewCell</code>) the <code>Component</code> has its own <code>Styles</code>, so we are just extending them instead of creating our own <code>fileprivate struct</code>.</p>
+<p>Try to add a <strong>Wipe</strong> button in the MainController navigation bar that deletes all notes when tapped. You can then compare it to the <a href="https://github.com/MatyasKriz/reactant-notes">project</a>&#x2019;s <code>Wipe</code> on GitHub.</p>
+<p align="center">
+    <img img="" src="Simulator2.png" alt="Simulator screen 2" width="350">
+</p>
+<p>Another thing that the user would surely appreciate is showing an alert controller in case loading/saving notes fails. It would probably work through letting the <code>Wireframe</code> know through <code>Reactions</code> to show an alert controller.</p>
+<p><strong>NOTE</strong>: You may notice that most (if not all classes) we use are marked <code>final</code>. If you are sure they won&#x2019;t need to be subclassed in the near future, it&#x2019;s good practice to mark them so, plus it helps the performance a bit.</p>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="../../getting-started/troubleshooting.html"><span class="title">Troubleshooting</span></a></div>
+          <div class="right"><a href="../../tutorials/GitXplorer/explorer.html"><span class="label">Next: </span><span class="title">Random GitHub users explorer</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

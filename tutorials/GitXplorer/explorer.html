@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../assets/style.css?t=615badd5">
+    <script src="../../assets/script.js?t=36f3d457"></script>
+    <script src="../../scripts/zopim.js?t=f160c13c"></script>
+    <title>Random GitHub users explorer - Reactant</title>
+    <meta name="viewport" content="width=device-width">
+    <script>if (false || window.location.hostname.indexOf("docs.reactant.tech") === window.location.hostname.length - 18) {
+        (function(d,o,c,p,r,e,s){d['GoogleAnalyticsObject']=r;d[r]=d[r]||function(){(d[r].q=d[r].q||[]).push(arguments)},d[r].l=1*new Date();e=o.createElement(c),s=o.getElementsByTagName(c)[0];e.async=1;e.src=p;s.parentNode.insertBefore(e,s)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create',"UA-48374666-17",'auto')
+      }
+    </script>
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1"><a class="link title  link-index" href="../../index.html">Reactant</a>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Getting started</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedquickstart" href="../../getting-started/quickstart.html">Quick-start guide</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedarchitecture" href="../../getting-started/architecture.html">Architecture</a>
+                </li>
+                <li class="menu-item -level-2"><a class="link title  link-getting-startedtroubleshooting" href="../../getting-started/troubleshooting.html">Troubleshooting</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Tutorials</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a class="link title  link-tutorialsrnotesnotes" href="../../tutorials/RNotes/notes.html">Simple note taking app</a>
+                </li>
+                <li class="menu-item -level-2 -parent"><a class="link title -active link-tutorialsgitxplorerexplorer" href="../../tutorials/GitXplorer/explorer.html">Random GitHub users explorer</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-3"><a class="hlink link-setting-up-the-project" href="#setting-up-the-project">Setting Up the Project</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a class="hlink link-communicating-with-github" href="#communicating-with-github">Communicating with GitHub</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a class="hlink link-preparing-the-insides" href="#preparing-the-insides">Preparing the Insides</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-wrap-up" href="#wrap-up">Wrap Up</a>
+                    </li>
+                  </ul>
+                  <ul class="submenu">
+                    <li class="menu-item -level-3 -parent"><span class="title">Reactant UI</span>
+                      <ul class="submenu">
+                        <li class="menu-item -level-4"><a class="link title  link-reactant-uiintroduction" href="../../reactant-ui/introduction.html">Introduction</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-reactant-uilive-reload" href="../../reactant-ui/live-reload.html">Live Reload</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="menu-item -level-3 -parent"><span class="title">Parts</span>
+                      <ul class="submenu">
+                        <li class="menu-item -level-4"><a class="link title  link-partsconfiguration" href="../../parts/configuration.html">Configuration</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partscontroller" href="../../parts/controller.html">Controller</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partsrootview" href="../../parts/rootview.html">RootView</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partswireframe" href="../../parts/wireframe.html">Wireframe</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partsstyling" href="../../parts/styling.html">Styling</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partstableview" href="../../parts/tableview.html">TableView</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partscollectionview" href="../../parts/collectionview.html">CollectionView</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partsvalidation" href="../../parts/validation.html">Validation</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partsactivityindicator" href="../../parts/activityindicator.html">ActivityIndicator</a>
+                        </li>
+                        <li class="menu-item -level-4"><a class="link title  link-partsstaticmap" href="../../parts/staticmap.html">StaticMap</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+      <div class="body page-tutorialsgitxplorerexplorer">
+        <div class="header-nav">
+          <div class="right"><a class="iconlink" href="https://github.com/Brightify/Reactant" data-title="Brightify/Reactant">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><!-- URLs -->
+<!-- relative paths -->
+<h1 id="tutorial:-random-github-users-explorer">Tutorial: Random GitHub users explorer</h1>
+<p>Welcome to our second introductory tutorial to the Reactant architecture.</p>
+<p>In this tutorial we&#x2019;ll create an explorer that will find some random GitHub users. If you tap on any of them, their repositories (sorted by most stars) are shown along with number of stars in each one.</p>
+<p>The whole project can be found on GitHub <a href="https://github.com/MatyasKriz/git-explorer">here</a>.</p>
+<h5 id="let&apos;s-get-started.">Let&#x2019;s get started.</h5>
+<h3 id="setting-up-the-project">Setting Up the Project</h3>
+<p>Let&#x2019;s create our project using <a href="https://github.com/Brightify/ReactantCLI"><strong>Reactant CLI</strong></a> with <code>reactant init</code>.</p>
+<p>Click the <strong>RUN</strong> button (<img src="../RunButton.png" alt="-RUN BUTTON-">) to check that everything is running smooth. If it doesn&#x2019;t, consider visiting the <a href="../../getting-started/troubleshooting.html">Troubleshooting Tips</a> section.</p>
+<p>After testing the project and seeing that everything works as expected, we need to use an HTTP networking library. Any such library will suffice, though we will be using Fetcher as our choice here. <a href="https://github.com/Brightify/Fetcher">Fetcher</a> is light-weight and is brought to you by Brightify.</p>
+<p>It&#x2019;s pretty straightforward to add a new library to a project using Cocoapods. Open the <code>Podfile</code> in the root folder of your project and add these two lines under the default pods:</p>
+<pre><code class="lang-ruby">pod <span class="pl-s">&apos;Fetcher&apos;</span>
+pod <span class="pl-s">&apos;Fetcher/RxFetcher&apos;</span>
+</code></pre>
+<h3 id="communicating-with-github">Communicating with GitHub</h3>
+<p>GitHub has its own API that we are going to be using in order to communicate with it. The full API can be found <a href="https://developer.github.com/v3/">here</a>. But unless you want to study it thoroughly, you needn&#x2019;t follow the link as we will guide you through the usage.</p>
+<p>As stated in the brief description of this project, we have to be able to:</p>
+<ul>
+<li>find random users, for that we will use <code>GET /users</code> with query <code>since=:random_number</code>;</li>
+<li>look at their repositories, where <code>GET /users/:username/repos</code> will help;</li>
+<li>open repositories in Safari, GitHub API is not needed for this, we just need a URL.</li>
+</ul>
+<p>We&#x2019;ll also prepare the constants we&#x2019;ll be using for communication with GitHub. These are placed in the <code>Utils</code> folder.</p>
+<pre><code class="lang-swift"><span class="pl-c">// Constants.swift</span>
+
+<span class="pl-k">import</span> Fetcher
+
+<span class="pl-k">public</span> <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Constants</span> </span>{
+  <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">let</span> apiUrl = <span class="hljs-type">BaseUrl</span>(baseUrl: <span class="pl-s">&quot;https://api.github.com/&quot;</span>)
+  <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">let</span> usersPerPage = <span class="hljs-number">15</span>
+  <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">let</span> randomNumberLimit = <span class="hljs-number">34340000</span> <span class="pl-k">as</span> <span class="hljs-type">UInt32</span>
+}
+</code></pre>
+<p><code>apiUrl</code> is a request modifier. Using these modifiers we can easily modify <code>Fetcher</code>&apos;s requests and rest assured that <code>Fetcher</code> will use them according to their purpose. <code>BaseUrl</code> modifier in this case tells <code>Fetcher</code> to start every request with the passed URL.</p>
+<p><code>randomNumberLimit</code> was tested by trial and error and as of now there are not many more users than that.</p>
+<h3 id="preparing-the-insides">Preparing the Insides</h3>
+<h4 id="model">Model</h4>
+<p>When working with network, creating <a href="https://en.wikipedia.org/wiki/Data_transfer_object">DTO</a>&#x2019;s is considered best practice. Our DTO&#x2019;s <code>UserDTO</code> and <code>RepositoryDTO</code> will look like this:</p>
+<pre><code class="lang-swift"><span class="pl-c">// UserDTO.swift</span>
+
+<span class="pl-k">import</span> Foundation
+
+<span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">UserDTO</span>: <span class="pl-ent">Codable</span> </span>{
+  <span class="pl-k">let</span> id: <span class="hljs-type">Int</span>
+  <span class="pl-k">let</span> avatarUrl: <span class="hljs-type">URL</span>
+  <span class="pl-k">let</span> login: <span class="hljs-type">String</span>
+  <span class="pl-k">let</span> repositoriesUrl: <span class="hljs-type">String</span>
+  <span class="pl-k">let</span> accountUrl: <span class="hljs-type">URL</span>
+
+  <span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">CodingKeys</span>: <span class="pl-ent">String</span>, <span class="pl-ent">CodingKey</span> </span>{
+    <span class="pl-k">case</span> id
+    <span class="pl-k">case</span> avatarUrl = <span class="pl-s">&quot;avatar_url&quot;</span>
+    <span class="pl-k">case</span> login
+    <span class="pl-k">case</span> repositoriesUrl = <span class="pl-s">&quot;repos_url&quot;</span>
+    <span class="pl-k">case</span> accountUrl = <span class="pl-s">&quot;url&quot;</span>
+  }
+}
+</code></pre>
+<pre><code class="lang-swift"><span class="pl-c">// RepositoryDTO.swift</span>
+
+<span class="pl-k">import</span> Foundation
+
+<span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">RepositoryDTO</span>: <span class="pl-ent">Codable</span> </span>{
+  <span class="pl-k">let</span> id: <span class="hljs-type">Int</span>
+  <span class="pl-k">let</span> url: <span class="hljs-type">URL</span>
+  <span class="pl-k">let</span> name: <span class="hljs-type">String</span>
+  <span class="pl-k">let</span> stars: <span class="hljs-type">Int</span>
+  <span class="pl-k">let</span> language: <span class="hljs-type">String</span>
+
+  <span class="hljs-class"><span class="pl-k">enum</span> <span class="pl-ent">CodingKeys</span>: <span class="pl-ent">String</span>, <span class="pl-ent">CodingKey</span> </span>{
+    <span class="pl-k">case</span> id
+    <span class="pl-k">case</span> url
+    <span class="pl-k">case</span> name
+    <span class="pl-k">case</span> stars = <span class="pl-s">&quot;stargazers_count&quot;</span>
+    <span class="pl-k">case</span> language
+  }
+}
+</code></pre>
+<p><strong>NOTE</strong>: Creating a separate file for each model/component promotes better code navigation and readability.</p>
+<p>We will also need <code>User</code> and <code>Repository</code> models. As we can only receive user&#x2019;s general info from the <code>GET /users</code> request, this <code>User.swift</code> is enough:</p>
+<pre><code class="lang-swift"><span class="pl-c">// User.swift</span>
+
+<span class="pl-k">import</span> Foundation
+<span class="pl-k">import</span> UIKit
+
+<span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">User</span> </span>{
+  <span class="pl-k">let</span> avatar: <span class="hljs-type">UIImage</span>?
+  <span class="pl-k">let</span> login: <span class="hljs-type">String</span>
+  <span class="pl-k">let</span> accountUrl: <span class="hljs-type">URL</span>
+}
+</code></pre>
+<p><code>GET /users/:username/repos</code> gives us much more info about each of the repositories, so our <code>Repository</code> model will be a bit more complex.</p>
+<pre><code class="lang-swift"><span class="pl-c">// Repository.swift</span>
+
+<span class="pl-k">import</span> Foundation
+
+<span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Repository</span> </span>{
+  <span class="pl-k">let</span> name: <span class="hljs-type">String</span>
+  <span class="pl-k">let</span> stars: <span class="hljs-type">Int</span>
+  <span class="pl-k">let</span> language: <span class="hljs-type">String</span>
+  <span class="pl-k">let</span> url: <span class="hljs-type">URL</span>
+}
+</code></pre>
+<p>This marks our model complete. Let&#x2019;s get onto the <code>Components</code>.</p>
+<h4 id="components">Components</h4>
+<p>The application will behave this way &#x2013; user starts it up and first batch of random GitHub users is shown in a <code>PlainTableView</code>. If he is interested in any of these, he can see his repositories in another <code>PlainTableView</code> by tapping on the user.</p>
+<p>Assuming the user has some repositories, tapping on any of them opens it up in the default browser. This allows the user to further interact with the repository he is interested in.</p>
+<p>We should have <code>MainController</code> readied up from <code>ReactantCLI</code> and so we just need to modify it to be able to bring the necessary information and react to the view&#x2019;s actions.</p>
+<pre><code class="lang-swift"><span class="pl-c">// MainController.swift</span>
+
+<span class="pl-k">import</span> Reactant
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">MainRootView</span>&gt; </span>{
+  <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Dependencies</span> </span>{
+    <span class="pl-k">let</span> dataService: <span class="hljs-type">DataService</span>
+  }
+  <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Reactions</span> </span>{
+    <span class="pl-k">let</span> userSelected: (<span class="hljs-type">User</span>) -&gt; <span class="hljs-type">Void</span>
+  }
+
+  <span class="pl-k">private</span> <span class="pl-k">let</span> dependencies: <span class="hljs-type">Dependencies</span>
+  <span class="pl-k">private</span> <span class="pl-k">let</span> reactions: <span class="hljs-type">Reactions</span>
+
+  <span class="pl-k">init</span>(dependencies: <span class="hljs-type">Dependencies</span>, reactions: <span class="hljs-type">Reactions</span>) {
+    <span class="pl-k">self</span>.dependencies = dependencies
+    <span class="pl-k">self</span>.reactions = reactions
+    <span class="pl-k">super</span>.<span class="pl-k">init</span>(title: <span class="pl-s">&quot;GitXplorer&quot;</span>)
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">afterInit</span><span class="hljs-params">()</span></span> {
+    <span class="pl-k">self</span>.rootView.componentState = <span class="pl-c1">nil</span>
+    updateUsers()
+    navigationItem.rightBarButtonItem = <span class="hljs-type">UIBarButtonItem</span>(title: <span class="pl-s">&quot;Reload&quot;</span>, style: .plain) { [<span class="pl-k">unowned</span> <span class="pl-k">self</span>] <span class="pl-k">in</span>
+      <span class="pl-k">self</span>.updateUsers()
+    }
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">act</span><span class="hljs-params">(on action: PlainTableViewAction&lt;UserCell&gt;)</span></span> {
+    <span class="pl-k">switch</span> action {
+    <span class="pl-k">case</span> .selected(<span class="pl-k">let</span> user):
+      reactions.userSelected(user)
+    <span class="pl-k">case</span> .refresh:
+      <span class="pl-k">self</span>.updateUsers()
+    <span class="pl-k">case</span> .rowAction(<span class="hljs-number">_</span>, <span class="hljs-number">_</span>):
+      <span class="pl-k">break</span>
+    }
+  }
+
+  <span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">updateUsers</span><span class="hljs-params">()</span></span> {
+    dependencies.dataService.users()
+      .subscribe(onNext: { [<span class="pl-k">unowned</span> <span class="pl-k">self</span>] users <span class="pl-k">in</span>
+        <span class="pl-k">self</span>.rootView.componentState = users
+      })
+      .disposed(by: lifetimeDisposeBag)
+  }
+}
+</code></pre>
+<p>The <code>Dependencies</code> struct is the crucial part of this controller and it&#x2019;s what we&#x2019;re going to be focusing on in this tutorial.</p>
+<p>We&#x2019;ve already seen <code>Services</code> in the first tutorial, but here we combine it with HTTP requests to get our data from the internet. Here you can see that if you had a local database, this <code>Controller</code> would not change one bit, it would still call <code>dataService</code> to get its data. <code>DataService</code> is only responsible to gather the data, it needs not state the source.</p>
+<p>We&#x2019;ll take a look at the processes that happen inside the <code>DataService</code> right after defining <code>Components</code> and wiring them up to the <code>Wireframe</code>.</p>
+<p><code>MainRootView</code> will be of similar structure as in the first tutorial:</p>
+<pre><code class="lang-swift"><span class="pl-c">// MainRootView.swift</span>
+
+<span class="pl-k">import</span> Reactant
+<span class="pl-k">import</span> RxSwift
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">MainRootView</span>: <span class="pl-ent">ViewBase</span>&lt;[<span class="pl-ent">User</span>]?, <span class="pl-ent">PlainTableViewAction</span>&lt;<span class="pl-ent">UserCell</span>&gt;&gt; </span>{
+    <span class="pl-k">let</span> userTableView = <span class="hljs-type">PlainTableView</span>&lt;<span class="hljs-type">UserCell</span>&gt;(reloadable: <span class="pl-c1">true</span>)
+
+    <span class="pl-k">override</span> <span class="pl-k">var</span> actions: [<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">PlainTableViewAction</span>&lt;<span class="hljs-type">UserCell</span>&gt;&gt;] {
+        <span class="pl-k">return</span> [userTableView.action]
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+        <span class="pl-k">if</span> <span class="pl-k">let</span> users = componentState {
+            userTableView.componentState = users.isEmpty ? .empty(message: <span class="pl-s">&quot;No users found!&quot;</span>) : .items(users)
+        } <span class="pl-k">else</span> {
+            userTableView.componentState = .loading
+        }
+    }
+
+    <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">loadView</span><span class="hljs-params">()</span></span> {
+        userTableView.footerView = <span class="hljs-type">UIView</span>()
+        userTableView.rowHeight = <span class="hljs-type">UserCell</span>.height
+        userTableView.separatorStyle = .singleLine
+        userTableView.tableView.contentInset.bottom = <span class="hljs-number">0</span>
+    }
+}
+</code></pre>
+<p>Its <code>.ui.xml</code> side:</p>
+<pre><code class="lang-xml"><span class="pl-c">&lt;!-- MainRootView.ui.xml --&gt;</span>
+
+<span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="pl-s">&quot;1.0&quot;</span> encoding=<span class="pl-s">&quot;UTF-8&quot;</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Component</span>
+  <span class="hljs-attr">xmlns</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui&quot;</span>
+  <span class="hljs-attr">xmlns:layout</span>=<span class="pl-s">&quot;http://schema.reactant.tech/layout&quot;</span>
+  <span class="hljs-attr">xmlns:xsi</span>=<span class="pl-s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui https://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd&quot;</span>
+  <span class="hljs-attr">rootView</span>=<span class="pl-s">&quot;true&quot;</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">View</span>
+    <span class="hljs-attr">field</span>=<span class="pl-s">&quot;userTableView&quot;</span>
+    <span class="hljs-attr">layout:edges</span>=<span class="pl-s">&quot;super&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Component</span>&gt;</span>
+</code></pre>
+<p>Then we&#x2019;ll create the cells to fill up the table, <code>UserCell</code>:</p>
+<pre><code class="lang-swift"><span class="pl-c">// UserCell.swift</span>
+
+<span class="pl-k">import</span> Reactant
+<span class="pl-k">import</span> UIKit
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">UserCell</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">User</span>, <span class="pl-ent">Void</span>&gt;, <span class="pl-ent">Reactant</span>.<span class="pl-ent">TableViewCell</span> </span>{
+  <span class="pl-k">static</span> <span class="pl-k">let</span> height: <span class="hljs-type">CGFloat</span> = <span class="hljs-number">80</span>
+
+  <span class="pl-k">private</span> <span class="pl-k">let</span> avatar = <span class="hljs-type">UIImageView</span>()
+  <span class="pl-k">private</span> <span class="pl-k">let</span> login = <span class="hljs-type">UILabel</span>()
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+    login.text = componentState.login
+    avatar.image = componentState.avatar
+  }
+
+  <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">setHighlighted</span><span class="hljs-params">(<span class="hljs-number">_</span> highlighted: Bool, animated: Bool)</span></span> {
+    <span class="pl-k">let</span> style = { <span class="pl-k">self</span>.apply(style: highlighted ? <span class="hljs-type">Styles</span>.highlightedBackground : <span class="hljs-type">Styles</span>.normalBackground) }
+    <span class="pl-k">if</span> animated {
+      <span class="hljs-type">UIView</span>.animate(withDuration: <span class="hljs-number">0.7</span>, animations: style)
+    } <span class="pl-k">else</span> {
+      style()
+    }
+  }
+}
+
+<span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">UserCell</span>.<span class="pl-ent">Styles</span> </span>{
+  <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">normalBackground</span><span class="hljs-params">(<span class="hljs-number">_</span> cell: UserCell)</span></span> {
+    cell.backgroundColor = <span class="pl-c1">nil</span>
+  }
+
+  <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">highlightedBackground</span><span class="hljs-params">(<span class="hljs-number">_</span> cell: UserCell)</span></span> {
+    cell.backgroundColor = <span class="hljs-type">UIColor</span>.lightGray.withAlphaComponent(<span class="hljs-number">0.2</span>)
+  }
+}
+</code></pre>
+<p>With the <code>ui.xml</code> of the cell defining its layout and styling:</p>
+<pre><code class="lang-xml"><span class="pl-c">&lt;!-- UserCell.ui.xml --&gt;</span>
+
+<span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="pl-s">&quot;1.0&quot;</span> encoding=<span class="pl-s">&quot;UTF-8&quot;</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Component</span>
+  <span class="hljs-attr">xmlns</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui&quot;</span>
+  <span class="hljs-attr">xmlns:layout</span>=<span class="pl-s">&quot;http://schema.reactant.tech/layout&quot;</span>
+  <span class="hljs-attr">xmlns:xsi</span>=<span class="pl-s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui https://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd&quot;</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
+    <span class="hljs-attr">field</span>=<span class="pl-s">&quot;login&quot;</span>
+    <span class="hljs-attr">font</span>=<span class="pl-s">&quot;:bold@20&quot;</span>
+    <span class="hljs-attr">numberOfLines</span>=<span class="pl-s">&quot;1&quot;</span>
+    <span class="hljs-attr">layout:after</span>=<span class="pl-s">&quot;avatar offset(16)&quot;</span>
+    <span class="hljs-attr">layout:top</span>=<span class="pl-s">&quot;super inset(26)&quot;</span> /&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">View</span>
+    <span class="hljs-attr">backgroundColor</span>=<span class="pl-s">&quot;#e6e6e6&quot;</span>
+    <span class="hljs-attr">clipsToBounds</span>=<span class="pl-s">&quot;true&quot;</span>
+    <span class="hljs-attr">layer.cornerRadius</span>=<span class="pl-s">&quot;16&quot;</span>
+    <span class="hljs-attr">layout:center</span>=<span class="pl-s">&quot;avatar&quot;</span>
+    <span class="hljs-attr">layout:width</span>=<span class="pl-s">&quot;self.height&quot;</span>
+    <span class="hljs-attr">layout:fillVertically</span>=<span class="pl-s">&quot;super inset(8)&quot;</span> /&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">ImageView</span>
+    <span class="hljs-attr">field</span>=<span class="pl-s">&quot;avatar&quot;</span>
+    <span class="hljs-attr">layout:leading</span>=<span class="pl-s">&quot;super inset(10)&quot;</span>
+    <span class="hljs-attr">clipsToBounds</span>=<span class="pl-s">&quot;true&quot;</span>
+    <span class="hljs-attr">layer.cornerRadius</span>=<span class="pl-s">&quot;15&quot;</span>
+    <span class="hljs-attr">layout:width</span>=<span class="pl-s">&quot;self.height&quot;</span>
+    <span class="hljs-attr">layout:fillVertically</span>=<span class="pl-s">&quot;super inset(10)&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Component</span>&gt;</span>
+</code></pre>
+<p>We need to connect this to the <code>MainWireframe</code> and pass it the <code>Dependencies</code> and <code>Reactions</code>.</p>
+<pre><code class="lang-swift"><span class="pl-c">// MainWireframe.swift inside MainWireframe class</span>
+
+<span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">main</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">MainController</span> {
+  <span class="pl-k">return</span> create { provider <span class="pl-k">in</span>
+    <span class="pl-k">let</span> dependencies = <span class="hljs-type">MainController</span>.<span class="hljs-type">Dependencies</span>(dataService: module.dataService)
+    <span class="pl-k">let</span> reactions = <span class="hljs-type">MainController</span>.<span class="hljs-type">Reactions</span>(
+      userSelected: { user <span class="pl-k">in</span>
+        provider.navigation?.push(controller: <span class="pl-k">self</span>.repositories(user: user))
+      })
+
+    <span class="pl-k">return</span> <span class="hljs-type">MainController</span>(dependencies: dependencies, reactions: reactions)
+  }
+}
+</code></pre>
+<pre><code class="lang-swift"><span class="pl-c">// DataService.swift</span>
+
+<span class="hljs-type">Now</span> that the components are complete, you have seen `<span class="hljs-type">DataService</span>` <span class="pl-k">in</span> the <span class="hljs-type">MainController&apos;s</span> `<span class="hljs-type">Dependencies</span>`. <span class="hljs-type">This</span> service will bring us the models we declared by converting <span class="hljs-type">DTO&apos;s</span> to models that we&apos;ll work with <span class="pl-k">in</span> our application.
+
+```swift
+<span class="pl-c">// DataService.swift</span>
+
+<span class="pl-k">import</span> Fetcher
+<span class="pl-k">import</span> class RxSwift.Observable
+
+<span class="pl-k">private</span> <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Endpoints</span>: <span class="pl-ent">EndpointProvider</span> </span>{
+  <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">users</span><span class="hljs-params">(position: Int, perPage: Int)</span></span> -&gt; <span class="hljs-type">GET</span>&lt;<span class="hljs-type">Void</span>, <span class="hljs-type">Data</span>&gt; {
+    <span class="pl-k">return</span> create(<span class="pl-s">&quot;users?since=<span class="hljs-subst">\(position)</span>&amp;per_page=<span class="hljs-subst">\(perPage)</span>&quot;</span>, modifiers: <span class="hljs-type">Constants</span>.apiUrl)
+  }
+
+  <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">avatar</span><span class="hljs-params">(url: URL)</span></span> -&gt; <span class="hljs-type">GET</span>&lt;<span class="hljs-type">Void</span>, <span class="hljs-type">Data</span>&gt; {
+    <span class="pl-k">return</span> create(url.absoluteString)
+  }
+}
+</code></pre>
+<p>Endpoints are used by <strong>Fetcher</strong> to make requests to the desired URL. Request type is determined by the return value of each function where the first generic parameter is the data sent to the server and the second generic parameter is the type you want to receive. We only want to receive <code>Data</code> here, because we will do the deserializing ourselves.</p>
+<p>To see all of Fetcher&#x2019;s qualities, head over to <a href="https://github.com/Brightify/Fetcher">its GitHub page</a>.</p>
+<p>Add the service itself under the endpoints.</p>
+<pre><code class="lang-swift"><span class="pl-c">// DataService.swift under Endpoints struct</span>
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">DataService</span> </span>{
+  <span class="pl-k">private</span> <span class="pl-k">let</span> fetcher: <span class="hljs-type">Fetcher</span>
+  <span class="pl-k">private</span> <span class="pl-k">let</span> decoder: <span class="hljs-type">JSONDecoder</span>
+
+  <span class="pl-k">init</span>(fetcher: <span class="hljs-type">Fetcher</span>, decoder: <span class="hljs-type">JSONDecoder</span>) {
+    <span class="pl-k">self</span>.fetcher = fetcher
+    <span class="pl-k">self</span>.decoder = decoder
+  }
+
+  <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">users</span><span class="hljs-params">(perPage: Int = Constants.usersPerPage)</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;[<span class="hljs-type">User</span>]&gt; {
+    <span class="pl-k">let</span> randomPosition = <span class="hljs-type">Int</span>(arc4random_uniform(<span class="hljs-type">Constants</span>.randomNumberLimit))
+    <span class="pl-k">return</span> fetcher.rx.request(<span class="hljs-type">Endpoints</span>.users(position: randomPosition, perPage: perPage))
+      .<span class="pl-c1">map</span> { [decoder] response -&gt; [<span class="hljs-type">UserDTO</span>] <span class="pl-k">in</span>
+        <span class="pl-k">guard</span> <span class="pl-k">let</span> data = response.rawData <span class="pl-k">else</span> { <span class="pl-k">return</span> [] }
+        <span class="pl-k">return</span> (<span class="pl-k">try</span>? decoder.decode([<span class="hljs-type">UserDTO</span>].<span class="pl-k">self</span>, from: data)) ?? []
+      }
+      .flatMapLatest { [<span class="pl-k">unowned</span> <span class="pl-k">self</span>] userDTOs -&gt; <span class="hljs-type">Observable</span>&lt;[<span class="hljs-type">User</span>]&gt; <span class="pl-k">in</span>
+        <span class="pl-k">return</span> <span class="hljs-type">Observable</span>.from(
+          userDTOs.<span class="pl-c1">map</span> { userDTO <span class="pl-k">in</span>
+            <span class="pl-k">return</span> <span class="pl-k">self</span>.avatar(url: userDTO.avatarUrl).<span class="pl-c1">map</span> { <span class="hljs-type">User</span>(avatar: $<span class="hljs-number">0</span>, login: userDTO.login, accountUrl: userDTO.accountUrl) }
+          }).merge().toArray()
+      }
+  }
+
+  <span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">avatar</span><span class="hljs-params">(url: URL)</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;<span class="hljs-type">UIImage</span>?&gt; {
+    <span class="pl-k">return</span> fetcher.rx.request(<span class="hljs-type">Endpoints</span>.avatar(url: url))
+      .<span class="pl-c1">map</span> { response <span class="pl-k">in</span>
+        <span class="pl-k">guard</span> <span class="pl-k">let</span> data = response.rawData <span class="pl-k">else</span> { <span class="pl-k">return</span> <span class="pl-c1">nil</span> }
+        <span class="pl-k">return</span> <span class="hljs-type">UIImage</span>(data: data)
+      }
+  }
+}
+</code></pre>
+<p>Some parts may be a little hard to understand at first. Let&#x2019;s step through the <code>users(perPage:)</code> method. After generating a random number we make the request by calling <code>fetcher.rx.request(endpoint:)</code>, this returns <code>Observable&lt;Data&gt;</code> which means we need to deserialize the <code>Data</code> using <code>JSONDecoder</code>. If the deserializing fails, we want to return only an empty array. After this we make a request for the avatar image for every user in the array through the <code>avatar(url:)</code> method which gives us back the <code>Observable&lt;UIImage?&gt;</code> which we&#x2019;re using to construct a <code>User</code> model. As this is done for every user in the array, <code>merge()</code> makes all the request at once (for smaller servers you might use <code>concat()</code> which makes requests one by one) and <code>toArray()</code> makes sure that we will return an array of users.</p>
+<p>Having said that, this notation using <code>Observables</code> is very well suited for callbacks and HTTP requests are a good example of that. Everything is handled in this service and the controller that subscribes to get a specific model doesn&#x2019;t need to do any more work.</p>
+<p>Having created the service that brings us the much needed data. We can move on to the <code>DependencyModule</code> protocol and <code>ApplicationModule</code> conforming to it.</p>
+<pre><code class="lang-swift"><span class="pl-c">// DependencyModule.swift</span>
+
+<span class="hljs-class"><span class="pl-k">protocol</span> <span class="pl-ent">DependencyModule</span> </span>{
+  <span class="pl-k">var</span> dataService: <span class="hljs-type">DataService</span> { <span class="pl-k">get</span> }
+}
+</code></pre>
+<pre><code class="lang-swift"><span class="pl-c">// ApplicationModule.swift</span>
+
+<span class="pl-k">import</span> Fetcher
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">ApplicationModule</span>: <span class="pl-ent">DependencyModule</span> </span>{
+  <span class="pl-k">let</span> fetcher: <span class="hljs-type">Fetcher</span>
+  <span class="pl-k">let</span> dataService: <span class="hljs-type">DataService</span>
+
+  <span class="pl-k">init</span>() {
+    fetcher = <span class="hljs-type">Fetcher</span>(requestPerformer: <span class="hljs-type">AlamofireRequestPerformer</span>())
+    dataService = <span class="hljs-type">DataService</span>(fetcher: fetcher)
+  }
+}
+</code></pre>
+<p>The <code>AlamofireRequestPerformer</code> is already in <code>Fetcher</code> and doesn&#x2019;t need to be included.</p>
+<p>After doing all this, the result should be of similar image, of course the users are random, so the chance that you&#x2019;ll see the exact same developers is really slim.</p>
+<p align="center">
+    <img src="Users.png" alt="Users" width="350">
+</p>
+<p>For viewing developer&#x2019;s repositories we&#x2019;ll use another PlainTableView, but as the user might forget whose repositories he&#x2019;s viewing, a header showing a quick overview will be helpful.</p>
+<p>We&#x2019;ll cover the header first, the <code>.swift</code> part should look like this:</p>
+<pre><code class="lang-swift"><span class="pl-c">// UserDetailsView.swift</span>
+
+<span class="pl-k">import</span> Reactant
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">UserDetailsView</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">UserAccount</span>, <span class="pl-ent">Void</span>&gt; </span>{
+  <span class="pl-k">let</span> avatar = <span class="hljs-type">UIImageView</span>()
+  <span class="pl-k">let</span> login = <span class="hljs-type">UILabel</span>()
+  <span class="pl-k">let</span> totalStars = <span class="hljs-type">UILabel</span>()
+  <span class="pl-k">let</span> totalRepositories = <span class="hljs-type">UILabel</span>()
+  <span class="pl-k">let</span> favoriteLanguage = <span class="hljs-type">UILabel</span>()
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+    avatar.image = componentState.user.avatar
+    login.text = componentState.user.login
+    <span class="pl-k">if</span> <span class="pl-k">let</span> repositories = componentState.repositories {
+      totalStars.text = <span class="pl-s">&quot;&#x1F31F; <span class="hljs-subst">\(repositories.<span class="pl-c1">filter</span> { $<span class="hljs-number">0</span>.name != &quot;None&quot; }.<span class="pl-c1">reduce</span>(<span class="hljs-number">0</span>)</span> { $0 + $1.stars })&quot;</span>
+      totalRepositories.text = <span class="pl-s">&quot;&#x1F4D6; <span class="hljs-subst">\(repositories.<span class="pl-c1">count</span>)</span>&quot;</span>
+      <span class="pl-k">if</span> <span class="pl-k">let</span> language = repositories.<span class="pl-c1">map</span>({ $<span class="hljs-number">0</span>.language }).<span class="pl-c1">filter</span>({ $<span class="hljs-number">0</span> != <span class="pl-s">&quot;None&quot;</span> }).mostFrequentElement {
+        favoriteLanguage.text = <span class="pl-s">&quot;&#x2764;&#xFE0F; <span class="hljs-subst">\(language)</span>&quot;</span>
+      } <span class="pl-k">else</span> {
+        favoriteLanguage.text = <span class="pl-c1">nil</span>
+      }
+    } <span class="pl-k">else</span> {
+      totalStars.text = <span class="pl-c1">nil</span>
+      totalRepositories.text = <span class="pl-c1">nil</span>
+      favoriteLanguage.text = <span class="pl-c1">nil</span>
+    }
+  }
+}
+</code></pre>
+<p><code>UserAccount</code> is not defined yet, but we will define it in <code>RepositoryRootView.swift</code> later.</p>
+<p>Its <code>.ui.xml</code> counterpart like this:</p>
+<pre><code class="lang-xml"><span class="pl-c">&lt;!-- UserDetailsView.ui.xml --&gt;</span>
+
+<span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="pl-s">&quot;1.0&quot;</span> encoding=<span class="pl-s">&quot;UTF-8&quot;</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Component</span>
+  <span class="hljs-attr">xmlns</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui&quot;</span>
+  <span class="hljs-attr">xmlns:layout</span>=<span class="pl-s">&quot;http://schema.reactant.tech/layout&quot;</span>
+  <span class="hljs-attr">xmlns:xsi</span>=<span class="pl-s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui https://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd&quot;</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">View</span>
+    <span class="hljs-attr">backgroundColor</span>=<span class="pl-s">&quot;#e6e6e6&quot;</span>
+    <span class="hljs-attr">clipsToBounds</span>=<span class="pl-s">&quot;true&quot;</span>
+    <span class="hljs-attr">layer.cornerRadius</span>=<span class="pl-s">&quot;26&quot;</span>
+    <span class="hljs-attr">layout:center</span>=<span class="pl-s">&quot;avatar&quot;</span>
+    <span class="hljs-attr">layout:size</span>=<span class="pl-s">&quot;104&quot;</span> /&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">ImageView</span>
+    <span class="hljs-attr">field</span>=<span class="pl-s">&quot;avatar&quot;</span>
+    <span class="hljs-attr">layout:leading</span>=<span class="pl-s">&quot;super inset(16)&quot;</span>
+    <span class="hljs-attr">layout:fillVertically</span>=<span class="pl-s">&quot;super inset(16)&quot;</span>
+    <span class="hljs-attr">clipsToBounds</span>=<span class="pl-s">&quot;true&quot;</span>
+    <span class="hljs-attr">layer.cornerRadius</span>=<span class="pl-s">&quot;25&quot;</span>
+    <span class="hljs-attr">layout:size</span>=<span class="pl-s">&quot;100&quot;</span> /&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">Container</span>
+    <span class="hljs-attr">layout:id</span>=<span class="pl-s">&quot;infoContainer&quot;</span>
+    <span class="hljs-attr">layout:after</span>=<span class="pl-s">&quot;avatar offset(12)&quot;</span>
+    <span class="hljs-attr">layout:trailing</span>=<span class="pl-s">&quot;super inset(12)&quot;</span>
+    <span class="hljs-attr">layout:top</span>=<span class="pl-s">&quot;avatar&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
+      <span class="hljs-attr">field</span>=<span class="pl-s">&quot;login&quot;</span>
+      <span class="hljs-attr">adjustsFontSizeToFitWidth</span>=<span class="pl-s">&quot;true&quot;</span>
+      <span class="hljs-attr">font</span>=<span class="pl-s">&quot;:bold@20&quot;</span>
+      <span class="hljs-attr">numberOfLines</span>=<span class="pl-s">&quot;1&quot;</span>
+      <span class="hljs-attr">layout:leading</span>=<span class="pl-s">&quot;super&quot;</span>
+      <span class="hljs-attr">layout:top</span>=<span class="pl-s">&quot;super&quot;</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
+      <span class="hljs-attr">field</span>=<span class="pl-s">&quot;totalStars&quot;</span>
+      <span class="hljs-attr">layout:leading</span>=<span class="pl-s">&quot;super&quot;</span>
+      <span class="hljs-attr">layout:below</span>=<span class="pl-s">&quot;login offset(5)&quot;</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
+      <span class="hljs-attr">field</span>=<span class="pl-s">&quot;totalRepositories&quot;</span>
+      <span class="hljs-attr">layout:leading</span>=<span class="pl-s">&quot;super&quot;</span>
+      <span class="hljs-attr">layout:below</span>=<span class="pl-s">&quot;totalStars offset(5)&quot;</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
+      <span class="hljs-attr">field</span>=<span class="pl-s">&quot;favoriteLanguage&quot;</span>
+      <span class="hljs-attr">layout:leading</span>=<span class="pl-s">&quot;super&quot;</span>
+      <span class="hljs-attr">layout:below</span>=<span class="pl-s">&quot;totalRepositories offset(5)&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Container</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">View</span>
+    <span class="hljs-attr">backgroundColor</span>=<span class="pl-s">&quot;#e6e6e6&quot;</span>
+    <span class="hljs-attr">layout:height</span>=<span class="pl-s">&quot;1&quot;</span>
+    <span class="hljs-attr">layout:fillHorizontally</span>=<span class="pl-s">&quot;super&quot;</span>
+    <span class="hljs-attr">layout:bottom</span>=<span class="pl-s">&quot;super&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Component</span>&gt;</span>
+</code></pre>
+<p>The variable <code>mostFrequentElement</code> is not in Swift by default, so we&#x2019;ll define it in the <code>Utils</code> folder.</p>
+<pre><code class="lang-swift"><span class="pl-c">// Array+mostFrequentElement.swift</span>
+
+<span class="pl-k">import</span> Foundation
+
+<span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">Array</span> </span>{
+  <span class="pl-k">var</span> mostFrequentElement: <span class="hljs-type">Element</span>? {
+    <span class="pl-k">let</span> countedSet = <span class="hljs-type">NSCountedSet</span>(array: <span class="pl-k">self</span>)
+    <span class="pl-k">guard</span> <span class="pl-k">let</span> mostFrequent = (countedSet.<span class="pl-c1">max</span> { countedSet.<span class="pl-c1">count</span>(<span class="pl-k">for</span>: $<span class="hljs-number">0</span>) &lt; countedSet.<span class="pl-c1">count</span>(<span class="pl-k">for</span>: $<span class="hljs-number">1</span>) } <span class="pl-k">as</span>? <span class="hljs-type">Element</span>) <span class="pl-k">else</span> { <span class="pl-k">return</span> <span class="pl-c1">nil</span> }
+    <span class="pl-k">return</span> mostFrequent
+  }
+}
+</code></pre>
+<p>The header will look like this:</p>
+<p align="center">
+    <img src="UserHeader.png" alt="Header" width="350">
+</p>
+<p>We will integrate it as a header of the <code>Repositories</code> screen.</p>
+<p>For that <code>RepositoryCell</code> component needs to be created.</p>
+<pre><code class="lang-swift"><span class="pl-c">// RepositoryCell.swift</span>
+
+<span class="pl-k">import</span> Reactant
+<span class="pl-k">import</span> UIKit
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">RepositoryCell</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">Repository</span>, <span class="pl-ent">Void</span>&gt;, <span class="pl-ent">Reactant</span>.<span class="pl-ent">TableViewCell</span> </span>{
+  <span class="pl-k">static</span> <span class="pl-k">let</span> height: <span class="hljs-type">CGFloat</span> = <span class="hljs-number">60</span>
+
+  <span class="pl-k">let</span> name = <span class="hljs-type">UILabel</span>()
+  <span class="pl-k">let</span> starCount = <span class="hljs-type">UILabel</span>()
+  <span class="pl-k">let</span> language = <span class="hljs-type">UILabel</span>()
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+    name.text = componentState.name
+    starCount.text = <span class="pl-s">&quot;&#x1F31F; <span class="hljs-subst">\(componentState.stars)</span>&quot;</span>
+    <span class="pl-k">if</span> <span class="pl-k">let</span> repositoryLanguage = componentState.language {
+      language.visibility = .visible
+      language.text = <span class="pl-s">&quot;Language: <span class="hljs-subst">\(repositoryLanguage)</span>&quot;</span>
+    } <span class="pl-k">else</span> {
+      language.visibility = .collapsed
+      language.text = <span class="pl-c1">nil</span>
+    }
+  }
+
+  <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">setHighlighted</span><span class="hljs-params">(<span class="hljs-number">_</span> highlighted: Bool, animated: Bool)</span></span> {
+    <span class="pl-k">let</span> style = { <span class="pl-k">self</span>.apply(style: highlighted ? <span class="hljs-type">Styles</span>.highlightedBackground : <span class="hljs-type">Styles</span>.normalBackground) }
+    <span class="pl-k">if</span> animated {
+      <span class="hljs-type">UIView</span>.animate(withDuration: <span class="hljs-number">0.7</span>, animations: style)
+    } <span class="pl-k">else</span> {
+      style()
+    }
+  }
+}
+
+<span class="hljs-class"><span class="pl-k">extension</span> <span class="pl-ent">RepositoryCell</span>.<span class="pl-ent">Styles</span> </span>{
+  <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">normalBackground</span><span class="hljs-params">(<span class="hljs-number">_</span> cell: RepositoryCell)</span></span> {
+    cell.backgroundColor = <span class="pl-c1">nil</span>
+  }
+
+  <span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">highlightedBackground</span><span class="hljs-params">(<span class="hljs-number">_</span> cell: RepositoryCell)</span></span> {
+    cell.backgroundColor = <span class="hljs-type">UIColor</span>.lightGray.withAlphaComponent(<span class="hljs-number">0.2</span>)
+  }
+}
+</code></pre>
+<p>Here you can see we used <code>Reactant</code>&apos;s <code>UIView.visibility</code> variable. Its values are <code>.visible</code>, <code>.collapsed</code>, and <code>.hidden</code>. The difference between <code>.hidden</code> and <code>.collapsed</code> is that <code>.hidden</code> preserves the view&#x2019;s dimensions whereas <code>.collapsed</code> uses <code>UIView.collapseAxis</code> to determine on which axis (it can even be both) to collapse the view so that the dimension on the chosen axis is equal to zero.</p>
+<p>We are using it here because if a particular repository has no language, we don&#x2019;t want to show the language label at all, but as we want the text centered, we need to <em>collapse</em> the language label.</p>
+<p>This is how it&#x2019;s represented using <code>ReactantUI</code>:</p>
+<pre><code class="lang-xml"><span class="pl-c">&lt;!-- RepositoryCell.ui.xml --&gt;</span>
+
+<span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="pl-s">&quot;1.0&quot;</span> encoding=<span class="pl-s">&quot;UTF-8&quot;</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Component</span>
+  <span class="hljs-attr">xmlns</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui&quot;</span>
+  <span class="hljs-attr">xmlns:layout</span>=<span class="pl-s">&quot;http://schema.reactant.tech/layout&quot;</span>
+  <span class="hljs-attr">xmlns:xsi</span>=<span class="pl-s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui https://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd&quot;</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">Container</span>
+    <span class="hljs-attr">layout:id</span>=<span class="pl-s">&quot;text&quot;</span>
+    <span class="hljs-attr">layout:leading</span>=<span class="pl-s">&quot;super inset(8)&quot;</span>
+    <span class="hljs-attr">layout:top</span>=<span class="pl-s">&quot;super inset(8)&quot;</span>
+    <span class="hljs-attr">layout:bottom</span>=<span class="pl-s">&quot;super inset(8)&quot;</span>
+    <span class="hljs-attr">layout:centerY</span>=<span class="pl-s">&quot;super&quot;</span> &gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
+      <span class="hljs-attr">field</span>=<span class="pl-s">&quot;name&quot;</span>
+      <span class="hljs-attr">font</span>=<span class="pl-s">&quot;:bold@20&quot;</span>
+      <span class="hljs-attr">numberOfLines</span>=<span class="pl-s">&quot;1&quot;</span>
+      <span class="hljs-attr">layout:leading</span>=<span class="pl-s">&quot;super&quot;</span>
+      <span class="hljs-attr">layout:trailing</span>=<span class="pl-s">&quot;super&quot;</span>
+      <span class="hljs-attr">layout:top</span>=<span class="pl-s">&quot;super&quot;</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
+      <span class="hljs-attr">field</span>=<span class="pl-s">&quot;language&quot;</span>
+      <span class="hljs-attr">font</span>=<span class="pl-s">&quot;14&quot;</span>
+      <span class="hljs-attr">numberOfLines</span>=<span class="pl-s">&quot;1&quot;</span>
+      <span class="hljs-attr">layout:leading</span>=<span class="pl-s">&quot;super&quot;</span>
+      <span class="hljs-attr">layout:trailing</span>=<span class="pl-s">&quot;super&quot;</span>
+      <span class="hljs-attr">layout:below</span>=<span class="pl-s">&quot;name offset(8)&quot;</span>
+      <span class="hljs-attr">layout:bottom</span>=<span class="pl-s">&quot;super&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Container</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">Label</span>
+    <span class="hljs-attr">field</span>=<span class="pl-s">&quot;starCount&quot;</span>
+    <span class="hljs-attr">font</span>=<span class="pl-s">&quot;14&quot;</span>
+    <span class="hljs-attr">numberOfLines</span>=<span class="pl-s">&quot;1&quot;</span>
+    <span class="hljs-attr">layout:after</span>=<span class="pl-s">&quot;:gt id:text offset(10)&quot;</span>
+    <span class="hljs-attr">layout:trailing</span>=<span class="pl-s">&quot;super inset(10)&quot;</span>
+    <span class="hljs-attr">layout:centerY</span>=<span class="pl-s">&quot;super&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Component</span>&gt;</span>
+</code></pre>
+<p>Putting this all together in <code>RepositoryRootView.swift</code> will look like this:</p>
+<pre><code class="lang-swift"><span class="pl-c">// RepositoryRootView.swift</span>
+
+<span class="pl-k">import</span> Reactant
+<span class="pl-k">import</span> RxSwift
+
+<span class="pl-k">typealias</span> <span class="hljs-type">UserAccount</span> = (user: <span class="hljs-type">User</span>, repositories: [<span class="hljs-type">Repository</span>]?)
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">RepositoriesRootView</span>: <span class="pl-ent">ViewBase</span>&lt;<span class="pl-ent">UserAccount</span>, <span class="pl-ent">PlainTableViewAction</span>&lt;<span class="pl-ent">RepositoryCell</span>&gt;&gt; </span>{
+  <span class="pl-k">let</span> repositoryTableView = <span class="hljs-type">PlainTableView</span>&lt;<span class="hljs-type">RepositoryCell</span>&gt;(reloadable: <span class="pl-c1">false</span>)
+  <span class="pl-k">let</span> activityIndicator = <span class="hljs-type">UIActivityIndicatorView</span>()
+  <span class="pl-k">private</span> <span class="pl-k">let</span> userDetails = <span class="hljs-type">UserDetailsView</span>()
+
+  <span class="pl-k">override</span> <span class="pl-k">var</span> actions: [<span class="hljs-type">Observable</span>&lt;<span class="hljs-type">PlainTableViewAction</span>&lt;<span class="hljs-type">RepositoryCell</span>&gt;&gt;] {
+    <span class="pl-k">return</span> [
+      repositoryTableView.action
+    ]
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">update</span><span class="hljs-params">()</span></span> {
+    <span class="pl-k">if</span> <span class="pl-k">let</span> repositories = componentState.repositories {
+      activityIndicator.stopAnimating()
+      repositoryTableView.componentState = repositories.isEmpty ? .empty(message: <span class="pl-s">&quot;No repositories found.&quot;</span>) : .items(repositories)
+    } <span class="pl-k">else</span> {
+      activityIndicator.startAnimating()
+      repositoryTableView.componentState = .loading
+    }
+    userDetails.componentState = componentState
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">loadView</span><span class="hljs-params">()</span></span> {
+    activityIndicator.activityIndicatorViewStyle = .gray
+
+    repositoryTableView.headerView = userDetails
+    repositoryTableView.footerView = <span class="hljs-type">UIView</span>()
+    repositoryTableView.rowHeight = <span class="hljs-type">RepositoryCell</span>.height
+    repositoryTableView.separatorStyle = .singleLine
+    repositoryTableView.tableView.contentInset.bottom = <span class="hljs-number">0</span>
+  }
+}
+</code></pre>
+<p>The <code>ui.xml</code> side looks like this:</p>
+<pre><code class="lang-xml"><span class="pl-c">&lt;!-- RepositoryRootView.ui.xml --&gt;</span>
+
+<span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="pl-s">&quot;1.0&quot;</span> encoding=<span class="pl-s">&quot;UTF-8&quot;</span> <span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Component</span>
+  <span class="hljs-attr">xmlns</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui&quot;</span>
+  <span class="hljs-attr">xmlns:layout</span>=<span class="pl-s">&quot;http://schema.reactant.tech/layout&quot;</span>
+  <span class="hljs-attr">xmlns:xsi</span>=<span class="pl-s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+  <span class="hljs-attr">xsi:schemaLocation</span>=<span class="pl-s">&quot;http://schema.reactant.tech/ui http://schema.reactant.tech/ui.xsd
+  http://schema.reactant.tech/layout http://schema.reactant.tech/layout.xsd&quot;</span>
+  <span class="hljs-attr">rootView</span>=<span class="pl-s">&quot;true&quot;</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">View</span>
+    <span class="hljs-attr">field</span>=<span class="pl-s">&quot;repositoryTableView&quot;</span>
+    <span class="hljs-attr">layout:edges</span>=<span class="pl-s">&quot;super&quot;</span> /&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">View</span>
+    <span class="hljs-attr">field</span>=<span class="pl-s">&quot;activityIndicator&quot;</span>
+    <span class="hljs-attr">layout:center</span>=<span class="pl-s">&quot;super&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Component</span>&gt;</span>
+</code></pre>
+<p>The controller that controls it looks like this:</p>
+<pre><code class="lang-swift"><span class="pl-c">// RepositoryController.swift</span>
+
+<span class="pl-k">import</span> Reactant
+
+<span class="pl-k">final</span> <span class="hljs-class"><span class="pl-k">class</span> <span class="pl-ent">RepositoriesController</span>: <span class="pl-ent">ControllerBase</span>&lt;<span class="pl-ent">Void</span>, <span class="pl-ent">RepositoriesRootView</span>&gt; </span>{
+  <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Dependencies</span> </span>{
+    <span class="pl-k">let</span> dataService: <span class="hljs-type">DataService</span>
+  }
+  <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Properties</span> </span>{
+    <span class="pl-k">let</span> user: <span class="hljs-type">User</span>
+  }
+  <span class="hljs-class"><span class="pl-k">struct</span> <span class="pl-ent">Reactions</span> </span>{
+    <span class="pl-k">let</span> repositorySelected: (<span class="hljs-type">URL</span>) -&gt; <span class="hljs-type">Void</span>
+  }
+
+  <span class="pl-k">private</span> <span class="pl-k">let</span> dependencies: <span class="hljs-type">Dependencies</span>
+  <span class="pl-k">private</span> <span class="pl-k">let</span> properties: <span class="hljs-type">Properties</span>
+  <span class="pl-k">private</span> <span class="pl-k">let</span> reactions: <span class="hljs-type">Reactions</span>
+
+  <span class="pl-k">init</span>(dependencies: <span class="hljs-type">Dependencies</span>, properties: <span class="hljs-type">Properties</span>, reactions: <span class="hljs-type">Reactions</span>) {
+    <span class="pl-k">self</span>.dependencies = dependencies
+    <span class="pl-k">self</span>.properties = properties
+    <span class="pl-k">self</span>.reactions = reactions
+    <span class="pl-k">super</span>.<span class="pl-k">init</span>(title: <span class="pl-s">&quot;Repositories&quot;</span>)
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">afterInit</span><span class="hljs-params">()</span></span> {
+    <span class="pl-k">self</span>.rootView.componentState = (<span class="pl-k">self</span>.properties.user, <span class="pl-c1">nil</span>)
+    dependencies.dataService.repositories(login: properties.user.login)
+      .subscribe(onNext: { [<span class="pl-k">unowned</span> <span class="pl-k">self</span>] repositories <span class="pl-k">in</span>
+        <span class="pl-k">self</span>.rootView.componentState = (<span class="pl-k">self</span>.properties.user, repositories.sorted(by: { $<span class="hljs-number">0</span>.stars &gt; $<span class="hljs-number">1</span>.stars }))
+      })
+      .disposed(by: lifetimeDisposeBag)
+  }
+
+  <span class="pl-k">override</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">act</span><span class="hljs-params">(on action: PlainTableViewAction&lt;RepositoryCell&gt;)</span></span> {
+    <span class="pl-k">switch</span> action {
+    <span class="pl-k">case</span> .selected(<span class="pl-k">let</span> repository):
+      reactions.repositorySelected(repository.url)
+    <span class="pl-k">case</span> .refresh, .rowAction(<span class="hljs-number">_</span>, <span class="hljs-number">_</span>):
+      <span class="pl-k">break</span>
+    }
+  }
+}
+</code></pre>
+<p>We also need to add a new endpoint and a method to the <code>DataService.swift</code> file.</p>
+<pre><code class="lang-swift"><span class="pl-c">// DataService inside Endpoints struct</span>
+
+<span class="pl-k">static</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">repositories</span><span class="hljs-params">(userLogin: String)</span></span> -&gt; <span class="hljs-type">GET</span>&lt;<span class="hljs-type">Void</span>, <span class="hljs-type">Data</span>&gt; {
+  <span class="pl-k">return</span> create(<span class="pl-s">&quot;users/<span class="hljs-subst">\(userLogin)</span>/repos&quot;</span>, modifiers: <span class="hljs-type">Constants</span>.apiUrl)
+}
+</code></pre>
+<pre><code class="lang-swift"><span class="pl-c">// DataService inside DataService class</span>
+
+<span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">repositories</span><span class="hljs-params">(login: String)</span></span> -&gt; <span class="hljs-type">Observable</span>&lt;[<span class="hljs-type">Repository</span>]&gt; {
+  <span class="pl-k">return</span> fetcher.rx.request(<span class="hljs-type">Endpoints</span>.repositories(userLogin: login))
+    .<span class="pl-c1">map</span> { [decoder] response <span class="pl-k">in</span>
+      <span class="pl-k">guard</span> <span class="pl-k">let</span> data = response.rawData <span class="pl-k">else</span> { <span class="pl-k">return</span> [] }
+      <span class="pl-k">return</span> ((<span class="pl-k">try</span>? decoder.decode([<span class="hljs-type">RepositoryDTO</span>].<span class="pl-k">self</span>, from: data)) ?? [])
+        .<span class="pl-c1">map</span> { repositoryDTO <span class="pl-k">in</span>
+          <span class="pl-k">return</span> <span class="hljs-type">Repository</span>(name: repositoryDTO.name, stars: repositoryDTO.stars, language: repositoryDTO.language, url: repositoryDTO.url)
+        }
+    }
+}
+</code></pre>
+<p>When debugging HTTP requests/responses with <strong>Fetcher</strong>, it&#x2019;s very easy to have it print out everything that is happening by registering a logger request enhancer.</p>
+<pre><code class="lang-swift">fetcher.register(requestEnhancers: <span class="hljs-type">RequestLogger</span>(defaultOptions: .all))
+</code></pre>
+<p>Now the only thing left to do is to connect the new controller into the <code>Wireframe</code> and add a navigation controller so that the user can easily return back from viewing repositories.</p>
+<pre><code class="lang-swift"><span class="pl-c">// MainWireframe.swift inside MainWireframe class</span>
+
+<span class="pl-k">private</span> <span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">repositories</span><span class="hljs-params">(user: User)</span></span> -&gt; <span class="hljs-type">RepositoriesController</span> {
+  <span class="pl-k">return</span> create { provider <span class="pl-k">in</span>
+    <span class="pl-k">let</span> dependencies = <span class="hljs-type">RepositoriesController</span>.<span class="hljs-type">Dependencies</span>(dataService: module.dataService)
+    <span class="pl-k">let</span> properties = <span class="hljs-type">RepositoriesController</span>.<span class="hljs-type">Properties</span>(user: user)
+    <span class="pl-k">let</span> reactions = <span class="hljs-type">RepositoriesController</span>.<span class="hljs-type">Reactions</span>(
+      repositorySelected: { url <span class="pl-k">in</span>
+        <span class="pl-k">if</span> #available(iOS <span class="hljs-number">10.0</span>, *) {
+          <span class="hljs-type">UIApplication</span>.shared.open(url)
+        } <span class="pl-k">else</span> {
+          <span class="hljs-type">UIApplication</span>.shared.openURL(url)
+        }
+      })
+
+    <span class="pl-k">return</span> <span class="hljs-type">RepositoriesController</span>(dependencies: dependencies, properties: properties, reactions: reactions)
+  }
+}
+</code></pre>
+<p><code>provider</code> is used in reactions when you need to either interact with the navigation controller or when you need a reference to the controller that will be initialized at the end of <code>create(factory:)</code> method.</p>
+<p>We also need to add a navigation controller to let the user easily return back to the main screen. This is done in the <code>entrypoint()</code> method of <code>MainWireframe</code>.</p>
+<pre><code class="lang-swift"><span class="pl-c">// MainWireframe.swift inside MainWireframe class</span>
+
+<span class="hljs-function"><span class="pl-k">func</span> <span class="pl-ent">entrypoint</span><span class="hljs-params">()</span></span> -&gt; <span class="hljs-type">UIViewController</span> {
+  <span class="pl-k">let</span> mainController = main()
+  <span class="pl-k">return</span> <span class="hljs-type">UINavigationController</span>(rootViewController: mainController)
+}
+</code></pre>
+<p align="center">
+    User&apos;s repository screen now looks like this:<br><br>
+    <img src="Repositories.png" alt="Repositories" width="350">
+</p>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>That concludes the functionality we set out to implement! To hone your Reactant skills further, try implementing the proposed <code>UPGRADES</code> below. As always you can find the whole project <a href="https://github.com/MatyasKriz/git-explorer">here</a>.</p>
+<p><strong>UPGRADE</strong>: Right now we are ignoring request failures, but adding a feature that opens the user&#x2019;s profile when a repository list request fails is a good alternative to showing <code>No Repositories Found!</code> after the request limit is reached.</p>
+<p><strong>UPGRADE</strong>: Try adding a <code>Search</code> button to the Navigation Bar that lets you search for users. GitHub&#x2019;s search API doesn&#x2019;t count towards the requests we are making now, so it&#x2019;s really going to improve our application.</p>
+<p><strong>UPGRADE</strong>: You might have noticed during testing our explorer application that after a while you get <code>No users found!</code> even though you have perfectly fine internet connection. This is because you have reached GitHub&#x2019;s request limit. If you&#x2019;re interested in expanding it, consider adding a <code>Log In</code> possibility to the application.</p>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="../../tutorials/RNotes/notes.html"><span class="title">Simple note taking app</span></a></div>
+          <div class="right"><a href="../../reactant-ui/introduction.html"><span class="label">Next: </span><span class="title">Introduction</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

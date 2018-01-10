@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../assets/style.css?t=615badd5">
     <script src="../assets/script.js?t=36f3d457"></script>
     <script src="../scripts/zopim.js?t=f160c13c"></script>
-    <title>StaticMap - Reactant</title>
+    <title>Troubleshooting - Reactant</title>
     <meta name="viewport" content="width=device-width">
     <script>if (false || window.location.hostname.indexOf("docs.reactant.tech") === window.location.hostname.length - 18) {
         (function(d,o,c,p,r,e,s){d['GoogleAnalyticsObject']=r;d[r]=d[r]||function(){(d[r].q=d[r].q||[]).push(arguments)},d[r].l=1*new Date();e=o.createElement(c),s=o.getElementsByTagName(c)[0];e.async=1;e.src=p;s.parentNode.insertBefore(e,s)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
@@ -27,7 +27,17 @@
                 </li>
                 <li class="menu-item -level-2"><a class="link title  link-getting-startedarchitecture" href="../getting-started/architecture.html">Architecture</a>
                 </li>
-                <li class="menu-item -level-2"><a class="link title  link-getting-startedtroubleshooting" href="../getting-started/troubleshooting.html">Troubleshooting</a>
+                <li class="menu-item -level-2"><a class="link title -active link-getting-startedtroubleshooting" href="../getting-started/troubleshooting.html">Troubleshooting</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-2"><a class="hlink link-general" href="#general">General</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-reactant" href="#reactant">Reactant</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-reactantui" href="#reactantui">ReactantUI</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a class="hlink link-reactantcli" href="#reactantcli">ReactantCLI</a>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </li>
@@ -65,7 +75,7 @@
                         </li>
                         <li class="menu-item -level-4"><a class="link title  link-partsactivityindicator" href="../parts/activityindicator.html">ActivityIndicator</a>
                         </li>
-                        <li class="menu-item -level-4"><a class="link title -active link-partsstaticmap" href="../parts/staticmap.html">StaticMap</a>
+                        <li class="menu-item -level-4"><a class="link title  link-partsstaticmap" href="../parts/staticmap.html">StaticMap</a>
                         </li>
                       </ul>
                     </li>
@@ -76,23 +86,37 @@
           </ul>
         </li>
       </div>
-      <div class="body page-partsstaticmap">
+      <div class="body page-getting-startedtroubleshooting">
         <div class="header-nav">
           <div class="right"><a class="iconlink" href="https://github.com/Brightify/Reactant" data-title="Brightify/Reactant">
               <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
           </div>
         </div>
-        <div class="markdown-body"><h1 id="staticmap">StaticMap</h1>
-<p>StaticMap is one of Reactant&#x2019;s prebuilt components. To integrate it into your project, you need to add <code>StaticMap</code> subspec to your <code>Podfile</code>. To do so, open your <code>Podfile</code> in a text editor and add the following line to your application&#x2019;s target:</p>
-<pre><code class="lang-ruby">pod <span class="pl-s">&apos;Reactant/StaticMap&apos;</span>
-</code></pre>
-<p><code>StaticMap</code> is meant to be used wherever you want to display a map without letting the user control it. Were you to use the <code>MKMapView</code>, you would get noticeable lags when pushing a controller as <code>MKMapView</code> renders on main thread. <code>StaticMap</code> renders in background and presents a loaded image.</p>
-<p>To render the map, we recommend using <code>MKMapSnapshotter</code>, and to cache the map we recommend a library called <code>Kingfisher</code>.</p>
-<p><code>StaticMap</code> has a <code>componentState</code> of type <code>MKCoordinateRegion</code>. This region specifies the visible part of the map. It also has an <code>action</code> of type <code>StaticMapAction</code>. This action is just an enum, having a single case <code>selected</code>. Whenever user taps on the map, <code>StaticMap</code> sends this <code>.selected</code> action to be handled.</p>
+        <div class="markdown-body"><!-- URLs -->
+<h1 id="troubleshooting-tips">Troubleshooting Tips</h1>
+<p>As we all know, not always everything goes according to plan in IT. That&#x2019;s why we created this section with solutions to problems you are most likely to encounter.</p>
+<p><strong>NOTE</strong>: Always clean the build after trying any of the provided solutions. Some things may depend on it. The shortcut in Xcode is <code>Cmd+Shift+K</code>.</p>
+<h2 id="general">General</h2>
+<ul>
+<li>try <code>pod repo update</code> to update your Cocoapods repository</li>
+<li>try <code>pod install</code> to update the Pods and reopen the <code>.xcworkspace</code> (this is important otherwise the changes might not take effect).</li>
+</ul>
+<h2 id="reactant">Reactant</h2>
+<h2 id="reactantui">ReactantUI</h2>
+<p><strong>I get a compiler error saying that generated things do not exist.</strong></p>
+<p>Make sure that in <code>Build Phases</code>-&gt;<code>Compile Sources</code> the <code>GeneratedUI.swift</code> file is the topmost one.</p>
+<hr>
+<p><strong>I get an error &#x201C;&#x2026;/Application/Sources/Generated/GeneratedUI.swift no such file or directory&#x201D;.</strong></p>
+<p>You need to create the <code>Generated/</code> folder yourself. If you&#x2019;re in the root folder of your project, you can use this command: <code>mkdir ./Application/Generated/</code>.</p>
+<hr>
+<h2 id="reactantcli">ReactantCLI</h2>
+<p><strong>I created a new project with <code>reactant init</code> command and it doesn&#x2019;t run.</strong></p>
+<p>It&#x2019;s possible that something went wrong during the project creation. Make sure you have <a href="http://cocoapods.org">Cocoapods</a> installed and afterwards try to call <code>pod install</code>. If it still doesn&#x2019;t work, consider creating a new project.</p>
 
         </div>
         <div class="footer-nav">
-          <div class="left"><a href="../parts/activityindicator.html"><span class="title">ActivityIndicator</span></a></div>
+          <div class="left"><a href="../getting-started/architecture.html"><span class="title">Architecture</span></a></div>
+          <div class="right"><a href="../tutorials/RNotes/notes.html"><span class="label">Next: </span><span class="title">Simple note taking app</span></a></div>
         </div>
       </div>
     </div>
