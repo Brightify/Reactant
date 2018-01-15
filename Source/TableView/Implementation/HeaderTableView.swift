@@ -44,11 +44,12 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
         cellFactory: @escaping () -> CELL = CELL.init,
         headerFactory: @escaping () -> HEADER = HEADER.init,
         style: UITableViewStyle = .plain,
-        reloadable: Bool = true)
+        reloadable: Bool = true,
+        automaticallyDeselect: Bool = true)
     {
         self.headerFactory = headerFactory
 
-        super.init(style: style, reloadable: reloadable)
+        super.init(style: style, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
 
         dataSource.configureCell = { [unowned self] _, _, _, model in
             return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,

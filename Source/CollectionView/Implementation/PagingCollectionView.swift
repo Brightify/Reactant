@@ -27,8 +27,8 @@ open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where 
     
     public let pageControl = UIPageControl()
     
-    public override init(cellFactory: @escaping () -> CELL = CELL.init, reloadable: Bool = true) {
-        super.init(cellFactory: cellFactory, reloadable: reloadable)
+    public override init(cellFactory: @escaping () -> CELL = CELL.init, reloadable: Bool = true, automaticallyDeselect: Bool = true) {
+        super.init(cellFactory: cellFactory, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
     }
     
     open override func loadView() {

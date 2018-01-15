@@ -56,9 +56,10 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         style: UITableViewStyle = .plain,
-        reloadable: Bool = true)
+        reloadable: Bool = true,
+        automaticallyDeselect: Bool = true)
     {
-        super.init(style: style, reloadable: reloadable)
+        super.init(style: style, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
 
         separatorHeight = 1
         

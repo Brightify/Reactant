@@ -35,10 +35,12 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
     
     private let cellFactory: () -> CELL
     
-    public init(cellFactory: @escaping () -> CELL = CELL.init, reloadable: Bool = true) {
+    public init(cellFactory: @escaping () -> CELL = CELL.init,
+                reloadable: Bool = true,
+                automaticallyDeselect: Bool = true) {
         self.cellFactory = cellFactory
         
-        super.init(reloadable: reloadable)
+        super.init(reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
     }
     
     open override func loadView() {

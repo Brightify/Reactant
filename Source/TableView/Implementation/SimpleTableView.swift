@@ -48,12 +48,13 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
         headerFactory: @escaping () -> HEADER = HEADER.init,
         footerFactory: @escaping () -> FOOTER = FOOTER.init,
         style: UITableViewStyle = .plain,
-        reloadable: Bool = true)
+        reloadable: Bool = true,
+        automaticallyDeselect: Bool = true)
     {
         self.headerFactory = headerFactory
         self.footerFactory = footerFactory
         
-        super.init(style: style, reloadable: reloadable)
+        super.init(style: style, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
         
         dataSource.configureCell = { [unowned self] _, _, _, model in
             return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,

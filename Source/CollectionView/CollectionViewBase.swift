@@ -33,12 +33,16 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     private let items = PublishSubject<[MODEL]>()
     // Optimization that prevents configuration reloading each time cell is dequeued.
     private var configurationChangeTime: clock_t = clock()
+    
+    private let automaticallyDeselect: Bool
 
-    public init(layout: UICollectionViewLayout, reloadable: Bool = true) {
+    public init(layout: UICollectionViewLayout, reloadable: Bool = true, automaticallyDeselect: Bool = true) {
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         #if os(iOS)
         self.refreshControl = reloadable ? UIRefreshControl() : nil
         #endif
+        
+        self.automaticallyDeselect = automaticallyDeselect
         
         super.init()
     }
@@ -78,11 +82,13 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     }
     
     open override func afterInit() {
-        collectionView.rx.itemSelected
-            .subscribe(onNext: { [collectionView] in
-                collectionView.deselectItem(at: $0, animated: true)
-            })
-            .disposed(by: lifetimeDisposeBag)
+        if automaticallyDeselect {
+            collectionView.rx.itemSelected
+                .subscribe(onNext: { [collectionView] in
+                    collectionView.deselectItem(at: $0, animated: true)
+                })
+                .disposed(by: lifetimeDisposeBag)
+        }
 
         bind(items: items)
     }

@@ -13,7 +13,7 @@ open class FlowCollectionViewBase<MODEL, ACTION>: CollectionViewBase<MODEL, ACTI
     public let collectionViewLayout = UICollectionViewFlowLayout()
 
     /// - parameter reloadable: determines whether the **FlowCollectionViewBase** should be reloadable by pulling
-    public init(reloadable: Bool = true) {
-        super.init(layout: collectionViewLayout, reloadable: reloadable)
+    public init(reloadable: Bool = true, automaticallyDeselect: Bool = true) {
+        super.init(layout: collectionViewLayout, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
     }
 }

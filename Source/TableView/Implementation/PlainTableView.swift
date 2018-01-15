@@ -38,11 +38,12 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         style: UITableViewStyle = .plain,
-        reloadable: Bool = true)
+        reloadable: Bool = true,
+        automaticallyDeselect: Bool = true)
     {
         self.cellFactory = cellFactory
 
-        super.init(style: style, reloadable: reloadable)
+        super.init(style: style, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
     }
 
     open override func loadView() {

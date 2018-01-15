@@ -34,11 +34,15 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     // Optimization that prevents configuration reloading each time cell is dequeued.
     private var configurationChangeTime: clock_t = clock()
     
-    public init(style: UITableViewStyle = .plain, reloadable: Bool = true) {
+    private let automaticallyDeselect: Bool
+    
+    public init(style: UITableViewStyle = .plain, reloadable: Bool = true, automaticallyDeselect: Bool = true) {
         self.tableView = UITableView(frame: CGRect.zero, style: style)
         #if os(iOS)
         self.refreshControl = reloadable ? UIRefreshControl() : nil
         #endif
+        
+        self.automaticallyDeselect = automaticallyDeselect
         
         super.init()
     }
@@ -83,11 +87,13 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     }
     
     open override func afterInit() {
-        tableView.rx.itemSelected
-            .subscribe(onNext: { [tableView] in
-                tableView.deselectRow(at: $0, animated: true)
-            })
-            .disposed(by: lifetimeDisposeBag)
+        if automaticallyDeselect {
+            tableView.rx.itemSelected
+                .subscribe(onNext: { [tableView] in
+                    tableView.deselectRow(at: $0, animated: true)
+                })
+                .disposed(by: lifetimeDisposeBag)
+        }
 
         bind(items: items)
     }
