@@ -36,16 +36,13 @@ reactant init
 
 into the Terminal.
 
-<p align="center">
-    We will use this configuration:<br><br>
-    <img img src="Reactant-init-console.png" alt="Terminal" />
-</p>
+![Terminal](../img/Tutorials/Notes/Reactant-init-console.png)
 
 - wait for Cocoapods to do its job bringing in the dependencies
 
 Xcode workspace should open after this if everything went smooth. If it doesn't, open it manually, the suffix is `.xcworkspace`
 
-Click the **RUN** button (![-RUN BUTTON-](../RunButton.png)) so that we see what we've got so far. We're doing this step mainly to check if nothing went wrong. You should get **Hello World!** text on white background. If you don't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
+Click the **RUN** button (![Run Button](../img/Tutorials/RunButton.png)) so that we see what we've got so far. We're doing this step mainly to check if nothing went wrong. You should get **Hello World!** text on white background. If you don't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
 
 There are two Xcode projects in the left sidebar. The first is our project (RNotes in this case) and the second is `Pods`, our dependencies lie there.
 
@@ -258,10 +255,7 @@ The `layout:` prefix is used for layouting attributes. Others are used to direct
 
 Saving the file at any time (assuming the `XML` is syntactically and semantically correct) will update the screen on your simulator to represent the `UI XML`.
 
-<p align="center">
-    The app should now look something like this:<br><br>
-    <img img src="Simulator1.png" alt="Simulator screen 1" width="350" />
-</p>
+![Simulator1](../img/Tutorials/Notes/Simulator1.png)
 
 ### Creating New Notes
 We need to create a new `Controller` and `RootView` for editing notes. It can be named `NoteModificationController.swift` and `NoteModificationRootView.swift` for example. `NoteModificationRootView.ui.xml` will be needed as well.
@@ -665,9 +659,7 @@ The styling parts that cannot be declared using Reactant UI are defined like thi
 
 Try to add a **Wipe** button in the MainController navigation bar that deletes all notes when tapped. You can then compare it to the [project][project-url]'s `Wipe` on GitHub.
 
-<p align="center">
-    <img img src="Simulator2.png" alt="Simulator screen 2" width="350" />
-</p>
+![Simulator2](../img/Tutorials/Notes/Simulator2.png)
 
 Another thing that the user would surely appreciate is showing an alert controller in case loading/saving notes fails. It would probably work through letting the `Wireframe` know through `Reactions` to show an alert controller.
 

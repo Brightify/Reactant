@@ -8,8 +8,8 @@
     * [Troubleshooting](getting-started/troubleshooting.md)
 
 * Tutorials
-    * [Simple note taking app](tutorials/RNotes/notes.md)
-    * [Random GitHub users explorer](tutorials/GitXplorer/explorer.md)
+    * [Simple note taking app](tutorials/notes.md)
+    * [Random GitHub users explorer](tutorials/explorer.md)
 
 * Reactant UI
     * [Introduction](reactant-ui/introduction.md)

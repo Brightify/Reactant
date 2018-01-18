@@ -20,7 +20,7 @@ The whole project can be found on GitHub [here][project-url].
 ### Setting Up the Project
 Let's create our project using [**Reactant CLI**][reactant-CLI] with `reactant init`.
 
-Click the **RUN** button (![-RUN BUTTON-](../RunButton.png)) to check that everything is running smooth. If it doesn't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
+Click the **RUN** button (![-RUN BUTTON-](../img/Tutorials/RunButton.png)) to check that everything is running smooth. If it doesn't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
 
 After testing the project and seeing that everything works as expected, we need to use an HTTP networking library. Any such library will suffice, though we will be using Fetcher as our choice here. [Fetcher][fetcher] is light-weight and is brought to you by Brightify.
 
@@ -440,9 +440,7 @@ The `AlamofireRequestPerformer` is already in `Fetcher` and doesn't need to be i
 
 After doing all this, the result should be of similar image, of course the users are random, so the chance that you'll see the exact same developers is really slim.
 
-<p align="center">
-    <img src="Users.png" alt="Users" width="350" />
-</p>
+![Users](../img/Tutorials/GitExplorer/Users.png)
 
 For viewing developer's repositories we'll use another PlainTableView, but as the user might forget whose repositories he's viewing, a header showing a quick overview will be helpful.
 
@@ -563,9 +561,7 @@ extension Array {
 
 The header will look like this:
 
-<p align="center">
-    <img src="UserHeader.png" alt="Header" width="350" />
-</p>
+![UserHeader](../img/Tutorials/GitExplorer/UserHeader.png)
 
 We will integrate it as a header of the `Repositories` screen.
 
@@ -848,11 +844,11 @@ func entrypoint() -> UIViewController {
 }
 ```
 
+User's repository screen now looks like this:
 
-<p align="center">
-    User's repository screen now looks like this:<br><br>
-    <img src="Repositories.png" alt="Repositories" width="350" />
-</p>
+<br>
+
+![UserHeader](../img/Tutorials/GitExplorer/Repositories.png)
 
 ## Wrap Up
 That concludes the functionality we set out to implement! To hone your Reactant skills further, try implementing the proposed `UPGRADES` below. As always you can find the whole project [here][project-url].
