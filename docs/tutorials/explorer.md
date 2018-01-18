@@ -20,7 +20,7 @@ The whole project can be found on GitHub [here][project-url].
 ### Setting Up the Project
 Let's create our project using [**Reactant CLI**][reactant-CLI] with `reactant init`.
 
-Click the **RUN** button (![-RUN BUTTON-](../img/Tutorials/RunButton.png)) to check that everything is running smooth. If it doesn't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
+Click the **RUN** button (![Run Button](../img/Tutorials/RunButton.png)) to check that everything is running smooth. If it doesn't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
 
 After testing the project and seeing that everything works as expected, we need to use an HTTP networking library. Any such library will suffice, though we will be using Fetcher as our choice here. [Fetcher][fetcher] is light-weight and is brought to you by Brightify.
 
@@ -28,6 +28,11 @@ It's pretty straightforward to add a new library to a project using Cocoapods. O
 ```ruby
 pod 'Fetcher'
 pod 'Fetcher/RxFetcher'
+```
+
+After this, run this in the terminal:
+```
+pod install
 ```
 
 ### Communicating with GitHub
@@ -341,9 +346,6 @@ private func main() -> MainController {
 }
 ```
 
-```swift
-// DataService.swift
-
 Now that the components are complete, you have seen `DataService` in the MainController's `Dependencies`. This service will bring us the models we declared by converting DTO's to models that we'll work with in our application.
 
 ```swift
@@ -613,7 +615,7 @@ extension RepositoryCell.Styles {
 }
 ```
 
-Here you can see we used `Reactant`'s `UIView.visibility` variable. Its values are `.visible`, `.collapsed`, and `.hidden`. The difference between `.hidden` and `.collapsed` is that `.hidden` preserves the view's dimensions whereas `.collapsed` uses `UIView.collapseAxis` to determine on which axis (it can even be both) to collapse the view so that the dimension on the chosen axis is equal to zero.
+Here you can see we used `Reactant`'s `UIView.visibility` in action. Its values are `.visible`, `.collapsed`, and `.hidden`. The difference between `.hidden` and `.collapsed` is that `.hidden` preserves the view's dimensions whereas `.collapsed` uses `UIView.collapseAxis` to determine on which axis (it can even be both) to collapse the view so that the dimension on the chosen axis is equal to zero.
 
 We are using it here because if a particular repository has no language, we don't want to show the language label at all, but as we want the text centered, we need to *collapse* the language label.
 
