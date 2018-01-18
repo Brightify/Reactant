@@ -28,4 +28,4 @@ You need to create the `Generated/` folder yourself. If you're in the root folde
 ## ReactantCLI
 **I created a new project with `reactant init` command and it doesn't run.**
 
-It's possible that something went wrong during the project creation. Make sure you have [Cocoapods][cocoapods] installed and afterwards try to call `pod install`. If it still doesn't work, consider creating a new project.
+It's possible that something went wrong during the project creation. Make sure you have [Cocoapods][cocoapods] installed and afterwards try to call `pod repo update` and afterwards `pod install`. If it still doesn't work, consider creating a new project.
