@@ -67,7 +67,7 @@ That's it for the `MODEL` in this app for now.
 #### Controller
 Moving on to the **MainController** file. `ControllerBase` is what any `Controller` will be subclassing. The first generic parameter (between the `<` and `>`) is for `componentState`, the second for this controller's `RootView`. Please make sure that for this `Controller` the second generic parameter is **MainRootView**.
 
-Passing information to `RootView` is done by setting `RootView`'s `componentState`. This is usually done in `update()` method, as it's called every time `componentState` changes (and once at the beginning, even if it's `Void`).
+Passing information to `RootView` is done by setting `RootView`'s `componentState`. This is usually done in `update()` method, as it's called every time `componentState` changes (if the componentState is `Void`, `update()` is called automatically only once at the beginning).
 
 We don't have any notes ready, so we need to create some from scratch and pass them to the `RootView`.
 
@@ -155,12 +155,7 @@ final class NoteCell: ViewBase<Note, Void> {
 This is the declaration of our cell. It's good practice to explicitly set the height of your table cell. Next we need to add some labels that will tell us what the note is about without us tapping on it.
 
 ```swift
-import UIKit
-import Reactant
-
-final class NoteCell: ViewBase<Note, Void> {
-  static let height: CGFloat = 80
-
+// inside NoteCell
   let title = UILabel()
   let preview = UILabel()
 
@@ -168,7 +163,6 @@ final class NoteCell: ViewBase<Note, Void> {
     title.text = componentState.title
     preview.text = componentState.body
   }
-}
 ```
 
 **NOTE**: We're using 2-space tabs in these short snippets to achieve better readability. If you want to inspect the code in full, the project can be found  [here][project-url]. Pasting the code to Xcode from the snippets should automatically convert indentation to your preferred size, if it does not, use `Ctrl+I` on selected code to indent it correctly.
@@ -210,7 +204,7 @@ Open file **MainRootView.ui.xml**, we're going to be doing a few changes. The `L
 
 First thing you'll notice is that there's a lot of complex text in the header. That's actually defining the component you're creating right now, that's why the file ends with `</Component>` and every `ui.xml` file has to have this structure (except for the `rootView="true"` if you don't want the view to be a `RootView`).
 
-Now create another file. For this one select `Empty` as file type, its name should be identical to the file you created for `NoteCell` but with the file suffix `ui.xml`
+Now create another file. For this one select `Empty` as file type, its name should be identical to the file you created for `NoteCell` but with the file suffix `ui.xml` – `NoteCell.ui.xml`.
 
 Copy the header from `MainRootView.ui.xml`, don't forget to add the ending `</Component>` as well. We're going to change the header a bit because `NoteCell` shouldn't take up the whole screen, so we'll get rid of
 
@@ -370,6 +364,8 @@ private func noteModification(note: Note?) -> NoteModificationController {
   }
 }
 ```
+
+`.with(state:)` is a method that can be called on any Reactant component. As you can see, it's a very convenient way to set the initial componentState. As of now it's not possible to *require* the `componentState` to be set initially at compile time with this method. A workaround for this is to add `initialComponentState` field to the controller's `Properties`.
 
 **NOTE**: We are using `UUID` to generate IDs of our `Notes`, it will later be invaluable if we wish to not have conflicts in our saved notes.
 
