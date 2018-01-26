@@ -45,7 +45,7 @@ As stated in the brief description of this project, we have to be able to:
 
 We'll also prepare the constants we'll be using for communication with GitHub. These are placed in the `Utils` folder.
 ```swift
-// Constants.swift
+// Sources/Utils/Constants.swift
 
 import Fetcher
 
@@ -64,7 +64,7 @@ public struct Constants {
 #### Model
 When working with network, creating [DTO][what-are-dtos]'s is considered best practice. Our DTO's `UserDTO` and `RepositoryDTO` will look like this:
 ```swift
-// UserDTO.swift
+// Sources/Models/UserDTO.swift
 
 import Foundation
 
@@ -85,7 +85,7 @@ struct UserDTO: Codable {
 }
 ```
 ```swift
-// RepositoryDTO.swift
+// Sources/Models/RepositoryDTO.swift
 
 import Foundation
 
@@ -110,7 +110,7 @@ struct RepositoryDTO: Codable {
 
 We will also need `User` and `Repository` models. As we can only receive user's general info from the `GET /users` request, this `User.swift` is enough:
 ```swift
-// User.swift
+// Sources/Models/User.swift
 
 import Foundation
 import UIKit
@@ -124,7 +124,7 @@ struct User {
 
 `GET /users/:username/repos` gives us much more info about each of the repositories, so our `Repository` model will be a bit more complex.
 ```swift
-// Repository.swift
+// Sources/Models/Repository.swift
 
 import Foundation
 
@@ -146,7 +146,7 @@ Assuming the user has some repositories, tapping on any of them opens it up in t
 We should have `MainController` readied up from `ReactantCLI` and so we just need to modify it to be able to bring the necessary information and react to the view's actions.
 
 ```swift
-// MainController.swift
+// Sources/Components/Main/MainController.swift
 
 import Reactant
 
@@ -204,7 +204,7 @@ We'll take a look at the processes that happen inside the `DataService` right af
 
 `MainRootView` will be of similar structure as in the first tutorial:
 ```swift
-// MainRootView.swift
+// Sources/Components/Main/MainRootView.swift
 
 import Reactant
 import RxSwift
@@ -235,7 +235,7 @@ final class MainRootView: ViewBase<[User]?, PlainTableViewAction<UserCell>> {
 
 Its `.ui.xml` side:
 ```xml
-<!-- MainRootView.ui.xml -->
+<!-- Sources/Components/Main/MainRootView.ui.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <Component
@@ -254,7 +254,7 @@ Its `.ui.xml` side:
 
 Then we'll create the cells to fill up the table, `UserCell`:
 ```swift
-// UserCell.swift
+// Sources/Components/Main/UserCell.swift
 
 import Reactant
 import UIKit
@@ -293,7 +293,7 @@ extension UserCell.Styles {
 
 With the `ui.xml` of the cell defining its layout and styling:
 ```xml
-<!-- UserCell.ui.xml -->
+<!-- Sources/Components/Main/UserCell.ui.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <Component
@@ -331,7 +331,7 @@ With the `ui.xml` of the cell defining its layout and styling:
 We need to connect this to the `MainWireframe` and pass it the `Dependencies` and `Reactions`.
 
 ```swift
-// MainWireframe.swift inside MainWireframe class
+// Sources/Wireframes/MainWireframe.swift inside MainWireframe class
 
 private func main() -> MainController {
   return create { provider in
@@ -349,7 +349,7 @@ private func main() -> MainController {
 Now that the components are complete, you have seen `DataService` in the MainController's `Dependencies`. This service will bring us the models we declared by converting DTO's to models that we'll work with in our application.
 
 ```swift
-// DataService.swift
+// Sources/Services/DataService.swift
 
 import Fetcher
 import class RxSwift.Observable
@@ -372,7 +372,7 @@ To see all of Fetcher's qualities, head over to [its GitHub page][fetcher].
 Add the service itself under the endpoints.
 
 ```swift
-// DataService.swift under Endpoints struct
+// Sources/Services/DataService.swift under Endpoints struct
 
 final class DataService {
   private let fetcher: Fetcher
@@ -415,7 +415,7 @@ Having said that, this notation using `Observables` is very well suited for call
 Having created the service that brings us the much needed data. We can move on to the `DependencyModule` protocol and `ApplicationModule` conforming to it.
 
 ```swift
-// DependencyModule.swift
+// Sources/DependencyModule.swift
 
 protocol DependencyModule {
   var dataService: DataService { get }
@@ -423,7 +423,7 @@ protocol DependencyModule {
 ```
 
 ```swift
-// ApplicationModule.swift
+// Sources/ApplicationModule.swift
 
 import Fetcher
 
@@ -448,7 +448,7 @@ For viewing developer's repositories we'll use another PlainTableView, but as th
 
 We'll cover the header first, the `.swift` part should look like this:
 ```swift
-// UserDetailsView.swift
+// Sources/Components/Repositories/UserDetailsView/UserDetailsView.swift
 
 import Reactant
 
@@ -483,7 +483,7 @@ final class UserDetailsView: ViewBase<UserAccount, Void> {
 
 Its `.ui.xml` counterpart like this:
 ```xml
-<!-- UserDetailsView.ui.xml -->
+<!-- Sources/Components/Repositories/UserDetailsView/UserDetailsView.ui.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <Component
@@ -548,7 +548,7 @@ Its `.ui.xml` counterpart like this:
 
 The variable `mostFrequentElement` is not in Swift by default, so we'll define it in the `Utils` folder.
 ```swift
-// Array+mostFrequentElement.swift
+// Sources/Utils/Array+mostFrequentElement.swift
 
 import Foundation
 
@@ -570,7 +570,7 @@ We will integrate it as a header of the `Repositories` screen.
 For that `RepositoryCell` component needs to be created.
 
 ```swift
-// RepositoryCell.swift
+// Sources/Components/Repositories/RepositoryCell.swift
 
 import Reactant
 import UIKit
@@ -621,7 +621,7 @@ We are using it here because if a particular repository has no language, we don'
 
 This is how it's represented using `ReactantUI`:
 ```xml
-<!-- RepositoryCell.ui.xml -->
+<!-- Sources/Components/Repositories/RepositoryCell.ui.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <Component
@@ -668,7 +668,7 @@ This is how it's represented using `ReactantUI`:
 
 Putting this all together in `RepositoryRootView.swift` will look like this:
 ```swift
-// RepositoryRootView.swift
+// Sources/Components/Repositories/RepositoriesRootView.swift
 
 import Reactant
 import RxSwift
@@ -711,7 +711,7 @@ final class RepositoriesRootView: ViewBase<UserAccount, PlainTableViewAction<Rep
 
 The `ui.xml` side looks like this:
 ```xml
-<!-- RepositoryRootView.ui.xml -->
+<!-- Sources/Components/Repositories/RepositoriesRootView.ui.xml -->
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <Component
@@ -734,7 +734,7 @@ The `ui.xml` side looks like this:
 
 The controller that controls it looks like this:
 ```swift
-// RepositoryController.swift
+// Sources/Components/Repositories/RepositoriesController.swift
 
 import Reactant
 
@@ -783,7 +783,7 @@ final class RepositoriesController: ControllerBase<Void, RepositoriesRootView> {
 We also need to add a new endpoint and a method to the `DataService.swift` file.
 
 ```swift
-// DataService inside Endpoints struct
+// Sources/Services/DataService inside Endpoints struct
 
 static func repositories(userLogin: String) -> GET<Void, Data> {
   return create("users/\(userLogin)/repos", modifiers: Constants.apiUrl)
@@ -791,7 +791,7 @@ static func repositories(userLogin: String) -> GET<Void, Data> {
 ```
 
 ```swift
-// DataService inside DataService class
+// Sources/Services/DataService inside DataService class
 
 func repositories(login: String) -> Observable<[Repository]> {
   return fetcher.rx.request(Endpoints.repositories(userLogin: login))
@@ -813,7 +813,7 @@ fetcher.register(requestEnhancers: RequestLogger(defaultOptions: .all))
 Now the only thing left to do is to connect the new controller into the `Wireframe` and add a navigation controller so that the user can easily return back from viewing repositories.
 
 ```swift
-// MainWireframe.swift inside MainWireframe class
+// Sources/Wireframes/MainWireframe.swift inside MainWireframe class
 
 private func repositories(user: User) -> RepositoriesController {
   return create { provider in
@@ -838,7 +838,7 @@ private func repositories(user: User) -> RepositoriesController {
 We also need to add a navigation controller to let the user easily return back to the main screen. This is done in the `entrypoint()` method of `MainWireframe`.
 
 ```swift
-// MainWireframe.swift inside MainWireframe class
+// Sources/Wireframes/MainWireframe.swift inside MainWireframe class
 
 func entrypoint() -> UIViewController {
   let mainController = main()
