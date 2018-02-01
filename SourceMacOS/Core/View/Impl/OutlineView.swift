@@ -24,7 +24,7 @@ open class OutlineView<T>: ViewBase<[OutlineViewItem<T>], OutlineViewAction<T>>,
     public typealias ObjectValueTransform<T> = (T) -> Any?
     public let scrollView = NSScrollView()
     public let outlineView = NSOutlineView()
-    public let tableColumn = NSTableColumn(identifier: "OutlineViewColumn")
+    public let tableColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: "OutlineViewColumn"))
 
     private let objectValue: ObjectValueTransform<T>
 
@@ -44,7 +44,7 @@ open class OutlineView<T>: ViewBase<[OutlineViewItem<T>], OutlineViewAction<T>>,
         )
 
         scrollView.documentView = outlineView
-        outlineView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+        outlineView.autoresizingMask = [.width, .height]
 
         outlineView.dataSource = self
         outlineView.delegate = self

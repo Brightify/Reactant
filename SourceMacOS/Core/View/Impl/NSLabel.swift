@@ -21,7 +21,7 @@
 
         open var fontSize: CGFloat {
             get {
-                return font?.pointSize ?? NSFont.systemFontSize()
+                return font?.pointSize ?? NSFont.systemFontSize
             }
             set {
                 if let font = font {

@@ -82,7 +82,7 @@ public final class ControllerRootViewContainer: View, Configurable {
             if frame == CGRect.zero {
                 frame = window?.frame ?? .zero
             }
-        autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+            autoresizingMask = [.width, .height]
         #endif
     }
 }

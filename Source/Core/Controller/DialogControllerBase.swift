@@ -15,7 +15,10 @@ open class DialogControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> 
     open override var configuration: Configuration {
         didSet {
             dialogView.configuration = configuration
+            
+            #if os(iOS)
             configuration.get(valueFor: Properties.Style.dialogControllerRoot)(rootViewContainer)
+            #endif
         }
     }
 

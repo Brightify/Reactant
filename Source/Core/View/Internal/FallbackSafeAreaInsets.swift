@@ -6,8 +6,9 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
-
+    
 #if ENABLE_SAFEAREAINSETS_FALLBACK
 private class FallbackSafeAreaConstraints {
     var top: NSLayoutConstraint
@@ -140,4 +141,5 @@ extension UIViewController {
         }
     }
 }
+#endif
 #endif

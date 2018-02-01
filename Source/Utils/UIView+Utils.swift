@@ -59,7 +59,7 @@ extension View {
      * Variable pointing to view's superview if there is one or self if there isn't.
      * Usually used in Controller when passing `Component.componentState` to the corresponding RootView.
      */
-    public var rootView: UIView {
+    public var rootView: View {
         if let superview = superview {
             return superview.rootView
         } else {
