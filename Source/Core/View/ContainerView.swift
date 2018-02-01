@@ -22,10 +22,12 @@ open class ContainerView: View, Configurable {
             configuration.get(valueFor: Properties.Style.container)(self)
         }
     }
-    #if os(iOS)
+    
     open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
+    
+    #if os(iOS)
 
     #if ENABLE_SAFEAREAINSETS_FALLBACK
     open override var frame: CGRect {
@@ -63,10 +65,6 @@ open class ContainerView: View, Configurable {
         self.init(frame: CGRect.zero)
 
         reloadConfiguration()
-    }
-    #elseif os(macOS)
-    open override class func requiresConstraintBasedLayout() -> Bool {
-        return true
     }
     #endif
 

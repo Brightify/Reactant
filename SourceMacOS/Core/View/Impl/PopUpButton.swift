@@ -36,7 +36,7 @@ open class PopUpButton<ITEM>: ViewBase<ITEM, ITEM> {
         }
     }
 
-    internal func itemSelected(_ item: NSMenuItem) {
+    @objc internal func itemSelected(_ item: NSMenuItem) {
         perform(action: items[button.indexOfSelectedItem])
     }
 }

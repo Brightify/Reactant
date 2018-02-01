@@ -11,7 +11,7 @@ public struct Columns {
         _ id: String = UUID().uuidString,
         title: String,
         width: CGFloat? = nil,
-        resizingMask: NSTableColumnResizingOptions? = nil,
+        resizingMask: NSTableColumn.ResizingOptions? = nil,
         text: @escaping (ITEM) -> String) -> TableColumn<ITEM, ACTION, Label> {
 
         return TableColumn(
@@ -33,14 +33,14 @@ public struct Columns {
             setComponentState: { item, view in
                 view.stringValue = text(item)
             },
-            action: { _ in nil })
+            action: { _, _ in nil })
     }
 
     public static func checkbox<ITEM, ACTION>(
         _ id: String = UUID().uuidString,
         title: String,
         value: @escaping (ITEM) -> Bool,
-        action: @escaping (ITEM, Button) -> Observable<ACTION>? = { _ in nil }) -> TableColumn<ITEM, ACTION, Button> {
+        action: @escaping (ITEM, Button) -> Observable<ACTION>? = { _, _  in nil }) -> TableColumn<ITEM, ACTION, Button> {
 
         return TableColumn(
             identifier: id,
@@ -57,7 +57,7 @@ public struct Columns {
                 return button
             },
             setComponentState: { item, view in
-                view.state = value(item) ? NSOnState : NSOffState
+                view.state = value(item) ? NSControl.StateValue.on : NSControl.StateValue.off
             },
             action: action)
     }
@@ -123,7 +123,7 @@ open class TableView<ITEM, ACTION>: ViewBase<[ITEM], TableViewAction<ITEM, ACTIO
 
     public func addTableColumn<VIEW>(_ column: TableColumn<ITEM, ACTION, VIEW>) {
         columns[column.identifier] = column.typeErased()
-        let nscolumn = NSTableColumn(identifier: column.identifier)
+        let nscolumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(rawValue: column.identifier))
         nscolumn.headerCell.title = column.title
         column.setupColumn(nscolumn)
         tableView.addTableColumn(nscolumn)
@@ -139,7 +139,7 @@ open class TableView<ITEM, ACTION>: ViewBase<[ITEM], TableViewAction<ITEM, ACTIO
 
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+        tableView.autoresizingMask = [.width, .height]
     }
 
     open override func setupConstraints() {
@@ -153,9 +153,9 @@ open class TableView<ITEM, ACTION>: ViewBase<[ITEM], TableViewAction<ITEM, ACTIO
     }
 
     public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let tableColumn = tableColumn, let column = columns[tableColumn.identifier] else { return nil }
+        guard let tableColumn = tableColumn, let column = columns[tableColumn.identifier.rawValue] else { return nil }
         let item = componentState[row]
-        let view = tableView.make(withIdentifier: column.identifier, owner: self) ?? column.makeView()
+        let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: column.identifier), owner: self) ?? column.makeView()
         column.setComponentState(item, view)
         return view
     }

@@ -88,7 +88,6 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'TableView' do |subspec|
-        subspec.ios.deployment_target = '9.0'
         subspec.frameworks = 'UIKit'
         subspec.dependency 'Reactant/Core'
         rxCocoa(subspec)
@@ -100,7 +99,6 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'CollectionView' do |subspec|
-        subspec.ios.deployment_target = '9.0'
         subspec.frameworks = 'UIKit'
         subspec.dependency 'Reactant/Core'
         rxCocoa(subspec)
@@ -114,7 +112,6 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'StaticMap' do |subspec|
-        subspec.ios.deployment_target = '9.0'
         subspec.frameworks = ['UIKit', 'MapKit']
         subspec.dependency 'Reactant/Core'
         rxCocoa(subspec)

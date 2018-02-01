@@ -56,7 +56,7 @@ open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDeleg
         #if os(iOS)
         super.init(nibName: nil, bundle: nil)
         #elseif os(macOS)
-        super.init(nibName: nil, bundle: nil)!
+        super.init(nibName: nil, bundle: nil)
         #endif
 
         setupController(title: "")
@@ -68,7 +68,7 @@ open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDeleg
         #if os(iOS)
         super.init(nibName: nil, bundle: nil)
         #elseif os(macOS)
-        super.init(nibName: nil, bundle: nil)!
+        super.init(nibName: nil, bundle: nil)
         #endif
 
         setupController(title: "")
@@ -80,7 +80,7 @@ open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDeleg
         #if os(iOS)
         super.init(nibName: nil, bundle: nil)
         #elseif os(macOS)
-        super.init(nibName: nil, bundle: nil)!
+        super.init(nibName: nil, bundle: nil)
         #endif
 
         setupController(title: title)
@@ -153,13 +153,13 @@ open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDeleg
             }
         }
         #elseif os(macOS)
-            rootView.setContentHuggingPriority(499, for: .horizontal)
-            rootView.setContentHuggingPriority(499, for: .vertical)
+            rootView.setContentHuggingPriority(NSLayoutConstraint.Priority(rawValue: 499), for: .horizontal)
+            rootView.setContentHuggingPriority(NSLayoutConstraint.Priority(rawValue: 499), for: .vertical)
             rootView.snp.remakeConstraints { make in
                 make.leading.equalTo(view)
                 make.trailing.equalTo(view)
                 make.top.equalTo(view)
-                make.bottom.equalTo(view).priority(NSLayoutPriorityDefaultHigh)
+                make.bottom.equalTo(view).priority(ConstraintPriority.high)
             }
         #endif
     }

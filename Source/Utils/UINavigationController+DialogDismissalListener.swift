@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 extension UINavigationController: DialogDismissalListener {
@@ -22,3 +23,4 @@ extension UINavigationController: DialogDismissalListener {
         }
     }
 }
+#endif
