@@ -110,7 +110,7 @@ extension ComponentWithDelegate {
      */
     func mutateState(_ mutation: (inout StateType) -> Void) {
         var mutableState = componentState
-        mutationClosure(&mutableState)
+        mutation(&mutableState)
         componentState = mutableState
     }
 }
