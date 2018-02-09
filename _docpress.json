@@ -179,9 +179,9 @@
         "sections": [
           {
             "title": "Simple note taking app",
-            "source": "docs/tutorials/RNotes/notes.md",
-            "url": "tutorials/RNotes/notes.html",
-            "slug": "tutorialsrnotesnotes",
+            "source": "docs/tutorials/notes.md",
+            "url": "tutorials/notes.html",
+            "slug": "tutorialsnotes",
             "headings": [
               {
                 "title": "Setting Up the Project",
@@ -217,9 +217,9 @@
           },
           {
             "title": "Random GitHub users explorer",
-            "source": "docs/tutorials/GitXplorer/explorer.md",
-            "url": "tutorials/GitXplorer/explorer.html",
-            "slug": "tutorialsgitxplorerexplorer",
+            "source": "docs/tutorials/explorer.md",
+            "url": "tutorials/explorer.html",
+            "slug": "tutorialsexplorer",
             "headings": [
               {
                 "title": "Setting Up the Project",
@@ -709,11 +709,11 @@
         }
       ]
     },
-    "tutorials/RNotes/notes.html": {
-      "source": "docs/tutorials/RNotes/notes.md",
+    "tutorials/notes.html": {
+      "source": "docs/tutorials/notes.md",
       "title": "Simple note taking app - Reactant",
       "pageTitle": "Simple note taking app",
-      "slug": "tutorialsrnotesnotes",
+      "slug": "tutorialsnotes",
       "headings": [
         {
           "title": "Setting Up the Project",
@@ -747,11 +747,11 @@
         }
       ]
     },
-    "tutorials/GitXplorer/explorer.html": {
-      "source": "docs/tutorials/GitXplorer/explorer.md",
+    "tutorials/explorer.html": {
+      "source": "docs/tutorials/explorer.md",
       "title": "Random GitHub users explorer - Reactant",
       "pageTitle": "Random GitHub users explorer",
-      "slug": "tutorialsgitxplorerexplorer",
+      "slug": "tutorialsexplorer",
       "headings": [
         {
           "title": "Setting Up the Project",
@@ -1064,8 +1064,8 @@
     "docs/getting-started/quickstart.md": "getting-started/quickstart.html",
     "docs/getting-started/architecture.md": "getting-started/architecture.html",
     "docs/getting-started/troubleshooting.md": "getting-started/troubleshooting.html",
-    "docs/tutorials/RNotes/notes.md": "tutorials/RNotes/notes.html",
-    "docs/tutorials/GitXplorer/explorer.md": "tutorials/GitXplorer/explorer.html",
+    "docs/tutorials/notes.md": "tutorials/notes.html",
+    "docs/tutorials/explorer.md": "tutorials/explorer.html",
     "docs/reactant-ui/introduction.md": "reactant-ui/introduction.html",
     "docs/reactant-ui/live-reload.md": "reactant-ui/live-reload.html",
     "docs/parts/configuration.md": "parts/configuration.html",
@@ -1085,12 +1085,12 @@
     "docs/img/ReactantLiveUIError.png": "img/ReactantLiveUIError.png",
     "docs/img/ReactantLiveUIPreview.png": "img/ReactantLiveUIPreview.png",
     "docs/img/ReactantTutorial.png": "img/ReactantTutorial.png",
-    "docs/tutorials/RunButton.png": "tutorials/RunButton.png",
-    "docs/tutorials/GitXplorer/Repositories.png": "tutorials/GitXplorer/Repositories.png",
-    "docs/tutorials/GitXplorer/UserHeader.png": "tutorials/GitXplorer/UserHeader.png",
-    "docs/tutorials/GitXplorer/Users.png": "tutorials/GitXplorer/Users.png",
-    "docs/tutorials/RNotes/Reactant-init-console.png": "tutorials/RNotes/Reactant-init-console.png",
-    "docs/tutorials/RNotes/Simulator1.png": "tutorials/RNotes/Simulator1.png",
-    "docs/tutorials/RNotes/Simulator2.png": "tutorials/RNotes/Simulator2.png"
+    "docs/img/Tutorials/RunButton.png": "img/Tutorials/RunButton.png",
+    "docs/img/Tutorials/GitExplorer/Repositories.png": "img/Tutorials/GitExplorer/Repositories.png",
+    "docs/img/Tutorials/GitExplorer/UserHeader.png": "img/Tutorials/GitExplorer/UserHeader.png",
+    "docs/img/Tutorials/GitExplorer/Users.png": "img/Tutorials/GitExplorer/Users.png",
+    "docs/img/Tutorials/Notes/Reactant-init-console.png": "img/Tutorials/Notes/Reactant-init-console.png",
+    "docs/img/Tutorials/Notes/Simulator1.png": "img/Tutorials/Notes/Simulator1.png",
+    "docs/img/Tutorials/Notes/Simulator2.png": "img/Tutorials/Notes/Simulator2.png"
   }
 }
