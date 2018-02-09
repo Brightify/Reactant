@@ -94,7 +94,7 @@ extension ComponentWithDelegate {
      * var mutableState = componentState
      * mutableState.name = newName
      * mutableState.password = randomPassword
-     * mutableState.friends = [] as [Friend]
+     * mutableState.friends = [] as [User]
      * componentState = mutableState
      * ```
      * becomes
@@ -102,7 +102,7 @@ extension ComponentWithDelegate {
      * mutateState { state in
      *   state.name = newName
      *   state.password = randomPassword
-     *   state.friends = [allUsers] as [Friend]
+     *   state.friends = [] as [User]
      * }
      * ```
      *
