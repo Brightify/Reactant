@@ -5,8 +5,8 @@
 [what-are-dtos]: https://en.wikipedia.org/wiki/Data_transfer_object
 
 <!-- relative paths -->
-[table-view]: ../../parts/tableview.md
-[troubleshooting]: ../../getting-started/troubleshooting.md
+[table-view]: ../parts/tableview.md
+[troubleshooting]: ../getting-started/troubleshooting.md
 
 # Tutorial: Random GitHub users explorer
 Welcome to our second introductory tutorial to the Reactant architecture.

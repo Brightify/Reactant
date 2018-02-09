@@ -4,8 +4,8 @@
 [cocoapods]: http://cocoapods.org
 
 <!-- relative paths -->
-[table-view]: ../../parts/tableview.md
-[troubleshooting]: ../../getting-started/troubleshooting.md
+[table-view]: ../parts/tableview.md
+[troubleshooting]: ../getting-started/troubleshooting.md
 
 # Tutorial: Simple note taking app
 Welcome to our first introductory tutorial to the Reactant architecture.
