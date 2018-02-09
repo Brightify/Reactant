@@ -137,6 +137,7 @@ Pod::Spec.new do |spec|
         subspec.dependency 'Reactant/TableView'
         subspec.dependency 'Reactant/CollectionView'
         subspec.dependency 'Reactant/StaticMap'
+        subspec.dependency 'Reactant/ActivityIndicator'
     end
 
     spec.subspec 'All-tvOS' do |subspec|
@@ -147,5 +148,6 @@ Pod::Spec.new do |spec|
         subspec.dependency 'Reactant/TableView'
         subspec.dependency 'Reactant/CollectionView'
         subspec.dependency 'Reactant/StaticMap'
+        subspec.dependency 'Reactant/ActivityIndicator'
     end
 end

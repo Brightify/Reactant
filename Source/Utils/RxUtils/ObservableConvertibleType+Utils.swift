@@ -21,6 +21,10 @@ public extension ObservableConvertibleType {
             .map { ($0, $1!) }
     }
 
+    /**
+     * Creates an observable erasing the original type and replacing it's value with Void()
+     * - returns: `Observable` with Void value
+     */
     public func rewrite() -> Observable<Void> {
         return asObservable().rewrite(with: Void())
     }
