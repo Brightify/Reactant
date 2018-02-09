@@ -27,6 +27,7 @@ extension Properties.Style {
     public static let dialogContentContainer = style(for: UIView.self)
     public static let scroll = style(for: UIScrollView.self)
     public static let button = style(for: UIButton.self)
+    public static let control = style(for: UIControl.self)
     public static let container = style(for: ContainerView.self)
     public static let view = style(for: UIView.self)
     public static let textField = style(for: TextField.self)

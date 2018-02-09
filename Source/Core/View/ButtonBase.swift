@@ -8,6 +8,7 @@
 
 import RxSwift
 
+@available(*, deprecated, message: "This class has been deprecated by ControlBase")
 open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configurable {
 
     public typealias StateType = STATE

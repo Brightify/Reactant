@@ -68,6 +68,8 @@
 		2284DAA41FAC6DBA00D231D3 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA31FAC6DBA00D231D3 /* TabController.swift */; };
 		2284DAA61FAC6DD500D231D3 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA51FAC6DD500D231D3 /* CollectionViewController.swift */; };
 		2284DAA81FAC6E0700D231D3 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA71FAC6E0700D231D3 /* MapController.swift */; };
+		22B8C5A8202E1B0D002B4A6D /* ControlBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8C5A7202E1B0D002B4A6D /* ControlBase.swift */; };
+		22B8C5AA202E1B28002B4A6D /* UIFont+System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8C5A9202E1B28002B4A6D /* UIFont+System.swift */; };
 		22F48FE71FAB0EE900E736C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F48FE61FAB0EE900E736C8 /* AppDelegate.swift */; };
 		22F48FEE1FAB0EE900E736C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F48FED1FAB0EE900E736C8 /* Assets.xcassets */; };
 		677138D6038E38CF1E2AB7C6 /* Pods_ReactantPrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0CE169634834E74544F2A0 /* Pods_ReactantPrototyping.framework */; };
@@ -260,6 +262,8 @@
 		2284DAA31FAC6DBA00D231D3 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
 		2284DAA51FAC6DD500D231D3 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		2284DAA71FAC6E0700D231D3 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		22B8C5A7202E1B0D002B4A6D /* ControlBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlBase.swift; sourceTree = "<group>"; };
+		22B8C5A9202E1B28002B4A6D /* UIFont+System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+System.swift"; sourceTree = "<group>"; };
 		22F48FE41FAB0EE800E736C8 /* TVPrototyping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TVPrototyping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F48FE61FAB0EE900E736C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22F48FED1FAB0EE900E736C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -493,6 +497,7 @@
 		183E0CB71EB88E02006CF52A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				22B8C5A9202E1B28002B4A6D /* UIFont+System.swift */,
 				183E0CB81EB88E9C006CF52A /* CGAffineTransform+Shortcut.swift */,
 				183E0CB91EB88E9C006CF52A /* CGPoint+Init.swift */,
 				183E0CBA1EB88E9C006CF52A /* CGRect+Init.swift */,
@@ -740,6 +745,7 @@
 				DC0785A31DD3BDE10063AB96 /* ContainerView.swift */,
 				DC07859C1DD3AA870063AB96 /* RootView.swift */,
 				DC0785981DD3A3420063AB96 /* ViewBase.swift */,
+				22B8C5A7202E1B0D002B4A6D /* ControlBase.swift */,
 				DC2B5D701DE4372600F9C9D7 /* Internal */,
 			);
 			path = View;
@@ -1337,7 +1343,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxOptional-iOS/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Reactant-ceab2c80/Reactant.framework",
+				"${BUILT_PRODUCTS_DIR}/Reactant-6d48f9f8/Reactant.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1386,7 +1392,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxOptional-tvOS/RxOptional.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-tvOS/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-tvOS/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Reactant-46731188/Reactant.framework",
+				"${BUILT_PRODUCTS_DIR}/Reactant-1f8ea602/Reactant.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1591,10 +1597,12 @@
 				183E0CD31EB88EA5006CF52A /* PercentUtils.swift in Sources */,
 				2210BAD31EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift in Sources */,
 				DCC98CE11E62CE830018757E /* CLLocationCoordinate2D+utils.swift in Sources */,
+				22B8C5AA202E1B28002B4A6D /* UIFont+System.swift in Sources */,
 				DC0785A41DD3BDE10063AB96 /* ContainerView.swift in Sources */,
 				DC137FA61E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift in Sources */,
 				183E0CC51EB88E9C006CF52A /* CGAffineTransform+Shortcut.swift in Sources */,
 				DC6940831E51B23A00C99380 /* FlowCollectionViewBase.swift in Sources */,
+				22B8C5A8202E1B0D002B4A6D /* ControlBase.swift in Sources */,
 				DC79F6AF1E54AB170033AE51 /* Properties+TableView.swift in Sources */,
 				DC0785D41DD9C2330063AB96 /* CollectionReusableViewWrapper.swift in Sources */,
 				DCC98CD81E617A3C0018757E /* StaticMap.swift in Sources */,

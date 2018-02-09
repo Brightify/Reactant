@@ -31,6 +31,13 @@ final class ExampleRootView: ViewBase<Void, Void> {
 //    private let labelInsideSafeArea = UILabel(text: "Hello Reactant!")
     private let tableView = SimpleCollectionView<SimpleCell>(reloadable: false)
     
+    override func afterInit() {
+        tableView.action
+            .subscribe(onNext: {
+                print($0)
+            }).disposed(by: lifetimeDisposeBag)
+    }
+    
     override func update() {
         tableView.componentState = .items(["Test1", "Test2", "Test3"])
     }
@@ -57,7 +64,13 @@ final class ExampleRootView: ViewBase<Void, Void> {
     }
 }
 
-final class SimpleCell: ViewBase<String, Void>, CollectionViewCell {
+final class SimpleCell: ControlBase<String, Void>, CollectionViewCell {
+    
+    override var actions: [Observable<Void>] {
+        return [
+            rx.controlEvent(.touchUpInside).asObservable()
+        ]
+    }
     
     private let label = UILabel()
     
@@ -69,6 +82,8 @@ final class SimpleCell: ViewBase<String, Void>, CollectionViewCell {
         children(
             label
         )
+        
+        label.font = UIFont.System.regular[15]
     }
     
     override func setupConstraints() {
