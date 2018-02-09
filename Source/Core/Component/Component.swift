@@ -34,8 +34,22 @@ public protocol Component: Invalidable {
     var lifetimeDisposeBag: DisposeBag { get }
 
     /**
-     * Dispose bag for `Observable`s, it disposes before every `update()` call and is encouraged when subscribing in `update()`.
-     * - NOTE: For subscribing outside of update use `lifetimeDisposeBag`.
+     * This `DisposeBag` gets disposed after every `update()` call and should be used
+     * to dispose subscriptions inside `update()`.
+     *
+     * **Usage**:
+     * ```
+     * // inside update()
+     *
+     * friendService.newFriends
+     *   .subscribe(onNext: { friends in
+     *     rootView.componentState = .items(friends)
+     *   }
+     *   .disposed(by: stateDisposeBag)
+     * ```
+     *
+     * - WARNING: It's strongly discouraged to use this `DisposeBag` anywhere else than in the `update()` method.
+     * Use the `lifetimeDisposeBag` for that.
      */
     var stateDisposeBag: DisposeBag { get }
 
