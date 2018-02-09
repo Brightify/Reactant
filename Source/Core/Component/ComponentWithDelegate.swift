@@ -83,34 +83,3 @@ extension ComponentWithDelegate {
         componentDelegate.actions = actions
     }
 }
-
-extension ComponentWithDelegate {
-    /**
-     * Mutates the `componentState` only once using the closure provided.
-     * Should be used if you're modifying more than one of the `componentState`'s fields.
-     *
-     * **Usage**:
-     * ```
-     * var mutableState = componentState
-     * mutableState.name = newName
-     * mutableState.password = randomPassword
-     * mutableState.friends = [] as [User]
-     * componentState = mutableState
-     * ```
-     * becomes
-     * ```
-     * mutateState { state in
-     *   state.name = newName
-     *   state.password = randomPassword
-     *   state.friends = [] as [User]
-     * }
-     * ```
-     *
-     * - parameter mutation: closure to which the current componentState is passed to be mutated in certain ways
-     */
-    func mutateState(_ mutation: (inout StateType) -> Void) {
-        var mutableState = componentState
-        mutation(&mutableState)
-        componentState = mutableState
-    }
-}
