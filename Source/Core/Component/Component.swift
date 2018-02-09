@@ -28,6 +28,24 @@ public protocol Component: Invalidable {
     associatedtype ActionType
 
     /**
+     * This `DisposeBag` gets disposed at `Component`'s **deinit** and should be used
+     * to dispose subscriptions outside of `update()`.
+     *
+     * **Usage**:
+     * ```
+     * // inside afterInit()
+     *
+     * friendService.defaultFriends
+     *   .subscribe(onNext: { friends in
+     *     componentState = friends
+     *   }
+     *   .disposed(by: lifetimeDisposeBag)
+     * ```
+     *
+     * - WARNING: It's strongly discouraged to use this `DisposeBag` in the `update()` method.
+     * Use the `stateDisposeBag` for that.
+     */
+    /**
      * Dispose bag for `Observable`s, it disposes at Component's **deinit** and can be used for subscribing anywhere else but `update()`.
      * - NOTE: For subscribing inside of update use `stateDisposeBag`.
      */
