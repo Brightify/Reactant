@@ -151,12 +151,27 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
             })
             .disposed(by: cell.configureDisposeBag)
     }
-    
-    open func dequeueAndConfigure<T: Component>(identifier: CollectionViewCellIdentifier<T>, forRow row: Int, factory: @escaping () -> T,
-                                    model: T.StateType, mapAction: @escaping (T.ActionType) -> ACTION) -> CollectionViewCellWrapper<T> {
-        let cell = collectionView.dequeue(identifier: identifier, forRow: row)
+
+    open func dequeueAndConfigure<T: Component>(identifier: CollectionViewCellIdentifier<T>,
+                                                for indexPath: IndexPath,
+                                                factory: @escaping () -> T,
+                                                model: T.StateType,
+                                                mapAction: @escaping (T.ActionType) -> ACTION) -> CollectionViewCellWrapper<T> {
+        let cell = collectionView.dequeue(identifier: identifier, for: indexPath)
         configure(cell: cell, factory: factory, model: model, mapAction: mapAction)
         return cell
+    }
+    
+    open func dequeueAndConfigure<T: Component>(identifier: CollectionViewCellIdentifier<T>,
+                                                forRow row: Int,
+                                                factory: @escaping () -> T,
+                                                model: T.StateType,
+                                                mapAction: @escaping (T.ActionType) -> ACTION) -> CollectionViewCellWrapper<T> {
+        return dequeueAndConfigure(identifier: identifier,
+                                   for: IndexPath(row: row, section: 0),
+                                   factory: factory,
+                                   model: model,
+                                   mapAction: mapAction)
     }
     
     open func configure<T: Component>(view: CollectionReusableViewWrapper<T>, factory: @escaping () -> T, model: T.StateType,
@@ -174,12 +189,27 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
             })
             .disposed(by: view.configureDisposeBag)
     }
-    
-    open func dequeueAndConfigure<T: Component>(identifier: CollectionSupplementaryViewIdentifier<T>, forRow row: Int, factory: @escaping () -> T,
-                                    model: T.StateType, mapAction: @escaping (T.ActionType) -> ACTION) -> CollectionReusableViewWrapper<T> {
-        let view = collectionView.dequeue(identifier: identifier, forRow: row)
+
+    open func dequeueAndConfigure<T: Component>(identifier: CollectionSupplementaryViewIdentifier<T>,
+                                                for indexPath: IndexPath,
+                                                factory: @escaping () -> T,
+                                                model: T.StateType,
+                                                mapAction: @escaping (T.ActionType) -> ACTION) -> CollectionReusableViewWrapper<T> {
+        let view = collectionView.dequeue(identifier: identifier, for: indexPath)
         configure(view: view, factory: factory, model: model, mapAction: mapAction)
         return view
+    }
+    
+    open func dequeueAndConfigure<T: Component>(identifier: CollectionSupplementaryViewIdentifier<T>,
+                                                forRow row: Int,
+                                                factory: @escaping () -> T,
+                                                model: T.StateType,
+                                                mapAction: @escaping (T.ActionType) -> ACTION) -> CollectionReusableViewWrapper<T> {
+        return dequeueAndConfigure(identifier: identifier,
+                                   for: IndexPath(row: row, section: 0),
+                                   factory: factory,
+                                   model: model,
+                                   mapAction: mapAction)
     }
 }
 
