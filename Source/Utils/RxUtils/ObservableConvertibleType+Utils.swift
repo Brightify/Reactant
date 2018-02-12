@@ -22,7 +22,7 @@ public extension ObservableConvertibleType {
     }
 
     /**
-     * Creates an observable erasing the original type and replacing it's value with Void()
+     * Creates an observable erasing the original type and replacing its value with Void()
      * - returns: `Observable` with Void value
      */
     public func rewrite() -> Observable<Void> {
