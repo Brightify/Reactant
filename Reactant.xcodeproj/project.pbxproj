@@ -1335,15 +1335,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources-iOS/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxOptional-iOS/RxOptional.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Reactant-6d48f9f8/Reactant.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS8.0/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS8.0/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Result-iOS8.0/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS8.0/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources-iOS8.0/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxOptional-iOS8.0/RxOptional.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS8.0/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS8.0/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Reactant-d5e97a40/Reactant.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1384,14 +1384,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator-tvOS/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher-tvOS/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Result-tvOS/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa-tvOS/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources-tvOS/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxOptional-tvOS/RxOptional.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-tvOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit-tvOS/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator-tvOS9.2/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-tvOS9.2/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Result-tvOS9.2/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-tvOS9.2/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources-tvOS9.2/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxOptional-tvOS9.2/RxOptional.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-tvOS9.2/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-tvOS9.2/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Reactant-1f8ea602/Reactant.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1418,14 +1418,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources-iOS/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxOptional-iOS/RxOptional.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS9.0/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS9.0/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Result-iOS9.0/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS9.0/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources-iOS9.0/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxOptional-iOS9.0/RxOptional.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS9.0/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS9.0/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Cuckoo/Cuckoo.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -2083,7 +2083,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ReactantPrototyping/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantPrototyping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2102,7 +2102,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ReactantPrototyping/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantPrototyping;
 				PRODUCT_NAME = "$(TARGET_NAME)";

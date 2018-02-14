@@ -1,6 +1,6 @@
 //
 //  UIFont+System.swift
-//  Cuckoo
+//  Reactant
 //
 //  Created by Matouš Hýbl on 09/02/2018.
 //
@@ -8,6 +8,7 @@
 import UIKit
 
 public extension UIFont {
+    @available(iOS 8.2, *)
     public enum System {
         case ultraLight
         case thin

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0
+* Add takeUntil to Wireframe
+* Add option to disable automatic cell deselection
+* Add ActivityIndicator to subspec groups
+* Add reference for create<U,T>() and rewrite()
+* Deprecate ButtonBase with ControlBase
+* Add system font support
+
 ## 1.1.0
 * Add FallbackSafeAreaInsets subspec with a basic implementation of a `safeAreaInsets` and `safeAreaLayoutGuide` fallback for iOS 10.
 * Add support for tvOS

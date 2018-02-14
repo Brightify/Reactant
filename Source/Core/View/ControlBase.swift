@@ -1,6 +1,6 @@
 //
 //  ControlBase.swift
-//  Cuckoo
+//  Reactant
 //
 //  Created by Matouš Hýbl on 09/02/2018.
 //

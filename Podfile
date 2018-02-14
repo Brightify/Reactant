@@ -31,11 +31,11 @@ target 'ReactantTests' do
 end
 
 target 'ReactantPrototyping' do
-    platform :ios, '9.0'
+    platform :ios, '8.0'
 
     shared
 
-    pod 'Reactant', :subspecs => ['All-iOS', 'FallbackSafeAreaInsets'], :path => './'
+    pod 'Reactant', :subspecs => ['All-iOS'], :path => './'
 end
 
 target 'TVPrototyping' do
