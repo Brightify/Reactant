@@ -14,8 +14,6 @@ import RxSwift
 final class ViewController: ControllerBase<Void, ExampleRootView> {
     override init() {
         super.init()
-
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
