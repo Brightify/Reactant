@@ -22,12 +22,16 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
             setNeedsLayout()
         }
     }
-    
+
+    @objc
     public let tableView: UITableView
     #if os(iOS)
+    @objc
     public let refreshControl: UIRefreshControl?
     #endif
+    @objc
     public let emptyLabel = UILabel()
+    @objc
     public let loadingIndicator = UIActivityIndicatorView()
 
     private let items = PublishSubject<[MODEL]>()
