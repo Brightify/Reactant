@@ -56,17 +56,30 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         style: UITableViewStyle = .plain,
-        reloadable: Bool = true,
-        automaticallyDeselect: Bool = true)
+        options: TableViewOptions)
     {
-        super.init(style: style, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
+        super.init(style: style, options: options)
 
         separatorHeight = 1
-        
+
         dataSource.configureCell = { [unowned self] _, _, _, model in
             return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,
                                             model: model, mapAction: { SimulatedSeparatorTableViewAction.rowAction(model, $0) })
         }
+    }
+
+    public convenience init(
+        cellFactory: @escaping () -> CELL = CELL.init,
+        style: UITableViewStyle = .plain,
+        reloadable: Bool = true,
+        automaticallyDeselect: Bool = true)
+    {
+        let options: TableViewOptions = [
+            reloadable ? .reloadable : .none,
+            automaticallyDeselect ? .deselectsAutomatically : .none
+        ]
+
+        self.init(cellFactory: cellFactory, style: style, options: options)
     }
 
     open override func loadView() {

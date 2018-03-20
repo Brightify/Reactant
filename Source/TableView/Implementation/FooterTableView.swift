@@ -44,17 +44,31 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
         cellFactory: @escaping () -> CELL = CELL.init,
         footerFactory: @escaping () -> FOOTER = FOOTER.init,
         style: UITableViewStyle = .plain,
-        reloadable: Bool = true,
-        automaticallyDeselect: Bool = true)
+        options: TableViewOptions)
     {
         self.footerFactory = footerFactory
 
-        super.init(style: style, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
+        super.init(style: style, options: options)
 
         dataSource.configureCell = { [unowned self] _, _, _, model in
             return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,
                                             model: model, mapAction: { FooterTableViewAction.rowAction(model, $0) })
         }
+    }
+
+    public convenience init(
+        cellFactory: @escaping () -> CELL = CELL.init,
+        footerFactory: @escaping () -> FOOTER = FOOTER.init,
+        style: UITableViewStyle = .plain,
+        reloadable: Bool = true,
+        automaticallyDeselect: Bool = true)
+    {
+        let options: TableViewOptions = [
+            reloadable ? .reloadable : .none,
+            automaticallyDeselect ? .deselectsAutomatically : .none
+        ]
+
+        self.init(cellFactory: cellFactory, footerFactory: footerFactory, style: style, options: options)
     }
 
     open override func loadView() {
