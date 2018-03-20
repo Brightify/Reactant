@@ -8,6 +8,19 @@
 
 import RxSwift
 
+public struct TableViewOptions: OptionSet {
+    public let rawValue: Int
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+
+    public static let reloadable = TableViewOptions(rawValue: 1 << 0)
+    public static let deselectsAutomatically = TableViewOptions(rawValue: 1 << 1)
+    // add more here, make sure to increment the shift number -----------------^
+    
+    public static let none: TableViewOptions = []
+}
+
 open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>, ReactantTableView, UITableViewDelegate {
     
     open var edgesForExtendedLayout: UIRectEdge {
@@ -39,16 +52,25 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     private var configurationChangeTime: clock_t = clock()
     
     private let automaticallyDeselect: Bool
-    
-    public init(style: UITableViewStyle = .plain, reloadable: Bool = true, automaticallyDeselect: Bool = true) {
+
+    public init(style: UITableViewStyle = .plain, options: TableViewOptions) {
         self.tableView = UITableView(frame: CGRect.zero, style: style)
         #if os(iOS)
-        self.refreshControl = reloadable ? UIRefreshControl() : nil
+            self.refreshControl = options.contains(.reloadable) ? UIRefreshControl() : nil
         #endif
-        
-        self.automaticallyDeselect = automaticallyDeselect
-        
+
+        self.automaticallyDeselect = options.contains(.deselectsAutomatically)
+
         super.init()
+    }
+    
+    public convenience init(style: UITableViewStyle = .plain, reloadable: Bool = true, automaticallyDeselect: Bool = true) {
+        let options: TableViewOptions = [
+            reloadable ? .reloadable : .none,
+            automaticallyDeselect ? .deselectsAutomatically : .none
+        ]
+
+        self.init(style: style, options: options)
     }
     
     open override func loadView() {

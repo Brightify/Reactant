@@ -42,8 +42,26 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
     private let headerFactory: (() -> HEADER)
     private let footerFactory: (() -> FOOTER)
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>(configureCell: { _,_,_,_  in UITableViewCell() })
-    
+
     public init(
+        cellFactory: @escaping () -> CELL = CELL.init,
+        headerFactory: @escaping () -> HEADER = HEADER.init,
+        footerFactory: @escaping () -> FOOTER = FOOTER.init,
+        style: UITableViewStyle = .plain,
+        options: TableViewOptions)
+    {
+        self.headerFactory = headerFactory
+        self.footerFactory = footerFactory
+
+        super.init(style: style, options: options)
+
+        dataSource.configureCell = { [unowned self] _, _, _, model in
+            return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,
+                                            model: model, mapAction: { SimpleTableViewAction.rowAction(model, $0) })
+        }
+    }
+    
+    public convenience init(
         cellFactory: @escaping () -> CELL = CELL.init,
         headerFactory: @escaping () -> HEADER = HEADER.init,
         footerFactory: @escaping () -> FOOTER = FOOTER.init,
@@ -51,15 +69,16 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
         reloadable: Bool = true,
         automaticallyDeselect: Bool = true)
     {
-        self.headerFactory = headerFactory
-        self.footerFactory = footerFactory
+        let options: TableViewOptions = [
+            reloadable ? .reloadable : .none,
+            automaticallyDeselect ? .deselectsAutomatically : .none
+        ]
         
-        super.init(style: style, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
-        
-        dataSource.configureCell = { [unowned self] _, _, _, model in
-            return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,
-                                            model: model, mapAction: { SimpleTableViewAction.rowAction(model, $0) })
-        }
+        self.init(cellFactory: cellFactory,
+                  headerFactory: headerFactory,
+                  footerFactory: footerFactory,
+                  style: style,
+                  options: options)
     }
     
     open override func loadView() {
