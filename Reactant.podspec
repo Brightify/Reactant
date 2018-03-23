@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
     spec.name             = 'Reactant'
-    spec.version          = '1.1.0'
+    spec.version          = '1.2.0'
     spec.summary          = 'Reactant is a reactive architecture for iOS'
 
     spec.description      = <<-DESC
@@ -19,7 +19,8 @@ Pod::Spec.new do |spec|
     spec.author           = {
         'Tadeas Kriz' => 'tadeas@brightify.org',
         'Matous Hybl' => 'matous@brightify.org',
-        'Filip Dolnik' => 'filip@brightify.org'
+        'Filip Dolnik' => 'filip@brightify.org',
+        'Matyas Kriz' => 'matyas@brightify.org'
     }
     spec.source           = {
         :git => 'https://github.com/Brightify/Reactant.git',
