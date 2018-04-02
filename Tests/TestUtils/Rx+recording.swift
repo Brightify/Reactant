@@ -35,7 +35,7 @@ struct Recording<Element> {
 
     init(events: [Event<Element>]) {
         self.events = events
-        elements = events.flatMap { $0.element }
+        elements = events.compactMap { $0.element }
 
         if case .completed? = events.last {
             didComplete = true

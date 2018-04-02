@@ -25,7 +25,7 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
         return [
             tableView.rx.modelSelected(MODEL.self).map(PlainTableViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: PlainTableViewAction.refresh)
-        ].flatMap { $0 }
+        ].compactMap { $0 }
         #else
         return [
             tableView.rx.modelSelected(MODEL.self).map(PlainTableViewAction.selected)

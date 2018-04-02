@@ -70,8 +70,6 @@ Pod::Spec.new do |spec|
 
     spec.subspec 'Configuration' do |subspec|
         subspec.frameworks = 'UIKit'
-        rxSwift(subspec)
-        snapKit(subspec)
         subspec.source_files = 'Source/Configuration/**/*.swift'
     end
 

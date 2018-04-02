@@ -29,7 +29,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
         return [
             tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: HeaderTableViewAction.refresh)
-        ].flatMap { $0 }
+        ].compactMap { $0 }
         #else
         return [
             tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected)

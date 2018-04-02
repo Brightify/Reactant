@@ -31,7 +31,7 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
         return [
             tableView.rx.modelSelected(MODEL.self).map(SimpleTableViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: SimpleTableViewAction.refresh)
-        ].flatMap { $0 }
+        ].compactMap { $0 }
         #else
             return [
                 tableView.rx.modelSelected(MODEL.self).map(SimpleTableViewAction.selected)

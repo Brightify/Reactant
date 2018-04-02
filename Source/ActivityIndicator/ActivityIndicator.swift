@@ -33,7 +33,7 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
         // `self` cannot be captured before all fields are initialized.
         let equal = self.equalFunction
         driver = variable.asDriver()
-            .map { (loading: !$0.isEmpty, associatedValue: $0.flatMap { $0.associatedValue }.first) }
+            .map { (loading: !$0.isEmpty, associatedValue: $0.compactMap { $0.associatedValue }.first) }
             .distinctUntilChanged { lhs, rhs in lhs.loading == rhs.loading &&
                 equal(lhs.associatedValue, rhs.associatedValue) }
     }

@@ -15,12 +15,10 @@ extension CGPoint {
     }
     
     public init(x: CGFloat) {
-        self.x = x
-        self.y = 0
+        self.init(x: x, y: 0)
     }
     
     public init(y: CGFloat) {
-        self.x = 0
-        self.y = y
+        self.init(x: 0, y: y)
     }
 }

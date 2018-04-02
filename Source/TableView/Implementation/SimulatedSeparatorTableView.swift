@@ -28,7 +28,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
         return [
             tableView.rx.modelSelected(MODEL.self).map(SimulatedSeparatorTableViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: SimulatedSeparatorTableViewAction.refresh)
-        ].flatMap { $0 }
+        ].compactMap { $0 }
         #else
         return [
             tableView.rx.modelSelected(MODEL.self).map(SimulatedSeparatorTableViewAction.selected)

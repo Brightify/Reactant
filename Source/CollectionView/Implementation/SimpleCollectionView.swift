@@ -25,7 +25,7 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
         return [
             collectionView.rx.modelSelected(MODEL.self).map(SimpleCollectionViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: SimpleCollectionViewAction.refresh)
-        ].flatMap { $0 }
+        ].compactMap { $0 }
         #else
         return [
             collectionView.rx.modelSelected(MODEL.self).map(SimpleCollectionViewAction.selected)

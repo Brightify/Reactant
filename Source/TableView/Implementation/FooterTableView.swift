@@ -29,7 +29,7 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
         return [
             tableView.rx.modelSelected(MODEL.self).map(FooterTableViewAction.selected),
             refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: FooterTableViewAction.refresh)
-        ].flatMap { $0 }
+        ].compactMap { $0 }
         #else
         return [
             tableView.rx.modelSelected(MODEL.self).map(FooterTableViewAction.selected)
