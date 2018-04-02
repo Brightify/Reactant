@@ -63,14 +63,17 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
 
         super.init()
     }
-    
-    public convenience init(style: UITableViewStyle = .plain, reloadable: Bool = true, automaticallyDeselect: Bool = true) {
-        let options: TableViewOptions = [
-            reloadable ? .reloadable : .none,
-            automaticallyDeselect ? .deselectsAutomatically : .none
-        ]
 
-        self.init(style: style, options: options)
+    @available(*, deprecated, message: "This init will be removed in Reactant 2.0")
+    public init(style: UITableViewStyle = .plain, reloadable: Bool = true, automaticallyDeselect: Bool = true) {
+        self.tableView = UITableView(frame: CGRect.zero, style: style)
+        #if os(iOS)
+        self.refreshControl = reloadable ? UIRefreshControl() : nil
+        #endif
+
+        self.automaticallyDeselect = automaticallyDeselect
+
+        super.init()
     }
     
     open override func loadView() {

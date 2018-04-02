@@ -60,8 +60,9 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
                                             model: model, mapAction: { SimpleTableViewAction.rowAction(model, $0) })
         }
     }
-    
-    public convenience init(
+
+    @available(*, deprecated, message: "This init will be removed in Reactant 2.0")
+    public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         headerFactory: @escaping () -> HEADER = HEADER.init,
         footerFactory: @escaping () -> FOOTER = FOOTER.init,
@@ -69,16 +70,15 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
         reloadable: Bool = true,
         automaticallyDeselect: Bool = true)
     {
-        let options: TableViewOptions = [
-            reloadable ? .reloadable : .none,
-            automaticallyDeselect ? .deselectsAutomatically : .none
-        ]
-        
-        self.init(cellFactory: cellFactory,
-                  headerFactory: headerFactory,
-                  footerFactory: footerFactory,
-                  style: style,
-                  options: options)
+        self.headerFactory = headerFactory
+        self.footerFactory = footerFactory
+
+        super.init(style: style, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
+
+        dataSource.configureCell = { [unowned self] _, _, _, model in
+            return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,
+                                            model: model, mapAction: { SimpleTableViewAction.rowAction(model, $0) })
+        }
     }
     
     open override func loadView() {

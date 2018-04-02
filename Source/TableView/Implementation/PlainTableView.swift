@@ -45,18 +45,16 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
         super.init(style: style, options: options)
     }
 
-    public convenience init(
+    @available(*, deprecated, message: "This init will be removed in Reactant 2.0")
+    public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         style: UITableViewStyle = .plain,
         reloadable: Bool = true,
         automaticallyDeselect: Bool = true)
     {
-        let options: TableViewOptions = [
-            reloadable ? .reloadable : .none,
-            automaticallyDeselect ? .deselectsAutomatically : .none
-        ]
+        self.cellFactory = cellFactory
 
-        self.init(cellFactory: cellFactory, style: style, options: options)
+        super.init(style: style, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
     }
 
     open override func loadView() {
