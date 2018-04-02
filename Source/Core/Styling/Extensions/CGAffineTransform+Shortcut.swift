@@ -12,7 +12,7 @@ public func + (lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransf
     return lhs.concatenating(rhs)
 }
 
-public func rotate(degrees: CGFloat = 0) -> CGAffineTransform {
+public func rotate(degrees: CGFloat) -> CGAffineTransform {
     return rotate(degrees / 180 * .pi)
 }
 

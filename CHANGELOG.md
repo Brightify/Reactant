@@ -7,6 +7,14 @@
 * Add reference for create<U,T>() and rewrite()
 * Deprecate ButtonBase with ControlBase
 * Add system font support
+* Update project for Swift 4.1
+* Add generic PickerView
+* Add method for stacking UIViews inside UIView
+* Fix `rotate` in CGAffineTransformation extensions
+* Add `dequeueAndConfigure(identifier:indexPath:factory:model:mapAction:)` to `CollectionView`
+* Add better initial configuration of `TableView` and `CollectionView`
+* Add styling methods for `UINavigationController` and `UITabBarController`
+* Remove RxSwift and SnapKit dependencies from `Configuration` subspec
 
 ## 1.1.0
 * Add FallbackSafeAreaInsets subspec with a basic implementation of a `safeAreaInsets` and `safeAreaLayoutGuide` fallback for iOS 10.
