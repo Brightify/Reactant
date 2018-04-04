@@ -32,4 +32,26 @@ extension UIViewController {
         dismiss(animated: animated, completion: { replay.onLast() })
         return replay
     }
+
+    @discardableResult
+    public func present<C: UIViewController>(controller: Observable<C>, animated: Bool = true) -> Observable<C> {
+        let replay = ReplaySubject<C>.create(bufferSize: 1)
+        _ = controller
+            .takeUntil(rx.deallocated)
+            .flatMapLatest { [weak self] controller in
+                self?.present(controller: controller).rewrite(with: controller) ?? .empty()
+            }
+            .subscribe(
+                onNext: { [weak self] controller in
+                    guard self != nil else {
+                        replay.onCompleted()
+                        return
+                    }
+                    replay.onNext(controller)
+                },
+                onDisposed: {
+                    replay.onCompleted()
+            })
+        return replay
+    }
 }
