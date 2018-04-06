@@ -8,7 +8,7 @@
 
 import MapKit
 
-extension Collection where Iterator.Element == CLLocationCoordinate2D {
+extension Collection where Iterator.Element == CLLocationCoordinate2D, IndexDistance == Int {
     
     public func centerCoordinate() -> CLLocationCoordinate2D {
         guard count > 1 else { return first ?? CLLocationCoordinate2D() }
