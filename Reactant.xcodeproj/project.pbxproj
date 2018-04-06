@@ -63,6 +63,7 @@
 		18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */; };
 		18C3CB9C1FDC516C00C9248D /* FallbackSafeAreaInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CB9B1FDC516C00C9248D /* FallbackSafeAreaInsets.swift */; };
 		2210BAD31EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BAD21EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift */; };
+		221CCEB220774A2C00A64494 /* Swift+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221CCEB120774A2C00A64494 /* Swift+Compatibility.swift */; };
 		2284DA9F1FAC6D2F00D231D3 /* ButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DA9E1FAC6D2F00D231D3 /* ButtonController.swift */; };
 		2284DAA11FAC6D5500D231D3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA01FAC6D5500D231D3 /* TableViewController.swift */; };
 		2284DAA41FAC6DBA00D231D3 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA31FAC6DBA00D231D3 /* TabController.swift */; };
@@ -259,6 +260,7 @@
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterTableView.swift; path = Implementation/FooterTableView.swift; sourceTree = "<group>"; };
 		18C3CB9B1FDC516C00C9248D /* FallbackSafeAreaInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallbackSafeAreaInsets.swift; sourceTree = "<group>"; };
 		2210BAD21EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+DialogDismissalListener.swift"; sourceTree = "<group>"; };
+		221CCEB120774A2C00A64494 /* Swift+Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swift+Compatibility.swift"; sourceTree = "<group>"; };
 		2284DA9E1FAC6D2F00D231D3 /* ButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonController.swift; sourceTree = "<group>"; };
 		2284DAA01FAC6D5500D231D3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		2284DAA31FAC6DBA00D231D3 /* TabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabController.swift; sourceTree = "<group>"; };
@@ -877,6 +879,7 @@
 				DC137F8E1E4E29DA00A0516F /* Scrollable */,
 				DC137F951E4E29DA00A0516F /* Visibility */,
 				22957E1A207212A80088C09E /* UIView+stack.swift */,
+				221CCEB120774A2C00A64494 /* Swift+Compatibility.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1589,6 +1592,7 @@
 				183E0CC81EB88E9C006CF52A /* CGSize+Init.swift in Sources */,
 				DC137FA01E4E29DA00A0516F /* Recycler.swift in Sources */,
 				DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */,
+				221CCEB220774A2C00A64494 /* Swift+Compatibility.swift in Sources */,
 				183E0CC91EB88E9C006CF52A /* UIButton+Utils.swift in Sources */,
 				DC137FA91E4E29DA00A0516F /* CollapseAxis.swift in Sources */,
 				DC0785E21DDB22670063AB96 /* TableViewHeaderFooterIdentifier.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import RxSwift
 
+#if os(iOS)
 open class PickerView<MODEL>: ViewBase<MODEL, MODEL>, UIPickerViewDataSource, UIPickerViewDelegate {
     private let pickerView = UIPickerView()
 
@@ -60,3 +61,4 @@ open class PickerView<MODEL>: ViewBase<MODEL, MODEL>, UIPickerViewDataSource, UI
         perform(action: model)
     }
 }
+#endif
