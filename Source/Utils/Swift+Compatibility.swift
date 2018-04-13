@@ -9,7 +9,7 @@
 import Foundation
 
 #if !swift(>=4.1)
-extension Sequence {
+public extension Sequence {
     func compactMap<ElementOfResult>(_ transform: (Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult] {
         return try self.flatMap(transform)
     }

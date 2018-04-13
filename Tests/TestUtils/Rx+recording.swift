@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxTest
+import Reactant
 
 private final class RecordingObserver<ElementType>
 : ObserverType {
