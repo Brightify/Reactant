@@ -89,12 +89,28 @@ DEPENDENCIES:
   - RxTest
   - SnapKit (~> 4.0)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Differentiator
+    - Kingfisher
+    - Nimble
+    - Quick
+    - Result
+    - RxBlocking
+    - RxCocoa
+    - RxDataSources
+    - RxNimble
+    - RxOptional
+    - RxSwift
+    - RxTest
+    - SnapKit
+
 EXTERNAL SOURCES:
   Cuckoo:
     :branch: master
     :git: https://github.com/Brightify/Cuckoo.git
   Reactant:
-    :path: ./
+    :path: "./"
 
 CHECKOUT OPTIONS:
   Cuckoo:
@@ -120,4 +136,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: cae5960ee794d112207135ff9acdd22a6ebd688a
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

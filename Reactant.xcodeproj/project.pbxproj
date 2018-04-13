@@ -1114,7 +1114,6 @@
 				185121431D834D1E002C4B08 /* Frameworks */,
 				185121441D834D1E002C4B08 /* Headers */,
 				185121451D834D1E002C4B08 /* Resources */,
-				B40D1B1F1F649897037191DE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1135,7 +1134,6 @@
 				1851214D1D834D1F002C4B08 /* Frameworks */,
 				1851214E1D834D1F002C4B08 /* Resources */,
 				9362B639AA797ACF422891EC /* [CP] Embed Pods Frameworks */,
-				AB3F5E225B6A3F72D6D27B86 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1157,7 +1155,6 @@
 				22F48FE11FAB0EE800E736C8 /* Frameworks */,
 				22F48FE21FAB0EE800E736C8 /* Resources */,
 				8FF05098B90528A8D1F2ABD2 /* [CP] Embed Pods Frameworks */,
-				726063C1A2833703544BCBDD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1195,7 +1192,6 @@
 				DC79F6B51E55FAA60033AE51 /* Frameworks */,
 				DC79F6B61E55FAA60033AE51 /* Resources */,
 				6BCD29849ECBD4BF68960412 /* [CP] Embed Pods Frameworks */,
-				F0C0F82FDC7FD7492451D241 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1371,21 +1367,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		726063C1A2833703544BCBDD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8FF05098B90528A8D1F2ABD2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1464,21 +1445,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AB3F5E225B6A3F72D6D27B86 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		ACDD5ABFEC93DC3D111598DD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1495,21 +1461,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B40D1B1F1F649897037191DE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reactant/Pods-Reactant-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA9E03A01F9BE89A730C2A4B /* [CP] Check Pods Manifest.lock */ = {
@@ -1546,21 +1497,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F0C0F82FDC7FD7492451D241 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
