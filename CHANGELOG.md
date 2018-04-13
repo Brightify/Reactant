@@ -15,6 +15,7 @@
 * Add better initial configuration of `TableView` and `CollectionView`
 * Add styling methods for `UINavigationController` and `UITabBarController`
 * Remove RxSwift and SnapKit dependencies from `Configuration` subspec
+* Add Observable navigation
 
 ## 1.1.0
 * Add FallbackSafeAreaInsets subspec with a basic implementation of a `safeAreaInsets` and `safeAreaLayoutGuide` fallback for iOS 10.
