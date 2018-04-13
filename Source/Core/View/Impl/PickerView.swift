@@ -52,6 +52,7 @@ open class PickerView<MODEL>: ViewBase<MODEL, MODEL>, UIPickerViewDataSource, UI
 
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let model = items[row]
+        
         return titleSelection(model)
     }
 

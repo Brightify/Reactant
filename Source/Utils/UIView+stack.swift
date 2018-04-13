@@ -12,10 +12,17 @@ public extension UIView {
 
     /**
      * Stacks views in superview horizontally or vertically with defined spacing
-     * - parameter lowerPriorityOfLastConstraint: sets last constraint priority to high if true, this prevents breaking of constraints in cases of hiding
-                                                    the whole parent view using constraints
+     * - parameter views: views to be layed out in the container
+     * - parameter withSpacing: spacing to be put between views
+     * - parameter axis: axis along which the views should be layed out
+     * - parameter lowerPriorityOfLastConstraint: sets last constraint priority to high if true,
+                                                  this prevents breaking of constraints in cases of hiding
+                                                  the whole parent view using constraints
      */
-    public func stack(views: [UIView], withSpacing spacing: CGFloat = 0, axis: UILayoutConstraintAxis = .horizontal, lowerPriorityOfLastConstraint: Bool = false) {
+    public func stack(views: [UIView],
+                      withSpacing spacing: CGFloat = 0,
+                      axis: UILayoutConstraintAxis = .horizontal,
+                      lowerPriorityOfLastConstraint: Bool = false) {
         var previousView: UIView?
         let lastView = views.last
         for view in views {
