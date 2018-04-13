@@ -85,6 +85,7 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
         return true
     }
 
+    @objc
     open var contentEdgeInsets: UIEdgeInsets = .zero
 
     open override var text: String? {
@@ -99,12 +100,14 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
         }
     }
 
+    @objc
     open var placeholderColor: UIColor? = nil {
         didSet {
             updateAttributedPlaceholder()
         }
     }
 
+    @objc
     open var placeholderFont: UIFont? = nil {
         didSet {
             updateAttributedPlaceholder()
