@@ -4,7 +4,7 @@ We already talked about Components and Views in the [Quick-start](./quickstart.m
 
 We recommend creating a new project and going along with us through this short guide before you venture out on your own. Creating a project compatible with Reactant requires a few steps.
 - First, create a new `Single View Application` and select `Swift` as your application's language.
-- Once created, delete `Main.storyboard` and `ViewController.swift` files **(Reactant does not support Storyboard/Interface Builder as classes are not accessible from ObjC runtime)**.
+- Once created, delete `Main.storyboard` and `ViewController.swift` files **(Reactant does not support Storyboard/Interface Builder as generic classes are not accessible from ObjC runtime)**.
 - Then open your app's target `General` settings and under `Deployment info` delete the value of `Main Interface` property.
 
 Next step is adding CocoaPods to the project. Open your project's directory in *Terminal* and run a `pod init` command. This will create a `Podfile` for you. Open it in a text editor and under your app's target add `pod 'Reactant'`. The file should then look like this:
