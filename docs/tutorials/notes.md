@@ -196,7 +196,7 @@ Open file **MainRootView.ui.xml**, we're going to be doing a few changes. The `L
   http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd"
   rootView="true">
 
-  <View
+  <TableView
     field="noteTableView"
     layout:edges="super" />
 </Component>

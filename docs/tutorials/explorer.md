@@ -246,7 +246,7 @@ Its `.ui.xml` side:
   http://schema.reactant.tech/layout https://schema.reactant.tech/layout.xsd"
   rootView="true">
 
-  <View
+  <TableView
     field="userTableView"
     layout:edges="super" />
 </Component>
@@ -722,7 +722,7 @@ The `ui.xml` side looks like this:
   http://schema.reactant.tech/layout http://schema.reactant.tech/layout.xsd"
   rootView="true">
 
-  <View
+  <TableView
     field="repositoryTableView"
     layout:edges="super" />
 
