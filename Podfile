@@ -16,12 +16,15 @@ target 'Reactant' do
     platform :ios, '9.0'
 
     shared
+    pod 'SkeletonView'
+
 end
 
 target 'ReactantTests' do
     platform :ios, '9.0'
 
     shared
+    pod 'SkeletonView'
 
     pod 'Quick', '~> 1.1'
     pod 'Nimble', '~> 7.0'
@@ -31,9 +34,10 @@ target 'ReactantTests' do
 end
 
 target 'ReactantPrototyping' do
-    platform :ios, '8.0'
+    platform :ios, '9.0'
 
     shared
+    pod 'SkeletonView'
 
     pod 'Reactant', :subspecs => ['All-iOS'], :path => './'
 end

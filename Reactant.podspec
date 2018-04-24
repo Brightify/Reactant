@@ -54,6 +54,9 @@ Pod::Spec.new do |spec|
     def self.kingfisher(subspec)
         subspec.dependency 'Kingfisher', '~> 4.0'
     end
+    def self.skeletonView(subspec)
+        subspec.dependency 'SkeletonView', '~> 1.1'
+    end
 
     spec.subspec 'Core' do |subspec|
         subspec.frameworks = 'UIKit'
@@ -116,6 +119,14 @@ Pod::Spec.new do |spec|
         rxCocoa(subspec)
         kingfisher(subspec)
         subspec.source_files = 'Source/StaticMap/**/*.swift'
+    end
+
+    spec.subspec 'LoadableView' do |subspec|
+        subspec.ios.deployment_target = '9.0'
+        subspec.frameworks = 'UIKit'
+        
+        skeletonView(subspec)
+        subspec.dependency 'Reactant/Core'
     end
 
     spec.subspec 'FallbackSafeAreaInsets' do |subspec|

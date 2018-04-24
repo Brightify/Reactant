@@ -82,6 +82,7 @@
 		71E4956B208F3B0C00CA3044 /* Configuration+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956A208F3B0C00CA3044 /* Configuration+Core.swift */; };
 		71E4956D208F3E6000CA3044 /* Configuration+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956C208F3E6000CA3044 /* Configuration+CollectionView.swift */; };
 		71E4956F208F5F5800CA3044 /* Configuration+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956E208F5F5800CA3044 /* Configuration+Style.swift */; };
+		71E49521208DF2A400CA3044 /* LoadableViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49520208DF2A400CA3044 /* LoadableViewWrapper.swift */; };
 		DC0785841DD383E50063AB96 /* UINavigationController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785831DD383E50063AB96 /* UINavigationController+Navigation.swift */; };
 		DC0785861DD3879B0063AB96 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785851DD3879B0063AB96 /* Wireframe.swift */; };
 		DC07858D1DD39BE50063AB96 /* ControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858C1DD39BE50063AB96 /* ControllerBase.swift */; };
@@ -203,6 +204,13 @@
 			remoteGlobalIDString = 22F48FE31FAB0EE800E736C8;
 			remoteInfo = TVPrototyping;
 		};
+		71E49522208E05F300CA3044 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 185121461D834D1E002C4B08;
+			remoteInfo = Reactant;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -290,6 +298,7 @@
 		71E4956A208F3B0C00CA3044 /* Configuration+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+Core.swift"; sourceTree = "<group>"; };
 		71E4956C208F3E6000CA3044 /* Configuration+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+CollectionView.swift"; sourceTree = "<group>"; };
 		71E4956E208F5F5800CA3044 /* Configuration+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+Style.swift"; sourceTree = "<group>"; };
+		71E49520208DF2A400CA3044 /* LoadableViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadableViewWrapper.swift; sourceTree = "<group>"; };
 		79DCFC9757691832BCC6AFC6 /* Pods-TVPrototyping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVPrototyping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping.debug.xcconfig"; sourceTree = "<group>"; };
 		7B0CE169634834E74544F2A0 /* Pods_ReactantPrototyping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantPrototyping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96B5ABCA15205D09AA176230 /* Pods-TVPrototyping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVPrototyping.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping.release.xcconfig"; sourceTree = "<group>"; };
@@ -571,6 +580,7 @@
 				DC0785791DC884BB0063AB96 /* TableView */,
 				DC137F811E4E251200A0516F /* Utils */,
 				DC2B5D2B1DE1B7E500F9C9D7 /* Validation */,
+				71E49561208F2D4500CA3044 /* LoadableView */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -701,6 +711,14 @@
 				00B632EA1FBF5AF200D83926 /* Wireframe */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		71E49561208F2D4500CA3044 /* LoadableView */ = {
+			isa = PBXGroup;
+			children = (
+				71E49520208DF2A400CA3044 /* LoadableViewWrapper.swift */,
+			);
+			path = LoadableView;
 			sourceTree = "<group>";
 		};
 		DC07856E1DC881B80063AB96 /* Core */ = {
@@ -1214,6 +1232,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				71E49523208E05F300CA3044 /* PBXTargetDependency */,
 			);
 			name = ReactantPrototyping;
 			productName = ReactantPrototyping;
@@ -1358,14 +1377,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS8.0/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS8.0/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Result-iOS8.0/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS8.0/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources-iOS8.0/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxOptional-iOS8.0/RxOptional.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS8.0/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS8.0/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources-iOS/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxOptional-iOS/RxOptional.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Reactant-d5e97a40/Reactant.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1377,6 +1397,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reactant.framework",
 			);
@@ -1392,14 +1413,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator-tvOS9.2/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher-tvOS9.2/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Result-tvOS9.2/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa-tvOS9.2/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources-tvOS9.2/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxOptional-tvOS9.2/RxOptional.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-tvOS9.2/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit-tvOS9.2/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator-tvOS/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-tvOS/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Result-tvOS/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-tvOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources-tvOS/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxOptional-tvOS/RxOptional.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-tvOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-tvOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Reactant-1f8ea602/Reactant.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1426,14 +1447,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS9.0/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS9.0/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Result-iOS9.0/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS9.0/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources-iOS9.0/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxOptional-iOS9.0/RxOptional.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS9.0/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS9.0/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa-iOS/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources-iOS/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxOptional-iOS/RxOptional.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Cuckoo/Cuckoo.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -1450,6 +1472,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxOptional.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cuckoo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
@@ -1576,6 +1599,7 @@
 				DC0785AE1DD3C3120063AB96 /* DialogControllerBase.swift in Sources */,
 				DC137F9C1E4E29DA00A0516F /* ObserverType+Utils.swift in Sources */,
 				183E0CCB1EB88E9C006CF52A /* UIColor+Init.swift in Sources */,
+				71E49521208DF2A400CA3044 /* LoadableViewWrapper.swift in Sources */,
 				183E0CCE1EB88E9C006CF52A /* UIFont+Init.swift in Sources */,
 				183E0CC61EB88E9C006CF52A /* CGPoint+Init.swift in Sources */,
 				DC137FAC1E4E29DA00A0516F /* Visibility.swift in Sources */,
@@ -1736,6 +1760,11 @@
 			isa = PBXTargetDependency;
 			target = 22F48FE31FAB0EE800E736C8 /* TVPrototyping */;
 			targetProxy = 22F48FF51FAB0EE900E736C8 /* PBXContainerItemProxy */;
+		};
+		71E49523208E05F300CA3044 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 185121461D834D1E002C4B08 /* Reactant */;
+			targetProxy = 71E49522208E05F300CA3044 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
