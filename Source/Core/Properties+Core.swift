@@ -12,7 +12,7 @@ extension Properties {
     
     public static let layoutMargins = Property<UIEdgeInsets>(defaultValue: .zero)
     public static let closeButtonTitle = Property<String>(defaultValue: "Close")
-    public static var defaultBackButton = Property<UIBarButtonItem?>()
+    public static let defaultBackButton = Property<UIBarButtonItem?>()
 }
 
 extension Properties.Style {
