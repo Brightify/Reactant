@@ -76,13 +76,14 @@
 		22F48FE71FAB0EE900E736C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F48FE61FAB0EE900E736C8 /* AppDelegate.swift */; };
 		22F48FEE1FAB0EE900E736C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F48FED1FAB0EE900E736C8 /* Assets.xcassets */; };
 		677138D6038E38CF1E2AB7C6 /* Pods_ReactantPrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0CE169634834E74544F2A0 /* Pods_ReactantPrototyping.framework */; };
+		71E49521208DF2A400CA3044 /* LoadableViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49520208DF2A400CA3044 /* LoadableViewWrapper.swift */; };
 		71E49563208F37DE00CA3044 /* SubConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49562208F37DE00CA3044 /* SubConfiguration.swift */; };
 		71E49567208F38FA00CA3044 /* BaseSubConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49566208F38FA00CA3044 /* BaseSubConfiguration.swift */; };
 		71E49569208F398600CA3044 /* Configuration+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49568208F398600CA3044 /* Configuration+TableView.swift */; };
 		71E4956B208F3B0C00CA3044 /* Configuration+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956A208F3B0C00CA3044 /* Configuration+Core.swift */; };
 		71E4956D208F3E6000CA3044 /* Configuration+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956C208F3E6000CA3044 /* Configuration+CollectionView.swift */; };
 		71E4956F208F5F5800CA3044 /* Configuration+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956E208F5F5800CA3044 /* Configuration+Style.swift */; };
-		71E49521208DF2A400CA3044 /* LoadableViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49520208DF2A400CA3044 /* LoadableViewWrapper.swift */; };
+		71E49571208F778A00CA3044 /* Configuration+LoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49570208F778A00CA3044 /* Configuration+LoadableView.swift */; };
 		DC0785841DD383E50063AB96 /* UINavigationController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785831DD383E50063AB96 /* UINavigationController+Navigation.swift */; };
 		DC0785861DD3879B0063AB96 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785851DD3879B0063AB96 /* Wireframe.swift */; };
 		DC07858D1DD39BE50063AB96 /* ControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858C1DD39BE50063AB96 /* ControllerBase.swift */; };
@@ -292,13 +293,14 @@
 		50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A648916F85EF94ED93EB6F6 /* Pods-Reactant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.release.xcconfig"; sourceTree = "<group>"; };
 		711603479E5441514316A7F3 /* Pods_ReactantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71E49520208DF2A400CA3044 /* LoadableViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadableViewWrapper.swift; sourceTree = "<group>"; };
 		71E49562208F37DE00CA3044 /* SubConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubConfiguration.swift; sourceTree = "<group>"; };
 		71E49566208F38FA00CA3044 /* BaseSubConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSubConfiguration.swift; sourceTree = "<group>"; };
 		71E49568208F398600CA3044 /* Configuration+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+TableView.swift"; sourceTree = "<group>"; };
 		71E4956A208F3B0C00CA3044 /* Configuration+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+Core.swift"; sourceTree = "<group>"; };
 		71E4956C208F3E6000CA3044 /* Configuration+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+CollectionView.swift"; sourceTree = "<group>"; };
 		71E4956E208F5F5800CA3044 /* Configuration+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+Style.swift"; sourceTree = "<group>"; };
-		71E49520208DF2A400CA3044 /* LoadableViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadableViewWrapper.swift; sourceTree = "<group>"; };
+		71E49570208F778A00CA3044 /* Configuration+LoadableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+LoadableView.swift"; sourceTree = "<group>"; };
 		79DCFC9757691832BCC6AFC6 /* Pods-TVPrototyping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVPrototyping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping.debug.xcconfig"; sourceTree = "<group>"; };
 		7B0CE169634834E74544F2A0 /* Pods_ReactantPrototyping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantPrototyping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96B5ABCA15205D09AA176230 /* Pods-TVPrototyping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVPrototyping.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping.release.xcconfig"; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 			isa = PBXGroup;
 			children = (
 				71E49520208DF2A400CA3044 /* LoadableViewWrapper.swift */,
+				71E49570208F778A00CA3044 /* Configuration+LoadableView.swift */,
 			);
 			path = LoadableView;
 			sourceTree = "<group>";
@@ -1637,6 +1640,7 @@
 				183E0CCF1EB88E9C006CF52A /* UILabel+Init.swift in Sources */,
 				183457891EB16B8B00C972A4 /* ReactantUI.swift in Sources */,
 				DC69407F1E51AE9A00C99380 /* ReactantCollectionView+Delegates.swift in Sources */,
+				71E49571208F778A00CA3044 /* Configuration+LoadableView.swift in Sources */,
 				DC1C67F21E5C39F30081E7BD /* Sequence+Utils.swift in Sources */,
 				DC1C68011E5F574B0081E7BD /* ActivityIndicator.swift in Sources */,
 				DC6940851E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift in Sources */,

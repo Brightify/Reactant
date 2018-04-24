@@ -28,6 +28,7 @@ public enum LoadableState<S> {
 
         return true
     }
+
 }
 
 public final class LoadableViewWrapper<T: Component & UIView>: ViewBase<LoadableState<T.StateType>, T.ActionType> {
@@ -53,7 +54,7 @@ public final class LoadableViewWrapper<T: Component & UIView>: ViewBase<Loadable
         case .loading:
             if componentState.isInTransition(from: previousComponentState) {
                 makeSkeletonable()
-                showAnimatedGradientSkeleton()
+                configuration.style.loadableView.showLoading(self)
             }
         case .error:
             break
@@ -78,9 +79,11 @@ public final class LoadableViewWrapper<T: Component & UIView>: ViewBase<Loadable
             make.edges.equalToSuperview()
         }
     }
+
 }
 
 extension UIView {
+
     func makeSkeletonable() {
         makeSkeletonableRecursive(view: self)
     }
@@ -93,4 +96,5 @@ extension UIView {
             makeSkeletonableRecursive(view: $0)
         }
     }
+
 }
