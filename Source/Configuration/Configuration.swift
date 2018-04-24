@@ -14,6 +14,8 @@
  * to add any new property into the Properties struct via an extension to keep properties easily discoverable via auto-complete.
  */
 public final class Configuration {
+    // MARK:- This code is here due to bug in Swift/Xcode where types inside extensions depend on compilation order
+    public typealias Style = StyleConfiguration
 
     /// Global configuration instance. It's used as a default configuration in every component throughout Reactant.
     public static var global = Configuration()

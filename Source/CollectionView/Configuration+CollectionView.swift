@@ -48,6 +48,6 @@ public final class CollectionViewConfiguration: BaseSubConfiguration {
 
 public extension Configuration.Style {
     var collectionView: CollectionViewConfiguration {
-        return CollectionViewConfiguration(configuration: self)
+        return CollectionViewConfiguration(configuration: configuration)
     }
 }

@@ -10,8 +10,6 @@ public final class StyleConfiguration: BaseSubConfiguration {
 }
 
 extension Configuration {
-    public typealias Style = StyleConfiguration
-
     public var style: StyleConfiguration {
         return StyleConfiguration(configuration: self)
     }
