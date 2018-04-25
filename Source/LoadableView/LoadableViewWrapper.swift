@@ -1,5 +1,5 @@
 //
-//  SkeletonableViewBase.swift
+//  LoadableViewWrapper.swift
 //  Reactant
 //
 //  Created by Robin Krenecky on 23/04/2018.
@@ -11,7 +11,15 @@ import SkeletonView
 public enum LoadableState<S> {
     case loading
     case loaded(S)
-    case error(Error)
+    case error(errorView: UIView)
+
+    public static func errorView(message: String, buttonTitle: String, buttonAction: @escaping (() -> Void)) -> LoadableState {
+        return .error(errorView: LoadableErrorMessageView(message: message, buttonTitle: buttonTitle, buttonAction: buttonAction))
+    }
+
+    public static func errorView(message: String) -> LoadableState {
+        return .error(errorView: LoadableErrorMessageView(message: message))
+    }
 
     func isInTransition(from otherState: LoadableState?) -> Bool {
         if case .loading? = otherState, case .loading = self {
@@ -56,8 +64,11 @@ public final class LoadableViewWrapper<T: Component & UIView>: ViewBase<Loadable
                 makeSkeletonable()
                 configuration.style.loadableView.showLoading(self)
             }
-        case .error:
-            break
+        case .error(let errorView):            
+            addSubview(errorView)
+            errorView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
         }
     }
 
@@ -79,11 +90,9 @@ public final class LoadableViewWrapper<T: Component & UIView>: ViewBase<Loadable
             make.edges.equalToSuperview()
         }
     }
-
 }
 
 extension UIView {
-
     func makeSkeletonable() {
         makeSkeletonableRecursive(view: self)
     }
@@ -96,5 +105,4 @@ extension UIView {
             makeSkeletonableRecursive(view: $0)
         }
     }
-
 }

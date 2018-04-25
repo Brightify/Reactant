@@ -76,6 +76,8 @@
 		22F48FE71FAB0EE900E736C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F48FE61FAB0EE900E736C8 /* AppDelegate.swift */; };
 		22F48FEE1FAB0EE900E736C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F48FED1FAB0EE900E736C8 /* Assets.xcassets */; };
 		677138D6038E38CF1E2AB7C6 /* Pods_ReactantPrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0CE169634834E74544F2A0 /* Pods_ReactantPrototyping.framework */; };
+		7139F67020908AE4009EA7F4 /* LoadableErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7139F66F20908AE4009EA7F4 /* LoadableErrorMessageView.swift */; };
+		7139F6722090A655009EA7F4 /* Configuration+LoadableErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7139F6712090A655009EA7F4 /* Configuration+LoadableErrorMessageView.swift */; };
 		71E49521208DF2A400CA3044 /* LoadableViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49520208DF2A400CA3044 /* LoadableViewWrapper.swift */; };
 		71E49563208F37DE00CA3044 /* SubConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49562208F37DE00CA3044 /* SubConfiguration.swift */; };
 		71E49567208F38FA00CA3044 /* BaseSubConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49566208F38FA00CA3044 /* BaseSubConfiguration.swift */; };
@@ -293,6 +295,8 @@
 		50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A648916F85EF94ED93EB6F6 /* Pods-Reactant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.release.xcconfig"; sourceTree = "<group>"; };
 		711603479E5441514316A7F3 /* Pods_ReactantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7139F66F20908AE4009EA7F4 /* LoadableErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableErrorMessageView.swift; sourceTree = "<group>"; };
+		7139F6712090A655009EA7F4 /* Configuration+LoadableErrorMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+LoadableErrorMessageView.swift"; sourceTree = "<group>"; };
 		71E49520208DF2A400CA3044 /* LoadableViewWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadableViewWrapper.swift; sourceTree = "<group>"; };
 		71E49562208F37DE00CA3044 /* SubConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubConfiguration.swift; sourceTree = "<group>"; };
 		71E49566208F38FA00CA3044 /* BaseSubConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSubConfiguration.swift; sourceTree = "<group>"; };
@@ -720,6 +724,8 @@
 			children = (
 				71E49520208DF2A400CA3044 /* LoadableViewWrapper.swift */,
 				71E49570208F778A00CA3044 /* Configuration+LoadableView.swift */,
+				7139F66F20908AE4009EA7F4 /* LoadableErrorMessageView.swift */,
+				7139F6712090A655009EA7F4 /* Configuration+LoadableErrorMessageView.swift */,
 			);
 			path = LoadableView;
 			sourceTree = "<group>";
@@ -1645,6 +1651,7 @@
 				DC1C68011E5F574B0081E7BD /* ActivityIndicator.swift in Sources */,
 				DC6940851E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift in Sources */,
 				DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */,
+				7139F67020908AE4009EA7F4 /* LoadableErrorMessageView.swift in Sources */,
 				DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */,
 				DC79F6AB1E5377B60033AE51 /* Configurable.swift in Sources */,
 				DC137FA81E4E29DA00A0516F /* UIView+Utils.swift in Sources */,
@@ -1653,6 +1660,7 @@
 				DC6940711E505CA700C99380 /* TableViewState.swift in Sources */,
 				183E0CB21EB888E5006CF52A /* Attribute.swift in Sources */,
 				18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */,
+				7139F6722090A655009EA7F4 /* Configuration+LoadableErrorMessageView.swift in Sources */,
 				DC2B5D6C1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift in Sources */,
 				DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */,
 				DC137FA71E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift in Sources */,
