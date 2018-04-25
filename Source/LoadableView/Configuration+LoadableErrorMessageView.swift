@@ -8,6 +8,10 @@
 
 import UIKit
 
+private let backgroundViewProperty = Properties.Style.style(for: UIView.self) {
+    $0.backgroundColor = .white
+}
+
 private let wrapperViewProperty = Properties.Style.style(for: UIStackView.self) {
     $0.axis = .vertical
     $0.alignment = .center
@@ -33,6 +37,15 @@ private let buttonWidthProperty = Property<CGFloat>(defaultValue: 100)
 private let animationDurationProperty = Property<TimeInterval>(defaultValue: 0.2)
 
 public final class LoadableErrorMessageViewConfiguration: BaseSubConfiguration {
+    public var backgroundView: (UIView) -> Void {
+        get {
+            return configuration.get(valueFor: backgroundViewProperty)
+        }
+        set {
+            configuration.set(backgroundViewProperty, to: newValue)
+        }
+    }
+
     public var wrapperView: (UIStackView) -> Void {
         get {
             return configuration.get(valueFor: wrapperViewProperty)
@@ -42,6 +55,7 @@ public final class LoadableErrorMessageViewConfiguration: BaseSubConfiguration {
         }
 
     }
+
     public var title: (UILabel) -> Void {
         get {
             return configuration.get(valueFor: titleProperty)

@@ -51,8 +51,6 @@ internal final class LoadableErrorMessageView: ViewBase<Void, Void> {
             wrapperView
         )
 
-        backgroundColor = .white
-
         animateFadeIn(withDuration: configuration.style.loadableErrorMessageView.animationDuration)
     }
 
@@ -68,6 +66,7 @@ internal final class LoadableErrorMessageView: ViewBase<Void, Void> {
     }
 
     private func applyStyle(from configuration: LoadableErrorMessageViewConfiguration) {
+        configuration.backgroundView(self)
         configuration.wrapperView(wrapperView)
         configuration.title(title)
         configuration.button(button)
