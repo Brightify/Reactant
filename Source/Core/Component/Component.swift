@@ -206,7 +206,7 @@ extension Component {
      *
      * - parameter mutation: closure to which the current componentState is passed to be mutated in certain ways
      */
-    func mutateState(_ mutation: (inout StateType) -> Void) {
+    public func mutateState(_ mutation: (inout StateType) -> Void) {
         var mutableState = componentState
         mutation(&mutableState)
         componentState = mutableState
