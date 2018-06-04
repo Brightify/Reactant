@@ -71,8 +71,8 @@ extension Wireframe {
     public func branchNavigation(controller: UIViewController, closeButtonTitle: String?) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: controller)
         if let closeButtonTitle = closeButtonTitle {
-            controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: closeButtonTitle, style: .done) {
-                navigationController.dismiss(animated: true, completion: nil)
+            controller.navigationItem.leftBarButtonItem = UIBarButtonItem(title: closeButtonTitle, style: .done) { [weak navigationController] in
+                navigationController?.dismiss(animated: true, completion: nil)
             }
         }
         return navigationController
