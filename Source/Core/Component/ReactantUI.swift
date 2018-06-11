@@ -11,5 +11,27 @@ public protocol ReactantUIContainer: class {
 
     func setupReactantUI()
 
+    func updateReactantUI()
+
     static func destroyReactantUI(target: UIView)
+}
+
+internal extension UIView {
+    func tryUpdateReactantUI() {
+        guard self is ReactantUI else {
+            return
+        }
+
+        updateReactantUIRecursive()
+    }
+
+    private func updateReactantUIRecursive() {
+        if let reactantUi = self as? ReactantUI {
+            reactantUi.__rui.updateReactantUI()
+        }
+
+        for child in subviews {
+            child.updateReactantUIRecursive()
+        }
+    }
 }

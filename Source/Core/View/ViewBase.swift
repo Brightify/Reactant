@@ -114,4 +114,12 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
 
         super.addSubview(view)
     }
+
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if let reactantUi = self as? ReactantUI {
+            reactantUi.__rui.updateReactantUI()
+        }
+    }
 }

@@ -115,4 +115,12 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
 
         super.addSubview(view)
     }
+
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if let reactantUi = self as? ReactantUI {
+            reactantUi.__rui.updateReactantUI()
+        }
+    }
 }
