@@ -16,10 +16,10 @@ Notice the `:configuration => 'Debug'`. This means that the `ReactantLiveUI` wil
 Afterwards, run `pod install` to install it, then open your project and locate the `Generate Reactant UI` build phase we set up in the [Reactant UI introduction](./introduction.md). On the last line, where you run the `reactant-ui` command, add a parameter `--enable-live`. The line should look similar to the following one:
 
 ```sh
-"$PODS_ROOT/ReactantUI/.build/debug/reactant-ui" --enable-live > "$SRCROOT/Application/Generated/GeneratedUI.swift"
+"$PODS_ROOT/ReactantUI/.build/debug/reactant-ui" generate --enable-live --inputPath="$PROJECT_DIR/Application/" --outputFile="$SRCROOT/Application/Generated/GeneratedUI.swift" --xcodeprojPath="$PROJECT_DIR/ReactantUI.xcodeproj"
 ```
 
-Last step, open your `AppDelegate.swift` and in `application(_:didFinishLaunchingWithOptions:)` method add line:
+Last step, open your `AppDelegate.swift` and in `application(_:didFinishLaunchingWithOptions:)` method add this line:
 
 ```swift
 activateLiveReload(in: window)

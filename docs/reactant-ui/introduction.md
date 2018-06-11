@@ -18,7 +18,7 @@ pod 'ReactantUI'
 
 This will add Reactant UI source files to your project. After that open your Xcode project, go to *Build Phases*, and create a new *Run Script* phase (`+` button in top left corner -> `New Run Script Phase`).
 
-Give the new phase a name (for example *"Generate Reactant UI"*) and move it just above phase called `Compile Sources (n items)`.
+Give the new phase a name (e.g. *"Generate Reactant UI"*) and move it just above phase called `Compile Sources (n items)`.
 
 Last step is putting the following shell script into the newly created phase:
 
@@ -26,10 +26,8 @@ Last step is putting the following shell script into the newly created phase:
 pushd "$PODS_ROOT/ReactantUI"
 env -i HOME="$HOME" PATH="$PATH" swift build
 popd
-# Go into directory where you'll have `.ui.xml` files.
-cd "$SRCROOT/Application/Source"
 # Run reactant-ui generator and save the output to a single `.swift` file
-"$PODS_ROOT/ReactantUI/.build/debug/reactant-ui" > "$SRCROOT/Application/Generated/GeneratedUI.swift"
+"$PODS_ROOT/ReactantUI/.build/debug/reactant-ui" generate --inputPath="$PROJECT_DIR/Application/" --outputFile="$SRCROOT/Application/Generated/GeneratedUI.swift" --xcodeprojPath=$PROJECT_DIR/ReactantUI.xcodeproj
 ```
 
 ## Recommended editor
