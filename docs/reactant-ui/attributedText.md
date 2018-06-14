@@ -1,7 +1,5 @@
 # Attributed Text
 
-###### Dread them, run from them, clients will request them all the same.
-
 Attributed strings are very useful for text with multiple modifications where it would be unnecessarily complex to use more than one label/button.
 
 Both ReactantUI and ReactantLiveUI support attributed strings for even faster prototyping of your application. The attributed texts form a hiearchy where all children inherit the style from their ancestor. However, children can still override the inherited attributes leading to clean and straightforward API.
@@ -44,26 +42,48 @@ We are adding the attributes directly to the `attributedTitle` element's propert
 
 ```xml
 <Button
-    layout:fillHorizontally="super inset(10)"
-    layout:height="60">
-    <attributedTitle
-        style="header">
-        <normal>Travel!</normal>
-    </attributedTitle>
-    <attributedTitle
-        state="selected | highlighted"
-        style="header"
-        font=":bold@21"
-        foregroundColor="#f5f5f5">
-        Travel!
-    </attributedTitle>
+  layout:fillHorizontally="super inset(10)"
+  layout:height="60">
+  <attributedTitle
+    style="header">
+    <normal>Travel!</normal>
+  </attributedTitle>
+  <attributedTitle
+    state="selected | highlighted"
+    style="header"
+    font=":bold@21"
+    foregroundColor="#f5f5f5">
+    Travel!
+  </attributedTitle>
 </Button>
 ```
 
-## Anonymous Styles
-ReactantUI also supports anonymous styles. Not by design, but it does!
-
 ## Extending Styles
+ReactantUI supports extending other styles to inherit their properties. Referencing other
+
+## Global Styles
+To use globally defined styles, we can use the dot notation to access the stylegroup namespace.
+
+```xml
+<!-- CommonStyles.styles.xml -->
+<styleGroup name="common">
+  <attributedTextStyle name="title">
+    <b font=":bold@21" />
+    <i font=":light@20" />
+    <base font=":bold@30" foregroundColor="white" backgroundColor="black" />
+  </attributedTextStyle>
+</styleGroup>
+```
+
+```xml
+<!-- Inside Component in Component.ui.xml -->
+<styles name="GeneralStyles">
+  <attributedTextStyle name="bandaska" extend="common.title">
+    <i font=":bold@20" />
+    <base foregroundColor="white" />
+  </attributedTextStyle>
+</styles>
+```
 
 <br>
 
@@ -127,7 +147,7 @@ Paragraph style needs its own section because of how many settings it has. Setti
 - **firstLineHeadIndent** - decimal (e.g. `15`, `9.5`, ...)
 - **headIndent** - decimal (e.g. `5`, `4.5`, ...)
 - **tailIndent** - decimal (e.g. `1`, `0.1`, ...)
-- **tabStops** - array of decimals (e.g. `15; 50`, `5; 15; 35`, ...) - we are setting the `location` of the text tabs only
+- **tabStops** - array of alignment (optional; `left`, `right`, `center`, `justified` or `natural`) and decimal pairs separated by `@` (e.g. `left@15; center@50`, `right@5; 15; 35`, ...) - we are setting the `alignment` (the word) and `location` (the decimal)
 - **lineBreakMode** - `byWordWrapping`, `byCharWrapping`, `byClipping`, `byTruncatingHead`, `byTruncatingTail`, `byTruncatingMiddle`
 - **maximumLineHeight** - decimal (e.g. `120`, `65.5`, ...)
 - **minimumLineHeight** - decimal (e.g. `0`, `0.676767`, ...)
