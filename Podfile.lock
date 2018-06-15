@@ -90,7 +90,7 @@ DEPENDENCIES:
   - SnapKit (~> 4.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Differentiator
     - Kingfisher
     - Nimble
@@ -136,4 +136,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: cae5960ee794d112207135ff9acdd22a6ebd688a
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

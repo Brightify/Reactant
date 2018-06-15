@@ -16,6 +16,10 @@ final class ViewController: ControllerBase<Void, ExampleRootView> {
         super.init()
     }
 
+    override func afterInit() {
+        rootView.componentState = .items(["Test1", "Test2", "Test3"])//.loading
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -24,20 +28,28 @@ final class ViewController: ControllerBase<Void, ExampleRootView> {
 }
 
 
-final class ExampleRootView: ViewBase<Void, Void> {
+final class ExampleRootView: ViewBase<CollectionViewState<String>, Void> {
 
 //    private let labelInsideSafeArea = UILabel(text: "Hello Reactant!")
-    private let tableView = SimpleCollectionView<SimpleCell>(reloadable: false)
-    
-    override func afterInit() {
-        tableView.action
-            .subscribe(onNext: {
-                print($0)
-            }).disposed(by: lifetimeDisposeBag)
+    private let tableView = PlainTableView<SimpleCell>(options: [.reloadable])
+
+    override var actions: [Observable<Void>] {
+        return [
+            tableView.action.rewrite()
+        ]
     }
     
+    override func afterInit() {
+//        tableView.componentState = .loading
+//        tableView.action
+//            .subscribe(onNext: {
+//                print($0)
+//            }).disposed(by: lifetimeDisposeBag)
+    }
+
     override func update() {
-        tableView.componentState = .items(["Test1", "Test2", "Test3"])
+        tableView.componentState = componentState
+//        tableView.componentState = .items(["Test1", "Test2", "Test3"])
     }
 
     override func loadView() {
@@ -45,10 +57,12 @@ final class ExampleRootView: ViewBase<Void, Void> {
 //            labelInsideSafeArea
             tableView
         )
+
+        tableView.loadingIndicator.activityIndicatorViewStyle = .gray
         
-        tableView.collectionView.allowsMultipleSelection = true
-        tableView.collectionView.allowsSelection = true
-        tableView.collectionViewLayout.estimatedItemSize = CGSize(1)
+//        tableView.collectionView.allowsMultipleSelection = true
+//        tableView.collectionView.allowsSelection = true
+//        tableView.collectionViewLayout.estimatedItemSize = CGSize(1)
     }
 
     override func setupConstraints() {
@@ -62,14 +76,14 @@ final class ExampleRootView: ViewBase<Void, Void> {
     }
 }
 
-final class SimpleCell: ControlBase<String, Void>, CollectionViewCell {
+final class SimpleCell: ViewBase<String, Void>, TableViewCell {
     
-    override var actions: [Observable<Void>] {
-        return [
-            rx.controlEvent(.touchUpInside).asObservable()
-        ]
-    }
-    
+//    override var actions: [Observable<Void>] {
+//        return [
+//            rx.controlEvent(.touchUpInside).asObservable()
+//        ]
+//    }
+
     private let label = UILabel()
     
     override func update() {
@@ -88,9 +102,5 @@ final class SimpleCell: ControlBase<String, Void>, CollectionViewCell {
         label.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(16)
         }
-    }
-    
-    func setSelected(_ selected: Bool) {
-        backgroundColor = selected ? .red : .clear
     }
 }
