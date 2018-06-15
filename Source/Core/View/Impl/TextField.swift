@@ -25,7 +25,7 @@ public protocol TextInputStateConvertible {
 }
 
 extension TextInputStateConvertible {
-    func asString() -> String {
+    public func asString() -> String {
         switch asTextInputState() {
         case .string(let string):
             return string
@@ -34,7 +34,7 @@ extension TextInputStateConvertible {
         }
     }
 
-    func asAttributedString() -> NSAttributedString {
+    public func asAttributedString() -> NSAttributedString {
         switch asTextInputState() {
         case .string(let string):
             return string.attributed()
