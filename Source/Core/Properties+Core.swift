@@ -34,19 +34,12 @@ extension Properties.Style {
     #if os(iOS)
     public static let scroll = style(for: UIScrollView.self)
     public static let textField = style(for: TextField.self)
+    public static let control = style(for: UIControl.self)
     
     /// NOTE: Applied after `controllerRoot` style
     public static let dialogControllerRoot = style(for: ControllerRootViewContainer.self) { root in
         root.backgroundColor = UIColor.black.fadedOut(by: 20%)
     }
-    public static let dialog = style(for: UIView.self)
-    public static let dialogContentContainer = style(for: UIView.self)
-    public static let scroll = style(for: UIScrollView.self)
-    public static let button = style(for: UIButton.self)
-    public static let control = style(for: UIControl.self)
-    public static let container = style(for: ContainerView.self)
-    public static let view = style(for: UIView.self)
-    public static let textField = style(for: TextField.self)
     #endif
 
 }
