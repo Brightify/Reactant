@@ -5,6 +5,7 @@
 //  Created by Matouš Hýbl on 09/02/2018.
 //
 
+#if os(iOS)
 import UIKit
 
 public extension UIFont {
@@ -76,3 +77,4 @@ public extension UIFont {
     }
     
 }
+#endif

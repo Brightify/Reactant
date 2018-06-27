@@ -6,6 +6,7 @@
 //  Copyright © 2018 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 extension UINavigationController: Styleable { }
@@ -39,3 +40,4 @@ extension UINavigationController {
         return self
     }
 }
+#endif

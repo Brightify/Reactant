@@ -5,6 +5,7 @@
 //  Created by Matouš Hýbl on 09/02/2018.
 //
 
+#if os(iOS)
 import RxSwift
 
 open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configurable {
@@ -114,3 +115,4 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
         super.addSubview(view)
     }
 }
+#endif

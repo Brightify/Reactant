@@ -81,6 +81,9 @@
 		18C3CB9C1FDC516C00C9248D /* FallbackSafeAreaInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CB9B1FDC516C00C9248D /* FallbackSafeAreaInsets.swift */; };
 		2210BAD31EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BAD21EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift */; };
 		221CCEB220774A2C00A64494 /* Swift+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221CCEB120774A2C00A64494 /* Swift+Compatibility.swift */; };
+		225927D720E3822B00150C80 /* Configuration+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956E208F5F5800CA3044 /* Configuration+Style.swift */; };
+		225927D820E3823000150C80 /* BaseSubConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49566208F38FA00CA3044 /* BaseSubConfiguration.swift */; };
+		225927D920E3823E00150C80 /* SubConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49562208F37DE00CA3044 /* SubConfiguration.swift */; };
 		2284DA9F1FAC6D2F00D231D3 /* ButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DA9E1FAC6D2F00D231D3 /* ButtonController.swift */; };
 		2284DAA11FAC6D5500D231D3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA01FAC6D5500D231D3 /* TableViewController.swift */; };
 		2284DAA41FAC6DBA00D231D3 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA31FAC6DBA00D231D3 /* TabController.swift */; };
@@ -1866,9 +1869,11 @@
 				DC195DDC2023272100F25036 /* Typealiases.swift in Sources */,
 				DC195E2F202336EA00F25036 /* ViewBase.swift in Sources */,
 				DC195E152023294600F25036 /* ScrollView.swift in Sources */,
+				225927D920E3823E00150C80 /* SubConfiguration.swift in Sources */,
 				DC195E342023373C00F25036 /* ReactantUI.swift in Sources */,
 				DC195E352023374900F25036 /* OptionalType.swift in Sources */,
 				DC195DDD2023272100F25036 /* ButtonBase.swift in Sources */,
+				225927D720E3822B00150C80 /* Configuration+Style.swift in Sources */,
 				DC195E172023294600F25036 /* OutlineView.swift in Sources */,
 				DC195DE02023272100F25036 /* ScrollControllerBase.swift in Sources */,
 				DC195DE12023272100F25036 /* ControllerRootViewContainer.swift in Sources */,
@@ -1892,6 +1897,7 @@
 				DC195DF02023272100F25036 /* RootView.swift in Sources */,
 				DC195E312023370600F25036 /* Configuration.swift in Sources */,
 				DC195DF12023272100F25036 /* ComponentDelegate.swift in Sources */,
+				225927D820E3823000150C80 /* BaseSubConfiguration.swift in Sources */,
 				DC195DF32023272100F25036 /* ControllerBase.swift in Sources */,
 				DC195DF42023272100F25036 /* ContainerView.swift in Sources */,
 				DC195E182023294600F25036 /* NSLabel.swift in Sources */,
