@@ -9,25 +9,25 @@
 import RxSwift
 
 #if os(iOS)
-open class PickerView<MODEL>: ViewBase<MODEL, MODEL>, UIPickerViewDataSource, UIPickerViewDelegate {
+public class PickerView<MODEL>: ViewBase<MODEL, MODEL>, UIPickerViewDataSource, UIPickerViewDelegate {
     private let pickerView = UIPickerView()
 
     public let items: [MODEL]
     public let titleSelection: (MODEL) -> String
 
-    init(items: [MODEL], titleSelection: @escaping (MODEL) -> String) {
+    public init(items: [MODEL], titleSelection: @escaping (MODEL) -> String) {
         self.items = items
         self.titleSelection = titleSelection
         super.init()
     }
 
-    override open func update() {
+    public override func update() {
         let title = titleSelection(componentState)
         guard let index = items.index(where: { titleSelection($0) == title }) else { return }
         pickerView.selectRow(index, inComponent: 0, animated: true)
     }
 
-    override open func loadView() {
+    public override func loadView() {
         children(
             pickerView
         )
@@ -36,7 +36,7 @@ open class PickerView<MODEL>: ViewBase<MODEL, MODEL>, UIPickerViewDataSource, UI
         pickerView.delegate = self
     }
 
-    override open func setupConstraints() {
+    public override func setupConstraints() {
         pickerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
