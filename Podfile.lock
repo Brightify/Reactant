@@ -1,9 +1,9 @@
 PODS:
-  - Cuckoo (0.11.0)
+  - Cuckoo (0.11.3)
   - Differentiator (3.0.2)
-  - Kingfisher (4.5.0)
-  - Nimble (7.0.3)
-  - Quick (1.2.0)
+  - Kingfisher (4.8.0)
+  - Nimble (7.1.2)
+  - Quick (1.3.0)
   - Reactant/ActivityIndicator (1.2.0):
     - RxCocoa (~> 4.0)
   - Reactant/All-iOS (1.2.0):
@@ -52,9 +52,9 @@ PODS:
   - Reactant/Validation (1.2.0):
     - Result (~> 3.0)
   - Result (3.2.4)
-  - RxBlocking (4.0.0):
+  - RxBlocking (4.2.0):
     - RxSwift (~> 4.0)
-  - RxCocoa (4.0.0):
+  - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
   - RxDataSources (3.0.2):
     - Differentiator (~> 3.0)
@@ -64,16 +64,16 @@ PODS:
     - Nimble (~> 7.0)
     - RxBlocking (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxOptional (3.3.0):
+  - RxOptional (3.4.0):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxSwift (4.0.0)
-  - RxTest (4.0.0):
+  - RxSwift (4.2.0)
+  - RxTest (4.2.0):
     - RxSwift (~> 4.0)
   - SnapKit (4.0.0)
 
 DEPENDENCIES:
-  - Cuckoo (from `https://github.com/Brightify/Cuckoo.git`, branch `master`)
+  - Cuckoo
   - Kingfisher (~> 4.0)
   - Nimble (~> 7.0)
   - Quick (~> 1.1)
@@ -90,7 +90,8 @@ DEPENDENCIES:
   - SnapKit (~> 4.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
+    - Cuckoo
     - Differentiator
     - Kingfisher
     - Nimble
@@ -106,34 +107,26 @@ SPEC REPOS:
     - SnapKit
 
 EXTERNAL SOURCES:
-  Cuckoo:
-    :branch: master
-    :git: https://github.com/Brightify/Cuckoo.git
   Reactant:
     :path: "./"
 
-CHECKOUT OPTIONS:
-  Cuckoo:
-    :commit: 0f52ceef7ea7e16af4b6b90da39a2c6034bc29e5
-    :git: https://github.com/Brightify/Cuckoo.git
-
 SPEC CHECKSUMS:
-  Cuckoo: 8b52764c70febbb16ea35b6ae1b568a59b06231b
+  Cuckoo: 97522dd7ac6f18adba6022bdc74aa69e82ca691a
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
-  Kingfisher: 26ae0473102b77b575da51960c932431e3745407
-  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
-  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  Nimble: 3835ba9f459daa6b347f8a8e110aaae8ca1920a8
+  Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
   Reactant: 13fcb82686441114f2c5dfc82d6993b2ae1688b7
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
-  RxBlocking: 923c2c8106d80d7c2d6b276afd66ce3b10824836
-  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxBlocking: e339d8a6e752e25ade95ff858466c55436668f59
+  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxDataSources: cb7c31e652a87ebb919da45f716bbb87b3765f6b
   RxNimble: e5a34bf3b18d85406fc2a6e2cbc73aa2b4a858f0
-  RxOptional: e5448d3e21024489e07c31f6a262f2b50c975367
-  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
-  RxTest: 0041e792cede35e53e4749f378d21482af0e9d12
+  RxOptional: fabc37fc8e3cf4c336ebaeb5c92b576c64b2e6c5
+  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  RxTest: 8da864c0ee47534f586ff18fb0c7e5b2f1fe5023
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: cae5960ee794d112207135ff9acdd22a6ebd688a
+PODFILE CHECKSUM: 80a70b9af8338c7fe63ae54d2fe4dfc8d2ef9857
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

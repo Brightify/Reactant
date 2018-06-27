@@ -13,7 +13,7 @@
  * Reactant comes with prebuilt properties which you can find in extensions to the Properties struct. It's recommended 
  * to add any new property into the Properties struct via an extension to keep properties easily discoverable via auto-complete.
  */
-public final class Configuration {
+public struct Configuration {
     // XXX: This code is here due to bug in Swift/Xcode where types inside extensions depend on compilation order
     public typealias Style = StyleConfiguration
 
@@ -40,7 +40,7 @@ public final class Configuration {
      * - parameter property: property to which you want to set the `Configuration`
      * - parameter value: value to set for specified property
      */
-    public func set<T>(_ property: Property<T>, to value: T) {
+    public mutating func set<T>(_ property: Property<T>, to value: T) {
         data[property.id] = value
     }
 

@@ -2,45 +2,56 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 inhibit_all_warnings!
 
-def shared
-    pod 'RxSwift', '~> 4.0'
-    pod 'RxCocoa', '~> 4.0'
-    pod 'RxDataSources', '~> 3.0'
-    pod 'RxOptional', '~> 3.0'
-    pod 'SnapKit', '~> 4.0'
-    pod 'Kingfisher', '~> 4.0'
-    pod 'Result', '~> 3.0'
+abstract_target 'Reactant' do
+    podspec :path => './Reactant.podspec'
+
+    target 'Reactant-iOS' do
+        platform :ios, '9.0'
+    end
+
+    target 'Reactant-tvOS' do
+        platform :tvos, '9.2'
+    end
+
+    target 'ReactantTests' do
+        inherit! :search_paths
+
+        platform :ios, '9.0'
+
+        pod 'Quick', '~> 1.1'
+        pod 'Nimble', '~> 7.0'
+        pod 'Cuckoo'
+        pod 'RxNimble'
+        pod 'RxTest'
+    end
 end
 
-target 'Reactant' do
-    platform :ios, '9.0'
-
-    shared
-end
-
-target 'ReactantTests' do
-    platform :ios, '9.0'
-
-    shared
-
-    pod 'Quick', '~> 1.1'
-    pod 'Nimble', '~> 7.0'
-    pod 'Cuckoo', :git => 'https://github.com/Brightify/Cuckoo.git', :branch => 'master'
-    pod 'RxNimble'
-    pod 'RxTest'
-end
+# target 'Reactant' do
+#     platform :ios, '9.0'
+#
+#     podspec :path => './Reactant.podspec'
+#
+#     target 'ReactantTests' do
+#         inherit! :search_paths
+#
+#         platform :ios, '9.0'
+#
+#         pod 'Quick', '~> 1.1'
+#         pod 'Nimble', '~> 7.0'
+#         pod 'Cuckoo'
+#         pod 'RxNimble'
+#         pod 'RxTest'
+#     end
+# end
 
 target 'ReactantPrototyping' do
     platform :ios, '8.0'
-
-    shared
 
     pod 'Reactant', :subspecs => ['All-iOS'], :path => './'
 end
 
 target 'TVPrototyping' do
     platform :tvos, '9.2'
-    shared
 
     pod 'Reactant', :subspecs => ['All-tvOS', 'FallbackSafeAreaInsets'], :path => './'
 end

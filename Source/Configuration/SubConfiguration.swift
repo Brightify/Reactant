@@ -7,7 +7,7 @@
 //
 
 public protocol SubConfiguration {
-    var configuration: Configuration { get }
+    var configuration: Configuration { get set }
 
     init(configuration: Configuration)
 }
