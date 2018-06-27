@@ -106,15 +106,13 @@
 <pre><code class="lang-ruby">pod <span class="pl-s">&apos;ReactantUI&apos;</span>
 </code></pre>
 <p>This will add Reactant UI source files to your project. After that open your Xcode project, go to <em>Build Phases</em>, and create a new <em>Run Script</em> phase (<code>+</code> button in top left corner -&gt; <code>New Run Script Phase</code>).</p>
-<p>Give the new phase a name (for example <em>&#x201C;Generate Reactant UI&#x201D;</em>) and move it just above phase called <code>Compile Sources (n items)</code>.</p>
+<p>Give the new phase a name (e.g. <em>&#x201C;Generate Reactant UI&#x201D;</em>) and move it just above phase called <code>Compile Sources (n items)</code>.</p>
 <p>Last step is putting the following shell script into the newly created phase:</p>
 <pre><code class="lang-sh"><span class="pl-c1">pushd</span> <span class="pl-s">&quot;<span class="hljs-variable">$PODS_ROOT</span>/ReactantUI&quot;</span>
 env -i HOME=<span class="pl-s">&quot;<span class="hljs-variable">$HOME</span>&quot;</span> PATH=<span class="pl-s">&quot;<span class="hljs-variable">$PATH</span>&quot;</span> swift build
 <span class="pl-c1">popd</span>
-<span class="pl-c"># Go into directory where you&apos;ll have `.ui.xml` files.</span>
-<span class="pl-c1">cd</span> <span class="pl-s">&quot;<span class="hljs-variable">$SRCROOT</span>/Application/Source&quot;</span>
 <span class="pl-c"># Run reactant-ui generator and save the output to a single `.swift` file</span>
-<span class="pl-s">&quot;<span class="hljs-variable">$PODS_ROOT</span>/ReactantUI/.build/debug/reactant-ui&quot;</span> &gt; <span class="pl-s">&quot;<span class="hljs-variable">$SRCROOT</span>/Application/Generated/GeneratedUI.swift&quot;</span>
+<span class="pl-s">&quot;<span class="hljs-variable">$PODS_ROOT</span>/ReactantUI/.build/debug/reactant-ui&quot;</span> generate --inputPath=<span class="pl-s">&quot;<span class="hljs-variable">$PROJECT_DIR</span>/Application/&quot;</span> --outputFile=<span class="pl-s">&quot;<span class="hljs-variable">$SRCROOT</span>/Application/Generated/GeneratedUI.swift&quot;</span> --xcodeprojPath=<span class="hljs-variable">$PROJECT_DIR</span>/ReactantUI.xcodeproj
 </code></pre>
 <h2 id="recommended-editor">Recommended editor</h2>
 <p>We recommend downloading <a href="https://atom.io/"><strong>Atom</strong></a> editor and installing <a href="https://atom.io/packages/linter-autocomplete-jing"><strong>linter-autocomplete-jing</strong></a> and <a href="https://atom.io/packages/xml-common-schemata"><strong>xml-common-schemata</strong> </a> plugins. This combination will give you auto-complete support for Reactant&#x2019;s UI XML files.</p>
