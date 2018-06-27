@@ -17,7 +17,7 @@ final class ViewController: ControllerBase<Void, ExampleRootView> {
     }
 
     override func afterInit() {
-        rootView.componentState = .items(["Test1", "Test2", "Test3"])//.loading
+        rootView.componentState = .items(["Test1", "Test2", "Test3"]) // .loading
     }
 
     override func viewWillAppear(_ animated: Bool) {

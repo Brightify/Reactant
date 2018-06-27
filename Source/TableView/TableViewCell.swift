@@ -49,6 +49,7 @@ extension TableViewCell {
 }
 
 extension TableViewCell where Self: UIView {
+    
     public func setSelected(_ selected: Bool, animated: Bool) {
         let style: () -> Void
         if selected {
