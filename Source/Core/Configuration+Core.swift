@@ -6,6 +6,8 @@
 //  Copyright © 2018 Brightify. All rights reserved.
 //
 
+#if os(iOS)
+
 import UIKit
 
 public extension Configuration {
@@ -128,3 +130,5 @@ public extension Configuration.Style {
         }
     }
 }
+
+#endif

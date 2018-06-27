@@ -6,6 +6,7 @@
 //  Copyright © 2018 Brightify. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 public extension UIView {
@@ -61,3 +62,4 @@ public extension UIView {
         }
     }
 }
+#endif
