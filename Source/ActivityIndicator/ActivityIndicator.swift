@@ -69,9 +69,6 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
                     self.behaviorRelay.mutate(using: {
                         $0.remove(at: index)
                     })
-                    var mutableArray = self.behaviorRelay.value
-                    mutableArray.remove(at: index)
-                    self.behaviorRelay.accept(mutableArray)
                 }
             }
         }
