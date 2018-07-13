@@ -15,7 +15,7 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
     
     public let disposeBag = DisposeBag()
     
-    private let variable: Variable<[(id: UUID, associatedValue: T?)]> = Variable([])
+    private let behaviorRelay: BehaviorRelay<[(id: UUID, associatedValue: T?)]> = BehaviorRelay(value: [])
     private let driver: Driver<E>
     private let equalFunction: (T?, T?) -> Bool
     fileprivate let defaultAssociatedValue: T?
@@ -32,10 +32,9 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
         
         // `self` cannot be captured before all fields are initialized.
         let equal = self.equalFunction
-        driver = variable.asDriver()
+        driver = behaviorRelay.asDriver()
             .map { (loading: !$0.isEmpty, associatedValue: $0.compactMap { $0.associatedValue }.first) }
-            .distinctUntilChanged { lhs, rhs in lhs.loading == rhs.loading &&
-                equal(lhs.associatedValue, rhs.associatedValue) }
+            .distinctUntilChanged { lhs, rhs in lhs.loading == rhs.loading && equal(lhs.associatedValue, rhs.associatedValue) }
     }
     
     public func trackActivity<O: ObservableConvertibleType>(of source: O, initialAssociatedValue: T?,
@@ -50,11 +49,15 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
             let messageChangeDisposable = observable.map(associatedValueProvider)
                 .startWith(initialAssociatedValue)
                 .distinctUntilChanged(self.equalFunction)
-                .subscribe(onNext: {
-                    if let index = self.variable.value.index(where: { $0.id == id }) {
-                        self.variable.value[index].associatedValue = $0
+                .subscribe(onNext: { associatedValue in
+                    if let index = self.behaviorRelay.value.index(where: { $0.id == id }) {
+                        self.behaviorRelay.mutate(using: {
+                            $0[index].associatedValue = associatedValue
+                        })
                     } else {
-                        self.variable.value.append((id: id, associatedValue: $0))
+                        self.behaviorRelay.mutate(using: {
+                            $0.append((id: id, associatedValue: associatedValue))
+                        })
                     }
                 })
             
@@ -62,8 +65,13 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
                 subscriptionDisposable.dispose()
                 messageChangeDisposable.dispose()
                 
-                if let index = self.variable.value.index(where: { $0.id == id }) {
-                    self.variable.value.remove(at: index)
+                if let index = self.behaviorRelay.value.index(where: { $0.id == id }) {
+                    self.behaviorRelay.mutate(using: {
+                        $0.remove(at: index)
+                    })
+                    var mutableArray = self.behaviorRelay.value
+                    mutableArray.remove(at: index)
+                    self.behaviorRelay.accept(mutableArray)
                 }
             }
         }
