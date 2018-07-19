@@ -71,6 +71,7 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
             (cell as? Configurable)?.configuration = configuration
             self.cell = cell
             contentView.children(cell)
+            syncCollectionViewCellState()
             setNeedsUpdateConstraints()
             return cell
         }
@@ -81,6 +82,12 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
         cell?.removeFromSuperview()
         self.cell = nil
         return cell
+    }
+
+    private func syncCollectionViewCellState() {
+        // Synchronize the state of the wrapper with the wrapped cell
+        collectionViewCell?.setSelected(isSelected)
+        collectionViewCell?.setHighlighted(isHighlighted)
     }
 }
 #endif
