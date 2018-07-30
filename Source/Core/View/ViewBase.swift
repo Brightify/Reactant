@@ -71,9 +71,11 @@ open class ViewBase<STATE, ACTION>: View, ComponentWithDelegate, Configurable {
 
         translatesAutoresizingMaskIntoConstraints = false
 
+        #if os(iOS)
         if let reactantUi = self as? ReactantUI {
             reactantUi.__rui.setupReactantUI()
         }
+        #endif
 
         loadView()
         setupConstraints()
@@ -86,11 +88,13 @@ open class ViewBase<STATE, ACTION>: View, ComponentWithDelegate, Configurable {
         componentDelegate.canUpdate = true
     }
 
+    #if os(iOS)
     deinit {
         if let reactantUi = self as? ReactantUI {
             type(of: reactantUi.__rui).destroyReactantUI(target: self)
         }
     }
+    #endif
 
     @available(*, unavailable)
     public required init?(coder aDecoder: NSCoder) {
@@ -123,6 +127,7 @@ open class ViewBase<STATE, ACTION>: View, ComponentWithDelegate, Configurable {
         super.addSubview(view)
     }
 
+    #if os(iOS)
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
 
@@ -130,4 +135,5 @@ open class ViewBase<STATE, ACTION>: View, ComponentWithDelegate, Configurable {
             reactantUi.__rui.updateReactantUI()
         }
     }
+    #endif
 }

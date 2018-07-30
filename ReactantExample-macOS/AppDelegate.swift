@@ -13,8 +13,8 @@ import Cocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    let windowController = TestWindowController(
-        window: NSWindow(contentRect: NSMakeRect(100, 100, NSScreen.main()!.frame.width/2, NSScreen.main()!.frame.height/2),
+    let windowController = WindowController(
+        window: NSWindow(contentRect: NSMakeRect(100, 100, NSScreen.main!.frame.width/2, NSScreen.main!.frame.height/2),
                          styleMask: [.titled, .resizable, .miniaturizable, .closable],
                          backing: .buffered,
                          defer: false)
@@ -67,10 +67,10 @@ class TestRootView: ViewBase<Void, Void> {
     }
 }
 
-class TestWindowController: WindowControllerBase<Void, TestRootView> {
-    
-}
-
+//class TestWindowController: WindowControllerBase<Void, TestRootView> {
+//
+//}
+//
 class TestController: ControllerBase<Void, TestRootView> {
 
 }

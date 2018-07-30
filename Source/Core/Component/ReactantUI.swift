@@ -1,3 +1,6 @@
+#if os(iOS)
+import UIKit
+
 public protocol ReactantUI: class {
     var __rui: ReactantUIContainer { get }
 }
@@ -33,3 +36,4 @@ internal extension UIView {
         }
     }
 }
+#endif

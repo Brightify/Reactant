@@ -164,11 +164,13 @@ open class ControllerBase<STATE, ROOT: View>: ViewController, ComponentWithDeleg
         #endif
     }
 
+    #if os(iOS)
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
         rootView.tryUpdateReactantUI()
     }
+    #endif
 
     #if ENABLE_SAFEAREAINSETS_FALLBACK
     open override func viewWillLayoutSubviews() {
