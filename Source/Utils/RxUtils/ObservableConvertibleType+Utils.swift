@@ -106,7 +106,7 @@ public extension ObservableConvertibleType {
      * - parameter source:
      * - returns: `Observable` containing the `source`
      */
-    public func startWithWhenSubscribed(source: () -> E) -> Observable<E> {
+    public func startWithWhenSubscribed(source: @escaping () -> E) -> Observable<E> {
         return asObservable().map { value in { value } }.startWith(source).map { $0() }
     }
 }
