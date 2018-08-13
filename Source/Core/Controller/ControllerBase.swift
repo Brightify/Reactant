@@ -121,13 +121,21 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
             if castRootView?.edgesForExtendedLayout.contains(.top) == true {
                 make.top.equalTo(view)
             } else {
-                make.top.equalTo(topLayoutGuide.snp.bottom)
+                if #available(iOS 12.0, *) {
+                    make.top.equalTo(view.safeAreaLayoutGuide)
+                } else {
+                    make.top.equalTo(topLayoutGuide.snp.bottom)
+                }
             }
             make.trailing.equalTo(view)
             if castRootView?.edgesForExtendedLayout.contains(.bottom) == true {
                 make.bottom.equalTo(view).priority(UILayoutPriority.defaultHigh.rawValue)
             } else {
-                make.bottom.equalTo(bottomLayoutGuide.snp.top).priority(UILayoutPriority.defaultHigh.rawValue)
+                if #available(iOS 12.0, *) {
+                    make.bottom.equalTo(view.safeAreaLayoutGuide)
+                } else {
+                    make.bottom.equalTo(bottomLayoutGuide.snp.top).priority(UILayoutPriority.defaultHigh.rawValue)
+                }
             }
         }
     }
