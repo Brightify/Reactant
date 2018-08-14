@@ -22,9 +22,9 @@ class MockComponentBase<STATE, ACTION>: ComponentBase<STATE, ACTION>, Cuckoo.Cla
         super.init(canUpdate: canUpdate)
     }
 
-    override var action: Observable<ACTION> {
+    var action: Observable<ACTION> {
         get {
-            return cuckoo_manager.getter("action", superclassCall: super.action)
+            return cuckoo_manager.getter("action", superclassCall: MockManager.crashOnProtocolSuperclassCall())
         }
     }
 
@@ -55,10 +55,10 @@ class MockComponentBase<STATE, ACTION>: ComponentBase<STATE, ACTION>, Cuckoo.Cla
         )
     }
 
-    override func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
+    func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
         return cuckoo_manager.call("observeState(_ when: ObservableStateEvent) -> Observable<STATE>",
                                    parameters: (when),
-                                   superclassCall: super.observeState(when)
+                                   superclassCall: MockManager.crashOnProtocolSuperclassCall()
         )
     }
 

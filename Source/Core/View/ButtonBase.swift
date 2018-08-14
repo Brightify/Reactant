@@ -14,17 +14,21 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
     public typealias StateType = STATE
     public typealias ActionType = ACTION
 
+    #if ENABLE_RXSWIFT
     public let lifetimeDisposeBag = DisposeBag()
+    #else
+    public let lifetimeTracking = ObservationTokenTracker()
+    #endif
 
-    public let componentDelegate = ComponentDelegate<STATE, ACTION, ButtonBase<STATE, ACTION>>()
+//    public let componentDelegate = ComponentDelegate<STATE, ACTION, ButtonBase<STATE, ACTION>>()
 
     open var actions: [Observable<ACTION>] {
         return []
     }
 
-    open var action: Observable<ACTION> {
-        return componentDelegate.action
-    }
+//    open var action: Observable<ACTION> {
+//        return componentDelegate.behavior.action
+//    }
 
     open var configuration: Configuration = .global {
         didSet {
@@ -60,7 +64,7 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
     public init() {
         super.init(frame: CGRect.zero)
 
-        componentDelegate.ownerComponent = self
+//        componentDelegate.ownerComponent = self
 
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -71,7 +75,11 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
         loadView()
         setupConstraints()
 
+        #if ENABLE_RXSWIFT
         resetActions()
+        #else
+        resetActionMapping()
+        #endif
         reloadConfiguration()
 
         afterInit()
@@ -96,9 +104,9 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
     open func update() {
     }
 
-    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
-        return componentDelegate.observeState(when)
-    }
+//    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
+//        return componentDelegate.behavior.observeState(when)
+//    }
 
     open func loadView() {
     }

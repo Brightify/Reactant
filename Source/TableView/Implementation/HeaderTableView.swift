@@ -24,6 +24,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
     private let headerIdentifier = TableViewHeaderFooterIdentifier<HEADER>()
 
+    #if ENABLE_RXSWIFT
     open override var actions: [Observable<HeaderTableViewAction<HEADER, CELL>>] {
         #if os(iOS)
         return [
@@ -36,6 +37,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
         ]
         #endif
     }
+    #endif
 
     private let headerFactory: (() -> HEADER)
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>(configureCell: { _,_,_,_  in UITableViewCell() })
@@ -81,11 +83,13 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
         tableView.register(identifier: headerIdentifier)
     }
 
+    #if ENABLE_RXSWIFT
     open override func bind(items: Observable<[SectionModel<HEADER.StateType, CELL.StateType>]>) {
         items
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: lifetimeDisposeBag)
     }
+    #endif
 
     @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let section = dataSource.sectionModels[section].identity

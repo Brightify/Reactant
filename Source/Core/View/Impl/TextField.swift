@@ -60,9 +60,13 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
     public typealias StateType = TextInputStateConvertible
     public typealias ActionType = String
 
+    #if ENABLE_RXSWIFT
     public let lifetimeDisposeBag = DisposeBag()
+    #else
+    public let lifetimeTracking = ObservationTokenTracker()
+    #endif
 
-    public let componentDelegate = ComponentDelegate<TextInputStateConvertible, String, TextField>()
+//    public let componentDelegate = ComponentDelegate<TextInputStateConvertible, String>()
 
     open var actions: [Observable<String>] {
         return [
@@ -70,9 +74,9 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
         ]
     }
 
-    open var action: Observable<String> {
-        return componentDelegate.action
-    }
+//    open var action: Observable<String> {
+//        return componentDelegate.behavior.action
+//    }
 
     open var configuration: Configuration = .global {
         didSet {
@@ -149,7 +153,7 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
     public init() {
         super.init(frame: CGRect.zero)
 
-        componentDelegate.ownerComponent = self
+//        componentDelegate.ownerComponent = self
 
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -160,7 +164,11 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
         loadView()
         setupConstraints()
 
+        #if ENABLE_RXSWIFT
         resetActions()
+        #else
+        resetActionMapping()
+        #endif
         reloadConfiguration()
 
         afterInit()
@@ -201,9 +209,9 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
 
     }
 
-    public func observeState(_ when: ObservableStateEvent) -> Observable<TextInputStateConvertible> {
-        return componentDelegate.observeState(when)
-    }
+//    public func observeState(_ when: ObservableStateEvent) -> Observable<TextInputStateConvertible> {
+//        return componentDelegate.behavior.observeState(when)
+//    }
 
     open func loadView() {
     }

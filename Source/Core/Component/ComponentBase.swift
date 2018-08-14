@@ -13,13 +13,14 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
     public typealias StateType = STATE
     public typealias ActionType = ACTION
 
+    #if ENABLE_RXSWIFT
     public let lifetimeDisposeBag = DisposeBag()
+    #else
+    public let lifetimeTracking = ObservationTokenTracker()
+    #endif
 
-    public let componentDelegate = ComponentDelegate<STATE, ACTION, ComponentBase<STATE, ACTION>>()
+//    public let componentDelegate: ComponentDelegate<ComponentBase<STATE, ACTION>>
 
-    open var action: Observable<ACTION> {
-        return componentDelegate.action
-    }
 
     /**
      * Collection of Component's `Observable`s which are merged into `Component.action`.
@@ -34,9 +35,14 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
     }
 
     public init(canUpdate: Bool = true) {
-        componentDelegate.ownerComponent = self
         
+//        componentDelegate.ownerComponent = self
+
+        #if ENABLE_RXSWIFT
         resetActions()
+        #else
+        resetActionMapping()
+        #endif
         
         afterInit()
         
@@ -49,7 +55,7 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
     open func update() {
     }
 
-    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
-        return componentDelegate.observeState(when)
-    }
+//    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
+//        return componentDelegate.behavior.observeState(when)
+//    }
 }

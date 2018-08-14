@@ -24,6 +24,7 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
     private let footerIdentifier = TableViewHeaderFooterIdentifier<FOOTER>()
 
+    #if ENABLE_RXSWIFT
     open override var actions: [Observable<FooterTableViewAction<CELL, FOOTER>>] {
         #if os(iOS)
         return [
@@ -36,6 +37,7 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
         ]
         #endif
     }
+    #endif
 
     private let footerFactory: (() -> FOOTER)
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>(configureCell: { _,_,_,_  in UITableViewCell() })
@@ -81,11 +83,13 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
         tableView.register(identifier: footerIdentifier)
     }
 
+    #if ENABLE_RXSWIFT
     open override func bind(items: Observable<[SECTION]>) {
         items
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: lifetimeDisposeBag)
     }
+    #endif
 
     @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let section = dataSource.sectionModels[section].identity

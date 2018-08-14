@@ -20,6 +20,7 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
 
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
 
+    #if ENABLE_RXSWIFT
     open override var actions: [Observable<PlainTableViewAction<CELL>>] {
         #if os(iOS)
         return [
@@ -32,6 +33,7 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
         ]
         #endif
     }
+    #endif
 
     private let cellFactory: () -> CELL
 
@@ -62,7 +64,8 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
 
         tableView.register(identifier: cellIdentifier)
     }
-    
+
+    #if ENABLE_RXSWIFT
     open override func bind(items: Observable<[CELL.StateType]>) {
         items
             .bind(to: tableView.items(with: cellIdentifier)) { [unowned self] _, model, cell in
@@ -70,4 +73,5 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
             }
             .disposed(by: lifetimeDisposeBag)
     }
+    #endif
 }

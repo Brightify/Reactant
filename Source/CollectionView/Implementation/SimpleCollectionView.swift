@@ -19,7 +19,8 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
     public typealias MODEL = CELL.StateType
     
     private let cellIdentifier = CollectionViewCellIdentifier<CELL>()
-    
+
+    #if ENABLE_RXSWIFT
     open override var actions: [Observable<SimpleCollectionViewAction<CELL>>] {
         #if os(iOS)
         return [
@@ -32,6 +33,7 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
         ]
         #endif
     }
+    #endif
     
     private let cellFactory: () -> CELL
     
@@ -49,6 +51,7 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
         collectionView.register(identifier: cellIdentifier)
     }
 
+    #if ENABLE_RXSWIFT
     open override func bind(items: Observable<[MODEL]>) {
         items
             .bind(to: collectionView.items(with: cellIdentifier)) { [unowned self] row, model, cell in
@@ -56,4 +59,5 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
             }
             .disposed(by: lifetimeDisposeBag)
     }
+    #endif
 }

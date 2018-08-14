@@ -23,7 +23,7 @@ extension Double {
     }
 }
 
-#if DEBUG
+#if DEBUG && false
     func fatalError(_ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) -> Never {
         #if _runtime(_ObjC)
             NSException(name: .internalInconsistencyException, reason: message(), userInfo: nil).raise()

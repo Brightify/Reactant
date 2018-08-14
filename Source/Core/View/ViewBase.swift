@@ -13,17 +13,27 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
     public typealias StateType = STATE
     public typealias ActionType = ACTION
 
+    #if ENABLE_RXSWIFT
     public let lifetimeDisposeBag = DisposeBag()
+    #else
+    public let lifetimeTracking = ObservationTokenTracker()
+    #endif
 
-    public let componentDelegate = ComponentDelegate<STATE, ACTION, ViewBase<STATE, ACTION>>()
+//    public let componentDelegate = ComponentDelegate<STATE, ACTION, ViewBase<STATE, ACTION>>()
 
+    #if ENABLE_RXSWIFT
     open var actions: [Observable<ActionType>] {
         return []
     }
-
-    open var action: Observable<ActionType> {
-        return componentDelegate.action
+    #else
+    open func actionMapping(mapper: ActionMapper<ACTION>) -> Set<ObservationToken> {
+        return []
     }
+    #endif
+
+//    open var action: Observable<ActionType> {
+//        return componentDelegate.behavior.action
+//    }
 
     open var configuration: Configuration = .global {
         didSet {
@@ -59,7 +69,7 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
     public init() {
         super.init(frame: CGRect.zero)
 
-        componentDelegate.ownerComponent = self
+//        componentDelegate.ownerComponent = self
 
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -70,7 +80,11 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         loadView()
         setupConstraints()
 
+        #if ENABLE_RXSWIFT
         resetActions()
+        #else
+        resetActionMapping()
+        #endif
         reloadConfiguration()
 
         afterInit()
@@ -98,9 +112,9 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
     open func afterInit() {
     }
 
-    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
-        return componentDelegate.observeState(when)
-    }
+//    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
+//        return componentDelegate.behavior.observeState(when)
+//    }
 
     open func update() {
     }

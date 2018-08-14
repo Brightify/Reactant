@@ -25,7 +25,8 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
     private let headerIdentifier = TableViewHeaderFooterIdentifier<HEADER>()
     private let footerIdentifier = TableViewHeaderFooterIdentifier<FOOTER>()
-    
+
+    #if ENABLE_RXSWIFT
     open override var actions: [Observable<SimpleTableViewAction<HEADER, CELL, FOOTER>>] {
         #if os(iOS)
         return [
@@ -38,6 +39,11 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
             ]
         #endif
     }
+    #else
+    open override func actionMapping(mapper: ActionMapper<SimpleTableViewAction<HEADER, CELL, FOOTER>>) -> Set<ObservationToken> {
+        return []
+    }
+    #endif
     
     private let headerFactory: (() -> HEADER)
     private let footerFactory: (() -> FOOTER)
@@ -88,12 +94,14 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
         tableView.register(identifier: headerIdentifier)
         tableView.register(identifier: footerIdentifier)
     }
-    
+
+    #if ENABLE_RXSWIFT
     open override func bind(items: Observable<[SECTION]>) {
         items
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: lifetimeDisposeBag)
     }
+    #endif
     
     @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let model = dataSource.sectionModels[section].identity.header

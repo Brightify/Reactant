@@ -98,7 +98,11 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         #if os(iOS)
         tableView.separatorStyle = .singleLine
         #endif
+        #if ENABLE_RXSWIFT
         tableView.rx.setDelegate(self).disposed(by: lifetimeDisposeBag)
+        #else
+        tableView.delegate = self
+        #endif
     }
     
     open override func setupConstraints() {
@@ -185,7 +189,11 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
 
     open func configure<T: Component>(cell: TableViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
+        #if ENABLE_RXSWIFT
         cell.configureDisposeBag = DisposeBag()
+        #else
+        cell.configureTracking = ObservationTokenTracker()
+        #endif
         if configurationChangeTime != cell.configurationChangeTime {
             cell.configuration = configuration
             cell.configurationChangeTime = configurationChangeTime
@@ -193,11 +201,19 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         let component = cell.cachedCellOrCreated(factory: factory)
         component.componentState = model
         (component as? Configurable)?.configuration = configuration
+        #if ENABLE_RXSWIFT
         component.action.map(mapAction)
             .subscribe(onNext: { [weak self] in
                 self?.perform(action: $0)
             })
             .disposed(by: cell.configureDisposeBag)
+        #else
+        component
+            .observeAction(observer: { [weak self] action in
+                self?.perform(action: mapAction(action))
+            })
+            .track(in: cell.configureTracking)
+        #endif
     }
     
     open func dequeueAndConfigure<T: Component>(identifier: TableViewCellIdentifier<T>, factory: @escaping () -> T,
@@ -209,7 +225,11 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     
     open func configure<T: Component>(view: TableViewHeaderFooterWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
+        #if ENABLE_RXSWIFT
         view.configureDisposeBag = DisposeBag()
+        #else
+        view.configureTracking = ObservationTokenTracker()
+        #endif
         if configurationChangeTime != view.configurationChangeTime {
             view.configuration = configuration
             view.configurationChangeTime = configurationChangeTime
@@ -217,11 +237,19 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         let component = view.cachedViewOrCreated(factory: factory)
         component.componentState = model
         (component as? Configurable)?.configuration = configuration
+        #if ENABLE_RXSWIFT
         component.action.map(mapAction)
             .subscribe(onNext: { [weak self] in
                 self?.perform(action: $0)
             })
             .disposed(by: view.configureDisposeBag)
+        #else
+        component
+            .observeAction(observer: { [weak self] action in
+                self?.perform(action: mapAction(action))
+            })
+            .track(in: view.configureTracking)
+        #endif
     }
     
     open func dequeueAndConfigure<T: Component>(identifier: TableViewHeaderFooterIdentifier<T>, factory: @escaping () -> T,

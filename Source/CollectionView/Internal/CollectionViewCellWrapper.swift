@@ -45,7 +45,11 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
         }
     }
 
+    #if ENABLE_RXSWIFT
     public var configureDisposeBag = DisposeBag()
+    #else
+    public var configureTracking = ObservationTokenTracker()
+    #endif
     
     public override var isHighlighted: Bool {
         didSet {

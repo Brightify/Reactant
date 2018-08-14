@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		002D35DF1FBDC9F800A0401D /* ComponentBaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D35DD1FBDC9D300A0401D /* ComponentBaseTest.swift */; };
 		002D35E21FBDCA1600A0401D /* MockComponentBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D35E11FBDCA1600A0401D /* MockComponentBase.swift */; };
-		002D35E71FBE0FE800A0401D /* ComponentDelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D35E51FBE0FE500A0401D /* ComponentDelegateTest.swift */; };
 		002D35E91FBE115800A0401D /* ComponentTestParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D35E81FBE115800A0401D /* ComponentTestParts.swift */; };
 		00B632E91FBF2AC400D83926 /* Rx+recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B632E81FBF2AC400D83926 /* Rx+recording.swift */; };
 		00B632EC1FBF5B1300D83926 /* WireframeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B632EB1FBF5B1300D83926 /* WireframeTest.swift */; };
@@ -18,6 +17,24 @@
 		00EB11081FBEE016006A1FAA /* Array+UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB11071FBEE016006A1FAA /* Array+UtilsTest.swift */; };
 		04168232D53A3C6EC65FE3C3 /* Pods_Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */; };
 		183457891EB16B8B00C972A4 /* ReactantUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457881EB16B8B00C972A4 /* ReactantUI.swift */; };
+		183898252123A317007CE13E /* Configuration+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49568208F398600CA3044 /* Configuration+TableView.swift */; };
+		183898262123A317007CE13E /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */; };
+		183898272123A317007CE13E /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */; };
+		183898282123A317007CE13E /* PlainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F01DDC6A400063AB96 /* PlainTableView.swift */; };
+		183898292123A317007CE13E /* Properties+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AE1E54AB170033AE51 /* Properties+TableView.swift */; };
+		1838982A2123A317007CE13E /* ReactantTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6CA1E560A5A0033AE51 /* ReactantTableView.swift */; };
+		1838982B2123A317007CE13E /* ReactantTableView+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940761E509E0700C99380 /* ReactantTableView+Delegates.swift */; };
+		1838982C2123A317007CE13E /* TableViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */; };
+		1838982D2123A317007CE13E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785C91DD8C4DF0063AB96 /* TableViewCell.swift */; };
+		1838982E2123A317007CE13E /* TableViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940701E505CA700C99380 /* TableViewState.swift */; };
+		1838982F2123A317007CE13E /* AnyTableViewCellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785DF1DDB21E00063AB96 /* AnyTableViewCellIdentifier.swift */; };
+		183898302123A317007CE13E /* AnyTableViewHeaderFooterIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785E31DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift */; };
+		183898312123A317007CE13E /* TableViewCellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785DD1DDB20840063AB96 /* TableViewCellIdentifier.swift */; };
+		183898322123A317007CE13E /* TableViewHeaderFooterIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785E11DDB22670063AB96 /* TableViewHeaderFooterIdentifier.swift */; };
+		183898332123A317007CE13E /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */; };
+		183898342123A317007CE13E /* SimulatedSeparatorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */; };
+		183898352123A317007CE13E /* TableViewCellWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785CB1DD8C4F00063AB96 /* TableViewCellWrapper.swift */; };
+		183898362123A317007CE13E /* TableViewHeaderFooterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785CD1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift */; };
 		183E0CAE1EB88062006CF52A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0CAD1EB88062006CF52A /* TextField.swift */; };
 		183E0CB21EB888E5006CF52A /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0CB11EB888E5006CF52A /* Attribute.swift */; };
 		183E0CB41EB889A5006CF52A /* NSAttributedString+Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0CB31EB889A5006CF52A /* NSAttributedString+Attribute.swift */; };
@@ -59,8 +76,6 @@
 		183E0D121EB88F3B006CF52A /* ObservableConvertibleType+ResultTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0D111EB88F3B006CF52A /* ObservableConvertibleType+ResultTest.swift */; };
 		185121511D834D1F002C4B08 /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
 		18650B971D8364DC00B1B2A0 /* Properties+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185121061D834C5D002C4B08 /* Properties+Core.swift */; };
-		18B4BF7D1E294E7A00D39EEA /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */; };
-		18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */; };
 		18C3CB9C1FDC516C00C9248D /* FallbackSafeAreaInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C3CB9B1FDC516C00C9248D /* FallbackSafeAreaInsets.swift */; };
 		2210BAD31EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2210BAD21EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift */; };
 		221CCEB220774A2C00A64494 /* Swift+Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221CCEB120774A2C00A64494 /* Swift+Compatibility.swift */; };
@@ -78,7 +93,6 @@
 		677138D6038E38CF1E2AB7C6 /* Pods_ReactantPrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0CE169634834E74544F2A0 /* Pods_ReactantPrototyping.framework */; };
 		71E49563208F37DE00CA3044 /* SubConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49562208F37DE00CA3044 /* SubConfiguration.swift */; };
 		71E49567208F38FA00CA3044 /* BaseSubConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49566208F38FA00CA3044 /* BaseSubConfiguration.swift */; };
-		71E49569208F398600CA3044 /* Configuration+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49568208F398600CA3044 /* Configuration+TableView.swift */; };
 		71E4956B208F3B0C00CA3044 /* Configuration+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956A208F3B0C00CA3044 /* Configuration+Core.swift */; };
 		71E4956D208F3E6000CA3044 /* Configuration+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956C208F3E6000CA3044 /* Configuration+CollectionView.swift */; };
 		71E4956F208F5F5800CA3044 /* Configuration+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956E208F5F5800CA3044 /* Configuration+Style.swift */; };
@@ -97,23 +111,14 @@
 		DC0785AE1DD3C3120063AB96 /* DialogControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785AC1DD3C3120063AB96 /* DialogControllerBase.swift */; };
 		DC0785AF1DD3C3120063AB96 /* ScrollControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785AD1DD3C3120063AB96 /* ScrollControllerBase.swift */; };
 		DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B21DD3D7080063AB96 /* UIViewController+Navigation.swift */; };
-		DC0785CA1DD8C4DF0063AB96 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785C91DD8C4DF0063AB96 /* TableViewCell.swift */; };
-		DC0785CC1DD8C4F00063AB96 /* TableViewCellWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785CB1DD8C4F00063AB96 /* TableViewCellWrapper.swift */; };
-		DC0785CE1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785CD1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift */; };
 		DC0785D01DD9C1E40063AB96 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785CF1DD9C1E40063AB96 /* CollectionViewCell.swift */; };
 		DC0785D21DD9C2070063AB96 /* CollectionViewCellWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785D11DD9C2070063AB96 /* CollectionViewCellWrapper.swift */; };
 		DC0785D41DD9C2330063AB96 /* CollectionReusableViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785D31DD9C2330063AB96 /* CollectionReusableViewWrapper.swift */; };
-		DC0785DE1DDB20840063AB96 /* TableViewCellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785DD1DDB20840063AB96 /* TableViewCellIdentifier.swift */; };
-		DC0785E01DDB21E00063AB96 /* AnyTableViewCellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785DF1DDB21E00063AB96 /* AnyTableViewCellIdentifier.swift */; };
-		DC0785E21DDB22670063AB96 /* TableViewHeaderFooterIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785E11DDB22670063AB96 /* TableViewHeaderFooterIdentifier.swift */; };
-		DC0785E41DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785E31DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift */; };
 		DC0785E61DDB2C150063AB96 /* CollectionViewCellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785E51DDB2C150063AB96 /* CollectionViewCellIdentifier.swift */; };
 		DC0785E81DDB2C290063AB96 /* AnyCollectionViewCellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785E71DDB2C290063AB96 /* AnyCollectionViewCellIdentifier.swift */; };
 		DC0785EA1DDB2C860063AB96 /* CollectionSupplementaryViewIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785E91DDB2C860063AB96 /* CollectionSupplementaryViewIdentifier.swift */; };
 		DC0785EC1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785EB1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift */; };
 		DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785ED1DDB31080063AB96 /* CollectionViewState.swift */; };
-		DC0785F11DDC6A400063AB96 /* PlainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785F01DDC6A400063AB96 /* PlainTableView.swift */; };
-		DC0785FF1DDC6F430063AB96 /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */; };
 		DC137F731E4DB5FB00A0516F /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F721E4DB5FB00A0516F /* Rules.swift */; };
 		DC137F751E4DB62200A0516F /* Rules+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F741E4DB62200A0516F /* Rules+String.swift */; };
 		DC137F791E4DB7F100A0516F /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F781E4DB7F100A0516F /* ValidationError.swift */; };
@@ -142,17 +147,13 @@
 		DC1C67F81E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C67F71E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift */; };
 		DC1C67FA1E5C3D210081E7BD /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C67F91E5C3D210081E7BD /* UIImage+Utils.swift */; };
 		DC1C68011E5F574B0081E7BD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C68001E5F574B0081E7BD /* ActivityIndicator.swift */; };
-		DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */; };
 		DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D291DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift */; };
 		DC2B5D3D1DE2070200F9C9D7 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D391DE2070200F9C9D7 /* Rule.swift */; };
-		DC2B5D671DE2F90D00F9C9D7 /* TableViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D661DE2F90D00F9C9D7 /* TableViewBase.swift */; };
 		DC2B5D691DE2FD6800F9C9D7 /* CollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D681DE2FD6800F9C9D7 /* CollectionViewBase.swift */; };
 		DC2B5D6C1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6A1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift */; };
 		DC2B5D6D1DE2FFC000F9C9D7 /* DialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6B1DE2FFC000F9C9D7 /* DialogView.swift */; };
 		DC2B5D6F1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6E1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift */; };
 		DC69406E1E505C3900C99380 /* SimpleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69406D1E505C3900C99380 /* SimpleCollectionView.swift */; };
-		DC6940711E505CA700C99380 /* TableViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940701E505CA700C99380 /* TableViewState.swift */; };
-		DC6940771E509E0700C99380 /* ReactantTableView+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940761E509E0700C99380 /* ReactantTableView+Delegates.swift */; };
 		DC69407F1E51AE9A00C99380 /* ReactantCollectionView+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC69407E1E51AE9A00C99380 /* ReactantCollectionView+Delegates.swift */; };
 		DC6940831E51B23A00C99380 /* FlowCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940821E51B23A00C99380 /* FlowCollectionViewBase.swift */; };
 		DC6940851E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940841E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift */; };
@@ -162,14 +163,12 @@
 		DC6940911E5359BD00C99380 /* OptionalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6940901E5359BD00C99380 /* OptionalType.swift */; };
 		DC79F6AB1E5377B60033AE51 /* Configurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AA1E5377B60033AE51 /* Configurable.swift */; };
 		DC79F6AD1E54A5880033AE51 /* Properties+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AC1E54A5880033AE51 /* Properties+CollectionView.swift */; };
-		DC79F6AF1E54AB170033AE51 /* Properties+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6AE1E54AB170033AE51 /* Properties+TableView.swift */; };
 		DC79F6B11E54AD540033AE51 /* Properties+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6B01E54AD540033AE51 /* Properties+Style.swift */; };
 		DC79F6B31E55A67E0033AE51 /* PagingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6B21E55A67E0033AE51 /* PagingCollectionView.swift */; };
 		DC79F6BB1E55FAA70033AE51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6BA1E55FAA70033AE51 /* AppDelegate.swift */; };
 		DC79F6BD1E55FAA70033AE51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6BC1E55FAA70033AE51 /* ViewController.swift */; };
 		DC79F6C21E55FAA70033AE51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC79F6C11E55FAA70033AE51 /* Assets.xcassets */; };
 		DC79F6C51E55FAA70033AE51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC79F6C31E55FAA70033AE51 /* LaunchScreen.storyboard */; };
-		DC79F6CB1E560A5A0033AE51 /* ReactantTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6CA1E560A5A0033AE51 /* ReactantTableView.swift */; };
 		DC79F6CD1E560C400033AE51 /* ReactantCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6CC1E560C400033AE51 /* ReactantCollectionView.swift */; };
 		DCC98CD81E617A3C0018757E /* StaticMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18650BA51D83671B00B1B2A0 /* StaticMap.swift */; };
 		DCC98CDC1E62CD9D0018757E /* Collection+CLLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC98CDB1E62CD9D0018757E /* Collection+CLLocationCoordinate2D.swift */; };
@@ -1525,19 +1524,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				22957E19207210BD0088C09E /* PickerView.swift in Sources */,
-				DC0785F11DDC6A400063AB96 /* PlainTableView.swift in Sources */,
+				183898302123A317007CE13E /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
 				DC0785931DD39BF60063AB96 /* ComponentDelegate.swift in Sources */,
 				DC1C67F01E5C2F800081E7BD /* SynchronizedRecycler.swift in Sources */,
 				DC0785971DD3A1F50063AB96 /* FutureControllerProvider.swift in Sources */,
-				DC0785FF1DDC6F430063AB96 /* SimpleTableView.swift in Sources */,
 				DCC98CDC1E62CD9D0018757E /* Collection+CLLocationCoordinate2D.swift in Sources */,
 				DC1C67F41E5C3C900081E7BD /* Collection+Utils.swift in Sources */,
 				DC137F9B1E4E29DA00A0516F /* ObservableConvertibleType+Utils.swift in Sources */,
 				DCC98CE31E62CED80018757E /* MKCoordinateRegion+utils.swift in Sources */,
 				DC2B5D6F1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift in Sources */,
+				1838982F2123A317007CE13E /* AnyTableViewCellIdentifier.swift in Sources */,
 				DCC98CDF1E62CE070018757E /* MKCoordinateSpan+inset.swift in Sources */,
 				DC69408C1E53594800C99380 /* Property.swift in Sources */,
 				DC1C67F61E5C3CC70081E7BD /* Dictionary+Utils.swift in Sources */,
+				1838982B2123A317007CE13E /* ReactantTableView+Delegates.swift in Sources */,
 				DC137F751E4DB62200A0516F /* Rules+String.swift in Sources */,
 				183E0CB61EB889C8006CF52A /* Styleable.swift in Sources */,
 				DC1C67FA1E5C3D210081E7BD /* UIImage+Utils.swift in Sources */,
@@ -1547,20 +1547,18 @@
 				71E49567208F38FA00CA3044 /* BaseSubConfiguration.swift in Sources */,
 				71E4956D208F3E6000CA3044 /* Configuration+CollectionView.swift in Sources */,
 				DC137FA01E4E29DA00A0516F /* Recycler.swift in Sources */,
-				DC2B5D241DE1939000F9C9D7 /* SimulatedSeparatorTableView.swift in Sources */,
 				221CCEB220774A2C00A64494 /* Swift+Compatibility.swift in Sources */,
 				183E0CC91EB88E9C006CF52A /* UIButton+Utils.swift in Sources */,
 				DC137FA91E4E29DA00A0516F /* CollapseAxis.swift in Sources */,
-				DC0785E21DDB22670063AB96 /* TableViewHeaderFooterIdentifier.swift in Sources */,
-				DC79F6CB1E560A5A0033AE51 /* ReactantTableView.swift in Sources */,
 				DC79F6B31E55A67E0033AE51 /* PagingCollectionView.swift in Sources */,
 				DC0785EC1DDB2C930063AB96 /* AnyCollectionSupplementaryViewIdentifier.swift in Sources */,
 				DC137F7C1E4DB83C00A0516F /* String+EmailValidationError.swift in Sources */,
 				DC137FAB1E4E29DA00A0516F /* UIView+Visibility.swift in Sources */,
 				DC137FA21E4E29DA00A0516F /* UIView+Reusable.swift in Sources */,
 				DC137FA31E4E29DA00A0516F /* Scrollable.swift in Sources */,
-				DC0785CC1DD8C4F00063AB96 /* TableViewCellWrapper.swift in Sources */,
 				DC137F9E1E4E29DA00A0516F /* AssociatedObject.swift in Sources */,
+				183898352123A317007CE13E /* TableViewCellWrapper.swift in Sources */,
+				183898332123A317007CE13E /* SimpleTableView.swift in Sources */,
 				183E0CD31EB88EA5006CF52A /* PercentUtils.swift in Sources */,
 				2210BAD31EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift in Sources */,
 				DCC98CE11E62CE830018757E /* CLLocationCoordinate2D+utils.swift in Sources */,
@@ -1568,37 +1566,41 @@
 				DC0785A41DD3BDE10063AB96 /* ContainerView.swift in Sources */,
 				DC137FA61E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift in Sources */,
 				183E0CC51EB88E9C006CF52A /* CGAffineTransform+Shortcut.swift in Sources */,
+				1838982D2123A317007CE13E /* TableViewCell.swift in Sources */,
 				DC6940831E51B23A00C99380 /* FlowCollectionViewBase.swift in Sources */,
 				22B8C5A8202E1B0D002B4A6D /* ControlBase.swift in Sources */,
-				DC79F6AF1E54AB170033AE51 /* Properties+TableView.swift in Sources */,
 				DC0785D41DD9C2330063AB96 /* CollectionReusableViewWrapper.swift in Sources */,
 				DCC98CD81E617A3C0018757E /* StaticMap.swift in Sources */,
+				183898322123A317007CE13E /* TableViewHeaderFooterIdentifier.swift in Sources */,
+				183898252123A317007CE13E /* Configuration+TableView.swift in Sources */,
 				DC0785AE1DD3C3120063AB96 /* DialogControllerBase.swift in Sources */,
 				DC137F9C1E4E29DA00A0516F /* ObserverType+Utils.swift in Sources */,
 				183E0CCB1EB88E9C006CF52A /* UIColor+Init.swift in Sources */,
+				183898342123A317007CE13E /* SimulatedSeparatorTableView.swift in Sources */,
 				183E0CCE1EB88E9C006CF52A /* UIFont+Init.swift in Sources */,
+				1838982A2123A317007CE13E /* ReactantTableView.swift in Sources */,
 				183E0CC61EB88E9C006CF52A /* CGPoint+Init.swift in Sources */,
 				DC137FAC1E4E29DA00A0516F /* Visibility.swift in Sources */,
 				71E49563208F37DE00CA3044 /* SubConfiguration.swift in Sources */,
 				DC79F6CD1E560C400033AE51 /* ReactantCollectionView.swift in Sources */,
+				183898312123A317007CE13E /* TableViewCellIdentifier.swift in Sources */,
 				DC0785D01DD9C1E40063AB96 /* CollectionViewCell.swift in Sources */,
 				DC2B5D6D1DE2FFC000F9C9D7 /* DialogView.swift in Sources */,
 				DC0785D21DD9C2070063AB96 /* CollectionViewCellWrapper.swift in Sources */,
 				DC137FA11E4E29DA00A0516F /* Reusable.swift in Sources */,
 				DC137F9D1E4E29DA00A0516F /* Hash.swift in Sources */,
-				DC0785E01DDB21E00063AB96 /* AnyTableViewCellIdentifier.swift in Sources */,
+				1838982E2123A317007CE13E /* TableViewState.swift in Sources */,
 				DC0785E81DDB2C290063AB96 /* AnyCollectionViewCellIdentifier.swift in Sources */,
 				DC6940911E5359BD00C99380 /* OptionalType.swift in Sources */,
-				DC0785E41DDB22FC0063AB96 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
 				18C3CB9C1FDC516C00C9248D /* FallbackSafeAreaInsets.swift in Sources */,
 				DC1C67F81E5C3CFD0081E7BD /* RangeReplaceableCollection+Utils.swift in Sources */,
 				22957E1B207212A80088C09E /* UIView+stack.swift in Sources */,
+				183898272123A317007CE13E /* HeaderTableView.swift in Sources */,
 				183E0CAE1EB88062006CF52A /* TextField.swift in Sources */,
 				DC2B5D691DE2FD6800F9C9D7 /* CollectionViewBase.swift in Sources */,
 				DC137FA51E4E29DA00A0516F /* UIScrollView+Scrollable.swift in Sources */,
 				183E0CCC1EB88E9C006CF52A /* UIColor+Modificators.swift in Sources */,
 				DC79F6B11E54AD540033AE51 /* Properties+Style.swift in Sources */,
-				71E49569208F398600CA3044 /* Configuration+TableView.swift in Sources */,
 				18650B971D8364DC00B1B2A0 /* Properties+Core.swift in Sources */,
 				DC137F791E4DB7F100A0516F /* ValidationError.swift in Sources */,
 				DC137F731E4DB5FB00A0516F /* Rules.swift in Sources */,
@@ -1614,22 +1616,24 @@
 				183457891EB16B8B00C972A4 /* ReactantUI.swift in Sources */,
 				DC69407F1E51AE9A00C99380 /* ReactantCollectionView+Delegates.swift in Sources */,
 				DC1C67F21E5C39F30081E7BD /* Sequence+Utils.swift in Sources */,
+				183898362123A317007CE13E /* TableViewHeaderFooterWrapper.swift in Sources */,
 				DC1C68011E5F574B0081E7BD /* ActivityIndicator.swift in Sources */,
 				DC6940851E51FC8400C99380 /* FlowCollectionViewBase+Delegates.swift in Sources */,
 				DC0785921DD39BF60063AB96 /* ComponentBase.swift in Sources */,
 				DC2B5D2A1DE1A5DD00F9C9D7 /* ObservableConvertibleType+Result.swift in Sources */,
+				1838982C2123A317007CE13E /* TableViewBase.swift in Sources */,
+				183898282123A317007CE13E /* PlainTableView.swift in Sources */,
 				DC79F6AB1E5377B60033AE51 /* Configurable.swift in Sources */,
 				DC137FA81E4E29DA00A0516F /* UIView+Utils.swift in Sources */,
 				DC0785EE1DDB31080063AB96 /* CollectionViewState.swift in Sources */,
-				DC0785CA1DD8C4DF0063AB96 /* TableViewCell.swift in Sources */,
-				DC6940711E505CA700C99380 /* TableViewState.swift in Sources */,
 				183E0CB21EB888E5006CF52A /* Attribute.swift in Sources */,
-				18B4BF7F1E294EAA00D39EEA /* FooterTableView.swift in Sources */,
 				DC2B5D6C1DE2FFC000F9C9D7 /* ControllerRootViewContainer.swift in Sources */,
+				183898292123A317007CE13E /* Properties+TableView.swift in Sources */,
 				DC0785B31DD3D7080063AB96 /* UIViewController+Navigation.swift in Sources */,
 				DC137FA71E4E29DA00A0516F /* UIStackView+ArrangedChildren.swift in Sources */,
 				183E0CD01EB88E9C006CF52A /* UIOffset+Init.swift in Sources */,
 				DC79F6AD1E54A5880033AE51 /* Properties+CollectionView.swift in Sources */,
+				183898262123A317007CE13E /* FooterTableView.swift in Sources */,
 				DC0785A11DD3ADB60063AB96 /* ComponentWithDelegate.swift in Sources */,
 				183E0CCD1EB88E9C006CF52A /* UIEdgeInsets+Init.swift in Sources */,
 				DCC98CE51E62CEFE0018757E /* InternalUtils.swift in Sources */,
@@ -1637,18 +1641,13 @@
 				DC0785991DD3A3420063AB96 /* ViewBase.swift in Sources */,
 				183E0CD11EB88E9C006CF52A /* UITableView+Init.swift in Sources */,
 				DC0785A21DD3B77B0063AB96 /* ButtonBase.swift in Sources */,
-				DC0785DE1DDB20840063AB96 /* TableViewCellIdentifier.swift in Sources */,
 				DC07858D1DD39BE50063AB96 /* ControllerBase.swift in Sources */,
 				DC0785911DD39BF60063AB96 /* Component.swift in Sources */,
-				DC0785CE1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift in Sources */,
 				DC69408A1E53590A00C99380 /* Configuration.swift in Sources */,
 				DC0785861DD3879B0063AB96 /* Wireframe.swift in Sources */,
-				DC2B5D671DE2F90D00F9C9D7 /* TableViewBase.swift in Sources */,
-				18B4BF7D1E294E7A00D39EEA /* HeaderTableView.swift in Sources */,
 				DC0785EA1DDB2C860063AB96 /* CollectionSupplementaryViewIdentifier.swift in Sources */,
 				183E0CC71EB88E9C006CF52A /* CGRect+Init.swift in Sources */,
 				183E0CB41EB889A5006CF52A /* NSAttributedString+Attribute.swift in Sources */,
-				DC6940771E509E0700C99380 /* ReactantTableView+Delegates.swift in Sources */,
 				183E0CCA1EB88E9C006CF52A /* UICollectionView+Init.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1668,7 +1667,6 @@
 				183E0D071EB88F17006CF52A /* StyleableTest.swift in Sources */,
 				183E0D0F1EB88F17006CF52A /* UIOffset+InitTest.swift in Sources */,
 				183E0D0B1EB88F17006CF52A /* UIColor+ModificatorsTest.swift in Sources */,
-				002D35E71FBE0FE800A0401D /* ComponentDelegateTest.swift in Sources */,
 				00B632EC1FBF5B1300D83926 /* WireframeTest.swift in Sources */,
 				183E0CFE1EB88F11006CF52A /* ConfigurableTest.swift in Sources */,
 				002D35E21FBDCA1600A0401D /* MockComponentBase.swift in Sources */,

@@ -55,6 +55,7 @@ open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where 
         }
     }
 
+    #if ENABLE_RXSWIFT
     open override func bind(items: Observable<[CELL.StateType]>) {
         super.bind(items: items)
 
@@ -62,6 +63,7 @@ open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where 
             pageControl.numberOfPages = items.count
         }).disposed(by: lifetimeDisposeBag)
     }
+    #endif
     
     open override func layoutSubviews() {
         super.layoutSubviews()

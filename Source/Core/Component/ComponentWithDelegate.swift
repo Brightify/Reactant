@@ -8,12 +8,26 @@
 
 import RxSwift
 
-public protocol ComponentWithDelegate: Component {
-    
-    associatedtype ComponentType: Component
-    
-    var componentDelegate: ComponentDelegate<StateType, ActionType, ComponentType> { get }
+#if !ENABLE_RXSWIFT
+public struct ActionMapper<ACTION> {
+    private let performAction: (ACTION) -> Void
 
+    public init(performAction: @escaping (ACTION) -> Void) {
+        self.performAction = performAction
+    }
+
+    public func map<C: Component>(from component: C, using mapping: @escaping (C.ActionType) -> ACTION) -> ObservationToken {
+        return component.observeAction { [performAction] action in
+            performAction(mapping(action))
+        }
+    }
+}
+#endif
+
+public protocol ComponentWithDelegate: Component {
+    var componentDelegate: ComponentDelegate<StateType, ActionType> { get }
+
+    #if ENABLE_RXSWIFT
     /**
      * Array of observables through which the Component communicates with outside world.
      * - ATTENTION: Each of the `Observable`s need to be *rewritten* or *mapped* to be of the correct type - the ACTION.
@@ -41,18 +55,32 @@ public protocol ComponentWithDelegate: Component {
      * This is where you call `resetActions()` when orientation changes causing `actions` to update and the amount of active buttons is changed as well.
      */
     func resetActions()
+    #elseif ENABLE_PROMISEKIT
+
+    #else
+    func actionMapping(mapper: ActionMapper<ActionType>) -> Set<ObservationToken>
+
+    /**
+     * Used to reset `actions` `Observable` array. Useful when you have a condition in `actions` based on which certain `Observable`s are included in the array.
+     * ## Example
+     * You decide to change the amount of active buttons based on device orientation. `actions` don't automatically change
+     * based on the conditions that are in the computed variable, because this would be ineffective.
+     * This is where you call `resetActions()` when orientation changes causing `actions` to update and the amount of active buttons is changed as well.
+     */
+    func resetActionMapping()
+    #endif
+}
+
+private var componentDelegateKey = 0 as UInt8
+extension ComponentWithDelegate {
+    public var componentDelegate: ComponentDelegate<StateType, ActionType> {
+        return associatedObject(self, key: &componentDelegateKey) {
+            return ComponentDelegate(owner: self)
+        }
+    }
 }
 
 extension ComponentWithDelegate {
-    
-    public var stateDisposeBag: DisposeBag {
-        return componentDelegate.stateDisposeBag
-    }
-
-    public var observableState: Observable<StateType> {
-        return componentDelegate.observableState
-    }
-
     public var previousComponentState: StateType? {
         return componentDelegate.previousComponentState
     }
@@ -71,15 +99,57 @@ extension ComponentWithDelegate {
             componentDelegate.needsUpdate = true
         }
     }
-    
+
     public func perform(action: ActionType) {
         componentDelegate.perform(action: action)
     }
 }
 
+#if ENABLE_RXSWIFT
 extension ComponentWithDelegate {
 
+    public var action: Observable<ActionType> {
+        return componentDelegate.behavior.action
+    }
+    
+    public var stateDisposeBag: DisposeBag {
+        return componentDelegate.behavior.stateDisposeBag
+    }
+
+    public var observableState: Observable<StateType> {
+        return componentDelegate.behavior.observableState
+    }
+
+    public func observeState(_ when: ObservableStateEvent) -> Observable<StateType> {
+        return componentDelegate.behavior.observeState(when)
+    }
+
     public func resetActions() {
-        componentDelegate.actions = actions
+        componentDelegate.behavior.actions = actions
     }
 }
+#else
+extension ComponentWithDelegate {
+
+    public var stateTracking: ObservationTokenTracker {
+        return componentDelegate.behavior.stateTracking
+    }
+
+    public func actionMapping(mapper: ActionMapper<ActionType>) -> Set<ObservationToken> {
+        return []
+    }
+
+    public func resetActionMapping() {
+        componentDelegate.behavior.registerActionMapping(actionMapping)
+    }
+
+    public func observeAction(observer: @escaping (ActionType) -> Void) -> ObservationToken {
+        return componentDelegate.behavior.observeAction(observer: observer)
+    }
+
+    public func observeState(_ when: ObservableStateEvent, observer: @escaping (StateType) -> Void) -> ObservationToken {
+        return componentDelegate.behavior.observeState(when, observer: observer)
+    }
+
+}
+#endif

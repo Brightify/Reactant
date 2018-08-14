@@ -23,6 +23,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
     private let footerIdentifier = TableViewHeaderFooterIdentifier<UITableViewHeaderFooterView>(name: "Separator")
 
+    #if ENABLE_RXSWIFT
     open override var actions: [Observable<SimulatedSeparatorTableViewAction<CELL>>] {
         #if os(iOS)
         return [
@@ -35,6 +36,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
         ]
         #endif
     }
+    #endif
 
     open var separatorColor: UIColor? = nil {
         didSet {
@@ -91,7 +93,8 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
         tableView.register(identifier: cellIdentifier)
         tableView.register(identifier: footerIdentifier)
     }
-    
+
+    #if ENABLE_RXSWIFT
     open override func bind(items: Observable<[MODEL]>) {
         items.map {
                 $0.map { SectionModel(model: Void(), items: [$0]) }
@@ -99,6 +102,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: lifetimeDisposeBag)
     }
+    #endif
 
     @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = tableView.dequeue(identifier: footerIdentifier)

@@ -22,7 +22,11 @@ public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell, Configur
         }
     }
 
+    #if ENABLE_RXSWIFT
     public var configureDisposeBag = DisposeBag()
+    #else
+    public var configureTracking = ObservationTokenTracker()
+    #endif
     
     public override class var requiresConstraintBasedLayout: Bool {
         return true

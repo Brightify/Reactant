@@ -30,10 +30,15 @@ final class ExampleRootView: ViewBase<Void, Void> {
     private let tableView = SimpleCollectionView<SimpleCell>(reloadable: false)
     
     override func afterInit() {
-        tableView.action
-            .subscribe(onNext: {
-                print($0)
-            }).disposed(by: lifetimeDisposeBag)
+//        tableView.action
+//            .subscribe(onNext: {
+//                print($0)
+//            }).disposed(by: lifetimeDisposeBag)
+        tableView
+            .observeAction { action in
+                print(action)
+            }
+            .track(in: lifetimeTracking)
     }
     
     override func update() {
@@ -62,34 +67,62 @@ final class ExampleRootView: ViewBase<Void, Void> {
     }
 }
 
-final class SimpleCell: ControlBase<String, Void>, CollectionViewCell {
-    
-    override var actions: [Observable<Void>] {
-        return [
-            rx.controlEvent(.touchUpInside).asObservable()
-        ]
-    }
-    
+final class SimpleControl: ControlBase<String, Void> {
     private let label = UILabel()
-    
+
     override func update() {
         label.text = componentState
     }
-    
+
     override func loadView() {
         children(
             label
         )
-        
+
         label.font = UIFont.System.regular[15]
     }
-    
+
     override func setupConstraints() {
         label.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(16)
         }
     }
-    
+}
+
+final class SimpleCell: ViewBase<String, Void>, CollectionViewCell {
+
+    #if ENABLE_RXSWIFT
+    override var actions: [Observable<Void>] {
+        return [
+            rx.controlEvent(.touchUpInside).asObservable()
+        ]
+    }
+    #else
+    override func actionMapping(mapper: ActionMapper<()>) -> Set<ObservationToken> {
+        return [
+            mapper.map(from: control, using: { $0 })
+        ]
+    }
+    #endif
+
+    private let control = SimpleControl()
+
+    override func update() {
+        control.componentState = componentState
+    }
+
+    override func loadView() {
+        children(
+            control
+        )
+    }
+
+    override func setupConstraints() {
+        control.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+
     func setSelected(_ selected: Bool) {
         backgroundColor = selected ? .red : .clear
     }

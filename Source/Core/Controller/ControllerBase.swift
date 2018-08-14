@@ -18,10 +18,14 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         return false
     }
     
+    #if ENABLE_RXSWIFT
     public let lifetimeDisposeBag = DisposeBag()
+    #else
+    public let lifetimeTracking = ObservationTokenTracker()
+    #endif
     
-    public let componentDelegate = ComponentDelegate<STATE, Void, ControllerBase<STATE, ROOT>>()
-    
+//    public let componentDelegate = ComponentDelegate<STATE, Void, ControllerBase<STATE, ROOT>>()
+
     public let action: Observable<Void> = Observable.empty()
     
     public let actions: [Observable<Void>] = []
@@ -70,12 +74,23 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     }
 
     private func setupController(title: String) {
-        componentDelegate.ownerComponent = self
+//        componentDelegate.ownerComponent = self
+
+        #if ENABLE_RXSWIFT
         rootView.action
             .subscribe(onNext: { [weak self] in
                 self?.act(on: $0)
             })
             .disposed(by: lifetimeDisposeBag)
+        #else
+        rootView
+            .observeAction(observer: { [weak self] in
+                self?.act(on: $0)
+            })
+            .track(in: lifetimeTracking)
+        #endif
+
+
 
         self.title = title
 
@@ -99,9 +114,9 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         return true
     }
 
-    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
-        return componentDelegate.observeState(when)
-    }
+//    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
+//        return componentDelegate.behavior.observeState(when)
+//    }
 
     open override func loadView() {
         view = ControllerRootViewContainer().with(configuration: configuration)

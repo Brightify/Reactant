@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-import Reactant
+@testable import Reactant
 import RxSwift
 import Cuckoo
 
@@ -16,9 +16,11 @@ class ComponentDelegateTest: QuickSpec {
     override func spec() {
         // MARK:- Void Type Testing
         describe("ComponentDelegate<Void, ComponentTestAction>") {
-            var delegate: ComponentDelegate<Void, ComponentTestAction, MockComponentBase<Void, ComponentTestAction>>!
+            var mockComponent: MockComponentBase<Void, ComponentTestAction>!
+            var delegate: ComponentDelegate<Void, ComponentTestAction>!
             beforeEach {
-                delegate = ComponentDelegate()
+                mockComponent = MockComponentBase()
+                delegate = ComponentDelegate(owner: mockComponent)
             }
 
             describe("componentState") {
@@ -33,15 +35,17 @@ class ComponentDelegateTest: QuickSpec {
 
         // MARK:- Primitive Type Testing
         describe("ComponentDelegate<Int>") {
-            var delegate: ComponentDelegate<Int, ComponentTestAction, MockComponentBase<Int, ComponentTestAction>>!
+            var mockComponent: MockComponentBase<Int, ComponentTestAction>!
+            var delegate: ComponentDelegate<Int, ComponentTestAction>!
 
             beforeEach {
-                delegate = ComponentDelegate()
+                mockComponent = MockComponentBase()
+                delegate = ComponentDelegate(owner: mockComponent)
             }
             describe("observableState") {
                 context("when componentState is never set") {
                     it("is empty") {
-                        let recorded = recording(of: delegate.observableState) {
+                        let recorded = recording(of: delegate.behavior.observableState) {
                             delegate = nil
                         }
 
@@ -51,7 +55,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when componentState is set") {
                     it("emits single value of componentState") {
-                        let recorded = recording(of: delegate.observableState) {
+                        let recorded = recording(of: delegate.behavior.observableState) {
                             delegate.componentState = 42
                         }
 
@@ -61,14 +65,13 @@ class ComponentDelegateTest: QuickSpec {
             }
 
             describe("observeState(when: .beforeUpdate)") {
-                var mockComponent: MockComponentBase<Int, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+//                    mockComponent = MockComponentBase()
                 }
                 context("when componentState is never set") {
                     it("emits nothing") {
-                        let recorded = recording(of: delegate.observeState(.beforeUpdate)) {
+                        let recorded = recording(of: delegate.behavior.observeState(.beforeUpdate)) {
                             delegate = nil
                         }
 
@@ -79,8 +82,8 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when componentState is set") {
                     it("emits a single value of componentState before update() is called") {
-                        let recorded = recording(of: delegate.observeState(.beforeUpdate)) {
-                            delegate.ownerComponent = mockComponent
+                        let recorded = recording(of: delegate.behavior.observeState(.beforeUpdate)) {
+//                            delegate.ownerComponent = mockComponent
                             delegate.componentState = 42
                         }
 
@@ -90,14 +93,14 @@ class ComponentDelegateTest: QuickSpec {
             }
 
             describe("observeState(when: .afterUpdate)") {
-                var mockComponent: MockComponentBase<Int, ComponentTestAction>!
+//                var mockComponent: MockComponentBase<Int, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+//                    mockComponent = MockComponentBase()
                 }
                 context("when componentState is never set") {
                     it("emits nothing") {
-                        let recorded = recording(of: delegate.observeState(.afterUpdate)) {
+                        let recorded = recording(of: delegate.behavior.observeState(.afterUpdate)) {
                             delegate = nil
                         }
 
@@ -109,8 +112,8 @@ class ComponentDelegateTest: QuickSpec {
                 context("when componentState is set") {
                     context("when canUpdate is true") {
                         it("emits a single value of componentState after update() is called") {
-                            let recorded = recording(of: delegate.observeState(.afterUpdate)) {
-                                delegate.ownerComponent = mockComponent
+                            let recorded = recording(of: delegate.behavior.observeState(.afterUpdate)) {
+//                                delegate.ownerComponent = mockComponent
                                 delegate.componentState = 42
                                 delegate.canUpdate = true
                             }
@@ -121,7 +124,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when canUpdate is false regardless of needsUpdate value") {
                     it("emits nothing") {
-                        let recorded = recording(of: delegate.observeState(.afterUpdate)) {
+                        let recorded = recording(of: delegate.behavior.observeState(.afterUpdate)) {
                             delegate.canUpdate = false
                             delegate.componentState = 42
                         }
@@ -131,7 +134,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when needsUpdate is false regardless of canUpdate value") {
                     it("emits nothing") {
-                        let recorded = recording(of: delegate.observeState(.afterUpdate)) {
+                        let recorded = recording(of: delegate.behavior.observeState(.afterUpdate)) {
                             let canUpdate = delegate.canUpdate
                             // we are locking update and then putting original value to `delegate.canUpdate`
                             delegate.canUpdate = false
@@ -146,10 +149,10 @@ class ComponentDelegateTest: QuickSpec {
             }
 
             describe("componentState") {
-                var mockComponent: MockComponentBase<Int, ComponentTestAction>!
+//                var mockComponent: MockComponentBase<Int, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+//                    mockComponent = MockComponentBase()
                 }
                 context("after initialization") {
                     it("has no value") {
@@ -178,7 +181,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when storing non-Void value") {
                     it("calls update") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
 
                         delegate.componentState = 1
@@ -200,7 +203,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when assigning same value") {
                     it("calls update") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
 
                         delegate.componentState = 0
@@ -238,7 +241,7 @@ class ComponentDelegateTest: QuickSpec {
 
             describe("action") {
                 it("subscribing to action catches perform(action:) calls") {
-                    let recorded = recording(of: delegate.action) {
+                    let recorded = recording(of: delegate.behavior.action) {
                         delegate.perform(action: .one)
                     }
 
@@ -248,7 +251,7 @@ class ComponentDelegateTest: QuickSpec {
                     let subject = PublishSubject<ComponentTestAction>()
                     delegate.actions = [subject]
 
-                    let recorded = recording(of: delegate.action) {
+                    let recorded = recording(of: delegate.behavior.action) {
                         subject.onNext(.one)
                     }
 
@@ -257,27 +260,29 @@ class ComponentDelegateTest: QuickSpec {
             }
 
             describe("ownerComponent") {
-                var mockComponent: MockComponentBase<Int, ComponentTestAction>!
+//                var mockComponent: MockComponentBase<Int, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+//                    mockComponent = MockComponentBase()
                 }
                 context("when componentState is set") {
                     context("and setting canUpdate to true") {
-                        it("throws NSException") {
-                            delegate.componentState = 0
-
-                            expect(delegate.canUpdate = true).to(raiseException())
-                            verify(mockComponent, never()).update()
-                        }
-                    }
-                    context("and setting ownerComponent") {
                         it("calls update") {
                             delegate.componentState = 1
-                            delegate.ownerComponent = mockComponent
+//                            delegate.ownerComponent = mockComponent
                             delegate.canUpdate = true
 
                             verify(mockComponent).update()
+                        }
+                    }
+                    context("and deallocating ownerComponent") {
+                        it("throws NSException") {
+                            mockComponent = nil
+
+                            delegate.componentState = 0
+
+                            expect(delegate.canUpdate = true).to(raiseException())
+//                            verify(mockComponent, never()).update()
                         }
                     }
                 }
@@ -286,20 +291,21 @@ class ComponentDelegateTest: QuickSpec {
 
         // MARK:- Value Type Testing
         describe("ComponentDelegate<Struct>") {
-            var delegate: ComponentDelegate<ComponentTestState, ComponentTestAction, MockComponentBase<ComponentTestState, ComponentTestAction>>!
+            var mockComponent: MockComponentBase<ComponentTestState, ComponentTestAction>!
+            var delegate: ComponentDelegate<ComponentTestState, ComponentTestAction>!
 
             beforeEach {
-                delegate = ComponentDelegate()
+                mockComponent = MockComponentBase()
+                delegate = ComponentDelegate(owner: mockComponent)
             }
 
             describe("update") {
-                var mockComponent: MockComponentBase<ComponentTestState, ComponentTestAction>!
                 beforeEach {
-                    mockComponent = MockComponentBase()
+//                    mockComponent = MockComponentBase()
                 }
                 context("when setting first componentState value") {
                     it("gets called") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
                         let state = ComponentTestState(primitive: 0, tuple: ("hello", 1), classy: ComponentTestClass())
                         delegate.componentState = state
@@ -309,7 +315,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when changing value types") {
                     it("gets called") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
                         let state = ComponentTestState(primitive: 0, tuple: ("hello", 1), classy: ComponentTestClass())
                         delegate.componentState = state
@@ -323,7 +329,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when changing a field in reference type") {
                     it("does not get called") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
 
                         let state = ComponentTestState(primitive: 0, tuple: ("hello", 1), classy: ComponentTestClass())
@@ -339,7 +345,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when switching one value type for another") {
                     it("gets called") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
 
                         let state = ComponentTestState(primitive: 0, tuple: ("hello", 1), classy: ComponentTestClass())
@@ -354,7 +360,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when assigning the same value as before") {
                     it("gets called every time") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
 
                         delegate.componentState = ComponentTestState(primitive: -666, tuple: ("lehh", 0), classy: ComponentTestClass())
@@ -367,10 +373,10 @@ class ComponentDelegateTest: QuickSpec {
             }
 
             describe("componentState") {
-                var mockComponent: MockComponentBase<ComponentTestState, ComponentTestAction>!
+//                var mockComponent: MockComponentBase<ComponentTestState, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+//                    mockComponent = MockComponentBase()
                 }
                 context("after initialization") {
                     it("has no value") {
@@ -401,7 +407,7 @@ class ComponentDelegateTest: QuickSpec {
                 context("when storing non-Void value") {
                     context("canUpdate is true") {
                         it("calls update") {
-                            delegate.ownerComponent = mockComponent
+//                            delegate.ownerComponent = mockComponent
                             delegate.canUpdate = true
 
                             delegate.componentState = ComponentTestState(primitive: 0, tuple: ("hello", 1), classy: ComponentTestClass())
@@ -450,27 +456,28 @@ class ComponentDelegateTest: QuickSpec {
             }
 
             describe("ownerComponent") {
-                var mockComponent: MockComponentBase<ComponentTestState, ComponentTestAction>!
+//                var mockComponent: MockComponentBase<ComponentTestState, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+//                    mockComponent = MockComponentBase()
                 }
                 context("when componentState is set") {
                     context("and setting canUpdate to true") {
-                        it("throws NSException") {
-                            delegate.componentState = ComponentTestState(primitive: 0, tuple: ("hello", 1), classy: ComponentTestClass())
-
-                            expect(delegate.canUpdate = true).to(raiseException())
-                            verify(mockComponent, never()).update()
-                        }
-                    }
-                    context("and setting ownerComponent") {
                         it("calls update") {
                             delegate.componentState = ComponentTestState(primitive: 0, tuple: ("hello", 1), classy: ComponentTestClass())
-                            delegate.ownerComponent = mockComponent
+                            //                            delegate.ownerComponent = mockComponent
                             delegate.canUpdate = true
 
                             verify(mockComponent).update()
+                        }
+                    }
+                    context("and deallocating ownerComponent") {
+                        it("throws NSException") {
+                            mockComponent = nil
+
+                            delegate.componentState = ComponentTestState(primitive: 0, tuple: ("hello", 1), classy: ComponentTestClass())
+
+                            expect(delegate.canUpdate = true).to(raiseException())
                         }
                     }
                 }
@@ -479,20 +486,21 @@ class ComponentDelegateTest: QuickSpec {
 
         // MARK:- Reference Type Testing
         describe("ComponentDelegate<Class>") {
-            var delegate: ComponentDelegate<ComponentTestClass, ComponentTestAction, MockComponentBase<ComponentTestClass, ComponentTestAction>>!
+            var mockComponent: MockComponentBase<ComponentTestClass, ComponentTestAction>!
+            var delegate: ComponentDelegate<ComponentTestClass, ComponentTestAction>!
 
             beforeEach {
-                delegate = ComponentDelegate()
+                mockComponent = MockComponentBase()
+                delegate = ComponentDelegate(owner: mockComponent)
             }
 
             describe("update") {
-                var mockComponent: MockComponentBase<ComponentTestClass, ComponentTestAction>!
                 beforeEach {
-                    mockComponent = MockComponentBase()
+
                 }
                 context("when setting componentState") {
                     it("gets called") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
                         delegate.componentState = ComponentTestClass(primitive: 0)
 
@@ -501,7 +509,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when changing value types") {
                     it("does not get called") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
 
                         delegate.componentState = ComponentTestClass(primitive: 0)
@@ -515,7 +523,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when changing a field in value type") {
                     it("does not get called") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
 
                         delegate.componentState = ComponentTestClass(primitive: 0, structy: true)
@@ -529,7 +537,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when switching one value type for another") {
                     it("gets called") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
 
                         delegate.componentState = ComponentTestClass(primitive: -1)
@@ -541,7 +549,7 @@ class ComponentDelegateTest: QuickSpec {
                 }
                 context("when assigning the same value as before") {
                     it("gets called every time") {
-                        delegate.ownerComponent = mockComponent
+//                        delegate.ownerComponent = mockComponent
                         delegate.canUpdate = true
 
                         delegate.componentState = ComponentTestClass(primitive: 0)
@@ -554,10 +562,10 @@ class ComponentDelegateTest: QuickSpec {
             }
 
             describe("componentState") {
-                var mockComponent: MockComponentBase<ComponentTestClass, ComponentTestAction>!
+//                var mockComponent: MockComponentBase<ComponentTestClass, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+//                    mockComponent = MockComponentBase()
                 }
                 context("after initialization") {
                     it("has no value") {
@@ -588,7 +596,7 @@ class ComponentDelegateTest: QuickSpec {
                 context("when storing non-Void value") {
                     context("canUpdate is true") {
                         it("calls update") {
-                            delegate.ownerComponent = mockComponent
+//                            delegate.ownerComponent = mockComponent
                             delegate.canUpdate = true
 
                             delegate.componentState = ComponentTestClass(primitive: 0)
@@ -637,27 +645,29 @@ class ComponentDelegateTest: QuickSpec {
             }
 
             describe("ownerComponent") {
-                var mockComponent: MockComponentBase<ComponentTestClass, ComponentTestAction>!
+//                var mockComponent: MockComponentBase<ComponentTestClass, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+//                    mockComponent = MockComponentBase()
                 }
                 context("when componentState is set") {
                     context("and setting canUpdate to true") {
-                        it("throws NSException") {
-                            delegate.componentState = ComponentTestClass(primitive: 0)
-
-                            expect(delegate.canUpdate = true).to(raiseException())
-                            verify(mockComponent, never()).update()
-                        }
-                    }
-                    context("and setting ownerComponent") {
                         it("calls update") {
                             delegate.componentState = ComponentTestClass(primitive: 0)
-                            delegate.ownerComponent = mockComponent
+                            //                            delegate.ownerComponent = mockComponent
                             delegate.canUpdate = true
 
                             verify(mockComponent).update()
+                        }
+                    }
+                    context("and deallocating ownerComponent") {
+                        it("throws NSException") {
+                            mockComponent = nil
+
+                            delegate.componentState = ComponentTestClass(primitive: 0)
+
+                            expect(delegate.canUpdate = true).to(raiseException())
+//                            verify(mockComponent, never()).update()
                         }
                     }
                 }
