@@ -11,7 +11,7 @@ import UIKit
 
 extension UITableView {
     
-    public convenience init(style: UITableViewStyle) {
+    public convenience init(style: UITableView.Style) {
         self.init(frame: CGRect.zero, style: style)
     }
 }

@@ -53,7 +53,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     
     private let automaticallyDeselect: Bool
 
-    public init(style: UITableViewStyle = .plain, options: TableViewOptions) {
+    public init(style: UITableView.Style = .plain, options: TableViewOptions) {
         self.tableView = UITableView(frame: CGRect.zero, style: style)
         #if os(iOS)
             self.refreshControl = options.contains(.reloadable) ? UIRefreshControl() : nil
@@ -65,7 +65,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     }
 
     @available(*, deprecated, message: "This init will be removed in Reactant 2.0")
-    public init(style: UITableViewStyle = .plain, reloadable: Bool = true, automaticallyDeselect: Bool = true) {
+    public init(style: UITableView.Style = .plain, reloadable: Bool = true, automaticallyDeselect: Bool = true) {
         self.tableView = UITableView(frame: CGRect.zero, style: style)
         #if os(iOS)
         self.refreshControl = reloadable ? UIRefreshControl() : nil
@@ -247,7 +247,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
 
     private func layout(view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
-        let targetSize = CGSize(width: tableView.bounds.width, height: UILayoutFittingCompressedSize.height)
+        let targetSize = CGSize(width: tableView.bounds.width, height: UIView.layoutFittingCompressedSize.height)
         let size = view.systemLayoutSizeFitting(targetSize,
                                                 withHorizontalFittingPriority: UILayoutPriority.required,
                                                 verticalFittingPriority: UILayoutPriority.defaultLow)

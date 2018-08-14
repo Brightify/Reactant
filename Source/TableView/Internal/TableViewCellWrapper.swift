@@ -48,7 +48,7 @@ public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell, Configur
         loadView()
     }
     
-    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         loadView()

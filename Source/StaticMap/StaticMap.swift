@@ -68,7 +68,7 @@ open class StaticMap: ViewBase<MKCoordinateRegion, StaticMapAction> {
                 image.image = cachedImage
             } else {
                 DispatchQueue.global().async {
-                    let options = MKMapSnapshotOptions()
+                    let options = MKMapSnapshotter.Options()
                     options.region = componentState
                     options.scale = UIScreen.main.scale
                     options.size = bounds.size

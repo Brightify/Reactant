@@ -16,13 +16,13 @@ class UIButtonUtilsTest: QuickSpec {
         describe("UIButton") {
             describe("init") {
                 it("creates UIButton with title") {
-                    expect(UIButton(title: "title").title(for: UIControlState())) == "title"
+                    expect(UIButton(title: "title").title(for: UIControl.State())) == "title"
                 }
             }
             describe("setBackgroundColor") {
                 it("sets background color") {
                     let button = UIButton()
-                    let controlState = UIControlState.highlighted
+                    let controlState = UIControl.State.highlighted
                     
                     button.setBackgroundColor(UIColor.green, for: controlState)
                     
