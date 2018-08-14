@@ -181,8 +181,8 @@ enum Attribute {
 ```swift
 extension Sequence where Iterator.Element == Attribute {
 
-    /// Creates dictionary from sequence of attributes by merging them together. NSAttributedStringKey is name of case and AnyObject value corresponding to it.
-    func toDictionary() -> [NSAttributedStringKey: AnyObject]
+    /// Creates dictionary from sequence of attributes by merging them together. NSAttributedString.Key is name of case and AnyObject value corresponding to it.
+    func toDictionary() -> [NSAttributedString.Key: AnyObject]
 }
 ```
 
@@ -211,7 +211,7 @@ extension UIButton {
 
     init(title: String)
 
-    func setBackgroundColor(_ color: UIColor, forState state: UIControlState)
+    func setBackgroundColor(_ color: UIColor, forState state: UIControl.State)
 }
 ```
 

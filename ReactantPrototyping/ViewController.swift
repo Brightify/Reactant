@@ -48,7 +48,7 @@ final class ExampleRootView: ViewBase<Void, Void> {
         
         tableView.collectionView.allowsMultipleSelection = true
         tableView.collectionView.allowsSelection = true
-        tableView.collectionViewLayout.estimatedItemSize = CGSize(1)
+        tableView.collectionViewLayout.estimatedItemSize = CGSize(100)
     }
 
     override func setupConstraints() {

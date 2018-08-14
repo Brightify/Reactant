@@ -2,8 +2,8 @@ PODS:
   - Cuckoo (0.11.0)
   - Differentiator (3.0.2)
   - Kingfisher (4.5.0)
-  - Nimble (7.0.3)
-  - Quick (1.2.0)
+  - Nimble (7.1.3)
+  - Quick (1.3.1)
   - Reactant/ActivityIndicator (1.2.0):
     - RxCocoa (~> 4.0)
   - Reactant/All-iOS (1.2.0):
@@ -75,8 +75,8 @@ PODS:
 DEPENDENCIES:
   - Cuckoo (from `https://github.com/Brightify/Cuckoo.git`, branch `master`)
   - Kingfisher (~> 4.0)
-  - Nimble (~> 7.0)
-  - Quick (~> 1.1)
+  - Nimble (~> 7.1)
+  - Quick (~> 1.3)
   - Reactant/All-iOS (from `./`)
   - Reactant/All-tvOS (from `./`)
   - Reactant/FallbackSafeAreaInsets (from `./`)
@@ -121,8 +121,8 @@ SPEC CHECKSUMS:
   Cuckoo: 8b52764c70febbb16ea35b6ae1b568a59b06231b
   Differentiator: a87be69eba49ec4ab460c7671143ee3a9eececfd
   Kingfisher: 26ae0473102b77b575da51960c932431e3745407
-  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
-  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  Nimble: 2839b01d1b31f6a6a7777a221f0d91cf52e8e27b
+  Quick: d17304d58d0d169dd0bd1c6e5c28e3318de32a1a
   Reactant: 13fcb82686441114f2c5dfc82d6993b2ae1688b7
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxBlocking: 923c2c8106d80d7c2d6b276afd66ce3b10824836
@@ -134,6 +134,6 @@ SPEC CHECKSUMS:
   RxTest: 0041e792cede35e53e4749f378d21482af0e9d12
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: cae5960ee794d112207135ff9acdd22a6ebd688a
+PODFILE CHECKSUM: 21c3c60ed052647b80c77497c46c3398912d7ba1
 
 COCOAPODS: 1.5.3

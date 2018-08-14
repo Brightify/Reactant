@@ -43,7 +43,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         headerFactory: @escaping () -> HEADER = HEADER.init,
-        style: UITableViewStyle = .plain,
+        style: UITableView.Style = .plain,
         options: TableViewOptions)
     {
         self.headerFactory = headerFactory
@@ -60,7 +60,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         headerFactory: @escaping () -> HEADER = HEADER.init,
-        style: UITableViewStyle = .plain,
+        style: UITableView.Style = .plain,
         reloadable: Bool = true,
         automaticallyDeselect: Bool = true)
     {

@@ -58,7 +58,7 @@ extension FlowCollectionViewBase {
      * The grid layout scrolls along one axis only, either horizontally or vertically. For the non scrolling axis, the width of the collection view in that dimension serves as starting width of the content.
      * The default value of this property is vertical.
      */
-    public var scrollDirection: UICollectionViewScrollDirection {
+    public var scrollDirection: UICollectionView.ScrollDirection {
         get {
             return collectionViewLayout.scrollDirection
         }

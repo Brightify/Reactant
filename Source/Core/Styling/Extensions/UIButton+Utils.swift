@@ -13,14 +13,14 @@ extension UIButton {
     public convenience init(title: String) {
         self.init()
         
-        setTitle(title, for: UIControlState())
+        setTitle(title, for: UIControl.State())
     }
 }
 
 extension UIButton {
 
     @objc(setBackgroundColor:forState:)
-    public func setBackgroundColor(_ color: UIColor, for state: UIControlState) {
+    public func setBackgroundColor(_ color: UIColor, for state: UIControl.State) {
         let rectangle = CGRect(size: CGSize(1));
         UIGraphicsBeginImageContext(rectangle.size);
         

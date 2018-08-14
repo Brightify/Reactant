@@ -21,12 +21,12 @@ extension ReactantTableView {
     }
     #endif
     
-    public var activityIndicatorStyle: UIActivityIndicatorViewStyle {
+    public var activityIndicatorStyle: UIActivityIndicatorView.Style {
         get {
-            return loadingIndicator.activityIndicatorViewStyle
+            return loadingIndicator.style
         }
         set {
-            loadingIndicator.activityIndicatorViewStyle = newValue
+            loadingIndicator.style = newValue
         }
     }
     
@@ -49,7 +49,7 @@ extension ReactantTableView {
     }
     
     #if os(iOS)
-    public var separatorStyle: UITableViewCellSeparatorStyle {
+    public var separatorStyle: UITableViewCell.SeparatorStyle {
         get {
             return tableView.separatorStyle
         }

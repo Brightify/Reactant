@@ -14,14 +14,14 @@ public protocol TableViewCell {
      * The style of selected cells.
      * Use `UITableViewCellSelectionStyle` constants to set the value of the `selectionStyle` property.
      */
-    var selectionStyle: UITableViewCellSelectionStyle { get }
+    var selectionStyle: UITableViewCell.SelectionStyle { get }
 
     /**
      * The style of focused cells.
      * Use `UITableViewCellFocusStyle` constants to set the value of the `focusStyle` property.
      */
     @available(iOS 9.0, *)
-    var focusStyle: UITableViewCellFocusStyle { get }
+    var focusStyle: UITableViewCell.FocusStyle { get }
 
     /// Called after the user lifts the finger after tapping the cell.
     func setSelected(_ selected: Bool, animated: Bool)
@@ -32,12 +32,12 @@ public protocol TableViewCell {
 
 extension TableViewCell {
     
-    public var selectionStyle: UITableViewCellSelectionStyle {
+    public var selectionStyle: UITableViewCell.SelectionStyle {
         return .default
     }
     
     @available(iOS 9.0, *)
-    public var focusStyle: UITableViewCellFocusStyle {
+    public var focusStyle: UITableViewCell.FocusStyle {
         return .default
     }
     

@@ -29,12 +29,12 @@ extension ReactantCollectionView {
      * The basic appearance of the activity indicator.
      * See **UIActivityIndicatorViewStyle** for the available styles. The default value is white.
      */
-    public var activityIndicatorStyle: UIActivityIndicatorViewStyle {
+    public var activityIndicatorStyle: UIActivityIndicatorView.Style {
         get {
-            return loadingIndicator.activityIndicatorViewStyle
+            return loadingIndicator.style
         }
         set {
-            loadingIndicator.activityIndicatorViewStyle = newValue
+            loadingIndicator.style = newValue
         }
     }
 

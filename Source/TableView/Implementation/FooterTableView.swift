@@ -43,7 +43,7 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         footerFactory: @escaping () -> FOOTER = FOOTER.init,
-        style: UITableViewStyle = .plain,
+        style: UITableView.Style = .plain,
         options: TableViewOptions)
     {
         self.footerFactory = footerFactory
@@ -60,7 +60,7 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         footerFactory: @escaping () -> FOOTER = FOOTER.init,
-        style: UITableViewStyle = .plain,
+        style: UITableView.Style = .plain,
         reloadable: Bool = true,
         automaticallyDeselect: Bool = true)
     {

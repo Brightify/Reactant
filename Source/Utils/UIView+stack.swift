@@ -21,7 +21,7 @@ public extension UIView {
      */
     public func stack(views: [UIView],
                       withSpacing spacing: CGFloat = 0,
-                      axis: UILayoutConstraintAxis = .horizontal,
+                      axis: NSLayoutConstraint.Axis = .horizontal,
                       lowerPriorityOfLastConstraint: Bool = false) {
         var previousView: UIView?
         let lastView = views.last

@@ -55,7 +55,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
 
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
-        style: UITableViewStyle = .plain,
+        style: UITableView.Style = .plain,
         options: TableViewOptions)
     {
         super.init(style: style, options: options)
@@ -71,7 +71,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
     @available(*, deprecated, message: "This init will be removed in Reactant 2.0")
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
-        style: UITableViewStyle = .plain,
+        style: UITableView.Style = .plain,
         reloadable: Bool = true,
         automaticallyDeselect: Bool = true)
     {

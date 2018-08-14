@@ -37,7 +37,7 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
 
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
-        style: UITableViewStyle = .plain,
+        style: UITableView.Style = .plain,
         options: TableViewOptions = [])
     {
         self.cellFactory = cellFactory
@@ -48,7 +48,7 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
     @available(*, deprecated, message: "This init will be removed in Reactant 2.0")
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
-        style: UITableViewStyle = .plain,
+        style: UITableView.Style = .plain,
         reloadable: Bool = true,
         automaticallyDeselect: Bool = true)
     {

@@ -47,7 +47,7 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
         cellFactory: @escaping () -> CELL = CELL.init,
         headerFactory: @escaping () -> HEADER = HEADER.init,
         footerFactory: @escaping () -> FOOTER = FOOTER.init,
-        style: UITableViewStyle = .plain,
+        style: UITableView.Style = .plain,
         options: TableViewOptions)
     {
         self.headerFactory = headerFactory
@@ -66,7 +66,7 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
         cellFactory: @escaping () -> CELL = CELL.init,
         headerFactory: @escaping () -> HEADER = HEADER.init,
         footerFactory: @escaping () -> FOOTER = FOOTER.init,
-        style: UITableViewStyle = .plain,
+        style: UITableView.Style = .plain,
         reloadable: Bool = true,
         automaticallyDeselect: Bool = true)
     {

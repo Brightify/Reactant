@@ -18,7 +18,7 @@ class UITableViewInitTest: QuickSpec {
                 let view = UITableView(style: .plain)
                 
                 expect(view.frame) == CGRect.zero
-                expect(view.style) == UITableViewStyle.plain
+                expect(view.style) == UITableView.Style.plain
             }
         }
     }

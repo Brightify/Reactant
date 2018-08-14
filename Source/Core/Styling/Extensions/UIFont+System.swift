@@ -66,8 +66,8 @@ public extension UIFont {
 }
 
 public extension UIFont {
-    public func with(traits: UIFontDescriptorSymbolicTraits...) -> UIFont {
-        let descriptor = fontDescriptor.withSymbolicTraits(UIFontDescriptorSymbolicTraits(traits))!
+    public func with(traits: UIFontDescriptor.SymbolicTraits...) -> UIFont {
+        let descriptor = fontDescriptor.withSymbolicTraits(UIFontDescriptor.SymbolicTraits(traits))!
         return UIFont(descriptor: descriptor, size: 0)
     }
     

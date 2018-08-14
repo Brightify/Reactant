@@ -217,12 +217,12 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
 
     open override func textRect(forBounds bounds: CGRect) -> CGRect {
         let superBounds = super.textRect(forBounds: bounds)
-        return UIEdgeInsetsInsetRect(superBounds, contentEdgeInsets)
+        return superBounds.inset(by: contentEdgeInsets)
     }
 
     open override func editingRect(forBounds bounds: CGRect) -> CGRect {
         let superBounds = super.editingRect(forBounds: bounds)
-        return UIEdgeInsetsInsetRect(superBounds, contentEdgeInsets)
+        return superBounds.inset(by: contentEdgeInsets)
     }
 
     private func updateAttributedPlaceholder() {

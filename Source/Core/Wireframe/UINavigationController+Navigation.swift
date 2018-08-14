@@ -57,9 +57,9 @@ extension UINavigationController {
     public func popAllAndReplace(with controller: UIViewController) -> [UIViewController] {
         let transition = CATransition()
         transition.duration = 0.5
-        transition.type = kCATransitionMoveIn
-        transition.subtype = kCATransitionFromLeft
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = .moveIn
+        transition.subtype = .fromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         view.layer.add(transition, forKey: nil)
         
         return replaceAll(with: controller, animated: false)
@@ -111,9 +111,9 @@ extension UINavigationController {
     public func popAllAndReplace<C: UIViewController>(with controller: Observable<C>) -> Observable<[UIViewController]> {
         let transition = CATransition()
         transition.duration = 0.5
-        transition.type = kCATransitionMoveIn
-        transition.subtype = kCATransitionFromLeft
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = .moveIn
+        transition.subtype = .fromLeft
+        transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         view.layer.add(transition, forKey: nil)
 
         return replaceAll(with: controller, animated: false)
