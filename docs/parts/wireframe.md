@@ -1,6 +1,9 @@
-# Wireframe
-
-In Reactant, Wireframe is meant to handle transitions between controllers, so that no controller knows about any other controllers. To learn more, head over to our [Reactant Architecture Guide](../getting-started/architecture.md).
+---
+id: wireframe
+title: Wireframe
+sidebar_label: Wireframe
+---
+In Reactant, Wireframe is meant to handle transitions between controllers, so that no controller knows about any other controllers. To learn more, head over to our [Reactant Architecture Guide](getting-started/architecture.md).
 
 To make this a little easier we include a protocol `Wireframe` with two helper methods:
 

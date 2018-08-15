@@ -1,5 +1,8 @@
-# Reactant UI
-
+---
+id: introduction
+title: Introduction
+sidebar_label: Introduction
+---
 ## Important Note
 Reactant UI is currently a preview. However we'll try to keep the number of API changes to a minimum.
 
@@ -7,7 +10,7 @@ Reactant UI is currently a preview. However we'll try to keep the number of API 
 **Reactant UI** is an extension of **Reactant** allowing you to declare views and layout using XML. Don't worry, there's no runtime overhead as all those declarations are precompiled into Swift. Reactant then uses the generated code to create your UI.
 
 ## Why
-When we created Reactant, our primary goal was maximal compile-time safety. We devised an API for writing [views using Reactant](../getting-started/quickstart.md), but it was still constrained by Swift's syntax.
+When we created Reactant, our primary goal was maximal compile-time safety. We devised an API for writing [views using Reactant](getting-started/quickstart.md), but it was still constrained by Swift's syntax.
 
 ## Installation
 Reactant UI is available through [CocoaPods](http://cocoapods.org). To install it, add the following line to your application target in your `Podfile`:
@@ -36,7 +39,7 @@ We recommend downloading [**Atom**](https://atom.io/) editor and installing [**l
 
 ## UI XML
 
-Reactant UI loads view declarations from XML files ending with `.ui.xml`. The location of these files is up to you, although we recommend putting them alongside your `.swift` view files for better file navigation. In [Reactant Architecture Guide](../getting-started/architecture.md) we create a very simple, single-screen application with one input and one textfield. Let's recreate the `GreeterRootView` using Reactant UI.
+Reactant UI loads view declarations from XML files ending with `.ui.xml`. The location of these files is up to you, although we recommend putting them alongside your `.swift` view files for better file navigation. In [Reactant Architecture Guide](getting-started/architecture.md) we create a very simple, single-screen application with one input and one textfield. Let's recreate the `GreeterRootView` using Reactant UI.
 
 We begin with creating a new file named `GreeterRootView.ui.xml`, adding a root element called `Component` and setting namespace attributes to enable autocompletion.
 
@@ -55,7 +58,7 @@ We begin with creating a new file named `GreeterRootView.ui.xml`, adding a root 
 
 By default, the name of the file is used as the type name. However, you can override this behavior. To do so, add `type` attribute to the `Component` element with the name of your desired type.
 
-You might want to create all `.ui.xml` at once before writing their Swift counterparts (especially if you use [Live Reload](./live-reload.md)). Unfortunately, Reactant UI in its current version doesn't scan your Swift files for existing types and generates Swift extensions for every `.ui.xml` in your project. If you don't have matching classes, you'll get compile errors. The current workaround is setting a value of `anonymous` attribute to `true` on the `Component` element. Reactant UI then generates an empty class which you can then use in your code. Later on you would replace it with your own class and remove the `anonymous` attribute.
+You might want to create all `.ui.xml` at once before writing their Swift counterparts (especially if you use [Live Reload](reactant-ui/live-reload.md)). Unfortunately, Reactant UI in its current version doesn't scan your Swift files for existing types and generates Swift extensions for every `.ui.xml` in your project. If you don't have matching classes, you'll get compile errors. The current workaround is setting a value of `anonymous` attribute to `true` on the `Component` element. Reactant UI then generates an empty class which you can then use in your code. Later on you would replace it with your own class and remove the `anonymous` attribute.
 
 Last `Component` attribute to keep an eye on is `rootView`. Setting it to `true` automatically adds the `RootView` protocol conformity which allows you to specify `extend` attribute. This attribute sets the RootView's `edgesForExtendedLayout` which has similar behavior to [`UIViewController#edgesForExtendedLayout`](https://developer.apple.com/reference/uikit/uiviewcontroller/1621515-edgesforextendedlayout).
 
@@ -145,4 +148,4 @@ As you can see, when we use the XML to declare views, our Swift code will contai
 
 This split to XML also allowed us to implement a live UI reloading. It's something that will save quite a lot of development time as you can see every change in the UI without recompilation and redeployment.
 
-[**Learn more about Reactant UI's Live Reload capabilities**](./live-reload.md)
+[**Learn more about Reactant UI's Live Reload capabilities**](reactant-ui/live-reload.md)

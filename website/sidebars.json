@@ -1,0 +1,30 @@
+{
+  "docs": {
+    "Getting Started": [
+        "getting-started/architecture",
+        "getting-started/quickstart",
+        "getting-started/troubleshooting"
+    ],
+    "Tutorials": [
+        "tutorials/explorer",
+        "tutorials/notes"
+    ],
+    "HyperdriveUI": [
+        "reactant-ui/introduction",
+        "reactant-ui/live-reload",
+        "reactant-ui/attributedText"
+    ],
+    "Parts": [
+        "parts/controller",
+        "parts/rootview",
+        "parts/wireframe",
+        "parts/tableview",
+        "parts/collectionview",
+        "parts/staticmap",
+        "parts/validation",
+        "parts/styling",
+        "parts/activityindicator",
+        "parts/configuration"
+    ]
+  }
+}

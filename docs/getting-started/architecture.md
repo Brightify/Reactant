@@ -1,6 +1,9 @@
-# Architecture Walkthrough
-
-We already talked about Components and Views in the [Quick-start](./quickstart.md), but they alone are only a small part of **Reactant**. The magic comes when you embrace the whole architecture.
+---
+id: architecture
+title: Architecture Walkthrough
+sidebar_label: Architecture
+---
+We already talked about Components and Views in the [Quick-start](getting-started/quickstart.md), but they alone are only a small part of **Reactant**. The magic comes when you embrace the whole architecture.
 
 We recommend creating a new project and going along with us through this short guide before you venture out on your own. Creating a project compatible with Reactant requires a few steps.
 - First, create a new `Single View Application` and select `Swift` as your application's language.
@@ -363,13 +366,13 @@ class AppDelegate : UIResponder, UIApplicationDelegate {
 }
 ```
 
-To learn more about the `Wireframe` protocol and the mysterious `create` function, head to a page about [Wireframe](../parts/wireframe.md).
+To learn more about the `Wireframe` protocol and the mysterious `create` function, head to a page about [Wireframe](parts/wireframe.md).
 
 ## Final result
 
 You can find the code for the complete example [here][reactant-tutorial]. To see a more impressive example, be sure to check out our simple travel planner app [**Planie**][planie]
 
-If you followed this guide, the app should open this screen ![Reactant tutorial screen](../img/ReactantTutorial.png)
+If you followed this guide, the app should open this screen ![Reactant tutorial screen](assets/ReactantTutorial.png)
 
 [reactant-tutorial]: https://github.com/Brightify/ReactantTutorial
 [planie]: https://github.com/Brightify/Planie

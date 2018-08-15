@@ -1,6 +1,9 @@
-# TableView
-
-In Reactant, using table views is simple. There are TableView classes prepared for drop-in use, suiting most of the use cases. The TableViews are Components so they have their `componentState` and actions depending on the type of TableView.
+---
+id: tableview
+title: Table View
+sidebar_label: Table View
+---
+In Reactant, there are TableView classes prepared for drop-in use, suiting most of the use cases. The TableViews are Components so they have their `componentState` and actions depending on the type of TableView.
 
 Every TableView's component State is a `TableViewState` which is an enum containing these cases:
 ```swift

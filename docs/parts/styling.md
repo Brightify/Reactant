@@ -1,5 +1,8 @@
-# Styling
-
+---
+id: styling
+title: Styling
+sidebar_label: Styling
+---
 Reactant also contains some convenience `init`s, helper methods, operator overloads, etc.. Protocol `Stylable` allows you to easily apply style to any `UIView`. It's just syntactic sugar, but allows for cleaner code with less duplicates.
 
 ## Usage

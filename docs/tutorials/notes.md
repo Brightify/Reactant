@@ -1,13 +1,19 @@
+---
+id: notes
+title: Tutorial: Simple note taking app
+sidebar_label: Notes
+---
 <!-- URLs -->
+
 [project-url]: https://github.com/MatyasKriz/reactant-notes
 [reactant-CLI]: https://github.com/Brightify/ReactantCLI
 [cocoapods]: http://cocoapods.org
 
 <!-- relative paths -->
-[table-view]: ../parts/tableview.md
-[troubleshooting]: ../getting-started/troubleshooting.md
 
-# Tutorial: Simple note taking app
+[table-view]: ../parts/tableview
+[troubleshooting]: ../getting-started/troubleshooting
+
 Welcome to our first introductory tutorial to the Reactant architecture.
 
 First and foremost, prerequisites:
@@ -36,13 +42,13 @@ reactant init
 
 into the Terminal.
 
-![Terminal](../img/Tutorials/Notes/Reactant-init-console.png)
+![Terminal](assets/Tutorials/Notes/Reactant-init-console.png)
 
 - wait for Cocoapods to do its job bringing in the dependencies
 
 Xcode workspace should open after this if everything went smooth. If it doesn't, open it manually, the suffix is `.xcworkspace`
 
-Click the **RUN** button (![Run Button](../img/Tutorials/RunButton.png)) so that we see what we've got so far. We're doing this step mainly to check if nothing went wrong. You should get **Hello World!** text on white background. If you don't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
+Click the **RUN** button (![Run Button](assets/Tutorials/RunButton.png)) so that we see what we've got so far. We're doing this step mainly to check if nothing went wrong. You should get **Hello World!** text on white background. If you don't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
 
 There are two Xcode projects in the left sidebar. The first is our project (RNotes in this case) and the second is `Pods`, our dependencies lie there.
 
@@ -249,7 +255,7 @@ The `layout:` prefix is used for layouting attributes. Others are used to direct
 
 Saving the file at any time (assuming the `XML` is syntactically and semantically correct) will update the screen on your simulator to represent the `UI XML`.
 
-![Simulator1](../img/Tutorials/Notes/Simulator1.png)
+![Simulator1](assets/Tutorials/Notes/Simulator1.png)
 
 ### Creating New Notes
 We need to create a new `Controller` and `RootView` for editing notes. It can be named `NoteModificationController.swift` and `NoteModificationRootView.swift` for example. `NoteModificationRootView.ui.xml` will be needed as well.
@@ -655,7 +661,7 @@ The styling parts that cannot be declared using Reactant UI are defined like thi
 
 Try to add a **Wipe** button in the MainController navigation bar that deletes all notes when tapped. You can then compare it to the [project][project-url]'s `Wipe` on GitHub.
 
-![Simulator2](../img/Tutorials/Notes/Simulator2.png)
+![Simulator2](assets/Tutorials/Notes/Simulator2.png)
 
 Another thing that the user would surely appreciate is showing an alert controller in case loading/saving notes fails. It would probably work through letting the `Wireframe` know through `Reactions` to show an alert controller.
 

@@ -1,5 +1,8 @@
-# Attributed Text
-
+---
+id: attributedText
+title: Attributed Text
+sidebar_label: Attributed Text
+---
 Attributed strings are very useful for text with multiple modifications where it would be unnecessarily complex to use more than one label/button.
 
 Both ReactantUI and ReactantLiveUI support attributed strings for even faster prototyping of your application. The attributed texts form a hiearchy where all children inherit the style from their ancestor. However, children can still override the inherited attributes leading to clean and straightforward API.

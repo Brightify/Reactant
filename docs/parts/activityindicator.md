@@ -1,3 +1,8 @@
+---
+id: activityindicator
+title: Activity Indicator
+sidebar_label: Activity Indicator
+---
 # ActivityIndicator
 
 `ActivityIndicator` allows you to track the activity of an `Observable`. It is especially useful when displaying progress of some tasks done by multiple `Observable` in a row because it can monitor all of them and show different associated values based on the current task.

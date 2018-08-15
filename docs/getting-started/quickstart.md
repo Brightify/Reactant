@@ -1,5 +1,8 @@
-# Quick-start guide
-
+---
+id: quickstart
+title: Quick-start guide
+sidebar_label: Quickstart
+---
 ## Installation
 Reactant is available through [CocoaPods](http://cocoapods.org). To install it, add the following line to your application target in your Podfile:
 
@@ -123,33 +126,33 @@ Now add the `greeterView` to your view hierarchy and write into the text field. 
 
 When you integrate Reactant architecture to your application, you won't need to subscribe to the action manually. Instead, you will propagate all actions to a **Controller** which will process and react accordingly.
 
-Learn more about the architecture on the [next page](./architecture.md).
+Learn more about the architecture on the [next page](getting-started/architecture.md).
 
 ### Optional parts
 
 Reactant also has optional subspecs that you can use so that you won't need to write some often used boilerplate. We'll continue to add more common and useful abstractions.
 
-#### [TableView](../parts/tableview.md)
+#### [TableView](parts/tableview.md)
 ```ruby
 pod 'Reactant/TableView'
 ```
 
-#### [CollectionView](../parts/collectionview.md)
+#### [CollectionView](parts/collectionview.md)
 ```ruby
 pod 'Reactant/CollectionView'
 ```
 
-#### [Validation](../parts/validation.md)
+#### [Validation](parts/validation.md)
 ```ruby
 pod 'Reactant/Validation'
 ```
 
-#### [ActivityIndicator](../parts/activityindicator.md)
+#### [ActivityIndicator](parts/activityindicator.md)
 ```ruby
 pod 'Reactant/ActivityIndicator'
 ```
 
-#### [StaticMap](../parts/staticmap.md)
+#### [StaticMap](parts/staticmap.md)
 ```ruby
 pod 'Reactant/StaticMap'
 ```

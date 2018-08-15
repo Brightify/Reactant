@@ -1,3 +1,9 @@
+---
+id: configuration
+title: Configuration
+sidebar_label: Configuration
+---
+
 # Configuration
 
 `Configuration` is a key-value storage. It is mainly used to set default values in classes like `BaseController` or `ViewBase`.

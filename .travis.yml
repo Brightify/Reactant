@@ -10,7 +10,8 @@ language: objective-c
 # - gem install cocoapods # Since Travis is not always on latest version
 # - pod install --project-directory=Example
 before_install:
-    - nvm install 4
+    - nvm install node
+    - brew install yarn --without-node
     # - gem install cocoapods -v '1.2.1'
     - pod repo update --silent
 
@@ -22,7 +23,7 @@ script:
     - cp CNAME ./_docpress/CNAME
 
 after_success:
-    - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then npm install git-update-ghpages && ./node_modules/.bin/git-update-ghpages -e; fi
+    - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; yarn run publish-gh-pages; fi
 
 env:
   global:
@@ -30,6 +31,8 @@ env:
     - GIT_EMAIL: info@brightify.org
     - GITHUB_REPO: Brightify/Reactant
     - GIT_SOURCE: _docpress
+    - CURRENT_BRANCH: gh-pages
+    - USE_SSH: true
 
 notifications:
     slack: brightify:00rIGJIfWqG5RyWCVoRNEgxt

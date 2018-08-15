@@ -1,14 +1,20 @@
+---
+id: explorer
+title: Tutorial: Random GitHub users explorer
+sidebar_label: Explorer
+---
 <!-- URLs -->
+
 [project-url]: https://github.com/MatyasKriz/git-explorer
 [reactant-CLI]: https://github.com/Brightify/ReactantCLI
 [fetcher]: https://github.com/Brightify/Fetcher
 [what-are-dtos]: https://en.wikipedia.org/wiki/Data_transfer_object
 
 <!-- relative paths -->
-[table-view]: ../parts/tableview.md
-[troubleshooting]: ../getting-started/troubleshooting.md
 
-# Tutorial: Random GitHub users explorer
+[table-view]: parts/tableview.md
+[troubleshooting]: ../getting-started/troubleshooting
+
 Welcome to our second introductory tutorial to the Reactant architecture.
 
 In this tutorial we'll create an explorer that will find some random GitHub users. If you tap on any of them, their repositories (sorted by most stars) are shown along with number of stars in each one.
@@ -20,7 +26,7 @@ The whole project can be found on GitHub [here][project-url].
 ### Setting Up the Project
 Let's create our project using [**Reactant CLI**][reactant-CLI] with `reactant init`.
 
-Click the **RUN** button (![Run Button](../img/Tutorials/RunButton.png)) to check that everything is running smooth. If it doesn't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
+Click the **RUN** button (![Run Button](assets/Tutorials/RunButton.png)) to check that everything is running smooth. If it doesn't, consider visiting the [Troubleshooting Tips][troubleshooting] section.
 
 After testing the project and seeing that everything works as expected, we need to use an HTTP networking library. Any such library will suffice, though we will be using Fetcher as our choice here. [Fetcher][fetcher] is light-weight and is brought to you by Brightify.
 
@@ -442,7 +448,7 @@ The `AlamofireRequestPerformer` is already in `Fetcher` and doesn't need to be i
 
 After doing all this, the result should be of similar image, of course the users are random, so the chance that you'll see the exact same developers is really slim.
 
-![Users](../img/Tutorials/GitExplorer/Users.png)
+![Users](assets/Tutorials/GitExplorer/Users.png)
 
 For viewing developer's repositories we'll use another PlainTableView, but as the user might forget whose repositories he's viewing, a header showing a quick overview will be helpful.
 
@@ -563,7 +569,7 @@ extension Array {
 
 The header will look like this:
 
-![UserHeader](../img/Tutorials/GitExplorer/UserHeader.png)
+![UserHeader](assets/Tutorials/GitExplorer/UserHeader.png)
 
 We will integrate it as a header of the `Repositories` screen.
 
@@ -850,7 +856,7 @@ User's repository screen now looks like this:
 
 <br>
 
-![UserHeader](../img/Tutorials/GitExplorer/Repositories.png)
+![UserHeader](assets/Tutorials/GitExplorer/Repositories.png)
 
 ## Wrap Up
 That concludes the functionality we set out to implement! To hone your Reactant skills further, try implementing the proposed `UPGRADES` below. As always you can find the whole project [here][project-url].

@@ -1,6 +1,8 @@
-<!-- URLs -->
-[cocoapods]: http://cocoapods.org
-
+---
+id: troubleshooting
+title: Troubleshooting
+sidebar_label: Troubleshooting
+---
 # Troubleshooting Tips
 As we all know, not always everything goes according to plan in IT. That's why we created this section with solutions to problems you are most likely to encounter.
 
@@ -29,3 +31,7 @@ You need to create the `Generated/` folder yourself. If you're in the root folde
 **I created a new project with `reactant init` command and it doesn't run.**
 
 It's possible that something went wrong during the project creation. Make sure you have [Cocoapods][cocoapods] installed and afterwards try to call `pod repo update` and afterwards `pod install`. If it still doesn't work, consider creating a new project.
+
+<!-- URLs -->
+
+[cocoapods]: http://cocoapods.org

@@ -1,6 +1,9 @@
-# RootView
-
-As forementioned in the [Reactant architecture guide](../getting-started/architecture.md), `RootView` is a protocol and a marker for views that should be the root of a screen (filling the whole screen). Apart from being a marker, it's also used for communication with its parent controller.
+---
+id: rootview
+title: RootView
+sidebar_label: RootView
+---
+As forementioned in the [Reactant architecture guide](getting-started/architecture.md), `RootView` is a protocol and a marker for views that should be the root of a screen (filling the whole screen). Apart from being a marker, it's also used for communication with its parent controller.
 
 ## edgesForExtendedLayout
 

@@ -1,5 +1,8 @@
-# Validation
-
+---
+id: validation
+title: Validation
+sidebar_label: Validation
+---
 Validation classes can be used for an easy validation of user input such as emails or passwords.
 
 A good example of creating Rules for validation is in `Rules.String` class. Let's have a look at the `minLength` Rule.
