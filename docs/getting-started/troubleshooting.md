@@ -1,9 +1,8 @@
 ---
 id: troubleshooting
-title: Troubleshooting
+title: Troubleshooting Tips
 sidebar_label: Troubleshooting
 ---
-# Troubleshooting Tips
 As we all know, not always everything goes according to plan in IT. That's why we created this section with solutions to problems you are most likely to encounter.
 
 **NOTE**: Always clean the build after trying any of the provided solutions. Some things may depend on it. The shortcut in Xcode is `Cmd+Shift+K`.

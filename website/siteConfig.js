@@ -14,7 +14,7 @@ const users = [
     caption: 'Brightify',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/docusaurus.svg'.
-    image: '/img/docusaurus.svg',
+    image: 'img/brightify.png',
     infoLink: 'https://www.brightify.org',
     pinned: true,
   },
@@ -22,7 +22,7 @@ const users = [
 
 const siteConfig = {
   title: 'Hyperdrive' /* title for your website */,
-  tagline: 'Native iOS architecture and libraries',
+  tagline: 'Hyperdrive is a native iOS architecture and a set of libraries for easier app development.',
   url: 'https://reactant.tech' /* your website url */,
   baseUrl: '/' /* base url for your project */,
   // For github.io type URLs, you would set the url and baseUrl like:
@@ -39,7 +39,7 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {doc: 'getting-started/architecture', label: 'Docs'},
-    {doc: 'doc4', label: 'API'},
+    {doc: 'api', label: 'API'},
     {page: 'help', label: 'Help'},
     {blog: true, label: 'Blog'},
   ],
@@ -48,14 +48,14 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/docusaurus.svg',
-  footerIcon: 'img/docusaurus.svg',
+  headerIcon: 'img/hyperdrive.svg',
+  // footerIcon: 'img/docusaurus.svg',
   favicon: 'img/favicon.png',
 
   /* colors for website */
   colors: {
-    primaryColor: '#2E8555',
-    secondaryColor: '#205C3B',
+    primaryColor: '#2f3b48',
+    secondaryColor: '#212429',
   },
 
   /* custom fonts for website */
@@ -80,6 +80,8 @@ const siteConfig = {
     // Highlight.js theme to use for syntax highlighting in code blocks
     theme: 'default',
   },
+  cname: "docs.reactant.tech",
+  disableHeaderTitle: true,
 
   // Add custom scripts here that would be placed in <script> tags
   scripts: ['https://buttons.github.io/buttons.js'],
@@ -93,7 +95,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
+  repoUrl: 'https://github.com/Brightify/Reactant',
 };
 
 module.exports = siteConfig;

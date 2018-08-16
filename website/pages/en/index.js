@@ -58,7 +58,6 @@ const Logo = props => (
 
 const ProjectTitle = props => (
   <h2 className="projectTitle">
-    {siteConfig.title}
     <small>{siteConfig.tagline}</small>
   </h2>
 );
@@ -76,13 +75,11 @@ class HomeSplash extends React.Component {
     let language = this.props.language || '';
     return (
       <SplashContainer>
-        <Logo img_src={imgUrl('docusaurus.svg')} />
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html', language)}>Example Link</Button>
-            <Button href={docUrl('doc2.html', language)}>Example Link 2</Button>
+            <Button href={docUrl('getting-started/quickstart.html', language)}>Try It Out</Button>
+            <Button href="https://www.github.com/Brightify/Reactant">GitHub</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -103,16 +100,22 @@ const Features = props => (
   <Block layout="fourColumn">
     {[
       {
-        content: 'This is the content of my feature',
-        image: imgUrl('docusaurus.svg'),
+        content: 'Don\'t repeat yourself. Have reusable components with clear inputs.',
+        image: imgUrl('reusability.svg'),
         imageAlign: 'top',
-        title: 'Feature One',
+        title: 'Reusability',
       },
       {
-        content: 'The content of my second feature',
-        image: imgUrl('docusaurus.svg'),
+        content: 'Test each part of your app independently and then intergrate them together.',
+        image: imgUrl('testability.svg'),
         imageAlign: 'top',
-        title: 'Feature Two',
+        title: 'Testability',
+      },
+      {
+        content: 'Test each part of your app independently and then intergrate them together.',
+        image: imgUrl('safety.svg'),
+        imageAlign: 'top',
+        title: 'Safety',
       },
     ]}
   </Block>
@@ -132,7 +135,7 @@ const LearnHow = props => (
     {[
       {
         content: 'Talk about learning how to use this',
-        image: imgUrl('docusaurus.svg'),
+        image: imgUrl('hyperdrive.svg'),
         imageAlign: 'right',
         title: 'Learn How',
       },
@@ -145,7 +148,7 @@ const TryOut = props => (
     {[
       {
         content: 'Talk about trying this out',
-        image: imgUrl('docusaurus.svg'),
+        image: imgUrl('hyperdrive.svg'),
         imageAlign: 'left',
         title: 'Try it Out',
       },
@@ -158,7 +161,7 @@ const Description = props => (
     {[
       {
         content: 'This is another description of how this project is useful',
-        image: imgUrl('docusaurus.svg'),
+        image: imgUrl('hyperdrive.svg'),
         imageAlign: 'right',
         title: 'Description',
       },
