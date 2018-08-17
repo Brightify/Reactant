@@ -8,6 +8,14 @@
 
 import MapKit
 
+internal func degreesToRadians(_ value: Double) -> Double {
+    return value * Double.pi / 180.0
+}
+
+internal func radiansToDegrees(_ value: Double) -> Double {
+    return value * 180.0 / Double.pi
+}
+
 extension Collection where Iterator.Element == CLLocationCoordinate2D {
     
     public func centerCoordinate() -> CLLocationCoordinate2D {

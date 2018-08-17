@@ -31,6 +31,13 @@ PODS:
   - Reactant/Configuration (1.2.0)
   - Reactant/Core (1.2.0):
     - Reactant/Configuration
+    - Reactant/Core/RxSwift (= 1.2.0)
+    - RxCocoa (~> 4.0)
+    - RxOptional (~> 3.0)
+    - RxSwift (~> 4.0)
+    - SnapKit (~> 4.0)
+  - Reactant/Core/RxSwift (1.2.0):
+    - Reactant/Configuration
     - RxCocoa (~> 4.0)
     - RxOptional (~> 3.0)
     - RxSwift (~> 4.0)
@@ -123,7 +130,7 @@ SPEC CHECKSUMS:
   Kingfisher: 26ae0473102b77b575da51960c932431e3745407
   Nimble: 2839b01d1b31f6a6a7777a221f0d91cf52e8e27b
   Quick: d17304d58d0d169dd0bd1c6e5c28e3318de32a1a
-  Reactant: 6495169d29c84279bb820c3f4d0292597be55c44
+  Reactant: 00a18e7a6cac84594ef185aa31dd11bad18ab266
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxBlocking: 923c2c8106d80d7c2d6b276afd66ce3b10824836
   RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
@@ -134,6 +141,6 @@ SPEC CHECKSUMS:
   RxTest: 0041e792cede35e53e4749f378d21482af0e9d12
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 21c3c60ed052647b80c77497c46c3398912d7ba1
+PODFILE CHECKSUM: e3fbc44dc08bd81ca4bc8f0987fe939f32f15d79
 
 COCOAPODS: 1.5.3

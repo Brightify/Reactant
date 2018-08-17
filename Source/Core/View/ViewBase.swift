@@ -13,12 +13,8 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
     public typealias StateType = STATE
     public typealias ActionType = ACTION
 
-    #if ENABLE_RXSWIFT
-    public let lifetimeDisposeBag = DisposeBag()
-    #else
     public let lifetimeTracking = ObservationTokenTracker()
-    #endif
-
+    
 //    public let componentDelegate = ComponentDelegate<STATE, ACTION, ViewBase<STATE, ACTION>>()
 
     #if ENABLE_RXSWIFT

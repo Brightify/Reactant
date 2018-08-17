@@ -67,8 +67,13 @@ Pod::Spec.new do |spec|
             'Source/Utils/**/*.swift'
         ]
         subspec.pod_target_xcconfig = {
-            #   'OTHER_SWIFT_FLAGS' => '-DENABLE_RXSWIFT'
+            'OTHER_SWIFT_FLAGS' => '-DENABLE_RXSWIFT'
         }
+
+        subspec.subspec 'RxSwift' do |subsubspec|
+            rxSwift(subsubspec)
+            rxCocoa(subsubspec)
+        end
     end
 
     spec.subspec 'Configuration' do |subspec|

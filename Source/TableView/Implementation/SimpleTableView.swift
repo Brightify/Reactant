@@ -99,7 +99,7 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
     open override func bind(items: Observable<[SECTION]>) {
         items
             .bind(to: tableView.rx.items(dataSource: dataSource))
-            .disposed(by: lifetimeDisposeBag)
+            .disposed(by: rx.lifetimeDisposeBag)
     }
     #endif
     

@@ -14,12 +14,8 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
     public typealias StateType = STATE
     public typealias ActionType = ACTION
 
-    #if ENABLE_RXSWIFT
-    public let lifetimeDisposeBag = DisposeBag()
-    #else
     public let lifetimeTracking = ObservationTokenTracker()
-    #endif
-
+    
 //    public let componentDelegate = ComponentDelegate<STATE, ACTION, ButtonBase<STATE, ACTION>>()
 
     open var actions: [Observable<ACTION>] {

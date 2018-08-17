@@ -68,6 +68,14 @@ final class ExampleRootView: ViewBase<Void, Void> {
 }
 
 final class SimpleControl: ControlBase<String, Void> {
+    #if ENABLE_RXSWIFT
+    override var actions: [Observable<Void>] {
+        return [
+            rx.controlEvent(.touchUpInside).asObservable()
+        ]
+    }
+    #endif
+
     private let label = UILabel()
 
     override func update() {
@@ -94,7 +102,7 @@ final class SimpleCell: ViewBase<String, Void>, CollectionViewCell {
     #if ENABLE_RXSWIFT
     override var actions: [Observable<Void>] {
         return [
-            rx.controlEvent(.touchUpInside).asObservable()
+            control.action
         ]
     }
     #else

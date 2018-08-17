@@ -6,7 +6,6 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import SnapKit
 import RxSwift
 
 open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate, Configurable where ROOT: Component {
@@ -18,11 +17,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         return false
     }
     
-    #if ENABLE_RXSWIFT
-    public let lifetimeDisposeBag = DisposeBag()
-    #else
     public let lifetimeTracking = ObservationTokenTracker()
-    #endif
     
 //    public let componentDelegate = ComponentDelegate<STATE, Void, ControllerBase<STATE, ROOT>>()
 
@@ -77,11 +72,11 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
 //        componentDelegate.ownerComponent = self
 
         #if ENABLE_RXSWIFT
-        rootView.action
+        rootView.rx.action
             .subscribe(onNext: { [weak self] in
                 self?.act(on: $0)
             })
-            .disposed(by: lifetimeDisposeBag)
+            .disposed(by: rx.lifetimeDisposeBag)
         #else
         rootView
             .observeAction(observer: { [weak self] in
@@ -131,27 +126,36 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     }
     
     open func updateRootViewConstraints() {
-        rootView.snp.remakeConstraints { make in
-            make.leading.equalTo(view)
-            if castRootView?.edgesForExtendedLayout.contains(.top) == true {
-                make.top.equalTo(view)
-            } else {
-                if #available(iOS 12.0, *) {
-                    make.top.equalTo(view.safeAreaLayoutGuide)
-                } else {
-                    make.top.equalTo(topLayoutGuide.snp.bottom)
-                }
-            }
-            make.trailing.equalTo(view)
-            if castRootView?.edgesForExtendedLayout.contains(.bottom) == true {
-                make.bottom.equalTo(view).priority(UILayoutPriority.defaultHigh.rawValue)
-            } else {
-                if #available(iOS 12.0, *) {
-                    make.bottom.equalTo(view.safeAreaLayoutGuide)
-                } else {
-                    make.bottom.equalTo(bottomLayoutGuide.snp.top).priority(UILayoutPriority.defaultHigh.rawValue)
-                }
-            }
+        view.removeConstraints(view.constraints)
+
+        var constraints = [] as [NSLayoutConstraint]
+        defer { NSLayoutConstraint.activate(constraints) }
+
+        constraints += [
+            rootView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            rootView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ]
+
+        if castRootView?.edgesForExtendedLayout.contains(.top) == true {
+            constraints.append(
+                rootView.topAnchor.constraint(equalTo: view.topAnchor))
+        } else if #available(iOS 12.0, *) {
+            constraints.append(
+                rootView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
+        } else {
+            constraints.append(
+                rootView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor))
+        }
+
+        if castRootView?.edgesForExtendedLayout.contains(.bottom) == true {
+            constraints.append(
+                rootView.bottomAnchor.constraint(equalTo: view.bottomAnchor))
+        } else if #available(iOS 12.0, *) {
+            constraints.append(
+                rootView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
+        } else {
+            constraints.append(
+                rootView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor))
         }
     }
 

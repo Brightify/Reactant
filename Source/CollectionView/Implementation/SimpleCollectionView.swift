@@ -57,7 +57,7 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
             .bind(to: collectionView.items(with: cellIdentifier)) { [unowned self] row, model, cell in
                 self.configure(cell: cell, factory: self.cellFactory, model: model, mapAction: { SimpleCollectionViewAction.cellAction(model, $0) })
             }
-            .disposed(by: lifetimeDisposeBag)
+            .disposed(by: rx.lifetimeDisposeBag)
     }
     #endif
 }

@@ -8,7 +8,6 @@
 
 import RxSwift
 
-#if !ENABLE_RXSWIFT
 public struct ActionMapper<ACTION> {
     private let performAction: (ACTION) -> Void
 
@@ -22,7 +21,6 @@ public struct ActionMapper<ACTION> {
         }
     }
 }
-#endif
 
 public protocol ComponentWithDelegate: Component {
     var componentDelegate: ComponentDelegate<StateType, ActionType> { get }
@@ -57,7 +55,7 @@ public protocol ComponentWithDelegate: Component {
     func resetActions()
     #elseif ENABLE_PROMISEKIT
 
-    #else
+    #endif
     func actionMapping(mapper: ActionMapper<ActionType>) -> Set<ObservationToken>
 
     /**
@@ -68,7 +66,6 @@ public protocol ComponentWithDelegate: Component {
      * This is where you call `resetActions()` when orientation changes causing `actions` to update and the amount of active buttons is changed as well.
      */
     func resetActionMapping()
-    #endif
 }
 
 private var componentDelegateKey = 0 as UInt8
@@ -109,26 +106,26 @@ extension ComponentWithDelegate {
 extension ComponentWithDelegate {
 
     public var action: Observable<ActionType> {
-        return componentDelegate.behavior.action
+        return componentDelegate.rxBehavior.action
     }
     
     public var stateDisposeBag: DisposeBag {
-        return componentDelegate.behavior.stateDisposeBag
+        return componentDelegate.rxBehavior.stateDisposeBag
     }
 
     public var observableState: Observable<StateType> {
-        return componentDelegate.behavior.observableState
+        return componentDelegate.rxBehavior.observableState
     }
 
     public func observeState(_ when: ObservableStateEvent) -> Observable<StateType> {
-        return componentDelegate.behavior.observeState(when)
+        return componentDelegate.rxBehavior.observeState(when)
     }
 
     public func resetActions() {
-        componentDelegate.behavior.actions = actions
+        componentDelegate.rxBehavior.actions = actions
     }
 }
-#else
+#endif
 extension ComponentWithDelegate {
 
     public var stateTracking: ObservationTokenTracker {
@@ -152,4 +149,3 @@ extension ComponentWithDelegate {
     }
 
 }
-#endif

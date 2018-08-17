@@ -34,3 +34,9 @@ extension CLLocationCoordinate2D: Hashable {
 public func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
     return lhs.latitude.equal(to: rhs.latitude) && lhs.longitude.equal(to: rhs.longitude)
 }
+
+private extension Double {
+    func equal(to value: Double, precision: Double = Double.ulpOfOne) -> Bool {
+        return abs(self - value) <= precision
+    }
+}

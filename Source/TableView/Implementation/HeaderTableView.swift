@@ -87,7 +87,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
     open override func bind(items: Observable<[SectionModel<HEADER.StateType, CELL.StateType>]>) {
         items
             .bind(to: tableView.rx.items(dataSource: dataSource))
-            .disposed(by: lifetimeDisposeBag)
+            .disposed(by: rx.lifetimeDisposeBag)
     }
     #endif
 

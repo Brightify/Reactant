@@ -13,11 +13,7 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
     public typealias StateType = STATE
     public typealias ActionType = ACTION
 
-    #if ENABLE_RXSWIFT
-    public let lifetimeDisposeBag = DisposeBag()
-    #else
     public let lifetimeTracking = ObservationTokenTracker()
-    #endif
 
 //    public let componentDelegate: ComponentDelegate<ComponentBase<STATE, ACTION>>
 

@@ -12,18 +12,14 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
     public typealias StateType = STATE
     public typealias ActionType = ACTION
 
-    #if ENABLE_RXSWIFT
-    public let lifetimeDisposeBag = DisposeBag()
-    #else
     public let lifetimeTracking = ObservationTokenTracker()
-    #endif
     
 //    public let componentDelegate = ComponentDelegate<ControlBase<STATE, ACTION>>()
 
-//    open var actions: [Observable<ACTION>] {
-//        return []
-//    }
-    
+    open var actions: [Observable<ACTION>] {
+        return []
+    }
+
 //    open var action: Observable<ACTION> {
 //        return componentDelegate.behavior.action
 //    }

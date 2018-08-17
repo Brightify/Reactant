@@ -60,12 +60,8 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
     public typealias StateType = TextInputStateConvertible
     public typealias ActionType = String
 
-    #if ENABLE_RXSWIFT
-    public let lifetimeDisposeBag = DisposeBag()
-    #else
     public let lifetimeTracking = ObservationTokenTracker()
-    #endif
-
+    
 //    public let componentDelegate = ComponentDelegate<TextInputStateConvertible, String>()
 
     open var actions: [Observable<String>] {

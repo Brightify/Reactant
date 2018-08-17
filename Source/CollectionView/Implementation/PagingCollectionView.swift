@@ -61,7 +61,7 @@ open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where 
 
         items.subscribe(onNext: { [pageControl] items in
             pageControl.numberOfPages = items.count
-        }).disposed(by: lifetimeDisposeBag)
+        }).disposed(by: rx.lifetimeDisposeBag)
     }
     #endif
     

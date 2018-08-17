@@ -2,47 +2,81 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 inhibit_all_warnings!
 
-def shared
+def rxSwift
     pod 'RxSwift', '~> 4.0'
+end
+
+def rxCocoa
     pod 'RxCocoa', '~> 4.0'
+end
+
+def rxDataSources
     pod 'RxDataSources', '~> 3.0'
+end
+
+def rxOptional
     pod 'RxOptional', '~> 3.0'
+end
+
+def snapKit
     pod 'SnapKit', '~> 4.0'
+end
+
+def kingfisher
     pod 'Kingfisher', '~> 4.0'
+end
+
+def result
     pod 'Result', '~> 3.0'
 end
 
-target 'Reactant' do
+def shared
+    rxSwift
+    rxCocoa
+    rxDataSources
+    rxOptional
+    snapKit
+    kingfisher
+    result
+end
+
+abstract_target 'Reactant-iOS' do
     platform :ios, '9.0'
 
-    shared
+    target 'Reactant' do
+        shared
+    end
+
+    target 'RxReactant' do
+        shared
+    end
+
+    target 'ReactantTests' do
+        shared
+
+        pod 'Quick', '~> 1.3'
+        pod 'Nimble', '~> 7.1'
+        pod 'Cuckoo', :git => 'https://github.com/Brightify/Cuckoo.git', :branch => 'master'
+        pod 'RxNimble'
+        pod 'RxTest'
+    end
+
+    target 'ReactantPrototyping' do
+        shared
+
+        pod 'Reactant', :subspecs => ['All-iOS'], :path => './'
+    end
+
 end
 
-target 'ReactantTests' do
-    platform :ios, '9.0'
-
-    shared
-
-    pod 'Quick', '~> 1.3'
-    pod 'Nimble', '~> 7.1'
-    pod 'Cuckoo', :git => 'https://github.com/Brightify/Cuckoo.git', :branch => 'master'
-    pod 'RxNimble'
-    pod 'RxTest'
-end
-
-target 'ReactantPrototyping' do
-    platform :ios, '8.0'
-
-    shared
-
-    pod 'Reactant', :subspecs => ['All-iOS'], :path => './'
-end
-
-target 'TVPrototyping' do
+abstract_target 'Reactant-tvOS' do
     platform :tvos, '9.2'
-    shared
 
-    pod 'Reactant', :subspecs => ['All-tvOS', 'FallbackSafeAreaInsets'], :path => './'
+    target 'TVPrototyping' do
+        shared
+
+        pod 'Reactant', :subspecs => ['All-tvOS', 'FallbackSafeAreaInsets'], :path => './'
+    end
 end
 
 # Required until CocoaPods adds support for targets with multiple Swift versions or when all dependencies support Swift 4.2

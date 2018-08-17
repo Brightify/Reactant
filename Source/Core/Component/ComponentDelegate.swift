@@ -34,7 +34,9 @@ internal final class RxSwiftComponentBehavior<STATE, ACTION>: ComponentBehavior 
     public var actions: [Observable<ACTION>] = [] {
         didSet {
             actionsDisposeBag = DisposeBag()
-            Observable.from(actions).merge().subscribe(onNext: perform).disposed(by: actionsDisposeBag)
+            Observable.from(actions).merge().subscribe(onNext: { [weak self] in
+                self?.componentPerformedAction($0)
+            }).disposed(by: actionsDisposeBag)
         }
     }
 
@@ -80,7 +82,7 @@ internal final class RxSwiftComponentBehavior<STATE, ACTION>: ComponentBehavior 
 internal final class PromiseKitComponentBehavior<C: Component>: ComponentBehavior {
 
 }
-#else
+#endif
 //#error("Not implemented")
 internal final class DefaultComponentBehavior<STATE, ACTION>: ComponentBehavior {
     public var stateTracking = ObservationTokenTracker()
@@ -146,17 +148,15 @@ internal final class DefaultComponentBehavior<STATE, ACTION>: ComponentBehavior 
         actionsTracking.track(tokens: tokens)
     }
 }
-#endif
 
 // // COMPONENT and ACTION cannot have restriction to StateType because then it is impossible to use `ComponentWithDelegate` (associatedtype cannot be used with where).
 public final class ComponentDelegate<STATE, ACTION> {
     #if ENABLE_RXSWIFT
-    internal let behavior = RxSwiftComponentBehavior<STATE, ACTION>()
+    internal let rxBehavior = RxSwiftComponentBehavior<STATE, ACTION>()
     #elseif ENABLE_PROMISEKIT
     internal let behavior = PromiseKitComponentBehavior<STATE, ACTION>()
-    #else
-    internal let behavior = DefaultComponentBehavior<STATE, ACTION>()
     #endif
+    internal let behavior = DefaultComponentBehavior<STATE, ACTION>()
 
     public var previousComponentState: STATE? = nil
 
@@ -271,11 +271,11 @@ public final class ComponentDelegate<STATE, ACTION> {
 //            precondition(ownerComponent != nil, "Update called when ownerComponent is nil. Probably wasn't set in init of the component.")
 //        #endif
         if ownerNeedsUpdate() == true {
-            #if ENABLE_RXSWIFT
-            behavior.stateDisposeBag = DisposeBag()
-            #else
+//            #if ENABLE_RXSWIFT
+//            behavior.rx.stateDisposeBag = DisposeBag()
+//            #else
             behavior.stateTracking = ObservationTokenTracker()
-            #endif
+//            #endif
 //            ownerComponent?.update()
             ownerUpdate()
         }

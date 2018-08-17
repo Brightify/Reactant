@@ -65,7 +65,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         
         collectionView.backgroundColor = .clear
         #if ENABLE_RXSWIFT
-        collectionView.rx.setDelegate(self).disposed(by: lifetimeDisposeBag)
+        collectionView.rx.setDelegate(self).disposed(by: rx.lifetimeDisposeBag)
         #else
         collectionView.delegate = self
         #endif
@@ -91,7 +91,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
                 .subscribe(onNext: { [collectionView] in
                     collectionView.deselectItem(at: $0, animated: true)
                 })
-                .disposed(by: lifetimeDisposeBag)
+                .disposed(by: rx.lifetimeDisposeBag)
         }
 
         bind(items: items)
@@ -160,7 +160,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         let component = cell.cachedCellOrCreated(factory: factory)
         component.componentState = model
         #if ENABLE_RXSWIFT
-        component.action.map(mapAction)
+        component.rx.action.map(mapAction)
             .subscribe(onNext: { [weak self] in
                 self?.perform(action: $0)
             })
@@ -210,7 +210,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         let component = view.cachedViewOrCreated(factory: factory)
         component.componentState = model
         #if ENABLE_RXSWIFT
-        component.action.map(mapAction)
+        component.rx.action.map(mapAction)
             .subscribe(onNext: { [weak self] in
                 self?.perform(action: $0)
             })

@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+import UIKit
 import SnapKit
 
 public extension UIView {

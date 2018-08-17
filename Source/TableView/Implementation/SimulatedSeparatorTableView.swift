@@ -100,7 +100,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
                 $0.map { SectionModel(model: Void(), items: [$0]) }
             }
             .bind(to: tableView.rx.items(dataSource: dataSource))
-            .disposed(by: lifetimeDisposeBag)
+            .disposed(by: rx.lifetimeDisposeBag)
     }
     #endif
 

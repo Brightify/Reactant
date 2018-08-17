@@ -87,7 +87,7 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
     open override func bind(items: Observable<[SECTION]>) {
         items
             .bind(to: tableView.rx.items(dataSource: dataSource))
-            .disposed(by: lifetimeDisposeBag)
+            .disposed(by: rx.lifetimeDisposeBag)
     }
     #endif
 

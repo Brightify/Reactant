@@ -21,7 +21,17 @@ public struct TableViewOptions: OptionSet {
     public static let none: TableViewOptions = []
 }
 
-open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>, ReactantTableView, UITableViewDelegate {
+#if ENABLE_RXSWIFT
+internal protocol TableViewDataSourceHelperProtocol { }
+#else
+internal protocol TableViewDataSourceHelperProtocol: UITableViewDataSource { }
+#endif
+
+open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>, ReactantTableView, UITableViewDelegate, TableViewDataSourceHelperProtocol {
+
+    #if !ENABLE_RXSWIFT
+    public typealias ConfigureCell = (UITableView, IndexPath, MODEL) -> UITableViewCell
+    #endif
     
     open var edgesForExtendedLayout: UIRectEdge {
         return .all
@@ -52,6 +62,12 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     private var configurationChangeTime: clock_t = clock()
     
     private let automaticallyDeselect: Bool
+
+    #if !ENABLE_RXSWIFT
+    public var configureCell: ConfigureCell = { _, _, _ in
+        fatalError("TableViewBase.configureCell not set before used!")
+    }
+    #endif
 
     public init(style: UITableView.Style = .plain, options: TableViewOptions) {
         self.tableView = UITableView(frame: CGRect.zero, style: style)
@@ -99,7 +115,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         tableView.separatorStyle = .singleLine
         #endif
         #if ENABLE_RXSWIFT
-        tableView.rx.setDelegate(self).disposed(by: lifetimeDisposeBag)
+        tableView.rx.setDelegate(self).disposed(by: rx.lifetimeDisposeBag)
         #else
         tableView.delegate = self
         #endif
@@ -119,13 +135,14 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         }
     }
     
+    #if ENABLE_RXSWIFT
     open override func afterInit() {
         if automaticallyDeselect {
             tableView.rx.itemSelected
                 .subscribe(onNext: { [tableView] in
                     tableView.deselectRow(at: $0, animated: true)
                 })
-                .disposed(by: lifetimeDisposeBag)
+                .disposed(by: rx.lifetimeDisposeBag)
         }
 
         bind(items: items)
@@ -137,7 +154,34 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     @available(*, unavailable, message: "RxSwift 3.0 changed behavior of DataSources so we have to bind only once. Use bind(items: Observable<MODEL>)")
     open func bind(items: [MODEL]) {
     }
-    
+    #else
+    open override func afterInit() {
+        tableView.dataSource = self
+    }
+
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard componentDelegate.hasComponentState,
+            case .items(let items) = componentState else { return 0 }
+        return items.count
+    }
+
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard componentDelegate.hasComponentState,
+            case .items(let items) = componentState else { return UITableViewCell() }
+
+//        let model = items.
+//
+//        configureCell(tableView,
+        return UITableViewCell()
+    }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if automaticallyDeselect {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    #endif
+
     open override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -202,7 +246,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         component.componentState = model
         (component as? Configurable)?.configuration = configuration
         #if ENABLE_RXSWIFT
-        component.action.map(mapAction)
+        component.rx.action.map(mapAction)
             .subscribe(onNext: { [weak self] in
                 self?.perform(action: $0)
             })
@@ -238,7 +282,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         component.componentState = model
         (component as? Configurable)?.configuration = configuration
         #if ENABLE_RXSWIFT
-        component.action.map(mapAction)
+        component.rx.action.map(mapAction)
             .subscribe(onNext: { [weak self] in
                 self?.perform(action: $0)
             })

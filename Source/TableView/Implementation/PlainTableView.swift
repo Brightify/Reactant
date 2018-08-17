@@ -71,7 +71,7 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
             .bind(to: tableView.items(with: cellIdentifier)) { [unowned self] _, model, cell in
                 self.configure(cell: cell, factory: self.cellFactory, model: model, mapAction: { PlainTableViewAction.rowAction(model, $0) })
             }
-            .disposed(by: lifetimeDisposeBag)
+            .disposed(by: rx.lifetimeDisposeBag)
     }
     #endif
 }
