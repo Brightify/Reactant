@@ -6,21 +6,56 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import RxSwift
+//import RxSwift
 
-public struct ActionMapper<ACTION> {
+public final class ActionMapper<ACTION> {
     private let performAction: (ACTION) -> Void
+    internal var tokens: [ObservationToken] = []
 
     public init(performAction: @escaping (ACTION) -> Void) {
         self.performAction = performAction
     }
 
-    public func map<C: Component>(from component: C, using mapping: @escaping (C.ActionType) -> ACTION) -> ObservationToken {
-        return component.observeAction { [performAction] action in
+    public func map<C: Component>(from component: C, using mapping: @escaping (C.ActionType) -> ACTION) {
+        let token = component.observeAction { [performAction] action in
             performAction(mapping(action))
         }
+
+        track(token: token)
+    }
+
+    public func passthrough<C: Component>(from component: C) where C.ActionType == ACTION {
+        let token = component.observeAction { [performAction] action in
+            performAction(action)
+        }
+
+        track(token: token)
+    }
+
+    internal func track(token: ObservationToken) {
+        tokens.append(token)
     }
 }
+
+#if canImport(RxSwift)
+import RxSwift
+extension ActionMapper {
+
+    public func passthrough<O: ObservableConvertibleType>(_ observable: O) where O.E == ACTION {
+        let disposable = observable.asObservable()
+            .subscribe(onNext: { [performAction] in
+                performAction($0)
+            })
+
+        let token = ObservationToken {
+            disposable.dispose()
+        }
+
+        track(token: token)
+    }
+
+}
+#endif
 
 public protocol ComponentWithDelegate: Component {
     var componentDelegate: ComponentDelegate<StateType, ActionType> { get }
@@ -43,7 +78,7 @@ public protocol ComponentWithDelegate: Component {
      * - WARNING: When listening to Component's actions, subscribe to `Component.action` instead of this variable.
      *  `Component.action` includes `Component.perform(action:)` calls as well as `Observable`s defined in `actions`.
      */
-    var actions: [Observable<ActionType>] { get }
+//    var actions: [Observable<ActionType>] { get }
 
     /**
      * Used to reset `actions` `Observable` array. Useful when you have a condition in `actions` based on which certain `Observable`s are included in the array.
@@ -52,20 +87,11 @@ public protocol ComponentWithDelegate: Component {
      * based on the conditions that are in the computed variable, because this would be ineffective.
      * This is where you call `resetActions()` when orientation changes causing `actions` to update and the amount of active buttons is changed as well.
      */
-    func resetActions()
+//    func resetActions()
     #elseif ENABLE_PROMISEKIT
 
     #endif
-    func actionMapping(mapper: ActionMapper<ActionType>) -> Set<ObservationToken>
-
-    /**
-     * Used to reset `actions` `Observable` array. Useful when you have a condition in `actions` based on which certain `Observable`s are included in the array.
-     * ## Example
-     * You decide to change the amount of active buttons based on device orientation. `actions` don't automatically change
-     * based on the conditions that are in the computed variable, because this would be ineffective.
-     * This is where you call `resetActions()` when orientation changes causing `actions` to update and the amount of active buttons is changed as well.
-     */
-    func resetActionMapping()
+    func actionMapping(mapper: ActionMapper<ActionType>)
 }
 
 private var componentDelegateKey = 0 as UInt8
@@ -102,40 +128,19 @@ extension ComponentWithDelegate {
     }
 }
 
-#if ENABLE_RXSWIFT
-extension ComponentWithDelegate {
-
-    public var action: Observable<ActionType> {
-        return componentDelegate.rxBehavior.action
-    }
-    
-    public var stateDisposeBag: DisposeBag {
-        return componentDelegate.rxBehavior.stateDisposeBag
-    }
-
-    public var observableState: Observable<StateType> {
-        return componentDelegate.rxBehavior.observableState
-    }
-
-    public func observeState(_ when: ObservableStateEvent) -> Observable<StateType> {
-        return componentDelegate.rxBehavior.observeState(when)
-    }
-
-    public func resetActions() {
-        componentDelegate.rxBehavior.actions = actions
-    }
-}
-#endif
 extension ComponentWithDelegate {
 
     public var stateTracking: ObservationTokenTracker {
         return componentDelegate.behavior.stateTracking
     }
 
-    public func actionMapping(mapper: ActionMapper<ActionType>) -> Set<ObservationToken> {
-        return []
-    }
-
+    /**
+     * Used to reset `actions` `Observable` array. Useful when you have a condition in `actions` based on which certain `Observable`s are included in the array.
+     * ## Example
+     * You decide to change the amount of active buttons based on device orientation. `actions` don't automatically change
+     * based on the conditions that are in the computed variable, because this would be ineffective.
+     * This is where you call `resetActions()` when orientation changes causing `actions` to update and the amount of active buttons is changed as well.
+     */
     public func resetActionMapping() {
         componentDelegate.behavior.registerActionMapping(actionMapping)
     }

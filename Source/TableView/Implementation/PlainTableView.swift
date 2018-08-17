@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 public enum PlainTableViewAction<CELL: Component> {
     case selected(CELL.StateType)
@@ -19,21 +20,6 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
     public typealias MODEL = CELL.StateType
 
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
-
-    #if ENABLE_RXSWIFT
-    open override var actions: [Observable<PlainTableViewAction<CELL>>] {
-        #if os(iOS)
-        return [
-            tableView.rx.modelSelected(MODEL.self).map(PlainTableViewAction.selected),
-            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: PlainTableViewAction.refresh)
-        ].compactMap { $0 }
-        #else
-        return [
-            tableView.rx.modelSelected(MODEL.self).map(PlainTableViewAction.selected)
-        ]
-        #endif
-    }
-    #endif
 
     private let cellFactory: () -> CELL
 
@@ -63,6 +49,16 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
         super.loadView()
 
         tableView.register(identifier: cellIdentifier)
+    }
+
+    open override func actionMapping(mapper: ActionMapper<PlainTableViewAction<CELL>>) {
+        mapper.passthrough(tableView.rx.modelSelected(MODEL.self).map(PlainTableViewAction.selected))
+
+        #if os(iOS)
+        if let refreshControl = refreshControl {
+            mapper.passthrough(refreshControl.rx.controlEvent(.valueChanged).rewrite(with: PlainTableViewAction.refresh))
+        }
+        #endif
     }
 
     #if ENABLE_RXSWIFT

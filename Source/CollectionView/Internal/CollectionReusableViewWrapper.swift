@@ -22,11 +22,7 @@ public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReus
         }
     }
 
-    #if ENABLE_RXSWIFT
-    public var configureDisposeBag = DisposeBag()
-    #else
     public var configureTracking = ObservationTokenTracker()
-    #endif
     
     public override class var requiresConstraintBasedLayout: Bool {
         return true

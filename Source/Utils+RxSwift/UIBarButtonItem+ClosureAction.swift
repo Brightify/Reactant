@@ -7,40 +7,56 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 /// Extension of UIBarButtonItem, that adds option to use closure instead of target and selector
+private var actionBlockKey = 0 as UInt8
 extension UIBarButtonItem {
+
+    private var actionBlock: (() -> Void)? {
+        get {
+            return associatedObject(self, key: &actionBlockKey, defaultValue: nil)
+        }
+        set {
+            associateObject(self, key: &actionBlockKey, value: newValue)
+        }
+    }
 
     public convenience init(image: UIImage?, style: UIBarButtonItem.Style, action: (() -> Void)? = nil) {
         self.init(image: image, style: style, target: nil, action: nil)
         
-        register(action: action)
+        register(actionBlock: action)
     }
 
     public convenience init(image: UIImage?, landscapeImagePhone: UIImage?, style: UIBarButtonItem.Style,
                             action: (() -> Void)? = nil) {
         self.init(image: image, landscapeImagePhone: landscapeImagePhone, style: style, target: nil, action: nil)
 
-        register(action: action)
+        register(actionBlock: action)
     }
 
     public convenience init(title: String?, style: UIBarButtonItem.Style, action: (() -> Void)? = nil) {
         self.init(title: title, style: style, target: nil, action: nil)
 
-        register(action: action)
+        register(actionBlock: action)
     }
 
     public convenience init(barButtonSystemItem systemItem: UIBarButtonItem.SystemItem, action: (() -> Void)? = nil) {
         self.init(barButtonSystemItem: systemItem, target: nil, action: nil)
 
-        register(action: action)
+        register(actionBlock: action)
     }
 
-    private func register(action: (() -> Void)?) {
-        if let action = action {
-            _ = rx.tap.takeUntil(rx.deallocating).subscribe(onNext: action)
-        }
+    @objc
+    internal func itemTapped() {
+
+    }
+
+    private func register(actionBlock: (() -> Void)?) {
+        self.actionBlock = actionBlock
+
+        guard actionBlock != nil else { return }
+
+        target = self
+        action = #selector(itemTapped)
     }
 }

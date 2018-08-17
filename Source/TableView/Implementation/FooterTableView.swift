@@ -25,7 +25,7 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
     private let footerIdentifier = TableViewHeaderFooterIdentifier<FOOTER>()
 
     #if ENABLE_RXSWIFT
-    open override var actions: [Observable<FooterTableViewAction<CELL, FOOTER>>] {
+    open var actions: [Observable<FooterTableViewAction<CELL, FOOTER>>] {
         #if os(iOS)
         return [
             tableView.rx.modelSelected(MODEL.self).map(FooterTableViewAction.selected),

@@ -6,7 +6,8 @@
 //  Copyright © 2018 Brightify. All rights reserved.
 //
 
-import RxSwift
+//import RxSwift
+import UIKit
 
 #if os(iOS)
 public class PickerView<MODEL>: ViewBase<MODEL, MODEL>, UIPickerViewDataSource, UIPickerViewDelegate {

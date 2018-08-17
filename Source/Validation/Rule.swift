@@ -6,8 +6,6 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import Result
-
 /**
  * Structure used for setting up a validation rule for values of generic type `T`.
  * ## Example
@@ -57,11 +55,7 @@ public struct Rule<T, E: Error> {
      * - parameter value: value to be tested, must be of generic type `T`
      * - returns: `Result`, `.success` with the passed value if validation was successful and `.failure` with the error otherwise
      */
-    public func run(_ value: T) -> Result<T, E> {
-        if let error = validate(value) {
-            return .failure(error)
-        } else {
-            return .success(value)
-        }
+    public func run(_ value: T) -> E? {
+        return validate(value)
     }
 }

@@ -20,21 +20,6 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
     
     private let cellIdentifier = CollectionViewCellIdentifier<CELL>()
 
-    #if ENABLE_RXSWIFT
-    open override var actions: [Observable<SimpleCollectionViewAction<CELL>>] {
-        #if os(iOS)
-        return [
-            collectionView.rx.modelSelected(MODEL.self).map(SimpleCollectionViewAction.selected),
-            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: SimpleCollectionViewAction.refresh)
-        ].compactMap { $0 }
-        #else
-        return [
-            collectionView.rx.modelSelected(MODEL.self).map(SimpleCollectionViewAction.selected)
-        ]
-        #endif
-    }
-    #endif
-    
     private let cellFactory: () -> CELL
     
     public init(cellFactory: @escaping () -> CELL = CELL.init,
@@ -49,6 +34,16 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
         super.loadView()
         
         collectionView.register(identifier: cellIdentifier)
+    }
+
+    open override func actionMapping(mapper: ActionMapper<ActionType>) {
+        mapper.passthrough(collectionView.rx.modelSelected(MODEL.self).map(SimpleCollectionViewAction.selected))
+
+        #if os(iOS)
+        if let refreshControl = refreshControl {
+            mapper.passthrough(refreshControl.rx.controlEvent(.valueChanged).rewrite(with: SimpleCollectionViewAction.refresh))
+        }
+        #endif
     }
 
     #if ENABLE_RXSWIFT

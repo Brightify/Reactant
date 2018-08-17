@@ -6,8 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-import RxSwift
-import RxOptional
+import UIKit
 
 public enum TextInputState {
     case string(String)
@@ -56,90 +55,78 @@ extension NSAttributedString: TextInputStateConvertible {
     }
 }
 
-open class TextField: UITextField, ComponentWithDelegate, Configurable {
+public final class TextField: UITextField, ComponentWithDelegate, Configurable {
     public typealias StateType = TextInputStateConvertible
     public typealias ActionType = String
 
     public let lifetimeTracking = ObservationTokenTracker()
-    
-//    public let componentDelegate = ComponentDelegate<TextInputStateConvertible, String>()
 
-    open var actions: [Observable<String>] {
-        return [
-            rx.text.skip(1).replaceNilWith("")
-        ]
-    }
-
-//    open var action: Observable<String> {
-//        return componentDelegate.behavior.action
-//    }
-
-    open var configuration: Configuration = .global {
+    public var configuration: Configuration = .global {
         didSet {
             layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
             configuration.get(valueFor: Properties.Style.textField)(self)
         }
     }
 
-    open override class var requiresConstraintBasedLayout: Bool {
+    public override class var requiresConstraintBasedLayout: Bool {
         return true
     }
 
     @objc
-    open var contentEdgeInsets: UIEdgeInsets = .zero
+    public var contentEdgeInsets: UIEdgeInsets = .zero
 
-    open override var text: String? {
+    public override var text: String? {
         didSet {
             componentState = text ?? ""
         }
     }
 
-    open override var attributedText: NSAttributedString? {
+    public override var attributedText: NSAttributedString? {
         didSet {
             componentState = attributedText ?? NSAttributedString()
         }
     }
 
     @objc
-    open var placeholderColor: UIColor? = nil {
+    public var placeholderColor: UIColor? = nil {
         didSet {
             updateAttributedPlaceholder()
         }
     }
 
     @objc
-    open var placeholderFont: UIFont? = nil {
+    public var placeholderFont: UIFont? = nil {
         didSet {
             updateAttributedPlaceholder()
         }
     }
 
-    open var placeholderAttributes: [Attribute] = [] {
+    public var placeholderAttributes: [Attribute] = [] {
         didSet {
             updateAttributedPlaceholder()
         }
     }
 
-    override open var placeholder: String? {
+    public override var placeholder: String? {
         didSet {
             updateAttributedPlaceholder()
         }
     }
 
     #if ENABLE_SAFEAREAINSETS_FALLBACK
-    open override var frame: CGRect {
+    public override var frame: CGRect {
         didSet {
             fallback_computeSafeAreaInsets()
         }
     }
 
-    open override var bounds: CGRect {
+    public override var bounds: CGRect {
         didSet {
             fallback_computeSafeAreaInsets()
         }
     }
 
-    open override var center: CGPoint {
+    public override var center: CGPoint {
         didSet {
             fallback_computeSafeAreaInsets()
         }
@@ -148,8 +135,6 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
 
     public init() {
         super.init(frame: CGRect.zero)
-
-//        componentDelegate.ownerComponent = self
 
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -160,11 +145,7 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
         loadView()
         setupConstraints()
 
-        #if ENABLE_RXSWIFT
-        resetActions()
-        #else
         resetActionMapping()
-        #endif
         reloadConfiguration()
 
         afterInit()
@@ -185,10 +166,14 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
         }
     }
 
-    open func afterInit() {
+    public func afterInit() {
+        addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
 
-    open func update() {
+    public func actionMapping(mapper: ActionMapper<ActionType>) {
+    }
+
+    public func update() {
         let oldSelectedRange = selectedTextRange
 
         switch componentState.asTextInputState() {
@@ -205,28 +190,29 @@ open class TextField: UITextField, ComponentWithDelegate, Configurable {
 
     }
 
-//    public func observeState(_ when: ObservableStateEvent) -> Observable<TextInputStateConvertible> {
-//        return componentDelegate.behavior.observeState(when)
-//    }
-
-    open func loadView() {
+    public func loadView() {
     }
 
-    open func setupConstraints() {
+    public func setupConstraints() {
     }
 
-    open func needsUpdate() -> Bool {
+    public func needsUpdate() -> Bool {
         return true
     }
 
-    open override func textRect(forBounds bounds: CGRect) -> CGRect {
+    public override func textRect(forBounds bounds: CGRect) -> CGRect {
         let superBounds = super.textRect(forBounds: bounds)
         return superBounds.inset(by: contentEdgeInsets)
     }
 
-    open override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    public override func editingRect(forBounds bounds: CGRect) -> CGRect {
         let superBounds = super.editingRect(forBounds: bounds)
         return superBounds.inset(by: contentEdgeInsets)
+    }
+
+    @objc
+    internal func textFieldDidChange() {
+        perform(action: text ?? "")
     }
 
     private func updateAttributedPlaceholder() {

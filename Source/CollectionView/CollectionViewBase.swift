@@ -148,30 +148,18 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     
     open func configure<T: Component>(cell: CollectionViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
-        #if ENABLE_RXSWIFT
-        cell.configureDisposeBag = DisposeBag()
-        #else
         cell.configureTracking = ObservationTokenTracker()
-        #endif
         if configurationChangeTime != cell.configurationChangeTime {
             cell.configuration = configuration
             cell.configurationChangeTime = configurationChangeTime
         }
         let component = cell.cachedCellOrCreated(factory: factory)
         component.componentState = model
-        #if ENABLE_RXSWIFT
-        component.rx.action.map(mapAction)
-            .subscribe(onNext: { [weak self] in
-                self?.perform(action: $0)
-            })
-            .disposed(by: cell.configureDisposeBag)
-        #else
         component
             .observeAction(observer: { [weak self] action in
                 self?.perform(action: mapAction(action))
             })
             .track(in: cell.configureTracking)
-        #endif
     }
 
     open func dequeueAndConfigure<T: Component>(identifier: CollectionViewCellIdentifier<T>,
@@ -198,30 +186,18 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     
     open func configure<T: Component>(view: CollectionReusableViewWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
-        #if ENABLE_RXSWIFT
-        view.configureDisposeBag = DisposeBag()
-        #else
         view.configureTracking = ObservationTokenTracker()
-        #endif
         if configurationChangeTime != view.configurationChangeTime {
             view.configuration = configuration
             view.configurationChangeTime = configurationChangeTime
         }
         let component = view.cachedViewOrCreated(factory: factory)
         component.componentState = model
-        #if ENABLE_RXSWIFT
-        component.rx.action.map(mapAction)
-            .subscribe(onNext: { [weak self] in
-                self?.perform(action: $0)
-            })
-            .disposed(by: view.configureDisposeBag)
-        #else
         component
             .observeAction(observer: { [weak self] action in
                 self?.perform(action: mapAction(action))
             })
             .track(in: view.configureTracking)
-        #endif
     }
 
     open func dequeueAndConfigure<T: Component>(identifier: CollectionSupplementaryViewIdentifier<T>,

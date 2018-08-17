@@ -18,7 +18,7 @@ public enum StaticMapAction {
 open class StaticMap: ViewBase<MKCoordinateRegion, StaticMapAction> {
 
     #if ENABLE_RXSWIFT
-    open override var actions: [Observable<StaticMapAction>] {
+    open var actions: [Observable<StaticMapAction>] {
         return [tapGestureRecognizer.rx.event.rewrite(with: StaticMapAction.selected)]
     }
     #endif

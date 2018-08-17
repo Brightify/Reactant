@@ -6,7 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import RxSwift
+//import RxSwift
 
 protocol ComponentBehavior {
     associatedtype StateType
@@ -19,70 +19,9 @@ protocol ComponentBehavior {
     func componentPerformedAction(_ action: ActionType)
 }
 
-#if ENABLE_RXSWIFT
-internal final class RxSwiftComponentBehavior<STATE, ACTION>: ComponentBehavior {
-    public var stateDisposeBag = DisposeBag()
 
-    public var observableState: Observable<STATE> {
-        return observableStateSubject
-    }
 
-    public var action: Observable<ACTION> {
-        return actionSubject
-    }
-
-    public var actions: [Observable<ACTION>] = [] {
-        didSet {
-            actionsDisposeBag = DisposeBag()
-            Observable.from(actions).merge().subscribe(onNext: { [weak self] in
-                self?.componentPerformedAction($0)
-            }).disposed(by: actionsDisposeBag)
-        }
-    }
-
-    private let observableStateSubject = ReplaySubject<STATE>.create(bufferSize: 1)
-    private let observableStateBeforeUpdate = PublishSubject<STATE>()
-    private let observableStateAfterUpdate = PublishSubject<STATE>()
-    private let actionSubject = PublishSubject<ACTION>()
-
-    private var actionsDisposeBag = DisposeBag()
-
-    func componentStateWillChange(from previousState: STATE?, to state: STATE) {
-        observableStateBeforeUpdate.onNext(state)
-        observableStateSubject.onNext(state)
-    }
-
-    func componentStateDidChange(from previousState: STATE?, to state: STATE) {
-        observableStateAfterUpdate.onNext(state)
-    }
-
-    func componentPerformedAction(_ action: ACTION) {
-        actionSubject.onNext(action)
-    }
-
-    func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
-        switch when {
-        case .beforeUpdate:
-            return observableStateBeforeUpdate
-        case .afterUpdate:
-            return observableStateAfterUpdate
-        }
-    }
-
-    deinit {
-        observableStateSubject.onCompleted()
-        actionSubject.onCompleted()
-        observableStateBeforeUpdate.onCompleted()
-        observableStateAfterUpdate.onCompleted()
-    }
-
-}
-#elseif ENABLE_PROMISEKIT
-#error("Not implemented")
-internal final class PromiseKitComponentBehavior<C: Component>: ComponentBehavior {
-
-}
-#endif
+import Foundation
 //#error("Not implemented")
 internal final class DefaultComponentBehavior<STATE, ACTION>: ComponentBehavior {
     public var stateTracking = ObservationTokenTracker()
@@ -138,23 +77,20 @@ internal final class DefaultComponentBehavior<STATE, ACTION>: ComponentBehavior 
         }
     }
 
-    func registerActionMapping(_ mapping: (ActionMapper<ACTION>) -> Set<ObservationToken>) {
+    func registerActionMapping(_ mapping: (ActionMapper<ACTION>) -> Void) {
         actionsTracking = ObservationTokenTracker()
 
         let mapper = ActionMapper { [weak self] in
             self?.componentPerformedAction($0)
         }
-        let tokens = mapping(mapper)
-        actionsTracking.track(tokens: tokens)
+        mapping(mapper)
+        actionsTracking.track(tokens: mapper.tokens)
     }
 }
 
-// // COMPONENT and ACTION cannot have restriction to StateType because then it is impossible to use `ComponentWithDelegate` (associatedtype cannot be used with where).
 public final class ComponentDelegate<STATE, ACTION> {
     #if ENABLE_RXSWIFT
     internal let rxBehavior = RxSwiftComponentBehavior<STATE, ACTION>()
-    #elseif ENABLE_PROMISEKIT
-    internal let behavior = PromiseKitComponentBehavior<STATE, ACTION>()
     #endif
     internal let behavior = DefaultComponentBehavior<STATE, ACTION>()
 
@@ -266,17 +202,9 @@ public final class ComponentDelegate<STATE, ACTION> {
         }
         
         needsUpdate = false
-        
-//        #if DEBUG
-//            precondition(ownerComponent != nil, "Update called when ownerComponent is nil. Probably wasn't set in init of the component.")
-//        #endif
+
         if ownerNeedsUpdate() == true {
-//            #if ENABLE_RXSWIFT
-//            behavior.rx.stateDisposeBag = DisposeBag()
-//            #else
             behavior.stateTracking = ObservationTokenTracker()
-//            #endif
-//            ownerComponent?.update()
             ownerUpdate()
         }
     }

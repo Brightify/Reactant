@@ -68,14 +68,6 @@ final class ExampleRootView: ViewBase<Void, Void> {
 }
 
 final class SimpleControl: ControlBase<String, Void> {
-    #if ENABLE_RXSWIFT
-    override var actions: [Observable<Void>] {
-        return [
-            rx.controlEvent(.touchUpInside).asObservable()
-        ]
-    }
-    #endif
-
     private let label = UILabel()
 
     override func update() {
@@ -90,6 +82,10 @@ final class SimpleControl: ControlBase<String, Void> {
         label.font = UIFont.System.regular[15]
     }
 
+    override func actionMapping(mapper: ActionMapper<Void>) {
+        mapper.passthrough(rx.controlEvent(.touchUpInside))
+    }
+
     override func setupConstraints() {
         label.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(16)
@@ -98,20 +94,6 @@ final class SimpleControl: ControlBase<String, Void> {
 }
 
 final class SimpleCell: ViewBase<String, Void>, CollectionViewCell {
-
-    #if ENABLE_RXSWIFT
-    override var actions: [Observable<Void>] {
-        return [
-            control.action
-        ]
-    }
-    #else
-    override func actionMapping(mapper: ActionMapper<()>) -> Set<ObservationToken> {
-        return [
-            mapper.map(from: control, using: { $0 })
-        ]
-    }
-    #endif
 
     private let control = SimpleControl()
 
@@ -123,6 +105,10 @@ final class SimpleCell: ViewBase<String, Void>, CollectionViewCell {
         children(
             control
         )
+    }
+
+    override func actionMapping(mapper: ActionMapper<()>) {
+        mapper.passthrough(from: control)
     }
 
     override func setupConstraints() {

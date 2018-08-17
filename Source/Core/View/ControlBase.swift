@@ -5,10 +5,9 @@
 //  Created by Matouš Hýbl on 09/02/2018.
 //
 
-import RxSwift
+import UIKit
 
 open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configurable {
-    
     public typealias StateType = STATE
     public typealias ActionType = ACTION
 
@@ -16,9 +15,9 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
     
 //    public let componentDelegate = ComponentDelegate<ControlBase<STATE, ACTION>>()
 
-    open var actions: [Observable<ACTION>] {
-        return []
-    }
+//    open var actions: [Observable<ACTION>] {
+//        return []
+//    }
 
 //    open var action: Observable<ACTION> {
 //        return componentDelegate.behavior.action
@@ -69,11 +68,7 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
         loadView()
         setupConstraints()
 
-        #if ENABLE_RXSWIFT
-        resetActions()
-        #else
         resetActionMapping()
-        #endif
         reloadConfiguration()
         
         afterInit()
@@ -94,13 +89,12 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
     
     open func afterInit() {
     }
+
+    open func actionMapping(mapper: ActionMapper<ActionType>) {
+    }
     
     open func update() {
     }
-    
-//    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
-//        return componentDelegate.behavior.observeState(when)
-//    }
     
     open func loadView() {
     }

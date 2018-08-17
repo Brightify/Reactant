@@ -6,10 +6,11 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import RxSwift
+//import RxSwift
+import UIKit
 
 open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate, Configurable where ROOT: Component {
-    
+
     public typealias StateType = STATE
     public typealias ActionType = Void
     
@@ -18,13 +19,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     }
     
     public let lifetimeTracking = ObservationTokenTracker()
-    
-//    public let componentDelegate = ComponentDelegate<STATE, Void, ControllerBase<STATE, ROOT>>()
 
-    public let action: Observable<Void> = Observable.empty()
-    
-    public let actions: [Observable<Void>] = []
-    
     public let rootView: ROOT
     
     open var configuration: Configuration = .global {
@@ -109,9 +104,8 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         return true
     }
 
-//    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
-//        return componentDelegate.behavior.observeState(when)
-//    }
+    open func actionMapping(mapper: ActionMapper<ActionType>) {
+    }
 
     open override func loadView() {
         view = ControllerRootViewContainer().with(configuration: configuration)

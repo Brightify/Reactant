@@ -44,7 +44,7 @@ abstract_target 'Reactant-iOS' do
     platform :ios, '9.0'
 
     target 'Reactant' do
-        shared
+        snapKit
     end
 
     target 'RxReactant' do
@@ -63,8 +63,6 @@ abstract_target 'Reactant-iOS' do
 
     target 'ReactantPrototyping' do
         shared
-
-        pod 'Reactant', :subspecs => ['All-iOS'], :path => './'
     end
 
 end

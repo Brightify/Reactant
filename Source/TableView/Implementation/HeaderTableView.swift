@@ -25,7 +25,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
     private let headerIdentifier = TableViewHeaderFooterIdentifier<HEADER>()
 
     #if ENABLE_RXSWIFT
-    open override var actions: [Observable<HeaderTableViewAction<HEADER, CELL>>] {
+    open var actions: [Observable<HeaderTableViewAction<HEADER, CELL>>] {
         #if os(iOS)
         return [
             tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected),

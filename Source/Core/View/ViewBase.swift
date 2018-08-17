@@ -6,30 +6,14 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import RxSwift
+//import RxSwift
+import UIKit
 
 open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable {
-
     public typealias StateType = STATE
     public typealias ActionType = ACTION
 
     public let lifetimeTracking = ObservationTokenTracker()
-    
-//    public let componentDelegate = ComponentDelegate<STATE, ACTION, ViewBase<STATE, ACTION>>()
-
-    #if ENABLE_RXSWIFT
-    open var actions: [Observable<ActionType>] {
-        return []
-    }
-    #else
-    open func actionMapping(mapper: ActionMapper<ACTION>) -> Set<ObservationToken> {
-        return []
-    }
-    #endif
-
-//    open var action: Observable<ActionType> {
-//        return componentDelegate.behavior.action
-//    }
 
     open var configuration: Configuration = .global {
         didSet {
@@ -76,11 +60,7 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         loadView()
         setupConstraints()
 
-        #if ENABLE_RXSWIFT
-        resetActions()
-        #else
         resetActionMapping()
-        #endif
         reloadConfiguration()
 
         afterInit()
@@ -108,9 +88,8 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
     open func afterInit() {
     }
 
-//    public func observeState(_ when: ObservableStateEvent) -> Observable<STATE> {
-//        return componentDelegate.behavior.observeState(when)
-//    }
+    open func actionMapping(mapper: ActionMapper<ActionType>) {
+    }
 
     open func update() {
     }

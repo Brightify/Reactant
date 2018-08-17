@@ -24,7 +24,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
     private let footerIdentifier = TableViewHeaderFooterIdentifier<UITableViewHeaderFooterView>(name: "Separator")
 
     #if ENABLE_RXSWIFT
-    open override var actions: [Observable<SimulatedSeparatorTableViewAction<CELL>>] {
+    open var actions: [Observable<SimulatedSeparatorTableViewAction<CELL>>] {
         #if os(iOS)
         return [
             tableView.rx.modelSelected(MODEL.self).map(SimulatedSeparatorTableViewAction.selected),
