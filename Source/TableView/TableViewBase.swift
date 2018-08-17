@@ -6,7 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import RxSwift
+import UIKit
 
 public struct TableViewOptions: OptionSet {
     public let rawValue: Int
@@ -21,13 +21,8 @@ public struct TableViewOptions: OptionSet {
     public static let none: TableViewOptions = []
 }
 
-#if ENABLE_RXSWIFT
-internal protocol TableViewDataSourceHelperProtocol { }
-#else
-internal protocol TableViewDataSourceHelperProtocol: UITableViewDataSource { }
-#endif
-
-open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>, ReactantTableView, UITableViewDelegate, TableViewDataSourceHelperProtocol {
+@objcMembers
+open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>, ReactantTableView, UITableViewDelegate {
 
     #if !ENABLE_RXSWIFT
     public typealias ConfigureCell = (UITableView, IndexPath, MODEL) -> UITableViewCell
@@ -46,28 +41,21 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         }
     }
 
-    @objc
     public let tableView: UITableView
     #if os(iOS)
-    @objc
     public let refreshControl: UIRefreshControl?
     #endif
-    @objc
     public let emptyLabel = UILabel()
-    @objc
     public let loadingIndicator = UIActivityIndicatorView()
 
-    private let items = PublishSubject<[MODEL]>()
+    public var items: [MODEL] {
+        guard componentDelegate.hasComponentState, case .items(let items) = componentState else { return [] }
+        return items
+    }
     // Optimization that prevents configuration reloading each time cell is dequeued.
     private var configurationChangeTime: clock_t = clock()
     
     private let automaticallyDeselect: Bool
-
-    #if !ENABLE_RXSWIFT
-    public var configureCell: ConfigureCell = { _, _, _ in
-        fatalError("TableViewBase.configureCell not set before used!")
-    }
-    #endif
 
     public init(style: UITableView.Style = .plain, options: TableViewOptions) {
         self.tableView = UITableView(frame: CGRect.zero, style: style)
@@ -80,18 +68,15 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         super.init()
     }
 
-    @available(*, deprecated, message: "This init will be removed in Reactant 2.0")
-    public init(style: UITableView.Style = .plain, reloadable: Bool = true, automaticallyDeselect: Bool = true) {
-        self.tableView = UITableView(frame: CGRect.zero, style: style)
+    open override func afterInit() {
         #if os(iOS)
-        self.refreshControl = reloadable ? UIRefreshControl() : nil
+        refreshControl?.addTarget(self, action: #selector(performRefresh), for: .valueChanged)
         #endif
-
-        self.automaticallyDeselect = automaticallyDeselect
-
-        super.init()
     }
-    
+
+    @objc
+    open func performRefresh() { }
+
     open override func loadView() {
         children(
             tableView,
@@ -114,11 +99,8 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         #if os(iOS)
         tableView.separatorStyle = .singleLine
         #endif
-        #if ENABLE_RXSWIFT
-        tableView.rx.setDelegate(self).disposed(by: rx.lifetimeDisposeBag)
-        #else
+
         tableView.delegate = self
-        #endif
     }
     
     open override func setupConstraints() {
@@ -134,53 +116,15 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
             make.center.equalTo(self)
         }
     }
-    
-    #if ENABLE_RXSWIFT
-    open override func afterInit() {
-        if automaticallyDeselect {
-            tableView.rx.itemSelected
-                .subscribe(onNext: { [tableView] in
-                    tableView.deselectRow(at: $0, animated: true)
-                })
-                .disposed(by: rx.lifetimeDisposeBag)
-        }
 
-        bind(items: items)
+    open func update(items: [MODEL]) {
     }
 
-    open func bind(items: Observable<[MODEL]>) {
-    }
-
-    @available(*, unavailable, message: "RxSwift 3.0 changed behavior of DataSources so we have to bind only once. Use bind(items: Observable<MODEL>)")
-    open func bind(items: [MODEL]) {
-    }
-    #else
-    open override func afterInit() {
-        tableView.dataSource = self
-    }
-
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard componentDelegate.hasComponentState,
-            case .items(let items) = componentState else { return 0 }
-        return items.count
-    }
-
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard componentDelegate.hasComponentState,
-            case .items(let items) = componentState else { return UITableViewCell() }
-
-//        let model = items.
-//
-//        configureCell(tableView,
-        return UITableViewCell()
-    }
-
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if automaticallyDeselect {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
-    #endif
 
     open override func layoutSubviews() {
         super.layoutSubviews()
@@ -226,18 +170,15 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
             }
         #endif
 
-        self.items.onNext(items)
-        
+        update(items: items)
+        tableView.reloadData()
         setNeedsLayout()
     }
 
     open func configure<T: Component>(cell: TableViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
-        #if ENABLE_RXSWIFT
-        cell.configureDisposeBag = DisposeBag()
-        #else
         cell.configureTracking = ObservationTokenTracker()
-        #endif
+
         if configurationChangeTime != cell.configurationChangeTime {
             cell.configuration = configuration
             cell.configurationChangeTime = configurationChangeTime
@@ -245,19 +186,12 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         let component = cell.cachedCellOrCreated(factory: factory)
         component.componentState = model
         (component as? Configurable)?.configuration = configuration
-        #if ENABLE_RXSWIFT
-        component.rx.action.map(mapAction)
-            .subscribe(onNext: { [weak self] in
-                self?.perform(action: $0)
-            })
-            .disposed(by: cell.configureDisposeBag)
-        #else
+
         component
             .observeAction(observer: { [weak self] action in
                 self?.perform(action: mapAction(action))
             })
             .track(in: cell.configureTracking)
-        #endif
     }
     
     open func dequeueAndConfigure<T: Component>(identifier: TableViewCellIdentifier<T>, factory: @escaping () -> T,
@@ -269,11 +203,8 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     
     open func configure<T: Component>(view: TableViewHeaderFooterWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
-        #if ENABLE_RXSWIFT
-        view.configureDisposeBag = DisposeBag()
-        #else
         view.configureTracking = ObservationTokenTracker()
-        #endif
+
         if configurationChangeTime != view.configurationChangeTime {
             view.configuration = configuration
             view.configurationChangeTime = configurationChangeTime
@@ -281,19 +212,12 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         let component = view.cachedViewOrCreated(factory: factory)
         component.componentState = model
         (component as? Configurable)?.configuration = configuration
-        #if ENABLE_RXSWIFT
-        component.rx.action.map(mapAction)
-            .subscribe(onNext: { [weak self] in
-                self?.perform(action: $0)
-            })
-            .disposed(by: view.configureDisposeBag)
-        #else
+
         component
             .observeAction(observer: { [weak self] action in
                 self?.perform(action: mapAction(action))
             })
             .track(in: view.configureTracking)
-        #endif
     }
     
     open func dequeueAndConfigure<T: Component>(identifier: TableViewHeaderFooterIdentifier<T>, factory: @escaping () -> T,

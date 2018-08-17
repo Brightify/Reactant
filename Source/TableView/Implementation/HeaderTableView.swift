@@ -6,8 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-import RxSwift
-import RxDataSources
+import UIKit
 
 public enum HeaderTableViewAction<HEADER: Component, CELL: Component> {
     case selected(CELL.StateType)
@@ -16,7 +15,17 @@ public enum HeaderTableViewAction<HEADER: Component, CELL: Component> {
     case refresh
 }
 
-open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionModel<HEADER.StateType, CELL.StateType>, HeaderTableViewAction<HEADER, CELL>> where HEADER: Component, CELL: Component {
+public struct SectionModel<Section, ItemType> {
+    public var model: Section
+    public var items: [ItemType]
+
+    public init(model: Section, items: [ItemType]) {
+        self.model = model
+        self.items = items
+    }
+}
+
+open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionModel<HEADER.StateType, CELL.StateType>, HeaderTableViewAction<HEADER, CELL>>, UITableViewDataSource where HEADER: Component, CELL: Component {
 
     public typealias MODEL = CELL.StateType
     public typealias SECTION = SectionModel<HEADER.StateType, CELL.StateType>
@@ -24,23 +33,23 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
     private let headerIdentifier = TableViewHeaderFooterIdentifier<HEADER>()
 
-    #if ENABLE_RXSWIFT
-    open var actions: [Observable<HeaderTableViewAction<HEADER, CELL>>] {
-        #if os(iOS)
-        return [
-            tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected),
-            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: HeaderTableViewAction.refresh)
-        ].compactMap { $0 }
-        #else
-        return [
-            tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected)
-        ]
-        #endif
-    }
-    #endif
+//    #if ENABLE_RXSWIFT
+//    open var actions: [Observable<HeaderTableViewAction<HEADER, CELL>>] {
+//        #if os(iOS)
+//        return [
+//            tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected),
+//            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: HeaderTableViewAction.refresh)
+//        ].compactMap { $0 }
+//        #else
+//        return [
+//            tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected)
+//        ]
+//        #endif
+//    }
+//    #endif
 
-    private let headerFactory: (() -> HEADER)
-    private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>(configureCell: { _,_,_,_  in UITableViewCell() })
+    private let cellFactory: () -> CELL
+    private let headerFactory: () -> HEADER
 
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
@@ -48,52 +57,57 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
         style: UITableView.Style = .plain,
         options: TableViewOptions)
     {
+        self.cellFactory = cellFactory
         self.headerFactory = headerFactory
 
         super.init(style: style, options: options)
-
-        dataSource.configureCell = { [unowned self] _, _, _, model in
-            return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,
-                                            model: model, mapAction: { HeaderTableViewAction.rowAction(model, $0) })
-        }
-    }
-
-    @available(*, deprecated, message: "This init will be removed in Reactant 2.0")
-    public init(
-        cellFactory: @escaping () -> CELL = CELL.init,
-        headerFactory: @escaping () -> HEADER = HEADER.init,
-        style: UITableView.Style = .plain,
-        reloadable: Bool = true,
-        automaticallyDeselect: Bool = true)
-    {
-        self.headerFactory = headerFactory
-
-        super.init(style: style, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
-
-        dataSource.configureCell = { [unowned self] _, _, _, model in
-            return self.dequeueAndConfigure(identifier: self.cellIdentifier, factory: cellFactory,
-                                            model: model, mapAction: { HeaderTableViewAction.rowAction(model, $0) })
-        }
     }
 
     open override func loadView() {
         super.loadView()
 
+        tableView.dataSource = self
         tableView.register(identifier: cellIdentifier)
         tableView.register(identifier: headerIdentifier)
     }
 
-    #if ENABLE_RXSWIFT
-    open override func bind(items: Observable<[SectionModel<HEADER.StateType, CELL.StateType>]>) {
-        items
-            .bind(to: tableView.rx.items(dataSource: dataSource))
-            .disposed(by: rx.lifetimeDisposeBag)
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return items.count
     }
-    #endif
 
-    @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let section = dataSource.sectionModels[section].identity
-        return dequeueAndConfigure(identifier: headerIdentifier, factory: headerFactory,
-                                   model: section, mapAction: { HeaderTableViewAction.headerAction(section, $0) })
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items[section].items.count
+    }
+
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = items[indexPath.section].items[indexPath.row]
+        return dequeueAndConfigure(
+            identifier: cellIdentifier,
+            factory: cellFactory,
+            model: model,
+            mapAction: { HeaderTableViewAction.rowAction(model, $0) })
+    }
+
+    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        super.tableView(tableView, didSelectRowAt: indexPath)
+
+        let model = items[indexPath.section].items[indexPath.row]
+        perform(action: .selected(model))
+    }
+
+    open override func performRefresh() {
+        super.performRefresh()
+
+        perform(action: .refresh)
+    }
+
+    @objc
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let section = items[section].model
+        return dequeueAndConfigure(
+            identifier: headerIdentifier,
+            factory: headerFactory,
+            model: section,
+            mapAction: { HeaderTableViewAction.headerAction(section, $0) })
     }
 }

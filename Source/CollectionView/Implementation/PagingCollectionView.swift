@@ -6,7 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-import RxSwift
+import UIKit
 
 open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where CELL: Component {
     
@@ -55,16 +55,10 @@ open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where 
         }
     }
 
-    #if ENABLE_RXSWIFT
-    open override func bind(items: Observable<[CELL.StateType]>) {
-        super.bind(items: items)
-
-        items.subscribe(onNext: { [pageControl] items in
-            pageControl.numberOfPages = items.count
-        }).disposed(by: rx.lifetimeDisposeBag)
+    open override func update(items: [CELL.StateType]) {
+        pageControl.numberOfPages = items.count
     }
-    #endif
-    
+
     open override func layoutSubviews() {
         super.layoutSubviews()
         

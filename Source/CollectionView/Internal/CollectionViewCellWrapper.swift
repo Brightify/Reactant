@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 
 public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell, Configurable {
     
@@ -46,7 +45,7 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
     }
 
     public var configureTracking = ObservationTokenTracker()
-    
+
     public override var isHighlighted: Bool {
         didSet {
             collectionViewCell?.setHighlighted(isHighlighted)

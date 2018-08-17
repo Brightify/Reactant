@@ -6,7 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import RxSwift
+import UIKit
 
 public struct CollectionViewCellIdentifier<T: UIView> {
     
@@ -41,8 +41,8 @@ extension UICollectionView {
         return dequeue(identifier: identifier, for: IndexPath(row: row, section: section))
     }
     
-    public func items<S: Sequence, Cell, O: ObservableType>(with identifier: CollectionViewCellIdentifier<Cell>) ->
-        (_ source: O) -> (_ configureCell: @escaping (Int, S.Iterator.Element, CollectionViewCellWrapper<Cell>) -> Void) -> Disposable where O.E == S {
-        return rx.items(cellIdentifier: identifier.name)
-    }
+//    public func items<S: Sequence, Cell, O: ObservableType>(with identifier: CollectionViewCellIdentifier<Cell>) ->
+//        (_ source: O) -> (_ configureCell: @escaping (Int, S.Iterator.Element, CollectionViewCellWrapper<Cell>) -> Void) -> Disposable where O.E == S {
+//        return rx.items(cellIdentifier: identifier.name)
+//    }
 }

@@ -27,7 +27,8 @@ final class ViewController: ControllerBase<Void, ExampleRootView> {
 final class ExampleRootView: ViewBase<Void, Void> {
 
 //    private let labelInsideSafeArea = UILabel(text: "Hello Reactant!")
-    private let tableView = SimpleCollectionView<SimpleCell>(reloadable: false)
+//    private let tableView = SimpleCollectionView<SimpleCell>(reloadable: false)
+    private let tableView = PlainTableView<SimpleCell>.init(options: .reloadable)
     
     override func afterInit() {
 //        tableView.action
@@ -51,9 +52,11 @@ final class ExampleRootView: ViewBase<Void, Void> {
             tableView
         )
         
-        tableView.collectionView.allowsMultipleSelection = true
-        tableView.collectionView.allowsSelection = true
-        tableView.collectionViewLayout.estimatedItemSize = CGSize(100)
+//        tableView.collectionView.allowsMultipleSelection = true
+//        tableView.collectionView.allowsSelection = true
+//        tableView.collectionViewLayout.estimatedItemSize = CGSize(100)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
     }
 
     override func setupConstraints() {
@@ -80,10 +83,13 @@ final class SimpleControl: ControlBase<String, Void> {
         )
 
         label.font = UIFont.System.regular[15]
+
+        addTarget(self, action: #selector(tapped), for: .touchUpInside)
     }
 
-    override func actionMapping(mapper: ActionMapper<Void>) {
-        mapper.passthrough(rx.controlEvent(.touchUpInside))
+    @objc
+    internal func tapped() {
+        perform(action: ())
     }
 
     override func setupConstraints() {

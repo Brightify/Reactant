@@ -28,11 +28,11 @@ class MockComponentBase<STATE, ACTION>: ComponentBase<STATE, ACTION>, Cuckoo.Cla
         }
     }
 
-    override var actions: [Observable<ACTION>] {
-        get {
-            return cuckoo_manager.getter("actions", superclassCall: super.actions)
-        }
-    }
+//    override var actions: [Observable<ACTION>] {
+//        get {
+//            return cuckoo_manager.getter("actions", superclassCall: super.actions)
+//        }
+//    }
 
     override func needsUpdate() -> Bool {
         return cuckoo_manager.call("needsUpdate() -> Bool",

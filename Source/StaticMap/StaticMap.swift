@@ -7,8 +7,6 @@
 //
 
 import MapKit
-import RxCocoa
-import RxSwift
 import Kingfisher
 
 public enum StaticMapAction {
@@ -16,12 +14,6 @@ public enum StaticMapAction {
 }
 
 open class StaticMap: ViewBase<MKCoordinateRegion, StaticMapAction> {
-
-    #if ENABLE_RXSWIFT
-    open var actions: [Observable<StaticMapAction>] {
-        return [tapGestureRecognizer.rx.event.rewrite(with: StaticMapAction.selected)]
-    }
-    #endif
 
     private let image = UIImageView()
     private let tapGestureRecognizer = UITapGestureRecognizer()
@@ -40,6 +32,13 @@ open class StaticMap: ViewBase<MKCoordinateRegion, StaticMapAction> {
         backgroundColor = .white
         image.contentMode = .scaleAspectFill
         addGestureRecognizer(tapGestureRecognizer)
+
+        tapGestureRecognizer.addTarget(self, action: #selector(mapTapped))
+    }
+
+    @objc
+    internal func mapTapped() {
+        perform(action: .selected)
     }
 
     open override func setupConstraints() {

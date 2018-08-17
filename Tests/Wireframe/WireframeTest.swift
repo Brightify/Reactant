@@ -6,10 +6,10 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-import Reactant
 import Quick
 import Nimble
 import RxSwift
+import Reactant
 
 final class TestWireframe: Wireframe {
 }

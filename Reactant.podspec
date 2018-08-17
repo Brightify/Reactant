@@ -39,9 +39,6 @@ Pod::Spec.new do |spec|
     def self.snapKit(subspec)
         subspec.dependency 'SnapKit', '~> 4.0'
     end
-    def self.result(subspec)
-        subspec.dependency 'Result', '~> 3.0'
-    end
     def self.rxCocoa(subspec)
         subspec.dependency 'RxCocoa', '~> 4.0'
     end
@@ -58,22 +55,28 @@ Pod::Spec.new do |spec|
     spec.subspec 'Core' do |subspec|
         subspec.frameworks = 'UIKit'
         subspec.dependency 'Reactant/Configuration'
-        rxSwift(subspec)
-        rxCocoa(subspec)
-        rxOptional(subspec)
+
         snapKit(subspec)
+
         subspec.source_files = [
             'Source/Core/**/*.swift',
             'Source/Utils/**/*.swift'
         ]
-        subspec.pod_target_xcconfig = {
+    end
+
+    spec.subspec 'Core+RxSwift' do |rxcore|
+        rxcore.dependency 'Reactant/Core'
+        rxcore.pod_target_xcconfig = {
             'OTHER_SWIFT_FLAGS' => '-DENABLE_RXSWIFT'
         }
+        rxcore.source_files = [
+            'Source/Core+RxSwift/**/*.swift',
+            'Source/Utils+RxSwift/**/*.swift'
+        ]
 
-        subspec.subspec 'RxSwift' do |subsubspec|
-            rxSwift(subsubspec)
-            rxCocoa(subsubspec)
-        end
+        rxOptional(rxcore)
+        rxSwift(rxcore)
+        rxCocoa(rxcore)
     end
 
     spec.subspec 'Configuration' do |subspec|
@@ -81,15 +84,7 @@ Pod::Spec.new do |spec|
         subspec.source_files = 'Source/Configuration/**/*.swift'
     end
 
-    spec.subspec 'Result' do |subspec|
-        result(subspec)
-        rxSwift(subspec)
-        rxOptional(subspec)
-        subspec.source_files = 'Source/Result/**/*.swift'
-    end
-
     spec.subspec 'Validation' do |subspec|
-        result(subspec)
         subspec.source_files = 'Source/Validation/**/*.swift'
     end
 
@@ -107,8 +102,6 @@ Pod::Spec.new do |spec|
     spec.subspec 'CollectionView' do |subspec|
         subspec.frameworks = 'UIKit'
         subspec.dependency 'Reactant/Core'
-        rxCocoa(subspec)
-        rxDataSources(subspec)
         subspec.source_files = 'Source/CollectionView/**/*.swift'
     end
 
@@ -121,7 +114,6 @@ Pod::Spec.new do |spec|
     spec.subspec 'StaticMap' do |subspec|
         subspec.frameworks = ['UIKit', 'MapKit']
         subspec.dependency 'Reactant/Core'
-        rxCocoa(subspec)
         kingfisher(subspec)
         subspec.source_files = 'Source/StaticMap/**/*.swift'
     end
@@ -139,7 +131,6 @@ Pod::Spec.new do |spec|
     spec.subspec 'All-iOS' do |subspec|
         subspec.dependency 'Reactant/Core'
         subspec.dependency 'Reactant/Configuration'
-        subspec.dependency 'Reactant/Result'
         subspec.dependency 'Reactant/Validation'
         subspec.dependency 'Reactant/TableView'
         subspec.dependency 'Reactant/CollectionView'
@@ -150,7 +141,6 @@ Pod::Spec.new do |spec|
     spec.subspec 'All-tvOS' do |subspec|
         subspec.dependency 'Reactant/Core'
         subspec.dependency 'Reactant/Configuration'
-        subspec.dependency 'Reactant/Result'
         subspec.dependency 'Reactant/Validation'
         subspec.dependency 'Reactant/TableView'
         subspec.dependency 'Reactant/CollectionView'

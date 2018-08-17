@@ -9,7 +9,6 @@
 import Quick
 import Nimble
 import Reactant
-import Result
 
 class RuleTest: QuickSpec {
     override func spec() {
@@ -24,11 +23,11 @@ class RuleTest: QuickSpec {
                 expect(permissiveRule.test("")).to(beTrue())
                 expect(permissiveRule.test(nil)).to(beTrue())
 
-                if case .failure = permissiveRule.run("value") {
-                    fail()
+                if let error = permissiveRule.run("value") {
+                    fail("Validation shouldn't fail with \(error)")
                 }
-                if case .failure = permissiveRule.run(nil) {
-                    fail()
+                if let error = permissiveRule.run(nil) {
+                    fail("Validation shouldn't fail with \(error)")
                 }
             }
             describe("nothing should pass restrictive rule") {
@@ -36,11 +35,11 @@ class RuleTest: QuickSpec {
                 expect(restrictiveRule.test("")).to(beFalse())
                 expect(restrictiveRule.test(nil)).to(beFalse())
 
-                if case .success = restrictiveRule.run("value") {
-                    fail()
+                if restrictiveRule.run("value") == nil {
+                    fail("Validation should fail")
                 }
-                if case .success = restrictiveRule.run(nil) {
-                    fail()
+                if restrictiveRule.run(nil) == nil {
+                    fail("Validation should fail")
                 }
             }
             describe("strings appropriate should pass \"div by 2 string length rule\" and others should not") {
@@ -49,17 +48,17 @@ class RuleTest: QuickSpec {
                 expect(divBy2StringLengthRule.test("value")).to(beFalse())
                 expect(divBy2StringLengthRule.test("valueueueueueueue")).to(beFalse())
 
-                if case .failure = divBy2StringLengthRule.run("") {
-                    fail()
+                if let error = divBy2StringLengthRule.run("") {
+                    fail("Validation shouldn't fail with \(error)")
                 }
-                if case .failure = divBy2StringLengthRule.run("valu") {
-                    fail()
+                if let error = divBy2StringLengthRule.run("valu") {
+                    fail("Validation shouldn't fail with \(error)")
                 }
-                if case .success = divBy2StringLengthRule.run("value") {
-                    fail()
+                if divBy2StringLengthRule.run("value") == nil {
+                    fail("Validation should fail")
                 }
-                if case .success = divBy2StringLengthRule.run("valueueueueueueue") {
-                    fail()
+                if divBy2StringLengthRule.run("valueueueueueueue") == nil {
+                    fail("Validation should fail")
                 }
             }
         }

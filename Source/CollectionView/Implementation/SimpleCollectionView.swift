@@ -6,7 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-import RxSwift
+import UIKit
 
 public enum SimpleCollectionViewAction<CELL: Component> {
     case selected(CELL.StateType)
@@ -14,8 +14,8 @@ public enum SimpleCollectionViewAction<CELL: Component> {
     case refresh
 }
 
-open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.StateType, SimpleCollectionViewAction<CELL>> where CELL: Component {
-    
+open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.StateType, SimpleCollectionViewAction<CELL>>, UICollectionViewDataSource where CELL: Component {
+
     public typealias MODEL = CELL.StateType
     
     private let cellIdentifier = CollectionViewCellIdentifier<CELL>()
@@ -34,25 +34,38 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
         super.loadView()
         
         collectionView.register(identifier: cellIdentifier)
+
+        collectionView.dataSource = self
     }
 
-    open override func actionMapping(mapper: ActionMapper<ActionType>) {
-        mapper.passthrough(collectionView.rx.modelSelected(MODEL.self).map(SimpleCollectionViewAction.selected))
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard componentDelegate.hasComponentState, case .items(let items) = componentState else { return 0 }
+        return items.count
+    }
 
-        #if os(iOS)
-        if let refreshControl = refreshControl {
-            mapper.passthrough(refreshControl.rx.controlEvent(.valueChanged).rewrite(with: SimpleCollectionViewAction.refresh))
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard componentDelegate.hasComponentState, case .items(let items) = componentState else {
+            fatalError("Invalid state! This is developer error.")
         }
-        #endif
+
+        let model = items[indexPath.row]
+        return dequeueAndConfigure(
+            identifier: cellIdentifier,
+            for: indexPath,
+            factory: cellFactory,
+            model: model,
+            mapAction: { SimpleCollectionViewAction.cellAction(model, $0) })
     }
 
-    #if ENABLE_RXSWIFT
-    open override func bind(items: Observable<[MODEL]>) {
-        items
-            .bind(to: collectionView.items(with: cellIdentifier)) { [unowned self] row, model, cell in
-                self.configure(cell: cell, factory: self.cellFactory, model: model, mapAction: { SimpleCollectionViewAction.cellAction(model, $0) })
-            }
-            .disposed(by: rx.lifetimeDisposeBag)
+    open override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard componentDelegate.hasComponentState, case .items(let items) = componentState else { return }
+
+        perform(action: .selected(items[indexPath.row]))
     }
-    #endif
+
+    open override func performRefresh() {
+        super.performRefresh()
+
+        perform(action: .refresh)
+    }
 }

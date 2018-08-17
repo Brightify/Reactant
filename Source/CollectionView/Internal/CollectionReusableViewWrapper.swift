@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 
 public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReusableView, Configurable {
     

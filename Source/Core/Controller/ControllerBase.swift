@@ -133,7 +133,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         if castRootView?.edgesForExtendedLayout.contains(.top) == true {
             constraints.append(
                 rootView.topAnchor.constraint(equalTo: view.topAnchor))
-        } else if #available(iOS 12.0, *) {
+        } else if #available(iOS 11.0, tvOS 11.0, *) {
             constraints.append(
                 rootView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor))
         } else {
@@ -144,7 +144,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         if castRootView?.edgesForExtendedLayout.contains(.bottom) == true {
             constraints.append(
                 rootView.bottomAnchor.constraint(equalTo: view.bottomAnchor))
-        } else if #available(iOS 12.0, *) {
+        } else if #available(iOS 11.0, tvOS 11.0, *) {
             constraints.append(
                 rootView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor))
         } else {

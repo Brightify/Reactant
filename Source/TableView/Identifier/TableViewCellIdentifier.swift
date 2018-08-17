@@ -6,7 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import RxSwift
+import UIKit
 
 public struct TableViewCellIdentifier<T: UIView> {
     
@@ -30,10 +30,10 @@ extension UITableView {
 
 extension UITableView {
     
-    public func items<S: Sequence, Cell, O: ObservableType>(with identifier: TableViewCellIdentifier<Cell>) ->
-        (_ source: O) -> (_ configureCell: @escaping (Int, S.Iterator.Element, TableViewCellWrapper<Cell>) -> Void) -> Disposable where O.E == S {
-            return rx.items(cellIdentifier: identifier.name)
-    }
+//    public func items<S: Sequence, Cell, O: ObservableType>(with identifier: TableViewCellIdentifier<Cell>) ->
+//        (_ source: O) -> (_ configureCell: @escaping (Int, S.Iterator.Element, TableViewCellWrapper<Cell>) -> Void) -> Disposable where O.E == S {
+//            return rx.items(cellIdentifier: identifier.name)
+//    }
     
     public func dequeue<T>(identifier: TableViewCellIdentifier<T>) -> TableViewCellWrapper<T> {
         guard let cell = dequeueReusableCell(withIdentifier: identifier.name) as? TableViewCellWrapper<T> else {

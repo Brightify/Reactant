@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 
 public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeaderFooterView, Configurable {
     
@@ -22,11 +21,7 @@ public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeader
         }
     }
 
-    #if ENABLE_RXSWIFT
-    public var configureDisposeBag = DisposeBag()
-    #else
     public var configureTracking = ObservationTokenTracker()
-    #endif
     
     public override class var requiresConstraintBasedLayout: Bool {
         return true

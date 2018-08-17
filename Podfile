@@ -26,10 +26,6 @@ def kingfisher
     pod 'Kingfisher', '~> 4.0'
 end
 
-def result
-    pod 'Result', '~> 3.0'
-end
-
 def shared
     rxSwift
     rxCocoa
@@ -37,7 +33,6 @@ def shared
     rxOptional
     snapKit
     kingfisher
-    result
 end
 
 abstract_target 'Reactant-iOS' do
@@ -45,21 +40,39 @@ abstract_target 'Reactant-iOS' do
 
     target 'Reactant' do
         snapKit
+        kingfisher
     end
 
     target 'RxReactant' do
         shared
     end
 
-    target 'ReactantTests' do
-        shared
-
+    abstract_target 'Tests' do
         pod 'Quick', '~> 1.3'
         pod 'Nimble', '~> 7.1'
         pod 'Cuckoo', :git => 'https://github.com/Brightify/Cuckoo.git', :branch => 'master'
         pod 'RxNimble'
         pod 'RxTest'
+
+        target 'ReactantTests' do
+            snapKit
+            kingfisher
+        end
+
+        target 'RxReactantTests' do
+            shared
+        end
     end
+#
+#    target 'ReactantTests' do
+#        shared
+#
+#        pod 'Quick', '~> 1.3'
+#        pod 'Nimble', '~> 7.1'
+#        pod 'Cuckoo', :git => 'https://github.com/Brightify/Cuckoo.git', :branch => 'master'
+#        pod 'RxNimble'
+#        pod 'RxTest'
+#    end
 
     target 'ReactantPrototyping' do
         shared
@@ -73,7 +86,7 @@ abstract_target 'Reactant-tvOS' do
     target 'TVPrototyping' do
         shared
 
-        pod 'Reactant', :subspecs => ['All-tvOS', 'FallbackSafeAreaInsets'], :path => './'
+#        pod 'Reactant', :subspecs => ['All-tvOS', 'FallbackSafeAreaInsets'], :path => './'
     end
 end
 

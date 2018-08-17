@@ -6,7 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import RxSwift
+import UIKit
 
 open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL>, ACTION>, ReactantCollectionView, UICollectionViewDelegate {
     
@@ -30,7 +30,6 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     public let emptyLabel = UILabel()
     public let loadingIndicator = UIActivityIndicatorView()
     
-    private let items = PublishSubject<[MODEL]>()
     // Optimization that prevents configuration reloading each time cell is dequeued.
     private var configurationChangeTime: clock_t = clock()
     
@@ -46,7 +45,16 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         
         super.init()
     }
-    
+
+    open override func afterInit() {
+        #if os(iOS)
+        refreshControl?.addTarget(self, action: #selector(performRefresh), for: .valueChanged)
+        #endif
+    }
+
+    @objc
+    open func performRefresh() { }
+
     open override func loadView() {
         children(
             collectionView,
@@ -64,11 +72,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         loadingIndicator.hidesWhenStopped = true
         
         collectionView.backgroundColor = .clear
-        #if ENABLE_RXSWIFT
-        collectionView.rx.setDelegate(self).disposed(by: rx.lifetimeDisposeBag)
-        #else
         collectionView.delegate = self
-        #endif
     }
     
     open override func setupConstraints() {
@@ -84,24 +88,8 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
             make.center.equalTo(self)
         }
     }
-    
-    open override func afterInit() {
-        if automaticallyDeselect {
-            collectionView.rx.itemSelected
-                .subscribe(onNext: { [collectionView] in
-                    collectionView.deselectItem(at: $0, animated: true)
-                })
-                .disposed(by: rx.lifetimeDisposeBag)
-        }
 
-        bind(items: items)
-    }
-
-    open func bind(items: Observable<[MODEL]>) {
-    }
-
-    @available(*, unavailable, message: "RxSwift 3.0 changed behavior of DataSources so we have to bind only once. Use bind(items: Observable<MODEL>)")
-    open func bind(items: [MODEL]) {
+    open func update(items: [MODEL]) {
     }
     
     open override func update() {
@@ -141,9 +129,15 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         }
         #endif
 
-        self.items.onNext(items)
+        update(items: items)
 
         setNeedsLayout()
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if automaticallyDeselect {
+            collectionView.deselectItem(at: indexPath, animated: true)
+        }
     }
     
     open func configure<T: Component>(cell: CollectionViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,

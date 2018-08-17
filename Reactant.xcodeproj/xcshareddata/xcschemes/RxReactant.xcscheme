@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1000"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1838992721264A1A007CE13E"
-               BuildableName = "Reactant.framework"
+               BuildableName = "RxReactant.framework"
                BlueprintName = "RxReactant"
                ReferencedContainer = "container:Reactant.xcodeproj">
             </BuildableReference>
@@ -32,18 +32,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1851214F1D834D1F002C4B08"
-               BuildableName = "ReactantTests.xctest"
-               BlueprintName = "ReactantTests"
+               BlueprintIdentifier = "18937B942127916C009F6CA3"
+               BuildableName = "RxReactantTests.xctest"
+               BlueprintName = "RxReactantTests"
                ReferencedContainer = "container:Reactant.xcodeproj">
             </BuildableReference>
+            <LocationScenarioReference
+               identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
+               referenceType = "1">
+            </LocationScenarioReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1838992721264A1A007CE13E"
-            BuildableName = "Reactant.framework"
+            BuildableName = "RxReactant.framework"
             BlueprintName = "RxReactant"
             ReferencedContainer = "container:Reactant.xcodeproj">
          </BuildableReference>
@@ -65,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1838992721264A1A007CE13E"
-            BuildableName = "Reactant.framework"
+            BuildableName = "RxReactant.framework"
             BlueprintName = "RxReactant"
             ReferencedContainer = "container:Reactant.xcodeproj">
          </BuildableReference>
@@ -83,7 +87,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1838992721264A1A007CE13E"
-            BuildableName = "Reactant.framework"
+            BuildableName = "RxReactant.framework"
             BlueprintName = "RxReactant"
             ReferencedContainer = "container:Reactant.xcodeproj">
          </BuildableReference>
