@@ -1687,7 +1687,6 @@
 					1851214F1D834D1F002C4B08 = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0820;
-						TestTargetID = DC79F6B71E55FAA60033AE51;
 					};
 					18937B942127916C009F6CA3 = {
 						CreatedOnToolsVersion = 10.0;
@@ -2484,7 +2483,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = RxReactant/Info.plist;
+				INFOPLIST_FILE = "Support Targets/RxReactant/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2523,7 +2522,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = RxReactant/Info.plist;
+				INFOPLIST_FILE = "Support Targets/RxReactant/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -2616,7 +2615,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactantPrototyping.app/ReactantPrototyping";
 			};
 			name = Debug;
 		};
@@ -2633,7 +2631,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReactantPrototyping.app/ReactantPrototyping";
 			};
 			name = Release;
 		};
@@ -2651,7 +2648,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = RxReactantTests/Info.plist;
+				INFOPLIST_FILE = "Support Targets/RxReactantTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -2677,7 +2674,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = RxReactantTests/Info.plist;
+				INFOPLIST_FILE = "Support Targets/RxReactantTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
@@ -2703,7 +2700,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = TVPrototyping/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Prototypes/TVPrototyping/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.TVPrototyping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2729,7 +2726,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = TVPrototyping/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Prototypes/TVPrototyping/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.TVPrototyping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2907,7 +2904,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = ReactantPrototyping/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Prototypes/ReactantPrototyping/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantPrototyping;
@@ -2928,7 +2925,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = ReactantPrototyping/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Prototypes/ReactantPrototyping/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantPrototyping;
