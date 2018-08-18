@@ -33,21 +33,6 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
     private let headerIdentifier = TableViewHeaderFooterIdentifier<HEADER>()
 
-//    #if ENABLE_RXSWIFT
-//    open var actions: [Observable<HeaderTableViewAction<HEADER, CELL>>] {
-//        #if os(iOS)
-//        return [
-//            tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected),
-//            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: HeaderTableViewAction.refresh)
-//        ].compactMap { $0 }
-//        #else
-//        return [
-//            tableView.rx.modelSelected(MODEL.self).map(HeaderTableViewAction.selected)
-//        ]
-//        #endif
-//    }
-//    #endif
-
     private let cellFactory: () -> CELL
     private let headerFactory: () -> HEADER
 

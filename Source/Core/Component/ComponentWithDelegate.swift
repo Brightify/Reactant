@@ -6,61 +6,9 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-//import RxSwift
-
-public final class ActionMapper<ACTION> {
-    private let performAction: (ACTION) -> Void
-    internal var tokens: [ObservationToken] = []
-
-    public init(performAction: @escaping (ACTION) -> Void) {
-        self.performAction = performAction
-    }
-
-    public func map<C: Component>(from component: C, using mapping: @escaping (C.ActionType) -> ACTION) {
-        let token = component.observeAction { [performAction] action in
-            performAction(mapping(action))
-        }
-
-        track(token: token)
-    }
-
-    public func passthrough<C: Component>(from component: C) where C.ActionType == ACTION {
-        let token = component.observeAction { [performAction] action in
-            performAction(action)
-        }
-
-        track(token: token)
-    }
-
-    internal func track(token: ObservationToken) {
-        tokens.append(token)
-    }
-}
-
-#if canImport(RxSwift)
-import RxSwift
-extension ActionMapper {
-
-    public func passthrough<O: ObservableConvertibleType>(_ observable: O) where O.E == ACTION {
-        let disposable = observable.asObservable()
-            .subscribe(onNext: { [performAction] in
-                performAction($0)
-            })
-
-        let token = ObservationToken {
-            disposable.dispose()
-        }
-
-        track(token: token)
-    }
-
-}
-#endif
-
 public protocol ComponentWithDelegate: Component {
     var componentDelegate: ComponentDelegate<StateType, ActionType> { get }
 
-    #if ENABLE_RXSWIFT
     /**
      * Array of observables through which the Component communicates with outside world.
      * - ATTENTION: Each of the `Observable`s need to be *rewritten* or *mapped* to be of the correct type - the ACTION.
@@ -78,19 +26,6 @@ public protocol ComponentWithDelegate: Component {
      * - WARNING: When listening to Component's actions, subscribe to `Component.action` instead of this variable.
      *  `Component.action` includes `Component.perform(action:)` calls as well as `Observable`s defined in `actions`.
      */
-//    var actions: [Observable<ActionType>] { get }
-
-    /**
-     * Used to reset `actions` `Observable` array. Useful when you have a condition in `actions` based on which certain `Observable`s are included in the array.
-     * ## Example
-     * You decide to change the amount of active buttons based on device orientation. `actions` don't automatically change
-     * based on the conditions that are in the computed variable, because this would be ineffective.
-     * This is where you call `resetActions()` when orientation changes causing `actions` to update and the amount of active buttons is changed as well.
-     */
-//    func resetActions()
-    #elseif ENABLE_PROMISEKIT
-
-    #endif
     func actionMapping(mapper: ActionMapper<ActionType>)
 }
 

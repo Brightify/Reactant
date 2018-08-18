@@ -64,23 +64,11 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     }
 
     private func setupController(title: String) {
-//        componentDelegate.ownerComponent = self
-
-        #if ENABLE_RXSWIFT
-        rootView.rx.action
-            .subscribe(onNext: { [weak self] in
-                self?.act(on: $0)
-            })
-            .disposed(by: rx.lifetimeDisposeBag)
-        #else
         rootView
             .observeAction(observer: { [weak self] in
                 self?.act(on: $0)
             })
             .track(in: lifetimeTracking)
-        #endif
-
-
 
         self.title = title
 

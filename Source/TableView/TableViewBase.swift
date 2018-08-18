@@ -24,10 +24,6 @@ public struct TableViewOptions: OptionSet {
 @objcMembers
 open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>, ReactantTableView, UITableViewDelegate {
 
-    #if !ENABLE_RXSWIFT
-    public typealias ConfigureCell = (UITableView, IndexPath, MODEL) -> UITableViewCell
-    #endif
-    
     open var edgesForExtendedLayout: UIRectEdge {
         return .all
     }

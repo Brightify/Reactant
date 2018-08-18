@@ -277,6 +277,13 @@
 		18937BC521283325009F6CA3 /* UIBarButtonItem+ClosureAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */; };
 		18937BC621283326009F6CA3 /* UIBarButtonItem+ClosureAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */; };
 		18937BC92128448A009F6CA3 /* Recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937BC82128448A009F6CA3 /* Recording.swift */; };
+		18937BCC21284E08009F6CA3 /* ActionMapper+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937BCB21284E08009F6CA3 /* ActionMapper+RxSwift.swift */; };
+		18937BCE21284E21009F6CA3 /* ActionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937BCD21284E21009F6CA3 /* ActionMapper.swift */; };
+		18937BCF21284E43009F6CA3 /* ActionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937BCD21284E21009F6CA3 /* ActionMapper.swift */; };
+		18937BD121284E6F009F6CA3 /* ObservationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937BD021284E6F009F6CA3 /* ObservationToken.swift */; };
+		18937BD221284E72009F6CA3 /* ObservationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937BD021284E6F009F6CA3 /* ObservationToken.swift */; };
+		18937BD421284E95009F6CA3 /* ObservationTokenTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937BD321284E95009F6CA3 /* ObservationTokenTracker.swift */; };
+		18937BD521284E95009F6CA3 /* ObservationTokenTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18937BD321284E95009F6CA3 /* ObservationTokenTracker.swift */; };
 		1898D7342126DE4B00DA4AC5 /* Component+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1898D7332126DE4B00DA4AC5 /* Component+RxSwift.swift */; };
 		1898D7392126DF0B00DA4AC5 /* Wireframe+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1898D7382126DF0B00DA4AC5 /* Wireframe+RxSwift.swift */; };
 		1898D73B2126DF6600DA4AC5 /* UINavigationController+RxNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1898D73A2126DF6600DA4AC5 /* UINavigationController+RxNavigation.swift */; };
@@ -457,6 +464,10 @@
 		18937B952127916C009F6CA3 /* RxReactantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxReactantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18937B992127916C009F6CA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18937BC82128448A009F6CA3 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
+		18937BCB21284E08009F6CA3 /* ActionMapper+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionMapper+RxSwift.swift"; sourceTree = "<group>"; };
+		18937BCD21284E21009F6CA3 /* ActionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionMapper.swift; sourceTree = "<group>"; };
+		18937BD021284E6F009F6CA3 /* ObservationToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationToken.swift; sourceTree = "<group>"; };
+		18937BD321284E95009F6CA3 /* ObservationTokenTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationTokenTracker.swift; sourceTree = "<group>"; };
 		1898D7332126DE4B00DA4AC5 /* Component+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Component+RxSwift.swift"; sourceTree = "<group>"; };
 		1898D7382126DF0B00DA4AC5 /* Wireframe+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wireframe+RxSwift.swift"; sourceTree = "<group>"; };
 		1898D73A2126DF6600DA4AC5 /* UINavigationController+RxNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+RxNavigation.swift"; sourceTree = "<group>"; };
@@ -878,6 +889,45 @@
 			path = "TestUtils+RxSwift";
 			sourceTree = "<group>";
 		};
+		18937BD62128517F009F6CA3 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				1898D74721271C1F00DA4AC5 /* Showcase.playground */,
+			);
+			path = Playgrounds;
+			sourceTree = "<group>";
+		};
+		18937BD7212851A1009F6CA3 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				DC137F701E4C63A900A0516F /* CHANGELOG.md */,
+				DC137F6D1E4C638000A0516F /* LICENSE */,
+				DC137F6E1E4C638000A0516F /* Podfile */,
+				DC137F6F1E4C638000A0516F /* Reactant.podspec */,
+				DC137F6B1E4C636A00A0516F /* README.md */,
+				DC137F6C1E4C638000A0516F /* .travis.yml */,
+			);
+			name = Metadata;
+			sourceTree = "<group>";
+		};
+		18937BD8212851C1009F6CA3 /* Prototypes */ = {
+			isa = PBXGroup;
+			children = (
+				DC79F6B91E55FAA70033AE51 /* ReactantPrototyping */,
+				22F48FE51FAB0EE900E736C8 /* TVPrototyping */,
+			);
+			path = Prototypes;
+			sourceTree = "<group>";
+		};
+		18937BD92128526A009F6CA3 /* Support Targets */ = {
+			isa = PBXGroup;
+			children = (
+				1838992921264A1B007CE13E /* RxReactant */,
+				18937B962127916C009F6CA3 /* RxReactantTests */,
+			);
+			path = "Support Targets";
+			sourceTree = "<group>";
+		};
 		1898D7322126DE0600DA4AC5 /* Core+RxSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,6 +952,7 @@
 				1898D7332126DE4B00DA4AC5 /* Component+RxSwift.swift */,
 				1898D73C2126E52A00DA4AC5 /* ComponentWithDelegate+RxSwift.swift */,
 				1898D73F2126EC4B00DA4AC5 /* RxSwiftComponentBehavior.swift */,
+				18937BCB21284E08009F6CA3 /* ActionMapper+RxSwift.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1029,19 +1080,12 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				1898D74721271C1F00DA4AC5 /* Showcase.playground */,
-				DC137F701E4C63A900A0516F /* CHANGELOG.md */,
-				DC137F6D1E4C638000A0516F /* LICENSE */,
-				DC137F6E1E4C638000A0516F /* Podfile */,
-				DC137F6F1E4C638000A0516F /* Reactant.podspec */,
-				DC137F6B1E4C636A00A0516F /* README.md */,
-				DC137F6C1E4C638000A0516F /* .travis.yml */,
 				185120EF1D834C5D002C4B08 /* Source */,
 				607FACE81AFB9204008FA782 /* Tests */,
-				DC79F6B91E55FAA70033AE51 /* ReactantPrototyping */,
-				22F48FE51FAB0EE900E736C8 /* TVPrototyping */,
-				1838992921264A1B007CE13E /* RxReactant */,
-				18937B962127916C009F6CA3 /* RxReactantTests */,
+				18937BD62128517F009F6CA3 /* Playgrounds */,
+				18937BD8212851C1009F6CA3 /* Prototypes */,
+				18937BD92128526A009F6CA3 /* Support Targets */,
+				18937BD7212851A1009F6CA3 /* Metadata */,
 				10B68A63379DA3294E15D42D /* Frameworks */,
 				3EF99E495EDB2A91B3FA3DE7 /* Pods */,
 				607FACD11AFB9204008FA782 /* Products */,
@@ -1198,6 +1242,7 @@
 				DC07858F1DD39BF60063AB96 /* ComponentBase.swift */,
 				DC0785901DD39BF60063AB96 /* ComponentDelegate.swift */,
 				DC0785A01DD3ADB60063AB96 /* ComponentWithDelegate.swift */,
+				18937BCD21284E21009F6CA3 /* ActionMapper.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1263,6 +1308,8 @@
 				DC137F951E4E29DA00A0516F /* Visibility */,
 				22957E1A207212A80088C09E /* UIView+stack.swift */,
 				221CCEB120774A2C00A64494 /* Swift+Compatibility.swift */,
+				18937BD021284E6F009F6CA3 /* ObservationToken.swift */,
+				18937BD321284E95009F6CA3 /* ObservationTokenTracker.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2031,6 +2078,7 @@
 				1838995521264A71007CE13E /* UILabel+Init.swift in Sources */,
 				1838995221264A71007CE13E /* UIColor+Modificators.swift in Sources */,
 				1898D7392126DF0B00DA4AC5 /* Wireframe+RxSwift.swift in Sources */,
+				18937BCF21284E43009F6CA3 /* ActionMapper.swift in Sources */,
 				1838993C21264A4F007CE13E /* CollectionSupplementaryViewIdentifier.swift in Sources */,
 				1838993921264A4F007CE13E /* ReactantCollectionView+Delegates.swift in Sources */,
 				18937BC521283325009F6CA3 /* UIBarButtonItem+ClosureAction.swift in Sources */,
@@ -2038,6 +2086,7 @@
 				183899BB21264ABE007CE13E /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
 				1838997F21264A88007CE13E /* ComponentDelegate.swift in Sources */,
 				1838993521264A4F007CE13E /* FlowCollectionViewBase.swift in Sources */,
+				18937BD521284E95009F6CA3 /* ObservationTokenTracker.swift in Sources */,
 				183899CF21264AC8007CE13E /* UINavigationController+DialogDismissalListener.swift in Sources */,
 				1838996721264A77007CE13E /* NSAttributedString+Attribute.swift in Sources */,
 				183899F621264ADC007CE13E /* UIView+Visibility.swift in Sources */,
@@ -2057,6 +2106,7 @@
 				1838994E21264A71007CE13E /* CGSize+Init.swift in Sources */,
 				1838997D21264A88007CE13E /* Component.swift in Sources */,
 				183899AC21264AAA007CE13E /* StaticMap.swift in Sources */,
+				18937BD221284E72009F6CA3 /* ObservationToken.swift in Sources */,
 				183899AD21264AAA007CE13E /* MKCoordinateSpan+inset.swift in Sources */,
 				183899D921264AC8007CE13E /* UIView+Utils.swift in Sources */,
 				183899FC21264AEC007CE13E /* String+EmailValidationError.swift in Sources */,
@@ -2078,6 +2128,7 @@
 				1838993821264A4F007CE13E /* ReactantCollectionView.swift in Sources */,
 				1838993B21264A4F007CE13E /* AnyCollectionViewCellIdentifier.swift in Sources */,
 				183899D621264AC8007CE13E /* Sequence+Utils.swift in Sources */,
+				18937BCC21284E08009F6CA3 /* ActionMapper+RxSwift.swift in Sources */,
 				183899D821264AC8007CE13E /* UIStackView+ArrangedChildren.swift in Sources */,
 				1838993121264A4F007CE13E /* Configuration+CollectionView.swift in Sources */,
 				1838994A21264A71007CE13E /* UIFont+System.swift in Sources */,
@@ -2158,6 +2209,7 @@
 				1898D76A2127358200DA4AC5 /* AnyTableViewCellIdentifier.swift in Sources */,
 				1838995821264A72007CE13E /* UIFont+System.swift in Sources */,
 				1898D76C2127358200DA4AC5 /* TableViewCellIdentifier.swift in Sources */,
+				18937BD121284E6F009F6CA3 /* ObservationToken.swift in Sources */,
 				1838996321264A72007CE13E /* UILabel+Init.swift in Sources */,
 				1898D75F2127340400DA4AC5 /* MKCoordinateRegion+utils.swift in Sources */,
 				1838996021264A72007CE13E /* UIColor+Modificators.swift in Sources */,
@@ -2182,6 +2234,7 @@
 				18937B8921277322009F6CA3 /* FooterTableView.swift in Sources */,
 				183899CB21264AC7007CE13E /* UIStackView+ArrangedChildren.swift in Sources */,
 				183899A621264A99007CE13E /* UINavigationController+Navigation.swift in Sources */,
+				18937BCE21284E21009F6CA3 /* ActionMapper.swift in Sources */,
 				183899C321264AC7007CE13E /* Array+Utils.swift in Sources */,
 				1898D75D2127340400DA4AC5 /* MKCoordinateSpan+inset.swift in Sources */,
 				1898D75021272B5D00DA4AC5 /* ReactantCollectionView+Delegates.swift in Sources */,
@@ -2201,6 +2254,7 @@
 				183899C721264AC7007CE13E /* Hash.swift in Sources */,
 				1898D76D2127358200DA4AC5 /* TableViewHeaderFooterIdentifier.swift in Sources */,
 				183899E421264ADB007CE13E /* Scrollable.swift in Sources */,
+				18937BD421284E95009F6CA3 /* ObservationTokenTracker.swift in Sources */,
 				183899E021264ADB007CE13E /* UIView+Reusable.swift in Sources */,
 				18937BC621283326009F6CA3 /* UIBarButtonItem+ClosureAction.swift in Sources */,
 				1898D75421272B6000DA4AC5 /* CollectionViewCellIdentifier.swift in Sources */,

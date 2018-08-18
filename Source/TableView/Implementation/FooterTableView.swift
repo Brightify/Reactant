@@ -23,21 +23,6 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
     private let footerIdentifier = TableViewHeaderFooterIdentifier<FOOTER>()
 
-//    #if ENABLE_RXSWIFT
-//    open var actions: [Observable<FooterTableViewAction<CELL, FOOTER>>] {
-//        #if os(iOS)
-//        return [
-//            tableView.rx.modelSelected(MODEL.self).map(FooterTableViewAction.selected),
-//            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: FooterTableViewAction.refresh)
-//        ].compactMap { $0 }
-//        #else
-//        return [
-//            tableView.rx.modelSelected(MODEL.self).map(FooterTableViewAction.selected)
-//        ]
-//        #endif
-//    }
-//    #endif
-
     private let cellFactory: () -> CELL
     private let footerFactory: () -> FOOTER
 

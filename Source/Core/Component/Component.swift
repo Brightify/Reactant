@@ -20,53 +20,6 @@ public protocol Invalidable: class {
     func invalidate()
 }
 
-public final class ObservationToken: Hashable, Equatable {
-    private let onStop: () -> Void
-
-    public init(onStop: @escaping () -> Void) {
-        self.onStop = onStop
-    }
-
-    public func stopObserving() {
-        onStop()
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(self))
-    }
-
-    public static func ==(lhs: ObservationToken, rhs: ObservationToken) -> Bool {
-        return lhs === rhs
-    }
-
-    public func track(in tracker: ObservationTokenTracker) {
-        tracker.track(token: self)
-    }
-}
-
-public final class ObservationTokenTracker {
-
-    private var tokens = Set<ObservationToken>()
-
-    public init() {
-
-    }
-
-    public func track(token: ObservationToken) {
-        tokens.insert(token)
-    }
-
-    public func track<S: Sequence>(tokens: S) where S.Element == ObservationToken {
-        self.tokens.formUnion(tokens)
-    }
-
-    deinit {
-        for token in tokens {
-            token.stopObserving()
-        }
-    }
-}
-
 public protocol Component: Invalidable {
     associatedtype StateType
     associatedtype ActionType

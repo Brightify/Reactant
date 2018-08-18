@@ -22,21 +22,6 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
     private let footerIdentifier = TableViewHeaderFooterIdentifier<UITableViewHeaderFooterView>(name: "Separator")
 
-//    #if ENABLE_RXSWIFT
-//    open var actions: [Observable<SimulatedSeparatorTableViewAction<CELL>>] {
-//        #if os(iOS)
-//        return [
-//            tableView.rx.modelSelected(MODEL.self).map(SimulatedSeparatorTableViewAction.selected),
-//            refreshControl?.rx.controlEvent(.valueChanged).rewrite(with: SimulatedSeparatorTableViewAction.refresh)
-//        ].compactMap { $0 }
-//        #else
-//        return [
-//            tableView.rx.modelSelected(MODEL.self).map(SimulatedSeparatorTableViewAction.selected)
-//        ]
-//        #endif
-//    }
-//    #endif
-
     open var separatorColor: UIColor? = nil {
         didSet {
             setNeedsLayout()
