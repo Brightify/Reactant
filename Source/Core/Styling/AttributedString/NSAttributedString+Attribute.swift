@@ -50,3 +50,50 @@ extension String {
         return attributed(attributes)
     }
 }
+
+extension NSAttributedString {
+    /**
+     * Allows you to easily attribute particular range in an NSAttributedString
+     * For available attributes see `Attribute`.
+     * parameter attributes: passed attributes with which are applied to the range
+     * parameter range: range to which the attributes are applied
+     */
+    public func attributed(_ attributes: [Attribute], range: NSRange) -> NSAttributedString {
+        let mutable = NSMutableAttributedString(attributedString: self)
+        mutable.addAttributes(attributes, to: range)
+
+        return mutable
+    }
+
+    /**
+     * Allows you to easily attribute particular range in an NSAttributedString
+     * For available attributes see `Attribute`.
+     * parameter attributes: passed attributes with which are applied to the range
+     * parameter range: range to which the attributes are applied
+     */
+    public func attributed(_ attributes: Attribute..., range: NSRange) -> NSAttributedString {
+        return attributed(attributes, range: range)
+    }
+}
+
+extension NSMutableAttributedString {
+    /**
+     * Allows you to add attributes to particular range in an NSAttributedString
+     * For available attributes see `Attribute`.
+     * parameter attributes: passed attributes with which are applied to the range
+     * parameter range: range to which the attributes are applied
+     */
+    public func addAttributes(_ attributes: [Attribute], to range: NSRange) {
+        addAttributes(attributes.toDictionary(), range: range)
+    }
+
+    /**
+     * Allows you to add attributes to particular range in an NSAttributedString
+     * For available attributes see `Attribute`.
+     * parameter attributes: passed attributes with which are applied to the range
+     * parameter range: range to which the attributes are applied
+     */
+    public func attributed(_ attributes: Attribute..., to range: NSRange) {
+        addAttributes(attributes, to: range)
+    }
+}
