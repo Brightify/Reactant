@@ -49,6 +49,29 @@ extension String {
     public func attributed(_ attributes: Attribute...) -> NSAttributedString {
         return attributed(attributes)
     }
+
+    /**
+     * Allows you to easily attribute particular range in an NSAttributedString
+     * For available attributes see `Attribute`.
+     * parameter attributes: passed attributes with which are applied to the range
+     * parameter range: range to which the attributes are applied
+     */
+    public func attributed(_ attributes: [Attribute], range: NSRange) -> NSAttributedString {
+        let mutable = NSMutableAttributedString(string: self)
+        mutable.addAttributes(attributes, to: range)
+
+        return mutable
+    }
+
+    /**
+     * Allows you to easily attribute particular range in an NSAttributedString
+     * For available attributes see `Attribute`.
+     * parameter attributes: passed attributes with which are applied to the range
+     * parameter range: range to which the attributes are applied
+     */
+    public func attributed(_ attributes: Attribute..., range: NSRange) -> NSAttributedString {
+        return attributed(attributes, range: range)
+    }
 }
 
 extension NSAttributedString {
