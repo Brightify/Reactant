@@ -36,12 +36,14 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
         #endif
     }
 
+    @objc
     open var separatorColor: UIColor? = nil {
         didSet {
             setNeedsLayout()
         }
     }
 
+    @objc
     open var separatorHeight: CGFloat {
         get {
             return sectionFooterHeight
