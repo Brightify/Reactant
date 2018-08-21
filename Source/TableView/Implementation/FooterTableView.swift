@@ -16,6 +16,7 @@ public enum FooterTableViewAction<CELL: Component, FOOTER: Component> {
     case refresh
 }
 
+@objcMembers
 open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionModel<FOOTER.StateType, CELL.StateType>, FooterTableViewAction<CELL, FOOTER>> where CELL: Component, FOOTER: Component {
 
     public typealias MODEL = CELL.StateType
@@ -87,7 +88,7 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
             .disposed(by: lifetimeDisposeBag)
     }
 
-    @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let section = dataSource.sectionModels[section].identity
         return dequeueAndConfigure(identifier: footerIdentifier, factory: footerFactory,
                                    model: section, mapAction: { FooterTableViewAction.footerAction(section, $0) })

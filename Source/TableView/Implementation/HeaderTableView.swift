@@ -16,6 +16,7 @@ public enum HeaderTableViewAction<HEADER: Component, CELL: Component> {
     case refresh
 }
 
+@objcMembers
 open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionModel<HEADER.StateType, CELL.StateType>, HeaderTableViewAction<HEADER, CELL>> where HEADER: Component, CELL: Component {
 
     public typealias MODEL = CELL.StateType
@@ -87,7 +88,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
             .disposed(by: lifetimeDisposeBag)
     }
 
-    @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let section = dataSource.sectionModels[section].identity
         return dequeueAndConfigure(identifier: headerIdentifier, factory: headerFactory,
                                    model: section, mapAction: { HeaderTableViewAction.headerAction(section, $0) })

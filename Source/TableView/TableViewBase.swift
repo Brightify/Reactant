@@ -21,6 +21,7 @@ public struct TableViewOptions: OptionSet {
     public static let none: TableViewOptions = []
 }
 
+@objcMembers
 open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>, ReactantTableView, UITableViewDelegate {
     
     open var edgesForExtendedLayout: UIRectEdge {
@@ -36,15 +37,11 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         }
     }
 
-    @objc
     public let tableView: UITableView
     #if os(iOS)
-    @objc
     public let refreshControl: UIRefreshControl?
     #endif
-    @objc
     public let emptyLabel = UILabel()
-    @objc
     public let loadingIndicator = UIActivityIndicatorView()
 
     private let items = PublishSubject<[MODEL]>()

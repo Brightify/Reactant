@@ -15,6 +15,7 @@ public enum SimulatedSeparatorTableViewAction<CELL: Component> {
     case refresh
 }
 
+@objcMembers
 open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateType, SimulatedSeparatorTableViewAction<CELL>> where CELL: Component {
 
     public typealias MODEL = CELL.StateType
@@ -36,14 +37,12 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
         #endif
     }
 
-    @objc
     open var separatorColor: UIColor? = nil {
         didSet {
             setNeedsLayout()
         }
     }
 
-    @objc
     open var separatorHeight: CGFloat {
         get {
             return sectionFooterHeight
@@ -102,7 +101,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
             .disposed(by: lifetimeDisposeBag)
     }
 
-    @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = tableView.dequeue(identifier: footerIdentifier)
         if footer.backgroundView == nil {
             footer.backgroundView = UIView()

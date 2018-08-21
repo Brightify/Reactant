@@ -17,6 +17,7 @@ public enum SimpleTableViewAction<HEADER: Component, CELL: Component, FOOTER: Co
     case refresh
 }
 
+@objcMembers
 open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableViewBase<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>, SimpleTableViewAction<HEADER, CELL, FOOTER>> where HEADER: Component, CELL: Component, FOOTER: Component {
     
     public typealias MODEL = CELL.StateType
@@ -95,13 +96,13 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
             .disposed(by: lifetimeDisposeBag)
     }
     
-    @objc public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let model = dataSource.sectionModels[section].identity.header
         return dequeueAndConfigure(identifier: headerIdentifier, factory: headerFactory,
                                    model: model, mapAction: { SimpleTableViewAction.headerAction(model, $0) })
     }
     
-    @objc public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let model = dataSource.sectionModels[section].identity.footer
         return dequeueAndConfigure(identifier: footerIdentifier, factory: footerFactory,
                                    model: model, mapAction: { SimpleTableViewAction.footerAction(model, $0) })
