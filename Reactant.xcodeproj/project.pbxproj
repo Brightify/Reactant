@@ -864,6 +864,7 @@
 				DC6940881E53556400C99380 /* Configuration */,
 				DC07856E1DC881B80063AB96 /* Core */,
 				1898D7322126DE0600DA4AC5 /* Core+RxSwift */,
+				18937BDB2128AC4F009F6CA3 /* Interface */,
 				DC0785721DC882820063AB96 /* StaticMap */,
 				DC0785791DC884BB0063AB96 /* TableView */,
 				DC137F811E4E251200A0516F /* Utils */,
@@ -926,6 +927,13 @@
 				18937B962127916C009F6CA3 /* RxReactantTests */,
 			);
 			path = "Support Targets";
+			sourceTree = "<group>";
+		};
+		18937BDB2128AC4F009F6CA3 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interface;
 			sourceTree = "<group>";
 		};
 		1898D7322126DE0600DA4AC5 /* Core+RxSwift */ = {

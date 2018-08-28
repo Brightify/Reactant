@@ -48,7 +48,7 @@ extension UIBarButtonItem {
 
     @objc
     internal func itemTapped() {
-
+        actionBlock?()
     }
 
     private func register(actionBlock: (() -> Void)?) {
