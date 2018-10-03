@@ -56,7 +56,7 @@ public extension ObservableConvertibleType {
     }
 
     /// Similar to startWith, but does not resolve the value until it is subscribed to.
-    public func startWithWhenSubscribed(source: () -> E) -> Observable<E> {
+    public func startWithWhenSubscribed(source: @escaping () -> E) -> Observable<E> {
         return asObservable().map { value in { value } }.startWith(source).map { $0() }
     }
 }
