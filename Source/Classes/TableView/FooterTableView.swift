@@ -42,6 +42,10 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: ViewBase<TableViewStat
     private let footerFactory: (() -> FOOTER)
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
 
+    public convenience override init() {
+        self.init(cellFactory: CELL.init, footerFactory: FOOTER.init, style: .plain, reloadable: true)
+    }
+
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         footerFactory: @escaping () -> FOOTER = FOOTER.init,

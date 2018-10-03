@@ -37,6 +37,10 @@ open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>
 
     private let cellFactory: () -> CELL
 
+    public convenience override init() {
+        self.init(cellFactory: CELL.init, style: .plain, reloadable: true)
+    }
+
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         style: UITableViewStyle = .plain,
@@ -132,7 +136,7 @@ open class PlainTableView<CELL: UIView>: ViewBase<TableViewState<CELL.StateType>
                 component.action.subscribe(onNext: { [weak self] in
                     self?.perform(action: .rowAction(model, $0))
                 })
-                .addDisposableTo(component.stateDisposeBag)
+                    .addDisposableTo(component.stateDisposeBag)
             }
             .addDisposableTo(stateDisposeBag)
 

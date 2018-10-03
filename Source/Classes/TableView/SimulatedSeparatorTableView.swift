@@ -54,6 +54,10 @@ open class SimulatedSeparatorTableView<CELL: UIView>: ViewBase<TableViewState<CE
     public let loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: ReactantConfiguration.global.loadingIndicatorStyle)
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
 
+    public convenience override init() {
+        self.init(cellFactory: CELL.init, style: .plain, reloadable: true)
+    }
+
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         style: UITableViewStyle = .plain,

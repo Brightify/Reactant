@@ -43,6 +43,10 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: ViewBase<TableViewStat
 
     private let dataSource = RxTableViewSectionedReloadDataSource<SECTION>()
 
+    public convenience override init() {
+        self.init(cellFactory: CELL.init, headerFactory: HEADER.init, style: .plain, reloadable: true)
+    }
+
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         headerFactory: @escaping () -> HEADER = HEADER.init,
