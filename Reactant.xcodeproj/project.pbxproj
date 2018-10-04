@@ -1615,7 +1615,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
@@ -1650,7 +1650,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4734D2913AFC2355ADF5810B /* [CP] Check Pods Manifest.lock */ = {
@@ -1695,7 +1695,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS/Result.framework",
@@ -1720,7 +1720,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7C3DEA9371C9DDE85347B391 /* [CP] Check Pods Manifest.lock */ = {
@@ -1747,7 +1747,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ReactantExample-macOS/Pods-ReactantExample-macOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactantExample-macOS/Pods-ReactantExample-macOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-macOS/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-macOS/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa-macOS/RxCocoa.framework",
@@ -1768,7 +1768,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantExample-macOS/Pods-ReactantExample-macOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactantExample-macOS/Pods-ReactantExample-macOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9C9F74CFFEC0DE95AB388CB7 /* [CP] Check Pods Manifest.lock */ = {
@@ -1813,7 +1813,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator-tvOS/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-tvOS/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-tvOS/Result.framework",
@@ -1838,7 +1838,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F80764C04456E4FB16A479BB /* [CP] Check Pods Manifest.lock */ = {
