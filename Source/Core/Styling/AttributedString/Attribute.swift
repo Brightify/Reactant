@@ -8,18 +8,37 @@
 
 #if os(iOS)
 import UIKit
+#endif
+
+#if os(macOS)
+import Cocoa
+#endif
 
 /// Enum which represents NS attributes for NSAttributedString (like NSStrokeColorAttributeName). Each case has value and assigned name.
 public enum Attribute {
+    #if os(iOS)
     case font(UIFont)
-    case paragraphStyle(NSParagraphStyle)
     case foregroundColor(UIColor)
     case backgroundColor(UIColor)
+    case strokeColor(UIColor)
+    case underlineColor(UIColor)
+    case strikethroughColor(UIColor)
+    #endif
+
+    #if os(macOS)
+    case font(NSFont)
+    case foregroundColor(NSColor)
+    case backgroundColor(NSColor)
+    case strokeColor(NSColor)
+    case underlineColor(NSColor)
+    case strikethroughColor(NSColor)
+    #endif
+
+    case paragraphStyle(NSParagraphStyle)
     case ligature(Int)
     case kern(Float)
     case striketroughStyle(NSUnderlineStyle)
     case underlineStyle(NSUnderlineStyle)
-    case strokeColor(UIColor)
     case strokeWidth(Float)
     case shadow(NSShadow)
     case textEffect(String)
@@ -27,8 +46,6 @@ public enum Attribute {
     case linkURL(URL)
     case link(String)
     case baselineOffset(Float)
-    case underlineColor(UIColor)
-    case strikethroughColor(UIColor)
     case obliqueness(Float)
     case expansion(Float)
     case writingDirection(NSWritingDirection)
@@ -149,4 +166,3 @@ public extension Sequence where Iterator.Element == Attribute {
         return attributeDictionary
     }
 }
-#endif

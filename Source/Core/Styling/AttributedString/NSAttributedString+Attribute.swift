@@ -6,7 +6,6 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
-#if os(iOS)
 import Foundation
 
 public func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
@@ -51,4 +50,3 @@ extension String {
         return attributed(attributes)
     }
 }
-#endif
