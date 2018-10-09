@@ -14,6 +14,9 @@
 * Reactant UI
     * [Introduction](reactant-ui/introduction.md)
     * [Live Reload](reactant-ui/live-reload.md)
+    * [Attributed Text](reactant-ui/attributedText.md)
+    * [Styles](reactant-ui/styles.md)
+    * [Templates](reactant-ui/templates.md)
 
 * Parts
     * [Configuration](parts/configuration.md)

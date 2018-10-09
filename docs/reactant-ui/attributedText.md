@@ -87,6 +87,25 @@ To use globally defined styles, we can use the dot notation to access the styleg
 
 <br>
 
+## Templates
+We can create a [template](templates.md) for an Attributed Text.
+
+Template for Attributed Text can be created in the following way:
+
+```xml
+<templates name="ReactantTemplates">
+    <attributedText style="welcomeStyle" name="welcome">
+        <b>Hello {{name}} {{surname}}!<b>
+    </attributedText>
+</templates>
+```
+
+This template can then be used in code:
+
+```swift
+label.attributedText = ReactantTemplates.welcome(name: "John", surname: "Appleseed")
+```
+
 ## Attribute List
 The full list of attribute follows along with the way to use them:
 - **font** - `system:light@30` where 'system' is the typeface (optional), 'light' is the font's weight (optional), and 30 is the size of the font
