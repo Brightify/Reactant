@@ -6,6 +6,12 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if os(iOS)
+import UIKit
+#elseif os(macOS)
+import Cocoa
+#endif
+
 open class DialogControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> where ROOT: Component {
 
     public var dialogView: DialogView
@@ -49,13 +55,12 @@ open class DialogControllerBase<STATE, ROOT: View>: ControllerBase<STATE, ROOT> 
         }
     }
     #elseif os(macOS)
-    open override func dismissViewController(_ viewController: NSViewController) {
-        let dismissalListener = presenting as? DialogDismissalListener
+    open override func dismiss(_ viewController: NSViewController) {
+        let dismissalListener = presentingViewController as? DialogDismissalListener
         dismissalListener?.dialogWillDismiss()
         super.dismiss(viewController)
         dismissalListener?.dialogDidDismiss()
     }
-
     #endif
     
     open override func updateRootViewConstraints() {

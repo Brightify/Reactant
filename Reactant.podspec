@@ -33,6 +33,7 @@ Pod::Spec.new do |spec|
     spec.tvos.deployment_target = '9.2'
     spec.osx.deployment_target = '10.11'
     spec.default_subspec = 'Core', 'Result'
+    spec.swift_version = '4.2'
 
     def self.rxSwift(subspec)
         subspec.dependency 'RxSwift', '~> 4.0'

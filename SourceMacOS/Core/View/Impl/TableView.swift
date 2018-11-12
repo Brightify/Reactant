@@ -107,7 +107,7 @@ public struct AnyTableColumn<ITEM, ACTION> {
 
 open class TableView<ITEM, ACTION>: ViewBase<[ITEM], TableViewAction<ITEM, ACTION>>, NSTableViewDataSource, NSTableViewDelegate {
     open override var actions: [Observable<TableViewAction<ITEM, ACTION>>] {
-        return columns.values.flatMap {
+        return columns.values.compactMap {
             $0.action?.map(TableViewAction.cellAction)
         }
     }
