@@ -25,12 +25,6 @@ public protocol Component: Invalidable {
     associatedtype ActionType
 
     /**
-     * Every time `componentState` changes, its old value is saved into this get-only variable.
-     * - NOTE: Its value is `nil` in first `update()` call and can be used for running code in the first update (beware if your componentState is `Optional`).
-     */
-    var previousComponentState: StateType? { get }
-
-    /**
      * The recommended single point of mutation in the Reactant architecture. Usually a `Struct` containing multiple values,
      *  but it can be any **value type**, even **reference type**, though those are not suitable for `componentState`.
      *
@@ -58,7 +52,7 @@ public protocol Component: Invalidable {
     /**
      * Overriding this method lets you control whether `update()` will be called on next `componentState` modification.
      */
-    func needsUpdate() -> Bool
+    func needsUpdate(previousState: StateType?) -> Bool
 
     /**
      * The method that gets called whenever `componentState` changes as long as `ComponentDelegate.needsUpdate` and `ComponentDelegate.canUpdate` are both `true`.
@@ -66,7 +60,7 @@ public protocol Component: Invalidable {
      * Recommended usage of this method is updating UI and/or passing `componentState` to subviews.
      * - WARNING: This method is NOT to be called directly, if you need to, use `Invalidable.invalidate()` method.
      */
-    func update()
+    func update(previousState: StateType?)
 
     /**
      * Method that manually sends an `action` of type ACTION.

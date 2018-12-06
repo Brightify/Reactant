@@ -11,7 +11,7 @@ import UIKit
 open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
 
     private let rootViewContainer = ControllerRootViewContainer()
-    public var dialogView: DialogView
+    public private(set) lazy var dialogView: DialogView = DialogView(content: rootView)
     
     open override var configuration: Configuration {
         didSet {
@@ -20,15 +20,13 @@ open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
         }
     }
 
-    public override init(title: String = "", root: ROOT = ROOT()) {
-        dialogView = DialogView(content: root)
-        
-        super.init(title: title, root: root)
-        
+    public override init(initialState: STATE, rootViewFactory: @autoclosure @escaping () -> ROOT) {
+        super.init(initialState: initialState, rootViewFactory: rootViewFactory)
+
         modalTransitionStyle = .crossDissolve
         modalPresentationStyle = .overCurrentContext
     }
-    
+
     open override func loadView() {
         view = rootViewContainer
         

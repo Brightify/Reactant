@@ -89,28 +89,128 @@ internal final class DefaultComponentBehavior<STATE, ACTION>: ComponentBehavior 
 }
 
 public final class ComponentDelegate<STATE, ACTION> {
+    public enum StateValidity {
+        case valid
+        case invalid(previous: STATE?)
+    }
+    private class UpdateLock {
+        enum LockType {
+            case update
+            case needsUpdate
+        }
+
+        private var lock: LockType?
+
+        var isLocked: Bool {
+            return lock != nil
+        }
+
+        func locked<RESULT>(type: LockType, perform: () throws -> RESULT) rethrows -> RESULT {
+            guard !isLocked else {
+                fatalError(
+                    """
+                    ⚠️ Tried to lock inside locked block ⚠️
+                    > Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.
+                    > This is an issue inside Hyperdrive. Please file an issue on our GitHub.
+                    """
+                )
+            }
+
+            lock = type
+            defer { lock = nil }
+            return try perform()
+        }
+
+        private func synchronizationError(_ message: String) {
+            #if FATAL_SYNCHRONIZATION
+            fatalError(message)
+            #else
+            print(message)
+            #endif
+        }
+
+        func ensureUnlocked(perform: () throws -> Void) rethrows {
+            switch lock {
+            case .none:
+                try perform()
+            case .update?:
+                synchronizationError(
+                    """
+                    ⚠️ Component State changed from inside update method. ⚠️
+                        > Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.
+                        > Problem: Changing the component state during the validation phase results in ..
+                        > Interpretation: This probably mean you changed the `componentState` inside `update` method directly or indirectly.
+                        > Remedy: If you want to set the componentState from inside of the update method, make sure to dispatch it to the next main loop pass using `DispatchQueue.main.async { }`
+                    """
+                )
+
+            case .needsUpdate?:
+                fatalError(
+                    """
+                    ⚠️ Component State changed from inside needsUpdate method. ⚠️
+                        > Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.
+                        > Problem: Changing the component state during the validation phase results in invalid state. Additionally, changing it insude `needsUpdate` method is illegal as it completely breaks the lifecycle of the component.
+                        > Interpratation: This probably means you changed the `componentState` inside `needsUpdate` method directly or indirectly.
+                        > Remedy: Never change the `componentState` inside `needsUpdate` method.
+                    """
+                )
+            }
+        }
+    }
+    private class OwnerWrapper {
+        private let ownerComponentType: Any.Type
+        private let ownerNeedsUpdate: (STATE?) -> Bool
+        private let ownerUpdate: (STATE?) -> Void
+
+        init<C: Component>(owner: C) where C.StateType == STATE {
+            ownerComponentType = type(of: owner)
+            ownerNeedsUpdate = { [weak owner] previousState in
+                guard let ownerComponent = owner else {
+                    fatalError("Component Delegate was leaked outside of its owner's lifecycle!")
+                }
+                return ownerComponent.needsUpdate(previousState: previousState)
+            }
+
+            ownerUpdate = { [weak owner] previousState in
+                guard let ownerComponent = owner else {
+                    fatalError("Component Delegate was leaked outside of its owner's lifecycle!")
+                }
+                return ownerComponent.update(previousState: previousState)
+            }
+        }
+
+        func update(previousState: STATE?) {
+            ownerUpdate(previousState)
+        }
+
+        func needsUpdate(previousState: STATE?) -> Bool {
+            return ownerNeedsUpdate(previousState)
+        }
+    }
+
+
     #if ENABLE_RXSWIFT
     internal let rxBehavior = RxSwiftComponentBehavior<STATE, ACTION>()
     #endif
     internal let behavior = DefaultComponentBehavior<STATE, ACTION>()
 
-    public var previousComponentState: STATE? = nil
+    private let lock = UpdateLock()
 
+    private var stateValidity: StateValidity = .invalid(previous: nil)
+
+    private var componentStateStorage: STATE
     public var componentState: STATE {
         get {
-            if let state = stateStorage {
-                return state
-            } else {
-                fatalError("ComponentState accessed before stored!")
-            }
+            return componentStateStorage
         }
         set {
-            let oldValue = stateStorage
-            previousComponentState = oldValue
-            stateStorage = newValue
-
-            behavior.componentStateWillChange(from: oldValue, to: newValue)
-            needsUpdate = true
+            lock.ensureUnlocked {
+                let oldValue = componentState
+                behavior.componentStateWillChange(from: oldValue, to: newValue)
+                componentStateStorage = newValue
+                setNeedsUpdate(oldState: oldValue)
+                behavior.componentStateDidChange(from: oldValue, to: newValue)
+            }
         }
     }
 
@@ -122,90 +222,76 @@ public final class ComponentDelegate<STATE, ACTION> {
      * - NOTE: See `canUpdate`.
      * - WARNING: This variable shouldn't be changed by hand, it's used for syncing Reactant and calling `Component.update()`.
      */
-    public var needsUpdate: Bool = false {
-        didSet {
-            if needsUpdate && canUpdate {
-                let previousComponentStateBeforeUpdate = previousComponentState
-                let componentStateBeforeUpdate = componentState
-                update()
-                behavior.componentStateDidChange(
-                    from: previousComponentStateBeforeUpdate,
-                    to: componentStateBeforeUpdate)
-            }
+    public var needsUpdate: Bool {
+        switch stateValidity {
+        case .valid:
+            return false
+        case .invalid:
+            return true
         }
     }
 
     /// Variable which controls whether the `Component.update()` method is called when `Component.componentState` is changed.
     public var canUpdate: Bool = false {
         didSet {
-            if canUpdate && needsUpdate {
-                let previousComponentStateBeforeUpdate = previousComponentState
-                let componentStateBeforeUpdate = componentState
-                update()
-                behavior.componentStateDidChange(
-                    from: previousComponentStateBeforeUpdate,
-                    to: componentStateBeforeUpdate)
-            }
+            updateIfNeeded()
         }
     }
 
-    private let ownerComponentType: Any.Type
-    private let ownerNeedsUpdate: () -> Bool
-    private let ownerUpdate: () -> Void
+    private var ownerWrapper: OwnerWrapper?
 
-    /**
-     * Get-only variable through which you can safely check whether `Component.componentState` is set.
-     *
-     * Useful for guarding `Component.componentState` access when not in `Component.update()`
-     */
-    public var hasComponentState: Bool {
-        return stateStorage != nil
+    public init(initialState: STATE) {
+        componentStateStorage = initialState
     }
-    
-    private var stateStorage: STATE? = nil
-    
-    public init<COMPONENT: Component>(owner: COMPONENT) where STATE == COMPONENT.StateType, ACTION == COMPONENT.ActionType {
-        ownerComponentType = type(of: owner)
-        ownerNeedsUpdate = { [weak owner] in
-            guard let ownerComponent = owner else {
-                fatalError("Component Delegate was leaked outside of its owner's lifecycle!")
-            }
-            return ownerComponent.needsUpdate()
-        }
 
-        ownerUpdate = { [weak owner] in
-            guard let ownerComponent = owner else {
-                fatalError("Component Delegate was leaked outside of its owner's lifecycle!")
-            }
-            return ownerComponent.update()
-        }
+    public func setOwner<C: Component>(_ owner: C) where C.StateType == STATE, C.ActionType == ACTION {
+        ownerWrapper = OwnerWrapper(owner: owner)
 
-        // If the model is Void, we set it so caller does not have to.
-        if let voidState = Void() as? STATE {
-            componentState = voidState
-        }
+        updateIfNeeded()
+    }
+
+    public func forceInvalidate() {
+        setNeedsUpdate(oldState: componentState)
     }
 
     public func perform(action: ACTION) {
         behavior.componentPerformedAction(action)
-
     }
-    
-    private func update() {
-        guard stateStorage != nil else {
-            #if DEBUG
-                fatalError("ComponentState not set before needsUpdate and canUpdate were set! ComponentState \(STATE.self), component \(ownerComponentType)")
-            #else
-                print("WARNING: ComponentState not set before needsUpdate and canUpdate were set. This is usually developer error by not calling `setComponentState` on Component that needs non-Void componentState. ComponentState \(STATE.self), component \(ownerComponentType)")
-                return
-            #endif
-        }
-        
-        needsUpdate = false
 
-        if ownerNeedsUpdate() == true {
-            behavior.stateTracking = ObservationTokenTracker()
-            ownerUpdate()
+    private func setNeedsUpdate(oldState: STATE) {
+        switch stateValidity {
+        case .valid:
+            stateValidity = .invalid(previous: oldState)
+        case .invalid:
+            /* When waiting for validation, we want to keep the original previous
+                state. This means that setting the state to A, validating the component,
+                then setting state to B and then to C, validation will happen for state change
+                from A to C */
+            break
+        }
+
+        updateIfNeeded()
+    }
+
+    private func updateIfNeeded() {
+        guard let ownerWrapper = ownerWrapper else {
+            fatalError("Owner component not set! Make sure to call `setOwner` method!")
+        }
+
+        guard canUpdate, case .invalid(let previousState) = stateValidity else { return }
+
+        let shouldUpdate = lock.locked(type: .needsUpdate) {
+            ownerWrapper.needsUpdate(previousState: previousState)
+        }
+
+        if shouldUpdate {
+            lock.locked(type: .update) {
+                behavior.stateTracking = ObservationTokenTracker()
+                ownerWrapper.update(previousState: previousState)
+                stateValidity = .valid
+            }
+        } else {
+            stateValidity = .valid
         }
     }
 }

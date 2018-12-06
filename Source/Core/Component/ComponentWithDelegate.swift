@@ -29,20 +29,7 @@ public protocol ComponentWithDelegate: Component {
     func actionMapping(mapper: ActionMapper<ActionType>)
 }
 
-private var componentDelegateKey = 0 as UInt8
 extension ComponentWithDelegate {
-    public var componentDelegate: ComponentDelegate<StateType, ActionType> {
-        return associatedObject(self, key: &componentDelegateKey) {
-            return ComponentDelegate(owner: self)
-        }
-    }
-}
-
-extension ComponentWithDelegate {
-    public var previousComponentState: StateType? {
-        return componentDelegate.previousComponentState
-    }
-
     public var componentState: StateType {
         get {
             return componentDelegate.componentState
@@ -53,9 +40,7 @@ extension ComponentWithDelegate {
     }
 
     public func invalidate() {
-        if componentDelegate.hasComponentState {
-            componentDelegate.needsUpdate = true
-        }
+        componentDelegate.forceInvalidate()
     }
 
     public func perform(action: ActionType) {

@@ -6,6 +6,8 @@
 //  Copyright © 2018 Brightify. All rights reserved.
 //
 
+import UIKit
+
 public final class ActionMapper<ACTION> {
     private let performAction: (ACTION) -> Void
     internal var tokens: [ObservationToken] = []
@@ -30,6 +32,23 @@ public final class ActionMapper<ACTION> {
         track(token: token)
     }
 
+    #if os(iOS)
+    public func map(control: UIControl, to action: @autoclosure @escaping () -> ACTION) {
+        map(control: control, for: .touchUpInside, to: action)
+    }
+    #elseif os(tvOS)
+    public func map(control: UIControl, to action: @autoclosure @escaping () -> ACTION) {
+        map(control: control, for: .primaryActionTriggered, to: action)
+    }
+    #endif
+
+    internal func track(token: ObservationToken) {
+        tokens.append(token)
+    }
+}
+
+// MARK: UIControl mapping
+extension ActionMapper {
     private class ControlActionDelegate {
         private weak var control: UIControl?
         private let event: UIControl.Event
@@ -69,19 +88,5 @@ public final class ActionMapper<ACTION> {
         })
 
         track(token: token)
-    }
-
-    #if os(iOS)
-    public func map(control: UIControl, to action: @autoclosure @escaping () -> ACTION) {
-        map(control: control, for: .touchUpInside, to: action)
-    }
-    #elseif os(tvOS)
-    public func map(control: UIControl, to action: @autoclosure @escaping () -> ACTION) {
-        map(control: control, for: .primaryActionTriggered, to: action)
-    }
-    #endif
-
-    internal func track(token: ObservationToken) {
-        tokens.append(token)
     }
 }

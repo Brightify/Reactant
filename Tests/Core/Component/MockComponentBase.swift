@@ -16,10 +16,10 @@ class MockComponentBase<STATE, ACTION>: ComponentBase<STATE, ACTION>, Cuckoo.Cla
     typealias Verification = __VerificationProxy_MockComponentBase
     let cuckoo_manager = Cuckoo.MockManager(hasParent: true)
 
-    override init(canUpdate: Bool = true) {
+    override init(initialState: STATE, canUpdate: Bool = true) {
         cuckoo_manager.enableSuperclassSpy()
 
-        super.init(canUpdate: canUpdate)
+        super.init(initialState: initialState, canUpdate: canUpdate)
     }
 
     var action: Observable<ACTION> {
@@ -34,10 +34,10 @@ class MockComponentBase<STATE, ACTION>: ComponentBase<STATE, ACTION>, Cuckoo.Cla
 //        }
 //    }
 
-    override func needsUpdate() -> Bool {
+    override func needsUpdate(previousState: STATE?) -> Bool {
         return cuckoo_manager.call("needsUpdate() -> Bool",
                                    parameters: (),
-                                   superclassCall: super.needsUpdate()
+                                   superclassCall: super.needsUpdate(previousState: previousState)
         )
     }
 
@@ -48,10 +48,10 @@ class MockComponentBase<STATE, ACTION>: ComponentBase<STATE, ACTION>, Cuckoo.Cla
         )
     }
 
-    override func update() {
+    override func update(previousState: STATE?) {
         return cuckoo_manager.call("update()",
                                    parameters: (),
-                                   superclassCall: super.update()
+                                   superclassCall: super.update(previousState: previousState)
         )
     }
 

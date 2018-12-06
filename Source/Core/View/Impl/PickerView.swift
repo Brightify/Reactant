@@ -16,13 +16,14 @@ public class PickerView<MODEL>: ViewBase<MODEL, MODEL>, UIPickerViewDataSource, 
     public let items: [MODEL]
     public let titleSelection: (MODEL) -> String
 
-    public init(items: [MODEL], titleSelection: @escaping (MODEL) -> String) {
+    public init(items: [MODEL], initialState: MODEL, titleSelection: @escaping (MODEL) -> String) {
         self.items = items
         self.titleSelection = titleSelection
-        super.init()
+        
+        super.init(initialState: initialState)
     }
 
-    public override func update() {
+    public override func update(previousState: StateType?) {
         let title = titleSelection(componentState)
         guard let index = items.index(where: { titleSelection($0) == title }) else { return }
         pickerView.selectRow(index, inComponent: 0, animated: true)

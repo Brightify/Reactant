@@ -115,7 +115,6 @@
 		1838999221264A91007CE13E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07859C1DD3AA870063AB96 /* RootView.swift */; };
 		1838999321264A91007CE13E /* ViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785981DD3A3420063AB96 /* ViewBase.swift */; };
 		1838999421264A91007CE13E /* ControlBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8C5A7202E1B0D002B4A6D /* ControlBase.swift */; };
-		1838999521264A92007CE13E /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0CAD1EB88062006CF52A /* TextField.swift */; };
 		1838999621264A92007CE13E /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22957E18207210BD0088C09E /* PickerView.swift */; };
 		1838999821264A92007CE13E /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785A31DD3BDE10063AB96 /* ContainerView.swift */; };
 		1838999921264A92007CE13E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07859C1DD3AA870063AB96 /* RootView.swift */; };
@@ -325,6 +324,7 @@
 		1898D76D2127358200DA4AC5 /* TableViewHeaderFooterIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785E11DDB22670063AB96 /* TableViewHeaderFooterIdentifier.swift */; };
 		1898D76E2127358500DA4AC5 /* TableViewCellWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785CB1DD8C4F00063AB96 /* TableViewCellWrapper.swift */; };
 		1898D76F2127358500DA4AC5 /* TableViewHeaderFooterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785CD1DD8CEE90063AB96 /* TableViewHeaderFooterWrapper.swift */; };
+		18EBA9752148264B00F80912 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0CAD1EB88062006CF52A /* TextField.swift */; };
 		2284DA9F1FAC6D2F00D231D3 /* ButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DA9E1FAC6D2F00D231D3 /* ButtonController.swift */; };
 		2284DAA11FAC6D5500D231D3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA01FAC6D5500D231D3 /* TableViewController.swift */; };
 		2284DAA41FAC6DBA00D231D3 /* TabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA31FAC6DBA00D231D3 /* TabController.swift */; };
@@ -2223,6 +2223,7 @@
 				1838998B21264A8D007CE13E /* DialogControllerBase.swift in Sources */,
 				1898D74821272B5D00DA4AC5 /* Configuration+CollectionView.swift in Sources */,
 				1838994921264A58007CE13E /* Configuration+Style.swift in Sources */,
+				18EBA9752148264B00F80912 /* TextField.swift in Sources */,
 				18937BC321283321009F6CA3 /* Wireframe.swift in Sources */,
 				1838995C21264A72007CE13E /* CGSize+Init.swift in Sources */,
 				1898D74921272B5D00DA4AC5 /* CollectionViewBase.swift in Sources */,
@@ -2254,7 +2255,6 @@
 				1898D76E2127358500DA4AC5 /* TableViewCellWrapper.swift in Sources */,
 				1838997221264A78007CE13E /* Properties+Style.swift in Sources */,
 				1838999B21264A92007CE13E /* ControlBase.swift in Sources */,
-				1838999521264A92007CE13E /* TextField.swift in Sources */,
 				1898D7672127357F00DA4AC5 /* TableViewBase.swift in Sources */,
 				1838999921264A92007CE13E /* RootView.swift in Sources */,
 				1838996E21264A78007CE13E /* NSAttributedString+Attribute.swift in Sources */,

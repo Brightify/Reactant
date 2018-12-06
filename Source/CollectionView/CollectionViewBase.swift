@@ -43,7 +43,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         
         self.automaticallyDeselect = automaticallyDeselect
         
-        super.init()
+        super.init(initialState: .loading)
     }
 
     open override func afterInit() {
@@ -92,7 +92,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
     open func update(items: [MODEL]) {
     }
     
-    open override func update() {
+    open override func update(previousState: StateType?) {
         var items: [MODEL] = []
         var emptyMessage = ""
         var loading = false

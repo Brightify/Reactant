@@ -24,7 +24,7 @@ public final class DialogView: ViewBase<Void, Void> {
     public init(content: UIView) {
         self.content = content
         
-        super.init()
+        super.init(initialState: ())
     }
     
     override public func loadView() {

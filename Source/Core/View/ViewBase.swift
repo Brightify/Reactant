@@ -22,6 +22,8 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         }
     }
 
+    public let componentDelegate: ComponentDelegate<STATE, ACTION>
+
     open override class var requiresConstraintBasedLayout: Bool {
         return true
     }
@@ -46,10 +48,10 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
     }
     #endif
 
-    public init() {
+    public init(initialState: STATE) {
+        componentDelegate = ComponentDelegate(initialState: initialState)
         super.init(frame: CGRect.zero)
-
-//        componentDelegate.ownerComponent = self
+        componentDelegate.setOwner(self)
 
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -91,10 +93,10 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
     open func actionMapping(mapper: ActionMapper<ActionType>) {
     }
 
-    open func update() {
+    open func update(previousState: StateType?) {
     }
 
-    open func needsUpdate() -> Bool {
+    open func needsUpdate(previousState: StateType?) -> Bool {
         return true
     }
 
@@ -110,5 +112,12 @@ open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable 
         if let reactantUi = self as? ReactantUI {
             reactantUi.__rui.updateReactantUI()
         }
+    }
+}
+
+extension ViewBase where STATE == Void {
+    @nonobjc
+    public convenience init() {
+        self.init(initialState: ())
     }
 }

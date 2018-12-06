@@ -22,9 +22,9 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
     private let cellFactory: () -> CELL
 
     public init(
-        cellFactory: @escaping () -> CELL = CELL.init,
         style: UITableView.Style = .plain,
-        options: TableViewOptions = [])
+        options: TableViewOptions = [],
+        cellFactory: @autoclosure @escaping () -> CELL)
     {
         self.cellFactory = cellFactory
 

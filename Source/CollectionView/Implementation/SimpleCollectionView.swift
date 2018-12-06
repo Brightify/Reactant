@@ -39,12 +39,12 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
     }
 
     open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard componentDelegate.hasComponentState, case .items(let items) = componentState else { return 0 }
+        guard case .items(let items) = componentState else { return 0 }
         return items.count
     }
 
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard componentDelegate.hasComponentState, case .items(let items) = componentState else {
+        guard case .items(let items) = componentState else {
             fatalError("Invalid state! This is developer error.")
         }
 
@@ -58,7 +58,7 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
     }
 
     open override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard componentDelegate.hasComponentState, case .items(let items) = componentState else { return }
+        guard case .items(let items) = componentState else { return }
 
         perform(action: .selected(items[indexPath.row]))
     }

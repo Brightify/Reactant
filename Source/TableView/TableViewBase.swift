@@ -45,7 +45,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
     public let loadingIndicator = UIActivityIndicatorView()
 
     public var items: [MODEL] {
-        guard componentDelegate.hasComponentState, case .items(let items) = componentState else { return [] }
+        guard case .items(let items) = componentState else { return [] }
         return items
     }
     // Optimization that prevents configuration reloading each time cell is dequeued.
@@ -61,7 +61,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
 
         self.automaticallyDeselect = options.contains(.deselectsAutomatically)
 
-        super.init()
+        super.init(initialState: .loading)
     }
 
     open override func afterInit() {
@@ -129,7 +129,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         layoutFooterView()
     }
     
-    open override func update() {
+    open override func update(previousState: StateType?) {
         var items: [MODEL] = []
         var emptyMessage = ""
         var loading = false

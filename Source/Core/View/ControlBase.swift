@@ -13,15 +13,7 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
 
     public let lifetimeTracking = ObservationTokenTracker()
     
-//    public let componentDelegate = ComponentDelegate<ControlBase<STATE, ACTION>>()
-
-//    open var actions: [Observable<ACTION>] {
-//        return []
-//    }
-
-//    open var action: Observable<ACTION> {
-//        return componentDelegate.behavior.action
-//    }
+    public let componentDelegate: ComponentDelegate<STATE, ACTION>
 
     open var configuration: Configuration = .global {
         didSet {
@@ -54,10 +46,10 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
     }
     #endif
     
-    public init() {
+    public init(initialState: STATE) {
+        componentDelegate = ComponentDelegate(initialState: initialState)
         super.init(frame: CGRect.zero)
-        
-//        componentDelegate.ownerComponent = self
+        componentDelegate.setOwner(self)
 
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -93,7 +85,7 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
     open func actionMapping(mapper: ActionMapper<ActionType>) {
     }
     
-    open func update() {
+    open func update(previousState: StateType?) {
     }
     
     open func loadView() {
@@ -102,7 +94,7 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
     open func setupConstraints() {
     }
     
-    open func needsUpdate() -> Bool {
+    open func needsUpdate(previousState: StateType?) -> Bool {
         return true
     }
     

@@ -12,13 +12,14 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
 
     public let lifetimeTracking = ObservationTokenTracker()
 
-    open func needsUpdate() -> Bool {
-        return true
-    }
+    public let componentDelegate: ComponentDelegate<STATE, ACTION>
 
-    public init(canUpdate: Bool = true) {
+    public init(initialState: STATE, canUpdate: Bool = true) {
+        componentDelegate = ComponentDelegate(initialState: initialState)
+        componentDelegate.setOwner(self)
+
         resetActionMapping()
-        
+
         afterInit()
         
         componentDelegate.canUpdate = canUpdate
@@ -28,5 +29,9 @@ open class ComponentBase<STATE, ACTION>: ComponentWithDelegate {
 
     open func actionMapping(mapper: ActionMapper<ActionType>) { }
 
-    open func update() { }
+    open func update(previousState: STATE?) { }
+
+    open func needsUpdate(previousState: STATE?) -> Bool {
+        return true
+    }
 }

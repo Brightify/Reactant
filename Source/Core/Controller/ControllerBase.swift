@@ -20,8 +20,11 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     
     public let lifetimeTracking = ObservationTokenTracker()
 
-    public let rootView: ROOT
-    
+    public let componentDelegate: ComponentDelegate<STATE, Void>
+
+    public private(set) lazy var rootView: ROOT = rootViewFactory()
+    private let rootViewFactory: () -> ROOT
+
     open var configuration: Configuration = .global {
         didSet {
             (rootView as? Configurable)?.configuration = configuration
@@ -37,40 +40,22 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
         return rootView as? RootView
     }
 
-    /* The following inits are here to workaround a SegFault 11 in Swift 3.0 
-       when implementation controller don't implement own init. [It's fixed in Swift 3.1] */
-    public init() {
-        rootView = ROOT()
+    public init(initialState: STATE, rootViewFactory: @autoclosure @escaping () -> ROOT) {
+        self.rootViewFactory = rootViewFactory
 
+        componentDelegate = ComponentDelegate(initialState: initialState)
         super.init(nibName: nil, bundle: nil)
+        componentDelegate.setOwner(self)
 
-        setupController(title: "")
+        setupController()
     }
 
-    public init(root: ROOT) {
-        rootView = root
-
-        super.init(nibName: nil, bundle: nil)
-
-        setupController(title: "")
-    }
-    
-    public init(title: String, root: ROOT = ROOT()) {
-        rootView = root
-        
-        super.init(nibName: nil, bundle: nil)
-
-        setupController(title: title)
-    }
-
-    private func setupController(title: String) {
+    private func setupController() {
         rootView
             .observeAction(observer: { [weak self] in
                 self?.act(on: $0)
             })
             .track(in: lifetimeTracking)
-
-        self.title = title
 
         reloadConfiguration()
 
@@ -85,10 +70,10 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     open func afterInit() {
     }
 
-    open func update() {
+    open func update(previousState: StateType?) {
     }
 
-    open func needsUpdate() -> Bool {
+    open func needsUpdate(previousState: StateType?) -> Bool {
         return true
     }
 
@@ -192,5 +177,11 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     }
     
     open func act(on action: ROOT.ActionType) {
+    }
+}
+
+extension ControllerBase where STATE == Void {
+    public convenience init(rootViewFactory: @autoclosure @escaping () -> ROOT) {
+        self.init(initialState: (), rootViewFactory: rootViewFactory)
     }
 }

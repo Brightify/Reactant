@@ -18,8 +18,8 @@ open class StaticMap: ViewBase<MKCoordinateRegion, StaticMapAction> {
     private let image = UIImageView()
     private let tapGestureRecognizer = UITapGestureRecognizer()
 
-    public override init() {
-        super.init()
+    public override init(initialState: MKCoordinateRegion) {
+        super.init(initialState: initialState)
 
         componentDelegate.canUpdate = false
     }
@@ -57,7 +57,7 @@ open class StaticMap: ViewBase<MKCoordinateRegion, StaticMapAction> {
         }
     }
 
-    open override func update() {
+    open override func update(previousState: StateType?) {
         image.image = nil
         let fileName = String(format: "map-image-c%.2f,%.2f-s%.2f,%.2f-%.0fx%.0f",
                               componentState.center.latitude, componentState.center.longitude,

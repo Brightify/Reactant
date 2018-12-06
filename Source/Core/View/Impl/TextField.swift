@@ -60,6 +60,8 @@ public final class TextField: UITextField, ComponentWithDelegate, Configurable {
     public typealias ActionType = String
 
     public let lifetimeTracking = ObservationTokenTracker()
+    
+    public let componentDelegate: ComponentDelegate<TextInputStateConvertible, String>
 
     public var configuration: Configuration = .global {
         didSet {
@@ -134,7 +136,9 @@ public final class TextField: UITextField, ComponentWithDelegate, Configurable {
     #endif
 
     public init() {
+        componentDelegate = ComponentDelegate(initialState: "")
         super.init(frame: CGRect.zero)
+        componentDelegate.setOwner(self)
 
         translatesAutoresizingMaskIntoConstraints = false
 
@@ -149,8 +153,6 @@ public final class TextField: UITextField, ComponentWithDelegate, Configurable {
         reloadConfiguration()
 
         afterInit()
-
-        componentState = ""
 
         componentDelegate.canUpdate = true
     }
@@ -173,7 +175,7 @@ public final class TextField: UITextField, ComponentWithDelegate, Configurable {
     public func actionMapping(mapper: ActionMapper<ActionType>) {
     }
 
-    public func update() {
+    public func update(previousState: StateType?) {
         let oldSelectedRange = selectedTextRange
 
         switch componentState.asTextInputState() {
@@ -196,7 +198,7 @@ public final class TextField: UITextField, ComponentWithDelegate, Configurable {
     public func setupConstraints() {
     }
 
-    public func needsUpdate() -> Bool {
+    public func needsUpdate(previousState: StateType?) -> Bool {
         return true
     }
 

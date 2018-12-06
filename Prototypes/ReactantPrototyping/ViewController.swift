@@ -12,8 +12,8 @@ import SnapKit
 import RxSwift
 
 final class ViewController: ControllerBase<Void, ExampleRootView> {
-    override init() {
-        super.init()
+    init() {
+        super.init(initialState: (), rootViewFactory: ExampleRootView(initialState: ()))
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -28,7 +28,7 @@ final class ExampleRootView: ViewBase<Void, Void> {
 
 //    private let labelInsideSafeArea = UILabel(text: "Hello Reactant!")
 //    private let tableView = SimpleCollectionView<SimpleCell>(reloadable: false)
-    private let tableView = PlainTableView<SimpleCell>.init(options: .reloadable)
+    private let tableView = PlainTableView<SimpleCell>(options: .reloadable, cellFactory: SimpleCell(initialState: ""))
     
     override func afterInit() {
 //        tableView.action
@@ -42,7 +42,7 @@ final class ExampleRootView: ViewBase<Void, Void> {
             .track(in: lifetimeTracking)
     }
     
-    override func update() {
+    override func update(previousState: Void?) {
         tableView.componentState = .items(["Test1", "Test2", "Test3"])
     }
 
@@ -73,7 +73,7 @@ final class ExampleRootView: ViewBase<Void, Void> {
 final class SimpleControl: ControlBase<String, Void> {
     private let label = UILabel()
 
-    override func update() {
+    override func update(previousState: String?) {
         label.text = componentState
     }
 
@@ -101,9 +101,9 @@ final class SimpleControl: ControlBase<String, Void> {
 
 final class SimpleCell: ViewBase<String, Void>, CollectionViewCell {
 
-    private let control = SimpleControl()
+    private let control = SimpleControl(initialState: "")
 
-    override func update() {
+    override func update(previousState: String?) {
         control.componentState = componentState
     }
 
