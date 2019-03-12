@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 extension UIView: Reusable {
@@ -14,3 +15,4 @@ extension UIView: Reusable {
         removeFromSuperview()
     }
 }
+#endif

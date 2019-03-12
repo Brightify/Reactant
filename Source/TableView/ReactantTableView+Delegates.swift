@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 extension ReactantTableView {
@@ -113,3 +114,4 @@ extension ReactantTableView {
         }
     }
 }
+#endif

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-public protocol ComponentWithDelegate: Component {
+public protocol ComponentWithDelegate: _Component {
     var componentDelegate: ComponentDelegate<StateType, ActionType> { get }
 
     /**

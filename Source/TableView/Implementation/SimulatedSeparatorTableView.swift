@@ -6,15 +6,16 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
-public enum SimulatedSeparatorTableViewAction<CELL: Component> {
+public enum SimulatedSeparatorTableViewAction<CELL: _Component> {
     case selected(CELL.StateType)
     case rowAction(CELL.StateType, CELL.ActionType)
     case refresh
 }
 
-open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateType, SimulatedSeparatorTableViewAction<CELL>>, UITableViewDataSource where CELL: Component {
+open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateType, SimulatedSeparatorTableViewAction<CELL>>, UITableViewDataSource where CELL: _Component {
 
     public typealias MODEL = CELL.StateType
     public typealias SECTION = SectionModel<Void, CELL.StateType>
@@ -103,3 +104,4 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
         return footer
     }
 }
+#endif

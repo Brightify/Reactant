@@ -6,7 +6,8 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 
 extension CGSize {
 

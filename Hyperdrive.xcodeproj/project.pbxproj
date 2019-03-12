@@ -14,6 +14,27 @@
 		00E342101FA242A1005D3740 /* Sequence+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E3420E1FA22F70005D3740 /* Sequence+Utils.swift */; };
 		00E342151FA26CE7005D3740 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E342131FA2694E005D3740 /* Rule.swift */; };
 		00EB11081FBEE016006A1FAA /* Array+UtilsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB11071FBEE016006A1FAA /* Array+UtilsTest.swift */; };
+		182723292237AFD6001D87AA /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723282237AFD6001D87AA /* Platform.swift */; };
+		1827232A2237AFD6001D87AA /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723282237AFD6001D87AA /* Platform.swift */; };
+		1827232C2237C1C9001D87AA /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827232B2237C1C9001D87AA /* Composable.swift */; };
+		1827232D2237C1C9001D87AA /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827232B2237C1C9001D87AA /* Composable.swift */; };
+		1827232F2237C1DF001D87AA /* Presenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827232E2237C1DF001D87AA /* Presenting.swift */; };
+		182723302237C1DF001D87AA /* Presenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827232E2237C1DF001D87AA /* Presenting.swift */; };
+		182723322237C206001D87AA /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723312237C206001D87AA /* Presenter.swift */; };
+		182723332237C206001D87AA /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723312237C206001D87AA /* Presenter.swift */; };
+		182723352237C22D001D87AA /* DelegatedComposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723342237C22D001D87AA /* DelegatedComposable.swift */; };
+		182723362237C22D001D87AA /* DelegatedComposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723342237C22D001D87AA /* DelegatedComposable.swift */; };
+		182723382237C249001D87AA /* SubmitBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723372237C249001D87AA /* SubmitBehavior.swift */; };
+		182723392237C249001D87AA /* SubmitBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723372237C249001D87AA /* SubmitBehavior.swift */; };
+		1827233B2237C2A7001D87AA /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827233A2237C2A7001D87AA /* Component.swift */; };
+		1827233C2237C2A7001D87AA /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827233A2237C2A7001D87AA /* Component.swift */; };
+		1827233E2237C2E2001D87AA /* StatefulComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827233D2237C2E2001D87AA /* StatefulComponent.swift */; };
+		1827233F2237C2E2001D87AA /* StatefulComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1827233D2237C2E2001D87AA /* StatefulComponent.swift */; };
+		182723412237C2F6001D87AA /* PlainStatefulComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723402237C2F6001D87AA /* PlainStatefulComponent.swift */; };
+		182723422237C2F6001D87AA /* PlainStatefulComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723402237C2F6001D87AA /* PlainStatefulComponent.swift */; };
+		182723442237C309001D87AA /* PresenterRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723432237C309001D87AA /* PresenterRoute.swift */; };
+		182723452237C309001D87AA /* PresenterRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723432237C309001D87AA /* PresenterRoute.swift */; };
+		182723462237D946001D87AA /* ControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858C1DD39BE50063AB96 /* ControllerBase.swift */; };
 		1838992C21264A1B007CE13E /* RxReactant.h in Headers */ = {isa = PBXBuildFile; fileRef = 1838992A21264A1B007CE13E /* RxReactant.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1838993021264A41007CE13E /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C68001E5F574B0081E7BD /* ActivityIndicator.swift */; };
 		1838993121264A4F007CE13E /* Configuration+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956C208F3E6000CA3044 /* Configuration+CollectionView.swift */; };
@@ -92,12 +113,12 @@
 		1838997A21264A7D007CE13E /* BaseSubConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E49566208F38FA00CA3044 /* BaseSubConfiguration.swift */; };
 		1838997B21264A7D007CE13E /* Configuration+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956E208F5F5800CA3044 /* Configuration+Style.swift */; };
 		1838997C21264A88007CE13E /* ReactantUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457881EB16B8B00C972A4 /* ReactantUI.swift */; };
-		1838997D21264A88007CE13E /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858E1DD39BF60063AB96 /* Component.swift */; };
+		1838997D21264A88007CE13E /* _Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858E1DD39BF60063AB96 /* _Component.swift */; };
 		1838997E21264A88007CE13E /* ComponentBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858F1DD39BF60063AB96 /* ComponentBase.swift */; };
 		1838997F21264A88007CE13E /* ComponentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785901DD39BF60063AB96 /* ComponentDelegate.swift */; };
 		1838998021264A88007CE13E /* ComponentWithDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785A01DD3ADB60063AB96 /* ComponentWithDelegate.swift */; };
 		1838998121264A89007CE13E /* ReactantUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183457881EB16B8B00C972A4 /* ReactantUI.swift */; };
-		1838998221264A89007CE13E /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858E1DD39BF60063AB96 /* Component.swift */; };
+		1838998221264A89007CE13E /* _Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858E1DD39BF60063AB96 /* _Component.swift */; };
 		1838998321264A89007CE13E /* ComponentBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858F1DD39BF60063AB96 /* ComponentBase.swift */; };
 		1838998421264A89007CE13E /* ComponentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785901DD39BF60063AB96 /* ComponentDelegate.swift */; };
 		1838998521264A89007CE13E /* ComponentWithDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785A01DD3ADB60063AB96 /* ComponentWithDelegate.swift */; };
@@ -105,7 +126,6 @@
 		1838998721264A8C007CE13E /* DialogControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785AC1DD3C3120063AB96 /* DialogControllerBase.swift */; };
 		1838998821264A8C007CE13E /* DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6E1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift */; };
 		1838998921264A8C007CE13E /* ScrollControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785AD1DD3C3120063AB96 /* ScrollControllerBase.swift */; };
-		1838998A21264A8D007CE13E /* ControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858C1DD39BE50063AB96 /* ControllerBase.swift */; };
 		1838998B21264A8D007CE13E /* DialogControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785AC1DD3C3120063AB96 /* DialogControllerBase.swift */; };
 		1838998C21264A8D007CE13E /* DialogDismissalListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B5D6E1DE2FFCC00F9C9D7 /* DialogDismissalListener.swift */; };
 		1838998D21264A8D007CE13E /* ScrollControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785AD1DD3C3120063AB96 /* ScrollControllerBase.swift */; };
@@ -234,13 +254,13 @@
 		183E0D0E1EB88F17006CF52A /* UILabel+InitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0CE91EB88F09006CF52A /* UILabel+InitTest.swift */; };
 		183E0D0F1EB88F17006CF52A /* UIOffset+InitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0CEA1EB88F09006CF52A /* UIOffset+InitTest.swift */; };
 		183E0D101EB88F17006CF52A /* UITableView+InitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0CEB1EB88F09006CF52A /* UITableView+InitTest.swift */; };
-		185121511D834D1F002C4B08 /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
+		185121511D834D1F002C4B08 /* Hyperdrive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Hyperdrive.framework */; };
 		18937B8821276CDB009F6CA3 /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */; };
 		18937B8921277322009F6CA3 /* FooterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */; };
 		18937B8A21277590009F6CA3 /* SimpleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785FE1DDC6F430063AB96 /* SimpleTableView.swift */; };
 		18937B8B212784F4009F6CA3 /* SimulatedSeparatorTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785B91DD468E20063AB96 /* SimulatedSeparatorTableView.swift */; };
-		18937B8C212787CC009F6CA3 /* Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; };
-		18937B8D212787CC009F6CA3 /* Reactant.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Reactant.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		18937B8C212787CC009F6CA3 /* Hyperdrive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Hyperdrive.framework */; };
+		18937B8D212787CC009F6CA3 /* Hyperdrive.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 185121471D834D1E002C4B08 /* Hyperdrive.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		18937BA1212796DF009F6CA3 /* Rx+recording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B632E81FBF2AC400D83926 /* Rx+recording.swift */; };
 		18937BA2212796E3009F6CA3 /* ConfigurationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0CD41EB88EFB006CF52A /* ConfigurationTest.swift */; };
 		18937BA3212796E3009F6CA3 /* ConfigurableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183E0CD51EB88EFB006CF52A /* ConfigurableTest.swift */; };
@@ -270,7 +290,7 @@
 		18937BBB212796F6009F6CA3 /* ComponentBaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D35DD1FBDC9D300A0401D /* ComponentBaseTest.swift */; };
 		18937BBC212796F6009F6CA3 /* ComponentDelegateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D35E51FBE0FE500A0401D /* ComponentDelegateTest.swift */; };
 		18937BBD212796F6009F6CA3 /* MockComponentBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D35E11FBDCA1600A0401D /* MockComponentBase.swift */; };
-		18937BC021279A8B009F6CA3 /* RxReactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1838992821264A1A007CE13E /* RxReactant.framework */; };
+		18937BC021279A8B009F6CA3 /* RxHyperdrive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1838992821264A1A007CE13E /* RxHyperdrive.framework */; };
 		18937BC321283321009F6CA3 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785851DD3879B0063AB96 /* Wireframe.swift */; };
 		18937BC421283321009F6CA3 /* Wireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0785851DD3879B0063AB96 /* Wireframe.swift */; };
 		18937BC521283325009F6CA3 /* UIBarButtonItem+ClosureAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC137F921E4E29DA00A0516F /* UIBarButtonItem+ClosureAction.swift */; };
@@ -332,17 +352,16 @@
 		2284DAA81FAC6E0700D231D3 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2284DAA71FAC6E0700D231D3 /* MapController.swift */; };
 		22F48FE71FAB0EE900E736C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F48FE61FAB0EE900E736C8 /* AppDelegate.swift */; };
 		22F48FEE1FAB0EE900E736C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22F48FED1FAB0EE900E736C8 /* Assets.xcassets */; };
-		5B7DE88DC9B88CCCC8686832 /* Pods_Reactant_iOS_Tests_RxReactantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ABA2DAD6D4CF11E57F1A75 /* Pods_Reactant_iOS_Tests_RxReactantTests.framework */; };
-		6FD21EA6119AF3573742358E /* Pods_Reactant_tvOS_TVPrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBA50B5AA6EA4A0ACFC63F5 /* Pods_Reactant_tvOS_TVPrototyping.framework */; };
-		733D02C6EF72793DAA4084E4 /* Pods_Reactant_iOS_ReactantPrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C18351055224D74C1E54C2FE /* Pods_Reactant_iOS_ReactantPrototyping.framework */; };
-		9160B9BDB89A488E30AB2C91 /* Pods_Reactant_iOS_Tests_ReactantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865CC478ECC920EFC91F508E /* Pods_Reactant_iOS_Tests_ReactantTests.framework */; };
-		B0BCB5F7E63D83BC50DC21A9 /* Pods_Reactant_iOS_Reactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066AF67D58AA27CF8D22F376 /* Pods_Reactant_iOS_Reactant.framework */; };
-		B2217E1AD142A73AD0E824FE /* Pods_Reactant_iOS_RxReactant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BFAB4C65E5D7D1CC223A41D /* Pods_Reactant_iOS_RxReactant.framework */; };
+		381502A6558801B98551BC08 /* Pods_Hyperdrive_iOS_HyperdrivePrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591B9A972BBF6CA1EB4189CA /* Pods_Hyperdrive_iOS_HyperdrivePrototyping.framework */; };
+		4A940C892C3DAB4475139279 /* Pods_Hyperdrive_iOS_Hyperdrive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041C8CB290E1A632861166FF /* Pods_Hyperdrive_iOS_Hyperdrive.framework */; };
+		5393B8B8452B1795982CF5D3 /* Pods_Hyperdrive_iOS_Tests_RxHyperdriveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01E162235D8C7B5BC80AD9C /* Pods_Hyperdrive_iOS_Tests_RxHyperdriveTests.framework */; };
+		60482D04CAEEF2F39C1A66F2 /* Pods_Hyperdrive_tvOS_TVPrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF01436F44E4873CACC1F9C3 /* Pods_Hyperdrive_tvOS_TVPrototyping.framework */; };
+		64590696C4C4B22D5F553C07 /* Pods_Hyperdrive_iOS_RxHyperdrive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F168EC66FA21E79CE36E297 /* Pods_Hyperdrive_iOS_RxHyperdrive.framework */; };
+		BA5039552F590FD82F2F759E /* Pods_Hyperdrive_iOS_Tests_HyperdriveTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B61D48A59BB13DD5EFA985 /* Pods_Hyperdrive_iOS_Tests_HyperdriveTests.framework */; };
 		DC79F6BB1E55FAA70033AE51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6BA1E55FAA70033AE51 /* AppDelegate.swift */; };
 		DC79F6BD1E55FAA70033AE51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79F6BC1E55FAA70033AE51 /* ViewController.swift */; };
 		DC79F6C21E55FAA70033AE51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC79F6C11E55FAA70033AE51 /* Assets.xcassets */; };
 		DC79F6C51E55FAA70033AE51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC79F6C31E55FAA70033AE51 /* LaunchScreen.storyboard */; };
-		F6E81D75EF6719898F1B8A8A /* Pods_TVPrototyping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4261408CC5E011A11D02934 /* Pods_TVPrototyping.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -390,7 +409,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				18937B8D212787CC009F6CA3 /* Reactant.framework in Embed Frameworks */,
+				18937B8D212787CC009F6CA3 /* Hyperdrive.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,14 +426,28 @@
 		00E3420E1FA22F70005D3740 /* Sequence+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Utils.swift"; sourceTree = "<group>"; };
 		00E342131FA2694E005D3740 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		00EB11071FBEE016006A1FAA /* Array+UtilsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+UtilsTest.swift"; sourceTree = "<group>"; };
+		041C8CB290E1A632861166FF /* Pods_Hyperdrive_iOS_Hyperdrive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hyperdrive_iOS_Hyperdrive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		05BCA382391275C344C318F9 /* Pods-Hyperdrive-iOS-Tests-HyperdriveTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-iOS-Tests-HyperdriveTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-iOS-Tests-HyperdriveTests/Pods-Hyperdrive-iOS-Tests-HyperdriveTests.release.xcconfig"; sourceTree = "<group>"; };
 		060C07209F287251A73C888E /* Pods-Reactant-iOS-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-ReactantTests/Pods-Reactant-iOS-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
-		066AF67D58AA27CF8D22F376 /* Pods_Reactant_iOS_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06B61D48A59BB13DD5EFA985 /* Pods_Hyperdrive_iOS_Tests_HyperdriveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hyperdrive_iOS_Tests_HyperdriveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0777F5FB353D85516EA1D3E8 /* Pods-Reactant-iOS-StaticMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-StaticMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-StaticMap/Pods-Reactant-iOS-StaticMap.release.xcconfig"; sourceTree = "<group>"; };
 		08156B13BCEDB9C5FD4AEBB7 /* Pods-Reactant-iOS-RxReactant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-RxReactant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-RxReactant/Pods-Reactant-iOS-RxReactant.release.xcconfig"; sourceTree = "<group>"; };
+		0D8048A2E8D9CD398257B112 /* Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests/Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests.debug.xcconfig"; sourceTree = "<group>"; };
 		12E79DD0EFA6C3DDD1D3DE95 /* Pods-Reactant-iOS-StaticMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-StaticMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-StaticMap/Pods-Reactant-iOS-StaticMap.debug.xcconfig"; sourceTree = "<group>"; };
 		16BEF3BAB0B302A550911EA7 /* Pods-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
+		17CEEE47B65EAC8923A03369 /* Pods-Hyperdrive-iOS-Hyperdrive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-iOS-Hyperdrive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-iOS-Hyperdrive/Pods-Hyperdrive-iOS-Hyperdrive.debug.xcconfig"; sourceTree = "<group>"; };
+		182723282237AFD6001D87AA /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		1827232B2237C1C9001D87AA /* Composable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composable.swift; sourceTree = "<group>"; };
+		1827232E2237C1DF001D87AA /* Presenting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenting.swift; sourceTree = "<group>"; };
+		182723312237C206001D87AA /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		182723342237C22D001D87AA /* DelegatedComposable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegatedComposable.swift; sourceTree = "<group>"; };
+		182723372237C249001D87AA /* SubmitBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitBehavior.swift; sourceTree = "<group>"; };
+		1827233A2237C2A7001D87AA /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		1827233D2237C2E2001D87AA /* StatefulComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulComponent.swift; sourceTree = "<group>"; };
+		182723402237C2F6001D87AA /* PlainStatefulComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainStatefulComponent.swift; sourceTree = "<group>"; };
+		182723432237C309001D87AA /* PresenterRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterRoute.swift; sourceTree = "<group>"; };
 		183457881EB16B8B00C972A4 /* ReactantUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantUI.swift; sourceTree = "<group>"; };
-		1838992821264A1A007CE13E /* RxReactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxReactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1838992821264A1A007CE13E /* RxHyperdrive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxHyperdrive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1838992A21264A1B007CE13E /* RxReactant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxReactant.h; sourceTree = "<group>"; };
 		1838992B21264A1B007CE13E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		183E0CAD1EB88062006CF52A /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -456,12 +489,12 @@
 		183E0CEA1EB88F09006CF52A /* UIOffset+InitTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIOffset+InitTest.swift"; sourceTree = "<group>"; };
 		183E0CEB1EB88F09006CF52A /* UITableView+InitTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+InitTest.swift"; sourceTree = "<group>"; };
 		185121061D834C5D002C4B08 /* Properties+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+Core.swift"; sourceTree = "<group>"; };
-		185121471D834D1E002C4B08 /* Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		185121471D834D1E002C4B08 /* Hyperdrive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hyperdrive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1851214B1D834D1E002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		185121501D834D1F002C4B08 /* ReactantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		185121501D834D1F002C4B08 /* HyperdriveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HyperdriveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		185121571D834D1F002C4B08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18650BA51D83671B00B1B2A0 /* StaticMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticMap.swift; sourceTree = "<group>"; };
-		18937B952127916C009F6CA3 /* RxReactantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxReactantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18937B952127916C009F6CA3 /* RxHyperdriveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxHyperdriveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18937B992127916C009F6CA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18937BC82128448A009F6CA3 /* Recording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recording.swift; sourceTree = "<group>"; };
 		18937BCB21284E08009F6CA3 /* ActionMapper+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActionMapper+RxSwift.swift"; sourceTree = "<group>"; };
@@ -477,6 +510,7 @@
 		18B4BF7C1E294E7A00D39EEA /* HeaderTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeaderTableView.swift; path = Implementation/HeaderTableView.swift; sourceTree = "<group>"; };
 		18B4BF7E1E294EAA00D39EEA /* FooterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterTableView.swift; path = Implementation/FooterTableView.swift; sourceTree = "<group>"; };
 		18C3CB9B1FDC516C00C9248D /* FallbackSafeAreaInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallbackSafeAreaInsets.swift; sourceTree = "<group>"; };
+		21C07D164F7A360106879FEA /* Pods-Hyperdrive-iOS-RxHyperdrive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-iOS-RxHyperdrive.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-iOS-RxHyperdrive/Pods-Hyperdrive-iOS-RxHyperdrive.release.xcconfig"; sourceTree = "<group>"; };
 		2210BAD21EDC3D6C00B2DDC1 /* UINavigationController+DialogDismissalListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+DialogDismissalListener.swift"; sourceTree = "<group>"; };
 		221CCEB120774A2C00A64494 /* Swift+Compatibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swift+Compatibility.swift"; sourceTree = "<group>"; };
 		2284DA9E1FAC6D2F00D231D3 /* ButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonController.swift; sourceTree = "<group>"; };
@@ -493,26 +527,31 @@
 		22F48FED1FAB0EE900E736C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22F48FEF1FAB0EE900E736C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22F48FF41FAB0EE900E736C8 /* TVPrototypingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVPrototypingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2BFAB4C65E5D7D1CC223A41D /* Pods_Reactant_iOS_RxReactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_RxReactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FE68E8FF55E1ED7E0AD3206 /* Pods-Reactant-iOS-Reactant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Reactant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Reactant/Pods-Reactant-iOS-Reactant.release.xcconfig"; sourceTree = "<group>"; };
 		33044778D0461AE7CA6E861F /* Pods_Reactant_iOS_StaticMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_StaticMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD79E499BE454A2F9CAC108 /* Pods-Reactant-iOS-RxReactant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-RxReactant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-RxReactant/Pods-Reactant-iOS-RxReactant.debug.xcconfig"; sourceTree = "<group>"; };
 		3F445D9BE7850BD37FEA7DCB /* Pods-Reactant-iOS-Configuration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Configuration.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Configuration/Pods-Reactant-iOS-Configuration.release.xcconfig"; sourceTree = "<group>"; };
-		3FBA50B5AA6EA4A0ACFC63F5 /* Pods_Reactant_tvOS_TVPrototyping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_tvOS_TVPrototyping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47696916BD4B167A899C2F1C /* Pods_Reactant_iOS_Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		47AC3B4BE0D4FF334199639E /* Pods-Hyperdrive-tvOS-TVPrototyping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-tvOS-TVPrototyping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-tvOS-TVPrototyping/Pods-Hyperdrive-tvOS-TVPrototyping.release.xcconfig"; sourceTree = "<group>"; };
 		4C79527AEC1A70A788E8134D /* Pods_Reactant_iOS_Validation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_Validation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F57B0F94DDF33B71C633EC1 /* Pods_Reactant_iOS_ReactantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_ReactantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBFFB08A0301760CB63025E /* Pods-Reactant-tvOS-TVPrototyping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-tvOS-TVPrototyping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-tvOS-TVPrototyping/Pods-Reactant-tvOS-TVPrototyping.debug.xcconfig"; sourceTree = "<group>"; };
 		4FCFF24A0E6B1B0E01180DAD /* Pods-ActivityIndicator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityIndicator.release.xcconfig"; path = "Pods/Target Support Files/Pods-ActivityIndicator/Pods-ActivityIndicator.release.xcconfig"; sourceTree = "<group>"; };
 		50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52799AFF575A97D6EF1EABAF /* Pods-Hyperdrive-iOS-HyperdrivePrototyping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-iOS-HyperdrivePrototyping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-iOS-HyperdrivePrototyping/Pods-Hyperdrive-iOS-HyperdrivePrototyping.debug.xcconfig"; sourceTree = "<group>"; };
+		558304EB7C36683A858437AB /* Pods-Hyperdrive-iOS-Tests-HyperdriveTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-iOS-Tests-HyperdriveTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-iOS-Tests-HyperdriveTests/Pods-Hyperdrive-iOS-Tests-HyperdriveTests.debug.xcconfig"; sourceTree = "<group>"; };
 		56169317B1A4607B7506CCE0 /* Pods-Reactant-iOS-Validation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Validation.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Validation/Pods-Reactant-iOS-Validation.release.xcconfig"; sourceTree = "<group>"; };
+		591B9A972BBF6CA1EB4189CA /* Pods_Hyperdrive_iOS_HyperdrivePrototyping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hyperdrive_iOS_HyperdrivePrototyping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A115B311035BA361565ED3C /* Pods-ActivityIndicator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ActivityIndicator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ActivityIndicator/Pods-ActivityIndicator.debug.xcconfig"; sourceTree = "<group>"; };
 		5A648916F85EF94ED93EB6F6 /* Pods-Reactant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.release.xcconfig"; sourceTree = "<group>"; };
 		60E307C725E6F3EBC729C52D /* Pods-Reactant-iOS-Reactant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Reactant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Reactant/Pods-Reactant-iOS-Reactant.debug.xcconfig"; sourceTree = "<group>"; };
 		61B571068D72D9127B7B30A3 /* Pods-Reactant-iOS-TableView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-TableView.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-TableView/Pods-Reactant-iOS-TableView.release.xcconfig"; sourceTree = "<group>"; };
+		64DB38D53DB163DF85A763B9 /* Pods-Hyperdrive-iOS-HyperdrivePrototyping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-iOS-HyperdrivePrototyping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-iOS-HyperdrivePrototyping/Pods-Hyperdrive-iOS-HyperdrivePrototyping.release.xcconfig"; sourceTree = "<group>"; };
 		677C3FFFC996548421D72AA5 /* Pods-Reactant-iOS-Core.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Core.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Core/Pods-Reactant-iOS-Core.release.xcconfig"; sourceTree = "<group>"; };
 		682041DAA4EB55B4F4B73C89 /* Pods-Reactant-iOS-ActivityIndicator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-ActivityIndicator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-ActivityIndicator/Pods-Reactant-iOS-ActivityIndicator.release.xcconfig"; sourceTree = "<group>"; };
 		6950A60511B1E081539BEC6F /* Pods-Reactant-tvOS-TVPrototyping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-tvOS-TVPrototyping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-tvOS-TVPrototyping/Pods-Reactant-tvOS-TVPrototyping.release.xcconfig"; sourceTree = "<group>"; };
+		6F168EC66FA21E79CE36E297 /* Pods_Hyperdrive_iOS_RxHyperdrive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hyperdrive_iOS_RxHyperdrive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F62A9040E0F97929D467398 /* Pods-Hyperdrive-iOS-RxHyperdrive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-iOS-RxHyperdrive.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-iOS-RxHyperdrive/Pods-Hyperdrive-iOS-RxHyperdrive.debug.xcconfig"; sourceTree = "<group>"; };
 		710DD4FADDE821681D44C78B /* Pods-Reactant-iOS-ReactantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-ReactantTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-ReactantTests/Pods-Reactant-iOS-ReactantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		711603479E5441514316A7F3 /* Pods_ReactantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71E49562208F37DE00CA3044 /* SubConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubConfiguration.swift; sourceTree = "<group>"; };
@@ -526,32 +565,31 @@
 		7B0CE169634834E74544F2A0 /* Pods_ReactantPrototyping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactantPrototyping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8039E9E1C55429D5628C4F49 /* Pods_Reactant_iOS_CollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_CollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E921DB0CB695E384F202B9 /* Pods-Reactant-iOS-Core.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Core.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Core/Pods-Reactant-iOS-Core.debug.xcconfig"; sourceTree = "<group>"; };
-		865CC478ECC920EFC91F508E /* Pods_Reactant_iOS_Tests_ReactantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_Tests_ReactantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87937417CCB17DBB12EC12E9 /* Pods-Reactant-iOS-CollectionView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-CollectionView.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-CollectionView/Pods-Reactant-iOS-CollectionView.release.xcconfig"; sourceTree = "<group>"; };
+		8F7A4DE87A82357521F21EA3 /* Pods-Hyperdrive-iOS-Hyperdrive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-iOS-Hyperdrive.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-iOS-Hyperdrive/Pods-Hyperdrive-iOS-Hyperdrive.release.xcconfig"; sourceTree = "<group>"; };
 		91725888DA19EC0D3A255B1E /* Pods_Reactant_iOS_Result.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B46E48227B63AFB60F6847 /* Pods-Reactant-iOS-Tests-ReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Tests-ReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Tests-ReactantTests/Pods-Reactant-iOS-Tests-ReactantTests.release.xcconfig"; sourceTree = "<group>"; };
 		96B5ABCA15205D09AA176230 /* Pods-TVPrototyping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVPrototyping.release.xcconfig"; path = "Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping.release.xcconfig"; sourceTree = "<group>"; };
 		A71E70A5BF3FBC12933F44A6 /* Pods_Reactant_iOS_ActivityIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_ActivityIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AADE26588221E7B5EDA88D9C /* Pods_Reactant_iOS_TableView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_TableView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF01436F44E4873CACC1F9C3 /* Pods_Hyperdrive_tvOS_TVPrototyping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hyperdrive_tvOS_TVPrototyping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B13948E44118D29C942274DF /* Pods-Reactant-iOS-CollectionView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-CollectionView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-CollectionView/Pods-Reactant-iOS-CollectionView.debug.xcconfig"; sourceTree = "<group>"; };
+		B1DA01195B5A702325606D0E /* Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests/Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests.release.xcconfig"; sourceTree = "<group>"; };
 		B313ED9346A35A03777E3C82 /* Pods_Reactant_iOS_Configuration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_Configuration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B434092D274263FAF3773010 /* Pods-Reactant-iOS-Result.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Result.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Result/Pods-Reactant-iOS-Result.debug.xcconfig"; sourceTree = "<group>"; };
 		B60965D2EA4A327AA0C33D58 /* Pods-Reactant-iOS-Validation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Validation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Validation/Pods-Reactant-iOS-Validation.debug.xcconfig"; sourceTree = "<group>"; };
 		B627070B742793288FA9C50F /* Pods-Reactant-iOS-ActivityIndicator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-ActivityIndicator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-ActivityIndicator/Pods-Reactant-iOS-ActivityIndicator.debug.xcconfig"; sourceTree = "<group>"; };
 		BB0AABBB385B77A857A3641A /* Pods-ReactantPrototyping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantPrototyping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping.debug.xcconfig"; sourceTree = "<group>"; };
 		BE6BA3EF10B2D508C3108F59 /* Pods-Reactant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant/Pods-Reactant.debug.xcconfig"; sourceTree = "<group>"; };
-		C18351055224D74C1E54C2FE /* Pods_Reactant_iOS_ReactantPrototyping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_ReactantPrototyping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C243FF99287E44235DCE95A0 /* Pods-Reactant-iOS-Configuration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Configuration.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Configuration/Pods-Reactant-iOS-Configuration.debug.xcconfig"; sourceTree = "<group>"; };
 		C96E766A124CDA2B82A39F92 /* Pods-Reactant-iOS-Tests-RxReactantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Tests-RxReactantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Tests-RxReactantTests/Pods-Reactant-iOS-Tests-RxReactantTests.release.xcconfig"; sourceTree = "<group>"; };
-		C9ABA2DAD6D4CF11E57F1A75 /* Pods_Reactant_iOS_Tests_RxReactantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reactant_iOS_Tests_RxReactantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA9FD82C0568B85C1373539F /* Pods-Reactant-iOS-TableView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-TableView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-TableView/Pods-Reactant-iOS-TableView.debug.xcconfig"; sourceTree = "<group>"; };
 		CBF5DB47D907207B9C8A6C64 /* Pods-Reactant-iOS-ReactantPrototyping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-ReactantPrototyping.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-ReactantPrototyping/Pods-Reactant-iOS-ReactantPrototyping.release.xcconfig"; sourceTree = "<group>"; };
-		D4261408CC5E011A11D02934 /* Pods_TVPrototyping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVPrototyping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8A0AA78D1B03DA3FF7288C5 /* Pods-Reactant-iOS-ReactantPrototyping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-ReactantPrototyping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-ReactantPrototyping/Pods-Reactant-iOS-ReactantPrototyping.debug.xcconfig"; sourceTree = "<group>"; };
 		DC0785831DD383E50063AB96 /* UINavigationController+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Navigation.swift"; sourceTree = "<group>"; };
 		DC0785851DD3879B0063AB96 /* Wireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wireframe.swift; sourceTree = "<group>"; };
 		DC07858C1DD39BE50063AB96 /* ControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerBase.swift; sourceTree = "<group>"; };
-		DC07858E1DD39BF60063AB96 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		DC07858E1DD39BF60063AB96 /* _Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = _Component.swift; sourceTree = "<group>"; };
 		DC07858F1DD39BF60063AB96 /* ComponentBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentBase.swift; sourceTree = "<group>"; };
 		DC0785901DD39BF60063AB96 /* ComponentDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentDelegate.swift; sourceTree = "<group>"; };
 		DC0785961DD3A1F40063AB96 /* FutureControllerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FutureControllerProvider.swift; path = Internal/FutureControllerProvider.swift; sourceTree = "<group>"; };
@@ -584,7 +622,7 @@
 		DC137F6C1E4C638000A0516F /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		DC137F6D1E4C638000A0516F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		DC137F6E1E4C638000A0516F /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		DC137F6F1E4C638000A0516F /* Reactant.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Reactant.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		DC137F6F1E4C638000A0516F /* HyperdrivePlatform.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = HyperdrivePlatform.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DC137F701E4C63A900A0516F /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		DC137F721E4DB5FB00A0516F /* Rules.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		DC137F741E4DB62200A0516F /* Rules+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rules+String.swift"; sourceTree = "<group>"; };
@@ -635,7 +673,7 @@
 		DC79F6AE1E54AB170033AE51 /* Properties+TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+TableView.swift"; sourceTree = "<group>"; };
 		DC79F6B01E54AD540033AE51 /* Properties+Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Properties+Style.swift"; sourceTree = "<group>"; };
 		DC79F6B21E55A67E0033AE51 /* PagingCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingCollectionView.swift; sourceTree = "<group>"; };
-		DC79F6B81E55FAA60033AE51 /* ReactantPrototyping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactantPrototyping.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC79F6B81E55FAA60033AE51 /* HyperdrivePrototyping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HyperdrivePrototyping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC79F6BA1E55FAA70033AE51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC79F6BC1E55FAA70033AE51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DC79F6C11E55FAA70033AE51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -648,11 +686,13 @@
 		DCC98CE01E62CE830018757E /* CLLocationCoordinate2D+utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+utils.swift"; sourceTree = "<group>"; };
 		DCC98CE21E62CED80018757E /* MKCoordinateRegion+utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKCoordinateRegion+utils.swift"; sourceTree = "<group>"; };
 		DCC98CE41E62CEFE0018757E /* InternalUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalUtils.swift; sourceTree = "<group>"; };
+		E01E162235D8C7B5BC80AD9C /* Pods_Hyperdrive_iOS_Tests_RxHyperdriveTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hyperdrive_iOS_Tests_RxHyperdriveTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0531EAD4DB3BB8B7E53CA8C /* Pods-ReactantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E118D551BF8EE50E1EB634A1 /* Pods_ActivityIndicator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ActivityIndicator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7070C9099DCB4EE0CCA5D9 /* Pods-Reactant-iOS-Result.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Result.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Result/Pods-Reactant-iOS-Result.release.xcconfig"; sourceTree = "<group>"; };
 		F5BCF22EE486B9F55E9CFFD6 /* Pods-ReactantPrototyping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactantPrototyping.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping.release.xcconfig"; sourceTree = "<group>"; };
 		F5EEF9BDED9090BFF3C8B7DB /* Pods-Reactant-iOS-Tests-ReactantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reactant-iOS-Tests-ReactantTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reactant-iOS-Tests-ReactantTests/Pods-Reactant-iOS-Tests-ReactantTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA25B9C67AE8BBF85E940714 /* Pods-Hyperdrive-tvOS-TVPrototyping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hyperdrive-tvOS-TVPrototyping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hyperdrive-tvOS-TVPrototyping/Pods-Hyperdrive-tvOS-TVPrototyping.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -660,7 +700,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2217E1AD142A73AD0E824FE /* Pods_Reactant_iOS_RxReactant.framework in Frameworks */,
+				64590696C4C4B22D5F553C07 /* Pods_Hyperdrive_iOS_RxHyperdrive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,7 +708,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0BCB5F7E63D83BC50DC21A9 /* Pods_Reactant_iOS_Reactant.framework in Frameworks */,
+				4A940C892C3DAB4475139279 /* Pods_Hyperdrive_iOS_Hyperdrive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,8 +716,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				185121511D834D1F002C4B08 /* Reactant.framework in Frameworks */,
-				9160B9BDB89A488E30AB2C91 /* Pods_Reactant_iOS_Tests_ReactantTests.framework in Frameworks */,
+				185121511D834D1F002C4B08 /* Hyperdrive.framework in Frameworks */,
+				BA5039552F590FD82F2F759E /* Pods_Hyperdrive_iOS_Tests_HyperdriveTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,8 +725,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18937BC021279A8B009F6CA3 /* RxReactant.framework in Frameworks */,
-				5B7DE88DC9B88CCCC8686832 /* Pods_Reactant_iOS_Tests_RxReactantTests.framework in Frameworks */,
+				18937BC021279A8B009F6CA3 /* RxHyperdrive.framework in Frameworks */,
+				5393B8B8452B1795982CF5D3 /* Pods_Hyperdrive_iOS_Tests_RxHyperdriveTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,8 +734,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6E81D75EF6719898F1B8A8A /* Pods_TVPrototyping.framework in Frameworks */,
-				6FD21EA6119AF3573742358E /* Pods_Reactant_tvOS_TVPrototyping.framework in Frameworks */,
+				60482D04CAEEF2F39C1A66F2 /* Pods_Hyperdrive_tvOS_TVPrototyping.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,8 +749,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18937B8C212787CC009F6CA3 /* Reactant.framework in Frameworks */,
-				733D02C6EF72793DAA4084E4 /* Pods_Reactant_iOS_ReactantPrototyping.framework in Frameworks */,
+				18937B8C212787CC009F6CA3 /* Hyperdrive.framework in Frameworks */,
+				381502A6558801B98551BC08 /* Pods_Hyperdrive_iOS_HyperdrivePrototyping.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,13 +790,9 @@
 				50895ED3801A06D4D45EE033 /* Pods_Reactant.framework */,
 				711603479E5441514316A7F3 /* Pods_ReactantTests.framework */,
 				7B0CE169634834E74544F2A0 /* Pods_ReactantPrototyping.framework */,
-				D4261408CC5E011A11D02934 /* Pods_TVPrototyping.framework */,
 				E118D551BF8EE50E1EB634A1 /* Pods_ActivityIndicator.framework */,
 				A71E70A5BF3FBC12933F44A6 /* Pods_Reactant_iOS_ActivityIndicator.framework */,
-				066AF67D58AA27CF8D22F376 /* Pods_Reactant_iOS_Reactant.framework */,
-				C18351055224D74C1E54C2FE /* Pods_Reactant_iOS_ReactantPrototyping.framework */,
 				4F57B0F94DDF33B71C633EC1 /* Pods_Reactant_iOS_ReactantTests.framework */,
-				3FBA50B5AA6EA4A0ACFC63F5 /* Pods_Reactant_tvOS_TVPrototyping.framework */,
 				8039E9E1C55429D5628C4F49 /* Pods_Reactant_iOS_CollectionView.framework */,
 				47696916BD4B167A899C2F1C /* Pods_Reactant_iOS_Core.framework */,
 				B313ED9346A35A03777E3C82 /* Pods_Reactant_iOS_Configuration.framework */,
@@ -765,20 +800,23 @@
 				4C79527AEC1A70A788E8134D /* Pods_Reactant_iOS_Validation.framework */,
 				33044778D0461AE7CA6E861F /* Pods_Reactant_iOS_StaticMap.framework */,
 				AADE26588221E7B5EDA88D9C /* Pods_Reactant_iOS_TableView.framework */,
-				2BFAB4C65E5D7D1CC223A41D /* Pods_Reactant_iOS_RxReactant.framework */,
-				865CC478ECC920EFC91F508E /* Pods_Reactant_iOS_Tests_ReactantTests.framework */,
-				C9ABA2DAD6D4CF11E57F1A75 /* Pods_Reactant_iOS_Tests_RxReactantTests.framework */,
+				041C8CB290E1A632861166FF /* Pods_Hyperdrive_iOS_Hyperdrive.framework */,
+				591B9A972BBF6CA1EB4189CA /* Pods_Hyperdrive_iOS_HyperdrivePrototyping.framework */,
+				6F168EC66FA21E79CE36E297 /* Pods_Hyperdrive_iOS_RxHyperdrive.framework */,
+				06B61D48A59BB13DD5EFA985 /* Pods_Hyperdrive_iOS_Tests_HyperdriveTests.framework */,
+				E01E162235D8C7B5BC80AD9C /* Pods_Hyperdrive_iOS_Tests_RxHyperdriveTests.framework */,
+				AF01436F44E4873CACC1F9C3 /* Pods_Hyperdrive_tvOS_TVPrototyping.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1838992921264A1B007CE13E /* RxReactant */ = {
+		1838992921264A1B007CE13E /* RxHyperdrive */ = {
 			isa = PBXGroup;
 			children = (
 				1838992A21264A1B007CE13E /* RxReactant.h */,
 				1838992B21264A1B007CE13E /* Info.plist */,
 			);
-			path = RxReactant;
+			path = RxHyperdrive;
 			sourceTree = "<group>";
 		};
 		183E0CAC1EB88042006CF52A /* Impl */ = {
@@ -874,12 +912,12 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		18937B962127916C009F6CA3 /* RxReactantTests */ = {
+		18937B962127916C009F6CA3 /* RxHyperdriveTests */ = {
 			isa = PBXGroup;
 			children = (
 				18937B992127916C009F6CA3 /* Info.plist */,
 			);
-			path = RxReactantTests;
+			path = RxHyperdriveTests;
 			sourceTree = "<group>";
 		};
 		18937BC721284474009F6CA3 /* TestUtils+RxSwift */ = {
@@ -904,7 +942,7 @@
 				DC137F701E4C63A900A0516F /* CHANGELOG.md */,
 				DC137F6D1E4C638000A0516F /* LICENSE */,
 				DC137F6E1E4C638000A0516F /* Podfile */,
-				DC137F6F1E4C638000A0516F /* Reactant.podspec */,
+				DC137F6F1E4C638000A0516F /* HyperdrivePlatform.podspec */,
 				DC137F6B1E4C636A00A0516F /* README.md */,
 				DC137F6C1E4C638000A0516F /* .travis.yml */,
 			);
@@ -923,8 +961,8 @@
 		18937BD92128526A009F6CA3 /* Support Targets */ = {
 			isa = PBXGroup;
 			children = (
-				1838992921264A1B007CE13E /* RxReactant */,
-				18937B962127916C009F6CA3 /* RxReactantTests */,
+				1838992921264A1B007CE13E /* RxHyperdrive */,
+				18937B962127916C009F6CA3 /* RxHyperdriveTests */,
 			);
 			path = "Support Targets";
 			sourceTree = "<group>";
@@ -1081,6 +1119,18 @@
 				94B46E48227B63AFB60F6847 /* Pods-Reactant-iOS-Tests-ReactantTests.release.xcconfig */,
 				79DC826FC1DF27768D84EF9D /* Pods-Reactant-iOS-Tests-RxReactantTests.debug.xcconfig */,
 				C96E766A124CDA2B82A39F92 /* Pods-Reactant-iOS-Tests-RxReactantTests.release.xcconfig */,
+				17CEEE47B65EAC8923A03369 /* Pods-Hyperdrive-iOS-Hyperdrive.debug.xcconfig */,
+				8F7A4DE87A82357521F21EA3 /* Pods-Hyperdrive-iOS-Hyperdrive.release.xcconfig */,
+				52799AFF575A97D6EF1EABAF /* Pods-Hyperdrive-iOS-HyperdrivePrototyping.debug.xcconfig */,
+				64DB38D53DB163DF85A763B9 /* Pods-Hyperdrive-iOS-HyperdrivePrototyping.release.xcconfig */,
+				6F62A9040E0F97929D467398 /* Pods-Hyperdrive-iOS-RxHyperdrive.debug.xcconfig */,
+				21C07D164F7A360106879FEA /* Pods-Hyperdrive-iOS-RxHyperdrive.release.xcconfig */,
+				558304EB7C36683A858437AB /* Pods-Hyperdrive-iOS-Tests-HyperdriveTests.debug.xcconfig */,
+				05BCA382391275C344C318F9 /* Pods-Hyperdrive-iOS-Tests-HyperdriveTests.release.xcconfig */,
+				0D8048A2E8D9CD398257B112 /* Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests.debug.xcconfig */,
+				B1DA01195B5A702325606D0E /* Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests.release.xcconfig */,
+				FA25B9C67AE8BBF85E940714 /* Pods-Hyperdrive-tvOS-TVPrototyping.debug.xcconfig */,
+				47AC3B4BE0D4FF334199639E /* Pods-Hyperdrive-tvOS-TVPrototyping.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1103,13 +1153,13 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				185121471D834D1E002C4B08 /* Reactant.framework */,
-				185121501D834D1F002C4B08 /* ReactantTests.xctest */,
-				DC79F6B81E55FAA60033AE51 /* ReactantPrototyping.app */,
+				185121471D834D1E002C4B08 /* Hyperdrive.framework */,
+				185121501D834D1F002C4B08 /* HyperdriveTests.xctest */,
+				DC79F6B81E55FAA60033AE51 /* HyperdrivePrototyping.app */,
 				22F48FE41FAB0EE800E736C8 /* TVPrototyping.app */,
 				22F48FF41FAB0EE900E736C8 /* TVPrototypingTests.xctest */,
-				1838992821264A1A007CE13E /* RxReactant.framework */,
-				18937B952127916C009F6CA3 /* RxReactantTests.xctest */,
+				1838992821264A1A007CE13E /* RxHyperdrive.framework */,
+				18937B952127916C009F6CA3 /* RxHyperdriveTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1246,11 +1296,20 @@
 			isa = PBXGroup;
 			children = (
 				183457881EB16B8B00C972A4 /* ReactantUI.swift */,
-				DC07858E1DD39BF60063AB96 /* Component.swift */,
+				DC07858E1DD39BF60063AB96 /* _Component.swift */,
 				DC07858F1DD39BF60063AB96 /* ComponentBase.swift */,
 				DC0785901DD39BF60063AB96 /* ComponentDelegate.swift */,
 				DC0785A01DD3ADB60063AB96 /* ComponentWithDelegate.swift */,
 				18937BCD21284E21009F6CA3 /* ActionMapper.swift */,
+				1827232B2237C1C9001D87AA /* Composable.swift */,
+				1827232E2237C1DF001D87AA /* Presenting.swift */,
+				182723312237C206001D87AA /* Presenter.swift */,
+				182723342237C22D001D87AA /* DelegatedComposable.swift */,
+				182723372237C249001D87AA /* SubmitBehavior.swift */,
+				1827233A2237C2A7001D87AA /* Component.swift */,
+				1827233D2237C2E2001D87AA /* StatefulComponent.swift */,
+				182723402237C2F6001D87AA /* PlainStatefulComponent.swift */,
+				182723432237C309001D87AA /* PresenterRoute.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -1318,6 +1377,7 @@
 				221CCEB120774A2C00A64494 /* Swift+Compatibility.swift */,
 				18937BD021284E6F009F6CA3 /* ObservationToken.swift */,
 				18937BD321284E95009F6CA3 /* ObservationTokenTracker.swift */,
+				182723282237AFD6001D87AA /* Platform.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1536,9 +1596,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1838992721264A1A007CE13E /* RxReactant */ = {
+		1838992721264A1A007CE13E /* RxHyperdrive */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1838992D21264A1B007CE13E /* Build configuration list for PBXNativeTarget "RxReactant" */;
+			buildConfigurationList = 1838992D21264A1B007CE13E /* Build configuration list for PBXNativeTarget "RxHyperdrive" */;
 			buildPhases = (
 				6BE8762969010A1F3A059CAE /* [CP] Check Pods Manifest.lock */,
 				1838992321264A1A007CE13E /* Headers */,
@@ -1550,14 +1610,14 @@
 			);
 			dependencies = (
 			);
-			name = RxReactant;
+			name = RxHyperdrive;
 			productName = RxReactant;
-			productReference = 1838992821264A1A007CE13E /* RxReactant.framework */;
+			productReference = 1838992821264A1A007CE13E /* RxHyperdrive.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		185121461D834D1E002C4B08 /* Reactant */ = {
+		185121461D834D1E002C4B08 /* Hyperdrive */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 185121581D834D1F002C4B08 /* Build configuration list for PBXNativeTarget "Reactant" */;
+			buildConfigurationList = 185121581D834D1F002C4B08 /* Build configuration list for PBXNativeTarget "Hyperdrive" */;
 			buildPhases = (
 				DB216D128F2E26437329BB25 /* [CP] Check Pods Manifest.lock */,
 				185121421D834D1E002C4B08 /* Sources */,
@@ -1569,14 +1629,14 @@
 			);
 			dependencies = (
 			);
-			name = Reactant;
+			name = Hyperdrive;
 			productName = Reactant;
-			productReference = 185121471D834D1E002C4B08 /* Reactant.framework */;
+			productReference = 185121471D834D1E002C4B08 /* Hyperdrive.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		1851214F1D834D1F002C4B08 /* ReactantTests */ = {
+		1851214F1D834D1F002C4B08 /* HyperdriveTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1851215B1D834D1F002C4B08 /* Build configuration list for PBXNativeTarget "ReactantTests" */;
+			buildConfigurationList = 1851215B1D834D1F002C4B08 /* Build configuration list for PBXNativeTarget "HyperdriveTests" */;
 			buildPhases = (
 				ACDD5ABFEC93DC3D111598DD /* [CP] Check Pods Manifest.lock */,
 				002D35E41FBDCCE600A0401D /* Generate Mocks */,
@@ -1591,14 +1651,14 @@
 				185121531D834D1F002C4B08 /* PBXTargetDependency */,
 				00E342121FA244E9005D3740 /* PBXTargetDependency */,
 			);
-			name = ReactantTests;
+			name = HyperdriveTests;
 			productName = ReactantTests;
-			productReference = 185121501D834D1F002C4B08 /* ReactantTests.xctest */;
+			productReference = 185121501D834D1F002C4B08 /* HyperdriveTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		18937B942127916C009F6CA3 /* RxReactantTests */ = {
+		18937B942127916C009F6CA3 /* RxHyperdriveTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18937B9D2127916C009F6CA3 /* Build configuration list for PBXNativeTarget "RxReactantTests" */;
+			buildConfigurationList = 18937B9D2127916C009F6CA3 /* Build configuration list for PBXNativeTarget "RxHyperdriveTests" */;
 			buildPhases = (
 				3BB6217F831C9F9B05B3BDAF /* [CP] Check Pods Manifest.lock */,
 				18937B912127916C009F6CA3 /* Sources */,
@@ -1611,9 +1671,9 @@
 			dependencies = (
 				18937BBF21279A85009F6CA3 /* PBXTargetDependency */,
 			);
-			name = RxReactantTests;
+			name = RxHyperdriveTests;
 			productName = RxReactantTests;
-			productReference = 18937B952127916C009F6CA3 /* RxReactantTests.xctest */;
+			productReference = 18937B952127916C009F6CA3 /* RxHyperdriveTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		22F48FE31FAB0EE800E736C8 /* TVPrototyping */ = {
@@ -1653,9 +1713,9 @@
 			productReference = 22F48FF41FAB0EE900E736C8 /* TVPrototypingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DC79F6B71E55FAA60033AE51 /* ReactantPrototyping */ = {
+		DC79F6B71E55FAA60033AE51 /* HyperdrivePrototyping */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC79F6C71E55FAA70033AE51 /* Build configuration list for PBXNativeTarget "ReactantPrototyping" */;
+			buildConfigurationList = DC79F6C71E55FAA70033AE51 /* Build configuration list for PBXNativeTarget "HyperdrivePrototyping" */;
 			buildPhases = (
 				2D90EBFD068A3E3196DB27D4 /* [CP] Check Pods Manifest.lock */,
 				DC79F6B41E55FAA60033AE51 /* Sources */,
@@ -1669,9 +1729,9 @@
 			dependencies = (
 				18937B8F212787CC009F6CA3 /* PBXTargetDependency */,
 			);
-			name = ReactantPrototyping;
+			name = HyperdrivePrototyping;
 			productName = ReactantPrototyping;
-			productReference = DC79F6B81E55FAA60033AE51 /* ReactantPrototyping.app */;
+			productReference = DC79F6B81E55FAA60033AE51 /* HyperdrivePrototyping.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1717,7 +1777,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Reactant" */;
+			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Hyperdrive" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1730,11 +1790,11 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				185121461D834D1E002C4B08 /* Reactant */,
-				1838992721264A1A007CE13E /* RxReactant */,
-				1851214F1D834D1F002C4B08 /* ReactantTests */,
-				18937B942127916C009F6CA3 /* RxReactantTests */,
-				DC79F6B71E55FAA60033AE51 /* ReactantPrototyping */,
+				185121461D834D1E002C4B08 /* Hyperdrive */,
+				1838992721264A1A007CE13E /* RxHyperdrive */,
+				1851214F1D834D1F002C4B08 /* HyperdriveTests */,
+				18937B942127916C009F6CA3 /* RxHyperdriveTests */,
+				DC79F6B71E55FAA60033AE51 /* HyperdrivePrototyping */,
 				22F48FE31FAB0EE800E736C8 /* TVPrototyping */,
 				22F48FF31FAB0EE900E736C8 /* TVPrototypingTests */,
 			);
@@ -1822,7 +1882,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Reactant-iOS-ReactantPrototyping-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Hyperdrive-iOS-HyperdrivePrototyping-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1840,7 +1900,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Reactant-iOS-Tests-RxReactantTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1853,7 +1913,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Reactant-iOS-ReactantPrototyping/Pods-Reactant-iOS-ReactantPrototyping-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Hyperdrive-iOS-HyperdrivePrototyping/Pods-Hyperdrive-iOS-HyperdrivePrototyping-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS/Differentiator.framework",
@@ -1874,7 +1934,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reactant-iOS-ReactantPrototyping/Pods-Reactant-iOS-ReactantPrototyping-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hyperdrive-iOS-HyperdrivePrototyping/Pods-Hyperdrive-iOS-HyperdrivePrototyping-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6BE8762969010A1F3A059CAE /* [CP] Check Pods Manifest.lock */ = {
@@ -1888,7 +1948,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Reactant-iOS-RxReactant-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Hyperdrive-iOS-RxHyperdrive-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1901,7 +1961,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Reactant-tvOS-TVPrototyping/Pods-Reactant-tvOS-TVPrototyping-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Hyperdrive-tvOS-TVPrototyping/Pods-Hyperdrive-tvOS-TVPrototyping-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-tvOS/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-tvOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator-tvOS/Differentiator.framework",
@@ -1922,7 +1982,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reactant-tvOS-TVPrototyping/Pods-Reactant-tvOS-TVPrototyping-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hyperdrive-tvOS-TVPrototyping/Pods-Hyperdrive-tvOS-TVPrototyping-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9362B639AA797ACF422891EC /* [CP] Embed Pods Frameworks */ = {
@@ -1931,7 +1991,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Reactant-iOS-Tests-ReactantTests/Pods-Reactant-iOS-Tests-ReactantTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Hyperdrive-iOS-Tests-HyperdriveTests/Pods-Hyperdrive-iOS-Tests-HyperdriveTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS/RxSwift.framework",
@@ -1956,7 +2016,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reactant-iOS-Tests-ReactantTests/Pods-Reactant-iOS-Tests-ReactantTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hyperdrive-iOS-Tests-HyperdriveTests/Pods-Hyperdrive-iOS-Tests-HyperdriveTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ACDD5ABFEC93DC3D111598DD /* [CP] Check Pods Manifest.lock */ = {
@@ -1970,7 +2030,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Reactant-iOS-Tests-ReactantTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Hyperdrive-iOS-Tests-HyperdriveTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1983,7 +2043,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Reactant-iOS-Tests-RxReactantTests/Pods-Reactant-iOS-Tests-RxReactantTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests/Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS/Differentiator.framework",
@@ -2016,7 +2076,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reactant-iOS-Tests-RxReactantTests/Pods-Reactant-iOS-Tests-RxReactantTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests/Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA9E03A01F9BE89A730C2A4B /* [CP] Check Pods Manifest.lock */ = {
@@ -2030,7 +2090,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Reactant-tvOS-TVPrototyping-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Hyperdrive-tvOS-TVPrototyping-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2048,7 +2108,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Reactant-iOS-Reactant-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Hyperdrive-iOS-Hyperdrive-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2072,8 +2132,10 @@
 				1838997921264A7D007CE13E /* SubConfiguration.swift in Sources */,
 				183899EE21264ADC007CE13E /* UIView+Reusable.swift in Sources */,
 				183899D021264AC8007CE13E /* Array+Utils.swift in Sources */,
+				1827233F2237C2E2001D87AA /* StatefulComponent.swift in Sources */,
 				183899ED21264ADC007CE13E /* SynchronizedRecycler.swift in Sources */,
 				183899EA21264ADC007CE13E /* InternalUtils.swift in Sources */,
+				182723452237C309001D87AA /* PresenterRoute.swift in Sources */,
 				1898D7342126DE4B00DA4AC5 /* Component+RxSwift.swift in Sources */,
 				1898D7402126EC4B00DA4AC5 /* RxSwiftComponentBehavior.swift in Sources */,
 				183899C021264ABE007CE13E /* TableViewCellWrapper.swift in Sources */,
@@ -2091,8 +2153,10 @@
 				18937BC521283325009F6CA3 /* UIBarButtonItem+ClosureAction.swift in Sources */,
 				1838993721264A4F007CE13E /* Properties+CollectionView.swift in Sources */,
 				183899BB21264ABE007CE13E /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
+				1827233C2237C2A7001D87AA /* Component.swift in Sources */,
 				1838997F21264A88007CE13E /* ComponentDelegate.swift in Sources */,
 				1838993521264A4F007CE13E /* FlowCollectionViewBase.swift in Sources */,
+				182723392237C249001D87AA /* SubmitBehavior.swift in Sources */,
 				18937BD521284E95009F6CA3 /* ObservationTokenTracker.swift in Sources */,
 				183899CF21264AC8007CE13E /* UINavigationController+DialogDismissalListener.swift in Sources */,
 				1838996721264A77007CE13E /* NSAttributedString+Attribute.swift in Sources */,
@@ -2104,6 +2168,7 @@
 				183899EF21264ADC007CE13E /* ObservableConvertibleType+Utils.swift in Sources */,
 				1838999D21264A98007CE13E /* DialogView.swift in Sources */,
 				1838999221264A91007CE13E /* RootView.swift in Sources */,
+				182723302237C1DF001D87AA /* Presenting.swift in Sources */,
 				183899D721264AC8007CE13E /* UIImage+Utils.swift in Sources */,
 				183899BA21264ABE007CE13E /* AnyTableViewCellIdentifier.swift in Sources */,
 				1838995121264A71007CE13E /* UIColor+Init.swift in Sources */,
@@ -2111,9 +2176,10 @@
 				183899B321264ABE007CE13E /* PlainTableView.swift in Sources */,
 				183899DA21264AC8007CE13E /* UIView+stack.swift in Sources */,
 				1838994E21264A71007CE13E /* CGSize+Init.swift in Sources */,
-				1838997D21264A88007CE13E /* Component.swift in Sources */,
+				1838997D21264A88007CE13E /* _Component.swift in Sources */,
 				183899AC21264AAA007CE13E /* StaticMap.swift in Sources */,
 				18937BD221284E72009F6CA3 /* ObservationToken.swift in Sources */,
+				182723422237C2F6001D87AA /* PlainStatefulComponent.swift in Sources */,
 				183899AD21264AAA007CE13E /* MKCoordinateSpan+inset.swift in Sources */,
 				183899D921264AC8007CE13E /* UIView+Utils.swift in Sources */,
 				183899FC21264AEC007CE13E /* String+EmailValidationError.swift in Sources */,
@@ -2127,6 +2193,7 @@
 				1838995621264A71007CE13E /* UIOffset+Init.swift in Sources */,
 				183899D121264AC8007CE13E /* AssociatedObject.swift in Sources */,
 				183899DB21264AC8007CE13E /* Swift+Compatibility.swift in Sources */,
+				1827232D2237C1C9001D87AA /* Composable.swift in Sources */,
 				183899F721264ADC007CE13E /* Visibility.swift in Sources */,
 				183899AF21264AAA007CE13E /* MKCoordinateRegion+utils.swift in Sources */,
 				1838997A21264A7D007CE13E /* BaseSubConfiguration.swift in Sources */,
@@ -2138,6 +2205,7 @@
 				18937BCC21284E08009F6CA3 /* ActionMapper+RxSwift.swift in Sources */,
 				183899D821264AC8007CE13E /* UIStackView+ArrangedChildren.swift in Sources */,
 				1838993121264A4F007CE13E /* Configuration+CollectionView.swift in Sources */,
+				1827232A2237AFD6001D87AA /* Platform.swift in Sources */,
 				1838994A21264A71007CE13E /* UIFont+System.swift in Sources */,
 				1838998F21264A91007CE13E /* PickerView.swift in Sources */,
 				1838998721264A8C007CE13E /* DialogControllerBase.swift in Sources */,
@@ -2160,6 +2228,7 @@
 				1838999E21264A98007CE13E /* FallbackSafeAreaInsets.swift in Sources */,
 				183899BD21264ABE007CE13E /* TableViewHeaderFooterIdentifier.swift in Sources */,
 				183899A021264A98007CE13E /* UIViewController+RxNavigation.swift in Sources */,
+				182723332237C206001D87AA /* Presenter.swift in Sources */,
 				1838999F21264A98007CE13E /* UINavigationController+Navigation.swift in Sources */,
 				1838998921264A8C007CE13E /* ScrollControllerBase.swift in Sources */,
 				1838995421264A71007CE13E /* UIFont+Init.swift in Sources */,
@@ -2188,6 +2257,7 @@
 				1838993D21264A4F007CE13E /* CollectionViewCellIdentifier.swift in Sources */,
 				1898D73D2126E52A00DA4AC5 /* ComponentWithDelegate+RxSwift.swift in Sources */,
 				1838994021264A4F007CE13E /* CollectionReusableViewWrapper.swift in Sources */,
+				182723362237C22D001D87AA /* DelegatedComposable.swift in Sources */,
 				1838995021264A71007CE13E /* UICollectionView+Init.swift in Sources */,
 				1838997521264A7D007CE13E /* Configuration.swift in Sources */,
 				183899BC21264ABE007CE13E /* TableViewCellIdentifier.swift in Sources */,
@@ -2221,6 +2291,7 @@
 				1898D75F2127340400DA4AC5 /* MKCoordinateRegion+utils.swift in Sources */,
 				1838996021264A72007CE13E /* UIColor+Modificators.swift in Sources */,
 				1838998B21264A8D007CE13E /* DialogControllerBase.swift in Sources */,
+				1827233B2237C2A7001D87AA /* Component.swift in Sources */,
 				1898D74821272B5D00DA4AC5 /* Configuration+CollectionView.swift in Sources */,
 				1838994921264A58007CE13E /* Configuration+Style.swift in Sources */,
 				18EBA9752148264B00F80912 /* TextField.swift in Sources */,
@@ -2236,8 +2307,10 @@
 				1838997121264A78007CE13E /* Properties+Core.swift in Sources */,
 				183899FF21264AED007CE13E /* Rules.swift in Sources */,
 				1898D74F21272B5D00DA4AC5 /* ReactantCollectionView.swift in Sources */,
+				182723292237AFD6001D87AA /* Platform.swift in Sources */,
 				1898D7602127357F00DA4AC5 /* Configuration+TableView.swift in Sources */,
 				183899C421264AC7007CE13E /* AssociatedObject.swift in Sources */,
+				182723412237C2F6001D87AA /* PlainStatefulComponent.swift in Sources */,
 				1898D7632127357F00DA4AC5 /* PlainTableView.swift in Sources */,
 				18937B8921277322009F6CA3 /* FooterTableView.swift in Sources */,
 				183899CB21264AC7007CE13E /* UIStackView+ArrangedChildren.swift in Sources */,
@@ -2252,8 +2325,10 @@
 				1838995B21264A72007CE13E /* CGRect+Init.swift in Sources */,
 				1838994521264A58007CE13E /* Properties.swift in Sources */,
 				1898D75121272B6000DA4AC5 /* AnyCollectionSupplementaryViewIdentifier.swift in Sources */,
+				182723442237C309001D87AA /* PresenterRoute.swift in Sources */,
 				1898D76E2127358500DA4AC5 /* TableViewCellWrapper.swift in Sources */,
 				1838997221264A78007CE13E /* Properties+Style.swift in Sources */,
+				182723322237C206001D87AA /* Presenter.swift in Sources */,
 				1838999B21264A92007CE13E /* ControlBase.swift in Sources */,
 				1898D7672127357F00DA4AC5 /* TableViewBase.swift in Sources */,
 				1838999921264A92007CE13E /* RootView.swift in Sources */,
@@ -2267,24 +2342,27 @@
 				1898D75421272B6000DA4AC5 /* CollectionViewCellIdentifier.swift in Sources */,
 				1838995921264A72007CE13E /* CGAffineTransform+Shortcut.swift in Sources */,
 				1898D74D21272B5D00DA4AC5 /* FlowCollectionViewBase+Delegates.swift in Sources */,
-				1838998221264A89007CE13E /* Component.swift in Sources */,
+				182723462237D946001D87AA /* ControllerBase.swift in Sources */,
+				1838998221264A89007CE13E /* _Component.swift in Sources */,
 				183899C221264AC7007CE13E /* UINavigationController+DialogDismissalListener.swift in Sources */,
 				1898D75321272B6000DA4AC5 /* CollectionSupplementaryViewIdentifier.swift in Sources */,
 				1898D7642127357F00DA4AC5 /* Properties+TableView.swift in Sources */,
+				1827232C2237C1C9001D87AA /* Composable.swift in Sources */,
 				18389A0021264AED007CE13E /* Rules+String.swift in Sources */,
 				183899E621264ADB007CE13E /* CollapseAxis.swift in Sources */,
 				183899CA21264AC7007CE13E /* UIImage+Utils.swift in Sources */,
 				183899CE21264AC7007CE13E /* Swift+Compatibility.swift in Sources */,
 				1898D75221272B6000DA4AC5 /* AnyCollectionViewCellIdentifier.swift in Sources */,
+				1827232F2237C1DF001D87AA /* Presenting.swift in Sources */,
 				1838995A21264A72007CE13E /* CGPoint+Init.swift in Sources */,
 				1898D7682127357F00DA4AC5 /* TableViewCell.swift in Sources */,
 				18389A0121264AED007CE13E /* String+EmailValidationError.swift in Sources */,
-				1838998A21264A8D007CE13E /* ControllerBase.swift in Sources */,
 				183899CD21264AC7007CE13E /* UIView+stack.swift in Sources */,
 				1898D75821272B6400DA4AC5 /* CollectionViewCellWrapper.swift in Sources */,
 				183899A921264A99007CE13E /* FutureControllerProvider.swift in Sources */,
 				1898D75A2127307D00DA4AC5 /* PagingCollectionView.swift in Sources */,
 				1838995F21264A72007CE13E /* UIColor+Init.swift in Sources */,
+				182723382237C249001D87AA /* SubmitBehavior.swift in Sources */,
 				18937B8B212784F4009F6CA3 /* SimulatedSeparatorTableView.swift in Sources */,
 				183899DD21264ADB007CE13E /* Recycler.swift in Sources */,
 				1838999821264A92007CE13E /* ContainerView.swift in Sources */,
@@ -2318,11 +2396,13 @@
 				1838998321264A89007CE13E /* ComponentBase.swift in Sources */,
 				183899C921264AC7007CE13E /* Sequence+Utils.swift in Sources */,
 				183899DF21264ADB007CE13E /* SynchronizedRecycler.swift in Sources */,
+				182723352237C22D001D87AA /* DelegatedComposable.swift in Sources */,
 				1838995E21264A72007CE13E /* UICollectionView+Init.swift in Sources */,
 				183899E721264ADB007CE13E /* ConstraintAction.swift in Sources */,
 				1898D76B2127358200DA4AC5 /* AnyTableViewHeaderFooterIdentifier.swift in Sources */,
 				1838996221264A72007CE13E /* UIFont+Init.swift in Sources */,
 				1838997021264A78007CE13E /* PercentUtils.swift in Sources */,
+				1827233E2237C2E2001D87AA /* StatefulComponent.swift in Sources */,
 				1898D75E2127340400DA4AC5 /* CLLocationCoordinate2D+utils.swift in Sources */,
 				1898D7652127357F00DA4AC5 /* ReactantTableView.swift in Sources */,
 			);
@@ -2433,22 +2513,22 @@
 /* Begin PBXTargetDependency section */
 		00E342121FA244E9005D3740 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DC79F6B71E55FAA60033AE51 /* ReactantPrototyping */;
+			target = DC79F6B71E55FAA60033AE51 /* HyperdrivePrototyping */;
 			targetProxy = 00E342111FA244E9005D3740 /* PBXContainerItemProxy */;
 		};
 		185121531D834D1F002C4B08 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 185121461D834D1E002C4B08 /* Reactant */;
+			target = 185121461D834D1E002C4B08 /* Hyperdrive */;
 			targetProxy = 185121521D834D1F002C4B08 /* PBXContainerItemProxy */;
 		};
 		18937B8F212787CC009F6CA3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 185121461D834D1E002C4B08 /* Reactant */;
+			target = 185121461D834D1E002C4B08 /* Hyperdrive */;
 			targetProxy = 18937B8E212787CC009F6CA3 /* PBXContainerItemProxy */;
 		};
 		18937BBF21279A85009F6CA3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1838992721264A1A007CE13E /* RxReactant */;
+			target = 1838992721264A1A007CE13E /* RxHyperdrive */;
 			targetProxy = 18937BBE21279A85009F6CA3 /* PBXContainerItemProxy */;
 		};
 		22F48FF61FAB0EE900E736C8 /* PBXTargetDependency */ = {
@@ -2473,7 +2553,7 @@
 /* Begin XCBuildConfiguration section */
 		1838992E21264A1B007CE13E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3AD79E499BE454A2F9CAC108 /* Pods-Reactant-iOS-RxReactant.debug.xcconfig */;
+			baseConfigurationReference = 6F62A9040E0F97929D467398 /* Pods-Hyperdrive-iOS-RxHyperdrive.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2491,18 +2571,17 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Support Targets/RxReactant/Info.plist";
+				INFOPLIST_FILE = "Support Targets/RxHyperdrive/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DENABLE_RXSWIFT";
-				PRODUCT_BUNDLE_IDENTIFIER = hyperdrive.ios.RxReactant;
-				PRODUCT_MODULE_NAME = Reactant;
+				PRODUCT_BUNDLE_IDENTIFIER = hyperdrive.ios.RxHyperdrive;
+				PRODUCT_MODULE_NAME = Hyperdrive;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvos appletvsimulator macosx";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2513,7 +2592,7 @@
 		};
 		1838992F21264A1B007CE13E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08156B13BCEDB9C5FD4AEBB7 /* Pods-Reactant-iOS-RxReactant.release.xcconfig */;
+			baseConfigurationReference = 21C07D164F7A360106879FEA /* Pods-Hyperdrive-iOS-RxHyperdrive.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2530,17 +2609,16 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Support Targets/RxReactant/Info.plist";
+				INFOPLIST_FILE = "Support Targets/RxHyperdrive/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DENABLE_RXSWIFT";
-				PRODUCT_BUNDLE_IDENTIFIER = hyperdrive.ios.RxReactant;
-				PRODUCT_MODULE_NAME = Reactant;
+				PRODUCT_BUNDLE_IDENTIFIER = hyperdrive.ios.RxHyperdrive;
+				PRODUCT_MODULE_NAME = Hyperdrive;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvos appletvsimulator macosx";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2550,7 +2628,7 @@
 		};
 		185121591D834D1F002C4B08 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60E307C725E6F3EBC729C52D /* Pods-Reactant-iOS-Reactant.debug.xcconfig */;
+			baseConfigurationReference = 17CEEE47B65EAC8923A03369 /* Pods-Hyperdrive-iOS-Hyperdrive.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -2564,13 +2642,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DENABLE_SAFEAREAINSETS_FALLBACK";
-				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.Reactant;
+				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.Hyperdrive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvos appletvsimulator macosx";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2581,7 +2658,7 @@
 		};
 		1851215A1D834D1F002C4B08 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2FE68E8FF55E1ED7E0AD3206 /* Pods-Reactant-iOS-Reactant.release.xcconfig */;
+			baseConfigurationReference = 8F7A4DE87A82357521F21EA3 /* Pods-Hyperdrive-iOS-Hyperdrive.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -2595,13 +2672,12 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DENABLE_SAFEAREAINSETS_FALLBACK";
-				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.Reactant;
+				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.Hyperdrive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvos appletvsimulator macosx";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2611,7 +2687,7 @@
 		};
 		1851215C1D834D1F002C4B08 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5EEF9BDED9090BFF3C8B7DB /* Pods-Reactant-iOS-Tests-ReactantTests.debug.xcconfig */;
+			baseConfigurationReference = 558304EB7C36683A858437AB /* Pods-Hyperdrive-iOS-Tests-HyperdriveTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2620,7 +2696,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantTests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.HyperdriveTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -2628,7 +2704,7 @@
 		};
 		1851215D1D834D1F002C4B08 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94B46E48227B63AFB60F6847 /* Pods-Reactant-iOS-Tests-ReactantTests.release.xcconfig */;
+			baseConfigurationReference = 05BCA382391275C344C318F9 /* Pods-Hyperdrive-iOS-Tests-HyperdriveTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2637,14 +2713,14 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantTests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.HyperdriveTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 		18937B9E2127916C009F6CA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79DC826FC1DF27768D84EF9D /* Pods-Reactant-iOS-Tests-RxReactantTests.debug.xcconfig */;
+			baseConfigurationReference = 0D8048A2E8D9CD398257B112 /* Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2656,12 +2732,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Support Targets/RxReactantTests/Info.plist";
+				INFOPLIST_FILE = "Support Targets/RxHyperdriveTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = hyperdrive.ios.RxReactantTests;
+				PRODUCT_BUNDLE_IDENTIFIER = hyperdrive.ios.RxHyperdriveTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 4.2;
@@ -2671,7 +2747,7 @@
 		};
 		18937B9F2127916C009F6CA3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C96E766A124CDA2B82A39F92 /* Pods-Reactant-iOS-Tests-RxReactantTests.release.xcconfig */;
+			baseConfigurationReference = B1DA01195B5A702325606D0E /* Pods-Hyperdrive-iOS-Tests-RxHyperdriveTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2682,11 +2758,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Support Targets/RxReactantTests/Info.plist";
+				INFOPLIST_FILE = "Support Targets/RxHyperdriveTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = hyperdrive.ios.RxReactantTests;
+				PRODUCT_BUNDLE_IDENTIFIER = hyperdrive.ios.RxHyperdriveTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2695,7 +2771,7 @@
 		};
 		22F48FFB1FAB0EE900E736C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FBFFB08A0301760CB63025E /* Pods-Reactant-tvOS-TVPrototyping.debug.xcconfig */;
+			baseConfigurationReference = FA25B9C67AE8BBF85E940714 /* Pods-Hyperdrive-tvOS-TVPrototyping.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2722,7 +2798,7 @@
 		};
 		22F48FFC1FAB0EE900E736C8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6950A60511B1E081539BEC6F /* Pods-Reactant-tvOS-TVPrototyping.release.xcconfig */;
+			baseConfigurationReference = 47AC3B4BE0D4FF334199639E /* Pods-Hyperdrive-tvOS-TVPrototyping.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2842,7 +2918,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "";
@@ -2892,7 +2968,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
@@ -2904,7 +2980,7 @@
 		};
 		DC79F6C81E55FAA70033AE51 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8A0AA78D1B03DA3FF7288C5 /* Pods-Reactant-iOS-ReactantPrototyping.debug.xcconfig */;
+			baseConfigurationReference = 52799AFF575A97D6EF1EABAF /* Pods-Hyperdrive-iOS-HyperdrivePrototyping.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2912,10 +2988,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Prototypes/ReactantPrototyping/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Prototypes/HyperdrivePrototyping/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantPrototyping;
+				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.HyperdrivePrototyping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
@@ -2925,7 +3001,7 @@
 		};
 		DC79F6C91E55FAA70033AE51 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBF5DB47D907207B9C8A6C64 /* Pods-Reactant-iOS-ReactantPrototyping.release.xcconfig */;
+			baseConfigurationReference = 64DB38D53DB163DF85A763B9 /* Pods-Hyperdrive-iOS-HyperdrivePrototyping.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -2933,10 +3009,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Prototypes/ReactantPrototyping/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Prototypes/HyperdrivePrototyping/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.ReactantPrototyping;
+				PRODUCT_BUNDLE_IDENTIFIER = org.brightify.HyperdrivePrototyping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2946,7 +3022,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1838992D21264A1B007CE13E /* Build configuration list for PBXNativeTarget "RxReactant" */ = {
+		1838992D21264A1B007CE13E /* Build configuration list for PBXNativeTarget "RxHyperdrive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1838992E21264A1B007CE13E /* Debug */,
@@ -2955,7 +3031,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		185121581D834D1F002C4B08 /* Build configuration list for PBXNativeTarget "Reactant" */ = {
+		185121581D834D1F002C4B08 /* Build configuration list for PBXNativeTarget "Hyperdrive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				185121591D834D1F002C4B08 /* Debug */,
@@ -2964,7 +3040,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1851215B1D834D1F002C4B08 /* Build configuration list for PBXNativeTarget "ReactantTests" */ = {
+		1851215B1D834D1F002C4B08 /* Build configuration list for PBXNativeTarget "HyperdriveTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1851215C1D834D1F002C4B08 /* Debug */,
@@ -2973,7 +3049,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18937B9D2127916C009F6CA3 /* Build configuration list for PBXNativeTarget "RxReactantTests" */ = {
+		18937B9D2127916C009F6CA3 /* Build configuration list for PBXNativeTarget "RxHyperdriveTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18937B9E2127916C009F6CA3 /* Debug */,
@@ -3000,7 +3076,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Reactant" */ = {
+		607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "Hyperdrive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACED1AFB9204008FA782 /* Debug */,
@@ -3009,7 +3085,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC79F6C71E55FAA70033AE51 /* Build configuration list for PBXNativeTarget "ReactantPrototyping" */ = {
+		DC79F6C71E55FAA70033AE51 /* Build configuration list for PBXNativeTarget "HyperdrivePrototyping" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC79F6C81E55FAA70033AE51 /* Debug */,

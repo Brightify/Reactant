@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public protocol RootView {
@@ -39,3 +40,4 @@ extension RootView {
     public func viewDidDisappear() {
     }
 }
+#endif

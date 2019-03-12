@@ -5,6 +5,7 @@
 //  Created by Matouš Hýbl on 09/02/2018.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configurable {
@@ -112,3 +113,4 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
         }
     }
 }
+#endif

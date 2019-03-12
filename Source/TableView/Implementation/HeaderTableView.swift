@@ -6,9 +6,10 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
-public enum HeaderTableViewAction<HEADER: Component, CELL: Component> {
+public enum HeaderTableViewAction<HEADER: _Component, CELL: _Component> {
     case selected(CELL.StateType)
     case headerAction(HEADER.StateType, HEADER.ActionType)
     case rowAction(CELL.StateType, CELL.ActionType)
@@ -25,7 +26,7 @@ public struct SectionModel<Section, ItemType> {
     }
 }
 
-open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionModel<HEADER.StateType, CELL.StateType>, HeaderTableViewAction<HEADER, CELL>>, UITableViewDataSource where HEADER: Component, CELL: Component {
+open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionModel<HEADER.StateType, CELL.StateType>, HeaderTableViewAction<HEADER, CELL>>, UITableViewDataSource where HEADER: _Component, CELL: _Component {
 
     public typealias MODEL = CELL.StateType
     public typealias SECTION = SectionModel<HEADER.StateType, CELL.StateType>
@@ -96,3 +97,4 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
             mapAction: { HeaderTableViewAction.headerAction(section, $0) })
     }
 }
+#endif

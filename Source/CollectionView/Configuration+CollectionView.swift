@@ -6,6 +6,7 @@
 //  Copyright © 2018 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public final class CollectionViewConfiguration: BaseSubConfiguration {
@@ -51,3 +52,4 @@ public extension Configuration.Style {
         return CollectionViewConfiguration(configuration: configuration)
     }
 }
+#endif

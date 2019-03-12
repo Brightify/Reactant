@@ -35,15 +35,15 @@ def shared
     kingfisher
 end
 
-abstract_target 'Reactant-iOS' do
+abstract_target 'Hyperdrive-iOS' do
     platform :ios, '9.0'
 
-    target 'Reactant' do
+    target 'Hyperdrive' do
         snapKit
         kingfisher
     end
 
-    target 'RxReactant' do
+    target 'RxHyperdrive' do
         shared
     end
 
@@ -54,12 +54,12 @@ abstract_target 'Reactant-iOS' do
         pod 'RxNimble'
         pod 'RxTest'
 
-        target 'ReactantTests' do
+        target 'HyperdriveTests' do
             snapKit
             kingfisher
         end
 
-        target 'RxReactantTests' do
+        target 'RxHyperdriveTests' do
             shared
         end
     end
@@ -74,13 +74,13 @@ abstract_target 'Reactant-iOS' do
 #        pod 'RxTest'
 #    end
 
-    target 'ReactantPrototyping' do
+    target 'HyperdrivePrototyping' do
         shared
     end
 
 end
 
-abstract_target 'Reactant-tvOS' do
+abstract_target 'Hyperdrive-tvOS' do
     platform :tvos, '9.2'
 
     target 'TVPrototyping' do

@@ -6,17 +6,18 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 //import RxDataSources
 
-public enum FooterTableViewAction<CELL: Component, FOOTER: Component> {
+public enum FooterTableViewAction<CELL: _Component, FOOTER: _Component> {
     case selected(CELL.StateType)
     case rowAction(CELL.StateType, CELL.ActionType)
     case footerAction(FOOTER.StateType, FOOTER.ActionType)
     case refresh
 }
 
-open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionModel<FOOTER.StateType, CELL.StateType>, FooterTableViewAction<CELL, FOOTER>>, UITableViewDataSource where CELL: Component, FOOTER: Component {
+open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionModel<FOOTER.StateType, CELL.StateType>, FooterTableViewAction<CELL, FOOTER>>, UITableViewDataSource where CELL: _Component, FOOTER: _Component {
     public typealias MODEL = CELL.StateType
     public typealias SECTION = SectionModel<FOOTER.StateType, CELL.StateType>
 
@@ -85,3 +86,4 @@ open class FooterTableView<CELL: UIView, FOOTER: UIView>: TableViewBase<SectionM
             mapAction: { FooterTableViewAction.footerAction(section, $0) })
     }
 }
+#endif

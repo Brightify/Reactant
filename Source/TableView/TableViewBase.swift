@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public struct TableViewOptions: OptionSet {
@@ -171,7 +172,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         setNeedsLayout()
     }
 
-    open func configure<T: Component>(cell: TableViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
+    open func configure<T: _Component>(cell: TableViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         cell.configureTracking = ObservationTokenTracker()
 
@@ -190,14 +191,14 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
             .track(in: cell.configureTracking)
     }
     
-    open func dequeueAndConfigure<T: Component>(identifier: TableViewCellIdentifier<T>, factory: @escaping () -> T,
+    open func dequeueAndConfigure<T: _Component>(identifier: TableViewCellIdentifier<T>, factory: @escaping () -> T,
                                     model: T.StateType, mapAction: @escaping (T.ActionType) -> ACTION) -> TableViewCellWrapper<T> {
         let cell = tableView.dequeue(identifier: identifier)
         configure(cell: cell, factory: factory, model: model, mapAction: mapAction)
         return cell
     }
     
-    open func configure<T: Component>(view: TableViewHeaderFooterWrapper<T>, factory: @escaping () -> T, model: T.StateType,
+    open func configure<T: _Component>(view: TableViewHeaderFooterWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         view.configureTracking = ObservationTokenTracker()
 
@@ -216,7 +217,7 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
             .track(in: view.configureTracking)
     }
     
-    open func dequeueAndConfigure<T: Component>(identifier: TableViewHeaderFooterIdentifier<T>, factory: @escaping () -> T,
+    open func dequeueAndConfigure<T: _Component>(identifier: TableViewHeaderFooterIdentifier<T>, factory: @escaping () -> T,
                                     model: T.StateType, mapAction: @escaping (T.ActionType) -> ACTION) -> TableViewHeaderFooterWrapper<T> {
         let view = tableView.dequeue(identifier: identifier)
         configure(view: view, factory: factory, model: model, mapAction: mapAction)
@@ -247,3 +248,4 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         view.frame.size = CGSize(width: targetSize.width, height: size.height)
     }
 }
+#endif

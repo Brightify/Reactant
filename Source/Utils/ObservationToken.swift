@@ -31,3 +31,11 @@ public final class ObservationToken: Hashable, Equatable {
         tracker.track(token: self)
     }
 }
+
+extension ObservationToken {
+    public convenience init(tokens: ObservationToken...) {
+        self.init {
+            tokens.forEach { $0.stopObserving() }
+        }
+    }
+}

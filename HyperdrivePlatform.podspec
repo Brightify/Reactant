@@ -7,12 +7,12 @@
 #
 
 Pod::Spec.new do |spec|
-    spec.name             = 'Reactant'
+    spec.name             = 'HyperdrivePlatform'
     spec.version          = '2.0.0-alpha.1'
-    spec.summary          = 'Reactant is a reactive architecture for iOS'
+    spec.summary          = 'Hyperdrive is a reactive architecture for iOS, tvOS and macOS'
 
     spec.description      = <<-DESC
-                            Reactant is a foundation for rapid and safe iOS development. It allows you to cut down your development costs by improving reusability, testability and safety of your code, especially your UI.
+                            Hyperdrive is a foundation for rapid and safe iOS, tvOS and macOS development. It allows you to cut down your development costs by improving reusability, testability and safety of your code, especially your UI.
                             DESC
     spec.homepage         = 'https://www.reactant.tech'
     spec.license          = 'MIT'
@@ -29,6 +29,7 @@ Pod::Spec.new do |spec|
     spec.social_media_url = 'https://twitter.com/BrightifyOrg'
     spec.requires_arc = true
 
+    spec.module_name = 'Hyperdrive'
     spec.ios.deployment_target = '9.0'
     spec.tvos.deployment_target = '9.2'
     spec.default_subspec = 'Core'
@@ -54,7 +55,7 @@ Pod::Spec.new do |spec|
 
     spec.subspec 'Core' do |subspec|
         subspec.frameworks = 'UIKit'
-        subspec.dependency 'Reactant/Configuration'
+        subspec.dependency 'HyperdrivePlatform/Configuration'
 
         snapKit(subspec)
 
@@ -65,7 +66,7 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'Core+RxSwift' do |rxcore|
-        rxcore.dependency 'Reactant/Core'
+        rxcore.dependency 'HyperdrivePlatform/Core'
         rxcore.pod_target_xcconfig = {
             'OTHER_SWIFT_FLAGS' => '-DENABLE_RXSWIFT'
         }
@@ -90,7 +91,7 @@ Pod::Spec.new do |spec|
 
     spec.subspec 'TableView' do |subspec|
         subspec.frameworks = 'UIKit'
-        subspec.dependency 'Reactant/Core'
+        subspec.dependency 'HyperdrivePlatform/Core'
         rxCocoa(subspec)
         rxDataSources(subspec)
         subspec.source_files = [
@@ -101,7 +102,7 @@ Pod::Spec.new do |spec|
 
     spec.subspec 'CollectionView' do |subspec|
         subspec.frameworks = 'UIKit'
-        subspec.dependency 'Reactant/Core'
+        subspec.dependency 'HyperdrivePlatform/Core'
         subspec.source_files = 'Source/CollectionView/**/*.swift'
     end
 
@@ -113,7 +114,7 @@ Pod::Spec.new do |spec|
 
     spec.subspec 'StaticMap' do |subspec|
         subspec.frameworks = ['UIKit', 'MapKit']
-        subspec.dependency 'Reactant/Core'
+        subspec.dependency 'HyperdrivePlatform/Core'
         kingfisher(subspec)
         subspec.source_files = 'Source/StaticMap/**/*.swift'
     end
@@ -122,29 +123,29 @@ Pod::Spec.new do |spec|
         subspec.ios.deployment_target = '9.0'
         subspec.tvos.deployment_target = '9.2'
 
-        subspec.dependency 'Reactant/Core'
+        subspec.dependency 'HyperdrivePlatform/Core'
         subspec.pod_target_xcconfig = {
             'OTHER_SWIFT_FLAGS' => '-DENABLE_SAFEAREAINSETS_FALLBACK'
         }
     end
 
     spec.subspec 'All-iOS' do |subspec|
-        subspec.dependency 'Reactant/Core'
-        subspec.dependency 'Reactant/Configuration'
-        subspec.dependency 'Reactant/Validation'
-        subspec.dependency 'Reactant/TableView'
-        subspec.dependency 'Reactant/CollectionView'
-        subspec.dependency 'Reactant/StaticMap'
-        subspec.dependency 'Reactant/ActivityIndicator'
+        subspec.dependency 'HyperdrivePlatform/Core'
+        subspec.dependency 'HyperdrivePlatform/Configuration'
+        subspec.dependency 'HyperdrivePlatform/Validation'
+        subspec.dependency 'HyperdrivePlatform/TableView'
+        subspec.dependency 'HyperdrivePlatform/CollectionView'
+        subspec.dependency 'HyperdrivePlatform/StaticMap'
+        subspec.dependency 'HyperdrivePlatform/ActivityIndicator'
     end
 
     spec.subspec 'All-tvOS' do |subspec|
-        subspec.dependency 'Reactant/Core'
-        subspec.dependency 'Reactant/Configuration'
-        subspec.dependency 'Reactant/Validation'
-        subspec.dependency 'Reactant/TableView'
-        subspec.dependency 'Reactant/CollectionView'
-        subspec.dependency 'Reactant/StaticMap'
-        subspec.dependency 'Reactant/ActivityIndicator'
+        subspec.dependency 'HyperdrivePlatform/Core'
+        subspec.dependency 'HyperdrivePlatform/Configuration'
+        subspec.dependency 'HyperdrivePlatform/Validation'
+        subspec.dependency 'HyperdrivePlatform/TableView'
+        subspec.dependency 'HyperdrivePlatform/CollectionView'
+        subspec.dependency 'HyperdrivePlatform/StaticMap'
+        subspec.dependency 'HyperdrivePlatform/ActivityIndicator'
     end
 end

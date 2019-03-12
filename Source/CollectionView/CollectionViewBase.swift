@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL>, ACTION>, ReactantCollectionView, UICollectionViewDelegate {
@@ -140,7 +141,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         }
     }
     
-    open func configure<T: Component>(cell: CollectionViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
+    open func configure<T: _Component>(cell: CollectionViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         cell.configureTracking = ObservationTokenTracker()
         if configurationChangeTime != cell.configurationChangeTime {
@@ -156,7 +157,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
             .track(in: cell.configureTracking)
     }
 
-    open func dequeueAndConfigure<T: Component>(identifier: CollectionViewCellIdentifier<T>,
+    open func dequeueAndConfigure<T: _Component>(identifier: CollectionViewCellIdentifier<T>,
                                                 for indexPath: IndexPath,
                                                 factory: @escaping () -> T,
                                                 model: T.StateType,
@@ -166,7 +167,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         return cell
     }
     
-    open func dequeueAndConfigure<T: Component>(identifier: CollectionViewCellIdentifier<T>,
+    open func dequeueAndConfigure<T: _Component>(identifier: CollectionViewCellIdentifier<T>,
                                                 forRow row: Int,
                                                 factory: @escaping () -> T,
                                                 model: T.StateType,
@@ -178,7 +179,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
                                    mapAction: mapAction)
     }
     
-    open func configure<T: Component>(view: CollectionReusableViewWrapper<T>, factory: @escaping () -> T, model: T.StateType,
+    open func configure<T: _Component>(view: CollectionReusableViewWrapper<T>, factory: @escaping () -> T, model: T.StateType,
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         view.configureTracking = ObservationTokenTracker()
         if configurationChangeTime != view.configurationChangeTime {
@@ -194,7 +195,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
             .track(in: view.configureTracking)
     }
 
-    open func dequeueAndConfigure<T: Component>(identifier: CollectionSupplementaryViewIdentifier<T>,
+    open func dequeueAndConfigure<T: _Component>(identifier: CollectionSupplementaryViewIdentifier<T>,
                                                 for indexPath: IndexPath,
                                                 factory: @escaping () -> T,
                                                 model: T.StateType,
@@ -204,7 +205,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         return view
     }
     
-    open func dequeueAndConfigure<T: Component>(identifier: CollectionSupplementaryViewIdentifier<T>,
+    open func dequeueAndConfigure<T: _Component>(identifier: CollectionSupplementaryViewIdentifier<T>,
                                                 forRow row: Int,
                                                 factory: @escaping () -> T,
                                                 model: T.StateType,
@@ -216,4 +217,4 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
                                    mapAction: mapAction)
     }
 }
-
+#endif

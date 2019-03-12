@@ -7,9 +7,10 @@
 //
 
 //import RxSwift
-import UIKit
 
 #if os(iOS)
+import UIKit
+
 public class PickerView<MODEL>: ViewBase<MODEL, MODEL>, UIPickerViewDataSource, UIPickerViewDelegate {
     private let pickerView = UIPickerView()
 

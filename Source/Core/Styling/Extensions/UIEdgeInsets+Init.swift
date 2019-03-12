@@ -6,9 +6,10 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreGraphics
 
-extension UIEdgeInsets {
+extension Platform.EdgeInsets {
     
     public init(left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) {
         self.init(top: 0, left: left, bottom: bottom, right: right)

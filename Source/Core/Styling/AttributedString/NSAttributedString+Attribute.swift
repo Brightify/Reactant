@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
@@ -50,3 +51,4 @@ extension String {
         return attributed(attributes)
     }
 }
+#endif

@@ -1,5 +1,3 @@
-import UIKit
-
 public protocol ReactantUI: class {
     var __rui: ReactantUIContainer { get }
 }
@@ -13,10 +11,10 @@ public protocol ReactantUIContainer: class {
 
     func updateReactantUI()
 
-    static func destroyReactantUI(target: UIView)
+    static func destroyReactantUI(target: Platform.View)
 }
 
-internal extension UIView {
+internal extension Platform.View {
     func tryUpdateReactantUI() {
         guard self is ReactantUI else {
             return

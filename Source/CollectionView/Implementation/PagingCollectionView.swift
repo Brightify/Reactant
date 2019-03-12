@@ -6,9 +6,10 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
-open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where CELL: Component {
+open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where CELL: _Component {
     
     open override var configuration: Configuration {
         didSet {
@@ -69,3 +70,4 @@ open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where 
         pageControl.currentPage = Int(collectionView.contentOffset.x / itemSize.width)
     }
 }
+#endif

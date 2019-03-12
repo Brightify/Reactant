@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public final class DialogView: ViewBase<Void, Void> {
@@ -49,3 +50,4 @@ public final class DialogView: ViewBase<Void, Void> {
         }
     }
 }
+#endif

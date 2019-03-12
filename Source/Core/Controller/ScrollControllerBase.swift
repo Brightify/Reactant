@@ -6,9 +6,10 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
-open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
+open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: _Component {
     
     public let scrollView = UIScrollView()
     
@@ -58,3 +59,4 @@ extension ScrollControllerBase: Scrollable {
         scrollView.scrollToTop(animated: animated)
     }
 }
+#endif

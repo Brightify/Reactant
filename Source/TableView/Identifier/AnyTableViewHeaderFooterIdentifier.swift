@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public struct AnyTableViewHeaderFooterIdentifier {
@@ -38,3 +39,4 @@ extension UITableView {
         return view
     }
 }
+#endif

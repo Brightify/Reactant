@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeaderFooterView, Configurable {
@@ -55,3 +56,4 @@ public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeader
         return wrappedView
     }
 }
+#endif

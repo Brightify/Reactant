@@ -6,7 +6,11 @@
 //  Copyright © 2018 Brightify. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 public final class ActionMapper<ACTION> {
     private let performAction: (ACTION) -> Void
@@ -16,7 +20,7 @@ public final class ActionMapper<ACTION> {
         self.performAction = performAction
     }
 
-    public func map<C: Component>(from component: C, using mapping: @escaping (C.ActionType) -> ACTION) {
+    public func map<C: Composable>(from component: C, using mapping: @escaping (C.Action) -> ACTION) {
         let token = component.observeAction { [performAction] action in
             performAction(mapping(action))
         }
@@ -24,7 +28,7 @@ public final class ActionMapper<ACTION> {
         track(token: token)
     }
 
-    public func passthrough<C: Component>(from component: C) where C.ActionType == ACTION {
+    public func passthrough<C: Composable>(from component: C) where C.Action == ACTION {
         let token = component.observeAction { [performAction] action in
             performAction(action)
         }
@@ -33,12 +37,16 @@ public final class ActionMapper<ACTION> {
     }
 
     #if os(iOS)
-    public func map(control: UIControl, to action: @autoclosure @escaping () -> ACTION) {
+    public func map(control: Platform.Control, to action: @autoclosure @escaping () -> ACTION) {
         map(control: control, for: .touchUpInside, to: action)
     }
     #elseif os(tvOS)
-    public func map(control: UIControl, to action: @autoclosure @escaping () -> ACTION) {
+    public func map(control: Platform.Control, to action: @autoclosure @escaping () -> ACTION) {
         map(control: control, for: .primaryActionTriggered, to: action)
+    }
+    #elseif os(macOS)
+    public func map(control: Platform.Control, to action: @autoclosure @escaping () -> ACTION) {
+
     }
     #endif
 
@@ -48,6 +56,7 @@ public final class ActionMapper<ACTION> {
 }
 
 // MARK: UIControl mapping
+#if canImport(UIKit)
 extension ActionMapper {
     private class ControlActionDelegate {
         private weak var control: UIControl?
@@ -90,3 +99,4 @@ extension ActionMapper {
         track(token: token)
     }
 }
+#endif

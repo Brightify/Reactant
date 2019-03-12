@@ -162,7 +162,7 @@ public final class ComponentDelegate<STATE, ACTION> {
         private let ownerNeedsUpdate: (STATE?) -> Bool
         private let ownerUpdate: (STATE?) -> Void
 
-        init<C: Component>(owner: C) where C.StateType == STATE {
+        init<C: _Component>(owner: C) where C.StateType == STATE {
             ownerComponentType = type(of: owner)
             ownerNeedsUpdate = { [weak owner] previousState in
                 guard let ownerComponent = owner else {
@@ -244,7 +244,7 @@ public final class ComponentDelegate<STATE, ACTION> {
         componentStateStorage = initialState
     }
 
-    public func setOwner<C: Component>(_ owner: C) where C.StateType == STATE, C.ActionType == ACTION {
+    public func setOwner<C: _Component>(_ owner: C) where C.StateType == STATE, C.ActionType == ACTION {
         ownerWrapper = OwnerWrapper(owner: owner)
 
         updateIfNeeded()

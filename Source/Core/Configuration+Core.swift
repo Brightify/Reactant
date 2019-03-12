@@ -6,10 +6,8 @@
 //  Copyright © 2018 Brightify. All rights reserved.
 //
 
-import UIKit
-
 public extension Configuration {
-    var layoutMargins: UIEdgeInsets {
+    var layoutMargins: Platform.EdgeInsets {
         get {
             return get(valueFor: Properties.layoutMargins)
         }
@@ -26,7 +24,12 @@ public extension Configuration {
             return set(Properties.closeButtonTitle, to: newValue)
         }
     }
+}
 
+#if canImport(UIKit)
+import UIKit
+
+public extension Configuration {
     var defaultBackButton: UIBarButtonItem? {
         get {
             return get(valueFor: Properties.defaultBackButton)
@@ -36,6 +39,7 @@ public extension Configuration {
         }
     }
 }
+#endif
 
 public extension Configuration.Style {
     var controllerRoot: (ControllerRootViewContainer) -> Void {
@@ -56,7 +60,7 @@ public extension Configuration.Style {
         }
     }
 
-    var dialog: (UIView) -> Void {
+    var dialog: (Platform.View) -> Void {
         get {
             return configuration.get(valueFor: Properties.Style.dialog)
         }
@@ -65,7 +69,7 @@ public extension Configuration.Style {
         }
     }
 
-    var dialogContentContainer: (UIView) -> Void {
+    var dialogContentContainer: (Platform.View) -> Void {
         get {
             return configuration.get(valueFor: Properties.Style.dialog)
         }
@@ -74,7 +78,7 @@ public extension Configuration.Style {
         }
     }
 
-    var scroll: (UIScrollView) -> Void {
+    var scroll: (Platform.ScrollView) -> Void {
         get {
             return configuration.get(valueFor: Properties.Style.scroll)
         }
@@ -83,7 +87,7 @@ public extension Configuration.Style {
         }
     }
 
-    var button: (UIButton) -> Void {
+    var button: (Platform.Button) -> Void {
         get {
             return configuration.get(valueFor: Properties.Style.button)
         }
@@ -92,7 +96,7 @@ public extension Configuration.Style {
         }
     }
 
-    var control: (UIControl) -> Void {
+    var control: (Platform.Control) -> Void {
         get {
             return configuration.get(valueFor: Properties.Style.control)
         }
@@ -110,7 +114,7 @@ public extension Configuration.Style {
         }
     }
 
-    var view: (UIView) -> Void {
+    var view: (Platform.View) -> Void {
         get {
             return configuration.get(valueFor: Properties.Style.view)
         }
@@ -119,7 +123,7 @@ public extension Configuration.Style {
         }
     }
 
-    var textField: (TextField) -> Void {
+    var textField: (Platform.TextField) -> Void {
         get {
             return configuration.get(valueFor: Properties.Style.textField)
         }

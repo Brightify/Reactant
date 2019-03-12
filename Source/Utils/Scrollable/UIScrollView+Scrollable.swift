@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 extension UIScrollView: Scrollable {
@@ -15,3 +16,4 @@ extension UIScrollView: Scrollable {
         setContentOffset(CGPoint(x: -inset.left, y: -inset.top), animated: animated)
     }
 }
+#endif

@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 open class ContainerView: UIView, Configurable {
@@ -65,3 +66,4 @@ open class ContainerView: UIView, Configurable {
         super.addSubview(view)
     }
 }
+#endif

@@ -6,9 +6,10 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
-public enum SimpleTableViewAction<HEADER: Component, CELL: Component, FOOTER: Component> {
+public enum SimpleTableViewAction<HEADER: _Component, CELL: _Component, FOOTER: _Component> {
     case selected(CELL.StateType)
     case headerAction(HEADER.StateType, HEADER.ActionType)
     case rowAction(CELL.StateType, CELL.ActionType)
@@ -16,7 +17,7 @@ public enum SimpleTableViewAction<HEADER: Component, CELL: Component, FOOTER: Co
     case refresh
 }
 
-open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableViewBase<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>, SimpleTableViewAction<HEADER, CELL, FOOTER>>, UITableViewDataSource where HEADER: Component, CELL: Component, FOOTER: Component {
+open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableViewBase<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>, SimpleTableViewAction<HEADER, CELL, FOOTER>>, UITableViewDataSource where HEADER: _Component, CELL: _Component, FOOTER: _Component {
 
     public typealias MODEL = CELL.StateType
     public typealias SECTION = SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>
@@ -94,3 +95,4 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
                                    model: model, mapAction: { SimpleTableViewAction.footerAction(model, $0) })
     }
 }
+#endif

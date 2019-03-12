@@ -7,6 +7,7 @@
 //
 
 //import RxSwift
+#if canImport(UIKit)
 import UIKit
 
 open class ViewBase<STATE, ACTION>: UIView, ComponentWithDelegate, Configurable {
@@ -121,3 +122,4 @@ extension ViewBase where STATE == Void {
         self.init(initialState: ())
     }
 }
+#endif

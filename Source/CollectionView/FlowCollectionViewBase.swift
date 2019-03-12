@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 open class FlowCollectionViewBase<MODEL, ACTION>: CollectionViewBase<MODEL, ACTION> {
@@ -17,3 +18,4 @@ open class FlowCollectionViewBase<MODEL, ACTION>: CollectionViewBase<MODEL, ACTI
         super.init(layout: collectionViewLayout, reloadable: reloadable, automaticallyDeselect: automaticallyDeselect)
     }
 }
+#endif

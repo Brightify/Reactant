@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public enum TextInputState {
@@ -236,3 +237,4 @@ public final class TextField: UITextField, ComponentWithDelegate, Configurable {
     }
 
 }
+#endif

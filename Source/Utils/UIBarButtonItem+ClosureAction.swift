@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 /// Extension of UIBarButtonItem, that adds option to use closure instead of target and selector
@@ -60,3 +61,4 @@ extension UIBarButtonItem {
         action = #selector(itemTapped)
     }
 }
+#endif

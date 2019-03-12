@@ -6,9 +6,10 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
-open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: Component {
+open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT> where ROOT: _Component {
 
     private let rootViewContainer = ControllerRootViewContainer()
     public private(set) lazy var dialogView: DialogView = DialogView(content: rootView)
@@ -48,3 +49,4 @@ open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
         }
     }
 }
+#endif

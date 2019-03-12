@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell, Configurable {
@@ -81,3 +82,4 @@ public final class CollectionViewCellWrapper<CELL: UIView>: UICollectionViewCell
         return cell
     }
 }
+#endif

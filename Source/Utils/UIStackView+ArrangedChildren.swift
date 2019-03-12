@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 @available(iOS 9.0, *)
@@ -32,3 +33,4 @@ extension UIStackView {
         return self
     }
 }
+#endif

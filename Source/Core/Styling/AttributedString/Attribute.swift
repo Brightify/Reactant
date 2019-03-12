@@ -6,11 +6,20 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
+
 
 /// Enum which represents NS attributes for NSAttributedString (like NSStrokeColorAttributeName). Each case has value and assigned name.
 public enum Attribute {
+    #if canImport(UIKit)
     case font(UIFont)
+    #elseif canImport(AppKit)
+    case font(NSFont)
+    #endif
     case paragraphStyle(NSParagraphStyle)
     case foregroundColor(UIColor)
     case backgroundColor(UIColor)

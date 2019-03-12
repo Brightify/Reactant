@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public final class FutureControllerProvider<T: UIViewController> {
@@ -26,3 +27,4 @@ public final class FutureControllerProvider<T: UIViewController> {
         return controller?.navigationController
     }
 }
+#endif

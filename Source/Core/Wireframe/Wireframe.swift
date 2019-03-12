@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public protocol Wireframe {
@@ -72,3 +73,4 @@ extension Wireframe {
         return branchNavigation(controller: controller, closeButtonTitle: closeButtonTitle)
     }
 }
+#endif

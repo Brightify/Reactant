@@ -6,15 +6,16 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
-public enum SimpleCollectionViewAction<CELL: Component> {
+public enum SimpleCollectionViewAction<CELL: _Component> {
     case selected(CELL.StateType)
     case cellAction(CELL.StateType, CELL.ActionType)
     case refresh
 }
 
-open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.StateType, SimpleCollectionViewAction<CELL>>, UICollectionViewDataSource where CELL: Component {
+open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.StateType, SimpleCollectionViewAction<CELL>>, UICollectionViewDataSource where CELL: _Component {
 
     public typealias MODEL = CELL.StateType
     
@@ -69,3 +70,4 @@ open class SimpleCollectionView<CELL: UIView>: FlowCollectionViewBase<CELL.State
         perform(action: .refresh)
     }
 }
+#endif

@@ -7,9 +7,10 @@
 //
 
 //import RxSwift
+#if canImport(UIKit)
 import UIKit
 
-open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate, Configurable where ROOT: Component {
+open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate, Configurable where ROOT: _Component {
 
     public typealias StateType = STATE
     public typealias ActionType = Void
@@ -185,3 +186,4 @@ extension ControllerBase where STATE == Void {
         self.init(initialState: (), rootViewFactory: rootViewFactory)
     }
 }
+#endif

@@ -6,6 +6,7 @@
 //  Copyright © 2018 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 public final class TableViewConfiguration: BaseSubConfiguration {
@@ -42,3 +43,4 @@ public extension Configuration.Style {
         return TableViewConfiguration(configuration: configuration)
     }
 }
+#endif

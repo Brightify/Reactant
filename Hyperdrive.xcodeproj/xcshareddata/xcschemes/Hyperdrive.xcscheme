@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "185121461D834D1E002C4B08"
-               BuildableName = "Reactant.framework"
-               BlueprintName = "Reactant"
-               ReferencedContainer = "container:Reactant.xcodeproj">
+               BuildableName = "Hyperdrive.framework"
+               BlueprintName = "Hyperdrive"
+               ReferencedContainer = "container:Hyperdrive.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1851214F1D834D1F002C4B08"
-               BuildableName = "ReactantTests.xctest"
-               BlueprintName = "ReactantTests"
-               ReferencedContainer = "container:Reactant.xcodeproj">
+               BuildableName = "HyperdriveTests.xctest"
+               BlueprintName = "HyperdriveTests"
+               ReferencedContainer = "container:Hyperdrive.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "185121461D834D1E002C4B08"
-            BuildableName = "Reactant.framework"
-            BlueprintName = "Reactant"
-            ReferencedContainer = "container:Reactant.xcodeproj">
+            BuildableName = "Hyperdrive.framework"
+            BlueprintName = "Hyperdrive"
+            ReferencedContainer = "container:Hyperdrive.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "185121461D834D1E002C4B08"
-            BuildableName = "Reactant.framework"
-            BlueprintName = "Reactant"
-            ReferencedContainer = "container:Reactant.xcodeproj">
+            BuildableName = "Hyperdrive.framework"
+            BlueprintName = "Hyperdrive"
+            ReferencedContainer = "container:Hyperdrive.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "185121461D834D1E002C4B08"
-            BuildableName = "Reactant.framework"
-            BlueprintName = "Reactant"
-            ReferencedContainer = "container:Reactant.xcodeproj">
+            BuildableName = "Hyperdrive.framework"
+            BlueprintName = "Hyperdrive"
+            ReferencedContainer = "container:Hyperdrive.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

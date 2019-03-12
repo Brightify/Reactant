@@ -6,6 +6,7 @@
 //  Copyright © 2017 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 #if ENABLE_SAFEAREAINSETS_FALLBACK
@@ -140,4 +141,5 @@ extension UIViewController {
         }
     }
 }
+#endif
 #endif

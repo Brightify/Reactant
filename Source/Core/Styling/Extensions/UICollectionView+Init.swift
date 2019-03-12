@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brightify. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 extension UICollectionView {
@@ -14,3 +15,4 @@ extension UICollectionView {
         self.init(frame: CGRect.zero, collectionViewLayout: layout)
     }
 }
+#endif
