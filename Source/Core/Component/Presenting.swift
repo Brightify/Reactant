@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Presenting {
+public protocol Presenting: AnyObject {
     associatedtype ProvidedChange
     associatedtype HandledAction
 

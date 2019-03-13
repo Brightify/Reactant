@@ -19,7 +19,7 @@ open class StatefulComponent<Change, State, Action>: Component<Change, Action> {
             return stateStorage
         }
         set {
-            assert(isApplyingChange, "Changing state from outside of `apply(change:)` is forbidden!")
+            assert(composableDelegate.isApplyingChange, "Changing state from outside of `apply(change:)` is forbidden!")
 
             let oldValue = stateStorage
             stateStorage = newValue

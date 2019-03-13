@@ -30,8 +30,8 @@ Pod::Spec.new do |spec|
     spec.requires_arc = true
 
     spec.module_name = 'Hyperdrive'
-    spec.ios.deployment_target = '9.0'
-    spec.tvos.deployment_target = '9.2'
+    spec.ios.deployment_target = '11.0'
+    spec.tvos.deployment_target = '11.0'
     spec.default_subspec = 'Core'
 
     def self.rxSwift(subspec)
@@ -120,8 +120,8 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'FallbackSafeAreaInsets' do |subspec|
-        subspec.ios.deployment_target = '9.0'
-        subspec.tvos.deployment_target = '9.2'
+        subspec.ios.deployment_target = '11.0'
+        subspec.tvos.deployment_target = '11.0'
 
         subspec.dependency 'HyperdrivePlatform/Core'
         subspec.pod_target_xcconfig = {

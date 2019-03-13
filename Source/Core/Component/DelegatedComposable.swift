@@ -9,8 +9,9 @@
 import Foundation
 
 public protocol DelegatedComposable: Composable {
-    //    var composableDelegate: ComponentDelegate
+    var composableDelegate: ComposableDelegate<Change, Action> { get }
 
+    var submitBehavior: SubmitBehavior { get }
     /**
      * Array of observables through which the Component communicates with outside world.
      * - ATTENTION: Each of the `Observable`s need to be *rewritten* or *mapped* to be of the correct type - the ACTION.
@@ -29,4 +30,48 @@ public protocol DelegatedComposable: Composable {
      *  `Component.action` includes `Component.perform(action:)` calls as well as `Observable`s defined in `actions`.
      */
     func actionMapping(mapper: ActionMapper<Action>)
+
+    func apply(change: Change)
+
+    func shouldApply(change: Change) -> Bool
+}
+
+extension DelegatedComposable {
+    public var submitBehavior: SubmitBehavior {
+        return .sync
+    }
+
+    public func shouldApply(change: Change) -> Bool {
+        return true
+    }
+
+    public func observeAction(observer: @escaping (Action) -> Void) -> ObservationToken {
+        return composableDelegate.behavior.observeAction(observer: observer)
+    }
+}
+
+extension DelegatedComposable {
+    public func perform(action: Action) {
+        composableDelegate.perform(action: action)
+    }
+
+    public func resetActionMapping() {
+        composableDelegate.behavior.registerActionMapping(actionMapping)
+    }
+}
+
+public protocol DelegatedStatefulComposable: DelegatedComposable, StatefulComposable {
+    var state: State { get set }
+
+    func update(previousState: State?, causedBy change: Change)
+
+    static func setChange(for state: State) -> Change
+}
+
+extension DelegatedStatefulComposable {
+    func mutateState(with mutation: (inout State) -> Void) {
+        var mutableState = state
+        mutation(&mutableState)
+        submit(change: Self.setChange(for: mutableState))
+    }
 }

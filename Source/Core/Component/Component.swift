@@ -9,10 +9,7 @@
 import Foundation
 
 open class Component<Change, Action>: Platform.ViewController, DelegatedComposable {
-
-    public func observeAction(observer: @escaping (Action) -> Void) -> ObservationToken {
-        fatalError()
-    }
+    public let composableDelegate = ComposableDelegate<Change, Action>()
 
     open func actionMapping(mapper: ActionMapper<Action>) {
     }
@@ -29,25 +26,15 @@ open class Component<Change, Action>: Platform.ViewController, DelegatedComposab
 
     public init() {
         super.init(nibName: nil, bundle: nil)
-    }
 
-    public private(set) var isApplyingChange: Bool = false
-
-    open var submitBehavior: SubmitBehavior {
-        return .sync
+        composableDelegate.setOwner(self)
     }
 
     open func apply(change: Change) {
-        assert(isApplyingChange, "Don't call `\(#function)` directly! Instead submit your change using `submit(change:)` method.")
+        assert(composableDelegate.isApplyingChange, "Don't call `\(#function)` directly! Instead submit your change using `submit(change:)` method.")
     }
 
     public final func submit(change: Change) {
-        submitBehavior.submitted(change: change) { change in
-            dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
-
-            self.isApplyingChange = true
-            defer { self.isApplyingChange = false }
-            self.apply(change: change)
-        }
+        composableDelegate.submit(change: change)
     }
 }

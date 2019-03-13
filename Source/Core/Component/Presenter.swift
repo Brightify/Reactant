@@ -11,11 +11,11 @@ import Foundation
 open class Presenter<ProvidedChange, HandledAction>: Presenting {
 
     public init() {
-
+        
     }
 
     public final func observeChanges(observer: @escaping (Presenter.ProvidedChange) -> Void) -> ObservationToken {
-
+        
         fatalError()
     }
 

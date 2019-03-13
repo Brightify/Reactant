@@ -35,6 +35,9 @@
 		182723442237C309001D87AA /* PresenterRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723432237C309001D87AA /* PresenterRoute.swift */; };
 		182723452237C309001D87AA /* PresenterRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723432237C309001D87AA /* PresenterRoute.swift */; };
 		182723462237D946001D87AA /* ControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC07858C1DD39BE50063AB96 /* ControllerBase.swift */; };
+		182723482237FF5A001D87AA /* Invalidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723472237FF5A001D87AA /* Invalidable.swift */; };
+		1827234A2238014D001D87AA /* ComposableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723492238014D001D87AA /* ComposableDelegate.swift */; };
+		1827234B2238014D001D87AA /* ComposableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182723492238014D001D87AA /* ComposableDelegate.swift */; };
 		1838992C21264A1B007CE13E /* RxReactant.h in Headers */ = {isa = PBXBuildFile; fileRef = 1838992A21264A1B007CE13E /* RxReactant.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1838993021264A41007CE13E /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C68001E5F574B0081E7BD /* ActivityIndicator.swift */; };
 		1838993121264A4F007CE13E /* Configuration+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E4956C208F3E6000CA3044 /* Configuration+CollectionView.swift */; };
@@ -446,6 +449,8 @@
 		1827233D2237C2E2001D87AA /* StatefulComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulComponent.swift; sourceTree = "<group>"; };
 		182723402237C2F6001D87AA /* PlainStatefulComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainStatefulComponent.swift; sourceTree = "<group>"; };
 		182723432237C309001D87AA /* PresenterRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterRoute.swift; sourceTree = "<group>"; };
+		182723472237FF5A001D87AA /* Invalidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invalidable.swift; sourceTree = "<group>"; };
+		182723492238014D001D87AA /* ComposableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposableDelegate.swift; sourceTree = "<group>"; };
 		183457881EB16B8B00C972A4 /* ReactantUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactantUI.swift; sourceTree = "<group>"; };
 		1838992821264A1A007CE13E /* RxHyperdrive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxHyperdrive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1838992A21264A1B007CE13E /* RxReactant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxReactant.h; sourceTree = "<group>"; };
@@ -1310,6 +1315,8 @@
 				1827233D2237C2E2001D87AA /* StatefulComponent.swift */,
 				182723402237C2F6001D87AA /* PlainStatefulComponent.swift */,
 				182723432237C309001D87AA /* PresenterRoute.swift */,
+				182723472237FF5A001D87AA /* Invalidable.swift */,
+				182723492238014D001D87AA /* ComposableDelegate.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -2253,6 +2260,7 @@
 				1838996921264A77007CE13E /* PercentUtils.swift in Sources */,
 				18937BC421283321009F6CA3 /* Wireframe.swift in Sources */,
 				1838993621264A4F007CE13E /* FlowCollectionViewBase+Delegates.swift in Sources */,
+				1827234B2238014D001D87AA /* ComposableDelegate.swift in Sources */,
 				183899A221264A98007CE13E /* FutureControllerProvider.swift in Sources */,
 				1838993D21264A4F007CE13E /* CollectionViewCellIdentifier.swift in Sources */,
 				1898D73D2126E52A00DA4AC5 /* ComponentWithDelegate+RxSwift.swift in Sources */,
@@ -2345,6 +2353,7 @@
 				182723462237D946001D87AA /* ControllerBase.swift in Sources */,
 				1838998221264A89007CE13E /* _Component.swift in Sources */,
 				183899C221264AC7007CE13E /* UINavigationController+DialogDismissalListener.swift in Sources */,
+				182723482237FF5A001D87AA /* Invalidable.swift in Sources */,
 				1898D75321272B6000DA4AC5 /* CollectionSupplementaryViewIdentifier.swift in Sources */,
 				1898D7642127357F00DA4AC5 /* Properties+TableView.swift in Sources */,
 				1827232C2237C1C9001D87AA /* Composable.swift in Sources */,
@@ -2357,6 +2366,7 @@
 				1838995A21264A72007CE13E /* CGPoint+Init.swift in Sources */,
 				1898D7682127357F00DA4AC5 /* TableViewCell.swift in Sources */,
 				18389A0121264AED007CE13E /* String+EmailValidationError.swift in Sources */,
+				1827234A2238014D001D87AA /* ComposableDelegate.swift in Sources */,
 				183899CD21264AC7007CE13E /* UIView+stack.swift in Sources */,
 				1898D75821272B6400DA4AC5 /* CollectionViewCellWrapper.swift in Sources */,
 				183899A921264A99007CE13E /* FutureControllerProvider.swift in Sources */,
