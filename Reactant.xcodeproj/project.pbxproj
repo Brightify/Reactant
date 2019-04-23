@@ -1260,6 +1260,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1357,7 +1358,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS8.0/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS8.0/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS8.0/Result.framework",
@@ -1382,7 +1383,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactantPrototyping/Pods-ReactantPrototyping-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8FF05098B90528A8D1F2ABD2 /* [CP] Embed Pods Frameworks */ = {
@@ -1391,7 +1392,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator-tvOS9.2/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-tvOS9.2/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-tvOS9.2/Result.framework",
@@ -1416,7 +1417,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TVPrototyping/Pods-TVPrototyping-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9362B639AA797ACF422891EC /* [CP] Embed Pods Frameworks */ = {
@@ -1425,7 +1426,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator-iOS9.0/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS9.0/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Result-iOS9.0/Result.framework",
@@ -1460,7 +1461,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactantTests/Pods-ReactantTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ACDD5ABFEC93DC3D111598DD /* [CP] Check Pods Manifest.lock */ = {
@@ -1993,7 +1994,7 @@
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -2041,7 +2042,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
