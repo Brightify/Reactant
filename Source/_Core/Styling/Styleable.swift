@@ -12,7 +12,7 @@ extension Platform.View: Styleable { }
 
 public typealias Style<T> = (T) -> Void
 
-extension Styleable {
+/*public*/ extension Styleable {
 
     /**
      * Applies a method destructively. Recommended to be used on views to synchronize their appearance.
@@ -29,7 +29,7 @@ extension Styleable {
      *     emailLabel.apply(style: Styles.infoLabel)
      *     passwordLabel.apply(style: Styles.infoLabel)
      */
-    public func apply(style: Style<Self>) {
+    func apply(style: Style<Self>) {
         style(self)
     }
 
@@ -37,7 +37,7 @@ extension Styleable {
      * Applies multiple methods destructively. Recommended to be used on views to synchronize their appearance.
      * - NOTE: For an example, see **apply(style:)**.
      */
-    public func apply(styles: Style<Self>...) {
+    func apply(styles: Style<Self>...) {
         styles.forEach(apply(style:))
     }
 
@@ -45,7 +45,7 @@ extension Styleable {
      * Applies multiple methods destructively. Recommended to be used on views to synchronize their appearance.
      * - NOTE: For an example, see **apply(style:)**.
      */
-    public func apply(styles: [Style<Self>]) {
+    func apply(styles: [Style<Self>]) {
         styles.forEach(apply(style:))
     }
 
@@ -53,7 +53,7 @@ extension Styleable {
      * Applies multiple methods non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
      * - NOTE: For an example, see **with(style:)**.
      */
-    public func styled(using styles: Style<Self>...) -> Self {
+    func styled(using styles: Style<Self>...) -> Self {
         styles.forEach(apply(style:))
         return self
     }
@@ -62,7 +62,7 @@ extension Styleable {
      * Applies multiple methods non-destructively. Recommended to be used on views to synchronize their appearance during initialization.
      * - NOTE: For an example, see **with(style:)**.
      */
-    public func styled(using styles: [Style<Self>]) -> Self {
+    func styled(using styles: [Style<Self>]) -> Self {
         apply(styles: styles)
         return self
     }
@@ -82,7 +82,7 @@ extension Styleable {
      * let passwordLabel = UILabel(text: "Password").with(style: Styles.infoLabel)
      * ```
      */
-    public func with(_ style: Style<Self>) -> Self {
+    func with(_ style: Style<Self>) -> Self {
         apply(style: style)
         return self
     }

@@ -10,7 +10,7 @@
 import UIKit
 
 @available(iOS 9.0, *)
-extension UIStackView {
+/*public*/ extension UIStackView {
 
     /**
      * Adds arranged subviews to the stack view that this method is called upon.
@@ -18,7 +18,7 @@ extension UIStackView {
      * - parameter children: `UIView`s to be added as arranged subviews
      */
     @discardableResult
-    public func arrangedChildren(_ children: UIView...) -> UIStackView {
+    func arrangedChildren(_ children: UIView...) -> UIStackView {
         return arrangedChildren(children)
     }
 
@@ -28,7 +28,7 @@ extension UIStackView {
      * - parameter children: `UIView`s to be added as arranged subviews
      */
     @discardableResult
-    public func arrangedChildren(_ children: [UIView]) -> UIStackView {
+    func arrangedChildren(_ children: [UIView]) -> UIStackView {
         children.forEach(addArrangedSubview)
         return self
     }

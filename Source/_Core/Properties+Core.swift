@@ -26,7 +26,7 @@ extension Properties.Style {
 
     /// NOTE: Applied after `controllerRoot` style
     public static let dialogControllerRoot = style(for: ControllerRootViewContainer.self) { root in
-        root.backgroundColor = Platform.Color.black.fadedOut(by: 20%)
+//        root.backgroundColor = Platform.Color.black.fadedOut(by: 20%)
     }
     public static let dialog = style(for: Platform.View.self)
     public static let dialogContentContainer = style(for: Platform.View.self)

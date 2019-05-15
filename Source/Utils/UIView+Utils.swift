@@ -30,7 +30,7 @@ extension UIView {
      * ```
      */
     @discardableResult
-    public func children(_ children: UIView...) -> UIView {
+    /*public*/ func children(_ children: UIView...) -> UIView {
         return self.children(children)
     }
 
@@ -53,7 +53,7 @@ extension UIView {
      * ```
      */
     @discardableResult
-    public func children(_ children: [UIView]) -> UIView {
+    /*public*/ func children(_ children: [UIView]) -> UIView {
         children.forEach(addSubview)
         return self
     }
@@ -62,7 +62,7 @@ extension UIView {
      * Variable pointing to view's superview if there is one or self if there isn't.
      * Usually used in Controller when passing `Component.componentState` to the corresponding RootView.
      */
-    public var rootView: UIView {
+    /*public*/ var rootView: UIView {
         if let superview = superview {
             return superview.rootView
         } else {

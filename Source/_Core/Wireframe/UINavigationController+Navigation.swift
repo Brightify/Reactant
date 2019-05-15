@@ -9,14 +9,14 @@
 #if canImport(UIKit)
 import UIKit
 
-extension UINavigationController {
+/*public*/ extension UINavigationController {
 
     /**
      * Pushes controller onto the navigation stack.
      * - parameter controller: **UIViewController** to be pushed onto the stack
      * - parameter animated: determines whether the push should be animated
      */
-    public func push(controller: UIViewController, animated: Bool = true) {
+    func push(controller: UIViewController, animated: Bool = true) {
         pushViewController(controller, animated: animated)
     }
 
@@ -26,7 +26,7 @@ extension UINavigationController {
      * - returns: `Optional` **UIViewController**, `nil` if there was no controller on the stack
      */
     @discardableResult
-    public func pop(animated: Bool = true) -> UIViewController? {
+    func pop(animated: Bool = true) -> UIViewController? {
         return popViewController(animated: animated)
     }
 
@@ -37,7 +37,7 @@ extension UINavigationController {
      * - returns: `Optional` **UIViewController**, `nil` if there was no controller on the stack
      */
     @discardableResult
-    public func replace(with controller: UIViewController, animated: Bool = true) -> UIViewController? {
+    func replace(with controller: UIViewController, animated: Bool = true) -> UIViewController? {
         var controllers = viewControllers
         let current = controllers.popLast()
         controllers.append(controller)
@@ -54,7 +54,7 @@ extension UINavigationController {
      * - NOTE: See `replaceAll(with:animated:)`.
      */
     @discardableResult
-    public func popAllAndReplace(with controller: UIViewController) -> [UIViewController] {
+    func popAllAndReplace(with controller: UIViewController) -> [UIViewController] {
         let transition = CATransition()
         transition.duration = 0.5
         transition.type = .moveIn
@@ -72,7 +72,7 @@ extension UINavigationController {
      * - returns: Collection of popped controllers of type **UIViewController**.
      */
     @discardableResult
-    public func replaceAll(with controller: UIViewController, animated: Bool = true) -> [UIViewController] {
+    func replaceAll(with controller: UIViewController, animated: Bool = true) -> [UIViewController] {
         let currentControllers = viewControllers
         
         setViewControllers([controller], animated: animated)

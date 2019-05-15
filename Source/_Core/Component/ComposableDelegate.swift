@@ -9,67 +9,37 @@
 import Foundation
 
 public final class ComposableDelegate<Change, Action> {
-    private class ApplyLock {
-        enum LockType {
-            case apply
-            case shouldApply
-        }
+    private enum ApplyLockKind: LockKind {
+        case apply
+        case shouldApply
 
-        private var lock: LockType?
-
-        var isLocked: Bool {
-            return lock != nil
-        }
-
-        func locked<RESULT>(type: LockType, perform: () throws -> RESULT) rethrows -> RESULT {
-            guard !isLocked else {
-                fatalError(
-                    """
-                    ⚠️ Tried to lock inside locked block ⚠️
-                    > Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.
-                    > This is an issue inside Hyperdrive. Please file an issue on our GitHub.
-                    """
-                )
+        var isRecoverable: Bool {
+            switch self {
+            case .apply:
+                return true
+            case .shouldApply:
+                return false
             }
-
-            lock = type
-            defer { lock = nil }
-            return try perform()
         }
 
-        private func synchronizationError(_ message: String) {
-            #if FATAL_SYNCHRONIZATION
-            fatalError(message)
-            #else
-            print(message)
-            #endif
-        }
-
-        func ensureUnlocked(perform: () throws -> Void) rethrows {
-            switch lock {
-            case .none:
-                try perform()
-            case .apply?:
-                synchronizationError(
-                    """
-                    ⚠️ Changes submitted from inside `apply(change:)` method. ⚠️
-                    > Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.
-                    > Problem: Submitting changes during the application phase could result in invalid state or an infinite loop.
-                    > Interpretation: This probably means you called `submit(change:)` inside `shouldUpdate` method directly or indirectly.
-                    > Remedy: If you want to submit a change from inside of the `apply(change:)` method, make sure to dispatch it to the next main loop pass using `DispatchQueue.main.async { }`. Alternatively you can disable this error by setting the Swift flag `FATAL_SYNCHRONIZATION` to `false`.
-                    """
-                )
-
-            case .shouldApply?:
-                fatalError(
-                    """
-                    ⚠️ Changes submitted from inside `shouldApply(change:)` method. ⚠️
-                    > Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.
-                    > Problem: Submitting changes during the application phase could result in invalid state. Additionally, changing it inside `shouldApply` method is illegal as it completely breaks the lifecycle of the component.
-                    > Interpratation: This probably means you called `submit(change:)` inside `shouldUpdate` method directly or indirectly.
-                    > Remedy: Never submit changes from inside the `shouldApply` method.
-                    """
-                )
+        var description: String {
+            switch self {
+            case .apply:
+                return """
+                ⚠️ Changes submitted from inside `apply(change:)` method. ⚠️
+                > Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.
+                > Problem: Submitting changes during the application phase could result in invalid state or an infinite loop.
+                > Interpretation: This probably means you called `submit(change:)` inside `shouldUpdate` method directly or indirectly.
+                > Remedy: If you want to submit a change from inside of the `apply(change:)` method, make sure to dispatch it to the next main loop pass using `DispatchQueue.main.async { }`. Alternatively you can disable this error by setting the Swift flag `FATAL_SYNCHRONIZATION` to `false`.
+                """
+            case .shouldApply:
+                return """
+                ⚠️ Changes submitted from inside `shouldApply(change:)` method. ⚠️
+                > Debugging: To debug this issue you can set a breakpoint in \(#file):\(#line) and observe the call stack.
+                > Problem: Submitting changes during the application phase could result in invalid state. Additionally, changing it inside `shouldApply` method is illegal as it completely breaks the lifecycle of the component.
+                > Interpratation: This probably means you called `submit(change:)` inside `shouldUpdate` method directly or indirectly.
+                > Remedy: Never submit changes from inside the `shouldApply` method.
+                """
             }
         }
     }
@@ -121,7 +91,7 @@ public final class ComposableDelegate<Change, Action> {
     #endif
     internal let behavior = DefaultComponentBehavior<Change, Action>()
 
-    private let lock = ApplyLock()
+    private let lock = Lock<ApplyLockKind>()
 
     private var ownerWrapper: OwnerWrapper?
 

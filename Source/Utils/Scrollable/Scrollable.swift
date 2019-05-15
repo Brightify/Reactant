@@ -11,9 +11,9 @@ public protocol Scrollable {
     func scrollToTop(animated: Bool)
 }
 
-public extension Scrollable {
+/*public*/ extension Scrollable {
     
-    public func scrollToTop() {
+    /*public*/ func scrollToTop() {
         scrollToTop(animated: true)
     }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='raw' executeOnSourceChanges='false'>
+    <pages>
+        <page name='1. View'/>
+        <page name='2. Service'/>
+        <page name='3. Model'/>
+        <page name='4. Presenters'/>
+        <page name='5. Controllers'/>
+        <page name='6. Wireframe'/>
+    </pages>
+</playground>

@@ -38,7 +38,7 @@ public final class ActionMapper<ACTION> {
 
     #if os(iOS)
     public func map(control: Platform.Control, to action: @autoclosure @escaping () -> ACTION) {
-        map(control: control, for: .touchUpInside, to: action)
+        map(control: control, for: .touchUpInside, to: action())
     }
     #elseif os(tvOS)
     public func map(control: Platform.Control, to action: @autoclosure @escaping () -> ACTION) {

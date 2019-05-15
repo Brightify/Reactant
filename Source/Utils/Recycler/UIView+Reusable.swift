@@ -9,10 +9,10 @@
 #if canImport(UIKit)
 import UIKit
 
-extension UIView: Reusable {
-    
-    public func prepareForReuse() {
-        removeFromSuperview()
-    }
-}
+//extension UIView: Reusable {
+//
+//    /*public*/ func prepareForReuse() {
+//        removeFromSuperview()
+//    }
+//}
 #endif

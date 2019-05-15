@@ -30,7 +30,7 @@ open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
     }
     
     public override init(initialState: STATE, rootViewFactory: @autoclosure @escaping () -> ROOT) {
-        super.init(initialState: initialState, rootViewFactory: rootViewFactory)
+        super.init(initialState: initialState, rootViewFactory: rootViewFactory())
     }
 
     open override func updateRootViewConstraints() {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class StatefulComponent<Change, State, Action>: Component<Change, Action> {
+open class StatefulComponent<Change, State, Action>: Component<Change, Action>, Stateful {
     private var stateStorage: State
 
     /**
@@ -37,4 +37,8 @@ open class StatefulComponent<Change, State, Action>: Component<Change, Action> {
     }
 
     open func update(previousState: State?) { }
+
+    public func set(state: State) {
+        self.state = state
+    }
 }

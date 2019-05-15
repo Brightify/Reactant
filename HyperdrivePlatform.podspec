@@ -60,8 +60,13 @@ Pod::Spec.new do |spec|
         snapKit(subspec)
 
         subspec.source_files = [
+            'Source/_Core/**/*.swift',
             'Source/Core/**/*.swift',
+            'Source/Interface/**/*.swift',
             'Source/Utils/**/*.swift'
+        ]
+        subspec.exclude_files = [
+            'Source/_Core/Styling/Extensions/**/*.swift'
         ]
     end
 

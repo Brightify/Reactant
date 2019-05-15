@@ -10,6 +10,99 @@
 #if canImport(UIKit)
 import UIKit
 
+//public protocol HyperView: AnyObject {
+//    associatedtype State: HyperViewState
+//    associatedtype Action
+//
+//    init(actionPublisher: ActionPublisher<Action>)
+//
+//    func set(state: State)
+//
+//    func apply(change: State.Change)
+//}
+//
+//public class ActionPublisher<Action> {
+//    public func publish(action: Action) {
+//
+//    }
+//}
+//
+//public protocol HyperViewState {
+//    associatedtype Change
+//
+//    mutating func mutateRecordingChanges(mutation: (inout Self) -> Void) -> [Change]
+//
+//    mutating func apply(change: Change)
+//}
+//
+//struct SomeState: HyperViewState {
+//    private var changes: [Change]? = nil
+//
+//    var title: String {
+//        didSet {
+//            changes?.append(.titleChanged(title))
+//        }
+//    }
+//    var message: String {
+//        didSet {
+//            changes?.append(.messageChanged(message))
+//        }
+//    }
+//
+//    mutating func mutateRecordingChanges(mutation: (inout SomeState) -> Void) -> [Change] {
+//        var mutableState = self
+//        mutableState.changes = []
+//
+//        mutation(&mutableState)
+//
+//        let changes = mutableState.changes
+//        mutableState.changes = nil
+//
+//        self = mutableState
+//
+//        return changes ?? []
+//    }
+//
+//    enum Change {
+//        case titleChanged(String)
+//        case messageChanged(String)
+//    }
+//}
+//
+//public class HyperViewManager<View: UIView & HyperView> {
+//    private var state: View.State
+//    private weak var view: View? {
+//        didSet {
+//            notifyViewChanged()
+//        }
+//    }
+//
+//    public init(initialState: View.State) {
+//        state = initialState
+//    }
+//
+//    public func load(actionHandler: (View.Action) -> Void) -> UIView {
+//
+//    }
+//
+//    public func mutateViewState(with mutation: (inout View.State) -> Void) {
+//        let changes = state.mutateRecordingChanges(mutation: mutation)
+//        submit(viewChanges: changes)
+//    }
+//
+//    private func submit(viewChanges: [View.State.Change]) {
+//        mutateViewState { state in
+//            for change in viewChanges {
+//                view?.apply(change: change)
+//            }
+//        }
+//    }
+//
+//    private func notifyViewChanged() {
+//        view?.set(state: state)
+//    }
+//}
+
 open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithDelegate, Configurable where ROOT: _Component {
 
     public typealias StateType = STATE
@@ -183,7 +276,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
 
 extension ControllerBase where STATE == Void {
     public convenience init(rootViewFactory: @autoclosure @escaping () -> ROOT) {
-        self.init(initialState: (), rootViewFactory: rootViewFactory)
+        self.init(initialState: (), rootViewFactory: rootViewFactory())
     }
 }
 #endif

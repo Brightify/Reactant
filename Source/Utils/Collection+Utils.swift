@@ -8,13 +8,13 @@
 
 import Foundation
 
-extension Collection {
+/*public*/ extension Collection {
     
-    public func groupBy<KEY: Hashable>(_ extractKey: (Iterator.Element) -> KEY) -> [(KEY, [Iterator.Element])] {
+    func groupBy<KEY: Hashable>(_ extractKey: (Iterator.Element) -> KEY) -> [(KEY, [Iterator.Element])] {
         return groupBy { Optional(extractKey($0)) }
     }
     
-    public func groupBy<KEY: Hashable>(_ extractKey: (Iterator.Element) -> KEY?) -> [(KEY, [Iterator.Element])] {
+    func groupBy<KEY: Hashable>(_ extractKey: (Iterator.Element) -> KEY?) -> [(KEY, [Iterator.Element])] {
         var grouped: [(KEY, [Iterator.Element])] = []
         var t: [String] = []
         func add(_ item: Iterator.Element, forKey key: KEY) {
