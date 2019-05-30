@@ -12,15 +12,13 @@ public protocol ComposableHyperView: AnyObject {
     associatedtype State: HyperViewState
     associatedtype Action
 
-    func set(state: State)
+    var state: State { get }
 
-    func apply(change: State.Change)
-
-    static var sourceFilePath: String { get }
+    static var triggerReloadPaths: Set<String> { get }
 }
 
 public protocol HyperView: ComposableHyperView {
-    init(actionPublisher: ActionPublisher<Action>)
+    init(initialState: State, actionPublisher: ActionPublisher<Action>)
 }
 
 open class HyperViewBase: UIView {

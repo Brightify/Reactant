@@ -44,8 +44,8 @@ open class ComposableHyperViewController<View: UIView & ComposableHyperView>: UI
 }
 
 open class HyperViewController<View: UIView & HyperView>: ComposableHyperViewController<View> {
-    public init(initialState: View.State) {
-        super.init(initialState: initialState, viewFactory: View.init)
+    public init(initialState: View.State = View.State()) {
+        super.init(initialState: initialState, viewFactory: { View(initialState: initialState, actionPublisher: $0) })
     }
 }
 

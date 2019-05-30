@@ -72,7 +72,7 @@ Passing information to `RootView` is done by setting `RootView`'s `componentStat
 We don't have any notes ready, so we need to create some from scratch and pass them to the `RootView`.
 
 ```swift
-import Reactant
+import Hyperdrive
 
 final class MainController: ControllerBase<Void, MainRootView> {
   override init() {
@@ -98,7 +98,7 @@ We can see `Reactant CLI` generated a class for us that we will use as our `Root
 We'll mark **MainRootView** as `RootView` and add a `PlainTableView` as a field to keep our notes organized.
 
 ```swift
-import Reactant
+import Hyperdrive
 import RxSwift
 
 final class MainRootView: ViewBase<[Note], PlainTableViewAction<NoteCell>> {
@@ -145,7 +145,7 @@ Creating new file in the `Main` folder and choosing `Swift file`. You can name t
 
 ```swift
 import UIKit
-import Reactant
+import Hyperdrive
 
 final class NoteCell: ViewBase<Note, Void> {
   static let height: CGFloat = 80
@@ -257,7 +257,7 @@ We need to create a new `Controller` and `RootView` for editing notes. It can be
 `NoteModificationController.swift` should look like this:
 
 ```swift
-import Reactant
+import Hyperdrive
 
 final class NoteModificationController: ControllerBase<Note, NoteModificationRootView> {
   struct Properties {
@@ -283,7 +283,7 @@ final class NoteModificationController: ControllerBase<Note, NoteModificationRoo
 `NoteModificationRootView.swift` should have this structure:
 
 ```swift
-import Reactant
+import Hyperdrive
 import RxSwift
 
 enum NoteModificationAction {

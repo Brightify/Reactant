@@ -148,7 +148,7 @@ We should have `MainController` readied up from `ReactantCLI` and so we just nee
 ```swift
 // Sources/Components/Main/MainController.swift
 
-import Reactant
+import Hyperdrive
 
 final class MainController: ControllerBase<Void, MainRootView> {
   struct Dependencies {
@@ -206,7 +206,7 @@ We'll take a look at the processes that happen inside the `DataService` right af
 ```swift
 // Sources/Components/Main/MainRootView.swift
 
-import Reactant
+import Hyperdrive
 import RxSwift
 
 final class MainRootView: ViewBase<[User]?, PlainTableViewAction<UserCell>> {
@@ -256,7 +256,7 @@ Then we'll create the cells to fill up the table, `UserCell`:
 ```swift
 // Sources/Components/Main/UserCell.swift
 
-import Reactant
+import Hyperdrive
 import UIKit
 
 final class UserCell: ViewBase<User, Void>, Reactant.TableViewCell {
@@ -450,7 +450,7 @@ We'll cover the header first, the `.swift` part should look like this:
 ```swift
 // Sources/Components/Repositories/UserDetailsView/UserDetailsView.swift
 
-import Reactant
+import Hyperdrive
 
 final class UserDetailsView: ViewBase<UserAccount, Void> {
   let avatar = UIImageView()
@@ -572,7 +572,7 @@ For that `RepositoryCell` component needs to be created.
 ```swift
 // Sources/Components/Repositories/RepositoryCell.swift
 
-import Reactant
+import Hyperdrive
 import UIKit
 
 final class RepositoryCell: ViewBase<Repository, Void>, Reactant.TableViewCell {
@@ -670,7 +670,7 @@ Putting this all together in `RepositoryRootView.swift` will look like this:
 ```swift
 // Sources/Components/Repositories/RepositoriesRootView.swift
 
-import Reactant
+import Hyperdrive
 import RxSwift
 
 typealias UserAccount = (user: User, repositories: [Repository]?)
@@ -736,7 +736,7 @@ The controller that controls it looks like this:
 ```swift
 // Sources/Components/Repositories/RepositoriesController.swift
 
-import Reactant
+import Hyperdrive
 
 final class RepositoriesController: ControllerBase<Void, RepositoriesRootView> {
   struct Dependencies {

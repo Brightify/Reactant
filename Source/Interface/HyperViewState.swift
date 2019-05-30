@@ -8,14 +8,10 @@
 
 import Foundation
 
-public protocol HyperViewState {
-    associatedtype Change
-}
+public protocol HyperViewState: AnyObject {
+    init()
 
-public protocol ChangeApplyingHyperViewState: HyperViewState {
-    mutating func apply(change: Change)
-}
+    func apply(from otherState: Self)
 
-public protocol ChangeTrackingHyperViewState: HyperViewState {
-    mutating func mutateRecordingChanges(mutation: (inout Self) -> Void) -> [Change]
+    func resynchronize()
 }

@@ -56,7 +56,7 @@ View hierarchy starts with a **RootView**. It's nothing more than a special case
 
 ```swift
 // GreeterRootView.swift
-import Reactant
+import Hyperdrive
 import RxSwift
 
 enum GreeterAction {
@@ -113,7 +113,7 @@ Each screen is a **Controller** and each **Controller** is a **Component**. Cont
 
 ```swift
 // GreeterController.swift
-import Reactant
+import Hyperdrive
 
 final class GreeterController: ControllerBase<Void, GreeterRootView> {
     init() {
@@ -146,7 +146,7 @@ To be reusable and testable, Controller should get everything it needs from its 
 Then you just add them as parameters in the Controller's `init` and store them to private properties so you can reference them later. An example Controller that would use all three of these would look like this:
 
 ```swift
-import Reactant
+import Hyperdrive
 
 final class ExampleController: ControllerBase<Void, ExampleRootView> {
     struct Dependencies {
@@ -264,7 +264,7 @@ Since Controllers don't know about navigation, there has to be something in the 
 
 ```swift
 // GreeterController.swift
-import Reactant
+import Hyperdrive
 
 final class GreeterController: ControllerBase<String, GreeterRootView> {
     struct Dependencies {
@@ -311,7 +311,7 @@ You can see we also set `componentState` type to String in the Controller and ad
 ```swift
 // MainWireframe.swift
 import UIKit
-import Reactant
+import Hyperdrive
 
 final class MainWireframe: Wireframe {
     private let module: DependencyModule

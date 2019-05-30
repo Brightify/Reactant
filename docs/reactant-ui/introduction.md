@@ -122,7 +122,7 @@ Parts of the declaration should be familiar to you if you use AutoLayout.
 To complete the example we need to write the Swift part of the `GreeterRootView`. We basically just remove the `loadView` and `setupConstraints` methods, make the `greeting` and `nameField` properties `internal` and remove the `RootView` protocol conformance. And this is what we'll get:
 
 ```swift
-import Reactant
+import Hyperdrive
 
 final class GreeterRootView: ViewBase<(greeting: String, name: String), GreeterAction> {
     override var actions: [Observable<GreeterAction>] {
