@@ -32,9 +32,13 @@ public class ActionPublisher<Action> {
         }
     }
 
-    public func map<InnerAction>(_ mapping: @escaping (InnerAction) -> Action) -> ActionPublisher<InnerAction> {
+    public func map<InnerAction>(_ mapping: @escaping (InnerAction) -> Action?) -> ActionPublisher<InnerAction> {
         return ActionPublisher<InnerAction>(publisher: { innerAction in
-            self.publish(action: mapping(innerAction))
+            guard let action = mapping(innerAction) else {
+                // Ignored action
+                return
+            }
+            self.publish(action: action)
         })
     }
 
