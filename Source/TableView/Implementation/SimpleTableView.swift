@@ -9,18 +9,18 @@
 #if canImport(UIKit)
 import UIKit
 
-public enum SimpleTableViewAction<HEADER: _Component, CELL: _Component, FOOTER: _Component> {
-    case selected(CELL.StateType)
-    case headerAction(HEADER.StateType, HEADER.ActionType)
-    case rowAction(CELL.StateType, CELL.ActionType)
-    case footerAction(FOOTER.StateType, FOOTER.ActionType)
+public enum SimpleTableViewAction<HEADER: HyperView, CELL: HyperView, FOOTER: HyperView> {
+    case selected(CELL.State)
+    case headerAction(HEADER.State, HEADER.Action)
+    case rowAction(CELL.State, CELL.Action)
+    case footerAction(FOOTER.State, FOOTER.Action)
     case refresh
 }
 
-open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableViewBase<SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>, SimpleTableViewAction<HEADER, CELL, FOOTER>>, UITableViewDataSource where HEADER: _Component, CELL: _Component, FOOTER: _Component {
+open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableViewBase<SectionModel<(header: HEADER.State, footer: FOOTER.State), CELL.State>, SimpleTableViewAction<HEADER, CELL, FOOTER>>, UITableViewDataSource where HEADER: HyperView, CELL: HyperView, FOOTER: HyperView {
 
-    public typealias MODEL = CELL.StateType
-    public typealias SECTION = SectionModel<(header: HEADER.StateType, footer: FOOTER.StateType), CELL.StateType>
+    public typealias MODEL = CELL.State
+    public typealias SECTION = SectionModel<(header: HEADER.State, footer: FOOTER.State), CELL.State>
     
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
     private let headerIdentifier = TableViewHeaderFooterIdentifier<HEADER>()
@@ -35,7 +35,7 @@ open class SimpleTableView<HEADER: UIView, CELL: UIView, FOOTER: UIView>: TableV
         headerFactory: @escaping () -> HEADER = HEADER.init,
         footerFactory: @escaping () -> FOOTER = FOOTER.init,
         style: UITableView.Style = .plain,
-        options: TableViewOptions)
+        options: TableViewOptions = .default)
     {
         self.cellFactory = cellFactory
         self.headerFactory = headerFactory

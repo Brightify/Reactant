@@ -15,3 +15,11 @@ public protocol HyperViewState: AnyObject {
 
     func resynchronize()
 }
+
+public final class EmptyState: HyperViewState {
+    public init() { }
+
+    public func apply(from otherState: EmptyState) { }
+
+    public func resynchronize() { }
+}

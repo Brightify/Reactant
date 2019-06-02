@@ -9,21 +9,21 @@
 #if canImport(UIKit)
 import UIKit
 
-/*public*/ func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
+public func + (lhs: NSAttributedString, rhs: NSAttributedString) -> NSAttributedString {
     let mutableString = NSMutableAttributedString(attributedString: lhs)
     mutableString.append(rhs)
     return mutableString
 }
 
-/*public*/ func + (lhs: String, rhs: NSAttributedString) -> NSAttributedString {
+public func + (lhs: String, rhs: NSAttributedString) -> NSAttributedString {
     return lhs.attributed() + rhs
 }
 
-/*public*/ func + (lhs: NSAttributedString, rhs: String) -> NSAttributedString {
+public func + (lhs: NSAttributedString, rhs: String) -> NSAttributedString {
     return lhs + rhs.attributed()
 }
 
-/*public*/ extension String {
+public extension String {
 
     /**
      * Allows you to easily create an `NSAttributedString` out of regular `String`

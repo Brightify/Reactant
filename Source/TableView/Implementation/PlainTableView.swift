@@ -9,14 +9,14 @@
 #if canImport(UIKit)
 import UIKit
 
-public enum PlainTableViewAction<CELL: _Component> {
-    case selected(CELL.StateType)
-    case rowAction(CELL.StateType, CELL.ActionType)
+public enum PlainTableViewAction<CELL: HyperView> {
+    case selected(CELL.State)
+    case rowAction(CELL.State, CELL.Action)
     case refresh
 }
 
-open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTableViewAction<CELL>>, UITableViewDataSource where CELL: _Component {
-    public typealias MODEL = CELL.StateType
+open class PlainTableView<CELL: UIView>: TableViewBase<CELL.State, PlainTableViewAction<CELL>>, UITableViewDataSource where CELL: HyperView {
+    public typealias MODEL = CELL.State
 
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
 
@@ -24,8 +24,8 @@ open class PlainTableView<CELL: UIView>: TableViewBase<CELL.StateType, PlainTabl
 
     public init(
         style: UITableView.Style = .plain,
-        options: TableViewOptions = [],
-        cellFactory: @autoclosure @escaping () -> CELL)
+        options: TableViewOptions = .default,
+        cellFactory: @autoclosure @escaping () -> CELL = CELL.init())
     {
         self.cellFactory = cellFactory
 

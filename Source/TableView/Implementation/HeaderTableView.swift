@@ -9,10 +9,10 @@
 #if canImport(UIKit)
 import UIKit
 
-public enum HeaderTableViewAction<HEADER: _Component, CELL: _Component> {
-    case selected(CELL.StateType)
-    case headerAction(HEADER.StateType, HEADER.ActionType)
-    case rowAction(CELL.StateType, CELL.ActionType)
+public enum HeaderTableViewAction<HEADER: HyperView, CELL: HyperView> {
+    case selected(CELL.State)
+    case headerAction(HEADER.State, HEADER.Action)
+    case rowAction(CELL.State, CELL.Action)
     case refresh
 }
 
@@ -26,10 +26,10 @@ public struct SectionModel<Section, ItemType> {
     }
 }
 
-open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionModel<HEADER.StateType, CELL.StateType>, HeaderTableViewAction<HEADER, CELL>>, UITableViewDataSource where HEADER: _Component, CELL: _Component {
+open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionModel<HEADER.State, CELL.State>, HeaderTableViewAction<HEADER, CELL>>, UITableViewDataSource where HEADER: HyperView, CELL: HyperView {
 
-    public typealias MODEL = CELL.StateType
-    public typealias SECTION = SectionModel<HEADER.StateType, CELL.StateType>
+    public typealias MODEL = CELL.State
+    public typealias SECTION = SectionModel<HEADER.State, CELL.State>
 
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
     private let headerIdentifier = TableViewHeaderFooterIdentifier<HEADER>()
@@ -41,7 +41,7 @@ open class HeaderTableView<HEADER: UIView, CELL: UIView>: TableViewBase<SectionM
         cellFactory: @escaping () -> CELL = CELL.init,
         headerFactory: @escaping () -> HEADER = HEADER.init,
         style: UITableView.Style = .plain,
-        options: TableViewOptions)
+        options: TableViewOptions = .default)
     {
         self.cellFactory = cellFactory
         self.headerFactory = headerFactory

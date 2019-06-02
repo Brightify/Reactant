@@ -11,7 +11,7 @@ import UIKit
 
 /// Extension of UIBarButtonItem, that adds option to use closure instead of target and selector
 private var actionBlockKey = 0 as UInt8
-/*public*/ extension UIBarButtonItem {
+public extension UIBarButtonItem {
 
     private var actionBlock: (() -> Void)? {
         get {

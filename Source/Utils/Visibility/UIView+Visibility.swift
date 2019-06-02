@@ -10,7 +10,7 @@
 import UIKit
 import SnapKit
 
-/*public */extension UIView {
+public extension UIView {
     
     private struct AssociatedKey {
         static var collapseAxis: UInt8 = 0

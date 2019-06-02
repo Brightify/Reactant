@@ -9,7 +9,7 @@
 #if canImport(UIKit)
 import UIKit
 
-public protocol ReactantTableView: class, Scrollable {
+public protocol ReactantTableView: class, Scrollable where Self: UIView {
     
     var tableView: UITableView { get }
     #if os(iOS)

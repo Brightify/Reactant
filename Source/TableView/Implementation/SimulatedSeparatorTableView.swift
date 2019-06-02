@@ -9,16 +9,16 @@
 #if canImport(UIKit)
 import UIKit
 
-public enum SimulatedSeparatorTableViewAction<CELL: _Component> {
-    case selected(CELL.StateType)
-    case rowAction(CELL.StateType, CELL.ActionType)
+public enum SimulatedSeparatorTableViewAction<CELL: HyperView> {
+    case selected(CELL.State)
+    case rowAction(CELL.State, CELL.Action)
     case refresh
 }
 
-open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateType, SimulatedSeparatorTableViewAction<CELL>>, UITableViewDataSource where CELL: _Component {
+open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.State, SimulatedSeparatorTableViewAction<CELL>>, UITableViewDataSource where CELL: HyperView {
 
-    public typealias MODEL = CELL.StateType
-    public typealias SECTION = SectionModel<Void, CELL.StateType>
+    public typealias MODEL = CELL.State
+    public typealias SECTION = SectionModel<Void, CELL.State>
 
     private let cellIdentifier = TableViewCellIdentifier<CELL>()
     private let footerIdentifier = TableViewHeaderFooterIdentifier<UITableViewHeaderFooterView>(name: "Separator")
@@ -43,7 +43,7 @@ open class SimulatedSeparatorTableView<CELL: UIView>: TableViewBase<CELL.StateTy
     public init(
         cellFactory: @escaping () -> CELL = CELL.init,
         style: UITableView.Style = .plain,
-        options: TableViewOptions)
+        options: TableViewOptions = .default)
     {
         self.cellFactory = cellFactory
 

@@ -20,6 +20,7 @@ public struct TableViewOptions: OptionSet {
     // add more here, make sure to increment the shift number -----------------^
     
     public static let none: TableViewOptions = []
+    public static let `default`: TableViewOptions = .deselectsAutomatically
 }
 
 @objcMembers
@@ -172,8 +173,8 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         setNeedsLayout()
     }
 
-    open func configure<T: _Component>(cell: TableViewCellWrapper<T>, factory: @escaping () -> T, model: T.StateType,
-                          mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
+    open func configure<T: HyperView>(cell: TableViewCellWrapper<T>, factory: @escaping () -> T, model: T.State,
+                          mapAction: @escaping (T.Action) -> ACTION) -> Void {
         cell.configureTracking = ObservationTokenTracker()
 
         if configurationChangeTime != cell.configurationChangeTime {
@@ -181,25 +182,26 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
             cell.configurationChangeTime = configurationChangeTime
         }
         let component = cell.cachedCellOrCreated(factory: factory)
-        component.componentState = model
+        component.state.apply(from: model)
         (component as? Configurable)?.configuration = configuration
 
-        component
-            .observeAction(observer: { [weak self] action in
-                self?.perform(action: mapAction(action))
-            })
-            .track(in: cell.configureTracking)
+        #warning("FIXME Implement action propagation")
+//        component
+//            .observeAction(observer: { [weak self] action in
+//                self?.perform(action: mapAction(action))
+//            })
+//            .track(in: cell.configureTracking)
     }
     
-    open func dequeueAndConfigure<T: _Component>(identifier: TableViewCellIdentifier<T>, factory: @escaping () -> T,
-                                    model: T.StateType, mapAction: @escaping (T.ActionType) -> ACTION) -> TableViewCellWrapper<T> {
+    open func dequeueAndConfigure<T: HyperView>(identifier: TableViewCellIdentifier<T>, factory: @escaping () -> T,
+                                    model: T.State, mapAction: @escaping (T.Action) -> ACTION) -> TableViewCellWrapper<T> {
         let cell = tableView.dequeue(identifier: identifier)
         configure(cell: cell, factory: factory, model: model, mapAction: mapAction)
         return cell
     }
     
-    open func configure<T: _Component>(view: TableViewHeaderFooterWrapper<T>, factory: @escaping () -> T, model: T.StateType,
-                          mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
+    open func configure<T: HyperView>(view: TableViewHeaderFooterWrapper<T>, factory: @escaping () -> T, model: T.State,
+                          mapAction: @escaping (T.Action) -> ACTION) -> Void {
         view.configureTracking = ObservationTokenTracker()
 
         if configurationChangeTime != view.configurationChangeTime {
@@ -207,18 +209,19 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
             view.configurationChangeTime = configurationChangeTime
         }
         let component = view.cachedViewOrCreated(factory: factory)
-        component.componentState = model
+        component.state.apply(from: model)
         (component as? Configurable)?.configuration = configuration
 
-        component
-            .observeAction(observer: { [weak self] action in
-                self?.perform(action: mapAction(action))
-            })
-            .track(in: view.configureTracking)
+        #warning("FIXME Implement action propagation")
+//        component
+//            .observeAction(observer: { [weak self] action in
+//                self?.perform(action: mapAction(action))
+//            })
+//            .track(in: view.configureTracking)
     }
     
-    open func dequeueAndConfigure<T: _Component>(identifier: TableViewHeaderFooterIdentifier<T>, factory: @escaping () -> T,
-                                    model: T.StateType, mapAction: @escaping (T.ActionType) -> ACTION) -> TableViewHeaderFooterWrapper<T> {
+    open func dequeueAndConfigure<T: HyperView>(identifier: TableViewHeaderFooterIdentifier<T>, factory: @escaping () -> T,
+                                    model: T.State, mapAction: @escaping (T.Action) -> ACTION) -> TableViewHeaderFooterWrapper<T> {
         let view = tableView.dequeue(identifier: identifier)
         configure(view: view, factory: factory, model: model, mapAction: mapAction)
         return view

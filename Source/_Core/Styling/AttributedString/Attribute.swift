@@ -16,9 +16,9 @@ import AppKit
 /// Enum which represents NS attributes for NSAttributedString (like NSStrokeColorAttributeName). Each case has value and assigned name.
 public enum Attribute {
     #if canImport(UIKit)
-    case font(UIFont)
+    case font(UIFont?)
     #elseif canImport(AppKit)
-    case font(NSFont)
+    case font(NSFont?)
     #endif
     case paragraphStyle(NSParagraphStyle)
     case foregroundColor(UIColor)
@@ -96,7 +96,7 @@ public enum Attribute {
         return key.rawValue
     }
 
-    public var value: AnyObject {
+    public var value: AnyObject? {
         switch self {
         case .font(let font):
             return font
