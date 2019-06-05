@@ -8,16 +8,19 @@
 
 import Foundation
 
-
 public class ActionPublisher<Action> {
-    private let publisher: (Action) -> Void
+    private var listeners: [(Action) -> Void] = []
 
     public init(publisher: @escaping (Action) -> Void) {
-        self.publisher = publisher
+        listeners.append(publisher)
     }
 
+    public init() { }
+
     public func publish(action: Action) {
-        publisher(action)
+        for listener in listeners {
+            listener(action)
+        }
     }
 
     public func publisher<Value>(_ mapping: @escaping (Value) -> Action) -> (Value) -> Void {
@@ -40,6 +43,10 @@ public class ActionPublisher<Action> {
             }
             self.publish(action: action)
         })
+    }
+
+    public func listen(with listener: @escaping (Action) -> Void) {
+        listeners.append(listener)
     }
 
     public class var noop: ActionPublisher {
