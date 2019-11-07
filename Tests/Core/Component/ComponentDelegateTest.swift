@@ -64,7 +64,7 @@ class ComponentDelegateTest: QuickSpec {
                 var mockComponent: MockComponentBase<Int, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+                    mockComponent = ComponentBase.spy()
                 }
                 context("when componentState is never set") {
                     it("emits nothing") {
@@ -93,7 +93,7 @@ class ComponentDelegateTest: QuickSpec {
                 var mockComponent: MockComponentBase<Int, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+                    mockComponent = ComponentBase.spy()
                 }
                 context("when componentState is never set") {
                     it("emits nothing") {
@@ -149,7 +149,7 @@ class ComponentDelegateTest: QuickSpec {
                 var mockComponent: MockComponentBase<Int, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+                    mockComponent = ComponentBase.spy()
                 }
                 context("after initialization") {
                     it("has no value") {
@@ -260,7 +260,7 @@ class ComponentDelegateTest: QuickSpec {
                 var mockComponent: MockComponentBase<Int, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+                    mockComponent = ComponentBase.spy()
                 }
                 context("when componentState is set") {
                     context("and setting canUpdate to true") {
@@ -295,7 +295,7 @@ class ComponentDelegateTest: QuickSpec {
             describe("update") {
                 var mockComponent: MockComponentBase<ComponentTestState, ComponentTestAction>!
                 beforeEach {
-                    mockComponent = MockComponentBase()
+                    mockComponent = ComponentBase.spy()
                 }
                 context("when setting first componentState value") {
                     it("gets called") {
@@ -370,7 +370,7 @@ class ComponentDelegateTest: QuickSpec {
                 var mockComponent: MockComponentBase<ComponentTestState, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+                    mockComponent = ComponentBase.spy()
                 }
                 context("after initialization") {
                     it("has no value") {
@@ -453,7 +453,7 @@ class ComponentDelegateTest: QuickSpec {
                 var mockComponent: MockComponentBase<ComponentTestState, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+                    mockComponent = ComponentBase.spy()
                 }
                 context("when componentState is set") {
                     context("and setting canUpdate to true") {
@@ -488,7 +488,7 @@ class ComponentDelegateTest: QuickSpec {
             describe("update") {
                 var mockComponent: MockComponentBase<ComponentTestClass, ComponentTestAction>!
                 beforeEach {
-                    mockComponent = MockComponentBase()
+                    mockComponent = ComponentBase.spy()
                 }
                 context("when setting componentState") {
                     it("gets called") {
@@ -557,7 +557,7 @@ class ComponentDelegateTest: QuickSpec {
                 var mockComponent: MockComponentBase<ComponentTestClass, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+                    mockComponent = ComponentBase.spy()
                 }
                 context("after initialization") {
                     it("has no value") {
@@ -640,7 +640,7 @@ class ComponentDelegateTest: QuickSpec {
                 var mockComponent: MockComponentBase<ComponentTestClass, ComponentTestAction>!
 
                 beforeEach {
-                    mockComponent = MockComponentBase()
+                    mockComponent = ComponentBase.spy()
                 }
                 context("when componentState is set") {
                     context("and setting canUpdate to true") {

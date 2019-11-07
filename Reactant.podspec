@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
     spec.name             = 'Reactant'
-    spec.version          = '1.2.0'
+    spec.version          = '1.3.0'
     spec.summary          = 'Reactant is a reactive architecture for iOS'
     spec.description      = <<-DESC
                             Reactant is a foundation for rapid and safe iOS development. It allows you to cut down your development costs by improving reusability, testability and safety of your code, especially your UI.
@@ -28,32 +28,29 @@ Pod::Spec.new do |spec|
     spec.social_media_url = 'https://twitter.com/BrightifyOrg'
     spec.requires_arc = true
 
-    spec.ios.deployment_target = '8.0'
-    spec.tvos.deployment_target = '9.2'
+    spec.ios.deployment_target = '10.0'
+    spec.tvos.deployment_target = '10.0'
     spec.default_subspec = 'Core', 'Result'
     
-    spec.swift_version    = '5.0'
+    spec.swift_version    = '5.1'
 
     def self.rxSwift(subspec)
-        subspec.dependency 'RxSwift', '~> 4.0'
+        subspec.dependency 'RxSwift', '~> 5.0'
     end
     def self.snapKit(subspec)
-        subspec.dependency 'SnapKit', '~> 4.0'
-    end
-    def self.result(subspec)
-        subspec.dependency 'Result', '~> 3.0'
+        subspec.dependency 'SnapKit', '~> 5.0'
     end
     def self.rxCocoa(subspec)
-        subspec.dependency 'RxCocoa', '~> 4.0'
+        subspec.dependency 'RxCocoa', '~> 5.0'
     end
     def self.rxDataSources(subspec)
-        subspec.dependency 'RxDataSources', '~> 3.0'
+        subspec.dependency 'RxDataSources', '~> 4.0'
     end
     def self.rxOptional(subspec)
-        subspec.dependency 'RxOptional', '~> 3.0'
+        subspec.dependency 'RxOptional', '~> 4.0'
     end
     def self.kingfisher(subspec)
-        subspec.dependency 'Kingfisher', '~> 4.0'
+        subspec.dependency 'Kingfisher', '~> 5.0'
     end
 
     spec.subspec 'Core' do |subspec|
@@ -75,14 +72,12 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'Result' do |subspec|
-        result(subspec)
         rxSwift(subspec)
         rxOptional(subspec)
         subspec.source_files = 'Source/Result/**/*.swift'
     end
 
     spec.subspec 'Validation' do |subspec|
-        result(subspec)
         subspec.source_files = 'Source/Validation/**/*.swift'
     end
 
@@ -120,8 +115,8 @@ Pod::Spec.new do |spec|
     end
 
     spec.subspec 'FallbackSafeAreaInsets' do |subspec|
-        subspec.ios.deployment_target = '9.0'
-        subspec.tvos.deployment_target = '9.2'
+        subspec.ios.deployment_target = '10.0'
+        subspec.tvos.deployment_target = '10.0'
 
         subspec.dependency 'Reactant/Core'
         subspec.pod_target_xcconfig = {

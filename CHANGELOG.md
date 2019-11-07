@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0
+* Support for Swift 5.0
+* Upgraded to RxSwift 5.0
+* Min system version increased to:
+    * iOS 10.0
+    * tvOS 10.0
+
+
 ## 1.2.0
 * Add takeUntil to Wireframe
 * Add option to disable automatic cell deselection

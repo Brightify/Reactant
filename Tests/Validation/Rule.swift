@@ -9,7 +9,6 @@
 import Quick
 import Nimble
 import Reactant
-import Result
 
 class RuleTest: QuickSpec {
     override func spec() {

@@ -10,7 +10,6 @@ import Quick
 import Nimble
 import Reactant
 import RxSwift
-import Result
 
 class ObservableConvertibleType_ResultTest: QuickSpec {
     

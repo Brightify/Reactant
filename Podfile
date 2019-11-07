@@ -1,37 +1,36 @@
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://cdn.cocoapods.org/'
 use_frameworks!
 inhibit_all_warnings!
 
 def shared
-    pod 'RxSwift', '~> 4.0'
-    pod 'RxCocoa', '~> 4.0'
-    pod 'RxDataSources', '~> 3.0'
-    pod 'RxOptional', '~> 3.0'
-    pod 'SnapKit', '~> 4.0'
-    pod 'Kingfisher', '~> 4.0'
-    pod 'Result', '~> 3.0'
+    pod 'RxSwift', '~> 5.0'
+    pod 'RxCocoa', '~> 5.0'
+    pod 'RxDataSources', '~> 4.0'
+    pod 'RxOptional', '~> 4.0'
+    pod 'SnapKit', '~> 5.0'
+    pod 'Kingfisher', '~> 5.0'
 end
 
 target 'Reactant' do
-    platform :ios, '9.0'
+    platform :ios, '10.0'
 
     shared
 end
 
 target 'ReactantTests' do
-    platform :ios, '9.0'
+    platform :ios, '10.0'
 
     shared
 
-    pod 'Quick', '~> 1.3'
-    pod 'Nimble', '~> 7.1'
+    pod 'Quick', '~> 2.0'
+    pod 'Nimble', '~> 7.0'
     pod 'Cuckoo', :git => 'https://github.com/Brightify/Cuckoo.git', :branch => 'master'
     pod 'RxNimble'
     pod 'RxTest'
 end
 
 target 'ReactantPrototyping' do
-    platform :ios, '8.0'
+    platform :ios, '10.0'
 
     shared
 
@@ -39,19 +38,8 @@ target 'ReactantPrototyping' do
 end
 
 target 'TVPrototyping' do
-    platform :tvos, '9.2'
+    platform :tvos, '10.0'
     shared
 
     pod 'Reactant', :subspecs => ['All-tvOS', 'FallbackSafeAreaInsets'], :path => './'
-end
-
-# Required until CocoaPods adds support for targets with multiple Swift versions or when all dependencies support Swift 4.2
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        unless target.name.start_with? 'Reactant'
-            target.build_configurations.each do |config|
-                config.build_settings['SWIFT_VERSION'] = '4.1'
-            end
-        end
-    end
 end
