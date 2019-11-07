@@ -64,7 +64,7 @@ open class StaticMap: ViewBase<MKCoordinateRegion, StaticMapAction> {
                               bounds.size.width, bounds.size.height)
 
         ImageCache.default.retrieveImage(forKey: fileName, options: nil) { [image, componentState, bounds] result in
-            if let cachedImage = result.value?.image {
+            if case .success(let value) = result, let cachedImage = value.image {
                 image.image = cachedImage
             } else {
                 DispatchQueue.global().async {

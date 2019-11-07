@@ -121,7 +121,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
             if castRootView?.edgesForExtendedLayout.contains(.top) == true {
                 make.top.equalTo(view)
             } else {
-                if #available(iOS 12.0, *) {
+                if #available(iOS 12.0, tvOS 11.0, *) {
                     make.top.equalTo(view.safeAreaLayoutGuide)
                 } else {
                     make.top.equalTo(topLayoutGuide.snp.bottom)
@@ -131,7 +131,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
             if castRootView?.edgesForExtendedLayout.contains(.bottom) == true {
                 make.bottom.equalTo(view).priority(UILayoutPriority.defaultHigh.rawValue)
             } else {
-                if #available(iOS 12.0, *) {
+                if #available(iOS 12.0, tvOS 11.0, *) {
                     make.bottom.equalTo(view.safeAreaLayoutGuide)
                 } else {
                     make.bottom.equalTo(bottomLayoutGuide.snp.top).priority(UILayoutPriority.defaultHigh.rawValue)
