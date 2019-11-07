@@ -57,7 +57,7 @@ public class Recycler<T: AnyObject> {
      * - NOTE: `prepareForReuse` (set in **init**) will be called automatically.
      */
     public func recycle(_ instance: T) {
-        if let index = instancesInUse.index(where: { $0 === instance }) {
+        if let index = instancesInUse.firstIndex(where: { $0 === instance }) {
             instancesInUse.remove(at: index)
         } else if recycledInstances.contains(where: { $0 === instance }) {
             fatalError("Trying to recycle already recycled instance! Instance: \(instance)")

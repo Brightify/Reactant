@@ -25,9 +25,9 @@ extension CLLocationCoordinate2D {
 }
 
 extension CLLocationCoordinate2D: Hashable {
-    
-    public var hashValue: Int {
-        return [latitude.hashValue, longitude.hashValue].djbHash()
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(latitude)
+        hasher.combine(longitude)
     }
 }
 

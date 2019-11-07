@@ -38,7 +38,7 @@ public extension UIView {
         }
     }
 
-    public internal(set) var fallback_safeAreaInsets: UIEdgeInsets {
+    internal(set) var fallback_safeAreaInsets: UIEdgeInsets {
         get {
             return associatedObject(self, key: &AssociateKeys.fallback_safeAreaInsets, defaultValue: .zero)
         }
@@ -66,7 +66,7 @@ public extension UIView {
         }
     }
 
-    public var fallback_safeAreaLayoutGuide: UILayoutGuide {
+    var fallback_safeAreaLayoutGuide: UILayoutGuide {
         if #available(iOS 11.0, tvOS 11.0, *) {
             return safeAreaLayoutGuide
         }

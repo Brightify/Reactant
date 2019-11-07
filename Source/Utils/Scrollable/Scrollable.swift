@@ -13,7 +13,7 @@ public protocol Scrollable {
 
 public extension Scrollable {
     
-    public func scrollToTop() {
+    func scrollToTop() {
         scrollToTop(animated: true)
     }
 }

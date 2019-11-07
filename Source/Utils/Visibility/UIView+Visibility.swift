@@ -23,7 +23,7 @@ public extension UIView {
      * - NOTE: The **UIView** will still retain the dimension of the other axis
      */
     @objc
-    public var collapseAxis: CollapseAxis {
+    var collapseAxis: CollapseAxis {
         get {
             return associatedObject(self, key: &AssociatedKey.collapseAxis, defaultValue: .vertical)
         }
@@ -48,7 +48,7 @@ public extension UIView {
      * - NOTE: See `Visibility` for info about available values.
      */
     @objc
-    public var visibility: Visibility {
+    var visibility: Visibility {
         get {
             return associatedObject(self, key: &AssociatedKey.visibility, defaultValue: isHidden ? .hidden : .visible)
         }
@@ -97,7 +97,7 @@ public extension UIView {
      * Collection of tuples (Constraint, ConstraintAction) holding all collapsible constraints.
      * - ATTENTION: We recommend method `addCollapsible(constraint:action:)` for adding constraints to it.
      */
-    public var collapsibleConstraints: [(constraint: Constraint, action: ConstraintAction)] {
+    var collapsibleConstraints: [(constraint: Constraint, action: ConstraintAction)] {
         get {
             return associatedObject(self, key: &AssociatedKey.collapsibleConstraints, defaultValue: [])
         }
@@ -112,7 +112,7 @@ public extension UIView {
      * - parameter action: determines the action of the constraint
      * - NOTE: For available actions see `ConstraintAction`.
      */
-    public func addCollapsible(constraint: Constraint, action: ConstraintAction) {
+    func addCollapsible(constraint: Constraint, action: ConstraintAction) {
         collapsibleConstraints = collapsibleConstraints.filter { $0.constraint !== constraint }
             .arrayByAppending((constraint: constraint, action: action))
     }

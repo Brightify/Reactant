@@ -1,13 +1,3 @@
-// MARK: - Mocks generated from file: Source/Core/Component/ComponentBase.swift at 2019-11-07 12:54:14 +0000
-
-//
-//  ComponentBase.swift
-//  Reactant
-//
-//  Created by Filip Dolnik on 08.11.16.
-//  Copyright © 2016 Brightify. All rights reserved.
-//
-
 import Cuckoo
 @testable import Reactant
 

@@ -15,8 +15,8 @@ public extension ObservableConvertibleType {
      * because the first value has no predecessor.
      * - returns: `Observable` tuple with current value and its `Optional` predecessor
      */
-    public func lag() -> Observable<(previous: E?, current: E)> {
-        return asObservable().scan((previous: nil as E?, current: nil as E?)) { ($0.current, current: $1) }
+    func lag() -> Observable<(previous: Element?, current: Element)> {
+        return asObservable().scan((previous: nil as Element?, current: nil as Element?)) { ($0.current, current: $1) }
             .filter { $0.current != nil }
             .map { ($0, $1!) }
     }
@@ -25,7 +25,7 @@ public extension ObservableConvertibleType {
      * Creates an observable erasing the original type and replacing its value with Void()
      * - returns: `Observable` with Void value
      */
-    public func rewrite() -> Observable<Void> {
+    func rewrite() -> Observable<Void> {
         return asObservable().rewrite(with: Void())
     }
 
@@ -34,7 +34,7 @@ public extension ObservableConvertibleType {
      * - parameter value: value to rewrite `Observable` with
      * - returns: `Observable` with remapped value
      */
-    public func rewrite<T>(with value: T) -> Observable<T> {
+    func rewrite<T>(with value: T) -> Observable<T> {
         return asObservable().map { _ in value }
     }
 
@@ -43,7 +43,7 @@ public extension ObservableConvertibleType {
      * - parameter second: `Observable` to be added to the right side
      * - returns: `Observable` tuple containing the passed `Observable` on the right
      */
-    public func withLatestFrom<O: ObservableConvertibleType>(right second: O) -> Observable<(E, O.E)> {
+    func withLatestFrom<O: ObservableConvertibleType>(right second: O) -> Observable<(Element, O.Element)> {
         return asObservable().withLatestFrom(second) { ($0, $1) }
     }
 
@@ -52,7 +52,7 @@ public extension ObservableConvertibleType {
      * - parameter second: `Observable` to be added to the left side
      * - returns: `Observable` tuple containing the passed `Observable` on the left
      */
-    public func withLatestFrom<O: ObservableConvertibleType>(left second: O) -> Observable<(O.E, E)> {
+    func withLatestFrom<O: ObservableConvertibleType>(left second: O) -> Observable<(O.Element, Element)> {
         return asObservable().withLatestFrom(second) { ($1, $0) }
     }
 
@@ -71,7 +71,7 @@ public extension ObservableConvertibleType {
      * ```
      *
      */
-    public func with<T, U>(_ value: T, resultSelector: @escaping (E, T) -> U) -> Observable<U> {
+    func with<T, U>(_ value: T, resultSelector: @escaping (Element, T) -> U) -> Observable<U> {
         return asObservable().withLatestFrom(Observable.just(value), resultSelector: resultSelector)
     }
 
@@ -80,7 +80,7 @@ public extension ObservableConvertibleType {
      * - parameter value: generic parameter denoting the value of the second `Observable`-to-be
      * - returns: `Observable` tuple with the passed value on the right
      */
-    public func with<T>(right value: T) -> Observable<(E, T)> {
+    func with<T>(right value: T) -> Observable<(Element, T)> {
         return asObservable().with(value) { ($0, $1) }
     }
 
@@ -89,7 +89,7 @@ public extension ObservableConvertibleType {
      * - parameter value: generic parameter denoting the value of the second `Observable`-to-be
      * - returns: `Observable` tuple with the passed value on the left
      */
-    public func with<T>(left value: T) -> Observable<(T, E)> {
+    func with<T>(left value: T) -> Observable<(T, Element)> {
         return asObservable().with(value) { ($1, $0) }
     }
 
@@ -97,7 +97,7 @@ public extension ObservableConvertibleType {
      * Reforms `Error`s into `nil`.
      * - returns: `Observable` with `Optional` value, `nil` if it was erroneous
      */
-    public func nilOnError() -> Observable<E?> {
+    func nilOnError() -> Observable<Element?> {
         return asObservable().map(Optional.init).catchErrorJustReturn(nil)
     }
 
@@ -106,7 +106,7 @@ public extension ObservableConvertibleType {
      * - parameter source:
      * - returns: `Observable` containing the `source`
      */
-    public func startWithWhenSubscribed(source: @escaping () -> E) -> Observable<E> {
+    func startWithWhenSubscribed(source: @escaping () -> Element) -> Observable<Element> {
         return asObservable().map { value in { value } }.startWith(source).map { $0() }
     }
 }

@@ -13,17 +13,6 @@ public protocol ResultConvertible {
     associatedtype Success
     associatedtype Failure: Swift.Error
 
-
-//    init(value: Value)
-
-//    init(error: Error)
-
-//    func analysis<U>(ifSuccess: (Value) -> U, ifFailure: (Error) -> U) -> U
-
-//    func map<T>(_ transform: (Value) -> T) -> Result<T, Error>
-
-//    func mapError<E>(_ transformError: (Error) -> E) -> Result<Value, E>
-
     func asResult() -> Result<Success, Failure>
 }
 
@@ -52,8 +41,7 @@ internal extension Result {
     }
 }
 
-@available(*, deprecated, message: "")
-extension ObservableConvertibleType where E: ResultConvertible {
+public extension ObservableConvertibleType where Element: ResultConvertible {
 
     /**
      * Filters `Observable` to block erroneous `Result`s while mapping the `Observable` to the value of `.success` that pass.
@@ -68,7 +56,7 @@ extension ObservableConvertibleType where E: ResultConvertible {
      *
      * - NOTE: It's considered good practice to error-handle properly (using a switch), but in combination with `errorOnly()` it can be used for simple and elegant error-handling.
      */
-    public func filterError() -> Observable<E.Success> {
+    func filterError() -> Observable<Element.Success> {
         return asObservable().compactMap { $0.asResult().value }
     }
 
@@ -85,7 +73,7 @@ extension ObservableConvertibleType where E: ResultConvertible {
      *
      * - NOTE: It's considered good practice to error-handle properly (using a switch), but in combination with `filterError()` it can be used for simple and elegant error-handling.
      */
-    public func errorOnly() -> Observable<E.Failure> {
+    func errorOnly() -> Observable<Element.Failure> {
         return asObservable().compactMap { $0.asResult().error }
     }
 
@@ -110,7 +98,7 @@ extension ObservableConvertibleType where E: ResultConvertible {
      *
      * - NOTE: For mapping error on `.failure`, see `mapError(_:)`.
      */
-    public func mapValue<T>(_ transform: @escaping (E.Success) -> T) -> Observable<Result<T, E.Failure>> {
+    func mapValue<T>(_ transform: @escaping (Element.Success) -> T) -> Observable<Result<T, Element.Failure>> {
         return asObservable().map { $0.asResult().map(transform) }
     }
 
@@ -135,7 +123,7 @@ extension ObservableConvertibleType where E: ResultConvertible {
      *
      * - NOTE: For mapping value on `.success`, see `mapValue(_:)`.
      */
-    public func mapError<T: Error>(_ transform: @escaping (E.Failure) -> T) -> Observable<Result<E.Success, T>> {
+    func mapError<T: Error>(_ transform: @escaping (Element.Failure) -> T) -> Observable<Result<Element.Success, T>> {
         return asObservable().map { $0.asResult().mapError(transform) }
     }
 
@@ -145,8 +133,8 @@ extension ObservableConvertibleType where E: ResultConvertible {
      * - returns: `Observable` of type `Result` and its `.success` values transformed using the passed closure
      * - NOTE: See `mapValue(_:)` and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
      */
-    public func flatMapValue<O>(_ selector: @escaping (E.Success) -> O) -> Observable<Result<O.E, E.Failure>> where O : ObservableConvertibleType {
-        return asObservable().flatMap { result -> Observable<Result<O.E, E.Failure>> in
+    func flatMapValue<O>(_ selector: @escaping (Element.Success) -> O) -> Observable<Result<O.Element, Element.Failure>> where O : ObservableConvertibleType {
+        return asObservable().flatMap { result -> Observable<Result<O.Element, Element.Failure>> in
             switch result.asResult() {
             case .success(let value):
                 return selector(value).asObservable().map(Result.success)
@@ -162,8 +150,8 @@ extension ObservableConvertibleType where E: ResultConvertible {
      * - returns: `Observable` of type `Result` and its `.success` values transformed using the passed closure
      * - NOTE: See `mapValue(_:)` and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
      */
-    public func flatMapLatestValue<O>(_ selector: @escaping (E.Success) -> O) -> Observable<Result<O.E, E.Failure>> where O : ObservableConvertibleType {
-        return asObservable().flatMapLatest { result -> Observable<Result<O.E, E.Failure>> in
+    func flatMapLatestValue<O>(_ selector: @escaping (Element.Success) -> O) -> Observable<Result<O.Element, Element.Failure>> where O : ObservableConvertibleType {
+        return asObservable().flatMapLatest { result -> Observable<Result<O.Element, Element.Failure>> in
             switch result.asResult() {
             case .success(let value):
                 return selector(value).asObservable().map(Result.success)
@@ -179,8 +167,8 @@ extension ObservableConvertibleType where E: ResultConvertible {
      * - returns: `Observable` of type `Result` and its `.failure` errors transformed using the passed closure
      * - NOTE: See `mapError(_:)` and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
      */
-    public func flatMapError<O>(_ selector: @escaping (E.Failure) -> O) -> Observable<Result<E.Success, O.E>> where O : ObservableConvertibleType {
-        return asObservable().flatMap { result -> Observable<Result<E.Success, O.E>> in
+    func flatMapError<O>(_ selector: @escaping (Element.Failure) -> O) -> Observable<Result<Element.Success, O.Element>> where O : ObservableConvertibleType {
+        return asObservable().flatMap { result -> Observable<Result<Element.Success, O.Element>> in
             switch result.asResult() {
             case .success(let value):
                 return .just(.success(value))
@@ -196,8 +184,8 @@ extension ObservableConvertibleType where E: ResultConvertible {
      * - returns: `Observable` of type `Result` and its `.failure` errors transformed using the passed closure
      * - NOTE: See `mapError(_:)` and [FlatMap operator](http://reactivex.io/documentation/operators/flatmap.html).
      */
-    public func flatMapLatestError<O>(_ selector: @escaping (E.Failure) -> O) -> Observable<Result<E.Success, O.E>> where O : ObservableConvertibleType {
-        return asObservable().flatMapLatest { result -> Observable<Result<E.Success, O.E>> in
+    func flatMapLatestError<O>(_ selector: @escaping (Element.Failure) -> O) -> Observable<Result<Element.Success, O.Element>> where O : ObservableConvertibleType {
+        return asObservable().flatMapLatest { result -> Observable<Result<Element.Success, O.Element>> in
             switch result.asResult() {
             case .success(let value):
                 return .just(.success(value))
@@ -212,7 +200,7 @@ extension ObservableConvertibleType where E: ResultConvertible {
      * - parameter newValue: the value you wish to rewrite `Observable` values with
      * - returns: `Observable` with `Result`'s `.success` values rewritten with provided parameter
      */
-    public func rewriteValue<T>(newValue: T) -> Observable<Result<T, E.Failure>> {
+    func rewriteValue<T>(newValue: T) -> Observable<Result<T, Element.Failure>> {
         return mapValue { _ in newValue }
     }
 
@@ -221,7 +209,7 @@ extension ObservableConvertibleType where E: ResultConvertible {
      * - parameter value: value to be used if `.success` value is `nil`
      * - returns: `Observable` where `nil` values as well as `.failure` errors are rewritten by provided value
      */
-    public func recover(_ value: E.Success) -> Observable<E.Success> {
+    func recover(_ value: Element.Success) -> Observable<Element.Success> {
         return asObservable().map { $0.asResult().value ?? value }
     }
 
@@ -230,7 +218,7 @@ extension ObservableConvertibleType where E: ResultConvertible {
      * - returns: `Observable` with errors rewritten with `nil`
      * - NOTE: If you want to have purely errorless `Observable` and don't care about `nil`s, consider using `filterError()`.
      */
-    public func recoverWithNil() -> Observable<Self.E.Success?> {
+    func recoverWithNil() -> Observable<Element.Success?> {
         return asObservable().map { $0.asResult().value }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxRelay
 import RxCocoa
 
 public final class ActivityIndicator<T>: ObservableConvertibleType {
@@ -15,7 +16,7 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
     
     public let disposeBag = DisposeBag()
     
-    private let variable: Variable<[(id: UUID, associatedValue: T?)]> = Variable([])
+    private let relay: BehaviorRelay<[(id: UUID, associatedValue: T?)]> = BehaviorRelay(value: [])
     private let driver: Driver<E>
     private let equalFunction: (T?, T?) -> Bool
     fileprivate let defaultAssociatedValue: T?
@@ -32,14 +33,14 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
         
         // `self` cannot be captured before all fields are initialized.
         let equal = self.equalFunction
-        driver = variable.asDriver()
+        driver = relay.asDriver()
             .map { (loading: !$0.isEmpty, associatedValue: $0.compactMap { $0.associatedValue }.first) }
             .distinctUntilChanged { lhs, rhs in lhs.loading == rhs.loading &&
                 equal(lhs.associatedValue, rhs.associatedValue) }
     }
     
     public func trackActivity<O: ObservableConvertibleType>(of source: O, initialAssociatedValue: T?,
-                              associatedValueProvider: @escaping (O.E) -> T?) -> Observable<O.E> {
+                              associatedValueProvider: @escaping (O.Element) -> T?) -> Observable<O.Element> {
         // `self` is intentionally captured. It is released once the Observable is disposed.
         return Observable.create { subscriber in
             let observable = source.asObservable().share(replay: 1, scope: .forever)
@@ -51,19 +52,23 @@ public final class ActivityIndicator<T>: ObservableConvertibleType {
                 .startWith(initialAssociatedValue)
                 .distinctUntilChanged(self.equalFunction)
                 .subscribe(onNext: {
-                    if let index = self.variable.value.index(where: { $0.id == id }) {
-                        self.variable.value[index].associatedValue = $0
+                    var mutableValue = self.relay.value
+                    if let index = self.relay.value.firstIndex(where: { $0.id == id }) {
+                        mutableValue[index].associatedValue = $0
                     } else {
-                        self.variable.value.append((id: id, associatedValue: $0))
+                        mutableValue.append((id: id, associatedValue: $0))
                     }
+                    self.relay.accept(mutableValue)
                 })
             
             return Disposables.create {
                 subscriptionDisposable.dispose()
                 messageChangeDisposable.dispose()
-                
-                if let index = self.variable.value.index(where: { $0.id == id }) {
-                    self.variable.value.remove(at: index)
+
+                var mutableValue = self.relay.value
+                if let index = mutableValue.firstIndex(where: { $0.id == id }) {
+                    mutableValue.remove(at: index)
+                    self.relay.accept(mutableValue)
                 }
             }
         }
@@ -87,18 +92,18 @@ extension ActivityIndicator where T: Equatable {
 
 extension ActivityIndicator {
     
-    public func trackActivity<O: ObservableConvertibleType>(of source: O) -> Observable<O.E> {
+    public func trackActivity<O: ObservableConvertibleType>(of source: O) -> Observable<O.Element> {
         return trackActivity(of: source, associatedValue: defaultAssociatedValue)
     }
     
     public func trackActivity<O: ObservableConvertibleType>(of source: O, associatedValue: T?)
-        -> Observable<O.E> {
+        -> Observable<O.Element> {
         return trackActivity(of: source, initialAssociatedValue: associatedValue,
                              associatedValueProvider: { _ in associatedValue })
     }
     
-    public func trackActivity<O: ObservableConvertibleType>(of source: O, associatedValueProvider: @escaping (O.E) -> T?)
-        -> Observable<O.E> {
+    public func trackActivity<O: ObservableConvertibleType>(of source: O, associatedValueProvider: @escaping (O.Element) -> T?)
+        -> Observable<O.Element> {
         return trackActivity(of: source, initialAssociatedValue: defaultAssociatedValue,
                              associatedValueProvider: associatedValueProvider)
     }
@@ -106,22 +111,22 @@ extension ActivityIndicator {
 
 extension ObservableConvertibleType {
     
-    public func trackActivity<T>(in activityIndicator: ActivityIndicator<T>) -> Observable<E> {
+    public func trackActivity<T>(in activityIndicator: ActivityIndicator<T>) -> Observable<Element> {
         return activityIndicator.trackActivity(of: self, associatedValue: activityIndicator.defaultAssociatedValue)
     }
     
-    public func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, associatedValue: T?) -> Observable<E> {
+    public func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, associatedValue: T?) -> Observable<Element> {
         return activityIndicator.trackActivity(of: self, associatedValue: associatedValue)
     }
     
-    public func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, associatedValueProvider: @escaping (E) -> T?)
-        -> Observable<E> {
+    public func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, associatedValueProvider: @escaping (Element) -> T?)
+        -> Observable<Element> {
         return activityIndicator.trackActivity(of: self, initialAssociatedValue: activityIndicator.defaultAssociatedValue,
                                                associatedValueProvider: associatedValueProvider)
     }
     
     public func trackActivity<T>(in activityIndicator: ActivityIndicator<T>, initialAssociatedValue: T?,
-                              associatedValueProvider: @escaping (E) -> T?) -> Observable<E> {
+                              associatedValueProvider: @escaping (Element) -> T?) -> Observable<Element> {
         return activityIndicator.trackActivity(of: self, initialAssociatedValue: initialAssociatedValue,
                                                associatedValueProvider: associatedValueProvider)
     }

@@ -18,7 +18,7 @@ extension Collection {
         var grouped: [(KEY, [Iterator.Element])] = []
         var t: [String] = []
         func add(_ item: Iterator.Element, forKey key: KEY) {
-            if let index = grouped.index(where: { $0.0 == key }) {
+            if let index = grouped.firstIndex(where: { $0.0 == key }) {
                 let value = grouped[index]
                 grouped[index] = (key, value.1.arrayByAppending(item))
             } else {

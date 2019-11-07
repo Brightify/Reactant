@@ -29,7 +29,7 @@ class WireframeTest: QuickSpec {
                 it("provider.navigation is nil") {
                     var testClosure: () -> Void = { fail("testClosure was never set!") }
                     // this is needed for keeping the reference, otherwise `provider.controller` gets set to nil
-                    let controller = testWireframe.create { provider in
+                    _ = testWireframe.create { provider in
                         expect(provider.controller).to(beNil())
                         expect(provider.navigation).to(beNil())
 
@@ -47,7 +47,7 @@ class WireframeTest: QuickSpec {
             context("when there's a UINavigationController") {
                 it("provider.navigation is not nil") {
                     var testClosure: () -> Void = { fail("testClosure was never set!") }
-                    let navController = UINavigationController(rootViewController:
+                    _ = UINavigationController(rootViewController:
                         testWireframe.create { provider in
                             expect(provider.controller).to(beNil())
                             expect(provider.navigation).to(beNil())
@@ -113,7 +113,7 @@ class WireframeTest: QuickSpec {
 
                         return UIViewController()
                     } as (UIViewController, Observable<ComponentTestAction>)
-                    let navController = UINavigationController(rootViewController: controller.0)
+                    _ = UINavigationController(rootViewController: controller.0)
 
                     let recorded = recording(of: controller.1) {
                         testClosure()
@@ -138,7 +138,7 @@ class WireframeTest: QuickSpec {
 
                         return UIViewController()
                         } as (UIViewController, Observable<ComponentTestAction>)
-                    let navController = UINavigationController(rootViewController: controller.0)
+                    _ = UINavigationController(rootViewController: controller.0)
 
                     let recorded = recording(of: controller.1) {
                         testClosure()

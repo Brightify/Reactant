@@ -23,7 +23,7 @@ public class PickerView<MODEL>: ViewBase<MODEL, MODEL>, UIPickerViewDataSource, 
 
     public override func update() {
         let title = titleSelection(componentState)
-        guard let index = items.index(where: { titleSelection($0) == title }) else { return }
+        guard let index = items.firstIndex(where: { titleSelection($0) == title }) else { return }
         pickerView.selectRow(index, inComponent: 0, animated: true)
     }
 

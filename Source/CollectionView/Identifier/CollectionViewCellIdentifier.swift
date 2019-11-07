@@ -42,7 +42,7 @@ extension UICollectionView {
     }
     
     public func items<S: Sequence, Cell, O: ObservableType>(with identifier: CollectionViewCellIdentifier<Cell>) ->
-        (_ source: O) -> (_ configureCell: @escaping (Int, S.Iterator.Element, CollectionViewCellWrapper<Cell>) -> Void) -> Disposable where O.E == S {
+        (_ source: O) -> (_ configureCell: @escaping (Int, S.Iterator.Element, CollectionViewCellWrapper<Cell>) -> Void) -> Disposable where O.Element == S {
         return rx.items(cellIdentifier: identifier.name)
     }
 }

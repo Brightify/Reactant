@@ -9,7 +9,7 @@ import UIKit
 
 public extension UIFont {
     @available(iOS 8.2, *)
-    public enum System {
+    enum System {
         case ultraLight
         case thin
         case light
@@ -54,7 +54,7 @@ public extension UIFont {
 }
 
 public extension UIFont {
-    public func smallCapitals() -> UIFont {
+    func smallCapitals() -> UIFont {
         let settings = [
             [UIFontDescriptor.FeatureKey.featureIdentifier: kLowerCaseType,
              UIFontDescriptor.FeatureKey.typeIdentifier: kLowerCaseSmallCapsSelector],
@@ -66,12 +66,12 @@ public extension UIFont {
 }
 
 public extension UIFont {
-    public func with(traits: UIFontDescriptor.SymbolicTraits...) -> UIFont {
+    func with(traits: UIFontDescriptor.SymbolicTraits...) -> UIFont {
         let descriptor = fontDescriptor.withSymbolicTraits(UIFontDescriptor.SymbolicTraits(traits))!
         return UIFont(descriptor: descriptor, size: 0)
     }
     
-    public func italic() -> UIFont {
+    func italic() -> UIFont {
         return with(traits: .traitItalic)
     }
     

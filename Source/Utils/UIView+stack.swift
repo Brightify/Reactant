@@ -19,7 +19,7 @@ public extension UIView {
                                                   this prevents breaking of constraints in cases of hiding
                                                   the whole parent view using constraints
      */
-    public func stack(views: [UIView],
+    func stack(views: [UIView],
                       withSpacing spacing: CGFloat = 0,
                       axis: NSLayoutConstraint.Axis = .horizontal,
                       lowerPriorityOfLastConstraint: Bool = false) {
@@ -55,6 +55,9 @@ public extension UIView {
                         make.bottom.equalToSuperview().priority(lowerPriorityOfLastConstraint ? .high : .required)
                     }
                 }
+            @unknown default:
+                assertionFailure("Unhandled axis case: \(axis)!")
+                break
             }
 
             previousView = view
