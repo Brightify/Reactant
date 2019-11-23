@@ -29,7 +29,7 @@ class WireframeTest: QuickSpec {
                 it("provider.navigation is nil") {
                     var testClosure: () -> Void = { fail("testClosure was never set!") }
                     // this is needed for keeping the reference, otherwise `provider.controller` gets set to nil
-                    _ = testWireframe.create { provider in
+                    let controller = testWireframe.create { provider in
                         expect(provider.controller).to(beNil())
                         expect(provider.navigation).to(beNil())
 
@@ -41,6 +41,7 @@ class WireframeTest: QuickSpec {
                         return UIViewController()
                     }
 
+                    expect(controller).toNot(beNil())
                     testClosure()
                 }
             }

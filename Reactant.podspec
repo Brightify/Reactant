@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
     spec.name             = 'Reactant'
-    spec.version          = '1.3.0'
+    spec.version          = '1.3.1'
     spec.summary          = 'Reactant is a reactive architecture for iOS'
     spec.description      = <<-DESC
                             Reactant is a foundation for rapid and safe iOS development. It allows you to cut down your development costs by improving reusability, testability and safety of your code, especially your UI.

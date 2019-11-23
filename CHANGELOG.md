@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1
+
+* Make sure to call `__rui.updateReactantUI` after `__rui.setupReactantUI` on iOS 13+, tvOS 13+ and macOS 10.15+.
+
 ## 1.3.0
 * Support for Swift 5.0
 * Upgraded to RxSwift 5.0

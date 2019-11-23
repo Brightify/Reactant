@@ -64,6 +64,12 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
         
         if let reactantUi = self as? ReactantUI {
             reactantUi.__rui.setupReactantUI()
+
+            // On these platforms Apple changed the behavior of traitCollectionDidChange that it's not guaranteed
+            // to be called at least once. We need it to setup trait-dependent values in RUI.
+            if #available(iOS 13.0, tvOS 13.0, macOS 10.15, *) {
+                reactantUi.__rui.updateReactantUI()
+            }
         }
         
         loadView()
