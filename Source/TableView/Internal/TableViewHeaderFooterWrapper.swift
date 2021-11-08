@@ -15,10 +15,10 @@ public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeader
     
     private var wrappedView: VIEW?
     
-    public var configuration: Configuration = .global {
+    public var reactantConfiguration: ReactantConfiguration = .global {
         didSet {
-            (wrappedView as? Configurable)?.configuration = configuration
-            configuration.get(valueFor: Properties.Style.TableView.headerFooterWrapper)(self)
+            (wrappedView as? Configurable)?.reactantConfiguration = reactantConfiguration
+            reactantConfiguration.get(valueFor: Properties.Style.TableView.headerFooterWrapper)(self)
         }
     }
 
@@ -41,7 +41,7 @@ public final class TableViewHeaderFooterWrapper<VIEW: UIView>: UITableViewHeader
             return wrappedView
         } else {
             let wrappedView = factory()
-            (wrappedView as? Configurable)?.configuration = configuration
+            (wrappedView as? Configurable)?.reactantConfiguration = reactantConfiguration
             self.wrappedView = wrappedView
             contentView.children(wrappedView)
             setNeedsUpdateConstraints()

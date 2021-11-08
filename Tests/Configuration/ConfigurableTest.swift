@@ -10,7 +10,7 @@ import Quick
 import Nimble
 import Reactant
 
-private typealias Configuration = Reactant.Configuration
+private typealias Configuration = Reactant.ReactantConfiguration
 
 class ConfigurableTest: QuickSpec {
     
@@ -23,7 +23,7 @@ class ConfigurableTest: QuickSpec {
                     let configurable = ConfigurableStub(configuration: configuration)
                     var called = false
                     configurable.didSetCallback = {
-                        expect(configurable.configuration) === configuration
+                        expect(configurable.reactantConfiguration) === configuration
                         called = true
                     }
                     
@@ -37,7 +37,7 @@ class ConfigurableTest: QuickSpec {
                     let differentConfiguration = Configuration()
                     let configurable = ConfigurableStub(configuration: configuration)
                     
-                    expect(configurable.with(configuration: differentConfiguration).configuration) === differentConfiguration
+                    expect(configurable.with(configuration: differentConfiguration).reactantConfiguration) === differentConfiguration
                 }
             }
         }
@@ -45,7 +45,7 @@ class ConfigurableTest: QuickSpec {
     
     private class ConfigurableStub: Configurable {
         
-        var configuration: Configuration {
+        var reactantConfiguration: Configuration {
             didSet {
                 didSetCallback()
             }
@@ -54,7 +54,7 @@ class ConfigurableTest: QuickSpec {
         var didSetCallback: () -> Void = {}
         
         init(configuration: Configuration) {
-            self.configuration = configuration
+            self.reactantConfiguration = configuration
         }
     }
 }

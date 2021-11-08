@@ -7,7 +7,7 @@
 //
 
 public protocol SubConfiguration {
-    var configuration: Configuration { get }
+    var configuration: ReactantConfiguration { get }
 
-    init(configuration: Configuration)
+    init(configuration: ReactantConfiguration)
 }

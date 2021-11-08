@@ -24,10 +24,10 @@ open class ControlBase<STATE, ACTION>: UIControl, ComponentWithDelegate, Configu
         return componentDelegate.action
     }
     
-    open var configuration: Configuration = .global {
+    open var reactantConfiguration: ReactantConfiguration = .global {
         didSet {
-            layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
-            configuration.get(valueFor: Properties.Style.control)(self)
+            layoutMargins = reactantConfiguration.get(valueFor: Properties.layoutMargins)
+            reactantConfiguration.get(valueFor: Properties.Style.control)(self)
         }
     }
     

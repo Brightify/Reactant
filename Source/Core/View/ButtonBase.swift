@@ -26,10 +26,10 @@ open class ButtonBase<STATE, ACTION>: UIButton, ComponentWithDelegate, Configura
         return componentDelegate.action
     }
 
-    open var configuration: Configuration = .global {
+    open var reactantConfiguration: ReactantConfiguration = .global {
         didSet {
-            layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
-            configuration.get(valueFor: Properties.Style.button)(self)
+            layoutMargins = reactantConfiguration.get(valueFor: Properties.layoutMargins)
+            reactantConfiguration.get(valueFor: Properties.Style.button)(self)
         }
     }
 

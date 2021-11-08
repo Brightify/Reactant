@@ -10,10 +10,10 @@ import UIKit
 
 open class ContainerView: UIView, Configurable {
     
-    open var configuration: Configuration = .global {
+    open var reactantConfiguration: ReactantConfiguration = .global {
         didSet {
-            layoutMargins = configuration.get(valueFor: Properties.layoutMargins)
-            configuration.get(valueFor: Properties.Style.container)(self)
+            layoutMargins = reactantConfiguration.get(valueFor: Properties.layoutMargins)
+            reactantConfiguration.get(valueFor: Properties.Style.container)(self)
         }
     }
     

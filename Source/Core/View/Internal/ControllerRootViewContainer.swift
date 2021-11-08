@@ -12,9 +12,9 @@ public final class ControllerRootViewContainer: UIView, Configurable {
     
     public let wrappedView: UIView?
     
-    public var configuration: Configuration = .global {
+    public var reactantConfiguration: ReactantConfiguration = .global {
         didSet {
-            configuration.get(valueFor: Properties.Style.controllerRoot)(self)
+            reactantConfiguration.get(valueFor: Properties.Style.controllerRoot)(self)
         }
     }
     

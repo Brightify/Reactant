@@ -82,7 +82,7 @@ extension Wireframe {
      * Used when you need a navigation controller embedded inside a controller that is already inside a navigation controller and is supposed to have a close button.
      */
     public func branchNavigation<S, T>(controller: ControllerBase<S, T>) -> UINavigationController {
-        let closeButtonTitle = controller.configuration.get(valueFor: Properties.closeButtonTitle)
+        let closeButtonTitle = controller.reactantConfiguration.get(valueFor: Properties.closeButtonTitle)
         return branchNavigation(controller: controller, closeButtonTitle: closeButtonTitle)
     }
 }

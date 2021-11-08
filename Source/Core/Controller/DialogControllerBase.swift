@@ -13,10 +13,10 @@ open class DialogControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
     private let rootViewContainer = ControllerRootViewContainer()
     public var dialogView: DialogView
     
-    open override var configuration: Configuration {
+    open override var reactantConfiguration: ReactantConfiguration {
         didSet {
-            dialogView.configuration = configuration
-            configuration.get(valueFor: Properties.Style.dialogControllerRoot)(rootViewContainer)
+            dialogView.reactantConfiguration = reactantConfiguration
+            reactantConfiguration.get(valueFor: Properties.Style.dialogControllerRoot)(rootViewContainer)
         }
     }
 

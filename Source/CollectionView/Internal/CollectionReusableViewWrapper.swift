@@ -15,10 +15,10 @@ public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReus
     
     private var wrappedView: VIEW?
         
-    public var configuration: Configuration = .global {
+    public var reactantConfiguration: ReactantConfiguration = .global {
         didSet {
-            (wrappedView as? Configurable)?.configuration = configuration
-            configuration.get(valueFor: Properties.Style.CollectionView.reusableViewWrapper)(self)
+            (wrappedView as? Configurable)?.reactantConfiguration = reactantConfiguration
+            reactantConfiguration.get(valueFor: Properties.Style.CollectionView.reusableViewWrapper)(self)
         }
     }
 
@@ -41,7 +41,7 @@ public final class CollectionReusableViewWrapper<VIEW: UIView>: UICollectionReus
             return wrappedView
         } else {
             let wrappedView = factory()
-            (wrappedView as? Configurable)?.configuration = configuration
+            (wrappedView as? Configurable)?.reactantConfiguration = reactantConfiguration
             self.wrappedView = wrappedView
             children(wrappedView)
             setNeedsUpdateConstraints()

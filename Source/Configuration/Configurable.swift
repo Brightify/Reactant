@@ -8,7 +8,7 @@
 
 public protocol Configurable: class {
     /// See `Configuration` for more info.
-    var configuration: Configuration { get set }
+    var reactantConfiguration: ReactantConfiguration { get set }
 }
 
 extension Configurable {
@@ -17,8 +17,8 @@ extension Configurable {
      * Reloads object's configuration. Essentially just calls `didSet` on its configuration.
      */
     public func reloadConfiguration() {
-        let temp = configuration
-        configuration = temp
+        let temp = reactantConfiguration
+        reactantConfiguration = temp
     }
 
     /**
@@ -27,8 +27,8 @@ extension Configurable {
      * - parameter configuration: new configuration to set to the object
      * - returns: self with new configuration set
      */
-    public func with(configuration: Configuration) -> Self {
-        self.configuration = configuration
+    public func with(configuration: ReactantConfiguration) -> Self {
+        self.reactantConfiguration = configuration
         return self
     }
 }

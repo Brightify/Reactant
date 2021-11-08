@@ -15,10 +15,10 @@ public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell, Configur
     
     private var cell: CELL?
     
-    public var configuration: Configuration = .global {
+    public var reactantConfiguration: ReactantConfiguration = .global {
         didSet {
-            (cell as? Configurable)?.configuration = configuration
-            configuration.get(valueFor: Properties.Style.TableView.cellWrapper)(self)
+            (cell as? Configurable)?.reactantConfiguration = reactantConfiguration
+            reactantConfiguration.get(valueFor: Properties.Style.TableView.cellWrapper)(self)
         }
     }
 
@@ -81,7 +81,7 @@ public final class TableViewCellWrapper<CELL: UIView>: UITableViewCell, Configur
             return cell
         } else {
             let cell = factory()
-            (cell as? Configurable)?.configuration = configuration
+            (cell as? Configurable)?.reactantConfiguration = reactantConfiguration
             self.cell = cell
             if let tableViewCell = tableViewCell {
                 selectionStyle = tableViewCell.selectionStyle

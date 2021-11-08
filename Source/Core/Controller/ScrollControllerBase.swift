@@ -12,14 +12,14 @@ open class ScrollControllerBase<STATE, ROOT: UIView>: ControllerBase<STATE, ROOT
     
     public let scrollView = UIScrollView()
     
-    open override var configuration: Configuration {
+    open override var reactantConfiguration: ReactantConfiguration {
         didSet {
-            configuration.get(valueFor: Properties.Style.scroll)(scrollView)
+            reactantConfiguration.get(valueFor: Properties.Style.scroll)(scrollView)
         }
     }
 
     open override func loadView() {
-        view = ControllerRootViewContainer().with(configuration: configuration)
+        view = ControllerRootViewContainer().with(configuration: reactantConfiguration)
 
         view.children(
             scrollView.children(

@@ -10,9 +10,9 @@ import RxSwift
 
 open class PagingCollectionView<CELL: UIView>: SimpleCollectionView<CELL> where CELL: Component {
     
-    open override var configuration: Configuration {
+    open override var reactantConfiguration: ReactantConfiguration {
         didSet {
-            configuration.get(valueFor: Properties.Style.CollectionView.pageControl)(pageControl)
+            reactantConfiguration.get(valueFor: Properties.Style.CollectionView.pageControl)(pageControl)
         }
     }
     

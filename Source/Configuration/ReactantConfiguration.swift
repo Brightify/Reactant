@@ -13,12 +13,12 @@
  * Reactant comes with prebuilt properties which you can find in extensions to the Properties struct. It's recommended 
  * to add any new property into the Properties struct via an extension to keep properties easily discoverable via auto-complete.
  */
-public final class Configuration {
+public final class ReactantConfiguration {
     // XXX: This code is here due to bug in Swift/Xcode where types inside extensions depend on compilation order
     public typealias Style = StyleConfiguration
 
     /// Global configuration instance. It's used as a default configuration in every component throughout Reactant.
-    public static var global = Configuration()
+    public static var global = ReactantConfiguration()
     
     private var data: [Int: Any] = [:]
 
@@ -27,7 +27,7 @@ public final class Configuration {
      * If no configuration is provided, an empty Configuration is created.
      * - parameter copy: variadic parameter, passing in multiple `Configuration`s merges them into one
      */
-    public init(copy: Configuration...) {
+    public init(copy: ReactantConfiguration...) {
         self.data = copy.reduce([:]) { acc, value in
             var dictionary = acc
             value.data.forEach { dictionary[$0] = $1 }

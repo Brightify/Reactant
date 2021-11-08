@@ -10,7 +10,7 @@ import Quick
 import Nimble
 import Reactant
 
-private typealias Configuration = Reactant.Configuration
+private typealias Configuration = Reactant.ReactantConfiguration
 
 class ConfigurationTest: QuickSpec {
     

@@ -13,11 +13,11 @@ public final class DialogView: ViewBase<Void, Void> {
     private let contentContainer = ContainerView()
     private let content: UIView
     
-    public override var configuration: Configuration {
+    public override var reactantConfiguration: ReactantConfiguration {
         didSet {
-            contentContainer.configuration = configuration
-            configuration.get(valueFor: Properties.Style.dialogContentContainer)(contentContainer)
-            configuration.get(valueFor: Properties.Style.dialog)(self)
+            contentContainer.reactantConfiguration = reactantConfiguration
+            reactantConfiguration.get(valueFor: Properties.Style.dialogContentContainer)(contentContainer)
+            reactantConfiguration.get(valueFor: Properties.Style.dialog)(self)
         }
     }
     

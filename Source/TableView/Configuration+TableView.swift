@@ -37,7 +37,7 @@ public final class TableViewConfiguration: BaseSubConfiguration {
     }
 }
 
-public extension Configuration.Style {
+public extension ReactantConfiguration.Style {
     var tableView: TableViewConfiguration {
         return TableViewConfiguration(configuration: configuration)
     }

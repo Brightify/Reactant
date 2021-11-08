@@ -27,9 +27,9 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
         return .all
     }
     
-    open override var configuration: Configuration {
+    open override var reactantConfiguration: ReactantConfiguration {
         didSet {
-            configuration.get(valueFor: Properties.Style.TableView.tableView)(self)
+            reactantConfiguration.get(valueFor: Properties.Style.TableView.tableView)(self)
             
             configurationChangeTime = clock()
             setNeedsLayout()
@@ -187,12 +187,12 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         cell.configureDisposeBag = DisposeBag()
         if configurationChangeTime != cell.configurationChangeTime {
-            cell.configuration = configuration
+            cell.reactantConfiguration = reactantConfiguration
             cell.configurationChangeTime = configurationChangeTime
         }
         let component = cell.cachedCellOrCreated(factory: factory)
         component.componentState = model
-        (component as? Configurable)?.configuration = configuration
+        (component as? Configurable)?.reactantConfiguration = reactantConfiguration
         component.action.map(mapAction)
             .subscribe(onNext: { [weak self] in
                 self?.perform(action: $0)
@@ -211,12 +211,12 @@ open class TableViewBase<MODEL, ACTION>: ViewBase<TableViewState<MODEL>, ACTION>
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         view.configureDisposeBag = DisposeBag()
         if configurationChangeTime != view.configurationChangeTime {
-            view.configuration = configuration
+            view.reactantConfiguration = reactantConfiguration
             view.configurationChangeTime = configurationChangeTime
         }
         let component = view.cachedViewOrCreated(factory: factory)
         component.componentState = model
-        (component as? Configurable)?.configuration = configuration
+        (component as? Configurable)?.reactantConfiguration = reactantConfiguration
         component.action.map(mapAction)
             .subscribe(onNext: { [weak self] in
                 self?.perform(action: $0)

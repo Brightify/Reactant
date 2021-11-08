@@ -46,7 +46,7 @@ public final class CollectionViewConfiguration: BaseSubConfiguration {
     }
 }
 
-public extension Configuration.Style {
+public extension ReactantConfiguration.Style {
     var collectionView: CollectionViewConfiguration {
         return CollectionViewConfiguration(configuration: configuration)
     }

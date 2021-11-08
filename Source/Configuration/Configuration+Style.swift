@@ -9,7 +9,7 @@
 public final class StyleConfiguration: BaseSubConfiguration {
 }
 
-extension Configuration {
+extension ReactantConfiguration {
     public var style: StyleConfiguration {
         return StyleConfiguration(configuration: self)
     }

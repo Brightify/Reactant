@@ -8,7 +8,7 @@
 
 import UIKit
 
-public extension Configuration {
+public extension ReactantConfiguration {
     var layoutMargins: UIEdgeInsets {
         get {
             return get(valueFor: Properties.layoutMargins)
@@ -37,7 +37,7 @@ public extension Configuration {
     }
 }
 
-public extension Configuration.Style {
+public extension ReactantConfiguration.Style {
     var controllerRoot: (ControllerRootViewContainer) -> Void {
         get {
             return configuration.get(valueFor: Properties.Style.controllerRoot)

@@ -28,13 +28,13 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     
     public let rootView: ROOT
     
-    open var configuration: Configuration = .global {
+    open var reactantConfiguration: ReactantConfiguration = .global {
         didSet {
-            (rootView as? Configurable)?.configuration = configuration
-            (view as? Configurable)?.configuration = configuration
+            (rootView as? Configurable)?.reactantConfiguration = reactantConfiguration
+            (view as? Configurable)?.reactantConfiguration = reactantConfiguration
 
             #if os(iOS)
-            navigationItem.backBarButtonItem = configuration.get(valueFor: Properties.defaultBackButton)
+            navigationItem.backBarButtonItem = reactantConfiguration.get(valueFor: Properties.defaultBackButton)
             #endif
         }
     }
@@ -104,7 +104,7 @@ open class ControllerBase<STATE, ROOT: UIView>: UIViewController, ComponentWithD
     }
 
     open override func loadView() {
-        view = ControllerRootViewContainer().with(configuration: configuration)
+        view = ControllerRootViewContainer().with(configuration: reactantConfiguration)
         
         view.addSubview(rootView)
     }

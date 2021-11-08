@@ -7,9 +7,9 @@
 //
 
 open class BaseSubConfiguration: SubConfiguration {
-    public let configuration: Configuration
+    public let configuration: ReactantConfiguration
 
-    public required init(configuration: Configuration) {
+    public required init(configuration: ReactantConfiguration) {
         self.configuration = configuration
     }
 }

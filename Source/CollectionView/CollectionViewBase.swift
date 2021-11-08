@@ -14,9 +14,9 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
         return .all
     }
     
-    open override var configuration: Configuration {
+    open override var reactantConfiguration: ReactantConfiguration {
         didSet {
-            configuration.get(valueFor: Properties.Style.CollectionView.collectionView)(self)
+            reactantConfiguration.get(valueFor: Properties.Style.CollectionView.collectionView)(self)
             
             configurationChangeTime = clock()
             setNeedsLayout()
@@ -146,7 +146,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         cell.configureDisposeBag = DisposeBag()
         if configurationChangeTime != cell.configurationChangeTime {
-            cell.configuration = configuration
+            cell.reactantConfiguration = reactantConfiguration
             cell.configurationChangeTime = configurationChangeTime
         }
         let component = cell.cachedCellOrCreated(factory: factory)
@@ -184,7 +184,7 @@ open class CollectionViewBase<MODEL, ACTION>: ViewBase<CollectionViewState<MODEL
                           mapAction: @escaping (T.ActionType) -> ACTION) -> Void {
         view.configureDisposeBag = DisposeBag()
         if configurationChangeTime != view.configurationChangeTime {
-            view.configuration = configuration
+            view.reactantConfiguration = reactantConfiguration
             view.configurationChangeTime = configurationChangeTime
         }
         let component = view.cachedViewOrCreated(factory: factory)
